@@ -17,6 +17,9 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://aibusiness.vc"),
+  verification: {
+    google: "yRYv2YyqS-AMtu6oaPdAaEUZMzcubgWv-XVJE9aLnuM",
+  },
   title: {
     default: "AI Business — How to Make Money with AI in 2026",
     template: "%s | AI Business",
