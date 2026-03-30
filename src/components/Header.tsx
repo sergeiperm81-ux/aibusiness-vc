@@ -5,7 +5,8 @@ const navigation = [
   { name: "Solo", href: "/solo" },
   { name: "Startups", href: "/startups" },
   { name: "B2B", href: "/b2b" },
-  { name: "Tools", href: "/tools" },
+  { name: "Models", href: "/models" },
+  { name: "Tools", href: "/tools/directory" },
   { name: "Learn", href: "/learn" },
   { name: "Materials", href: "/materials" },
 ];
