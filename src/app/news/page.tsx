@@ -24,33 +24,25 @@ export default function NewsPage() {
 
   return (
     <>
-      {/* Header — exactly like super.tennis */}
-      <div className="bg-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          {/* Breadcrumb */}
-          <div className="pt-6 pb-2">
-            <p className="text-sm text-gray-400">
-              <Link href="/" className="hover:text-gray-600">
-                Home
-              </Link>
-              {" / "}
-              <span className="text-gray-600">News</span>
-            </p>
-          </div>
-
-          {/* Title */}
-          <h1 className="text-5xl font-black text-gray-900 tracking-tight mt-4">
-            AI BUSINESS NEWS
+      {/* Header — black, matching site style */}
+      <section className="bg-background">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+          <p className="text-accent font-mono text-xs font-medium mb-2 tracking-wider uppercase">
+            News
+          </p>
+          <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">
+            AI Business <span className="text-accent">News</span>
           </h1>
-          <p className="text-gray-400 mt-2 mb-6">
+          <p className="text-sm text-muted">
             Funding, launches, tools & everything AI money
           </p>
+        </div>
+      </section>
 
-          {/* Green divider line */}
-          <div className="h-1 bg-gradient-to-r from-amber-500 to-amber-300 rounded-full mb-5" />
-
-          {/* Category pills */}
-          <div className="flex gap-2 pb-6">
+      {/* Category pills */}
+      <div className="bg-white border-b border-gray-200">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3">
+          <div className="flex gap-2">
             {categories.map((cat) => (
               <button
                 key={cat}
@@ -58,10 +50,10 @@ export default function NewsPage() {
                   setActiveCategory(cat);
                   setExpandedSlug(null);
                 }}
-                className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${
+                className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${
                   activeCategory === cat
-                    ? "bg-gray-800 text-white"
-                    : "bg-white text-gray-500 border border-gray-200 hover:border-gray-400"
+                    ? "bg-accent text-black"
+                    : "bg-white text-gray-500 border border-gray-200 hover:border-accent hover:text-accent"
                 }`}
               >
                 {cat}
@@ -123,7 +115,7 @@ export default function NewsPage() {
                         <h2 className="text-lg font-bold text-gray-900 leading-snug">
                           {item.title}
                         </h2>
-                        <p className="text-sm text-gray-500 mt-2 line-clamp-2">
+                        <p className="text-sm text-gray-700 mt-2 line-clamp-2">
                           {item.excerpt}
                         </p>
                       </div>
@@ -150,7 +142,7 @@ export default function NewsPage() {
                     {isExpanded && (
                       <div className="border-t border-gray-100 px-6 py-6">
                         <div
-                          className="prose prose-gray max-w-none prose-p:text-gray-600 prose-p:leading-[1.8] prose-strong:text-gray-900 prose-li:text-gray-600 prose-ul:mt-2"
+                          className="prose prose-gray max-w-none prose-p:text-gray-800 prose-p:leading-[1.8] prose-strong:text-gray-900 prose-li:text-gray-800 prose-ul:mt-2"
                           dangerouslySetInnerHTML={{ __html: item.body }}
                         />
 
