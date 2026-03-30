@@ -7,6 +7,19 @@ const trendingItems = [
   "Cursor Becomes #1 AI Coding Tool",
 ];
 
+function highlightNumbers(text: string) {
+  const parts = text.split(/(\$[\d,.]+[BKMTK]*(?:\/\w+)?|\d+%|#\d+)/g);
+  return parts.map((part, i) =>
+    /^\$|^\d+%|^#\d+/.test(part) ? (
+      <span key={i} className="text-emerald-500 font-bold">
+        {part}
+      </span>
+    ) : (
+      <span key={i}>{part}</span>
+    )
+  );
+}
+
 export function TrendingBar() {
   const items = [...trendingItems, ...trendingItems];
 
@@ -25,7 +38,7 @@ export function TrendingBar() {
               className="text-[13px] text-gray-800 font-medium flex items-center gap-3"
             >
               <span className="text-accent text-[8px]">●</span>
-              {item}
+              {highlightNumbers(item)}
             </span>
           ))}
         </div>
