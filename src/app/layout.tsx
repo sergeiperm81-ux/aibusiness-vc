@@ -21,20 +21,17 @@ export const metadata: Metadata = {
     template: "%s | AI Business",
   },
   description:
-    "The definitive guide to making money with AI. Discover proven methods, the best AI tools, real income case studies, and step-by-step strategies to build your AI-powered business.",
+    "The definitive guide to making money with AI. News, tools, strategies, and real stories for solo earners, startups, and enterprises.",
   keywords: [
     "make money with AI",
     "AI business ideas",
     "AI side hustle",
     "AI tools",
     "AI automation agency",
-    "AI freelancing",
-    "how to make money with AI",
-    "AI passive income",
+    "AI startups",
+    "AI for business",
   ],
   authors: [{ name: "AI Business", url: "https://aibusiness.vc" }],
-  creator: "AI Business",
-  publisher: "AI Business",
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -42,13 +39,13 @@ export const metadata: Metadata = {
     siteName: "AI Business",
     title: "AI Business — How to Make Money with AI in 2026",
     description:
-      "The definitive guide to making money with AI. Proven methods, real numbers, honest reviews.",
+      "News, tools, and strategies for making money with AI. For solo earners, startups, and enterprises.",
   },
   twitter: {
     card: "summary_large_image",
     title: "AI Business — How to Make Money with AI",
     description:
-      "The definitive guide to making money with AI. Proven methods, real numbers, honest reviews.",
+      "News, tools, and strategies for making money with AI.",
   },
   robots: {
     index: true,
@@ -71,27 +68,27 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased light`}
+      style={{ colorScheme: "light" }}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col bg-white text-foreground">
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
-        <SchemaOrg />
+        <OrgSchemaOrg />
       </body>
     </html>
   );
 }
 
-function SchemaOrg() {
+function OrgSchemaOrg() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "AI Business",
     url: "https://aibusiness.vc",
     description:
-      "The definitive guide to making money with AI. Proven methods, real income case studies, and the best AI tools reviewed.",
-    sameAs: [],
+      "How to make money with AI. News, tools, and strategies for solo earners, startups, and enterprises.",
   };
 
   return (
