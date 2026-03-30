@@ -3,6 +3,8 @@ import { models } from "@/data/models";
 import { tools } from "@/data/tools";
 import { getAllArticles } from "@/lib/articles";
 import { getAllComparisons } from "@/data/comparisons";
+import { salaries } from "@/data/salaries";
+import { regulations } from "@/data/regulations";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://aibusiness.vc";
@@ -49,5 +51,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticPages, ...modelPages, ...toolPages, ...articlePages, ...comparisonPages];
+  const salaryPages: MetadataRoute.Sitemap = salaries.map((s) => ({
+    url: `${baseUrl}/salaries/${s.id}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  const regulationPages: MetadataRoute.Sitemap = regulations.map((r) => ({
+    url: `${baseUrl}/regulation/${r.id}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  return [...staticPages, ...modelPages, ...toolPages, ...articlePages, ...comparisonPages, ...salaryPages, ...regulationPages];
 }
