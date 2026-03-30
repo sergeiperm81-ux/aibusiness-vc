@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { TrendingBar } from "@/components/TrendingBar";
 
 export const metadata: Metadata = {
   title: "AI Business — How to Make Money with AI in 2026",
@@ -148,6 +149,7 @@ export default function HomePage() {
             </div>
           </div>
         </div>
+        <TrendingBar />
       </section>
 
       {/* LATEST NEWS — white bg, 6 black cards, 2 rows of 3 */}
