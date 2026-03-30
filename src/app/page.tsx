@@ -121,28 +121,28 @@ export default function HomePage() {
     <>
       {/* HERO — compact black */}
       <section className="bg-background">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-5 sm:py-6">
           <div className="max-w-3xl">
-            <p className="text-accent font-mono text-xs font-medium mb-2 tracking-wider uppercase">
+            <p className="text-accent font-mono text-xs font-medium mb-1.5 tracking-wider uppercase">
               The AI Gold Rush is here
             </p>
-            <h1 className="text-3xl sm:text-4xl font-bold tracking-tight leading-[1.15] mb-3 text-white">
+            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight leading-[1.15] mb-2 text-white">
               How to Make Money <span className="text-accent">with AI</span> in 2026
             </h1>
-            <p className="text-sm text-muted leading-relaxed mb-4 max-w-xl">
+            <p className="text-sm text-muted leading-relaxed mb-3 max-w-xl">
               50+ proven methods, honest income numbers, the best tools reviewed,
               and real case studies from people who actually did it.
             </p>
             <div className="flex gap-3">
               <Link
                 href="/solo"
-                className="px-4 py-2 text-sm font-semibold bg-accent text-background rounded-lg hover:bg-accent-hover transition-colors"
+                className="px-4 py-1.5 text-sm font-semibold bg-accent text-background rounded-lg hover:bg-accent-hover transition-colors"
               >
                 Explore Earning Methods
               </Link>
               <Link
                 href="/tools"
-                className="px-4 py-2 text-sm font-medium border border-card-border text-white rounded-lg hover:bg-card-bg transition-colors"
+                className="px-4 py-1.5 text-sm font-medium border border-card-border text-white rounded-lg hover:bg-card-bg transition-colors"
               >
                 Browse AI Tools
               </Link>
@@ -154,18 +154,18 @@ export default function HomePage() {
 
       {/* LATEST NEWS — white bg, 6 black cards, 2 rows of 3 */}
       <section className="bg-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-bold text-gray-900">Latest News</h2>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-5 pb-8">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-bold text-gray-900">Latest News</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {latestNews.map((item) => (
               <Link
                 key={item.title}
                 href={item.href}
                 className="group bg-background rounded-xl overflow-hidden hover:ring-2 hover:ring-accent/40 transition-all hover:-translate-y-1"
               >
-                <div className="relative h-40 overflow-hidden">
+                <div className="relative h-32 overflow-hidden">
                   <img
                     src={item.image}
                     alt={item.title}
@@ -177,18 +177,18 @@ export default function HomePage() {
                     {item.category}
                   </span>
                 </div>
-                <div className="p-4">
-                  <h3 className="font-semibold text-white text-sm leading-snug mb-1.5 group-hover:text-accent transition-colors">
+                <div className="px-3.5 py-3">
+                  <h3 className="font-semibold text-white text-[13px] leading-snug mb-1 group-hover:text-accent transition-colors">
                     {item.title}
                   </h3>
-                  <p className="text-xs text-muted leading-relaxed mb-2 line-clamp-2">
+                  <p className="text-[11px] text-muted leading-relaxed mb-1.5 line-clamp-2">
                     {item.excerpt}
                   </p>
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-medium text-accent">
+                    <span className="text-[11px] font-medium text-accent">
                       Read more &rarr;
                     </span>
-                    <span className="text-[11px] text-muted">{item.time}</span>
+                    <span className="text-[10px] text-muted">{item.time}</span>
                   </div>
                 </div>
               </Link>
