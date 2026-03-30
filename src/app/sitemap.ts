@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { models } from "@/data/models";
 import { tools } from "@/data/tools";
+import { getAllArticles } from "@/lib/articles";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://aibusiness.vc";
@@ -33,5 +34,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticPages, ...modelPages, ...toolPages];
+  const articlePages: MetadataRoute.Sitemap = getAllArticles().map((a) => ({
+    url: `${baseUrl}/articles/${a.slug}`,
+    lastModified: a.date,
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+
+  return [...staticPages, ...modelPages, ...toolPages, ...articlePages];
 }
