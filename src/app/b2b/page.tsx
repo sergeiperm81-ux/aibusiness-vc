@@ -40,7 +40,7 @@ export default function B2BPage() {
   return (
     <>
       <section className="bg-background">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-5 sm:py-6">
           <p className="text-blue-400 font-mono text-xs font-medium mb-2 tracking-wider uppercase">
             B2B
           </p>
