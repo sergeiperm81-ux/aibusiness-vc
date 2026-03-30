@@ -4,6 +4,7 @@ import { tools } from "@/data/tools";
 import { getAllArticles } from "@/lib/articles";
 import { getAllComparisons } from "@/data/comparisons";
 import { salaries } from "@/data/salaries";
+import { getAllNews } from "@/lib/news";
 import { regulations } from "@/data/regulations";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -65,5 +66,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticPages, ...modelPages, ...toolPages, ...articlePages, ...comparisonPages, ...salaryPages, ...regulationPages];
+  const newsPages: MetadataRoute.Sitemap = getAllNews().map((n) => ({
+    url: `${baseUrl}/news/${n.slug}`,
+    lastModified: n.date,
+    changeFrequency: "daily" as const,
+    priority: 0.9,
+  }));
+
+  return [...staticPages, ...modelPages, ...toolPages, ...articlePages, ...comparisonPages, ...salaryPages, ...regulationPages, ...newsPages];
 }
