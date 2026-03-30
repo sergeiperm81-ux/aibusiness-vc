@@ -165,7 +165,7 @@ export default function HomePage() {
                 href={item.href}
                 className="group bg-background rounded-xl overflow-hidden hover:ring-2 hover:ring-accent/40 transition-all hover:-translate-y-1"
               >
-                <div className="relative h-32 overflow-hidden">
+                <div className="relative h-36 overflow-hidden">
                   <img
                     src={item.image}
                     alt={item.title}
@@ -177,11 +177,11 @@ export default function HomePage() {
                     {item.category}
                   </span>
                 </div>
-                <div className="px-3.5 py-3">
-                  <h3 className="font-semibold text-white text-[13px] leading-snug mb-1 group-hover:text-accent transition-colors">
+                <div className="px-4 py-3">
+                  <h3 className="font-semibold text-white text-sm leading-snug mb-1 group-hover:text-accent transition-colors">
                     {item.title}
                   </h3>
-                  <p className="text-[11px] text-muted leading-relaxed mb-1.5 line-clamp-2">
+                  <p className="text-xs text-muted leading-relaxed mb-1.5 line-clamp-2">
                     {item.excerpt}
                   </p>
                   <div className="flex items-center justify-between">
@@ -196,7 +196,7 @@ export default function HomePage() {
           </div>
 
           {/* Big bright button */}
-          <div className="mt-8 text-center">
+          <div className="mt-6 text-center">
             <Link
               href="/news"
               className="inline-flex items-center justify-center px-8 py-3 text-base font-bold bg-accent text-background rounded-xl hover:bg-accent-hover transition-colors shadow-lg shadow-amber-500/25"
