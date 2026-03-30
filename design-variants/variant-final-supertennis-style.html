@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1440,initial-scale=1">
+<title>AI Business — Final Design</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #fff; color: #1a1a1a; }
+
+  /* Header — white, clean */
+  header { background: #fff; border-bottom: 1px solid #eee; padding: 0 48px; height: 56px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; }
+  .logo { display: flex; align-items: baseline; gap: 2px; }
+  .logo span:first-child { color: #f59e0b; font-weight: 800; font-size: 22px; letter-spacing: -0.5px; }
+  .logo span:nth-child(2) { color: #1a1a1a; font-weight: 800; font-size: 22px; letter-spacing: -0.5px; }
+  .logo span:last-child { color: #999; font-size: 11px; margin-left: 2px; }
+  nav a { color: #555; font-size: 13px; font-weight: 600; margin-left: 24px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.5px; }
+  nav a:hover { color: #1a1a1a; }
+
+  /* Trending bar — dark */
+  .trending-bar { background: #1a1a1a; color: #fff; height: 36px; display: flex; align-items: center; padding: 0 48px; overflow: hidden; white-space: nowrap; }
+  .trending-label { background: #f59e0b; color: #000; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 3px; text-transform: uppercase; letter-spacing: 0.5px; margin-right: 20px; flex-shrink: 0; }
+  .trending-items { display: flex; gap: 8px; animation: scroll 30s linear infinite; }
+  .trending-items span { font-size: 13px; color: #ccc; display: flex; align-items: center; gap: 8px; }
+  .trending-items span::before { content: "●"; color: #f59e0b; font-size: 8px; }
+  @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+  .container { max-width: 1280px; margin: 0 auto; padding: 24px 48px; }
+  .main-layout { display: grid; grid-template-columns: 1fr 340px; gap: 36px; }
+
+  /* Section headers */
+  .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 3px solid #1a1a1a; }
+  .section-header h2 { font-size: 16px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px; }
+  .section-header h2::before { content: "●"; color: #f59e0b; font-size: 10px; }
+  .section-header a { color: #555; font-size: 13px; text-decoration: none; }
+  .section-header a:hover { color: #1a1a1a; }
+
+  /* News grid — 3 columns */
+  .news-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; margin-bottom: 32px; }
+
+  /* Card — photo on top, clean */
+  .card { }
+  .card-img { position: relative; border-radius: 8px; overflow: hidden; margin-bottom: 12px; }
+  .card-img img { width: 100%; height: 200px; object-fit: cover; display: block; }
+  .card-img .badge { position: absolute; top: 10px; left: 10px; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 3px; text-transform: uppercase; letter-spacing: 0.5px; color: #fff; }
+  .badge-solo { background: #f59e0b; color: #000 !important; }
+  .badge-startups { background: #8b5cf6; }
+  .badge-b2b { background: #3b82f6; }
+  .badge-tools { background: #10b981; }
+  .badge-learn { background: #ec4899; }
+  .badge-materials { background: #6b7280; }
+
+  .card h3 { font-size: 17px; font-weight: 700; line-height: 1.3; margin-bottom: 6px; }
+  .card h3 a { color: #1a1a1a; text-decoration: none; }
+  .card h3 a:hover { color: #f59e0b; }
+  .card p { font-size: 13px; color: #777; line-height: 1.5; margin-bottom: 8px; }
+  .card-footer { display: flex; align-items: center; justify-content: space-between; }
+  .card-footer a { color: #1a1a1a; font-size: 13px; font-weight: 600; text-decoration: none; }
+  .card-footer a:hover { color: #f59e0b; }
+  .card-footer .time { color: #bbb; font-size: 12px; }
+
+  /* Divider */
+  .divider { height: 3px; background: #f59e0b; margin: 8px 0 24px; }
+
+  /* Second row — different colored badges */
+  .news-grid-3.row2 .card-img img { height: 220px; }
+
+  /* Video section */
+  .video-section { margin-top: 32px; }
+  .video-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .video-card { }
+  .video-thumb { position: relative; border-radius: 8px; overflow: hidden; margin-bottom: 10px; }
+  .video-thumb img { width: 100%; height: 200px; object-fit: cover; display: block; }
+  .play-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 48px; height: 48px; background: rgba(255,0,0,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .play-btn::after { content: ""; border-left: 14px solid #fff; border-top: 9px solid transparent; border-bottom: 9px solid transparent; margin-left: 3px; }
+  .video-card h4 { font-size: 14px; font-weight: 600; line-height: 1.35; }
+
+  /* Sidebar widgets */
+  .sidebar-widget { border-radius: 10px; overflow: hidden; margin-bottom: 20px; }
+  .widget-header { padding: 14px 18px; color: #fff; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; justify-content: space-between; }
+  .widget-header a { color: rgba(255,255,255,0.7); font-size: 12px; font-weight: 500; text-decoration: none; text-transform: none; letter-spacing: 0; }
+  .widget-header a:hover { color: #fff; }
+  .widget-body { background: #fff; border: 1px solid #eee; border-top: none; border-radius: 0 0 10px 10px; }
+
+  .widget-header.amber { background: #f59e0b; color: #000; }
+  .widget-header.amber a { color: rgba(0,0,0,0.5); }
+  .widget-header.dark { background: #1a1a1a; }
+  .widget-header.red { background: #ef4444; }
+  .widget-header.green { background: #10b981; }
+
+  /* Trending tools */
+  .tool-row { display: flex; align-items: center; gap: 12px; padding: 12px 18px; border-bottom: 1px solid #f3f3f3; }
+  .tool-row:last-child { border-bottom: none; }
+  .tool-rank { font-size: 16px; font-weight: 800; color: #ddd; width: 20px; }
+  .tool-info { flex: 1; }
+  .tool-name { font-size: 14px; font-weight: 600; color: #1a1a1a; }
+  .tool-cat { font-size: 11px; color: #999; }
+  .tool-badge { font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 3px; background: #f0fdf4; color: #059669; }
+
+  /* Featured tool */
+  .featured-tool { padding: 0; }
+  .featured-tool-img { width: 100%; height: 160px; object-fit: cover; background: linear-gradient(135deg, #1e3a5f, #0f172a); display: flex; align-items: flex-end; padding: 16px 18px; position: relative; }
+  .featured-tool-img img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+  .featured-tool-name { position: relative; z-index: 1; font-size: 20px; font-weight: 800; color: #fff; }
+  .featured-tool-stats { padding: 12px 18px; }
+  .stat-line { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #f3f3f3; font-size: 13px; }
+  .stat-line:last-child { border-bottom: none; }
+  .stat-line span:first-child { color: #999; }
+  .stat-line span:last-child { font-weight: 700; color: #1a1a1a; }
+
+  /* Hot right now */
+  .hot-item { display: flex; align-items: flex-start; gap: 10px; padding: 12px 18px; border-bottom: 1px solid #f3f3f3; }
+  .hot-item:last-child { border-bottom: none; }
+  .hot-item .badge { font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 3px; color: #fff; flex-shrink: 0; margin-top: 2px; }
+  .hot-item-text { flex: 1; }
+  .hot-item-title { font-size: 13px; font-weight: 600; color: #1a1a1a; line-height: 1.3; }
+  .hot-item-time { font-size: 11px; color: #ccc; flex-shrink: 0; margin-top: 2px; }
+
+  /* Follow bar */
+  .follow-bar { background: #f7f7f7; border-radius: 8px; padding: 14px 20px; display: flex; align-items: center; gap: 12px; margin: 28px 0; }
+  .follow-bar span { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #999; }
+  .follow-btn { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; padding: 6px 16px; border-radius: 6px; color: #fff; text-decoration: none; }
+  .follow-btn.yt { background: #ff0000; }
+  .follow-btn.x { background: #000; }
+  .follow-btn.li { background: #0077b5; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo"><span>AI</span><span>BUSINESS</span><span>.vc</span></div>
+  <nav>
+    <a href="#">News</a>
+    <a href="#">Solo</a>
+    <a href="#">Startups</a>
+    <a href="#">B2B</a>
+    <a href="#">Tools</a>
+    <a href="#">Learn</a>
+    <a href="#">Materials</a>
+  </nav>
+</header>
+
+<div class="trending-bar">
+  <span class="trending-label">Trending</span>
+  <div class="trending-items">
+    <span>AI Agents Market Hits $7.6B — Solo Builders Are Cashing In</span>
+    <span>OpenAI Cuts API Prices by 40% — Startups Rejoice</span>
+    <span>Marketing Agency Saves 40% with AI Automation</span>
+    <span>Anthropic Raises $3.5B at $61.5B Valuation</span>
+    <span>From Teacher to $8K/Month AI Freelancer</span>
+    <span>AI Agents Market Hits $7.6B — Solo Builders Are Cashing In</span>
+    <span>OpenAI Cuts API Prices by 40% — Startups Rejoice</span>
+  </div>
+</div>
+
+<div class="container">
+  <div class="main-layout">
+    <div>
+      <!-- WHAT'S HOT -->
+      <div class="section-header">
+        <h2>What's Hot</h2>
+        <a href="#">All news &rarr;</a>
+      </div>
+
+      <div class="news-grid-3">
+        <div class="card">
+          <div class="card-img">
+            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&q=80" alt="">
+            <span class="badge badge-solo">Solo</span>
+          </div>
+          <h3><a href="#">AI Agents Market Hits $7.6B — Here's How Solo Builders Are Cashing In</a></h3>
+          <p>The AI agents market reached $7.63 billion and is projected to hit $183B by 2033...</p>
+          <div class="card-footer">
+            <a href="#">Read more &rarr;</a>
+            <span class="time">2h ago</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img">
+            <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=400&q=80" alt="">
+            <span class="badge badge-startups">Startups</span>
+          </div>
+          <h3><a href="#">OpenAI Launches New API Pricing — What It Means for Startups</a></h3>
+          <p>OpenAI's latest pricing changes make it 40% cheaper to build AI products...</p>
+          <div class="card-footer">
+            <a href="#">Read more &rarr;</a>
+            <span class="time">4h ago</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img">
+            <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=400&q=80" alt="">
+            <span class="badge badge-b2b">B2B</span>
+          </div>
+          <h3><a href="#">How a Marketing Agency Cut Costs 40% with AI Automation</a></h3>
+          <p>A 15-person digital marketing agency replaced manual processes with AI tools...</p>
+          <div class="card-footer">
+            <a href="#">Read more &rarr;</a>
+            <span class="time">6h ago</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="news-grid-3 row2">
+        <div class="card">
+          <div class="card-img">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&q=80" alt="">
+            <span class="badge badge-tools">Tools</span>
+          </div>
+          <h3><a href="#">5 AI Tools That Actually Pay for Themselves in Week One</a></h3>
+          <p>We tested 30+ AI tools and found 5 that generate positive ROI within 7 days...</p>
+          <div class="card-footer">
+            <a href="#">Read more &rarr;</a>
+            <span class="time">8h ago</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img">
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&q=80" alt="">
+            <span class="badge badge-solo">Solo</span>
+          </div>
+          <h3><a href="#">From Teacher to $8K/Month AI Freelancer in 6 Months</a></h3>
+          <p>Sarah left her teaching job and now earns $8,200/month writing AI content...</p>
+          <div class="card-footer">
+            <a href="#">Read more &rarr;</a>
+            <span class="time">12h ago</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img">
+            <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=400&q=80" alt="">
+            <span class="badge badge-startups">Startups</span>
+          </div>
+          <h3><a href="#">Anthropic Raises $3.5B — The AI Infrastructure Race Accelerates</a></h3>
+          <p>Anthropic's latest funding round values the company at $61.5 billion...</p>
+          <div class="card-footer">
+            <a href="#">Read more &rarr;</a>
+            <span class="time">1d ago</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Follow -->
+      <div class="follow-bar">
+        <span>Follow us</span>
+        <a href="#" class="follow-btn yt">YouTube</a>
+        <a href="#" class="follow-btn x">𝕏</a>
+        <a href="#" class="follow-btn li">LinkedIn</a>
+      </div>
+
+      <!-- Watch AI -->
+      <div class="divider"></div>
+      <div class="section-header">
+        <h2>Watch AI</h2>
+        <a href="#">All videos &rarr;</a>
+      </div>
+      <div class="video-grid">
+        <div class="video-card">
+          <div class="video-thumb">
+            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&q=80" alt="">
+            <div class="play-btn"></div>
+          </div>
+          <h4>How I Built a $10K/Month AI Agency in 90 Days</h4>
+        </div>
+        <div class="video-card">
+          <div class="video-thumb">
+            <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&q=80" alt="">
+            <div class="play-btn"></div>
+          </div>
+          <h4>The Best AI Tools Nobody Talks About (2026 Edition)</h4>
+        </div>
+      </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <div>
+      <!-- AI Market Stats -->
+      <div class="sidebar-widget">
+        <div class="widget-header amber">AI Market Stats <a href="#">See all &rarr;</a></div>
+        <div class="widget-body">
+          <div class="stat-line"><span>Global AI Spending</span><span>$2.52T</span></div>
+          <div class="stat-line"><span>AI Agents CAGR</span><span>49.6%</span></div>
+          <div class="stat-line"><span>Businesses Using AI</span><span>58%</span></div>
+          <div class="stat-line"><span>AI Worker Premium</span><span>+28%</span></div>
+        </div>
+      </div>
+
+      <!-- Featured Tool -->
+      <div class="sidebar-widget">
+        <div class="widget-header dark">Featured Tool <a href="#">View all &rarr;</a></div>
+        <div class="widget-body featured-tool">
+          <div class="featured-tool-img">
+            <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=400&q=80" alt="">
+            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.8),transparent)"></div>
+            <span class="featured-tool-name">Cursor</span>
+          </div>
+          <div class="featured-tool-stats">
+            <div class="stat-line"><span>Category</span><span>AI Coding</span></div>
+            <div class="stat-line"><span>Price</span><span>Free — $20/mo</span></div>
+            <div class="stat-line"><span>Rating</span><span>4.8/5</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hot Right Now -->
+      <div class="sidebar-widget">
+        <div class="widget-header red">Hot Right Now</div>
+        <div class="widget-body">
+          <div class="hot-item">
+            <span class="badge badge-solo" style="font-size:9px">Solo</span>
+            <div class="hot-item-text"><div class="hot-item-title">AI Agents Market Hits $7.6B — Solo Builders...</div></div>
+            <span class="hot-item-time">2h</span>
+          </div>
+          <div class="hot-item">
+            <span class="badge badge-startups" style="font-size:9px">Startups</span>
+            <div class="hot-item-text"><div class="hot-item-title">OpenAI Launches New API Pricing...</div></div>
+            <span class="hot-item-time">4h</span>
+          </div>
+          <div class="hot-item">
+            <span class="badge badge-b2b" style="font-size:9px">B2B</span>
+            <div class="hot-item-text"><div class="hot-item-title">Marketing Agency Cut Costs 40%...</div></div>
+            <span class="hot-item-time">6h</span>
+          </div>
+          <div class="hot-item">
+            <span class="badge badge-tools" style="font-size:9px">Tools</span>
+            <div class="hot-item-text"><div class="hot-item-title">5 AI Tools That Pay for Themselves...</div></div>
+            <span class="hot-item-time">8h</span>
+          </div>
+          <div class="hot-item">
+            <span class="badge badge-solo" style="font-size:9px">Solo</span>
+            <div class="hot-item-text"><div class="hot-item-title">From Teacher to $8K/Month AI Freelancer...</div></div>
+            <span class="hot-item-time">12h</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trending Tools -->
+      <div class="sidebar-widget">
+        <div class="widget-header green">Trending Tools</div>
+        <div class="widget-body">
+          <div class="tool-row"><span class="tool-rank">1</span><div class="tool-info"><div class="tool-name">Cursor</div><div class="tool-cat">AI Coding</div></div><span class="tool-badge">Free</span></div>
+          <div class="tool-row"><span class="tool-rank">2</span><div class="tool-info"><div class="tool-name">Make.com</div><div class="tool-cat">Automation</div></div><span class="tool-badge">From $9</span></div>
+          <div class="tool-row"><span class="tool-rank">3</span><div class="tool-info"><div class="tool-name">Claude</div><div class="tool-cat">AI Assistant</div></div><span class="tool-badge">$20/mo</span></div>
+          <div class="tool-row"><span class="tool-rank">4</span><div class="tool-info"><div class="tool-name">Semrush</div><div class="tool-cat">SEO & Marketing</div></div><span class="tool-badge">$139/mo</span></div>
+          <div class="tool-row"><span class="tool-rank">5</span><div class="tool-info"><div class="tool-name">Synthesia</div><div class="tool-cat">AI Video</div></div><span class="tool-badge">$29/mo</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1440,initial-scale=1">
+<title>Variant 2A — Crisp Cards</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f0f0f0; color: #1a1a1a; }
+
+  header { background: #0f0f0f; padding: 0 48px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+  .logo span:first-child { color: #f59e0b; font-weight: 700; font-size: 20px; }
+  .logo span:last-child { color: #fff; font-weight: 600; font-size: 18px; margin-left: 4px; }
+  nav a { color: #777; font-size: 14px; margin-left: 24px; text-decoration: none; }
+  nav a:hover { color: #fff; }
+  nav a.active { color: #f59e0b; }
+
+  .container { max-width: 1280px; margin: 0 auto; padding: 20px 48px; }
+  .grid { display: grid; grid-template-columns: 1fr 340px; gap: 24px; margin-top: 20px; }
+
+  /* Featured — dark with large image */
+  .featured { border-radius: 16px; overflow: hidden; position: relative; height: 360px; }
+  .featured img { width: 100%; height: 100%; object-fit: cover; }
+  .featured .overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.1) 100%); }
+  .featured .content { position: absolute; bottom: 0; left: 0; right: 0; padding: 32px 36px; }
+  .featured .tag { background: #f59e0b; color: #000; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 4px; display: inline-block; text-transform: uppercase; letter-spacing: 0.3px; }
+  .featured .date { color: rgba(255,255,255,0.5); font-size: 12px; margin-left: 10px; }
+  .featured h1 { font-size: 28px; font-weight: 700; color: #fff; margin-top: 10px; line-height: 1.25; }
+  .featured p { color: rgba(255,255,255,0.6); margin-top: 8px; font-size: 14px; max-width: 620px; line-height: 1.5; }
+
+  /* Cards — white, crisp shadows, larger images */
+  .card { background: #fff; border-radius: 12px; overflow: hidden; margin-bottom: 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); transition: all 0.2s; display: grid; grid-template-columns: 200px 1fr; }
+  .card:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.12); transform: translateY(-2px); }
+  .card img { width: 100%; height: 100%; object-fit: cover; min-height: 140px; }
+  .card-body { padding: 18px 20px; display: flex; flex-direction: column; justify-content: center; }
+  .card .tag { color: #f59e0b; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; }
+  .card .tag.blue { color: #3b82f6; }
+  .card .tag.green { color: #10b981; }
+  .card .date { color: #aaa; font-size: 11px; margin-left: 8px; }
+  .card h3 { font-size: 16px; font-weight: 600; color: #1a1a1a; margin-top: 6px; line-height: 1.35; }
+  .card p { font-size: 13px; color: #777; margin-top: 5px; line-height: 1.45; }
+
+  /* Sidebar */
+  .sidebar-widget { background: #fff; border-radius: 12px; padding: 20px; margin-bottom: 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+  .sidebar-widget h3 { font-size: 12px; font-weight: 700; color: #1a1a1a; margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.8px; }
+  .topic-tag { display: inline-block; font-size: 12px; padding: 6px 14px; border-radius: 8px; background: #f5f5f5; color: #555; margin: 3px 3px 3px 0; transition: all 0.15s; }
+  .topic-tag:hover { background: #fff7ed; color: #b45309; }
+  .tool-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #f0f0f0; }
+  .tool-row:last-child { border-bottom: none; }
+  .tool-icon { width: 36px; height: 36px; border-radius: 10px; background: #fef3c7; color: #b45309; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; }
+  .tool-name { font-size: 14px; font-weight: 600; color: #1a1a1a; }
+  .tool-cat { font-size: 12px; color: #999; }
+
+  .stat-widget { background: #0f0f0f; border-radius: 12px; padding: 20px; }
+  .stat-widget h3 { color: #888; font-size: 12px; font-weight: 700; margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.8px; }
+  .stat-row { display: flex; justify-content: space-between; align-items: baseline; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .stat-row:last-child { border-bottom: none; }
+  .stat-val { font-size: 22px; font-weight: 700; color: #f59e0b; }
+  .stat-label { font-size: 12px; color: #666; }
+
+  .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+  .section-header h2 { font-size: 14px; font-weight: 700; color: #1a1a1a; text-transform: uppercase; letter-spacing: 0.8px; }
+  .filter-tags { display: flex; gap: 6px; }
+  .filter-tag { font-size: 12px; padding: 5px 14px; border-radius: 8px; border: 1px solid #e0e0e0; color: #888; background: #fff; cursor: pointer; transition: all 0.15s; }
+  .filter-tag.active { border-color: #f59e0b; color: #b45309; background: #fffbeb; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo"><span>AI</span><span>Business</span></div>
+  <nav>
+    <a href="#" class="active">News</a>
+    <a href="#">Solo</a>
+    <a href="#">Startups</a>
+    <a href="#">B2B</a>
+    <a href="#">Tools</a>
+    <a href="#">Learn</a>
+    <a href="#">Materials</a>
+  </nav>
+</header>
+
+<div class="container">
+  <div class="featured">
+    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1400&q=80" alt="">
+    <div class="overlay"></div>
+    <div class="content">
+      <span class="tag">Solo</span><span class="date">Mar 30, 2026</span>
+      <h1>AI Agents Market Hits $7.6B — Here's How Solo Builders Are Cashing In</h1>
+      <p>The AI agents market reached $7.63 billion in 2025 and is projected to hit $183 billion by 2033. Individual developers are building custom agents for businesses.</p>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div>
+      <div class="section-header">
+        <h2>Latest Stories</h2>
+        <div class="filter-tags">
+          <span class="filter-tag active">All</span>
+          <span class="filter-tag">Solo</span>
+          <span class="filter-tag">Startups</span>
+          <span class="filter-tag">B2B</span>
+          <span class="filter-tag">Tools</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=400&q=80" alt="">
+        <div class="card-body">
+          <div><span class="tag">Startups</span><span class="date">Mar 29, 2026</span></div>
+          <h3>OpenAI Launches New API Pricing — What It Means for AI Startups</h3>
+          <p>OpenAI's latest pricing changes make it 40% cheaper to build AI products.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=400&q=80" alt="">
+        <div class="card-body">
+          <div><span class="tag blue">B2B</span><span class="date">Mar 28, 2026</span></div>
+          <h3>How a Marketing Agency Cut Costs 40% with AI Automation</h3>
+          <p>A 15-person agency replaced manual reporting and ad optimization with AI.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&q=80" alt="">
+        <div class="card-body">
+          <div><span class="tag green">Tools</span><span class="date">Mar 27, 2026</span></div>
+          <h3>5 AI Tools That Actually Pay for Themselves in Week One</h3>
+          <p>We tested 30+ AI tools and found 5 that generate positive ROI within 7 days.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&q=80" alt="">
+        <div class="card-body">
+          <div><span class="tag">Solo</span><span class="date">Mar 26, 2026</span></div>
+          <h3>From Teacher to $8K/Month AI Freelancer in 6 Months</h3>
+          <p>Sarah left teaching and now earns $8,200/month writing AI-powered content.</p>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="sidebar-widget">
+        <h3>Popular Topics</h3>
+        <span class="topic-tag">AI Automation Agency</span>
+        <span class="topic-tag">AI Side Hustles</span>
+        <span class="topic-tag">Best AI Tools</span>
+        <span class="topic-tag">AI Agents</span>
+        <span class="topic-tag">Vibe Coding</span>
+        <span class="topic-tag">AI for Business</span>
+      </div>
+      <div class="sidebar-widget">
+        <h3>Trending Tools</h3>
+        <div class="tool-row"><div class="tool-icon">C</div><div><div class="tool-name">Cursor</div><div class="tool-cat">Coding</div></div></div>
+        <div class="tool-row"><div class="tool-icon">M</div><div><div class="tool-name">Make.com</div><div class="tool-cat">Automation</div></div></div>
+        <div class="tool-row"><div class="tool-icon">C</div><div><div class="tool-name">Claude</div><div class="tool-cat">AI Assistant</div></div></div>
+        <div class="tool-row"><div class="tool-icon">S</div><div><div class="tool-name">Semrush</div><div class="tool-cat">SEO</div></div></div>
+      </div>
+      <div class="stat-widget">
+        <h3>AI Market 2026</h3>
+        <div class="stat-row"><div><div class="stat-val">$2.52T</div></div><div class="stat-label">Global AI spending</div></div>
+        <div class="stat-row"><div><div class="stat-val">49.6%</div></div><div class="stat-label">AI agents CAGR</div></div>
+        <div class="stat-row"><div><div class="stat-val">58%</div></div><div class="stat-label">Businesses using AI</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
