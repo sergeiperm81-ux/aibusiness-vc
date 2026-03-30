@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Header } from "@/components/Header";
+import { TrendingBar } from "@/components/TrendingBar";
 import { Footer } from "@/components/Footer";
 import "./globals.css";
 
@@ -68,11 +69,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased light`}
-      style={{ colorScheme: "light" }}
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-white text-foreground">
         <Header />
+        <TrendingBar />
         <main className="flex-1">{children}</main>
         <Footer />
         <OrgSchemaOrg />

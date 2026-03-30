@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1440,initial-scale=1">
+<title>Variant 2B — Magazine Grid</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f7f7f8; color: #1a1a1a; }
+
+  header { background: #111; padding: 0 48px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+  .logo span:first-child { color: #f59e0b; font-weight: 700; font-size: 20px; }
+  .logo span:last-child { color: #fff; font-weight: 600; font-size: 18px; margin-left: 4px; }
+  nav a { color: #777; font-size: 14px; margin-left: 24px; text-decoration: none; }
+  nav a:hover { color: #fff; }
+  nav a.active { color: #f59e0b; }
+
+  .container { max-width: 1280px; margin: 0 auto; padding: 20px 48px; }
+
+  /* Featured — 2 column split */
+  .featured-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 16px; }
+  .featured-main { position: relative; border-radius: 14px; overflow: hidden; height: 380px; }
+  .featured-main img { width: 100%; height: 100%; object-fit: cover; }
+  .featured-main .overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 60%, transparent 100%); }
+  .featured-main .content { position: absolute; bottom: 0; left: 0; right: 0; padding: 28px; }
+  .featured-main .tag { background: #f59e0b; color: #000; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 4px; }
+  .featured-main h1 { font-size: 26px; font-weight: 700; color: #fff; margin-top: 10px; line-height: 1.25; }
+
+  .featured-side { display: flex; flex-direction: column; gap: 16px; }
+  .featured-small { position: relative; border-radius: 14px; overflow: hidden; flex: 1; min-height: 0; }
+  .featured-small img { width: 100%; height: 100%; object-fit: cover; }
+  .featured-small .overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.1) 70%); }
+  .featured-small .content { position: absolute; bottom: 0; left: 0; right: 0; padding: 16px 18px; }
+  .featured-small .tag { font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 4px; }
+  .featured-small .tag.amber { background: #f59e0b; color: #000; }
+  .featured-small .tag.blue { background: #3b82f6; color: #fff; }
+  .featured-small h3 { font-size: 15px; font-weight: 600; color: #fff; margin-top: 6px; line-height: 1.3; }
+
+  .main-grid { display: grid; grid-template-columns: 1fr 320px; gap: 24px; margin-top: 24px; }
+
+  /* Cards — compact, image on top */
+  .news-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .card-v { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.07); transition: all 0.2s; }
+  .card-v:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.1); transform: translateY(-2px); }
+  .card-v img { width: 100%; height: 140px; object-fit: cover; }
+  .card-v-body { padding: 14px 16px; }
+  .card-v .tag { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; }
+  .card-v .tag.amber { color: #f59e0b; }
+  .card-v .tag.green { color: #10b981; }
+  .card-v .date { font-size: 11px; color: #aaa; margin-left: 8px; }
+  .card-v h3 { font-size: 15px; font-weight: 600; color: #1a1a1a; margin-top: 6px; line-height: 1.35; }
+  .card-v p { font-size: 12px; color: #777; margin-top: 4px; line-height: 1.4; }
+
+  /* Sidebar */
+  .sidebar-widget { background: #fff; border-radius: 12px; padding: 18px; margin-bottom: 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.07); }
+  .sidebar-widget h3 { font-size: 12px; font-weight: 700; color: #333; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.6px; }
+  .topic-tag { display: inline-block; font-size: 12px; padding: 5px 12px; border-radius: 6px; background: #f5f5f5; color: #666; margin: 2px 2px 2px 0; }
+  .topic-tag:hover { background: #fff7ed; color: #b45309; }
+  .tool-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; }
+  .tool-icon { width: 32px; height: 32px; border-radius: 8px; background: #fef3c7; color: #b45309; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; }
+  .tool-name { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+  .tool-cat { font-size: 11px; color: #999; }
+
+  .stat-widget { background: #111; border-radius: 12px; padding: 18px; }
+  .stat-widget h3 { color: #777; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 12px; }
+  .stat-val { font-size: 24px; font-weight: 700; color: #f59e0b; }
+  .stat-label { font-size: 11px; color: #666; }
+  .stat-row { margin-bottom: 10px; }
+
+  .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+  .section-header h2 { font-size: 13px; font-weight: 700; color: #333; text-transform: uppercase; letter-spacing: 0.6px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo"><span>AI</span><span>Business</span></div>
+  <nav>
+    <a href="#" class="active">News</a>
+    <a href="#">Solo</a>
+    <a href="#">Startups</a>
+    <a href="#">B2B</a>
+    <a href="#">Tools</a>
+    <a href="#">Learn</a>
+    <a href="#">Materials</a>
+  </nav>
+</header>
+
+<div class="container">
+  <!-- Featured — 1 big + 2 small -->
+  <div class="featured-grid">
+    <div class="featured-main">
+      <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1000&q=80" alt="">
+      <div class="overlay"></div>
+      <div class="content">
+        <span class="tag">Solo</span>
+        <h1>AI Agents Market Hits $7.6B — Here's How Solo Builders Are Cashing In</h1>
+      </div>
+    </div>
+    <div class="featured-side">
+      <div class="featured-small">
+        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600&q=80" alt="">
+        <div class="overlay"></div>
+        <div class="content">
+          <span class="tag amber">Startups</span>
+          <h3>OpenAI Launches New API Pricing — What It Means for Startups</h3>
+        </div>
+      </div>
+      <div class="featured-small">
+        <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&q=80" alt="">
+        <div class="overlay"></div>
+        <div class="content">
+          <span class="tag blue">B2B</span>
+          <h3>Marketing Agency Cut Costs 40% with AI Automation</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main grid -->
+  <div class="main-grid">
+    <div>
+      <div class="section-header">
+        <h2>More Stories</h2>
+      </div>
+      <div class="news-grid">
+        <div class="card-v">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&q=80" alt="">
+          <div class="card-v-body">
+            <div><span class="tag green">Tools</span><span class="date">Mar 27</span></div>
+            <h3>5 AI Tools That Pay for Themselves in Week One</h3>
+            <p>We tested 30+ tools and found 5 with positive ROI in 7 days.</p>
+          </div>
+        </div>
+        <div class="card-v">
+          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&q=80" alt="">
+          <div class="card-v-body">
+            <div><span class="tag amber">Solo</span><span class="date">Mar 26</span></div>
+            <h3>From Teacher to $8K/Month AI Freelancer</h3>
+            <p>Sarah earns $8,200/month writing AI content for SaaS companies.</p>
+          </div>
+        </div>
+        <div class="card-v">
+          <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=400&q=80" alt="">
+          <div class="card-v-body">
+            <div><span class="tag amber">Startups</span><span class="date">Mar 25</span></div>
+            <h3>Anthropic Raises $3.5B at $61.5B Valuation</h3>
+            <p>What this means for the AI ecosystem and investment landscape.</p>
+          </div>
+        </div>
+        <div class="card-v">
+          <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=400&q=80" alt="">
+          <div class="card-v-body">
+            <div><span class="tag" style="color:#3b82f6">B2B</span><span class="date">Mar 24</span></div>
+            <h3>Enterprise AI Adoption Hits 58%</h3>
+            <p>Patterns that separate successful AI implementations from failures.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="sidebar-widget">
+        <h3>Topics</h3>
+        <span class="topic-tag">AI Automation Agency</span>
+        <span class="topic-tag">AI Side Hustles</span>
+        <span class="topic-tag">Best AI Tools</span>
+        <span class="topic-tag">AI Agents</span>
+        <span class="topic-tag">Vibe Coding</span>
+      </div>
+      <div class="sidebar-widget">
+        <h3>Trending Tools</h3>
+        <div class="tool-row"><div class="tool-icon">C</div><div><div class="tool-name">Cursor</div><div class="tool-cat">Coding</div></div></div>
+        <div class="tool-row"><div class="tool-icon">M</div><div><div class="tool-name">Make.com</div><div class="tool-cat">Automation</div></div></div>
+        <div class="tool-row"><div class="tool-icon">C</div><div><div class="tool-name">Claude</div><div class="tool-cat">AI Assistant</div></div></div>
+        <div class="tool-row"><div class="tool-icon">S</div><div><div class="tool-name">Semrush</div><div class="tool-cat">SEO</div></div></div>
+      </div>
+      <div class="stat-widget">
+        <h3>AI Market 2026</h3>
+        <div class="stat-row"><div class="stat-val">$2.52T</div><div class="stat-label">Global AI spending</div></div>
+        <div class="stat-row"><div class="stat-val">49.6%</div><div class="stat-label">AI agents CAGR</div></div>
+        <div class="stat-row"><div class="stat-val">58%</div><div class="stat-label">Businesses using AI</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
