@@ -1,0 +1,27 @@
+# AI Business — aibusiness.vc
+
+> The definitive guide to making money with AI. Proven methods, real income numbers, honest tool reviews, and case studies.
+
+## About
+
+AI Business (aibusiness.vc) helps individuals and businesses earn money using artificial intelligence. We cover 50+ proven methods from beginner-friendly AI side hustles to advanced AI automation agencies, with real income data and honest tool reviews.
+
+## Core Content
+
+### How to Make Money with AI
+- [How to Make Money with AI: Complete Guide](https://aibusiness.vc/earn): Comprehensive overview of all AI earning methods, from freelancing to building SaaS products
+- [AI Side Hustles](https://aibusiness.vc/earn/ai-side-hustles): 50+ beginner-friendly ways to earn with AI
+- [AI Automation Agency Guide](https://aibusiness.vc/earn/ai-automation-agency): How to start and scale an AI automation agency ($10K-$100K/month)
+- [AI Freelancing Guide](https://aibusiness.vc/earn/ai-freelancing): Offer AI-powered services in writing, design, video, and coding
+- [AI Digital Products](https://aibusiness.vc/earn/ai-digital-products): Create and sell prompts, templates, courses, and ebooks
+- [AI Careers & Jobs](https://aibusiness.vc/earn/ai-careers): Highest-paying AI roles and how to land them ($101K-$893K/year)
+
+### AI Tool Reviews
+- [Best AI Tools for Making Money](https://aibusiness.vc/tools): Honest reviews with ROI analysis
+- [AI Tool Stacks by Role](https://aibusiness.vc/tools/stacks): Curated AI toolkits for specific professions
+
+### Case Studies
+- [Real Income Case Studies](https://aibusiness.vc/case-studies): Verified income reports from people making money with AI
+
+### AI & Society
+- [AI Impact on Society](https://aibusiness.vc/impact): Analysis of how AI is changing work, creativity, and the economy
