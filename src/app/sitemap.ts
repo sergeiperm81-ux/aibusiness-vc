@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { models } from "@/data/models";
 import { tools } from "@/data/tools";
 import { getAllArticles } from "@/lib/articles";
+import { getAllComparisons } from "@/data/comparisons";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://aibusiness.vc";
@@ -41,5 +42,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticPages, ...modelPages, ...toolPages, ...articlePages];
+  const comparisonPages: MetadataRoute.Sitemap = getAllComparisons().map((c) => ({
+    url: `${baseUrl}/compare/${c.slug}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+  }));
+
+  return [...staticPages, ...modelPages, ...toolPages, ...articlePages, ...comparisonPages];
 }
