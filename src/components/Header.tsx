@@ -5,13 +5,9 @@ const mainNav = [
   { name: "Solo", href: "/solo" },
   { name: "Startups", href: "/startups" },
   { name: "B2B", href: "/b2b" },
-  { name: "Models", href: "/models" },
-  { name: "Compare", href: "/compare" },
   { name: "Tools", href: "/tools/directory" },
-  { name: "Salaries", href: "/salaries" },
-  { name: "Articles", href: "/articles" },
+  { name: "Models", href: "/models" },
   { name: "Learn", href: "/learn" },
-  { name: "Regulation", href: "/regulation" },
   { name: "Materials", href: "/materials" },
 ];
 
@@ -28,19 +24,19 @@ export function Header() {
             <span className="text-[10px] text-muted font-mono">.vc</span>
           </Link>
 
-          <div className="hidden lg:flex items-center gap-0">
+          <div className="hidden md:flex items-center gap-0.5">
             {mainNav.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="px-2.5 py-1.5 text-[13px] font-semibold text-zinc-400 hover:text-white transition-colors rounded-md hover:bg-card-bg"
+                className="px-3 py-1.5 text-sm font-semibold text-zinc-400 hover:text-white transition-colors rounded-md hover:bg-card-bg"
               >
                 {item.name}
               </Link>
             ))}
           </div>
 
-          <div className="lg:hidden">
+          <div className="md:hidden">
             <Link
               href="/news"
               className="px-3 py-1.5 text-sm text-muted hover:text-white"
