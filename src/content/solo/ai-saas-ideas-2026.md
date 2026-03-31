@@ -2,7 +2,7 @@
 title: "10 Profitable AI SaaS Ideas for Solo Developers in 2026"
 description: "Discover 10 micro-SaaS ideas powered by AI that solo developers can build and monetize in 2026. Revenue potential, tech stacks, and competition analysis."
 date: "2026-03-30"
-category: "SaaS"
+category: "Solo"
 keywords: ["AI SaaS ideas 2026", "micro-SaaS", "solo developer", "AI startup ideas", "SaaS business ideas", "AI tools for developers", "profitable SaaS"]
 ---
 
