@@ -1,17 +1,27 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const mainNav = [
   { name: "News", href: "/news" },
   { name: "Solo", href: "/solo" },
   { name: "Startups", href: "/startups" },
   { name: "B2B", href: "/b2b" },
-  { name: "Tools", href: "/tools/directory" },
+  { name: "Tools", href: "/tools" },
   { name: "Models", href: "/models" },
   { name: "Learn", href: "/learn" },
   { name: "Materials", href: "/materials" },
 ];
 
 export function Header() {
+  const pathname = usePathname();
+
+  function isActive(href: string) {
+    if (href === "/") return pathname === "/";
+    return pathname.startsWith(href);
+  }
+
   return (
     <header className="border-b border-card-border bg-background/80 backdrop-blur-md sticky top-0 z-50">
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -29,7 +39,11 @@ export function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="px-3 py-1.5 text-sm font-semibold text-white hover:text-accent transition-colors rounded-md hover:bg-card-bg"
+                className={`px-3 py-1.5 text-sm font-semibold transition-colors rounded-md ${
+                  isActive(item.href)
+                    ? "text-accent"
+                    : "text-white hover:text-accent hover:bg-card-bg"
+                }`}
               >
                 {item.name}
               </Link>
@@ -39,7 +53,7 @@ export function Header() {
           <div className="md:hidden">
             <Link
               href="/news"
-              className="px-3 py-1.5 text-sm text-muted hover:text-white"
+              className="px-3 py-1.5 text-sm text-white hover:text-accent"
             >
               Menu
             </Link>
