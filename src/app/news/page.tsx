@@ -163,7 +163,8 @@ function NewsPageInner() {
                     {isExpanded && (
                       <div className="border-t border-gray-100 px-6 py-6">
                         <div
-                          className="prose prose-gray max-w-none prose-p:text-black prose-p:leading-[1.8] prose-strong:text-black prose-li:text-black prose-ul:mt-2"
+                          style={{ color: "#000" }}
+                          className="max-w-none [&_p]:leading-[1.8] [&_p]:mb-3 [&_p]:text-black [&_strong]:text-black [&_strong]:font-bold [&_li]:text-black [&_ul]:mt-2 [&_ul]:mb-3 [&_ul]:pl-5 [&_li]:mb-1"
                           dangerouslySetInnerHTML={{ __html: item.body }}
                         />
 

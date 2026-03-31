@@ -50,3 +50,9 @@ html, body {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
+
+/* Force black text on all prose/article content — no gray ever */
+.prose p, .prose li, .prose td, .prose th,
+article p, article li, article td {
+  color: #000 !important;
+}

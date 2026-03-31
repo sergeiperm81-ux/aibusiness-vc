@@ -21,7 +21,7 @@ export function Header() {
               AI
             </span>
             <span className="font-semibold text-lg text-white">Business</span>
-            <span className="text-[10px] text-muted font-mono">.vc</span>
+            <span className="text-[10px] text-white/60 font-mono">.vc</span>
           </Link>
 
           <div className="hidden md:flex items-center gap-0.5">
@@ -29,7 +29,7 @@ export function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="px-3 py-1.5 text-sm font-semibold text-zinc-400 hover:text-white transition-colors rounded-md hover:bg-card-bg"
+                className="px-3 py-1.5 text-sm font-semibold text-white hover:text-accent transition-colors rounded-md hover:bg-card-bg"
               >
                 {item.name}
               </Link>
