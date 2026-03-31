@@ -3,6 +3,7 @@ title: "How to Start an AI Content Agency ($10K-$100K/Month)"
 description: "Step-by-step guide to building an AI-powered content agency. Services, pricing, tools, finding clients, and scaling."
 date: "2026-03-30"
 category: "Solo"
+image: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&q=80"
 keywords: ["AI content agency", "start content agency", "AI writing agency", "content production agency"]
 ---
 

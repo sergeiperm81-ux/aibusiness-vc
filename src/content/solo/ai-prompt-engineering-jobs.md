@@ -3,6 +3,7 @@ title: "AI Prompt Engineering Jobs: Salary, Skills & How to Get Hired"
 description: "Prompt engineer salaries ($101K-$192K), skills needed, where to find jobs, and how to build a portfolio. 135.8% demand surge."
 date: "2026-03-30"
 category: "Solo"
+image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&q=80"
 keywords: ["prompt engineering jobs", "prompt engineer salary", "AI prompt engineering career", "how to become prompt engineer"]
 ---
 

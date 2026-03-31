@@ -3,6 +3,7 @@ title: "AI for Small Business: 7 Tools That Save 10+ Hours Per Week"
 description: "Practical AI tools for small business owners. Customer service, marketing, bookkeeping, scheduling — each saves hours weekly."
 date: "2026-03-30"
 category: "B2B"
+image: "https://images.unsplash.com/photo-1556761175-4b46a572b786?w=800&q=80"
 keywords: ["AI for small business", "AI tools small business", "small business automation", "AI productivity small business"]
 ---
 

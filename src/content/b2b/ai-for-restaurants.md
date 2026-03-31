@@ -3,6 +3,7 @@ title: "AI for Restaurants: 5 Tools That Save $3,000/Month"
 description: "How restaurants use AI for reservations, reviews, social media, inventory, and staff scheduling. Specific tools and ROI."
 date: "2026-03-30"
 category: "B2B"
+image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80"
 keywords: ["AI for restaurants", "restaurant AI tools", "AI restaurant automation", "restaurant technology 2026"]
 ---
 

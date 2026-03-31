@@ -3,6 +3,7 @@ title: "What Are AI Agents? A Simple Guide for Business Owners"
 description: "AI agents explained simply. What they are, how they work, why businesses pay $500-1500 per agent, and how to use them."
 date: "2026-03-30"
 category: "B2B"
+image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&q=80"
 keywords: ["what are AI agents", "AI agents explained", "AI agents for business", "autonomous AI agents"]
 ---
 

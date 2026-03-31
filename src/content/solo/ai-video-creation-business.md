@@ -3,6 +3,7 @@ title: "How to Start an AI Video Creation Business in 2026"
 description: "Launch an AI video creation business using Synthesia, HeyGen, and Pictory. Services, pricing, and how to earn $2K-$15K/mo."
 date: "2026-03-30"
 category: "Solo"
+image: "https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?w=800&q=80"
 keywords: ["AI video creation business", "Synthesia", "HeyGen", "Pictory", "AI video services", "video production business", "AI explainer videos"]
 ---
 

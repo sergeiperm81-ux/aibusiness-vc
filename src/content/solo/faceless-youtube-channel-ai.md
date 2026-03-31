@@ -3,6 +3,7 @@ title: "How to Start a Faceless YouTube Channel With AI in 2026 (Complete Bluepr
 description: "Build a faceless YouTube channel using AI tools. Profitable niches, tools, monetization timeline, and income potential up to $80K/month."
 date: "2026-03-30"
 category: "Solo"
+image: "https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=800&q=80"
 keywords: ["faceless YouTube channel with AI", "AI YouTube channel", "faceless YouTube", "make money YouTube AI", "AI video creation"]
 ---
 

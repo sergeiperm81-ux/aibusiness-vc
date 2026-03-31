@@ -3,6 +3,7 @@ title: "Cursor Review 2026: Is the #1 AI Coding Tool Worth $20/Month?"
 description: "Honest Cursor review. Features, pricing, what it does well, limitations, and whether it's worth it for developers and non-coders."
 date: "2026-03-30"
 category: "Tools"
+image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&q=80"
 keywords: ["Cursor review", "Cursor AI editor", "Cursor vs VS Code", "Cursor pricing", "best AI coding tool"]
 ---
 
