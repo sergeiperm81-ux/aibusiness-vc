@@ -1,5 +1,5 @@
 ---
-title: "AI Document Processing: How Businesses Save 200+ Hours Per Month"
+title: "How AI Document Processing Saves Businesses $165K/Year"
 description: "How AI automates invoice processing, contract review, data extraction. Tools, ROI calculations, and implementation steps."
 date: "2026-03-30"
 category: "B2B"

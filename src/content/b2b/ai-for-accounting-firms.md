@@ -1,5 +1,5 @@
 ---
-title: "AI for Accounting Firms: Automate 60% of Compliance Work"
+title: "How Accounting Firms Add $400K Revenue by Switching to AI"
 description: "How accounting firms use AI for tax prep, audit, bookkeeping, and client advisory. Tools, ROI data, and implementation steps."
 date: "2026-03-30"
 category: "B2B"

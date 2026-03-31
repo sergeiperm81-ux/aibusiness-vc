@@ -1,5 +1,5 @@
 ---
-title: "AI Certifications Worth Getting in 2026 (And Which to Skip)"
+title: "AI Certifications That Add $15-25K to Your Salary (And Which Are Worthless)"
 description: "Which AI certifications actually lead to jobs and salary increases. Google, AWS, Azure, DeepLearning.AI — ranked by ROI."
 date: "2026-03-30"
 category: "Learn"

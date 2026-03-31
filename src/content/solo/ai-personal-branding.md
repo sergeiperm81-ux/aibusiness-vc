@@ -1,5 +1,5 @@
 ---
-title: "AI-Powered Personal Branding: Build Your Authority in 30 Minutes Per Day"
+title: "AI Personal Branding: How 30 Min/Day Adds $93K/Year to Your Income"
 description: "How to use AI tools to build a personal brand on LinkedIn, X, and newsletters. Content strategy, tools, and growth tactics."
 date: "2026-03-30"
 category: "Solo"

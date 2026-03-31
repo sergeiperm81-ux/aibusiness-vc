@@ -1,5 +1,5 @@
 ---
-title: "How to Sell AI Generated Art: Etsy, Redbubble, and Society6 Guide for 2026"
+title: "Selling AI Art: How Creators Earn $500-$10K/Month on Etsy and Print-on-Demand"
 description: "Learn how to sell AI generated art on Etsy, Redbubble, and Society6. Tools, policies, pricing strategies, and realistic income potential of $500-$10K/mo."
 date: "2026-03-30"
 category: "Solo"

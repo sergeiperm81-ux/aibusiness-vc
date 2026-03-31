@@ -1,5 +1,5 @@
 ---
-title: "Best AI Courses in 2026: Free and Paid (Ranked by ROI)"
+title: "AI Courses That Actually Lead to $100K+ Jobs (Free and Paid)"
 description: "Top AI courses ranked by career impact. Free Google/DeepLearning.AI courses, paid specializations, and which ones actually lead to jobs."
 date: "2026-03-30"
 category: "Learn"
