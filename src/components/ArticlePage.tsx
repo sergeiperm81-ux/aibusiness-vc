@@ -10,42 +10,61 @@ const catColors: Record<string, string> = {
   Learn: "bg-cyan-500 text-white",
 };
 
+const heroImages: Record<string, string> = {
+  Solo: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&q=80",
+  Startups: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=1200&q=80",
+  B2B: "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1200&q=80",
+  Tools: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=1200&q=80",
+  Materials: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1200&q=80",
+  Learn: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1200&q=80",
+};
+
 export function ArticlePageView({ article }: { article: Article }) {
+  const heroImg = heroImages[article.category] ?? heroImages.Solo;
+
   return (
     <>
-      <section className="bg-background">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
-          <div className="flex items-center gap-2 mb-3">
-            <Link
-              href={`/${article.section}`}
-              className="text-xs text-white/50 hover:text-accent transition-colors capitalize"
-            >
-              {article.section}
-            </Link>
-            <span className="text-xs text-white/30">/</span>
-            <span
-              className={`text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider ${catColors[article.category] ?? "bg-amber-500 text-black"}`}
-            >
-              {article.category}
-            </span>
+      {/* Hero image */}
+      <section className="relative h-56 sm:h-72 overflow-hidden">
+        <img
+          src={heroImg}
+          alt={article.title}
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
+        <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
+          <div className="mx-auto max-w-3xl">
+            <div className="flex items-center gap-2 mb-2">
+              <Link
+                href={`/${article.section}`}
+                className="text-xs text-white/60 hover:text-white transition-colors capitalize"
+              >
+                {article.section}
+              </Link>
+              <span className="text-xs text-white/30">/</span>
+              <span
+                className={`text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider ${catColors[article.category] ?? "bg-amber-500 text-black"}`}
+              >
+                {article.category}
+              </span>
+            </div>
+            <h1 className="text-2xl sm:text-3xl font-bold text-white leading-tight">
+              {article.title}
+            </h1>
+            <p className="text-sm text-white/60 mt-2">{article.date}</p>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-white mb-3 leading-tight">
-            {article.title}
-          </h1>
-          <p className="text-sm text-white/50">{article.date}</p>
         </div>
       </section>
 
+      {/* Article body */}
       <section className="bg-white">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-10">
-          <article className="prose prose-lg max-w-none prose-headings:text-black prose-h2:text-xl prose-h2:mt-8 prose-h2:mb-4 prose-h3:text-lg prose-p:text-black prose-p:leading-relaxed prose-li:text-black prose-strong:text-black prose-a:text-amber-600 prose-a:no-underline hover:prose-a:underline prose-table:text-sm prose-th:bg-black prose-th:text-white prose-th:p-3 prose-td:p-3 prose-td:text-black">
-            <MarkdownContent content={article.content} />
-          </article>
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-12">
+          <MarkdownContent content={article.content} />
 
-          <div className="mt-10 pt-6 border-t border-black/10">
+          <div className="mt-12 pt-8 border-t border-black/10">
             <Link
               href={`/${article.section}`}
-              className="text-sm font-medium text-accent hover:text-accent-hover transition-colors"
+              className="text-sm font-semibold text-accent hover:text-accent-hover transition-colors"
             >
               &larr; Back to {article.section}
             </Link>
@@ -83,42 +102,51 @@ function MarkdownContent({ content }: { content: string }) {
     const trimmed = line.trim();
 
     if (trimmed.startsWith("## ")) {
-      if (inList) { html.push(`</${listTag}>`); inList = false; }
-      if (inTable) { html.push("</tbody></table>"); inTable = false; }
-      html.push(`<h2>${fmt(trimmed.slice(3))}</h2>`);
+      closeOpen();
+      html.push(`<h2 style="font-size:22px;font-weight:700;color:#000;margin:40px 0 16px;line-height:1.3">${fmt(trimmed.slice(3))}</h2>`);
     } else if (trimmed.startsWith("### ")) {
-      if (inList) { html.push(`</${listTag}>`); inList = false; }
-      html.push(`<h3>${fmt(trimmed.slice(4))}</h3>`);
+      closeOpen();
+      html.push(`<h3 style="font-size:18px;font-weight:700;color:#000;margin:32px 0 12px;line-height:1.3">${fmt(trimmed.slice(4))}</h3>`);
     } else if (trimmed.startsWith("- ") || trimmed.startsWith("* ")) {
-      if (!inList) { html.push("<ul>"); inList = true; listTag = "ul"; }
-      html.push(`<li>${fmt(trimmed.slice(2))}</li>`);
+      if (!inList) { html.push('<ul style="margin:12px 0;padding-left:24px">'); inList = true; listTag = "ul"; }
+      html.push(`<li style="color:#000;font-size:16px;line-height:1.8;margin:4px 0">${fmt(trimmed.slice(2))}</li>`);
     } else if (/^\d+\.\s/.test(trimmed)) {
-      if (!inList) { html.push("<ol>"); inList = true; listTag = "ol"; }
-      html.push(`<li>${fmt(trimmed.replace(/^\d+\.\s/, ""))}</li>`);
+      if (!inList) { html.push('<ol style="margin:12px 0;padding-left:24px">'); inList = true; listTag = "ol"; }
+      html.push(`<li style="color:#000;font-size:16px;line-height:1.8;margin:4px 0">${fmt(trimmed.replace(/^\d+\.\s/, ""))}</li>`);
     } else if (trimmed.startsWith("|")) {
-      if (!inTable) { html.push("<table><tbody>"); inTable = true; }
+      if (!inTable) {
+        html.push('<div style="overflow-x:auto;margin:24px 0"><table style="width:100%;border-collapse:collapse;font-size:14px">');
+        inTable = true;
+      }
       if (trimmed.includes("---")) continue;
       const cells = trimmed.split("|").filter(Boolean).map((c) => c.trim());
-      const tag = !html.some((h) => h.includes("<tr>")) ? "th" : "td";
-      html.push(`<tr>${cells.map((c) => `<${tag}>${fmt(c)}</${tag}>`).join("")}</tr>`);
+      const isHeader = !html.some((h) => h.includes("<tr>"));
+      if (isHeader) {
+        html.push(`<thead><tr>${cells.map((c) => `<th style="background:#000;color:#fff;padding:10px 14px;text-align:left;font-weight:600">${fmt(c)}</th>`).join("")}</tr></thead><tbody>`);
+      } else {
+        html.push(`<tr>${cells.map((c) => `<td style="padding:10px 14px;border-bottom:1px solid #eee;color:#000">${fmt(c)}</td>`).join("")}</tr>`);
+      }
     } else if (trimmed === "") {
-      if (inList) { html.push(`</${listTag}>`); inList = false; }
-      if (inTable) { html.push("</tbody></table>"); inTable = false; }
+      closeOpen();
     } else {
-      if (inList) { html.push(`</${listTag}>`); inList = false; }
-      html.push(`<p>${fmt(trimmed)}</p>`);
+      if (inList) { closeOpen(); }
+      html.push(`<p style="color:#000;font-size:16px;line-height:1.8;margin:16px 0">${fmt(trimmed)}</p>`);
     }
   }
-  if (inList) html.push(`</${listTag}>`);
-  if (inTable) html.push("</tbody></table>");
+  closeOpen();
+
+  function closeOpen() {
+    if (inList) { html.push(`</${listTag}>`); inList = false; }
+    if (inTable) { html.push("</tbody></table></div>"); inTable = false; }
+  }
 
   return <div dangerouslySetInnerHTML={{ __html: html.join("\n") }} />;
 }
 
 function fmt(text: string): string {
   return text
-    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+    .replace(/\*\*(.+?)\*\*/g, '<strong style="color:#000;font-weight:700">$1</strong>')
     .replace(/\*(.+?)\*/g, "<em>$1</em>")
-    .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>')
-    .replace(/`(.+?)`/g, "<code>$1</code>");
+    .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" style="color:#d97706;text-decoration:none">$1</a>')
+    .replace(/`(.+?)`/g, '<code style="background:#f5f5f5;padding:2px 6px;border-radius:4px;font-size:14px;color:#000">$1</code>');
 }
