@@ -67,7 +67,7 @@ export default function HomePage() {
             {newsData.slice(0, 6).map((item) => (
               <Link
                 key={item.slug}
-                href={`/news/${item.slug}`}
+                href={`/news?open=${item.slug}`}
                 className="group bg-background rounded-xl overflow-hidden hover:ring-2 hover:ring-accent/40 transition-all hover:-translate-y-1"
               >
                 <div className="relative h-36 overflow-hidden">

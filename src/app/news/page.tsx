@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import { newsData } from "@/data/news";
 
 const catColors: Record<string, string> = {
@@ -14,8 +15,27 @@ const catColors: Record<string, string> = {
 const categories = ["All", "Solo", "Startups", "B2B", "Tools"];
 
 export default function NewsPage() {
+  return (
+    <Suspense>
+      <NewsPageInner />
+    </Suspense>
+  );
+}
+
+function NewsPageInner() {
+  const searchParams = useSearchParams();
+  const openSlug = searchParams.get("open");
   const [activeCategory, setActiveCategory] = useState("All");
-  const [expandedSlug, setExpandedSlug] = useState<string | null>(null);
+  const [expandedSlug, setExpandedSlug] = useState<string | null>(openSlug);
+
+  useEffect(() => {
+    if (openSlug) {
+      setExpandedSlug(openSlug);
+      setTimeout(() => {
+        document.getElementById(`news-${openSlug}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 100);
+    }
+  }, [openSlug]);
 
   const filtered =
     activeCategory === "All"
@@ -76,6 +96,7 @@ export default function NewsPage() {
                 return (
                   <div
                     key={item.slug}
+                    id={`news-${item.slug}`}
                     className="border border-gray-200 rounded-xl mb-4 overflow-hidden transition-all"
                   >
                     {/* Collapsed state — image left, text right */}
@@ -112,10 +133,10 @@ export default function NewsPage() {
                             {item.date}
                           </span>
                         </div>
-                        <h2 className="text-lg font-bold text-gray-900 leading-snug">
+                        <h2 className="text-lg font-bold text-black leading-snug">
                           {item.title}
                         </h2>
-                        <p className="text-sm text-gray-700 mt-2 line-clamp-2">
+                        <p className="text-sm text-black/80 mt-2 line-clamp-2">
                           {item.excerpt}
                         </p>
                       </div>
@@ -142,7 +163,7 @@ export default function NewsPage() {
                     {isExpanded && (
                       <div className="border-t border-gray-100 px-6 py-6">
                         <div
-                          className="prose prose-gray max-w-none prose-p:text-gray-800 prose-p:leading-[1.8] prose-strong:text-gray-900 prose-li:text-gray-800 prose-ul:mt-2"
+                          className="prose prose-gray max-w-none prose-p:text-black prose-p:leading-[1.8] prose-strong:text-black prose-li:text-black prose-ul:mt-2"
                           dangerouslySetInnerHTML={{ __html: item.body }}
                         />
 
