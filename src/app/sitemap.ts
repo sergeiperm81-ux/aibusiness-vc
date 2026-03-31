@@ -4,7 +4,7 @@ import { tools } from "@/data/tools";
 import { getAllArticles } from "@/lib/articles";
 import { getAllComparisons } from "@/data/comparisons";
 import { salaries } from "@/data/salaries";
-import { getAllNews } from "@/lib/news";
+import { newsData } from "@/data/news";
 import { regulations } from "@/data/regulations";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -39,7 +39,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   const articlePages: MetadataRoute.Sitemap = getAllArticles().map((a) => ({
-    url: `${baseUrl}/articles/${a.slug}`,
+    url: `${baseUrl}/${a.section}/${a.slug}`,
     lastModified: a.date,
     changeFrequency: "monthly" as const,
     priority: 0.8,
@@ -66,7 +66,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  const newsPages: MetadataRoute.Sitemap = getAllNews().map((n) => ({
+  const newsPages: MetadataRoute.Sitemap = newsData.map((n) => ({
     url: `${baseUrl}/news/${n.slug}`,
     lastModified: n.date,
     changeFrequency: "daily" as const,
