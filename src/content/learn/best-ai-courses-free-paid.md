@@ -3,6 +3,7 @@ title: "Best AI Courses in 2026: Free and Paid (Ranked by ROI)"
 description: "Top AI courses ranked by career impact. Free Google/DeepLearning.AI courses, paid specializations, and which ones actually lead to jobs."
 date: "2026-03-30"
 category: "Learn"
+image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&q=80"
 keywords: ["best AI courses", "AI courses free", "AI certification 2026", "learn AI online", "AI courses for beginners"]
 ---
 

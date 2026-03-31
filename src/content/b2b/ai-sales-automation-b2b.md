@@ -3,6 +3,7 @@ title: "AI Sales Automation: How B2B Teams Are Closing 3x More Deals"
 description: "How sales teams use AI for lead scoring, outreach, follow-ups, and forecasting. Tools, ROI data, and implementation guide."
 date: "2026-03-30"
 category: "B2B"
+image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&q=80"
 keywords: ["AI sales automation", "AI for sales teams", "AI lead scoring", "AI sales tools B2B"]
 ---
 

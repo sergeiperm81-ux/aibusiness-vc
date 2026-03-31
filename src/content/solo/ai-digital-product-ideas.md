@@ -3,6 +3,7 @@ title: "14 AI Digital Product Ideas You Can Create and Sell in 2026"
 description: "Discover 14 profitable digital products you can build with AI. Creation time, pricing, platforms, and realistic income potential for each."
 date: "2026-03-30"
 category: "Solo"
+image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"
 keywords: ["AI digital product ideas", "digital products to sell", "AI products to sell online", "passive income AI", "create digital products with AI"]
 ---
 

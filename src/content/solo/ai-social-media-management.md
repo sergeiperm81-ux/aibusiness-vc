@@ -3,6 +3,7 @@ title: "AI Social Media Management: Earn $1,200-$5,000/Month Per Client"
 description: "How to offer AI-powered social media management services. Tools, pricing, finding clients, and scaling to $8K+/month."
 date: "2026-03-30"
 category: "Solo"
+image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&q=80"
 keywords: ["AI social media management", "AI social media tools", "social media manager AI", "AI content creation social media"]
 ---
 

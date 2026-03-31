@@ -3,6 +3,7 @@ title: "AI in Healthcare: How Hospitals and Clinics Use AI in 2026"
 description: "How healthcare organizations implement AI for diagnostics, patient care, operations, and documentation. Real ROI data and tools."
 date: "2026-03-30"
 category: "B2B"
+image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80"
 keywords: ["AI in healthcare", "AI for hospitals", "medical AI tools", "AI healthcare implementation"]
 ---
 

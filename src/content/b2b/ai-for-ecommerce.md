@@ -3,6 +3,7 @@ title: "AI for E-Commerce: How Online Stores Use AI to Boost Revenue"
 description: "How ecommerce businesses use AI for product descriptions, customer service, pricing, and personalization. ROI examples and tools."
 date: "2026-03-30"
 category: "B2B"
+image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80"
 keywords: ["AI for ecommerce", "AI ecommerce tools", "AI product descriptions", "AI customer service ecommerce"]
 ---
 

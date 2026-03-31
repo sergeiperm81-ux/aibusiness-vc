@@ -20,7 +20,7 @@ const heroImages: Record<string, string> = {
 };
 
 export function ArticlePageView({ article }: { article: Article }) {
-  const heroImg = heroImages[article.category] ?? heroImages.Solo;
+  const heroImg = article.image || (heroImages[article.category] ?? heroImages.Solo);
 
   return (
     <>

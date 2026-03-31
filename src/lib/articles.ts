@@ -12,6 +12,7 @@ export interface ArticleMeta {
   date: string;
   category: string;
   keywords: string[];
+  image: string;
 }
 
 export interface Article extends ArticleMeta {
@@ -38,6 +39,7 @@ function readArticlesFromDir(section: string): ArticleMeta[] {
         date: data.date ?? "2026-03-30",
         category: data.category ?? section,
         keywords: data.keywords ?? [],
+        image: data.image ?? "",
       };
     });
 }
@@ -67,6 +69,7 @@ export function getArticleBySlug(section: string, slug: string): Article | null 
     date: data.date ?? "2026-03-30",
     category: data.category ?? section,
     keywords: data.keywords ?? [],
+    image: data.image ?? "",
     content,
   };
 }

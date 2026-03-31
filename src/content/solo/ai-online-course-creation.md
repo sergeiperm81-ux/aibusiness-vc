@@ -3,6 +3,7 @@ title: "How to Create and Sell an Online Course About AI ($2K-$50K/Month)"
 description: "Step-by-step guide to creating an AI course. Topics that sell, platforms, pricing, marketing, and realistic income timelines."
 date: "2026-03-30"
 category: "Solo"
+image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&q=80"
 keywords: ["create AI course", "sell online course AI", "AI course business", "teach AI online"]
 ---
 

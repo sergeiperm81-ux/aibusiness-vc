@@ -3,6 +3,7 @@ title: "AI Startup Funding in 2026: Who's Investing, How Much, and Where"
 description: "AI startup funding hit $72B in 2025. Who's investing, what stages, which sectors, and how to raise your own AI round."
 date: "2026-03-30"
 category: "Startups"
+image: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&q=80"
 keywords: ["AI startup funding", "AI venture capital", "AI investment 2026", "how to raise funding AI startup"]
 ---
 

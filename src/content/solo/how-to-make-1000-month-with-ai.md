@@ -3,6 +3,7 @@ title: "How to Make $1,000 a Month With AI: 5 Proven Paths (Step-by-Step)"
 description: "Learn 5 actionable ways to make $1,000/month with AI tools. Exact steps, timelines, and month-by-month progression included."
 date: "2026-03-30"
 category: "Solo"
+image: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800&q=80"
 keywords: ["how to make $1000 a month with AI", "make money with AI", "AI income", "AI side income", "earn with AI tools"]
 ---
 
