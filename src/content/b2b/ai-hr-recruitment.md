@@ -1,5 +1,5 @@
 ---
-title: "AI for HR & Recruitment: Cut Time-to-Hire by 40%"
+title: "How AI Cuts Hiring Costs 35% and Time-to-Hire 40%"
 description: "How HR teams use AI for resume screening, candidate sourcing, interview scheduling, and onboarding. Tools, ROI data, and implementation."
 date: "2026-03-30"
 category: "B2B"

@@ -1,5 +1,5 @@
 ---
-title: "The AI Hardware Race: Who's Building the Chips That Power Everything"
+title: "The AI Chip Race: Why NVIDIA Made $130B and Who's Next"
 description: "NVIDIA, AMD, custom silicon from Google and Amazon. The companies building AI chips and why hardware is the real bottleneck."
 date: "2026-03-30"
 category: "Startups"

@@ -1,5 +1,5 @@
 ---
-title: "Vibe Coding: How to Build and Monetize Apps Without Traditional Coding"
+title: "Vibe Coding: Build and Sell Apps Over a Weekend ($500-$20K/Month)"
 description: "Learn vibe coding — building apps with AI assistance. Tools like Cursor, Bolt.new, and v0 explained. Earn $500-$20K/mo with micro-SaaS."
 date: "2026-03-30"
 category: "Solo"

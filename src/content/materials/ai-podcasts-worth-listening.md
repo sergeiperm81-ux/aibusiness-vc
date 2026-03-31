@@ -1,5 +1,5 @@
 ---
-title: "10 Best AI Podcasts Worth Your Time in 2026"
+title: "10 AI Podcasts That Will Make You Smarter About AI and Money"
 description: "Curated list of the best AI podcasts for business, tech, and philosophy. What each covers, episode length, and who should listen."
 date: "2026-03-30"
 category: "Materials"

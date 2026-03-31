@@ -1,5 +1,5 @@
 ---
-title: "AI Customer Service Automation: Cut Costs 40-60% While Improving Response Time"
+title: "How Companies Cut Support Costs 40-60% with AI Customer Service"
 description: "How businesses automate customer service with AI. Chatbots, email triage, voice agents. Tools, ROI data, and implementation guide."
 date: "2026-03-30"
 category: "B2B"

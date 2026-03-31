@@ -1,5 +1,5 @@
 ---
-title: "Open Source AI Models: The Best Free Alternatives to GPT-4 and Claude"
+title: "Open Source AI: How to Cut API Costs 90% with Free Models"
 description: "Top open-source LLMs you can run yourself. Llama, DeepSeek, Mistral, Qwen — capabilities, how to use them, and why they matter."
 date: "2026-03-30"
 category: "Tools"

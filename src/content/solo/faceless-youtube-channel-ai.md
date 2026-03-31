@@ -1,5 +1,5 @@
 ---
-title: "How to Start a Faceless YouTube Channel With AI in 2026 (Complete Blueprint)"
+title: "Faceless YouTube with AI: $500-$80K/Month Without Showing Your Face"
 description: "Build a faceless YouTube channel using AI tools. Profitable niches, tools, monetization timeline, and income potential up to $80K/month."
 date: "2026-03-30"
 category: "Solo"

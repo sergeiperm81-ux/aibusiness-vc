@@ -1,5 +1,5 @@
 ---
-title: "How to Learn Prompt Engineering: Free Resources and Paid Courses"
+title: "Learn Prompt Engineering: The Skill That Pays $101K-$192K/Year"
 description: "The best resources to master prompt engineering. Free courses, paid programs, practice projects, and career paths."
 date: "2026-03-30"
 category: "Learn"

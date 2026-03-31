@@ -1,5 +1,5 @@
 ---
-title: "AI in Supply Chain: How Companies Cut Costs 15-25%"
+title: "How Supply Chain AI Saves Companies $15-25M Per Year"
 description: "How AI transforms supply chain — demand forecasting, inventory optimization, logistics routing. Real ROI from companies using it."
 date: "2026-03-30"
 category: "B2B"

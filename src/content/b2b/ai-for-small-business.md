@@ -1,5 +1,5 @@
 ---
-title: "AI for Small Business: 7 Tools That Save 10+ Hours Per Week"
+title: "7 AI Tools That Save Small Business Owners $2,400/Month"
 description: "Practical AI tools for small business owners. Customer service, marketing, bookkeeping, scheduling — each saves hours weekly."
 date: "2026-03-30"
 category: "B2B"

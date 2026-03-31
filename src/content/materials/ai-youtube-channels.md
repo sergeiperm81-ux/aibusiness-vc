@@ -1,5 +1,5 @@
 ---
-title: "12 Best AI YouTube Channels to Follow in 2026"
+title: "12 AI YouTube Channels Worth Your Time: Learn, Build, Earn"
 description: "The best YouTube channels for AI news, tutorials, and business. From beginner explainers to deep technical content."
 date: "2026-03-30"
 category: "Materials"
