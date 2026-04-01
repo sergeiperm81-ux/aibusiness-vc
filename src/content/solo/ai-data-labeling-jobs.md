@@ -3,7 +3,7 @@ title: "AI Data Labeling Jobs: Earn $17-$100/hr Training AI Models"
 description: "How to get paid training AI models. Platforms, pay rates, requirements, and tips for maximizing earnings in data labeling."
 date: "2026-03-30"
 category: "Solo"
-image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=800&q=80"
+image: "/images/articles/globe-tech-1.jpg"
 keywords: ["AI data labeling jobs", "data annotation jobs", "AI training jobs", "RLHF jobs", "Outlier AI jobs"]
 ---
 

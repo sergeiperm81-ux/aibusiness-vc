@@ -3,7 +3,7 @@ title: "7 AI Books That Change How You Think About Technology and Wealth"
 description: "Essential reading on AI — from business strategy to societal impact. What each book covers and who should read it."
 date: "2026-03-30"
 category: "Materials"
-image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=800&q=80"
+image: "/images/articles/dashboard-analytics-1.jpg"
 keywords: ["best AI books", "AI books 2026", "artificial intelligence books", "books about AI for business"]
 ---
 

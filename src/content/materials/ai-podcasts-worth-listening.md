@@ -3,7 +3,7 @@ title: "10 AI Podcasts That Will Make You Smarter About AI and Money"
 description: "Curated list of the best AI podcasts for business, tech, and philosophy. What each covers, episode length, and who should listen."
 date: "2026-03-30"
 category: "Materials"
-image: "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=800&q=80"
+image: "/images/articles/dashboards-1.jpg"
 keywords: ["best AI podcasts", "AI podcasts 2026", "artificial intelligence podcast", "AI business podcast"]
 ---
 

@@ -3,7 +3,7 @@ title: "AI Cybersecurity: The $30B+ Market Protecting Companies from AI-Powered 
 description: "Wiz ($32B acquisition), CrowdStrike, Palo Alto — how AI security companies generate billions defending against AI-powered attacks."
 date: "2026-04-01"
 category: "Startups"
-image: "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=800&q=80"
+image: "/images/articles/presentation-1.jpg"
 keywords: ["AI cybersecurity", "AI security companies", "Wiz acquisition", "cybersecurity AI revenue"]
 ---
 

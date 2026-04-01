@@ -3,7 +3,7 @@ title: "Enterprise AI Adoption Hits 58% — What Separates Winners from Failures
 excerpt: "More than half of enterprises now use AI in production, but 42% of projects fail to deliver ROI."
 category: "B2B"
 date: "2026-03-24"
-image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&q=80"
+image: "/images/articles/developer-screen-1.jpg"
 ---
 
 **58% of enterprises** now use AI in at least one business function, up from 35% in 2023, according to McKinsey's 2025 Global AI Survey. But the uncomfortable truth: **42% of AI projects fail** to deliver expected ROI.

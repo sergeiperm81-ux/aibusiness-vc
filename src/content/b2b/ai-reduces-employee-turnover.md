@@ -3,7 +3,7 @@ title: "How AI Reduces Employee Turnover — Saving Companies $50K Per Lost Work
 description: "AI predicts which employees will quit, identifies burnout signals, and automates engagement. Average cost of turnover: $50K per employee."
 date: "2026-03-31"
 category: "B2B"
-image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&q=80"
+image: "/images/articles/business-suit-1.jpg"
 keywords: ["AI employee retention", "AI reduce turnover", "AI HR analytics", "cost of employee turnover"]
 ---
 

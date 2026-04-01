@@ -3,7 +3,7 @@ title: "Cursor: From Side Project to $9B Valuation — The AI Coding Revolution"
 description: "How Cursor became the #1 AI coding tool, overtook GitHub Copilot, and reached $9B valuation. Revenue, growth, and what's next."
 date: "2026-03-31"
 category: "Startups"
-image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&q=80"
+image: "/images/articles/security-lock-1.jpg"
 keywords: ["Cursor valuation", "Cursor AI revenue", "AI coding tool growth", "Cursor vs Copilot"]
 ---
 

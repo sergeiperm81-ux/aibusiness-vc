@@ -3,7 +3,7 @@ title: "AI Bookkeeping Business: $3K-$15K/Month with 80% Automated"
 description: "Start an AI-powered bookkeeping service. Tools, pricing, target clients, and how to scale from $3K to $15K/month."
 date: "2026-03-30"
 category: "Solo"
-image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80"
+image: "/images/articles/entrepreneur-cafe-1.jpg"
 keywords: ["AI bookkeeping business", "automated bookkeeping", "AI accounting", "bookkeeping side hustle"]
 ---
 

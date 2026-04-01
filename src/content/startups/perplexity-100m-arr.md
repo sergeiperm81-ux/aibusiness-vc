@@ -3,7 +3,7 @@ title: "Perplexity Crosses $100M ARR — The AI Search Engine Challenging Google
 description: "Perplexity hit $100M revenue with 6.3x growth in Pro subscriptions. $9B valuation, 100M+ queries/month. Can it dethrone Google?"
 date: "2026-03-31"
 category: "Startups"
-image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&q=80"
+image: "/images/articles/software-dev-1.jpg"
 keywords: ["Perplexity revenue", "Perplexity ARR", "AI search engine revenue", "Perplexity vs Google revenue"]
 ---
 

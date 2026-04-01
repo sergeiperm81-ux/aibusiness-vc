@@ -3,7 +3,7 @@ title: "Enterprise AI Adoption in 2026: What Works, What Fails, and Why"
 description: "58% of enterprises now use AI. What separates successful implementations from expensive failures. ROI data and lessons."
 date: "2026-03-30"
 category: "B2B"
-image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&q=80"
+image: "/images/articles/coding-dark-1.jpg"
 keywords: ["enterprise AI adoption", "AI implementation", "AI ROI business", "AI for enterprise 2026"]
 ---
 

@@ -3,6 +3,7 @@ title: "AI Voice Agents: The Next Frontier for Business Automation"
 description: "AI voice agents handle phone calls, schedule appointments, qualify leads. How they work, what they cost, and who's using them."
 date: "2026-03-30"
 category: "B2B"
+image: "/images/articles/code-colorful-1.jpg"
 keywords: ["AI voice agents", "AI phone calls", "voice AI for business", "AI receptionist"]
 ---
 

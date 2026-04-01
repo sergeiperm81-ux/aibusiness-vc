@@ -3,7 +3,7 @@ title: "AI Job Displacement: Which Roles Pay More, Which Disappear"
 description: "Which jobs AI will replace, which it will transform, and which are safe. Data-driven analysis by industry with timeline."
 date: "2026-03-30"
 category: "B2B"
-image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&q=80"
+image: "/images/articles/calculator-1.jpg"
 keywords: ["will AI replace jobs", "AI job displacement", "AI automation jobs", "jobs AI cannot replace"]
 ---
 

@@ -3,7 +3,7 @@ title: "AI Marketing Tools That 3x Your Content Output (And Pay for Themselves)"
 description: "15 AI marketing tools that actually deliver ROI. SEO, content, social media, email, ads — with pricing and real results."
 date: "2026-03-30"
 category: "B2B"
-image: "https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=800&q=80"
+image: "/images/articles/code-screen-1.jpg"
 keywords: ["AI marketing tools", "best AI tools for marketing", "AI for digital marketing", "AI marketing automation"]
 ---
 

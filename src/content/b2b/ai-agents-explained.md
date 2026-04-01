@@ -3,7 +3,7 @@ title: "AI Agents: Why Businesses Pay $500-1,500 Per Agent (And How to Sell Them
 description: "AI agents explained simply. What they are, how they work, why businesses pay $500-1500 per agent, and how to use them."
 date: "2026-03-30"
 category: "B2B"
-image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&q=80"
+image: "/images/articles/ai-abstract-1.jpg"
 keywords: ["what are AI agents", "AI agents explained", "AI agents for business", "autonomous AI agents"]
 ---
 

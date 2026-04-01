@@ -3,7 +3,7 @@ title: "AI Consulting Business: How to Earn $150-$500/Hour as an AI Consultant"
 description: "Step-by-step guide to starting an AI consulting business. Services to offer, pricing, client acquisition, and scaling from solo consultant to agency."
 date: "2026-03-30"
 category: "Solo"
-image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80"
+image: "/images/articles/fintech-card-1.jpg"
 keywords: ["AI consulting business", "how to become an AI consultant", "AI consulting rates", "AI strategy consulting", "start AI consulting firm"]
 ---
 

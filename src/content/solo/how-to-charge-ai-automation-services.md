@@ -3,6 +3,7 @@ title: "AI Automation Pricing: How to Charge $2.5K-$15K Per Project"
 description: "Complete pricing guide for AI automation services. Project-based, retainer, and value-based models with rates for chatbots, workflows, and data automation."
 date: "2026-03-30"
 category: "Solo"
+image: "/images/articles/office-modern-1.jpg"
 keywords: ["how much to charge for AI automation services", "AI automation pricing", "AI service pricing guide", "chatbot pricing for agencies", "AI consulting rates"]
 ---
 

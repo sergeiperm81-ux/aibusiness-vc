@@ -3,7 +3,7 @@ title: "AI Fraud Detection: How Banks Save $10B+ Per Year Catching Criminals"
 description: "AI detects fraud in milliseconds, saving financial institutions $10B+ annually. How it works, who builds it, and the business impact."
 date: "2026-04-01"
 category: "B2B"
-image: "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=800&q=80"
+image: "/images/articles/books-shelf-1.jpg"
 keywords: ["AI fraud detection", "AI prevents fraud", "banking AI savings", "AI financial crime"]
 ---
 

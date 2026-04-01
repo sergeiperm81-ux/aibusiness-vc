@@ -3,7 +3,7 @@ title: "AI Chatbot Builder: How David Earns $5,400/Month Serving 15 Dental Pract
 description: "Real case study: charging $800 setup + $200/month per dental practice. $5,400/month working 15 hours/week with AI chatbots."
 date: "2026-03-31"
 category: "Solo"
-image: "https://images.unsplash.com/photo-1531746790095-e5995a2b3f37?w=800&q=80"
+image: "/images/articles/event-crowd-1.jpg"
 keywords: ["AI chatbot business income", "dental practice chatbot", "AI chatbot recurring revenue", "local business AI"]
 ---
 

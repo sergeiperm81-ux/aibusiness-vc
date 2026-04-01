@@ -3,7 +3,7 @@ title: "AI Robotics: The $5B Startups Building Humanoid Workers"
 description: "Figure AI, 1X, Physical Intelligence — humanoid robots are real and funded. The companies, the money, and when robots replace workers."
 date: "2026-04-01"
 category: "Startups"
-image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&q=80"
+image: "/images/articles/robot-desk-1.jpg"
 keywords: ["AI robotics startups", "humanoid robots", "Figure AI", "robotics funding 2026"]
 ---
 

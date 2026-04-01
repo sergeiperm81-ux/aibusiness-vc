@@ -3,7 +3,7 @@ title: "How Accounting Firms Add $400K Revenue by Switching to AI"
 description: "How accounting firms use AI for tax prep, audit, bookkeeping, and client advisory. Tools, ROI data, and implementation steps."
 date: "2026-03-30"
 category: "B2B"
-image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80"
+image: "/images/articles/ai-network-1.jpg"
 keywords: ["AI for accounting", "AI accounting firm", "AI tax preparation", "accounting automation AI"]
 ---
 

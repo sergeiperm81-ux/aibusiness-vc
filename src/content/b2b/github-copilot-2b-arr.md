@@ -3,7 +3,7 @@ title: "GitHub Copilot Crosses $2B ARR — 46% of Code Is Now AI-Generated"
 description: "Microsoft's AI coding tool generates $2B+/year. 77,000 organizations, 55% faster coding, 46% of GitHub code is AI-written."
 date: "2026-03-31"
 category: "B2B"
-image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&q=80"
+image: "/images/articles/coffee-meeting-1.jpg"
 keywords: ["GitHub Copilot revenue", "AI coding business impact", "AI generated code statistics", "Copilot ROI"]
 ---
 

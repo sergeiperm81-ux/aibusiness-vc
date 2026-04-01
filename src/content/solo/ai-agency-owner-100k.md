@@ -3,7 +3,7 @@ title: "AI Agency to $100K/Month: The Scaling Playbook from Solo to Team"
 description: "How AI automation agencies scale from $5K to $100K/month. Hiring, processes, pricing, and the transition from solo to agency."
 date: "2026-04-01"
 category: "Solo"
-image: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80"
+image: "/images/articles/drone-1.jpg"
 keywords: ["AI agency $100K month", "scale AI agency", "AI automation agency growth", "agency business model AI"]
 ---
 

@@ -3,6 +3,7 @@ title: "Best AI Tools for Lawyers and Law Firms in 2026"
 description: "How lawyers use AI for research, document review, contract analysis, and client management. Top tools with pricing."
 date: "2026-03-30"
 category: "B2B"
+image: "/images/articles/code-closeup-1.jpg"
 keywords: ["AI tools for lawyers", "AI legal tools", "AI for law firms", "legal AI software"]
 ---
 

@@ -3,7 +3,7 @@ title: "AI Email Marketing Freelancer: $3K-$8K/Month Writing Sequences That Conv
 description: "Earn $3K-8K/month writing AI-powered email sequences for businesses. Welcome series, nurture flows, and promotional campaigns."
 date: "2026-04-01"
 category: "Solo"
-image: "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=800&q=80"
+image: "/images/articles/healthcare-medical-1.jpg"
 keywords: ["AI email marketing freelance", "email copywriter income", "AI email sequences", "email marketing business"]
 ---
 

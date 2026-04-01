@@ -3,7 +3,7 @@ title: "DeepSeek V3 Proves You Don't Need Billions to Build Frontier AI"
 excerpt: "The Chinese open-source model matches GPT-4 performance at 1/10th the API cost."
 category: "Startups"
 date: "2026-03-25"
-image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=600&q=80"
+image: "/images/articles/desk-work-1.jpg"
 ---
 
 DeepSeek V3 delivers **GPT-4-class performance** at just **$0.27 per million input tokens** — roughly **10x cheaper** than GPT-4o.

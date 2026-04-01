@@ -3,7 +3,7 @@ title: "The $200/Month AI Solopreneur Stack That Replaces a $50K/Year Team"
 description: "Complete AI tool stack for solo entrepreneurs. $200/month in tools replacing $50K+ in employee costs. Every tool with pricing."
 date: "2026-03-31"
 category: "Solo"
-image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"
+image: "/images/articles/phone-app-1.jpg"
 keywords: ["solopreneur AI stack", "AI tools for solopreneurs", "cheap AI business tools", "one person business AI"]
 ---
 
