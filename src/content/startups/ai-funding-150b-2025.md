@@ -3,7 +3,7 @@ title: "$150 Billion in AI Funding in 2025: Where the Money Went"
 description: "AI startups raised $150B in 2025 — 40% of all global venture capital. Breakdown by stage, sector, and who got the biggest checks."
 date: "2026-03-31"
 category: "Startups"
-image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80"
+image: "/images/articles/restaurant-dining-1.jpg"
 keywords: ["AI funding 2025", "AI venture capital", "AI investment", "biggest AI funding rounds"]
 ---
 

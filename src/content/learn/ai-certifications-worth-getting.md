@@ -3,7 +3,7 @@ title: "AI Certifications That Add $15-25K to Your Salary (And Which Are Worthle
 description: "Which AI certifications actually lead to jobs and salary increases. Google, AWS, Azure, DeepLearning.AI — ranked by ROI."
 date: "2026-03-30"
 category: "Learn"
-image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&q=80"
+image: "/images/articles/creative-desk-1.jpg"
 keywords: ["AI certifications", "best AI certification 2026", "Google AI certificate", "AWS ML certification"]
 ---
 

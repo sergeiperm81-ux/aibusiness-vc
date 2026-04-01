@@ -3,7 +3,7 @@ title: "AI Freelancing: The Complete Guide to Earning $1K-$10K/Month in 2026"
 description: "Start freelancing with AI tools. Services to offer, pricing strategies, client acquisition, and scaling from $1K to $10K/month."
 date: "2026-03-30"
 category: "Solo"
-image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80"
+image: "/images/articles/home-office-1.jpg"
 keywords: ["AI freelancing guide", "freelancing with AI tools", "AI freelance services", "make money freelancing AI", "AI freelancer"]
 ---
 

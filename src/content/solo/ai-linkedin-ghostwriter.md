@@ -3,7 +3,7 @@ title: "AI LinkedIn Ghostwriter: $3K-$10K/Month Writing for Executives"
 description: "Ghostwrite LinkedIn content for CEOs and executives using AI. $500-2,000/month per client, 5 clients = $5K+/month."
 date: "2026-03-31"
 category: "Solo"
-image: "https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=800&q=80"
+image: "/images/articles/investing-chart-1.jpg"
 keywords: ["LinkedIn ghostwriter", "AI ghostwriting business", "executive content writing", "LinkedIn content service"]
 ---
 

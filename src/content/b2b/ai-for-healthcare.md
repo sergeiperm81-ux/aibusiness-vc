@@ -3,7 +3,7 @@ title: "How Hospitals Save $400K/Year Per Doctor with AI Documentation"
 description: "How healthcare organizations implement AI for diagnostics, patient care, operations, and documentation. Real ROI data and tools."
 date: "2026-03-30"
 category: "B2B"
-image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80"
+image: "/images/articles/art-creative-1.jpg"
 keywords: ["AI in healthcare", "AI for hospitals", "medical AI tools", "AI healthcare implementation"]
 ---
 

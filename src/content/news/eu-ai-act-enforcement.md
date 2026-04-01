@@ -3,7 +3,7 @@ title: "EU AI Act Enforcement Begins — Companies Face Up to 7% Revenue Penalti
 excerpt: "The world's first comprehensive AI law starts enforcing compliance requirements across Europe."
 category: "B2B"
 date: "2026-03-26"
-image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&q=80"
+image: "/images/articles/developer-typing-1.jpg"
 ---
 
 The European Union's AI Act has entered its enforcement phase. Non-compliance can result in fines of up to **7% of global annual revenue** — or **€35 million**, whichever is higher.

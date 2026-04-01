@@ -3,7 +3,7 @@ title: "ChatGPT vs Claude vs Gemini: Which AI to Use for Making Money (2026)"
 description: "Honest comparison of ChatGPT, Claude, and Gemini for business use. Strengths, pricing, and which one to pick for your use case."
 date: "2026-03-30"
 category: "Tools"
-image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80"
+image: "/images/articles/startup-whiteboard-1.jpg"
 keywords: ["ChatGPT vs Claude", "ChatGPT vs Gemini", "best AI chatbot 2026", "Claude vs GPT-4"]
 ---
 

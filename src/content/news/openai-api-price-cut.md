@@ -3,7 +3,7 @@ title: "OpenAI Slashes API Prices by 40% — Startups See Immediate Margin Boost
 excerpt: "GPT-4o API costs drop significantly, making AI products cheaper to build and run."
 category: "Startups"
 date: "2026-03-28"
-image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600&q=80"
+image: "/images/articles/documents-papers-1.jpg"
 ---
 
 OpenAI has reduced API pricing for GPT-4o by **40%**, bringing input costs down to **$1.50 per million tokens** and output to **$6.00 per million tokens**.

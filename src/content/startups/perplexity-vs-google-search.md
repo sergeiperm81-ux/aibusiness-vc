@@ -3,7 +3,7 @@ title: "Perplexity AI vs Google: Who Captures the $300B Search Revenue?"
 description: "Perplexity processes 100M+ queries/month. Can it replace Google? Comparison of AI search vs traditional search for business users."
 date: "2026-03-30"
 category: "Startups"
-image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&q=80"
+image: "/images/articles/startup-funding-1.jpg"
 keywords: ["Perplexity AI vs Google", "AI search engine", "Perplexity review", "AI search 2026"]
 ---
 

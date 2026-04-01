@@ -3,7 +3,7 @@ title: "AI Podcast Production: Earn $2K-$8K/Month as a Podcast Producer"
 description: "Offer AI-powered podcast production services. Editing, show notes, clips, transcription — all AI-accelerated. Income and workflow."
 date: "2026-03-31"
 category: "Solo"
-image: "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=800&q=80"
+image: "/images/articles/macbook-code-1.jpg"
 keywords: ["AI podcast production", "podcast production business", "AI podcast editing", "make money podcast production"]
 ---
 

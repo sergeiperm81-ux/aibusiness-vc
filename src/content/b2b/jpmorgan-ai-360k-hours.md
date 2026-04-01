@@ -3,7 +3,7 @@ title: "JPMorgan's AI Saves 360,000 Lawyer Hours Per Year — Worth $150M+"
 description: "JPMorgan's COiN platform reviews loan agreements in seconds instead of weeks. 360K hours saved, near-zero errors, $150M+ value."
 date: "2026-03-31"
 category: "B2B"
-image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80"
+image: "/images/articles/conference-1.jpg"
 keywords: ["JPMorgan AI", "AI legal document review", "AI saves hours", "finance AI ROI"]
 ---
 

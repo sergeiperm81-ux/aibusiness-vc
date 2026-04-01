@@ -3,7 +3,7 @@ title: "AI Defense Startups: The $100B+ Market Nobody Talks About"
 description: "Anduril, Shield AI, and Palantir lead $100B+ AI defense market. Government contracts, massive revenue, and controversial growth."
 date: "2026-04-01"
 category: "Startups"
-image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&q=80"
+image: "/images/articles/professional-woman-1.jpg"
 keywords: ["AI defense startups", "Anduril AI", "AI military contracts", "defense AI revenue"]
 ---
 

@@ -3,7 +3,7 @@ title: "Anthropic Reaches $5B ARR — How Claude Became a Revenue Machine"
 description: "Anthropic generates $417M/month with 70-75% from API. How they reached $5B ARR and $183B valuation in the AI safety race."
 date: "2026-03-31"
 category: "Startups"
-image: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&q=80"
+image: "/images/articles/screens-data-1.jpg"
 keywords: ["Anthropic revenue", "Claude revenue", "Anthropic ARR", "Anthropic valuation"]
 ---
 

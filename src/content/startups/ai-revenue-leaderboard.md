@@ -3,7 +3,7 @@ title: "AI Revenue Leaderboard: Which Companies Make the Most Money from AI"
 description: "Ranked by revenue: OpenAI $13B, Anthropic $5B, Databricks $4B, Midjourney $500M. The complete AI money scoreboard."
 date: "2026-03-31"
 category: "Startups"
-image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80"
+image: "/images/articles/robot-arm-1.jpg"
 keywords: ["AI company revenue ranking", "highest earning AI companies", "AI revenue leaderboard", "AI startup revenue"]
 ---
 

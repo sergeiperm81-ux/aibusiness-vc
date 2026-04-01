@@ -3,7 +3,7 @@ title: "Databricks: $4B ARR and the $134B Bet on Enterprise AI Infrastructure"
 description: "How Databricks became the backbone of enterprise AI — $333M/month revenue, 60% of Fortune 500 as customers, $134B valuation."
 date: "2026-03-31"
 category: "Startups"
-image: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80"
+image: "/images/articles/server-room-1.jpg"
 keywords: ["Databricks revenue", "Databricks ARR", "enterprise AI infrastructure", "Databricks valuation"]
 ---
 

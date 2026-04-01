@@ -3,7 +3,7 @@ title: "AI Personal Branding: How 30 Min/Day Adds $93K/Year to Your Income"
 description: "How to use AI tools to build a personal brand on LinkedIn, X, and newsletters. Content strategy, tools, and growth tactics."
 date: "2026-03-30"
 category: "Solo"
-image: "https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=800&q=80"
+image: "/images/articles/lightbulb-idea-1.jpg"
 keywords: ["AI personal branding", "LinkedIn AI content", "build personal brand AI", "thought leadership AI"]
 ---
 

@@ -3,7 +3,7 @@ title: "HeadshotPro: How One Developer Earns $300K/Month with AI Headshots"
 description: "Danny Postma built HeadshotPro to $300K/month solo from Bali. AI headshot business model, pricing, and what solopreneurs can learn."
 date: "2026-03-31"
 category: "Solo"
-image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80"
+image: "/images/articles/office-building-1.jpg"
 keywords: ["HeadshotPro", "AI headshot business", "Danny Postma", "solo founder revenue"]
 ---
 

@@ -3,7 +3,7 @@ title: "How to Write and Sell AI-Assisted E-Books ($200-$5,000/Month)"
 description: "Create and sell ebooks using AI. Topic research, writing workflow, publishing on Amazon KDP and Gumroad, marketing strategies."
 date: "2026-03-30"
 category: "Solo"
-image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=800&q=80"
+image: "/images/articles/handshake-deal-1.jpg"
 keywords: ["AI ebook business", "sell ebooks with AI", "Amazon KDP AI", "write ebook with ChatGPT"]
 ---
 

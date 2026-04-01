@@ -3,7 +3,7 @@ title: "AI Dynamic Pricing: How Retailers Increase Margins 5-15% Automatically"
 description: "AI adjusts prices in real-time based on demand, competition, and inventory. Amazon changes prices 2.5M times/day. How any retailer can do it."
 date: "2026-04-01"
 category: "B2B"
-image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80"
+image: "/images/articles/charts-screen-1.jpg"
 keywords: ["AI dynamic pricing", "AI pricing optimization", "retail AI pricing", "automated pricing"]
 ---
 

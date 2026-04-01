@@ -3,7 +3,7 @@ title: "Anthropic Raises $3.5B at $61.5B Valuation — AI Safety Race Intensifie
 excerpt: "Anthropic's latest funding round makes it the second most valuable AI startup after OpenAI."
 category: "Startups"
 date: "2026-03-29"
-image: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600&q=80"
+image: "/images/articles/design-creative-1.jpg"
 ---
 
 Anthropic has closed a **$3.5 billion** funding round, valuing the AI safety company at **$61.5 billion**.

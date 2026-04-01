@@ -3,7 +3,7 @@ title: "How Moderna Uses AI to Save $1-2 Billion Per Drug — The Future of Phar
 description: "Moderna cut drug development from 5-7 years to 2-3 years with AI. Each year saved is worth $1-2B in earlier market entry."
 date: "2026-03-31"
 category: "B2B"
-image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80"
+image: "/images/articles/consulting-meeting-1.jpg"
 keywords: ["AI drug discovery", "Moderna AI", "AI pharma", "AI saves billions drug development"]
 ---
 

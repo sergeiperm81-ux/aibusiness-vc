@@ -3,7 +3,7 @@ title: "How to Make Money with AI Agents in 2026: The Complete Guide"
 description: "Learn how to build and sell AI agents for businesses. Discover pricing, tools, and step-by-step strategies to earn $5K-$100K/mo."
 date: "2026-03-30"
 category: "Solo"
-image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80"
+image: "/images/articles/opensource-code-1.jpg"
 keywords: ["how to make money with AI agents", "AI agent business", "build AI agents", "sell AI agents", "AI agent income"]
 ---
 

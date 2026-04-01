@@ -3,7 +3,7 @@ title: "ElevenLabs Review: Turn $22/Month into Professional Voice Content"
 description: "Honest ElevenLabs review — voice quality, pricing, use cases, limitations. Is it worth it for content creators and businesses?"
 date: "2026-03-30"
 category: "Tools"
-image: "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=800&q=80"
+image: "/images/articles/study-desk-1.jpg"
 keywords: ["ElevenLabs review", "AI voice generator", "text to speech AI", "ElevenLabs pricing"]
 ---
 

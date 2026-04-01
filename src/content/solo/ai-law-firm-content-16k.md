@@ -3,7 +3,7 @@ title: "AI Copywriter for Law Firms: $16,200/Month with 9 Clients"
 description: "How one freelancer earns $16K/month writing AI-powered SEO content for law firms. $1,800/month per client, 25-30 hours/week."
 date: "2026-03-31"
 category: "Solo"
-image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&q=80"
+image: "/images/articles/hr-interview-1.jpg"
 keywords: ["AI copywriting law firms", "legal content writer income", "AI writer $16K month", "freelance AI content"]
 ---
 

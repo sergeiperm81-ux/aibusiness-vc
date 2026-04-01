@@ -3,7 +3,7 @@ title: "AI Resume Writing: $1K-$5K/Month Helping Job Seekers Land $100K+ Roles"
 description: "Build an AI-powered resume writing service. $100-300 per resume, 20-40 clients/month. Tools, workflow, and how to get clients."
 date: "2026-04-01"
 category: "Solo"
-image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&q=80"
+image: "/images/articles/matrix-code-1.jpg"
 keywords: ["AI resume writing business", "AI resume service", "make money writing resumes", "AI career coaching"]
 ---
 

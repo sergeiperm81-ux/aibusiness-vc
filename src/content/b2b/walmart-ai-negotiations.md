@@ -3,7 +3,7 @@ title: "Walmart's AI Negotiates Better Deals Than Humans — Saving Billions"
 description: "Walmart's AI negotiation software closes 68% of supplier deals without humans. 3% savings per contract on $650B+ procurement."
 date: "2026-03-31"
 category: "B2B"
-image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80"
+image: "/images/articles/coworking-1.jpg"
 keywords: ["Walmart AI negotiation", "AI procurement", "AI saves billions", "AI business negotiation"]
 ---
 

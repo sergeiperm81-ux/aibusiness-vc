@@ -3,7 +3,7 @@ title: "12 AI YouTube Channels Worth Your Time: Learn, Build, Earn"
 description: "The best YouTube channels for AI news, tutorials, and business. From beginner explainers to deep technical content."
 date: "2026-03-30"
 category: "Materials"
-image: "https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=800&q=80"
+image: "/images/articles/data-chart-1.jpg"
 keywords: ["best AI YouTube channels", "AI YouTube 2026", "AI tutorials YouTube", "learn AI YouTube"]
 ---
 
