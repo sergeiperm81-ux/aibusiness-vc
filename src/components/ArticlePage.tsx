@@ -1,5 +1,6 @@
 import Link from "next/link";
-import type { Article } from "@/lib/articles";
+import type { Article, ArticleMeta } from "@/lib/articles";
+import { Breadcrumbs, getBreadcrumbsForArticle } from "./Breadcrumbs";
 
 const catColors: Record<string, string> = {
   Solo: "bg-amber-500 text-black",
@@ -11,43 +12,32 @@ const catColors: Record<string, string> = {
 };
 
 const heroImages: Record<string, string> = {
-  Solo: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&q=80",
-  Startups: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=1200&q=80",
-  B2B: "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1200&q=80",
-  Tools: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=1200&q=80",
-  Materials: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1200&q=80",
-  Learn: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1200&q=80",
+  Solo: "/images/articles/team-laptop-1.jpg",
+  Startups: "/images/articles/startup-funding-1.jpg",
+  B2B: "/images/articles/meeting-business-1.jpg",
+  Tools: "/images/articles/code-screen-1.jpg",
+  Materials: "/images/articles/podcast-mic-1.jpg",
+  Learn: "/images/articles/study-education-1.jpg",
 };
 
-export function ArticlePageView({ article }: { article: Article }) {
+interface ArticlePageProps {
+  article: Article;
+  relatedArticles?: ArticleMeta[];
+}
+
+export function ArticlePageView({ article, relatedArticles = [] }: ArticlePageProps) {
   const heroImg = article.image || (heroImages[article.category] ?? heroImages.Solo);
+  const shareUrl = `https://aibusiness.vc/${article.section}/${article.slug}`;
 
   return (
     <>
       {/* Hero image */}
       <section className="relative h-56 sm:h-72 overflow-hidden">
-        <img
-          src={heroImg}
-          alt={article.title}
-          className="w-full h-full object-cover"
-        />
+        <img src={heroImg} alt={article.title} className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
         <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
           <div className="mx-auto max-w-3xl">
-            <div className="flex items-center gap-2 mb-2">
-              <Link
-                href={`/${article.section}`}
-                className="text-xs text-white/60 hover:text-white transition-colors capitalize"
-              >
-                {article.section}
-              </Link>
-              <span className="text-xs text-white/30">/</span>
-              <span
-                className={`text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider ${catColors[article.category] ?? "bg-amber-500 text-black"}`}
-              >
-                {article.category}
-              </span>
-            </div>
+            <Breadcrumbs items={getBreadcrumbsForArticle(article.section, article.title, article.slug)} />
             <h1 className="text-2xl sm:text-3xl font-bold text-white leading-tight">
               {article.title}
             </h1>
@@ -61,7 +51,53 @@ export function ArticlePageView({ article }: { article: Article }) {
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-12">
           <MarkdownContent content={article.content} />
 
-          <div className="mt-12 pt-8 border-t border-black/10">
+          {/* Share buttons */}
+          <div className="mt-10 pt-6 border-t border-black/10">
+            <div className="flex items-center justify-between">
+              <span className="text-sm text-black/40">Share this article:</span>
+              <div className="flex gap-2">
+                <a
+                  href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(article.title)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-9 h-9 rounded-full bg-black/5 flex items-center justify-center text-black/40 hover:bg-black hover:text-white transition-colors text-xs font-bold"
+                  title="Share on X"
+                >
+                  𝕏
+                </a>
+                <a
+                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-9 h-9 rounded-full bg-black/5 flex items-center justify-center text-black/40 hover:bg-blue-700 hover:text-white transition-colors"
+                  title="Share on LinkedIn"
+                >
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                </a>
+                <a
+                  href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-9 h-9 rounded-full bg-black/5 flex items-center justify-center text-black/40 hover:bg-blue-600 hover:text-white transition-colors"
+                  title="Share on Facebook"
+                >
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+                </a>
+                <a
+                  href={`https://wa.me/?text=${encodeURIComponent(article.title + " " + shareUrl)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-9 h-9 rounded-full bg-black/5 flex items-center justify-center text-black/40 hover:bg-green-500 hover:text-white transition-colors"
+                  title="Share on WhatsApp"
+                >
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Back link */}
+          <div className="mt-6">
             <Link
               href={`/${article.section}`}
               className="text-sm font-semibold text-accent hover:text-accent-hover transition-colors"
@@ -72,6 +108,46 @@ export function ArticlePageView({ article }: { article: Article }) {
         </div>
       </section>
 
+      {/* Related Articles */}
+      {relatedArticles.length > 0 && (
+        <section className="bg-gray-50 border-t border-black/5">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
+            <h2 className="text-lg font-bold text-black mb-6">Related Articles</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {relatedArticles.slice(0, 3).map((a) => (
+                <Link
+                  key={a.slug}
+                  href={`/${a.section}/${a.slug}`}
+                  className="group rounded-xl overflow-hidden border border-black/5 hover:shadow-lg transition-all hover:-translate-y-1 bg-white"
+                >
+                  {a.image && (
+                    <div className="h-40 overflow-hidden">
+                      <img
+                        src={a.image}
+                        alt={a.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                  )}
+                  <div className="p-4">
+                    <span className={`text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider ${catColors[a.category] ?? "bg-amber-500 text-black"}`}>
+                      {a.category}
+                    </span>
+                    <h3 className="font-bold text-black text-sm mt-2 leading-snug group-hover:text-amber-600 transition-colors">
+                      {a.title}
+                    </h3>
+                    <span className="text-xs font-semibold text-amber-600 mt-2 inline-block">
+                      Read Article &rarr;
+                    </span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Schema */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -80,10 +156,12 @@ export function ArticlePageView({ article }: { article: Article }) {
             "@type": "Article",
             headline: article.title,
             description: article.description,
+            image: heroImg.startsWith("/") ? `https://aibusiness.vc${heroImg}` : heroImg,
             datePublished: article.date,
             dateModified: article.date,
             author: { "@type": "Organization", name: "AI Business", url: "https://aibusiness.vc" },
-            mainEntityOfPage: `https://aibusiness.vc/${article.section}/${article.slug}`,
+            publisher: { "@type": "Organization", name: "AI Business", url: "https://aibusiness.vc" },
+            mainEntityOfPage: shareUrl,
           }),
         }}
       />
@@ -118,7 +196,7 @@ function MarkdownContent({ content }: { content: string }) {
         html.push('<div style="overflow-x:auto;margin:24px 0"><table style="width:100%;border-collapse:collapse;font-size:14px">');
         inTable = true;
       }
-      if (trimmed.includes("---")) continue;
+      if (trimmed.includes("---")) return;
       const cells = trimmed.split("|").filter(Boolean).map((c) => c.trim());
       const isHeader = !html.some((h) => h.includes("<tr>"));
       if (isHeader) {

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getArticleBySlug, getAllSlugsForSection } from "@/lib/articles";
+import { getArticleBySlug, getAllSlugsForSection, getArticlesBySection } from "@/lib/articles";
 import { ArticlePageView } from "@/components/ArticlePage";
 import { notFound } from "next/navigation";
 
@@ -22,5 +22,6 @@ export default async function Page({ params }: Props) {
   const { slug } = await params;
   const article = getArticleBySlug(SECTION, slug);
   if (!article) notFound();
-  return <ArticlePageView article={article} />;
+  const related = getArticlesBySection(SECTION).filter((a) => a.slug !== slug).slice(0, 3);
+  return <ArticlePageView article={article} relatedArticles={related} />;
 }

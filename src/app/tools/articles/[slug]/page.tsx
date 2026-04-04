@@ -1,24 +1,27 @@
 import type { Metadata } from "next";
-import { getArticleBySlug, getAllSlugsForSection } from "@/lib/articles";
+import { getArticleBySlug, getAllSlugsForSection, getArticlesBySection } from "@/lib/articles";
 import { ArticlePageView } from "@/components/ArticlePage";
 import { notFound } from "next/navigation";
+
+const SECTION = "tools";
 
 interface Props { params: Promise<{ slug: string }> }
 
 export async function generateStaticParams() {
-  return getAllSlugsForSection("tools").map((slug) => ({ slug }));
+  return getAllSlugsForSection(SECTION).map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const article = getArticleBySlug("tools", slug);
+  const article = getArticleBySlug(SECTION, slug);
   if (!article) return { title: "Not Found" };
   return { title: article.title, description: article.description, keywords: article.keywords };
 }
 
 export default async function Page({ params }: Props) {
   const { slug } = await params;
-  const article = getArticleBySlug("tools", slug);
+  const article = getArticleBySlug(SECTION, slug);
   if (!article) notFound();
-  return <ArticlePageView article={article} />;
+  const related = getArticlesBySection(SECTION).filter((a) => a.slug !== slug).slice(0, 3);
+  return <ArticlePageView article={article} relatedArticles={related} />;
 }
