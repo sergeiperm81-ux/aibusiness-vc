@@ -1,27 +1,45 @@
 # AI Business — aibusiness.vc
 
-> The definitive guide to making money with AI. Proven methods, real income numbers, honest tool reviews, and case studies.
+> The definitive guide to making money with AI. Real methods, honest income numbers, tool reviews, startup data, and case studies.
 
 ## About
 
-AI Business (aibusiness.vc) helps individuals and businesses earn money using artificial intelligence. We cover 50+ proven methods from beginner-friendly AI side hustles to advanced AI automation agencies, with real income data and honest tool reviews.
+AI Business (aibusiness.vc) helps individuals and businesses earn money using artificial intelligence. 125+ articles, 57 tool reviews, 36 model profiles, 20 model comparisons, 11 salary profiles, and 10 country regulation pages. All content connects AI to money — how to earn it, save it, or invest in it.
 
-## Core Content
+## Solo — Make Money with AI as an Individual
+- [AI Automation Agency Guide](https://aibusiness.vc/solo/ai-automation-agency-guide): Start an AI automation agency ($10K-$100K/month)
+- [HeadshotPro $300K/Month](https://aibusiness.vc/solo/headshot-pro-300k-month): Solo developer earning $300K/month with AI headshots
+- [AI Consultant $34K/Month](https://aibusiness.vc/solo/ai-consultant-34k-month): 7 retainer clients, $34K monthly income
+- [Solo Founder Sold for $80M](https://aibusiness.vc/solo/solo-founder-sold-80m): Base44 sold to Wix for $80M in 6 months
+- [AI Freelancing Guide](https://aibusiness.vc/solo/ai-freelancing-complete-guide): From $0 to $10K/month
+- [Solopreneur $200/Month Stack](https://aibusiness.vc/solo/solopreneur-tech-stack-cost): $200/month replaces $50K/year team
+- [AI Blog Writer $12K/Month](https://aibusiness.vc/solo/ai-blog-writer-12k-month): 60-80 posts/month, $9K-12K income
 
-### How to Make Money with AI
-- [How to Make Money with AI: Complete Guide](https://aibusiness.vc/earn): Comprehensive overview of all AI earning methods, from freelancing to building SaaS products
-- [AI Side Hustles](https://aibusiness.vc/earn/ai-side-hustles): 50+ beginner-friendly ways to earn with AI
-- [AI Automation Agency Guide](https://aibusiness.vc/earn/ai-automation-agency): How to start and scale an AI automation agency ($10K-$100K/month)
-- [AI Freelancing Guide](https://aibusiness.vc/earn/ai-freelancing): Offer AI-powered services in writing, design, video, and coding
-- [AI Digital Products](https://aibusiness.vc/earn/ai-digital-products): Create and sell prompts, templates, courses, and ebooks
-- [AI Careers & Jobs](https://aibusiness.vc/earn/ai-careers): Highest-paying AI roles and how to land them ($101K-$893K/year)
+## Startups — AI Company Revenue & Funding
+- [OpenAI $13B ARR](https://aibusiness.vc/startups/openai-13b-arr): Fastest revenue ramp in tech history
+- [Anthropic $5B ARR](https://aibusiness.vc/startups/anthropic-5b-arr): Claude revenue machine at $183B valuation
+- [Midjourney $500M, Zero Funding](https://aibusiness.vc/startups/midjourney-500m-zero-funding): 40 employees, $12.5M revenue per person
+- [$150B AI Funding 2025](https://aibusiness.vc/startups/ai-funding-150b-2025): Where the money went
+- [AI Revenue Leaderboard](https://aibusiness.vc/startups/ai-revenue-leaderboard): Top 15 companies ranked
 
-### AI Tool Reviews
-- [Best AI Tools for Making Money](https://aibusiness.vc/tools): Honest reviews with ROI analysis
-- [AI Tool Stacks by Role](https://aibusiness.vc/tools/stacks): Curated AI toolkits for specific professions
+## B2B — AI Implementation ROI
+- [Klarna Saves $40M/Year](https://aibusiness.vc/b2b/klarna-ai-replaces-700-agents): AI replaces 700 agents
+- [JPMorgan Saves 360K Hours](https://aibusiness.vc/b2b/jpmorgan-ai-360k-hours): $150M+ annual value
+- [GitHub Copilot $2B ARR](https://aibusiness.vc/b2b/github-copilot-2b-arr): 46% of code is AI-generated
+- [AI Fraud Detection $10B+](https://aibusiness.vc/b2b/ai-fraud-detection-billions): Banks save billions
 
-### Case Studies
-- [Real Income Case Studies](https://aibusiness.vc/case-studies): Verified income reports from people making money with AI
+## Tools — Reviews with ROI Analysis
+- [ChatGPT vs Claude vs Gemini](https://aibusiness.vc/tools/articles/chatgpt-vs-claude-vs-gemini): Which AI for making money
+- [Cursor Review](https://aibusiness.vc/tools/articles/cursor-review-2026): #1 AI coding tool
+- [AI Tools Directory](https://aibusiness.vc/tools/directory): 57 tools with pricing
 
-### AI & Society
-- [AI Impact on Society](https://aibusiness.vc/impact): Analysis of how AI is changing work, creativity, and the economy
+## Models — LLM Leaderboard
+- [AI Model Leaderboard](https://aibusiness.vc/models): 36 models ranked by ELO and benchmarks
+- [Model Comparisons](https://aibusiness.vc/compare): 20 head-to-head comparisons
+
+## Learn — Courses & Careers
+- [Best AI Courses](https://aibusiness.vc/learn/best-ai-courses-free-paid): Ranked by career ROI
+- [AI Salaries](https://aibusiness.vc/salaries): 11 roles, $47K-$643K range
+
+## Regulation
+- [AI Regulation Tracker](https://aibusiness.vc/regulation): 10 countries, laws and policies
