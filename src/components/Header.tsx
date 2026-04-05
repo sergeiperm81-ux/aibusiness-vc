@@ -7,7 +7,9 @@ const mainNav = [
   { name: "News", href: "/news" },
   { name: "Solo", href: "/solo" },
   { name: "Startups", href: "/startups" },
+  { name: "VC", href: "/vc" },
   { name: "B2B", href: "/b2b" },
+  { name: "Gov", href: "/government" },
   { name: "Tools", href: "/tools" },
   { name: "Models", href: "/models" },
   { name: "Learn", href: "/learn" },
@@ -34,12 +36,12 @@ export function Header() {
             <span className="text-[10px] text-white/60 font-mono">.vc</span>
           </Link>
 
-          <div className="hidden md:flex items-center gap-0.5">
+          <div className="hidden lg:flex items-center gap-0.5">
             {mainNav.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className={`px-3 py-1.5 text-sm font-semibold transition-colors rounded-md ${
+                className={`px-2.5 py-1.5 text-[13px] font-semibold transition-colors rounded-md ${
                   isActive(item.href)
                     ? "text-accent"
                     : "text-white hover:text-accent hover:bg-card-bg"
@@ -50,10 +52,10 @@ export function Header() {
             ))}
           </div>
 
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <Link
               href="/news"
-              className="px-3 py-1.5 text-sm text-white hover:text-accent"
+              className="px-2.5 py-1.5 text-[13px] text-white hover:text-accent"
             >
               Menu
             </Link>
