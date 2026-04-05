@@ -1,234 +1,209 @@
 ---
 title: "How to Build an AI SaaS Product in 30 Days (With $0 Budget)"
-description: "Step-by-step guide to building and launching an AI SaaS product for free. Tools, APIs, hosting, and launch strategy to reach $1K MRR."
+description: "Step-by-step guide to launching a profitable AI SaaS product using free tools, open-source models, and free-tier infrastructure. Real costs, timelines, and launch strategy."
 date: "2026-04-04"
 category: "Learn"
 image: "/images/articles/startup-garage-1.jpg"
-keywords: ["build AI SaaS", "AI startup no budget", "free AI tools", "launch AI product", "AI SaaS tutorial"]
+keywords: ["build AI SaaS", "AI SaaS tutorial", "launch AI product free", "AI startup no budget", "build AI app for free"]
 ---
 
 # How to Build an AI SaaS Product in 30 Days With Zero Budget
 
-The cost of building an AI product has collapsed. In 2023, launching an AI SaaS required $50,000-$100,000 in infrastructure, API costs, and development. In 2026, you can build and launch a functional AI SaaS for $0 upfront — and reach $1,000+ in monthly recurring revenue before spending a dollar.
+The AI SaaS market is worth $197 billion in 2026, growing 36% year over year. You do not need venture capital to participate. The combination of free-tier cloud services, open-source AI models, and no-code deployment tools means you can build, launch, and get your first paying customers without spending a single dollar.
 
-This is not theory. Hundreds of solo founders have shipped AI products using free tiers, open-source models, and no-code deployment. Here is the exact playbook, day by day.
+This is not theory. Hundreds of bootstrapped AI SaaS products now generate $5,000-$50,000/month in recurring revenue. Tools like Lovable, Bolt, and Cursor have reduced the build time from months to days. Here is the exact 30-day playbook.
 
-## Why Now Is the Perfect Window
+## Week 1: Idea Validation and Market Research (Days 1-7)
 
-Three shifts make this possible:
+### Day 1-2: Find a Profitable AI Problem
 
-1. **Free API credits everywhere.** OpenAI gives $5 free credits to new accounts. Google gives $300 in cloud credits. Anthropic offers free tier access through their API. Together, that is enough to serve your first 500+ users.
+The biggest mistake first-time founders make is building something nobody will pay for. Start with markets where people already spend money on manual processes that AI can automate.
 
-2. **Open-source models match proprietary ones.** Llama 3.1, Mistral, and DeepSeek V3 run for free on Hugging Face Inference Endpoints with generous free tiers. You no longer need GPT-4 for most tasks.
+**High-revenue AI SaaS niches in 2026:**
 
-3. **Deployment is free.** Vercel, Railway, and Cloudflare Workers all offer free tiers sufficient for early-stage SaaS. Supabase provides free PostgreSQL with auth built in.
+- **AI content repurposing** — Take one piece of content, generate 10 variations for different platforms. Companies pay $200-500/month for this.
+- **AI customer support triage** — Route and draft responses to support tickets. SMBs pay $99-299/month.
+- **AI document processing** — Extract structured data from invoices, contracts, receipts. Businesses pay $149-499/month.
+- **AI meeting summarizer** — Record, transcribe, and extract action items from meetings. Teams pay $12-25/user/month.
+- **AI sales email personalization** — Research prospects and generate personalized outreach. Sales teams pay $79-199/month per seat.
 
-The result: your only investment is time. Thirty days of focused work can produce a product generating real revenue.
+### Day 3-4: Validate Demand Before Building
 
-## Week 1: Idea Validation and Architecture (Days 1-7)
+Do not build anything until you confirm people will pay. Spend 48 hours on validation:
 
-### Day 1-2: Find a Painful Problem
+1. **Search Reddit and X** for complaints about the manual process you want to automate. Screenshot every complaint — these become your marketing copy later.
+2. **Check existing competitors** on G2, Capterra, and Product Hunt. Competitors are good — they prove demand exists. Look for gaps: poor reviews, missing features, high prices.
+3. **Create a landing page** using Carrd (free) or Framer (free tier). Describe the product, add a waitlist form. Run $0 traffic from relevant subreddits and X posts.
+4. **Target: 50+ waitlist signups in 48 hours.** If you cannot get 50 people interested for free, reconsider the idea.
 
-Do not start with technology. Start with a problem people will pay to solve.
+### Day 5-7: Define Your MVP Scope
 
-**Where to find AI SaaS ideas that make money:**
+Your MVP needs exactly three things: one core AI feature, user authentication, and a payment wall. Nothing else.
 
-- **Reddit and X complaints.** Search for "I wish AI could..." or "why can't AI..." in niche subreddits. Real frustration equals real demand.
-- **Upwork and Fiverr.** Look at services people pay $50-$500 for repeatedly. If AI can do 80% of the work, you have a SaaS opportunity.
-- **Existing tools with bad UX.** Find AI tools with 3-star reviews. Read the complaints. Build what they should have built.
+**Scope ruthlessly:**
+- One input type (text OR image OR audio — not all three)
+- One output format
+- One pricing tier ($29-49/month is the sweet spot for SMB SaaS)
+- No team features, no admin dashboard, no integrations
 
-**Proven AI SaaS niches with revenue potential:**
+Write a single-page spec: what goes in, what the AI does, what comes out. This becomes your build document.
 
-| Niche | Example Product | Typical MRR | Competition Level |
-|-------|----------------|-------------|-------------------|
-| AI writing for specific industries | Legal brief drafting | $2K-$10K | Medium |
-| AI data extraction | Invoice/receipt parsing | $3K-$15K | Low-Medium |
-| AI customer support | Niche chatbot builder | $1K-$8K | High |
-| AI content repurposing | Podcast to blog/social | $1K-$5K | Medium |
-| AI code review | Security-focused review | $2K-$12K | Low |
+## Week 2: Build the Core Product (Days 8-14)
 
-### Day 3-4: Validate Before Building
+### The Free Tech Stack That Works
 
-**The 48-hour validation method:**
+Every component of your stack costs $0 at launch scale:
 
-1. Create a landing page on Carrd (free) or Framer (free tier). Describe your product as if it exists.
-2. Add a "Join Waitlist" button connected to a free Mailchimp account.
-3. Post in 5 relevant communities (Reddit, X, LinkedIn, Discord, Indie Hackers).
-4. If 50+ people sign up in 48 hours, proceed. If fewer than 20, pivot.
+| Component | Free Tool | Free Tier Limit | Paid Equivalent Cost |
+|-----------|-----------|-----------------|---------------------|
+| Frontend | Next.js + Vercel | 100GB bandwidth/month | $20/month |
+| Backend/API | Vercel Serverless Functions | 100GB-hrs/month | $25/month |
+| Database | Supabase | 500MB, 50K monthly active users | $25/month |
+| Authentication | Supabase Auth | 50K MAU | $25/month |
+| AI Model | OpenRouter free models / Groq | Varies by model | $50-500/month |
+| Payments | Stripe | No monthly fee, 2.9% + 30c per transaction | Same |
+| Email | Resend | 3,000 emails/month | $20/month |
+| File Storage | Supabase Storage | 1GB | $25/month |
+| **Total** | | | **$0/month to start** |
 
-This costs nothing and saves you from building something nobody wants.
+### Day 8-10: Build the AI Core
 
-### Day 5-7: Technical Architecture
+Start with the feature that makes your product valuable — the AI processing pipeline.
 
-**The free-tier tech stack:**
+**Option A: Use an API (fastest, simplest)**
 
-- **Frontend:** Next.js deployed on Vercel (free tier — 100GB bandwidth/month)
-- **Backend/API:** Next.js API routes or Cloudflare Workers (free tier — 100K requests/day)
-- **Database:** Supabase (free tier — 500MB, 50K monthly active users)
-- **Auth:** Supabase Auth or Clerk (free up to 10,000 monthly active users)
-- **AI Models:** Start with OpenAI free credits, then switch to open-source
-- **Payments:** Stripe (no monthly fee, 2.9% + $0.30 per transaction)
-- **Email:** Resend (free tier — 3,000 emails/month)
+Use OpenRouter to access multiple AI models through one API. The free tier gives you access to several models. For production, costs are typically $0.001-0.01 per request depending on model and input size.
 
-Total infrastructure cost at launch: $0.00.
+For a document processing SaaS, your pipeline looks like this:
+1. User uploads document (PDF, image, or text)
+2. Your backend sends it to a vision model or text model via API
+3. The model extracts structured data
+4. You format and return the result
 
-## Week 2: Build the MVP (Days 8-14)
+**Option B: Use open-source models (cheaper at scale)**
 
-### Day 8-10: Core AI Feature
+Host models on Hugging Face Inference Endpoints (free tier available) or use Groq for near-instant inference on open-source models at extremely low cost. Llama 3.3 70B on Groq costs roughly $0.0002 per 1,000 tokens — meaning 1,000 users each making 10 requests per day costs about $6/month.
 
-Build exactly one feature. Not three. Not five. One.
+### Day 11-12: Build the User Interface
 
-**The AI integration approach:**
+Use a component library to move fast. The combination of Next.js, Tailwind CSS, and shadcn/ui gives you a professional-looking product in 2 days.
 
-Start with API calls to a hosted model. Do not fine-tune. Do not train custom models. Do not build complex pipelines. Your V1 should be:
+**Pages you need:**
+1. Landing page with signup
+2. Dashboard with one core feature
+3. Settings page with billing
+4. Simple onboarding flow (3 steps max)
 
-1. User inputs data (text, file, URL)
-2. Your app sends it to an AI model with a carefully crafted system prompt
-3. The AI returns a result
-4. Your app formats and delivers it
+Use Cursor or Windsurf as your AI code editor. These tools generate 60-80% of your frontend code from descriptions, cutting build time by 3-5x.
 
-**Example — AI Invoice Parser:**
+### Day 13-14: Connect Payments
 
-```
-User uploads invoice PDF → Your app extracts text via PDF.js →
-Text sent to Claude API with extraction prompt →
-Structured data returned → Saved to Supabase →
-User sees clean dashboard
-```
+Stripe takes 15 minutes to integrate with Next.js. Use Stripe Checkout for the payment flow — do not build a custom checkout page.
 
-The magic is in the prompt engineering and UX, not the model.
+**Pricing strategy for day one:**
+- One plan: $39/month
+- Annual option: $348/year (save $120) — this improves cash flow dramatically
+- 7-day free trial, no credit card required to start
+- Usage limit on the free trial: 10 AI operations
 
-### Day 11-12: User Interface
+The $39/month price point is strategic: high enough to filter out non-serious users, low enough that a single decision-maker can expense it without approval.
 
-Use shadcn/ui (free, open-source) for components. Copy a proven SaaS layout:
+## Week 3: Launch Preparation (Days 15-21)
 
-- **Dashboard** with usage stats
-- **Main feature page** where AI work happens
-- **Settings** with account and billing
-- **Landing page** that sells the product
+### Day 15-16: Set Up Analytics and Monitoring
 
-Do not design from scratch. Use shadcn/ui themes and modify them. A polished UI built in 2 days beats a custom design that takes 2 weeks.
+Install three tools (all free):
 
-### Day 13-14: Auth, Payments, and Usage Limits
+1. **Plausible or Umami** — Privacy-friendly web analytics (self-hostable for free)
+2. **Sentry** — Error tracking (free tier: 5,000 events/month)
+3. **Supabase built-in metrics** — Database performance monitoring
 
-**Authentication:** Supabase Auth gives you email/password and Google OAuth for free. Set it up in 2 hours.
+### Day 17-18: Create Launch Content
 
-**Payments:** Stripe Checkout handles subscriptions with almost zero code. Create 2-3 pricing tiers:
+Prepare these assets before launch day:
 
-| Tier | Price | Limits | Target |
-|------|-------|--------|--------|
-| Free | $0 | 10 uses/month | Lead generation |
-| Pro | $29/month | 200 uses/month | Individual users |
-| Business | $79/month | Unlimited | Teams and agencies |
+- **Product Hunt launch page** — Write the tagline, description, and prepare 4-5 screenshots
+- **3 demo videos** (60 seconds each) — Use Loom (free) to record your product solving a real problem
+- **10 social media posts** — Scheduled for launch week across X, LinkedIn, and relevant subreddits
+- **Launch day email** to your waitlist
 
-**Usage tracking:** Store API call counts in Supabase. Check limits before each AI call. Simple, effective, and free.
+### Day 19-21: Beta Test With Real Users
 
-## Week 3: Polish and Pre-Launch (Days 15-21)
+Invite 10-20 people from your waitlist to use the product for free. Their feedback in these 3 days is worth more than months of solo development.
 
-### Day 15-16: Error Handling and Edge Cases
+**Track three metrics:**
+1. Activation rate — What percentage complete the core action within first session?
+2. Return rate — What percentage come back within 48 hours?
+3. Word-of-mouth — Does anyone share it without being asked?
 
-The difference between a toy and a product is error handling. Cover these:
-
-- AI model returns garbage → Show a clean retry option
-- API rate limit hit → Queue requests and notify user
-- File too large → Show size limit before upload
-- Payment fails → Send recovery email via Resend
-
-### Day 17-18: Landing Page That Converts
-
-Your landing page needs five elements:
-
-1. **Headline** with a specific outcome: "Turn 60-Minute Podcasts Into 30 LinkedIn Posts in 2 Minutes"
-2. **Demo video or GIF** (use Loom free to record, 30-60 seconds)
-3. **Three benefits** with specific numbers
-4. **Pricing** that anchors against the manual cost ("$29/month vs $2,000/month for a freelancer")
-5. **Social proof** (even if it is just your waitlist count or beta tester quotes)
-
-### Day 19-21: Beta Testing
-
-Invite 10-20 people from your waitlist. Give them free access for 14 days. Ask three questions:
-
-1. Did you get value in the first 5 minutes?
-2. What almost made you leave?
-3. Would you pay $29/month for this?
-
-Fix the top 3 complaints before public launch.
+If activation is below 40%, your onboarding is broken. If return rate is below 20%, your core feature is not delivering enough value. Fix these before public launch.
 
 ## Week 4: Launch and First Revenue (Days 22-30)
 
-### Day 22-24: Pre-Launch Marketing
+### Day 22: Product Hunt Launch
 
-**Build distribution before you launch:**
+Product Hunt is still the single best free launch channel for SaaS products. Average featured products get 1,000-3,000 unique visitors on launch day.
 
-- Post a "building in public" thread on X showing your 30-day journey
-- Write a "how I built this" post for Indie Hackers
-- Share in 3-5 relevant Discord communities and Slack groups
-- Create a Product Hunt upcoming page
+**Product Hunt tips that actually matter:**
+- Launch at 12:01 AM Pacific Time (the day resets then)
+- Have 10-15 supporters ready to upvote and leave genuine comments in the first hour
+- Respond to every single comment within 30 minutes
+- Post a "maker comment" explaining why you built this
 
-### Day 25: Launch Day
+### Day 23-25: Reddit and Community Launch
 
-**Product Hunt launch checklist:**
+Post in relevant subreddits — not as spam, but as a genuine show-and-tell. The format that works: "I built [tool] because [personal pain point]. Here is what I learned."
 
-1. Launch at 12:01 AM Pacific Time (gives you a full 24-hour cycle)
-2. Have 10+ people ready to upvote and leave genuine comments in the first hour
-3. Respond to every comment within 30 minutes
-4. Share the PH link across all your channels
-5. Offer a launch-day discount (40% off first 3 months)
+Subreddits with high SaaS engagement: r/SaaS, r/startups, r/Entrepreneur, r/sideproject, r/indiehackers.
 
-**Realistic expectations:** A solo founder's first PH launch typically gets 100-300 upvotes. That translates to 500-2,000 website visitors and 20-80 signups.
+### Day 26-28: Content Marketing Kickstart
 
-### Day 26-30: Post-Launch Growth
+Write 3 blog posts targeting long-tail keywords related to your product:
+1. "[Your problem] solution" — Bottom of funnel, purchase intent
+2. "How to [manual process your AI automates]" — Middle of funnel
+3. "[Your category] tools compared" — Comparison shopping intent
 
-Focus on the channels that show traction. For most AI SaaS products:
+These posts compound over time. Products that start content marketing at launch see 40% more organic traffic at month 6 compared to those that start later.
 
-- **SEO content:** Write 3-5 articles targeting "[your niche] + AI tool" keywords
-- **Community engagement:** Answer questions on Reddit where your tool solves the problem
-- **Cold outreach:** Email 20 potential users per day with a personalized demo offer
+### Day 29-30: Optimize and Set Revenue Targets
 
-## Revenue Projections: Month 1 to Month 6
+By day 30, you should have:
+- 200-500 signups from launch activities
+- 10-30 free trial users
+- 3-10 paying customers ($117-$390 MRR)
 
-Based on data from 200+ AI SaaS launches tracked on Indie Hackers:
+If you hit 10 paying customers at $39/month, that is $390 MRR — $4,680 ARR from a product that cost $0 to build.
 
-| Month | Users (Free) | Paid Users | MRR | Cumulative Revenue |
-|-------|-------------|------------|-----|-------------------|
-| 1 | 100-300 | 5-15 | $145-$435 | $145-$435 |
-| 2 | 300-800 | 15-40 | $435-$1,160 | $580-$1,595 |
-| 3 | 800-2,000 | 40-100 | $1,160-$2,900 | $1,740-$4,495 |
-| 6 | 3,000-8,000 | 150-400 | $4,350-$11,600 | $15,000-$40,000 |
+## Scaling Beyond $0: When to Start Spending
 
-The median AI SaaS reaches $1,000 MRR in month 2-3. The top 10% hit $5,000 MRR by month 3.
+Keep your stack free until you hit $1,000 MRR (roughly 25 customers). At that point:
 
-## When to Start Spending Money
+| Milestone | Investment | Expected Return |
+|-----------|-----------|-----------------|
+| $1K MRR | $50/month on better AI models | Faster processing, happier users |
+| $2.5K MRR | $200/month on infrastructure | Handle 10x more users |
+| $5K MRR | $500/month on ads and content | Accelerate growth to $10K MRR |
+| $10K MRR | Consider first hire or contractor | Scale beyond solo capacity |
 
-Do not spend money until you have revenue. Once you hit $500 MRR:
+## Real Examples of $0-Budget AI SaaS Success
 
-- **Upgrade Vercel** to Pro ($20/month) for better performance
-- **Upgrade Supabase** to Pro ($25/month) for more database capacity
-- **Switch to paid AI API** tier for reliability ($50-$200/month depending on usage)
+**Headlime** — AI copywriting tool built by Danny Postma as a solo developer using GPT APIs. Grew to $500K ARR, acquired by Jasper for a reported seven-figure sum.
 
-Your total infrastructure cost at $1,000 MRR should be under $150/month — that is 85%+ profit margins.
+**Scholarcy** — AI research paper summarizer built by a small team on a shoestring budget. Now serves over 100,000 researchers and generates strong recurring revenue from university subscriptions.
 
-## The Three Mistakes That Kill AI SaaS Products
+**Numerous.ai** — AI spreadsheet plugin that started as a side project. Reached $100K+ ARR within 12 months of launch with minimal marketing spend.
 
-**1. Building for too long without launching.** If you are not embarrassed by your V1, you launched too late. Ship in 30 days or less.
+The pattern is consistent: find a specific workflow people hate doing manually, automate it with AI, charge $29-99/month, and grow through content and word of mouth.
 
-**2. Using AI as a feature, not solving a problem.** "AI-powered" is not a value proposition. "Turn 1 hour of work into 2 minutes" is.
+## The 30-Day Timeline Summary
 
-**3. Competing on price instead of niche.** Do not build "a cheaper ChatGPT." Build the best AI tool for real estate agents, or dentists, or podcast producers. Niche products charge 3-5x more than general tools.
+| Week | Focus | Key Deliverable |
+|------|-------|-----------------|
+| Week 1 | Validation | 50+ waitlist signups, one-page spec |
+| Week 2 | Building | Working MVP with AI core, auth, and payments |
+| Week 3 | Preparation | Beta feedback, launch content, Product Hunt page |
+| Week 4 | Launch | First paying customers, $100-400 MRR |
 
-## Your 30-Day Checklist
+The total investment is 30 days of your time. The potential return is a business generating $5,000-50,000/month within 12 months. The AI SaaS opportunity window will not stay this wide open forever — the earlier you launch, the more market share you can capture before competition intensifies.
 
-- [ ] Days 1-2: Identify a painful problem in a specific niche
-- [ ] Days 3-4: Validate with a landing page and waitlist (target 50+ signups)
-- [ ] Days 5-7: Set up tech stack (all free tiers)
-- [ ] Days 8-10: Build core AI feature (one feature only)
-- [ ] Days 11-12: Build UI with shadcn/ui
-- [ ] Days 13-14: Add auth, payments, and usage limits
-- [ ] Days 15-16: Error handling and testing
-- [ ] Days 17-18: Landing page with demo video
-- [ ] Days 19-21: Beta test with 10-20 users
-- [ ] Days 22-24: Pre-launch marketing
-- [ ] Day 25: Launch on Product Hunt
-- [ ] Days 26-30: Double down on what works
-
-The AI SaaS opportunity is real, but it will not last forever. As tools commoditize, the advantage goes to those who shipped first and built an audience. Start today, launch in 30 days, and iterate from there.
+Start today. Pick a niche, validate it this weekend, and start building on Monday.
