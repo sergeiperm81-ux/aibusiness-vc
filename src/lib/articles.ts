@@ -19,7 +19,7 @@ export interface Article extends ArticleMeta {
   content: string;
 }
 
-const sections = ["solo", "startups", "b2b", "tools", "materials", "learn"];
+const sections = ["solo", "startups", "b2b", "vc", "government", "tools", "materials", "learn"];
 
 function readArticlesFromDir(section: string): ArticleMeta[] {
   const dir = path.join(contentDir, section);
