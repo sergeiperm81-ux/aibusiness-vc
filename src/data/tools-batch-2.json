@@ -2187,5 +2187,16 @@
     "targetUser": "ML engineers, AI teams",
     "keyFeature": "GPU-optimized model serving with auto-scaling and sub-second cold starts",
     "hasAffiliate": null
+  },
+  {
+    "id": "getimg-ai",
+    "name": "Getimg.ai",
+    "url": "https://getimg.ai",
+    "category": "Image & Design",
+    "description": "AI image generation suite with text-to-image, inpainting, outpainting, and custom model training",
+    "pricing": "Freemium ($12/mo)",
+    "targetUser": "Digital artists, marketers, designers",
+    "keyFeature": "Custom AI model training on your images for consistent style generation with DreamBooth",
+    "hasAffiliate": null
   }
 ]
