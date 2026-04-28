@@ -214,7 +214,7 @@ export default function PlaybookTemplates() {
         throw new Error(data.error || "Failed to submit");
       }
 
-      setLeadMessage("Contact saved to private owner dashboard.");
+      setLeadMessage(data.message ?? "Contact saved.");
       trackEvent("lead_submit_success", { source: "playbook_templates", saved: true, template_id: template.id });
     } catch {
       setLeadError("Lead saved locally, but API save failed. Try again later.");
