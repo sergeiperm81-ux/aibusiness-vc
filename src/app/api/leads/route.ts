@@ -32,6 +32,11 @@ interface BrevoSender {
   active?: boolean;
 }
 
+const SOURCE_LABEL: Record<LeadSource, string> = {
+  roi_calculator: "ROI",
+  playbook_templates: "PLAYBOOK",
+};
+
 function isValidEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
@@ -128,11 +133,14 @@ async function deliverLeadEmailWithBrevo(leadEvent: LeadEvent): Promise<Delivery
   }
 
   const payloadJson = JSON.stringify(leadEvent.payload, null, 2);
-  const subject = `New lead (${leadEvent.source}) - ${leadEvent.email}`;
+  const sourceLabel = SOURCE_LABEL[leadEvent.source];
+  const shortLeadId = leadEvent.id.split("-")[0];
+  const subject = `[${sourceLabel}] Lead #${shortLeadId} - ${leadEvent.email}`;
 
   const textContent = [
     "New lead captured",
     "",
+    `Lead ID: ${leadEvent.id}`,
     `Email: ${leadEvent.email}`,
     `Source: ${leadEvent.source}`,
     `Timestamp: ${leadEvent.timestamp}`,
@@ -144,6 +152,7 @@ async function deliverLeadEmailWithBrevo(leadEvent: LeadEvent): Promise<Delivery
 
   const htmlContent = `
     <h2>New lead captured</h2>
+    <p><strong>Lead ID:</strong> ${escapeHtml(leadEvent.id)}</p>
     <p><strong>Email:</strong> ${escapeHtml(leadEvent.email)}</p>
     <p><strong>Source:</strong> ${escapeHtml(leadEvent.source)}</p>
     <p><strong>Timestamp:</strong> ${escapeHtml(leadEvent.timestamp)}</p>
