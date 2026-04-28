@@ -7,6 +7,10 @@ type LoginPageProps = {
 export const metadata: Metadata = {
   title: "Leads Login",
   description: "Restricted access for leads dashboard.",
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 function normalizeNextPath(path?: string): string {

@@ -30,12 +30,6 @@ export default function MaterialsPage() {
       description: "Copy proven templates for offers, discovery calls, delivery SOPs, and value pricing.",
       accent: "text-amber-400",
     },
-    {
-      href: "/materials/leads",
-      title: "Leads Export",
-      description: "Open local lead storage and export all captured leads to CSV.",
-      accent: "text-rose-400",
-    },
   ];
 
   return (
@@ -62,7 +56,7 @@ export default function MaterialsPage() {
               <h2 className="text-xl font-bold text-gray-900">Build, Validate, and Scale Faster</h2>
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {signatureTools.map((tool) => (
               <Link
                 key={tool.href}
