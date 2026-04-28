@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { trackEvent } from "@/lib/analytics";
+import { appendLocalLead } from "@/lib/leads-local";
 
 interface RoiInputs {
   monthlyRevenue: number;
@@ -151,6 +152,17 @@ export default function RoiCalculator() {
 
     trackEvent("lead_submit", { source: "roi_calculator" });
 
+    appendLocalLead({
+      email,
+      source: "roi_calculator",
+      payload: {
+        netMonthlyGain: Math.round(results.netMonthlyBenefit),
+        annualNet: Math.round(results.annualNet),
+        roiPercent: Number(results.roiPercent.toFixed(1)),
+        paybackMonths: results.paybackMonths ? Number(results.paybackMonths.toFixed(1)) : null,
+      },
+    });
+
     try {
       const response = await fetch("/api/leads", {
         method: "POST",
@@ -167,20 +179,15 @@ export default function RoiCalculator() {
         }),
       });
 
-      const data = (await response.json()) as { ok?: boolean; delivered?: boolean; message?: string; error?: string };
+      const data = (await response.json()) as { ok?: boolean; saved?: boolean; message?: string; error?: string };
       if (!response.ok || !data.ok) {
         throw new Error(data.error || "Failed to submit");
       }
 
-      if (data.delivered) {
-        setLeadMessage("ROI snapshot sent to your inbox.");
-        trackEvent("lead_submit_success", { source: "roi_calculator", delivered: true });
-      } else {
-        setLeadMessage("Lead captured. Email delivery is not configured yet.");
-        trackEvent("lead_submit_success", { source: "roi_calculator", delivered: false });
-      }
+      setLeadMessage("Lead saved. You can export leads from /materials/leads.");
+      trackEvent("lead_submit_success", { source: "roi_calculator", saved: true });
     } catch {
-      setLeadError("Could not submit right now. Please try again.");
+      setLeadError("Lead saved locally, but API save failed. Try again later.");
       trackEvent("lead_submit_error", { source: "roi_calculator" });
     } finally {
       setLeadSending(false);
@@ -303,9 +310,9 @@ export default function RoiCalculator() {
         </div>
 
         <div className="bg-white border border-gray-200 rounded-xl p-5">
-          <h3 className="text-sm font-bold text-gray-900 mb-2">Email This ROI Result</h3>
+          <h3 className="text-sm font-bold text-gray-900 mb-2">Save This Lead</h3>
           <p className="text-xs text-gray-600 mb-3">
-            Get your current ROI snapshot by email so you can share it with partners or team.
+            Save this ROI scenario with contact email. Export later from the leads page.
           </p>
           <div className="flex flex-col sm:flex-row gap-2">
             <input
@@ -321,7 +328,7 @@ export default function RoiCalculator() {
               disabled={leadSending}
               className="px-4 py-2 rounded-lg bg-accent text-black text-sm font-bold hover:bg-accent-hover transition-colors disabled:opacity-60"
             >
-              {leadSending ? "Sending..." : "Send ROI by Email"}
+              {leadSending ? "Saving..." : "Save Lead"}
             </button>
           </div>
           {leadMessage && <p className="mt-2 text-xs text-emerald-700">{leadMessage}</p>}

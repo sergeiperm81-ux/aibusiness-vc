@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { trackEvent } from "@/lib/analytics";
+import { appendLocalLead } from "@/lib/leads-local";
 
 type TemplateType = "offer" | "sales" | "delivery" | "finance";
 
@@ -182,6 +183,16 @@ export default function PlaybookTemplates() {
     setLeadMessage(null);
     trackEvent("lead_submit", { source: "playbook_templates", template_id: template.id });
 
+    appendLocalLead({
+      email,
+      source: "playbook_templates",
+      payload: {
+        templateId: template.id,
+        templateTitle: template.title,
+        templateType: template.type,
+      },
+    });
+
     try {
       const response = await fetch("/api/leads", {
         method: "POST",
@@ -198,20 +209,15 @@ export default function PlaybookTemplates() {
         }),
       });
 
-      const data = (await response.json()) as { ok?: boolean; delivered?: boolean; message?: string; error?: string };
+      const data = (await response.json()) as { ok?: boolean; saved?: boolean; message?: string; error?: string };
       if (!response.ok || !data.ok) {
         throw new Error(data.error || "Failed to submit");
       }
 
-      if (data.delivered) {
-        setLeadMessage("Template sent to your inbox.");
-        trackEvent("lead_submit_success", { source: "playbook_templates", delivered: true, template_id: template.id });
-      } else {
-        setLeadMessage("Lead captured. Email delivery is not configured yet.");
-        trackEvent("lead_submit_success", { source: "playbook_templates", delivered: false, template_id: template.id });
-      }
+      setLeadMessage("Lead saved. You can export leads from /materials/leads.");
+      trackEvent("lead_submit_success", { source: "playbook_templates", saved: true, template_id: template.id });
     } catch {
-      setLeadError("Could not submit right now. Please try again.");
+      setLeadError("Lead saved locally, but API save failed. Try again later.");
       trackEvent("lead_submit_error", { source: "playbook_templates", template_id: template.id });
     } finally {
       setLeadSending(false);
@@ -277,9 +283,9 @@ export default function PlaybookTemplates() {
         />
 
         <div className="mt-4 pt-4 border-t border-gray-200">
-          <h4 className="text-sm font-bold text-gray-900 mb-2">Email This Template</h4>
+          <h4 className="text-sm font-bold text-gray-900 mb-2">Save This Lead</h4>
           <p className="text-xs text-gray-600 mb-3">
-            Send the currently selected template to your inbox for quick reuse.
+            Save contact email and selected template intent. Export from leads page anytime.
           </p>
           <div className="flex flex-col sm:flex-row gap-2">
             <input
@@ -295,7 +301,7 @@ export default function PlaybookTemplates() {
               disabled={leadSending}
               className="px-4 py-2 rounded-lg bg-accent text-black text-sm font-bold hover:bg-accent-hover transition-colors disabled:opacity-60"
             >
-              {leadSending ? "Sending..." : "Send Template by Email"}
+              {leadSending ? "Saving..." : "Save Lead"}
             </button>
           </div>
           {leadMessage && <p className="mt-2 text-xs text-emerald-700">{leadMessage}</p>}

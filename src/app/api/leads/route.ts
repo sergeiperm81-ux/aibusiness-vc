@@ -11,132 +11,34 @@ interface LeadRequestBody {
   payload?: Record<string, unknown>;
 }
 
+interface LeadEvent {
+  id: string;
+  timestamp: string;
+  email: string;
+  source: LeadSource;
+  payload: Record<string, unknown>;
+  userAgent: string;
+  ip: string;
+}
+
 function isValidEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-function formatNumber(value: unknown): string {
-  if (typeof value !== "number" || Number.isNaN(value)) return "n/a";
-  return new Intl.NumberFormat("en-US", { maximumFractionDigits: 2 }).format(value);
-}
+function buildLeadEvent(request: Request, body: LeadRequestBody): LeadEvent {
+  const headers = request.headers;
+  const forwardedFor = headers.get("x-forwarded-for") ?? "";
+  const ip = forwardedFor.split(",")[0]?.trim() ?? "";
 
-function formatCurrency(value: unknown): string {
-  if (typeof value !== "number" || Number.isNaN(value)) return "n/a";
-  return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(
-    value
-  );
-}
-
-function buildRoiEmail(payload: Record<string, unknown>) {
-  const netMonthlyGain = formatCurrency(payload.netMonthlyGain);
-  const annualNet = formatCurrency(payload.annualNet);
-  const roiPercent = formatNumber(payload.roiPercent);
-  const paybackMonths = formatNumber(payload.paybackMonths);
-
-  const subject = "Your AI ROI Snapshot";
-  const text = `Your AI ROI snapshot:
-
-- Net Monthly Gain: ${netMonthlyGain}
-- Annual Net Impact: ${annualNet}
-- Year 1 ROI: ${roiPercent}%
-- Payback Period (months): ${paybackMonths}
-
-Built with aibusiness.vc ROI calculator.`;
-
-  const html = `
-    <div style="font-family:Arial,sans-serif;line-height:1.6;color:#111">
-      <h2 style="margin:0 0 12px">Your AI ROI Snapshot</h2>
-      <p style="margin:0 0 12px">Here is the result from your recent calculation:</p>
-      <ul style="margin:0 0 16px;padding-left:18px">
-        <li><strong>Net Monthly Gain:</strong> ${netMonthlyGain}</li>
-        <li><strong>Annual Net Impact:</strong> ${annualNet}</li>
-        <li><strong>Year 1 ROI:</strong> ${roiPercent}%</li>
-        <li><strong>Payback Period:</strong> ${paybackMonths} months</li>
-      </ul>
-      <p style="margin:0">Built with <a href="https://aibusiness.vc/materials/roi-calculator">aibusiness.vc ROI calculator</a>.</p>
-    </div>
-  `;
-
-  return { subject, text, html };
-}
-
-function buildTemplateEmail(payload: Record<string, unknown>) {
-  const templateTitle =
-    typeof payload.templateTitle === "string" && payload.templateTitle.trim().length > 0
-      ? payload.templateTitle.trim()
-      : "AI Playbook Template";
-  const templateContent =
-    typeof payload.templateContent === "string" && payload.templateContent.trim().length > 0
-      ? payload.templateContent
-      : "Template content is unavailable.";
-
-  const subject = `Your Template: ${templateTitle}`;
-  const text = `${templateTitle}
-
-${templateContent}
-
-Source: aibusiness.vc/playbook-templates`;
-
-  const escaped = templateContent
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;");
-
-  const html = `
-    <div style="font-family:Arial,sans-serif;line-height:1.6;color:#111">
-      <h2 style="margin:0 0 12px">${templateTitle}</h2>
-      <p style="margin:0 0 12px">As requested, here is your template:</p>
-      <pre style="white-space:pre-wrap;background:#f7f7f7;border:1px solid #e5e5e5;border-radius:8px;padding:12px;font-size:13px">${escaped}</pre>
-      <p style="margin:12px 0 0">More templates: <a href="https://aibusiness.vc/materials/playbook-templates">aibusiness.vc/playbook-templates</a></p>
-    </div>
-  `;
-
-  return { subject, text, html };
-}
-
-async function sendWithResend(
-  to: string,
-  subject: string,
-  html: string,
-  text: string
-): Promise<{ delivered: boolean; error?: string }> {
-  const apiKey = process.env.RESEND_API_KEY;
-  const from = process.env.LEADS_FROM_EMAIL;
-
-  if (!apiKey || !from) {
-    return {
-      delivered: false,
-      error: "Email delivery is not configured. Set RESEND_API_KEY and LEADS_FROM_EMAIL.",
-    };
-  }
-
-  const response = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from,
-      to: [to],
-      subject,
-      html,
-      text,
-    }),
-  });
-
-  if (response.ok) return { delivered: true };
-
-  let errorMessage = `Resend request failed with status ${response.status}.`;
-  try {
-    const data = (await response.json()) as { message?: string; error?: string };
-    if (data?.message) errorMessage = data.message;
-    else if (data?.error) errorMessage = data.error;
-  } catch {
-    // keep fallback error message
-  }
-
-  return { delivered: false, error: errorMessage };
+  return {
+    id: crypto.randomUUID(),
+    timestamp: new Date().toISOString(),
+    email: body.email.trim().toLowerCase(),
+    source: body.source,
+    payload: body.payload ?? {},
+    userAgent: headers.get("user-agent") ?? "",
+    ip,
+  };
 }
 
 export async function POST(request: Request) {
@@ -144,7 +46,6 @@ export async function POST(request: Request) {
     const body = (await request.json()) as LeadRequestBody;
     const email = (body.email ?? "").trim().toLowerCase();
     const source = body.source;
-    const payload = body.payload ?? {};
 
     if (!isValidEmail(email)) {
       return NextResponse.json({ ok: false, error: "Invalid email" }, { status: 400 });
@@ -154,13 +55,14 @@ export async function POST(request: Request) {
       return NextResponse.json({ ok: false, error: "Unsupported source" }, { status: 400 });
     }
 
-    const content = source === "roi_calculator" ? buildRoiEmail(payload) : buildTemplateEmail(payload);
-    const result = await sendWithResend(email, content.subject, content.html, content.text);
+    const leadEvent = buildLeadEvent(request, { ...body, email });
+    console.log("[lead_capture]", JSON.stringify(leadEvent));
 
     return NextResponse.json({
       ok: true,
-      delivered: result.delivered,
-      message: result.delivered ? "Email sent." : `Lead captured, but email failed: ${result.error ?? "Unknown error"}`,
+      saved: true,
+      leadId: leadEvent.id,
+      message: "Lead saved.",
     });
   } catch (error) {
     console.error("Lead capture error:", error);
