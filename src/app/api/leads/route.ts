@@ -94,11 +94,21 @@ Source: aibusiness.vc/playbook-templates`;
   return { subject, text, html };
 }
 
-async function sendWithResend(to: string, subject: string, html: string, text: string): Promise<boolean> {
+async function sendWithResend(
+  to: string,
+  subject: string,
+  html: string,
+  text: string
+): Promise<{ delivered: boolean; error?: string }> {
   const apiKey = process.env.RESEND_API_KEY;
   const from = process.env.LEADS_FROM_EMAIL;
 
-  if (!apiKey || !from) return false;
+  if (!apiKey || !from) {
+    return {
+      delivered: false,
+      error: "Email delivery is not configured. Set RESEND_API_KEY and LEADS_FROM_EMAIL.",
+    };
+  }
 
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
@@ -115,7 +125,18 @@ async function sendWithResend(to: string, subject: string, html: string, text: s
     }),
   });
 
-  return response.ok;
+  if (response.ok) return { delivered: true };
+
+  let errorMessage = `Resend request failed with status ${response.status}.`;
+  try {
+    const data = (await response.json()) as { message?: string; error?: string };
+    if (data?.message) errorMessage = data.message;
+    else if (data?.error) errorMessage = data.error;
+  } catch {
+    // keep fallback error message
+  }
+
+  return { delivered: false, error: errorMessage };
 }
 
 export async function POST(request: Request) {
@@ -134,14 +155,12 @@ export async function POST(request: Request) {
     }
 
     const content = source === "roi_calculator" ? buildRoiEmail(payload) : buildTemplateEmail(payload);
-    const delivered = await sendWithResend(email, content.subject, content.html, content.text);
+    const result = await sendWithResend(email, content.subject, content.html, content.text);
 
     return NextResponse.json({
       ok: true,
-      delivered,
-      message: delivered
-        ? "Email sent."
-        : "Lead captured, but email delivery is not configured. Set RESEND_API_KEY and LEADS_FROM_EMAIL.",
+      delivered: result.delivered,
+      message: result.delivered ? "Email sent." : `Lead captured, but email failed: ${result.error ?? "Unknown error"}`,
     });
   } catch (error) {
     console.error("Lead capture error:", error);
