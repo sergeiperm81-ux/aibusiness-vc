@@ -214,7 +214,7 @@ export default function PlaybookTemplates() {
         throw new Error(data.error || "Failed to submit");
       }
 
-      setLeadMessage("Lead saved. You can export leads from /materials/leads.");
+      setLeadMessage("Contact saved to private owner dashboard.");
       trackEvent("lead_submit_success", { source: "playbook_templates", saved: true, template_id: template.id });
     } catch {
       setLeadError("Lead saved locally, but API save failed. Try again later.");
@@ -283,9 +283,9 @@ export default function PlaybookTemplates() {
         />
 
         <div className="mt-4 pt-4 border-t border-gray-200">
-          <h4 className="text-sm font-bold text-gray-900 mb-2">Save This Lead</h4>
+          <h4 className="text-sm font-bold text-gray-900 mb-2">Save Contact</h4>
           <p className="text-xs text-gray-600 mb-3">
-            Save contact email and selected template intent. Export from leads page anytime.
+            Saves contact email and selected template intent to private owner dashboard. No email delivery is configured.
           </p>
           <div className="flex flex-col sm:flex-row gap-2">
             <input
@@ -301,7 +301,7 @@ export default function PlaybookTemplates() {
               disabled={leadSending}
               className="px-4 py-2 rounded-lg bg-accent text-black text-sm font-bold hover:bg-accent-hover transition-colors disabled:opacity-60"
             >
-              {leadSending ? "Saving..." : "Save Lead"}
+              {leadSending ? "Saving..." : "Save Contact"}
             </button>
           </div>
           {leadMessage && <p className="mt-2 text-xs text-emerald-700">{leadMessage}</p>}

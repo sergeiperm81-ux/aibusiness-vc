@@ -184,7 +184,7 @@ export default function RoiCalculator() {
         throw new Error(data.error || "Failed to submit");
       }
 
-      setLeadMessage("Lead saved. You can export leads from /materials/leads.");
+      setLeadMessage("Contact saved to private owner dashboard.");
       trackEvent("lead_submit_success", { source: "roi_calculator", saved: true });
     } catch {
       setLeadError("Lead saved locally, but API save failed. Try again later.");
@@ -310,9 +310,9 @@ export default function RoiCalculator() {
         </div>
 
         <div className="bg-white border border-gray-200 rounded-xl p-5">
-          <h3 className="text-sm font-bold text-gray-900 mb-2">Save This Lead</h3>
+          <h3 className="text-sm font-bold text-gray-900 mb-2">Save Contact</h3>
           <p className="text-xs text-gray-600 mb-3">
-            Save this ROI scenario with contact email. Export later from the leads page.
+            Saves email + ROI scenario to private owner dashboard. No email delivery is configured.
           </p>
           <div className="flex flex-col sm:flex-row gap-2">
             <input
@@ -328,7 +328,7 @@ export default function RoiCalculator() {
               disabled={leadSending}
               className="px-4 py-2 rounded-lg bg-accent text-black text-sm font-bold hover:bg-accent-hover transition-colors disabled:opacity-60"
             >
-              {leadSending ? "Saving..." : "Save Lead"}
+              {leadSending ? "Saving..." : "Save Contact"}
             </button>
           </div>
           {leadMessage && <p className="mt-2 text-xs text-emerald-700">{leadMessage}</p>}

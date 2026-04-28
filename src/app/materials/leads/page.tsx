@@ -4,6 +4,10 @@ import LeadsAdmin from "@/components/materials/LeadsAdmin";
 export const metadata: Metadata = {
   title: "Leads Export - Local Backup",
   description: "View locally saved leads and export CSV.",
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function LeadsPage() {
