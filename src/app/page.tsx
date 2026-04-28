@@ -2,7 +2,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { TrendingBar } from "@/components/TrendingBar";
 import { getAllArticles } from "@/lib/articles";
-import { newsData } from "@/data/news";
+import { getLatestNews } from "@/lib/supabase";
+import { TrackedLink } from "@/components/analytics/TrackedLink";
 
 export const metadata: Metadata = {
   title: "AI Business — How to Make Money with AI in 2026",
@@ -19,11 +20,31 @@ const catColors: Record<string, string> = {
   Learn: "bg-cyan-500 text-white",
 };
 
-export default function HomePage() {
+export const revalidate = 3600;
+
+export default async function HomePage() {
   const allArticles = getAllArticles();
+  const newsData = await getLatestNews(6);
   const soloArticles = allArticles.filter((a) => a.category === "Solo").slice(0, 3);
   const b2bArticles = allArticles.filter((a) => a.category === "B2B").slice(0, 3);
   const toolsArticles = allArticles.filter((a) => a.category === "Tools").slice(0, 3);
+  const signatureToolCtas = [
+    {
+      href: "/materials/roi-calculator",
+      title: "AI ROI Calculator",
+      description: "Estimate payback, annual net impact, and profitability uplift.",
+    },
+    {
+      href: "/materials/tool-selector",
+      title: "AI Tool Selector",
+      description: "Build a revenue stack by goal, budget, and team setup.",
+    },
+    {
+      href: "/materials/playbook-templates",
+      title: "Playbook Templates",
+      description: "Copy ready offers, sales scripts, SOPs, and pricing frameworks.",
+    },
+  ];
 
   return (
     <>
@@ -41,17 +62,62 @@ export default function HomePage() {
               50+ proven methods, honest income numbers, the best tools reviewed,
               and real case studies from people who actually did it.
             </p>
-            <div className="flex gap-3">
-              <Link href="/solo" className="px-4 py-1.5 text-sm font-semibold bg-accent text-background rounded-lg hover:bg-accent-hover transition-colors">
+            <div className="flex gap-3 flex-wrap">
+              <TrackedLink
+                href="/solo"
+                eventName="click_home_cta"
+                eventParams={{ cta: "explore_earning_methods" }}
+                className="px-4 py-1.5 text-sm font-semibold bg-accent text-background rounded-lg hover:bg-accent-hover transition-colors"
+              >
                 Explore Earning Methods
-              </Link>
-              <Link href="/tools/directory" className="px-4 py-1.5 text-sm font-medium border border-card-border text-white rounded-lg hover:bg-card-bg transition-colors">
+              </TrackedLink>
+              <TrackedLink
+                href="/tools/directory"
+                eventName="click_home_cta"
+                eventParams={{ cta: "browse_ai_tools" }}
+                className="px-4 py-1.5 text-sm font-medium border border-card-border text-white rounded-lg hover:bg-card-bg transition-colors"
+              >
                 Browse AI Tools
-              </Link>
+              </TrackedLink>
+              <TrackedLink
+                href="/materials/roi-calculator"
+                eventName="click_home_cta"
+                eventParams={{ cta: "calculate_ai_roi" }}
+                className="px-4 py-1.5 text-sm font-medium border border-emerald-500/40 text-emerald-300 rounded-lg hover:bg-emerald-500/10 transition-colors"
+              >
+                Calculate AI ROI
+              </TrackedLink>
             </div>
           </div>
         </div>
         <TrendingBar />
+      </section>
+
+      {/* SIGNATURE TOOLS */}
+      <section className="bg-white border-b border-black/5">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+          <div className="flex items-center justify-between mb-5">
+            <h2 className="text-lg font-bold text-black">Signature Tools</h2>
+            <Link href="/materials" className="text-sm text-black/50 hover:text-accent transition-colors">
+              See all materials &rarr;
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {signatureToolCtas.map((tool) => (
+              <TrackedLink
+                key={tool.href}
+                href={tool.href}
+                eventName="click_home_cta"
+                eventParams={{ cta: tool.title.toLowerCase().replace(/\s+/g, "_") }}
+                className="group bg-background rounded-xl p-5 hover:ring-2 hover:ring-accent/40 transition-all hover:-translate-y-1"
+              >
+                <h3 className="font-bold text-white group-hover:text-accent transition-colors">{tool.title}</h3>
+                <p className="text-xs text-white/70 mt-2 leading-relaxed">{tool.description}</p>
+                <span className="text-xs font-medium text-accent mt-3 inline-block">Open tool &rarr;</span>
+              </TrackedLink>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* LATEST NEWS — from /news */}
@@ -70,8 +136,8 @@ export default function HomePage() {
                 href={`/news?open=${item.slug}`}
                 className="group bg-background rounded-xl overflow-hidden hover:ring-2 hover:ring-accent/40 transition-all hover:-translate-y-1"
               >
-                <div className="relative h-36 overflow-hidden">
-                  <img src={item.image} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <div className="relative h-36 overflow-hidden bg-gray-800">
+                  {item.image && <img src={item.image} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />}
                   <span className={`absolute top-3 left-3 text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider ${catColors[item.category] ?? "bg-amber-500 text-black"}`}>
                     {item.category}
                   </span>
