@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getArticlesBySection } from "@/lib/articles";
-import { SectionArticleGrid } from "@/components/SectionPage";
+import SectionArticleExplorer from "@/components/SectionArticleExplorer";
 import { TrackedLink } from "@/components/analytics/TrackedLink";
 
 export const metadata: Metadata = {
@@ -59,7 +59,7 @@ export default function B2BPage() {
         </div>
       </section>
 
-      <SectionArticleGrid articles={articles} section="b2b" totalLabel="articles" />
+      <SectionArticleExplorer articles={articles} section="b2b" totalLabel="articles" />
     </>
   );
 }
