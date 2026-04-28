@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Article, ArticleMeta } from "@/lib/articles";
 import { Breadcrumbs, getBreadcrumbsForArticle } from "./Breadcrumbs";
+import { TrackedLink } from "@/components/analytics/TrackedLink";
 
 const catColors: Record<string, string> = {
   Solo: "bg-amber-500 text-black",
@@ -20,6 +21,55 @@ const heroImages: Record<string, string> = {
   Learn: "/images/articles/study-education-1.jpg",
 };
 
+// Cross-section discovery links
+const CROSS_LINKS = [
+  { href: "/solo", label: "Solo Earners", section: "solo" },
+  { href: "/tools", label: "AI Tools (356)", section: "tools" },
+  { href: "/startups", label: "AI Startups", section: "startups" },
+  { href: "/b2b", label: "B2B / Enterprise", section: "b2b" },
+  { href: "/vc", label: "VC & Funding", section: "vc" },
+  { href: "/government", label: "Government AI", section: "government" },
+  { href: "/models", label: "LLM Models (36)", section: "models" },
+  { href: "/news", label: "Daily News", section: "news" },
+  { href: "/learn", label: "Learn AI", section: "learn" },
+  { href: "/materials", label: "Resources", section: "materials" },
+];
+
+// Top-performing articles for cross-promotion (based on GA4 data)
+const POPULAR_ARTICLES = [
+  { href: "/solo/make-money-with-claude-ai", title: "How to Make Money with Claude AI in 2026", category: "Solo" },
+  { href: "/startups/ai-startup-ideas-2026", title: "AI Startup Ideas Worth Building in 2026", category: "Startups" },
+  { href: "/solo/ai-automation-agency-guide", title: "Start an AI Automation Agency ($10K-$100K/Month)", category: "Solo" },
+  { href: "/solo/ai-dropshipping-2026", title: "AI-Powered Dropshipping: Find Winners at Scale", category: "Solo" },
+  { href: "/tools/chatgpt-vs-claude-vs-gemini", title: "ChatGPT vs Claude vs Gemini: Which Earns More?", category: "Tools" },
+  { href: "/b2b/klarna-ai-replaces-700-agents", title: "Klarna AI Replaces 700 Customer Service Agents", category: "B2B" },
+  { href: "/solo/ai-digital-product-ideas", title: "AI Digital Product Ideas That Actually Sell", category: "Solo" },
+  { href: "/learn/prompt-engineering-career-guide", title: "Prompt Engineering Career: $100K+ Writing Prompts", category: "Learn" },
+];
+
+// Section navigation
+const SECTION_LINKS = [
+  { href: "/solo", label: "Solo Earners" },
+  { href: "/startups", label: "Startups" },
+  { href: "/b2b", label: "B2B" },
+  { href: "/tools", label: "AI Tools" },
+  { href: "/news", label: "News" },
+  { href: "/models", label: "Models" },
+];
+
+// Sidebar sections (like mylo.family "Choose your legacy area")
+const SIDEBAR_SECTIONS = [
+  { href: "/solo", label: "Solo Earners", description: "Side hustles & freelancing", icon: "💰", section: "solo" },
+  { href: "/tools", label: "AI Tools", description: "356 tools reviewed", icon: "🛠", section: "tools" },
+  { href: "/startups", label: "Startups", description: "Funding & revenue data", icon: "🚀", section: "startups" },
+  { href: "/b2b", label: "B2B Enterprise", description: "AI implementation ROI", icon: "🏢", section: "b2b" },
+  { href: "/vc", label: "VC & Funding", description: "Investment & exits", icon: "📊", section: "vc" },
+  { href: "/government", label: "Government AI", description: "Policy & contracts", icon: "🏛", section: "government" },
+  { href: "/news", label: "Daily News", description: "Auto-updated from RSS", icon: "📰", section: "news" },
+  { href: "/learn", label: "Learn AI", description: "Courses & careers", icon: "🎓", section: "learn" },
+  { href: "/models", label: "LLM Models", description: "36 models compared", icon: "🤖", section: "models" },
+];
+
 interface ArticlePageProps {
   article: Article;
   relatedArticles?: ArticleMeta[];
@@ -28,6 +78,7 @@ interface ArticlePageProps {
 export function ArticlePageView({ article, relatedArticles = [] }: ArticlePageProps) {
   const heroImg = article.image || (heroImages[article.category] ?? heroImages.Solo);
   const shareUrl = `https://aibusiness.vc/${article.section}/${article.slug}`;
+  const showMonetizationCta = ["solo", "b2b", "startups"].includes(article.section);
 
   return (
     <>
@@ -46,10 +97,49 @@ export function ArticlePageView({ article, relatedArticles = [] }: ArticlePagePr
         </div>
       </section>
 
-      {/* Article body */}
+      {/* Article body — 2-column: content + sidebar */}
       <section className="bg-white">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-12">
-          <MarkdownContent content={article.content} />
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 xl:gap-16">
+            {/* Main content — 2/3 width */}
+            <article className="lg:col-span-2 min-w-0">
+              <MarkdownContent content={article.content} />
+
+          {showMonetizationCta && (
+            <div className="mt-10 p-5 rounded-xl border border-amber-200 bg-amber-50">
+              <p className="text-xs uppercase tracking-wider font-semibold text-amber-800 mb-2">Tools for action</p>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Turn this insight into execution</h3>
+              <p className="text-sm text-gray-700 mb-4">
+                Use the calculator, stack selector, and playbooks to estimate value and launch faster.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <TrackedLink
+                  href="/materials/roi-calculator"
+                  eventName="click_article_cta"
+                  eventParams={{ section: article.section, cta: "roi_calculator", source: article.slug }}
+                  className="rounded-lg border border-emerald-200 bg-white px-3 py-2 text-xs font-semibold text-emerald-700 hover:border-emerald-300 transition-colors"
+                >
+                  Calculate ROI &rarr;
+                </TrackedLink>
+                <TrackedLink
+                  href="/materials/tool-selector"
+                  eventName="click_article_cta"
+                  eventParams={{ section: article.section, cta: "tool_selector", source: article.slug }}
+                  className="rounded-lg border border-cyan-200 bg-white px-3 py-2 text-xs font-semibold text-cyan-700 hover:border-cyan-300 transition-colors"
+                >
+                  Pick your stack &rarr;
+                </TrackedLink>
+                <TrackedLink
+                  href="/materials/playbook-templates"
+                  eventName="click_article_cta"
+                  eventParams={{ section: article.section, cta: "playbook_templates", source: article.slug }}
+                  className="rounded-lg border border-amber-300 bg-white px-3 py-2 text-xs font-semibold text-amber-700 hover:border-amber-400 transition-colors"
+                >
+                  Copy templates &rarr;
+                </TrackedLink>
+              </div>
+            </div>
+          )}
 
           {/* Share buttons */}
           <div className="mt-10 pt-6 border-t border-black/10">
@@ -96,6 +186,25 @@ export function ArticlePageView({ article, relatedArticles = [] }: ArticlePagePr
             </div>
           </div>
 
+          {/* Explore More Topics — cross-section internal links */}
+          <div className="mt-10 pt-6 border-t border-black/10">
+            <h3 className="text-sm font-bold text-black mb-3">Explore More Topics</h3>
+            <div className="flex flex-wrap gap-2">
+              {CROSS_LINKS
+                .filter((l) => l.section !== article.section)
+                .slice(0, 6)
+                .map((l) => (
+                  <Link
+                    key={l.href}
+                    href={l.href}
+                    className="px-3 py-1.5 text-xs font-medium rounded-full border border-black/10 text-black/70 hover:border-amber-500 hover:text-amber-600 hover:bg-amber-50 transition-all"
+                  >
+                    {l.label}
+                  </Link>
+                ))}
+            </div>
+          </div>
+
           {/* Back link */}
           <div className="mt-6">
             <Link
@@ -105,10 +214,102 @@ export function ArticlePageView({ article, relatedArticles = [] }: ArticlePagePr
               &larr; Back to {article.section}
             </Link>
           </div>
+        </article>
+
+        {/* Sidebar — 1/3 width, sticky */}
+        <aside className="hidden lg:block">
+          <div className="sticky top-20 space-y-6">
+            {/* Explore sections — dark card */}
+            <div className="bg-background rounded-2xl p-6">
+              <p className="text-accent text-xs font-bold uppercase tracking-[0.2em] mb-1">Explore</p>
+              <p className="text-white font-bold text-lg mb-5">Choose a topic</p>
+              <div className="space-y-2">
+                {SIDEBAR_SECTIONS
+                  .filter((s) => s.section !== article.section)
+                  .slice(0, 5)
+                  .map((s) => (
+                    <Link
+                      key={s.href}
+                      href={s.href}
+                      className="flex items-center justify-between px-4 py-3 rounded-xl bg-white/5 border border-white/10 hover:border-accent/50 hover:bg-white/10 transition-all group"
+                    >
+                      <div className="flex items-center gap-3">
+                        <span className="text-accent text-sm">{s.icon}</span>
+                        <div>
+                          <p className="text-white text-sm font-medium leading-tight">{s.label}</p>
+                          <p className="text-white/40 text-xs">{s.description}</p>
+                        </div>
+                      </div>
+                      <span className="text-white/30 group-hover:text-accent group-hover:translate-x-0.5 transition-all text-sm">&rarr;</span>
+                    </Link>
+                  ))}
+              </div>
+            </div>
+
+            {/* Related reading — light card */}
+            {relatedArticles.length > 0 && (
+              <div className="bg-gray-50 rounded-2xl border border-gray-200 p-6">
+                <p className="text-accent text-xs font-bold uppercase tracking-[0.2em] mb-4">Related reading</p>
+                <div className="space-y-3">
+                  {relatedArticles.slice(0, 4).map((a) => (
+                    <Link
+                      key={a.slug}
+                      href={`/${a.section}/${a.slug}`}
+                      className="flex items-center gap-3 group"
+                    >
+                      {a.image && (
+                        <div className="w-14 h-14 shrink-0 rounded-xl overflow-hidden">
+                          <img
+                            src={a.image}
+                            alt={a.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          />
+                        </div>
+                      )}
+                      <div className="flex-1 min-w-0">
+                        <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded uppercase ${catColors[a.category] ?? "bg-amber-500 text-black"}`}>
+                          {a.category}
+                        </span>
+                        <p className="text-sm font-semibold text-black group-hover:text-amber-600 transition-colors mt-1 leading-snug line-clamp-2">
+                          {a.title}
+                        </p>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Popular articles */}
+            <div className="bg-gray-50 rounded-2xl border border-gray-200 p-6">
+              <p className="text-accent text-xs font-bold uppercase tracking-[0.2em] mb-4">Popular</p>
+              <div className="space-y-3">
+                {POPULAR_ARTICLES
+                  .filter((p) => p.href !== `/${article.section}/${article.slug}`)
+                  .slice(0, 3)
+                  .map((p) => (
+                    <Link
+                      key={p.href}
+                      href={p.href}
+                      className="block group"
+                    >
+                      <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded uppercase ${catColors[p.category] ?? "bg-amber-500 text-black"}`}>
+                        {p.category}
+                      </span>
+                      <p className="text-sm font-semibold text-black group-hover:text-amber-600 transition-colors mt-1 leading-snug line-clamp-2">
+                        {p.title}
+                      </p>
+                    </Link>
+                  ))}
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
         </div>
       </section>
 
-      {/* Related Articles */}
+      {/* Related Articles — same section */}
       {relatedArticles.length > 0 && (
         <section className="bg-gray-50 border-t border-black/5">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
@@ -147,6 +348,48 @@ export function ArticlePageView({ article, relatedArticles = [] }: ArticlePagePr
         </section>
       )}
 
+      {/* Popular on AIBusiness — cross-section discovery */}
+      <section className="bg-background">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
+          <h2 className="text-lg font-bold text-white mb-6">Popular on <span className="text-accent">AI Business</span></h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {POPULAR_ARTICLES
+              .filter((p) => p.href !== `/${article.section}/${article.slug}`)
+              .slice(0, 4)
+              .map((p) => (
+                <Link
+                  key={p.href}
+                  href={p.href}
+                  className="group bg-card-bg rounded-xl p-4 hover:ring-2 hover:ring-accent/40 transition-all hover:-translate-y-1"
+                >
+                  <span className={`text-[9px] font-bold px-2 py-0.5 rounded uppercase tracking-wider ${catColors[p.category] ?? "bg-amber-500 text-black"}`}>
+                    {p.category}
+                  </span>
+                  <h3 className="font-semibold text-white text-sm mt-2 leading-snug group-hover:text-accent transition-colors line-clamp-2">
+                    {p.title}
+                  </h3>
+                  <span className="text-[11px] font-medium text-accent mt-2 inline-block">
+                    Read &rarr;
+                  </span>
+                </Link>
+              ))}
+          </div>
+
+          {/* Section quick links */}
+          <div className="flex flex-wrap gap-3 mt-8 pt-6 border-t border-card-border">
+            {SECTION_LINKS.map((s) => (
+              <Link
+                key={s.href}
+                href={s.href}
+                className="px-4 py-2 text-sm font-medium rounded-lg bg-card-bg text-white/80 hover:text-accent hover:bg-accent/10 transition-all"
+              >
+                {s.label} &rarr;
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Schema */}
       <script
         type="application/ld+json"
@@ -179,7 +422,11 @@ function MarkdownContent({ content }: { content: string }) {
   for (const line of lines) {
     const trimmed = line.trim();
 
-    if (trimmed.startsWith("## ")) {
+    if (trimmed.startsWith("# ") && !trimmed.startsWith("## ")) {
+      closeOpen();
+      // Skip H1 if it matches the article title (avoid duplicate)
+      continue;
+    } else if (trimmed.startsWith("## ")) {
       closeOpen();
       html.push(`<h2 style="font-size:22px;font-weight:700;color:#000;margin:40px 0 16px;line-height:1.3">${fmt(trimmed.slice(3))}</h2>`);
     } else if (trimmed.startsWith("### ")) {
@@ -196,7 +443,7 @@ function MarkdownContent({ content }: { content: string }) {
         html.push('<div style="overflow-x:auto;margin:24px 0"><table style="width:100%;border-collapse:collapse;font-size:14px">');
         inTable = true;
       }
-      if (trimmed.includes("---")) return;
+      if (trimmed.includes("---")) continue;
       const cells = trimmed.split("|").filter(Boolean).map((c) => c.trim());
       const isHeader = !html.some((h) => h.includes("<tr>"));
       if (isHeader) {
