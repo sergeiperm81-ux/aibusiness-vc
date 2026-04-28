@@ -25,6 +25,29 @@ export default function RoiCalculatorPage() {
         </div>
       </section>
 
+      <section className="bg-white border-b border-gray-100">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <div className="rounded-xl border border-gray-200 p-4">
+              <p className="text-xs uppercase tracking-wider text-gray-500 mb-1">What This Is</p>
+              <p className="text-sm text-gray-800">
+                A quick financial model that estimates if an AI project makes money or burns budget.
+              </p>
+            </div>
+            <div className="rounded-xl border border-gray-200 p-4">
+              <p className="text-xs uppercase tracking-wider text-gray-500 mb-1">Who It Is For</p>
+              <p className="text-sm text-gray-800">Founders, operators, agencies, and investors validating AI economics.</p>
+            </div>
+            <div className="rounded-xl border border-gray-200 p-4">
+              <p className="text-xs uppercase tracking-wider text-gray-500 mb-1">When To Use</p>
+              <p className="text-sm text-gray-800">
+                Before building, before hiring, or before pitching a budget to see payback and ROI.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
           <RoiCalculator />
