@@ -72,9 +72,14 @@ async function deliverLeadEmailWithBrevo(leadEvent: LeadEvent): Promise<Delivery
   const toEmail = resolveLeadsRecipient();
 
   if (!apiKey || !fromEmail || !toEmail) {
+    const missing: string[] = [];
+    if (!apiKey) missing.push("BREVO_API_KEY");
+    if (!fromEmail) missing.push("LEADS_FROM_EMAIL");
+    if (!toEmail) missing.push("LEADS_TO_EMAIL or LEADS_DASH_USER");
+
     return {
       delivered: false,
-      message: "Lead saved. Email delivery is not configured yet.",
+      message: `Lead saved. Brevo is not fully configured (${missing.join(", ")}).`,
     };
   }
 
@@ -86,7 +91,7 @@ async function deliverLeadEmailWithBrevo(leadEvent: LeadEvent): Promise<Delivery
   }
 
   const payloadJson = JSON.stringify(leadEvent.payload, null, 2);
-  const subject = `New lead (${leadEvent.source}) — ${leadEvent.email}`;
+  const subject = `New lead (${leadEvent.source}) - ${leadEvent.email}`;
 
   const textContent = [
     "New lead captured",
