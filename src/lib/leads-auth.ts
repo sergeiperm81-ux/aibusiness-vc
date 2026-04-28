@@ -1,5 +1,6 @@
 const SESSION_COOKIE_NAME = "leads_dash_session";
 const SESSION_COOKIE_MAX_AGE_SECONDS = 60 * 60 * 12; // 12 hours
+const DEFAULT_LEADS_DASH_USER = "owner";
 
 function toHex(bytes: ArrayBuffer): string {
   return Array.from(new Uint8Array(bytes))
@@ -13,8 +14,22 @@ async function sha256(input: string): Promise<string> {
   return toHex(digest);
 }
 
-export async function buildLeadsSessionToken(password: string): Promise<string> {
-  return sha256(`leads-dashboard:${password}`);
+export function normalizeLeadsUser(value: string): string {
+  return value.trim().toLowerCase();
 }
 
-export { SESSION_COOKIE_NAME, SESSION_COOKIE_MAX_AGE_SECONDS };
+export function getExpectedLeadsUser(): string {
+  return normalizeLeadsUser(process.env.LEADS_DASH_USER ?? DEFAULT_LEADS_DASH_USER);
+}
+
+export function getExpectedLeadsPassword(): string | undefined {
+  const value = process.env.LEADS_DASH_PASSWORD?.trim();
+  return value ? value : undefined;
+}
+
+export async function buildLeadsSessionToken(username: string, password: string): Promise<string> {
+  const normalizedUser = normalizeLeadsUser(username);
+  return sha256(`leads-dashboard:${normalizedUser}:${password}`);
+}
+
+export { SESSION_COOKIE_NAME, SESSION_COOKIE_MAX_AGE_SECONDS, DEFAULT_LEADS_DASH_USER };

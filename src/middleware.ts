@@ -1,9 +1,15 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { buildLeadsSessionToken, SESSION_COOKIE_NAME } from "@/lib/leads-auth";
+import {
+  buildLeadsSessionToken,
+  getExpectedLeadsPassword,
+  getExpectedLeadsUser,
+  SESSION_COOKIE_NAME,
+} from "@/lib/leads-auth";
 
 export async function middleware(request: NextRequest) {
   const { pathname, search } = request.nextUrl;
-  const expectedPassword = process.env.LEADS_DASH_PASSWORD?.trim();
+  const expectedUser = getExpectedLeadsUser();
+  const expectedPassword = getExpectedLeadsPassword();
 
   if (!expectedPassword) {
     return new NextResponse(
@@ -16,7 +22,7 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  const expectedToken = await buildLeadsSessionToken(expectedPassword);
+  const expectedToken = await buildLeadsSessionToken(expectedUser, expectedPassword);
   const token = request.cookies.get(SESSION_COOKIE_NAME)?.value ?? "";
 
   if (token !== expectedToken) {
