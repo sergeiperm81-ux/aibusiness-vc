@@ -27,6 +27,11 @@ interface DeliveryResult {
   error?: string;
 }
 
+interface BrevoSender {
+  email?: string;
+  active?: boolean;
+}
+
 function isValidEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
@@ -48,6 +53,30 @@ function resolveLeadsRecipient(): string | undefined {
   if (fallback && isValidEmail(fallback)) return fallback;
 
   return undefined;
+}
+
+async function isBrevoSenderValid(apiKey: string, fromEmail: string): Promise<boolean> {
+  try {
+    const response = await fetch("https://api.brevo.com/v3/senders", {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        "api-key": apiKey,
+      },
+      cache: "no-store",
+    });
+
+    if (!response.ok) return false;
+
+    const data = (await response.json()) as { senders?: BrevoSender[] };
+    const normalizedFrom = fromEmail.toLowerCase();
+
+    return (data.senders ?? []).some(
+      (sender) => sender.active === true && (sender.email ?? "").trim().toLowerCase() === normalizedFrom
+    );
+  } catch {
+    return false;
+  }
 }
 
 function buildLeadEvent(request: Request, body: LeadRequestBody): LeadEvent {
@@ -87,6 +116,14 @@ async function deliverLeadEmailWithBrevo(leadEvent: LeadEvent): Promise<Delivery
     return {
       delivered: false,
       message: "Lead saved. Sender email is invalid.",
+    };
+  }
+
+  const senderValid = await isBrevoSenderValid(apiKey, fromEmail);
+  if (!senderValid) {
+    return {
+      delivered: false,
+      message: "Lead saved. Brevo sender is not verified/active.",
     };
   }
 
