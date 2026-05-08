@@ -2,6 +2,7 @@
 title: "AI Regulation: Does It Help or Block Your Business? Country-by-Country Guide"
 description: "EU AI Act, US executive orders, China's rules — which AI laws help you earn money and which ones create barriers. Honest analysis."
 date: "2026-04-05"
+author: "Sergei P."
 category: "Government"
 image: "/images/articles/legal-scales-1.jpg"
 keywords: ["AI regulation business impact", "EU AI Act business", "AI laws by country", "AI compliance cost"]
@@ -86,6 +87,5 @@ Every new regulation creates demand for:
 
 4. **Offer AI governance training** — Companies need to train their teams. $2,000-10,000 per workshop.
 
-## The Bottom Line
-
+## Zoom Out
 AI regulation is a money topic, not just a legal topic. Every new law creates costs for some and revenue for others. The companies that understand regulation as a market opportunity — not just a compliance burden — will profit from both sides: selling compliant AI products AND selling compliance services. In the AI economy, understanding regulation is as important as understanding the technology.

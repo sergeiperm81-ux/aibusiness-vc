@@ -2,6 +2,7 @@
 title: "AI Photo Editing Service: $1K-$5K/Month for E-Commerce and Real Estate"
 description: "Offer AI-powered photo editing for product shots, real estate, and portraits. Background removal, enhancement, virtual staging."
 date: "2026-04-01"
+author: "Sergei P."
 category: "Solo"
 image: "/images/articles/logistics-shipping-1.jpg"
 keywords: ["AI photo editing business", "AI product photography", "photo editing service income", "AI background removal"]
@@ -69,6 +70,6 @@ Professional photo editing costs $5-50 per image. AI tools do the same work in s
 
 **Photographers:** Partner with photographers who do not want to do editing. You handle post-processing at bulk rates.
 
-## The Bottom Line
+## The Practical Truth
 
-AI photo editing is a volume business with excellent margins. AI tools cost pennies per image while clients pay dollars. At 500-1,000 images per month across 3-8 clients, you earn $2,500-7,000/month working 20-30 hours. The work is straightforward, the tools are mature, and the demand from e-commerce and real estate is constant.
+Volume business. Great margins. AI costs pennies per image, clients pay dollars. Process 500-1,000 images/month across 3-8 clients and you make $2,500-7,000/month in 20-30 hours of work. Straightforward service, mature tools, and e-commerce plus real estate provide steady demand.

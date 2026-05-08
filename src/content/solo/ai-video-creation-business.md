@@ -2,6 +2,7 @@
 title: "AI Video Business: Earn $2K-$15K/Month Creating Videos with AI"
 description: "Launch an AI video creation business using Synthesia, HeyGen, and Pictory. Services, pricing, and how to earn $2K-$15K/mo."
 date: "2026-03-30"
+author: "Sergei P."
 category: "Solo"
 image: "/images/articles/multiple-screens-1.jpg"
 keywords: ["AI video creation business", "Synthesia", "HeyGen", "Pictory", "AI video services", "video production business", "AI explainer videos"]
@@ -159,4 +160,4 @@ Launch a productized service page with clear pricing. Productized services conve
 
 **Stay ahead of tools.** AI video technology evolves quarterly. Test every major platform update. The creators who adopt new capabilities first charge premium prices before the market catches up. When HeyGen launched avatar cloning in 2024, early adopters charged $2,000+ per clone setup. Within 6 months, the price dropped to $500 as supply increased.
 
-The AI video creation business model works because demand is exploding while supply remains constrained by awareness and expertise. Most businesses do not yet know they can get a professional video in days for hundreds of dollars instead of weeks for thousands. You are not just selling video production. You are selling a capability gap that the market has not yet closed.
+This business model works because demand is exploding while supply stays constrained by awareness and expertise. Most businesses do not yet know they can get a professional video in days for hundreds of dollars instead of weeks for thousands. You are selling a capability gap that the market has not yet closed.

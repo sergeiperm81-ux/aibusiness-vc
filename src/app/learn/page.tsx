@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getArticlesBySection } from "@/lib/articles";
 import { SectionArticleGrid } from "@/components/SectionPage";
+import SectionHubLinks from "@/components/SectionHubLinks";
 
 export const metadata: Metadata = {
   title: "Learn AI — Best Courses, Books & Resources (2026)",
@@ -26,6 +27,8 @@ export default function LearnPage() {
           </p>
         </div>
       </section>
+
+      <SectionHubLinks current="learn" />
 
       <SectionArticleGrid articles={articles} section="learn" totalLabel="articles" />
     </>

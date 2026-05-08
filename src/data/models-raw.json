@@ -210,6 +210,21 @@
     "description": "Current #1 on Chatbot Arena (1496 ELO), with 99.8% AIME 2025 and 80.8% SWE-bench, leading in coding and hard prompts."
   },
   {
+    "id": "claude-opus-4.7",
+    "name": "Claude Opus 4.7",
+    "developer": "Anthropic",
+    "released": "2026-04",
+    "elo": null,
+    "mmlu": null,
+    "humanEval": null,
+    "gsm8k": null,
+    "contextWindow": "1M",
+    "inputPrice": "$5.00",
+    "outputPrice": "$25.00",
+    "openSource": false,
+    "description": "Anthropic's most capable generally available model, launched in April 2026 with stronger long-horizon agentic performance and the same $5/$25 MTok pricing as Opus 4.6."
+  },
+  {
     "id": "gemini-1.5-pro",
     "name": "Gemini 1.5 Pro",
     "developer": "Google",
@@ -285,6 +300,21 @@
     "description": "Google's latest flagship with 94.3% GPQA and 100% AIME 2025, #2 on Chatbot Arena behind Claude Opus 4.6."
   },
   {
+    "id": "gemini-3.1-pro",
+    "name": "Gemini 3.1 Pro",
+    "developer": "Google",
+    "released": "2026-04",
+    "elo": null,
+    "mmlu": null,
+    "humanEval": null,
+    "gsm8k": null,
+    "contextWindow": "1M",
+    "inputPrice": "$2.00",
+    "outputPrice": "$12.00",
+    "openSource": false,
+    "description": "Google's newer Pro generation surfaced at Cloud Next 2026 as its most capable model for complex workflows, with 1M context and Gemini 3-class multimodal support."
+  },
+  {
     "id": "llama-3.1-405b",
     "name": "Llama 3.1 405B",
     "developer": "Meta",
@@ -328,6 +358,36 @@
     "outputPrice": "$0.08",
     "openSource": true,
     "description": "Compact open-source model suitable for on-device and edge deployments with surprisingly strong capabilities for its size."
+  },
+  {
+    "id": "llama-4-scout",
+    "name": "Llama 4 Scout",
+    "developer": "Meta",
+    "released": "2025-04",
+    "elo": null,
+    "mmlu": null,
+    "humanEval": null,
+    "gsm8k": null,
+    "contextWindow": "N/A",
+    "inputPrice": null,
+    "outputPrice": null,
+    "openSource": true,
+    "description": "Open-weight, natively multimodal Llama 4 model designed for efficient deployment and long-context workloads."
+  },
+  {
+    "id": "llama-4-maverick",
+    "name": "Llama 4 Maverick",
+    "developer": "Meta",
+    "released": "2025-04",
+    "elo": null,
+    "mmlu": null,
+    "humanEval": null,
+    "gsm8k": null,
+    "contextWindow": "N/A",
+    "inputPrice": null,
+    "outputPrice": null,
+    "openSource": true,
+    "description": "Higher-capability open-weight Llama 4 model in Meta's multimodal MoE generation, available for download via llama.com."
   },
   {
     "id": "mistral-large-2",
@@ -390,6 +450,36 @@
     "description": "Open-source reasoning model matching o1 performance with 97.3% MATH-500, disrupted the AI industry with its efficiency."
   },
   {
+    "id": "deepseek-v4-flash",
+    "name": "DeepSeek V4 Flash",
+    "developer": "DeepSeek",
+    "released": "2026-04",
+    "elo": null,
+    "mmlu": null,
+    "humanEval": null,
+    "gsm8k": null,
+    "contextWindow": "128K",
+    "inputPrice": null,
+    "outputPrice": null,
+    "openSource": false,
+    "description": "DeepSeek's April 2026 V4-generation API model focused on speed and lower-cost production inference."
+  },
+  {
+    "id": "deepseek-v4-pro",
+    "name": "DeepSeek V4 Pro",
+    "developer": "DeepSeek",
+    "released": "2026-04",
+    "elo": null,
+    "mmlu": null,
+    "humanEval": null,
+    "gsm8k": null,
+    "contextWindow": "128K",
+    "inputPrice": null,
+    "outputPrice": null,
+    "openSource": false,
+    "description": "DeepSeek's higher-capability V4-generation API model introduced in April 2026 for deeper reasoning and agentic workloads."
+  },
+  {
     "id": "grok-2",
     "name": "Grok-2",
     "developer": "xAI",
@@ -418,6 +508,21 @@
     "outputPrice": "$15.00",
     "openSource": false,
     "description": "Trained on xAI's Colossus supercluster, top-tier math reasoning with 93.3% AIME 2025 score."
+  },
+  {
+    "id": "grok-4.1",
+    "name": "Grok 4.1",
+    "developer": "xAI",
+    "released": "2025-11",
+    "elo": 1483,
+    "mmlu": null,
+    "humanEval": null,
+    "gsm8k": null,
+    "contextWindow": "N/A",
+    "inputPrice": null,
+    "outputPrice": null,
+    "openSource": false,
+    "description": "xAI's newer flagship family with top-ranked LMArena results for both thinking and non-thinking modes."
   },
   {
     "id": "command-r-plus",
@@ -498,7 +603,7 @@
     "id": "mistral-large-3",
     "name": "Mistral Large 3",
     "developer": "Mistral AI",
-    "released": "2025-11",
+    "released": "2025-12",
     "elo": 1414,
     "mmlu": null,
     "humanEval": null,
@@ -506,8 +611,8 @@
     "contextWindow": "128K",
     "inputPrice": "$2.00",
     "outputPrice": "$6.00",
-    "openSource": false,
-    "description": "Mistral's latest flagship competitive with frontier models, strong multilingual support and function calling."
+    "openSource": true,
+    "description": "Open-weight Apache 2.0 MoE flagship from Mistral 3 generation with strong multilingual and multimodal performance."
   },
   {
     "id": "kimi-k2.5",
@@ -523,6 +628,66 @@
     "outputPrice": null,
     "openSource": false,
     "description": "Chinese model with the highest HumanEval score ever recorded (99.0%), excelling at code generation and reasoning."
+  },
+  {
+    "id": "gpt-5.4",
+    "name": "GPT-5.4",
+    "developer": "OpenAI",
+    "released": "2026-03",
+    "elo": null,
+    "mmlu": null,
+    "humanEval": null,
+    "gsm8k": null,
+    "contextWindow": "1M",
+    "inputPrice": "$2.50",
+    "outputPrice": "$15.00",
+    "openSource": false,
+    "description": "OpenAI's March 2026 frontier model for professional reasoning and agentic coding, released across ChatGPT, API, and Codex."
+  },
+  {
+    "id": "gpt-5.4-mini",
+    "name": "GPT-5.4 Mini",
+    "developer": "OpenAI",
+    "released": "2026-03",
+    "elo": null,
+    "mmlu": null,
+    "humanEval": null,
+    "gsm8k": null,
+    "contextWindow": "400K",
+    "inputPrice": "$0.75",
+    "outputPrice": "$4.50",
+    "openSource": false,
+    "description": "Faster and lower-cost GPT-5.4 variant for high-volume coding, subagents, and computer-use workloads."
+  },
+  {
+    "id": "gpt-5.4-nano",
+    "name": "GPT-5.4 Nano",
+    "developer": "OpenAI",
+    "released": "2026-03",
+    "elo": null,
+    "mmlu": null,
+    "humanEval": null,
+    "gsm8k": null,
+    "contextWindow": "400K",
+    "inputPrice": "$0.20",
+    "outputPrice": "$1.25",
+    "openSource": false,
+    "description": "OpenAI's smallest GPT-5.4-class model, optimized for ultra-cheap classification, extraction, and lightweight agent sub-tasks."
+  },
+  {
+    "id": "gpt-5.5",
+    "name": "GPT-5.5",
+    "developer": "OpenAI",
+    "released": "2026-04",
+    "elo": null,
+    "mmlu": null,
+    "humanEval": null,
+    "gsm8k": null,
+    "contextWindow": "1M (API) / 400K (Codex)",
+    "inputPrice": "$5.00",
+    "outputPrice": "$30.00",
+    "openSource": false,
+    "description": "OpenAI's latest flagship model for real-world coding and professional workflows, with stronger agentic performance and a 1M API context window."
   },
   {
     "id": "gpt-5.2",

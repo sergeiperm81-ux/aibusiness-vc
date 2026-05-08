@@ -1,45 +1,60 @@
 # AI Business — aibusiness.vc
 
-> The definitive guide to making money with AI. Real methods, honest income numbers, tool reviews, startup data, and case studies.
+> The definitive guide to making money with AI. Real methods, honest income numbers, 356 tool reviews, startup funding data, and case studies. Every article connects AI to money.
 
 ## About
 
-AI Business (aibusiness.vc) helps individuals and businesses earn money using artificial intelligence. 125+ articles, 57 tool reviews, 36 model profiles, 20 model comparisons, 11 salary profiles, and 10 country regulation pages. All content connects AI to money — how to earn it, save it, or invest in it.
+AI Business (aibusiness.vc) covers how individuals and businesses earn money using artificial intelligence. 146 articles across 8 sections, 356 AI tool reviews with pricing and ROI analysis, 36 LLM model profiles, 280 tool comparison pages, 18 profession-specific tool guides, and 28 tool category pages. Daily automated news from TechCrunch, Crunchbase, VentureBeat, and MIT Tech Review.
 
-## Solo — Make Money with AI as an Individual
+## Solo — Make Money with AI as an Individual (55 articles)
 - [AI Automation Agency Guide](https://aibusiness.vc/solo/ai-automation-agency-guide): Start an AI automation agency ($10K-$100K/month)
 - [HeadshotPro $300K/Month](https://aibusiness.vc/solo/headshot-pro-300k-month): Solo developer earning $300K/month with AI headshots
 - [AI Consultant $34K/Month](https://aibusiness.vc/solo/ai-consultant-34k-month): 7 retainer clients, $34K monthly income
-- [Solo Founder Sold for $80M](https://aibusiness.vc/solo/solo-founder-sold-80m): Base44 sold to Wix for $80M in 6 months
 - [AI Freelancing Guide](https://aibusiness.vc/solo/ai-freelancing-complete-guide): From $0 to $10K/month
-- [Solopreneur $200/Month Stack](https://aibusiness.vc/solo/solopreneur-tech-stack-cost): $200/month replaces $50K/year team
 - [AI Blog Writer $12K/Month](https://aibusiness.vc/solo/ai-blog-writer-12k-month): 60-80 posts/month, $9K-12K income
+- [Vibe Coding: Build Apps Over a Weekend](https://aibusiness.vc/solo/vibe-coding-build-sell-apps): $500-$20K/month building apps with AI
 
-## Startups — AI Company Revenue & Funding
+## Startups — AI Company Revenue & Funding (22 articles)
 - [OpenAI $13B ARR](https://aibusiness.vc/startups/openai-13b-arr): Fastest revenue ramp in tech history
-- [Anthropic $5B ARR](https://aibusiness.vc/startups/anthropic-5b-arr): Claude revenue machine at $183B valuation
-- [Midjourney $500M, Zero Funding](https://aibusiness.vc/startups/midjourney-500m-zero-funding): 40 employees, $12.5M revenue per person
-- [$150B AI Funding 2025](https://aibusiness.vc/startups/ai-funding-150b-2025): Where the money went
-- [AI Revenue Leaderboard](https://aibusiness.vc/startups/ai-revenue-leaderboard): Top 15 companies ranked
+- [Anthropic $5B ARR](https://aibusiness.vc/startups/anthropic-5b-arr): Claude revenue at $183B valuation
+- [Perplexity $100M ARR](https://aibusiness.vc/startups/perplexity-100m-arr): AI search challenging Google
+- [Midjourney $500M Zero Funding](https://aibusiness.vc/startups/midjourney-500m-zero-funding): Bootstrapped to $500M revenue
 
-## B2B — AI Implementation ROI
-- [Klarna Saves $40M/Year](https://aibusiness.vc/b2b/klarna-ai-replaces-700-agents): AI replaces 700 agents
-- [JPMorgan Saves 360K Hours](https://aibusiness.vc/b2b/jpmorgan-ai-360k-hours): $150M+ annual value
-- [GitHub Copilot $2B ARR](https://aibusiness.vc/b2b/github-copilot-2b-arr): 46% of code is AI-generated
-- [AI Fraud Detection $10B+](https://aibusiness.vc/b2b/ai-fraud-detection-billions): Banks save billions
+## VC — Venture Capital & AI Investment (9 articles)
+- [AI Startup Valuations 2025-2026](https://aibusiness.vc/vc/ai-startup-valuations-2025-2026): How VCs price AI companies
+- [AI Venture Debt Guide](https://aibusiness.vc/vc/ai-venture-debt-guide): Raise $5M-$50M without giving up equity
+- [Top VC Funds Investing in AI](https://aibusiness.vc/vc/top-ai-vc-funds-2026): Who writes the biggest checks
 
-## Tools — Reviews with ROI Analysis
-- [ChatGPT vs Claude vs Gemini](https://aibusiness.vc/tools/articles/chatgpt-vs-claude-vs-gemini): Which AI for making money
-- [Cursor Review](https://aibusiness.vc/tools/articles/cursor-review-2026): #1 AI coding tool
-- [AI Tools Directory](https://aibusiness.vc/tools/directory): 57 tools with pricing
+## B2B — AI for Enterprise (30 articles)
+- [AI Customer Service Automation](https://aibusiness.vc/b2b/ai-customer-service-automation): Cut support costs 40-60%
+- [AI Fraud Detection](https://aibusiness.vc/b2b/ai-fraud-detection-billions): Saving billions in financial fraud
+- [AI for Healthcare](https://aibusiness.vc/b2b/ai-for-healthcare): $150B healthcare AI market
 
-## Models — LLM Leaderboard
-- [AI Model Leaderboard](https://aibusiness.vc/models): 36 models ranked by ELO and benchmarks
-- [Model Comparisons](https://aibusiness.vc/compare): 20 head-to-head comparisons
+## Government — AI Policy & Spending (10 articles)
+- [US Government AI Spending $170B](https://aibusiness.vc/government/us-government-ai-spending-170b): Federal AI contracts
+- [EU AI Act Compliance](https://aibusiness.vc/government/eu-ai-act-compliance-guide): What it costs and how to profit
+- [AI Data Centers $500B Boom](https://aibusiness.vc/government/ai-data-centers-500b-boom): Construction boom powering AI
 
-## Learn — Courses & Careers
-- [Best AI Courses](https://aibusiness.vc/learn/best-ai-courses-free-paid): Ranked by career ROI
-- [AI Salaries](https://aibusiness.vc/salaries): 11 roles, $47K-$643K range
+## Tools — 356 AI Tool Reviews
+- [Tools Directory](https://aibusiness.vc/tools/directory): Browse 356 tools across 28 categories
+- [Tool Comparisons](https://aibusiness.vc/tools/compare): 280 head-to-head comparison pages
+- [Best Tools by Profession](https://aibusiness.vc/tools/best-for): 18 profession-specific guides
+- Categories: Writing, Coding, Video, Image, Marketing, Automation, Sales, HR, Legal, Healthcare, Real Estate, E-commerce, and more
 
-## Regulation
-- [AI Regulation Tracker](https://aibusiness.vc/regulation): 10 countries, laws and policies
+## Models — 36 LLM Profiles
+- [Models Directory](https://aibusiness.vc/models): GPT-4o, Claude 4 Sonnet, Gemini 2.0, DeepSeek V3, Llama 4, and more
+- [Model Comparisons](https://aibusiness.vc/compare): 20 head-to-head model comparisons
+
+## Learn — Education & Career Guides (7 articles)
+- [AI Certifications That Pay $150K+](https://aibusiness.vc/learn/ai-certifications-high-salary): Google, AWS, Microsoft certs
+- [Prompt Engineering Career Guide](https://aibusiness.vc/learn/prompt-engineering-career-guide): Earn $100K+ writing prompts
+- [ML Engineer Roadmap 2026](https://aibusiness.vc/learn/ml-engineer-roadmap-2026): Skills and $180K-$350K salary
+
+## Materials — Resources & Templates (7 articles)
+- [50 AI Business Ideas](https://aibusiness.vc/materials/50-ai-business-ideas-weekend): Start this weekend with profit estimates
+- [AI Tool Stack for Solopreneurs](https://aibusiness.vc/materials/ai-tool-stack-solopreneurs): $97/month replaces a $200K team
+- [AI Freelancer Rate Card 2026](https://aibusiness.vc/materials/ai-freelancer-rate-card): What to charge for AI services
+
+## News — Daily AI Business News
+- [News Feed](https://aibusiness.vc/news): Auto-updated daily from TechCrunch, Crunchbase, VentureBeat, MIT Tech Review
+- Topics: Funding rounds, acquisitions, AI earnings, startup launches, enterprise deals

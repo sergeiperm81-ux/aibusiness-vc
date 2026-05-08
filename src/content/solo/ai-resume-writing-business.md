@@ -2,6 +2,7 @@
 title: "AI Resume Writing: $1K-$5K/Month Helping Job Seekers Land $100K+ Roles"
 description: "Build an AI-powered resume writing service. $100-300 per resume, 20-40 clients/month. Tools, workflow, and how to get clients."
 date: "2026-04-01"
+author: "Sergei P."
 category: "Solo"
 image: "/images/articles/matrix-code-1.jpg"
 keywords: ["AI resume writing business", "AI resume service", "make money writing resumes", "AI career coaching"]
@@ -75,6 +76,6 @@ At 20 clients per month (part-time), you earn $4,000/month working 16 hours. Ful
 
 $88/month in tools. At $4,000/month revenue, tools cost 2.2% of revenue.
 
-## The Bottom Line
+## Why This Works Long-Term
 
-Resume writing with AI is a low-barrier, high-margin service business. AI handles the analytical work (keyword optimization, ATS formatting, achievement quantification), while you provide the human insight (career narrative, strategic positioning, personal branding). At $100-500 per resume, 20-40 clients per month generates $2,000-12,000/month. Every job seeker is a potential client, and there is never a shortage of people looking for work.
+Low barrier. High margins. AI handles the analytical work — keyword optimization, ATS formatting, achievement quantification. You bring the human side — career narrative, strategic positioning, personal branding. $100-500 per resume, 20-40 clients per month, $2,000-12,000/month in revenue. People will always need jobs. That demand never dries up.

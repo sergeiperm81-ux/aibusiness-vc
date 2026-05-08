@@ -92,7 +92,7 @@ export function ArticlePageView({ article, relatedArticles = [] }: ArticlePagePr
             <h1 className="text-2xl sm:text-3xl font-bold text-white leading-tight">
               {article.title}
             </h1>
-            <p className="text-sm text-white/60 mt-2">{article.date}</p>
+            <p className="text-sm text-white/60 mt-2">By {article.author} • {article.date}</p>
           </div>
         </div>
       </section>
@@ -394,18 +394,7 @@ export function ArticlePageView({ article, relatedArticles = [] }: ArticlePagePr
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Article",
-            headline: article.title,
-            description: article.description,
-            image: heroImg.startsWith("/") ? `https://aibusiness.vc${heroImg}` : heroImg,
-            datePublished: article.date,
-            dateModified: article.date,
-            author: { "@type": "Organization", name: "AI Business", url: "https://aibusiness.vc" },
-            publisher: { "@type": "Organization", name: "AI Business", url: "https://aibusiness.vc" },
-            mainEntityOfPage: shareUrl,
-          }),
+          __html: JSON.stringify(buildArticleSchema(article, heroImg, shareUrl)),
         }}
       />
     </>
@@ -474,4 +463,90 @@ function fmt(text: string): string {
     .replace(/\*(.+?)\*/g, "<em>$1</em>")
     .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" style="color:#d97706;text-decoration:none">$1</a>')
     .replace(/`(.+?)`/g, '<code style="background:#f5f5f5;padding:2px 6px;border-radius:4px;font-size:14px;color:#000">$1</code>');
+}
+
+const SECTION_TO_ARTICLE_SECTION: Record<string, string> = {
+  solo: "Solo Earners",
+  startups: "Startups",
+  b2b: "B2B / Enterprise",
+  tools: "AI Tools",
+  models: "LLM Models",
+  news: "News",
+  learn: "Learn",
+  materials: "Resources",
+  vc: "VC & Funding",
+  government: "Government AI",
+};
+
+const SECTION_TO_KEYWORDS: Record<string, string[]> = {
+  solo: ["make money with AI", "AI side hustle", "AI freelancing", "solo founder"],
+  startups: ["AI startup", "AI company revenue", "AI funding", "ARR"],
+  b2b: ["AI for business", "enterprise AI", "AI ROI", "AI automation"],
+  tools: ["AI tools", "AI tool review", "AI tool comparison", "AI ROI"],
+  models: ["LLM", "large language model", "AI model comparison"],
+  vc: ["AI venture capital", "AI investment", "AI startup funding"],
+  government: ["AI policy", "AI regulation", "government AI"],
+  learn: ["AI career", "AI certifications", "AI skills"],
+  materials: ["AI templates", "AI resources", "AI playbooks"],
+  news: ["AI news"],
+};
+
+function countArticleWords(content: string): number {
+  return content
+    .replace(/```[\s\S]*?```/g, " ")
+    .replace(/`[^`]*`/g, " ")
+    .replace(/[#*>_\-]+/g, " ")
+    .split(/\s+/)
+    .filter(Boolean).length;
+}
+
+function buildArticleSchema(
+  article: Article,
+  heroImg: string,
+  shareUrl: string
+) {
+  const absoluteImage = heroImg.startsWith("/")
+    ? `https://aibusiness.vc${heroImg}`
+    : heroImg;
+  const sectionKey = article.section.toLowerCase();
+  const articleSection = SECTION_TO_ARTICLE_SECTION[sectionKey] ?? article.category;
+  const keywords = SECTION_TO_KEYWORDS[sectionKey] ?? [];
+  const wordCount = countArticleWords(article.content);
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: article.title,
+    description: article.description,
+    image: absoluteImage,
+    datePublished: article.date,
+    dateModified: article.date,
+    inLanguage: "en",
+    articleSection,
+    keywords: keywords.join(", "),
+    wordCount,
+    author: {
+      "@type": "Person",
+      name: article.author || "Sergei P.",
+      url: "https://aibusiness.vc/about",
+      jobTitle: "Editor, AI Business",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "AI Business",
+      url: "https://aibusiness.vc",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://aibusiness.vc/og-image.jpg",
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": shareUrl,
+    },
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: ["h1", "h2"],
+    },
+  };
 }

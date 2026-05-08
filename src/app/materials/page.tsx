@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getArticlesBySection } from "@/lib/articles";
 import { SectionArticleGrid } from "@/components/SectionPage";
+import SectionHubLinks from "@/components/SectionHubLinks";
 
 export const metadata: Metadata = {
   title: "Materials — Articles, Podcasts, Videos on AI",
@@ -26,8 +27,9 @@ export default function MaterialsPage() {
     },
     {
       href: "/materials/playbook-templates",
-      title: "Playbook Templates",
-      description: "Copy proven templates for offers, discovery calls, delivery SOPs, and value pricing.",
+      title: "Business Prompt Library",
+      description:
+        "Use execution-grade prompts for planning, SEO, research, sales, operations, and GTM execution.",
       accent: "text-amber-400",
     },
   ];
@@ -73,6 +75,8 @@ export default function MaterialsPage() {
           </div>
         </div>
       </section>
+
+      <SectionHubLinks current="materials" />
 
       <SectionArticleGrid articles={articles} section="materials" totalLabel="articles" />
     </>

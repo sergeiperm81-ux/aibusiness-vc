@@ -2,6 +2,7 @@
 title: "Selling AI-Powered Notion Templates: $500-$5K/Month Passive Income"
 description: "Create and sell Notion templates enhanced with AI workflows. Best-selling categories, pricing, platforms, and income examples."
 date: "2026-04-01"
+author: "Sergei P."
 category: "Solo"
 image: "/images/articles/learning-online-1.jpg"
 keywords: ["Notion templates income", "sell Notion templates", "AI Notion templates", "passive income digital products"]
@@ -77,6 +78,6 @@ After initial creation, income is almost entirely passive. Templates sell on aut
 
 **Product Hunt:** Launch each template on Product Hunt. Even modest launches (50-100 upvotes) drive initial sales and reviews.
 
-## The Bottom Line
+## Dollars and Sense
 
-Notion templates are one of the lowest-effort, highest-margin digital products. AI-enhanced templates command 2-3x higher prices than basic ones. A portfolio of 10-20 templates generates $2,000-7,000/month in mostly passive income. The creation time is 5-7 hours per template. The income lasts indefinitely. If you understand Notion and AI workflows, this is free money waiting to be collected.
+5-7 hours to build a template. Sells indefinitely. AI-enhanced versions go for 2-3x the price of basic ones. Build 10-20 templates and you are looking at $2,000-7,000/month in mostly passive income. If you already know Notion and understand AI workflows, the only thing stopping you is actually building the first one.

@@ -2,6 +2,7 @@
 title: "AI Chatbot Builder: How David Earns $5,400/Month Serving 15 Dental Practices"
 description: "Real case study: charging $800 setup + $200/month per dental practice. $5,400/month working 15 hours/week with AI chatbots."
 date: "2026-03-31"
+author: "Sergei P."
 category: "Solo"
 image: "/images/articles/event-crowd-1.jpg"
 keywords: ["AI chatbot business income", "dental practice chatbot", "AI chatbot recurring revenue", "local business AI"]
@@ -9,7 +10,7 @@ keywords: ["AI chatbot business income", "dental practice chatbot", "AI chatbot 
 
 # AI Chatbot Builder: How David Earns $5,400/Month Serving 15 Dental Practices
 
-David targets medical and dental practices with AI chatbots. He charges $800 for setup and $200/month for maintenance. With 15 practices as clients, he earns $4,600-$5,400 per month working just 15 hours weekly. This is not a hypothetical — it is a documented income report from a real solo AI entrepreneur.
+David sells AI chatbots to dental and medical practices. $800 for setup, $200/month for maintenance. Fifteen clients. $4,600-$5,400/month. Fifteen hours of work per week. Not hypothetical — this is a documented income report from a real person running this business solo.
 
 ## The Business Model
 
@@ -24,11 +25,11 @@ David targets medical and dental practices with AI chatbots. He charges $800 for
 - Hours worked: 15/week
 - Effective rate: ~$85/hour
 
-## Why Dental Practices Pay
+## Why Dental Practices Pay For This
 
-Dental practices receive 30-60 phone calls per day. Half are routine questions: "Do you accept Delta Dental?" "What time do you open Saturday?" "How much is a cleaning?" Every unanswered call is a potential lost patient worth $500-2,000 in annual revenue.
+A typical dental practice gets 30-60 calls per day. Half are routine: "Do you accept Delta Dental?" "Saturday hours?" "How much for a cleaning?" Every missed call is a potential patient worth $500-2,000/year walking away.
 
-A receptionist costs $3,000-4,000/month. David's chatbot handles 60-70% of inquiries for $200/month. The ROI is obvious to any practice manager.
+A receptionist costs $3,000-4,000/month. David's chatbot handles 60-70% of those inquiries for $200/month. Practice managers do not need a sales pitch to see the value here.
 
 **What the chatbot handles:**
 - Insurance acceptance questions
@@ -60,24 +61,24 @@ At $200/month per client with $30-50 in costs, David's gross margin is 75-85% pe
 
 **Current acquisition cost:** ~$100 per client through referrals and ads. Lifetime value at 12-month average retention: $2,400+. Payback period: less than 1 month.
 
-## Scaling Path
+## Where It Goes From Here
 
-David plans to reach 50 clients ($10,000+/month recurring) by the end of 2026. At that point he will hire a part-time assistant ($1,500/month) to handle setup and maintenance while he focuses on sales and expansion into other medical specialties — dermatology, physical therapy, optometry.
+David's target is 50 clients ($10,000+/month recurring) by end of 2026. At that scale, he hires a part-time assistant ($1,500/month) for setup and maintenance while he focuses on sales and expands into other medical specialties — dermatology, physical therapy, optometry.
 
-**The ceiling:** With 100+ clients and an assistant, this becomes a $25,000+/month business with 70% margins. All from a service that took 2 weeks to learn and costs less than $100/month in tools.
+With 100+ clients and an assistant, this is a $25,000+/month business at 70% margins. Built on a service he learned in 2 weeks, running on less than $100/month in tools.
 
-## What You Can Replicate
+## You Can Copy This
 
-David's model works for any local business that receives lots of repetitive inquiries:
+David's model works for any local business drowning in repetitive inquiries:
 
 - **Real estate agencies** — property questions, showing schedules
 - **Law firms** — intake questions, consultation booking
 - **Fitness studios** — class schedules, membership pricing
 - **Auto repair shops** — service pricing, appointment booking
-- **Restaurants** — reservation, menu, hours
+- **Restaurants** — reservations, menu, hours
 
-Pick one vertical. Master the chatbot for that niche. Get 5 clients. Let referrals do the rest.
+Pick one vertical. Get really good at building the chatbot for that niche. Land 5 clients. Referrals take care of the rest.
 
-## The Bottom Line
+## The Core of It
 
-$5,400/month working 15 hours/week with 15 clients. No coding skills needed. No employees. No office. David's chatbot business proves that you do not need a revolutionary AI product to earn well — you need a specific service, a specific market, and the willingness to pick up the phone and sell.
+$5,400/month. 15 hours/week. 15 clients. No coding. No employees. No office. David's business proves you do not need some groundbreaking AI product — you need a specific service, a specific market, and the willingness to pick up the phone.

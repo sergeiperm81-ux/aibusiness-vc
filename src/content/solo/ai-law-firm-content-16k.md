@@ -2,6 +2,7 @@
 title: "AI Copywriter for Law Firms: $16,200/Month with 9 Clients"
 description: "How one freelancer earns $16K/month writing AI-powered SEO content for law firms. $1,800/month per client, 25-30 hours/week."
 date: "2026-03-31"
+author: "Sergei P."
 category: "Solo"
 image: "/images/articles/hr-interview-1.jpg"
 keywords: ["AI copywriting law firms", "legal content writer income", "AI writer $16K month", "freelance AI content"]
@@ -9,7 +10,7 @@ keywords: ["AI copywriting law firms", "legal content writer income", "AI writer
 
 # AI Copywriter for Law Firms: $16,200/Month with 9 Clients
 
-A documented freelancer charges $1,800/month per law firm for AI-driven SEO content, serving 9 clients simultaneously and earning $16,200/month. Working 25-30 hours weekly, the effective hourly rate exceeds $135. The niche — legal content marketing — commands premium pricing because the stakes are high and the domain knowledge is specialized.
+One freelancer charges $1,800/month per law firm for AI-powered SEO content. Nine clients. $16,200/month. Working 25-30 hours a week, that is over $135/hour effective. Legal content marketing pays this well because the stakes are high and you need real domain knowledge to do it right.
 
 ## Why Law Firms Pay Premium for Content
 
@@ -68,6 +69,6 @@ Legal content commands premium pricing because:
 - **Domain expertise needed:** "Personal injury" vs "medical malpractice" vs "products liability" — knowing the difference matters
 - **Low price sensitivity:** Lawyers understand ROI. $1,800/month that generates 5 leads worth $15,000+ each is an easy yes.
 
-## The Bottom Line
+## Where the Money Lands
 
-$16,200/month writing legal content with AI. The niche premium comes from domain expertise — something AI cannot replace but can dramatically amplify. Lawyers need content, AI makes content production 4x faster, and someone who understands both sides earns $135+ per hour bridging the gap.
+$16,200/month. The premium comes from domain expertise — AI cannot replace knowing the difference between personal injury and products liability, but it amplifies that knowledge dramatically. Lawyers need content, AI makes you 4x faster at producing it, and bridging that gap pays $135+/hour.

@@ -2,6 +2,7 @@
 title: "EU AI Act Compliance: What It Actually Costs and How to Profit From It"
 description: "EU AI Act compliance costs $50K-$500K per system. But the compliance consulting market is worth $5B+. How to be on the winning side."
 date: "2026-04-05"
+author: "Sergei P."
 category: "Government"
 image: "/images/articles/documents-papers-1.jpg"
 keywords: ["EU AI Act compliance cost", "EU AI Act business", "AI regulation compliance", "EU AI Act consulting"]
@@ -9,7 +10,7 @@ keywords: ["EU AI Act compliance cost", "EU AI Act business", "AI regulation com
 
 # EU AI Act Compliance: What It Actually Costs and How to Profit From It
 
-The EU AI Act is the world's most comprehensive AI regulation. Penalties reach 7% of global revenue — up to €35 million. Compliance costs $50,000-500,000 per high-risk AI system. But here is what most people miss: the EU AI Act is creating a $5B+ compliance consulting market. While some companies pay for compliance, others earn from it.
+The EU AI Act is the world's most comprehensive AI regulation. Penalties reach 7% of global revenue — up to €35 million. Compliance costs $50,000-500,000 per high-risk AI system. But most people miss this: the EU AI Act is creating a $5B+ compliance consulting market. While some companies pay for compliance, others earn from it.
 
 ## What the EU AI Act Actually Requires
 
@@ -81,6 +82,5 @@ Build AI products that are EU AI Act compliant out of the box. These command 15-
 2. **Build trust** — "EU AI Act Compliant" is becoming a trust signal, like GDPR compliance badges
 3. **Lock in customers** — Once customers rely on your compliant system, switching to a non-compliant alternative is risky for them
 
-## The Bottom Line
-
+## From the Trenches
 The EU AI Act costs $50K-800K to comply with — real money for any company. But it also creates a $5B+ market for compliance services, auditing, and compliant products. The companies that see regulation as an opportunity will build profitable businesses on top of it. The ones that see it only as a cost will fall behind.

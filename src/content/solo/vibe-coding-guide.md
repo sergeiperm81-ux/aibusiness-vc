@@ -2,6 +2,7 @@
 title: "Vibe Coding: Build and Sell Apps Over a Weekend ($500-$20K/Month)"
 description: "Learn vibe coding — building apps with AI assistance. Tools like Cursor, Bolt.new, and v0 explained. Earn $500-$20K/mo with micro-SaaS."
 date: "2026-03-30"
+author: "Sergei P."
 category: "Solo"
 image: "/images/articles/podcast-mic-1.jpg"
 keywords: ["vibe coding make money", "vibe coding guide", "build apps with AI", "micro-SaaS AI", "Cursor Bolt v0 coding"]
@@ -137,6 +138,6 @@ A 2025 GitClear analysis found that AI-generated code has a 41% higher rate of b
 
 The most successful vibe coders treat AI as an extremely fast junior developer: it does the heavy lifting, but you still need to direct, review, and refine.
 
-## The Bottom Line
+## What Vibe Coding Changes
 
-Vibe coding has permanently lowered the barrier to building software products. The tools are $0 to $25 per month. The skills are learnable in days, not years. And the market for small, focused software products has never been larger. Whether you build for clients or build your own products, the ability to turn ideas into working software through conversation with AI is among the most valuable skills of 2026.
+Vibe coding has permanently lowered the barrier to building software products. The tools cost $0 to $25 per month. The skills are learnable in days, not years. The market for small, focused software products has never been larger. Whether you build for clients or build your own products, turning ideas into working software through conversation with AI is among the most valuable skills of 2026.

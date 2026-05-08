@@ -2,6 +2,7 @@
 title: "7 AI Books That Change How You Think About Technology and Wealth"
 description: "Essential reading on AI — from business strategy to societal impact. What each book covers and who should read it."
 date: "2026-03-30"
+author: "Sergei P."
 category: "Materials"
 image: "/images/articles/dashboard-analytics-1.jpg"
 keywords: ["best AI books", "AI books 2026", "artificial intelligence books", "books about AI for business"]
@@ -9,13 +10,13 @@ keywords: ["best AI books", "AI books 2026", "artificial intelligence books", "b
 
 # 7 AI Books Every Business Person Should Read in 2026
 
-AI moves fast, but the underlying dynamics — how technology transforms industries, creates winners and losers, and reshapes society — follow patterns that books explain better than any tweet thread. Here are 7 books that will genuinely change how you think about AI and your place in it.
+AI tools change quarterly. But the deeper dynamics — how technology transforms industries, creates winners and losers, reshapes entire economies — those follow patterns. Patterns that books capture far better than any tweet thread or YouTube video. These 7 books changed how I think about AI and money. They will probably change how you think too.
 
 ## 1. Co-Intelligence — Ethan Mollick (2024)
 
 **Best for:** Anyone using AI in their work right now.
 
-This is the most practical AI book written to date. Ethan Mollick, a Wharton professor who has been experimenting with AI in education and business since GPT-4's launch, shares specific frameworks for working alongside AI effectively.
+Probably the most practical AI book out there right now. Ethan Mollick has been running AI experiments at Wharton since GPT-4 dropped, and he shares real frameworks for working alongside AI — not vague advice, actual methods you can use tomorrow.
 
 **Key insight:** AI should be treated as an uneven, but powerful, collaborator — not a tool and not a replacement.
 
@@ -25,7 +26,7 @@ This is the most practical AI book written to date. Ethan Mollick, a Wharton pro
 
 **Best for:** Founders, executives, and policymakers thinking about AI's trajectory.
 
-Written by the co-founder of DeepMind and CEO of Microsoft AI, this book argues that AI and synthetic biology represent an unprecedented "wave" of technology that cannot be stopped — only contained.
+Mustafa Suleyman co-founded DeepMind and runs Microsoft AI — so when he says AI and synthetic biology represent a wave that cannot be stopped, only contained, you should pay attention. He has been inside the machine.
 
 **Key insight:** The challenge is not building AI, it is governing it. The concept of "containment" as the central problem of our era is powerful.
 
@@ -35,7 +36,7 @@ Written by the co-founder of DeepMind and CEO of Microsoft AI, this book argues 
 
 **Best for:** Understanding AI's economic and geopolitical implications.
 
-Former president of Google China explains the US-China AI competition and predicts which jobs AI will automate first. Despite being published in 2018, the core analysis remains remarkably accurate.
+Kai-Fu Lee ran Google China and has a front-row seat to the US-China AI race. He predicted which jobs AI would automate first — and despite writing this in 2018, his core analysis has held up surprisingly well.
 
 **Key insight:** AI will displace routine cognitive work faster than most people expect, but the transition will create new categories of human work centered around creativity and empathy.
 
@@ -55,7 +56,7 @@ MIT physicist Max Tegmark explores what happens when AI surpasses human intellig
 
 **Best for:** Business leaders making AI strategy decisions.
 
-Three economists from the University of Toronto reframe AI as a drop in the cost of prediction — and then work through the economic implications for every type of business decision.
+Three Toronto economists reframe AI as one thing: a massive drop in the cost of prediction. Then they trace what that means for every type of business decision. Elegant and practical.
 
 **Key insight:** When prediction becomes cheap, the value of judgment (human decision-making) goes up. AI does not replace decisions — it changes the economics of making them.
 
@@ -65,7 +66,7 @@ Three economists from the University of Toronto reframe AI as a drop in the cost
 
 **Best for:** Anyone concerned about AI safety and ethics.
 
-A comprehensive exploration of the challenge of making AI systems do what we actually want. Covers fairness, bias, reward hacking, and the fundamental difficulty of specifying human values to machines.
+Brian Christian digs into the hardest problem in AI: making these systems do what we actually want. He covers fairness, bias, reward hacking, and the surprisingly difficult task of translating human values into machine instructions.
 
 **Key insight:** The problem is not that AI does something wrong. The problem is that AI does exactly what you tell it to do — and your instructions are never precise enough.
 
@@ -75,7 +76,7 @@ A comprehensive exploration of the challenge of making AI systems do what we act
 
 **Best for:** Understanding the hardware foundation of AI.
 
-The entire AI revolution runs on semiconductor chips, primarily made by TSMC in Taiwan and designed by NVIDIA in California. This book explains how we got here and why chip supply chains are the most important geopolitical issue of the decade.
+Every AI breakthrough runs on semiconductor chips — mostly designed by NVIDIA in California and manufactured by TSMC in Taiwan. Chris Miller traces how we ended up in this precarious situation and why chip supply chains might be the most important geopolitical story of the decade.
 
 **Key insight:** Whoever controls advanced chip manufacturing controls the future of AI.
 
@@ -89,6 +90,6 @@ The entire AI revolution runs on semiconductor chips, primarily made by TSMC in 
 
 **If you want the full picture:** Read all seven in the order listed. Each builds on the previous one.
 
-## The Bottom Line
+## Why These and Not Others
 
-These books will not become outdated next quarter. The models change, the tools change, but the economic dynamics, strategic frameworks, and philosophical questions remain. Reading them puts you ahead of 95% of people who only consume AI information through social media feeds.
+These books will not go stale next quarter. Models change, tools change, but the economic dynamics, strategic frameworks, and philosophical questions underneath it all stay relevant. Reading even three of them puts you ahead of the 95% who only consume AI takes through social media feeds and hot takes.

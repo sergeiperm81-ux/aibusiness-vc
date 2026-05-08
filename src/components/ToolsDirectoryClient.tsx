@@ -17,6 +17,14 @@ function slugifyCategory(str: string): string {
   return str.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 }
 
+function getDomain(url: string): string {
+  try {
+    return new URL(url).hostname.replace(/^www\./, "");
+  } catch {
+    return url;
+  }
+}
+
 function getPricingType(pricing: string): Exclude<PricingFilter, "all"> {
   const normalized = pricing.toLowerCase();
   const hasDollar = /\$\d/.test(normalized);
@@ -50,6 +58,9 @@ export default function ToolsDirectoryClient({ tools, categories }: ToolsDirecto
         if (!q) return true;
         return (
           tool.name.toLowerCase().includes(q) ||
+          tool.id.toLowerCase().includes(q) ||
+          tool.url.toLowerCase().includes(q) ||
+          getDomain(tool.url).toLowerCase().includes(q) ||
           tool.description.toLowerCase().includes(q) ||
           tool.category.toLowerCase().includes(q) ||
           tool.targetUser.toLowerCase().includes(q)
@@ -159,36 +170,75 @@ export default function ToolsDirectoryClient({ tools, categories }: ToolsDirecto
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filteredTools.map((tool) => (
-            <Link
-              key={tool.id}
-              href={`/tools/directory/${tool.id}`}
-              onClick={() =>
-                trackEvent("click_to_tool_review", {
-                  source: "tools_directory",
-                  tool_id: tool.id,
-                  tool_name: tool.name,
-                  tool_category: tool.category,
-                })
-              }
-              className="group bg-background rounded-xl p-4 hover:ring-2 hover:ring-accent/40 transition-all hover:-translate-y-1"
-            >
+          {filteredTools.map((tool) => {
+            const domain = getDomain(tool.url);
+            return (
+              <div
+                key={tool.id}
+                className="group bg-background rounded-xl p-4 hover:ring-2 hover:ring-accent/40 transition-all hover:-translate-y-1"
+              >
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center text-accent font-bold text-sm flex-shrink-0">
                   {tool.name[0]}
                 </div>
                 <div>
-                  <h2 className="font-semibold text-white text-sm group-hover:text-accent transition-colors">
-                    {tool.name}
+                  <h2 className="font-semibold text-white text-sm">
+                    <Link
+                      href={`/tools/directory/${tool.id}`}
+                      onClick={() =>
+                        trackEvent("click_to_tool_review", {
+                          source: "tools_directory",
+                          tool_id: tool.id,
+                          tool_name: tool.name,
+                          tool_category: tool.category,
+                        })
+                      }
+                      className="hover:text-accent transition-colors"
+                    >
+                      {tool.name}
+                    </Link>
                   </h2>
                   <p className="text-[11px] text-muted">{tool.pricing}</p>
+                  <p className="text-[11px] text-accent/80 font-mono mt-0.5">{domain}</p>
                 </div>
               </div>
               <p className="text-xs text-muted leading-relaxed">{tool.description}</p>
 
-              <div className="flex items-center justify-between mt-3 pt-2 border-t border-card-border">
+              <div className="flex items-center justify-between mt-3 pt-2 border-t border-card-border gap-2">
                 <span className="text-[10px] text-muted">For: {tool.targetUser}</span>
-                <span className="text-[11px] font-medium text-accent">Review &rarr;</span>
+                <div className="flex items-center gap-2">
+                  <a
+                    href={tool.url}
+                    target="_blank"
+                    rel="noopener noreferrer nofollow"
+                    onClick={() =>
+                      trackEvent("click_tool_official_site", {
+                        source: "tools_directory",
+                        tool_id: tool.id,
+                        tool_name: tool.name,
+                        tool_category: tool.category,
+                        tool_domain: domain,
+                      })
+                    }
+                    className="text-[11px] font-medium text-emerald-400 hover:text-emerald-300"
+                  >
+                    Official Site ↗
+                  </a>
+                  <Link
+                    href={`/tools/directory/${tool.id}`}
+                    onClick={() =>
+                      trackEvent("click_to_tool_review", {
+                        source: "tools_directory",
+                        tool_id: tool.id,
+                        tool_name: tool.name,
+                        tool_category: tool.category,
+                      })
+                    }
+                    className="text-[11px] font-medium text-accent hover:underline"
+                  >
+                    Review →
+                  </Link>
+                </div>
               </div>
 
               <div className="mt-2 flex items-center justify-between text-[10px] text-muted">
@@ -200,8 +250,9 @@ export default function ToolsDirectoryClient({ tools, categories }: ToolsDirecto
                   {tool.hasAffiliate === true ? "Yes" : tool.hasAffiliate === false ? "No" : "Unknown"}
                 </span>
               </div>
-            </Link>
-          ))}
+            </div>
+            );
+          })}
         </div>
       )}
     </div>

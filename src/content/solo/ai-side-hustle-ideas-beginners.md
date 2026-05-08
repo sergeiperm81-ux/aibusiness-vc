@@ -2,6 +2,7 @@
 title: "17 AI Side Hustle Ideas for Beginners in 2026 (Ranked by Difficulty)"
 description: "Discover 17 beginner-friendly AI side hustles ranked from easiest to hardest. Real income potential, tools needed, and time to first dollar."
 date: "2026-03-30"
+author: "Sergei P."
 category: "Solo"
 image: "/images/articles/meeting-business-1.jpg"
 keywords: ["AI side hustle ideas for beginners 2026", "AI side hustles", "make money with AI", "beginner AI business", "AI income ideas"]
@@ -81,7 +82,7 @@ The virtual assistant market is expected to reach $25.6 billion by 2027 (Statist
 **Time to first dollar:** 14-21 days
 **Tools needed:** Tidio or ManyChat (free tiers), ChatGPT ($20/mo)
 
-According to Juniper Research, chatbots saved businesses $11 billion in 2024. Local businesses — dentists, restaurants, real estate agents — want this technology but lack the technical knowledge to implement it.
+According to Juniper Research, chatbots saved businesses $11 billion in 2024. Local businesses — dentists, restaurants, real estate agents — want this technology but lack the technical know-how to get it running.
 
 ### 7. AI-Generated Stock Photography
 
@@ -240,4 +241,4 @@ Start by asking three questions:
 
 3. **How much time can you invest weekly?** Most Tier 1 hustles require 5-10 hours per week. Higher-tier hustles demand 15-20+ hours initially.
 
-The most important step is starting. Pick one hustle from this list, commit to it for 30 days, and measure results before pivoting. According to a 2025 survey by Zapier, people who focused on a single AI skill earned 3.4x more in their first six months than those who tried multiple approaches simultaneously.
+The most important step is starting. Pick one hustle from this list. Commit to it for 30 days. Measure results before pivoting. According to a 2025 survey by Zapier, people who focused on a single AI skill earned 3.4x more in their first six months than those who tried multiple approaches at once.

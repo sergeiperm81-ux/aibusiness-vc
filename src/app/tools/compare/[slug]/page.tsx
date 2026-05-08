@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { getAllToolComparisons, getComparisonBySlug } from "@/lib/tool-comparisons";
+import { getAllToolComparisons, getComparisonBySlug, getComparisonAnalysis } from "@/lib/tool-comparisons";
 import { notFound } from "next/navigation";
 
 interface Props {
@@ -16,14 +16,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const comp = getComparisonBySlug(slug);
   if (!comp) return { title: "Comparison Not Found" };
   return {
-    title: `${comp.toolA.name} vs ${comp.toolB.name} — Which Is Better? (2026)`,
-    description: `${comp.toolA.name} vs ${comp.toolB.name} comparison. Pricing, features, pros/cons, and which AI tool is better for your needs. Updated 2026.`,
+    title: `${comp.toolA.name} vs ${comp.toolB.name} — Which Earns You More? (2026)`,
+    description: `${comp.toolA.name} vs ${comp.toolB.name}: pricing, features, ROI analysis, and which ${comp.toolA.category.toLowerCase()} tool is the better investment. Honest comparison updated 2026.`,
     keywords: [
       `${comp.toolA.name} vs ${comp.toolB.name}`,
       `${comp.toolB.name} vs ${comp.toolA.name}`,
       `${comp.toolA.name} alternative`,
       `${comp.toolB.name} alternative`,
-      `best ${comp.toolA.category.toLowerCase()} tools`,
+      `best ${comp.toolA.category.toLowerCase()} tools 2026`,
     ],
   };
 }
@@ -34,6 +34,25 @@ export default async function ToolComparisonPage({ params }: Props) {
   if (!comp) notFound();
 
   const { toolA, toolB } = comp;
+  const analysis = getComparisonAnalysis(toolA, toolB);
+  const domainA = (() => {
+    try {
+      return new URL(toolA.url).hostname.replace(/^www\./, "");
+    } catch {
+      return toolA.url;
+    }
+  })();
+  const domainB = (() => {
+    try {
+      return new URL(toolB.url).hostname.replace(/^www\./, "");
+    } catch {
+      return toolB.url;
+    }
+  })();
+
+  const otherComps = getAllToolComparisons()
+    .filter((c) => c.slug !== slug && (c.toolA.category === toolA.category))
+    .slice(0, 4);
 
   return (
     <>
@@ -54,14 +73,33 @@ export default async function ToolComparisonPage({ params }: Props) {
             {toolA.name} <span className="text-accent">vs</span> {toolB.name}
           </h1>
           <p className="text-sm text-muted max-w-2xl">
-            Side-by-side comparison of {toolA.name} and {toolB.name}. Which {toolA.category.toLowerCase()} tool is better for your needs?
+            Which {toolA.category.toLowerCase()} tool gives you a better return on investment?
+            We break down pricing, features, and real use cases.
           </p>
+          <div className="mt-3 flex flex-wrap items-center gap-3 text-xs">
+            <a
+              href={toolA.url}
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+              className="inline-flex items-center px-3 py-1.5 rounded-lg bg-emerald-500 text-black font-bold hover:bg-emerald-400 transition-colors"
+            >
+              {toolA.name}: {domainA} ↗
+            </a>
+            <a
+              href={toolB.url}
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+              className="inline-flex items-center px-3 py-1.5 rounded-lg bg-emerald-500 text-black font-bold hover:bg-emerald-400 transition-colors"
+            >
+              {toolB.name}: {domainB} ↗
+            </a>
+          </div>
         </div>
       </section>
 
       <section className="bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
-          {/* Comparison Table */}
+          {/* Quick Comparison Table */}
           <div className="overflow-x-auto mb-10">
             <table className="w-full text-sm">
               <thead>
@@ -95,14 +133,53 @@ export default async function ToolComparisonPage({ params }: Props) {
                 <tr className="border-b border-gray-100">
                   <td className="py-3 px-4 text-gray-500">Affiliate Program</td>
                   <td className="py-3 px-4 text-gray-900">
-                    {toolA.hasAffiliate === true ? "✅ Yes" : toolA.hasAffiliate === false ? "❌ No" : "Unknown"}
+                    {toolA.hasAffiliate === true ? "Yes" : toolA.hasAffiliate === false ? "No" : "Unknown"}
                   </td>
                   <td className="py-3 px-4 text-gray-900">
-                    {toolB.hasAffiliate === true ? "✅ Yes" : toolB.hasAffiliate === false ? "❌ No" : "Unknown"}
+                    {toolB.hasAffiliate === true ? "Yes" : toolB.hasAffiliate === false ? "No" : "Unknown"}
                   </td>
                 </tr>
               </tbody>
             </table>
+          </div>
+
+          {/* Pricing Analysis */}
+          <div className="mb-10">
+            <h2 className="text-lg font-bold text-gray-900 mb-3">Pricing Breakdown</h2>
+            <p className="text-sm text-gray-700 leading-relaxed">{analysis.pricingVerdict}</p>
+          </div>
+
+          {/* Audience Analysis */}
+          <div className="mb-10">
+            <h2 className="text-lg font-bold text-gray-900 mb-3">Who Is Each Tool For?</h2>
+            <p className="text-sm text-gray-700 leading-relaxed">{analysis.audienceVerdict}</p>
+          </div>
+
+          {/* Feature Analysis */}
+          <div className="mb-10">
+            <h2 className="text-lg font-bold text-gray-900 mb-3">Feature Comparison</h2>
+            <p className="text-sm text-gray-700 leading-relaxed">{analysis.featureVerdict}</p>
+          </div>
+
+          {/* Use Case Scenarios */}
+          <div className="mb-10">
+            <h2 className="text-lg font-bold text-gray-900 mb-4">When to Choose Which</h2>
+            <div className="space-y-3">
+              {analysis.useCases.map((uc, i) => (
+                <div key={i} className="bg-gray-50 rounded-xl p-4">
+                  <p className="text-sm font-medium text-gray-900 mb-1">{uc.scenario}</p>
+                  <p className="text-sm text-gray-700">
+                    <span className="font-semibold text-amber-600">Winner: {uc.winner}</span> — {uc.reason}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* ROI / Money Angle */}
+          <div className="bg-amber-50 rounded-xl p-6 border border-amber-200 mb-10">
+            <h2 className="text-lg font-bold text-gray-900 mb-3">The Money Question</h2>
+            <p className="text-sm text-gray-700 leading-relaxed">{analysis.moneyAngle}</p>
           </div>
 
           {/* Detailed Cards */}
@@ -127,24 +204,32 @@ export default async function ToolComparisonPage({ params }: Props) {
                   href={`/tools/directory/${tool.id}`}
                   className="inline-block mt-4 text-xs font-medium text-accent hover:underline"
                 >
-                  Full Review →
+                  Full Review &rarr;
                 </Link>
               </div>
             ))}
           </div>
 
-          {/* Bottom Line */}
-          <div className="bg-amber-50 rounded-xl p-6 border border-amber-200">
-            <h2 className="text-lg font-bold text-gray-900 mb-3">The Bottom Line</h2>
-            <p className="text-sm text-gray-700 leading-relaxed">
-              <strong>Choose {toolA.name}</strong> if you need {toolA.keyFeature.toLowerCase()}.
-              It&apos;s priced at {toolA.pricing} and is best for {toolA.targetUser.toLowerCase()}.
-            </p>
-            <p className="text-sm text-gray-700 leading-relaxed mt-2">
-              <strong>Choose {toolB.name}</strong> if you need {toolB.keyFeature.toLowerCase()}.
-              It&apos;s priced at {toolB.pricing} and is best for {toolB.targetUser.toLowerCase()}.
-            </p>
-          </div>
+          {/* Related Comparisons */}
+          {otherComps.length > 0 && (
+            <div>
+              <h2 className="text-lg font-bold text-gray-900 mb-4">More {toolA.category} Comparisons</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                {otherComps.map((oc) => (
+                  <Link
+                    key={oc.slug}
+                    href={`/tools/compare/${oc.slug}`}
+                    className="group bg-background rounded-xl p-4 hover:ring-2 hover:ring-accent/40 transition-all"
+                  >
+                    <p className="text-sm font-semibold text-white group-hover:text-accent transition-colors">
+                      {oc.toolA.name} <span className="text-accent">vs</span> {oc.toolB.name}
+                    </p>
+                    <p className="text-[11px] text-muted mt-1">Compare &rarr;</p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </section>
     </>

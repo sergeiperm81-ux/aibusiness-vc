@@ -10,6 +10,7 @@ export interface ArticleMeta {
   title: string;
   description: string;
   date: string;
+  author: string;
   category: string;
   keywords: string[];
   image: string;
@@ -37,6 +38,7 @@ function readArticlesFromDir(section: string): ArticleMeta[] {
         title: data.title ?? slug,
         description: data.description ?? "",
         date: data.date ?? "2026-03-30",
+        author: data.author ?? "Sergei P.",
         category: data.category ?? section,
         keywords: data.keywords ?? [],
         image: data.image ?? "",
@@ -67,6 +69,7 @@ export function getArticleBySlug(section: string, slug: string): Article | null 
     title: data.title ?? slug,
     description: data.description ?? "",
     date: data.date ?? "2026-03-30",
+    author: data.author ?? "Sergei P.",
     category: data.category ?? section,
     keywords: data.keywords ?? [],
     image: data.image ?? "",

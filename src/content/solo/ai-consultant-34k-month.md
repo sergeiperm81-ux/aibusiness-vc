@@ -2,6 +2,7 @@
 title: "AI Consultant Earning $34K/Month: Sandra's 7-Client Retainer Model"
 description: "Real income breakdown: $5K assessment + $3.5K/month retainer. 7 clients, 30-35 hours/week, $34K-39K/month."
 date: "2026-03-31"
+author: "Sergei P."
 category: "Solo"
 image: "/images/articles/finance-accounting-1.jpg"
 keywords: ["AI consulting income", "AI consultant revenue", "make money AI consulting", "AI implementation consultant"]
@@ -9,7 +10,7 @@ keywords: ["AI consulting income", "AI consultant revenue", "make money AI consu
 
 # AI Consultant Earning $34K/Month: Sandra's 7-Client Retainer Model
 
-Sandra charges $5,000 for an initial AI assessment and $3,500/month for ongoing implementation. With 7 retainer clients, she earns $34,500-39,500/month working 30-35 hours per week. No employees. No fancy office. Just deep AI knowledge and the ability to help businesses implement it.
+Sandra charges $5,000 for an AI assessment and $3,500/month for ongoing setup work. Seven retainer clients. $34,500-39,500/month. She works 30-35 hours a week. No employees, no office. Just deep knowledge of AI tools and the ability to help businesses actually use them.
 
 ## The Service Model
 
@@ -18,14 +19,14 @@ Sandra charges $5,000 for an initial AI assessment and $3,500/month for ongoing 
 Sandra spends 2-3 days with a client company:
 - Audits all business processes for AI automation potential
 - Identifies the top 3-5 opportunities ranked by ROI
-- Estimates cost savings and implementation timeline
+- Estimates cost savings and setup timeline
 - Delivers a detailed roadmap document
 
-This assessment alone is worth $5,000 because it gives the company a concrete plan with dollar figures. Most businesses know they "should use AI" but have no idea where to start.
+That assessment is worth $5,000 because it gives the company an actual plan with dollar figures. Most businesses know they "should use AI" but are completely lost on where to begin.
 
-**Phase 2: Implementation Retainer ($3,500/month)**
+**Phase 2: Setup Retainer ($3,500/month)**
 
-After the assessment, Sandra helps implement:
+After the assessment, Sandra helps set up:
 - Selects and configures AI tools (ChatGPT, Claude, Make.com, custom solutions)
 - Trains staff on new workflows
 - Monitors adoption and optimizes processes
@@ -56,7 +57,7 @@ Sandra's background: 8 years as a marketing director at a mid-size company. When
 
 Total time from corporate job to $34K/month: 8 months.
 
-## What AI Consultants Actually Do
+## What the Job Actually Looks Like
 
 It is not coding. It is not building AI models. It is translating business problems into AI solutions:
 
@@ -65,15 +66,15 @@ It is not coding. It is not building AI models. It is translating business probl
 - "Our salespeople waste time on unqualified leads" → Set up AI lead scoring in HubSpot, create automated outreach sequences
 - "We need content but can't afford writers" → Create AI content workflow with brand guidelines, templates, and quality review process
 
-The consulting value is in knowing which solution fits which problem — not in the technical implementation itself.
+The value is knowing which solution fits which problem. Not the technical setup itself.
 
 ## Pricing Strategy
 
 Sandra's pricing follows a simple formula: **charge 10-20% of the value you create.**
 
-If an AI implementation saves a company $200,000/year in labor costs, a $42,000 annual retainer ($3,500/month) is a 5:1 ROI for the client. Easy to justify.
+If an AI setup saves a company $200,000/year in labor costs, a $42,000 annual retainer ($3,500/month) is a 5:1 ROI for the client. Easy to justify.
 
-**The key insight:** Do not charge by the hour. Charge by the value. A 2-hour assessment that identifies $500,000 in AI opportunities is worth $5,000 — not $300 (2 hours × $150/hour).
+The key: do not charge by the hour. Charge by value. A 2-hour assessment that identifies $500,000 in AI opportunities is worth $5,000 — not $300.
 
 ## Who Can Replicate This
 
@@ -84,8 +85,8 @@ You do not need a tech background. You need:
 3. **Communication skills** — the ability to explain AI value in business terms, not tech jargon
 4. **Sales ability** — willingness to do assessments, present findings, and close retainers
 
-The market is massive. 58% of businesses use AI but most implement it poorly. 92% plan to increase AI investment. Every company needs someone who can bridge the gap between "we should use AI" and "here is exactly how."
+The market is massive. 58% of businesses use AI but most do it poorly. 92% plan to increase AI investment. Every company needs someone who can bridge the gap between "we should use AI" and "here is exactly how."
 
-## The Bottom Line
+## The Rundown
 
-$34K-39K/month as a solo AI consultant with 7 clients. No coding. No employees. No investors. Sandra's success comes from one skill: helping businesses turn AI from a buzzword into measurable ROI. With 75% of companies still in early AI adoption stages, the demand for this skill will only grow.
+$34K-39K/month. Solo. Seven clients. No coding, no employees, no investors. Sandra's entire business rests on one skill: helping companies turn AI from a buzzword into dollars they can measure. With 75% of companies still in early AI adoption, demand for this is only heading one direction.

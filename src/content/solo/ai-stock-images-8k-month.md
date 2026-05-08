@@ -2,6 +2,7 @@
 title: "Selling AI-Generated Stock Images: $3K-$8K/Month in Passive Income"
 description: "How one creator earns $3K-8K/month selling AI images on stock sites. 2,000-3,000 licenses/month, mostly passive after initial upload."
 date: "2026-03-31"
+author: "Sergei P."
 category: "Solo"
 image: "/images/articles/mobile-app-1.jpg"
 keywords: ["AI stock images income", "sell AI generated images", "Midjourney stock photos", "passive income AI images"]
@@ -79,6 +80,6 @@ The key is portfolio size. Every new image is a potential revenue stream forever
 - **No faces of real people:** AI-generated photorealistic faces can cause legal issues. Stick to scenes, objects, and abstract imagery.
 - **Platform terms change:** Stay updated on each platform's AI policy. Adobe and Shutterstock are currently the most AI-friendly.
 
-## The Bottom Line
+## The Honest Take
 
-AI stock images represent one of the truest forms of passive income in the AI economy. After the initial effort of generating and uploading a portfolio of 5,000+ images, the income continues with minimal maintenance. $3,000-8,000/month is achievable within 12 months. The barrier to entry is low — $30/month for Midjourney and a few hours per week of generation and curation.
+This gets about as close to true passive income as anything out there. Build a portfolio of 5,000+ images, and the income keeps rolling with minimal upkeep. $3,000-8,000/month within 12 months. All you need: $30/month for Midjourney and a few hours per week of generation and curation.

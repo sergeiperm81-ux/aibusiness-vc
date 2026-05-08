@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getArticlesBySection } from "@/lib/articles";
 import SectionArticleExplorer from "@/components/SectionArticleExplorer";
 import { TrackedLink } from "@/components/analytics/TrackedLink";
+import SectionHubLinks from "@/components/SectionHubLinks";
 
 export const metadata: Metadata = {
   title: "B2B - AI Implementation for Businesses (2026)",
@@ -58,6 +59,8 @@ export default function B2BPage() {
           </div>
         </div>
       </section>
+
+      <SectionHubLinks current="b2b" />
 
       <SectionArticleExplorer articles={articles} section="b2b" totalLabel="articles" />
     </>

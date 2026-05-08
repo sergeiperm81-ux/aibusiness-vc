@@ -2,19 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-const mainNav = [
-  { name: "News", href: "/news" },
-  { name: "Solo", href: "/solo" },
-  { name: "Startups", href: "/startups" },
-  { name: "VC", href: "/vc" },
-  { name: "B2B", href: "/b2b" },
-  { name: "Gov", href: "/government" },
-  { name: "Tools", href: "/tools" },
-  { name: "Models", href: "/models" },
-  { name: "Learn", href: "/learn" },
-  { name: "Materials", href: "/materials" },
-];
+import { MAIN_NAV } from "@/lib/navigation";
 
 export function Header() {
   const pathname = usePathname();
@@ -37,7 +25,7 @@ export function Header() {
           </Link>
 
           <div className="hidden lg:flex items-center gap-0.5">
-            {mainNav.map((item) => (
+            {MAIN_NAV.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
@@ -52,7 +40,26 @@ export function Header() {
             ))}
           </div>
 
-          <div className="lg:hidden">
+          <div className="hidden lg:flex items-center gap-2 ml-2 pl-2 border-l border-card-border">
+            <Link
+              href="/audit"
+              className={`px-3 py-1.5 text-[13px] font-bold rounded-md transition-colors ${
+                isActive("/audit")
+                  ? "bg-accent-hover text-black"
+                  : "bg-accent text-black hover:bg-accent-hover"
+              }`}
+            >
+              AI Audit
+            </Link>
+          </div>
+
+          <div className="lg:hidden flex items-center gap-2">
+            <Link
+              href="/audit"
+              className="px-2.5 py-1 text-[12px] font-bold bg-accent text-black rounded-md"
+            >
+              Audit
+            </Link>
             <Link
               href="/news"
               className="px-2.5 py-1.5 text-[13px] text-white hover:text-accent"

@@ -2,6 +2,7 @@
 title: "US Government AI Spending: $140B+ for Defense, $30B for Civilian — Who Gets the Contracts"
 description: "US federal AI spending exceeds $170B through 2028. Pentagon leads, but civilian agencies are catching up. Who wins the contracts."
 date: "2026-04-05"
+author: "Sergei P."
 category: "Government"
 image: "/images/articles/conference-1.jpg"
 keywords: ["US government AI spending", "federal AI contracts", "Pentagon AI budget", "government AI investment"]
@@ -84,6 +85,5 @@ AI powers Mars rover navigation, satellite image analysis, space weather predict
 
 **SBIR/STTR grants:** The Small Business Innovation Research program awards $150K (Phase I) to $1.5M (Phase II) to small companies developing AI for government use. No equity dilution, no repayment required. Over $3B awarded annually across all agencies.
 
-## The Bottom Line
-
+## Why You Should Care
 The US government spends more on AI than any single private company. $170B+ through 2028, with defense leading but civilian agencies growing fast. For AI companies, government contracts offer guaranteed revenue at scale. For entrepreneurs, SBIR grants offer non-dilutive funding to build AI products with a guaranteed first customer: Uncle Sam.

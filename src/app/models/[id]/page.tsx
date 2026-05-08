@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { models, getModelById } from "@/data/models";
 import { notFound } from "next/navigation";
+import { getModelExternalLinks } from "@/lib/model-links";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -16,7 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const model = getModelById(id);
   if (!model) return { title: "Model Not Found" };
   return {
-    title: `${model.name} — Benchmarks, Pricing & Review (2026)`,
+    title: `${model.name} - Benchmarks, Pricing & Review (2026)`,
     description: `${model.name} by ${model.developer}: ELO ${model.elo}, MMLU ${model.mmlu}, ${model.contextWindow} context. Pricing: ${model.inputPrice} input. ${model.description}`,
   };
 }
@@ -27,6 +28,7 @@ export default async function ModelPage({ params }: Props) {
   if (!model) notFound();
 
   const others = models.filter((m) => m.id !== model.id).slice(0, 3);
+  const links = getModelExternalLinks(model);
 
   return (
     <>
@@ -42,13 +44,15 @@ export default async function ModelPage({ params }: Props) {
             <span className="text-xs text-muted">/</span>
             <span className="text-xs text-accent">{model.name}</span>
           </div>
-          <div className="flex items-start justify-between">
+          <div className="flex items-start justify-between gap-4">
             <div>
               <h1 className="text-2xl sm:text-3xl font-bold text-white mb-1">
                 {model.name}
               </h1>
               <p className="text-sm text-muted">
-                by {model.developer} &middot; Released {model.released} &middot;{" "}
+                by {model.developer} &middot; ID{" "}
+                <span className="font-mono text-zinc-300">{model.id}</span>
+                {" "} &middot; Released {model.released} &middot;{" "}
                 <span
                   className={
                     model.openSource ? "text-emerald-400" : "text-zinc-400"
@@ -59,21 +63,46 @@ export default async function ModelPage({ params }: Props) {
               </p>
             </div>
             <span className="text-3xl font-bold text-emerald-400 font-mono">
-              {model.elo ?? "—"}
+              {model.elo ?? "-"}
               <span className="text-xs text-muted font-normal ml-1">ELO</span>
             </span>
+          </div>
+          <div className="mt-4 flex flex-wrap gap-3">
+            <a
+              href={links.docsUrl}
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+              className="inline-flex items-center rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-xs font-semibold text-zinc-100 hover:border-emerald-500 hover:text-emerald-300 transition-colors"
+            >
+              Official docs
+            </a>
+            <a
+              href={links.tryUrl}
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+              className="inline-flex items-center rounded-lg border border-accent/40 bg-accent/10 px-3 py-2 text-xs font-semibold text-accent hover:bg-accent/20 transition-colors"
+            >
+              {links.tryLabel}
+            </a>
+            <a
+              href={links.searchUrl}
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+              className="inline-flex items-center rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-xs font-semibold text-zinc-100 hover:border-zinc-500 transition-colors"
+            >
+              Search official source
+            </a>
           </div>
         </div>
       </section>
 
       <section className="bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
-          {/* Key stats */}
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-10">
             {[
-              { label: "ELO Score", value: String(model.elo ?? "—"), color: "text-emerald-600" },
-              { label: "MMLU", value: String(model.mmlu ?? "—"), color: "text-gray-900" },
-              { label: "HumanEval", value: String(model.humanEval ?? "—"), color: "text-gray-900" },
+              { label: "ELO Score", value: String(model.elo ?? "-"), color: "text-emerald-600" },
+              { label: "MMLU", value: String(model.mmlu ?? "-"), color: "text-gray-900" },
+              { label: "HumanEval", value: String(model.humanEval ?? "-"), color: "text-gray-900" },
               { label: "Context Window", value: model.contextWindow, color: "text-gray-900" },
               { label: "Input Price", value: model.inputPrice, color: "text-amber-600" },
             ].map((stat) => (
@@ -89,7 +118,6 @@ export default async function ModelPage({ params }: Props) {
             ))}
           </div>
 
-          {/* Description */}
           <div className="bg-background rounded-xl p-6 mb-10">
             <h2 className="text-lg font-bold text-white mb-3">
               About {model.name}
@@ -108,10 +136,26 @@ export default async function ModelPage({ params }: Props) {
                   {model.openSource ? "Open Source" : "Proprietary"}
                 </p>
               </div>
+              <div className="col-span-2">
+                <p className="text-xs text-muted">Official Website</p>
+                <a
+                  href={links.tryUrl}
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                  className="text-sm font-semibold text-emerald-300 hover:underline"
+                >
+                  {links.tryLabel}
+                </a>
+              </div>
             </div>
+            <p className="text-xs text-muted mt-4">
+              Not sure where to find it? Search query:{" "}
+              <span className="font-mono text-zinc-300">
+                "{model.name} official"
+              </span>
+            </p>
           </div>
 
-          {/* Compare with others */}
           <h2 className="text-lg font-bold text-gray-900 mb-4">
             Compare with Other Models
           </h2>
