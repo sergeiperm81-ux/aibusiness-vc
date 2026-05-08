@@ -15,6 +15,7 @@ const catColors: Record<string, string> = {
   Solo: "bg-amber-500 text-black",
   Startups: "bg-purple-500 text-white",
   B2B: "bg-blue-500 text-white",
+  Government: "bg-slate-700 text-white",
   Tools: "bg-emerald-500 text-white",
   Materials: "bg-pink-500 text-white",
   Learn: "bg-cyan-500 text-white",
@@ -27,6 +28,7 @@ export default async function HomePage() {
   const newsData = await getLatestNews(6);
   const soloArticles = allArticles.filter((a) => a.category === "Solo").slice(0, 3);
   const b2bArticles = allArticles.filter((a) => a.category === "B2B").slice(0, 3);
+  const governmentArticles = allArticles.filter((a) => a.category === "Government").slice(0, 3);
   const toolsArticles = allArticles.filter((a) => a.category === "Tools").slice(0, 3);
   const signatureToolCtas = [
     {
@@ -205,6 +207,29 @@ export default async function HomePage() {
                 <h3 className="font-bold text-white text-sm mt-3 mb-2 group-hover:text-accent transition-colors leading-snug">{a.title}</h3>
                 <p className="text-xs text-white/70 line-clamp-2">{a.description}</p>
                 <span className="text-xs font-medium text-accent mt-3 inline-block">Read case study &rarr;</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* GOVERNMENT ARTICLES */}
+      <section className="bg-white border-t border-black/5">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-xl font-bold text-black">Government AI</h2>
+            <Link href="/government" className="text-sm text-black/50 hover:text-accent transition-colors">
+              All government articles &rarr;
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {governmentArticles.map((a) => (
+              <Link key={a.slug} href={`/${a.section}/${a.slug}`}
+                className="group bg-background rounded-xl p-5 hover:ring-2 hover:ring-slate-500/40 transition-all hover:-translate-y-1">
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider bg-slate-700 text-white">Government</span>
+                <h3 className="font-bold text-white text-sm mt-3 mb-2 group-hover:text-accent transition-colors leading-snug">{a.title}</h3>
+                <p className="text-xs text-white/70 line-clamp-2">{a.description}</p>
+                <span className="text-xs font-medium text-accent mt-3 inline-block">Read analysis &rarr;</span>
               </Link>
             ))}
           </div>
