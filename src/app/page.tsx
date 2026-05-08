@@ -6,28 +6,253 @@ import { getLatestNews } from "@/lib/supabase";
 import { TrackedLink } from "@/components/analytics/TrackedLink";
 
 export const metadata: Metadata = {
-  title: "AI Business — How to Make Money with AI in 2026",
+  title: "AI Business - How to Make Money with AI in 2026",
   description:
-    "The definitive guide to making money with AI. News, tools, strategies for solo earners, startups, and enterprises.",
+    "How to make money with AI: 50+ income methods with $500-$300K/month verified numbers, 356 AI tools reviewed with ROI data, 146 case studies. Updated daily.",
+  alternates: {
+    canonical: "/",
+  },
 };
 
 const catColors: Record<string, string> = {
   Solo: "bg-amber-500 text-black",
   Startups: "bg-purple-500 text-white",
   B2B: "bg-blue-500 text-white",
+  VC: "bg-fuchsia-500 text-white",
+  Government: "bg-indigo-500 text-white",
   Tools: "bg-emerald-500 text-white",
   Materials: "bg-pink-500 text-white",
   Learn: "bg-cyan-500 text-white",
 };
 
-export const revalidate = 3600;
+// No revalidate — page is rebuilt fresh on every deploy.
+// News section uses getLatestNews() which fetches RSS at build time.
+// Cron /api/cron/news calls revalidatePath("/") daily at 7am Sofia
+// to refresh news without a full redeploy.
+
+const HOME_FAQ = [
+  {
+    q: "Can you really make money with AI in 2026?",
+    a: "Yes. We track 146 case studies with verified income from $500/month side hustles to $300K/month solo founders. The fastest paths are AI freelancing, automation agencies, and content stacks built on Claude or ChatGPT. See the Solo section for step-by-step playbooks.",
+  },
+  {
+    q: "How much does it cost to start an AI side hustle?",
+    a: "Most solo earners spend $30-$100/month on AI tools to start. ChatGPT Plus or Claude Pro at $20/month plus one specialized tool (Make.com, Synthesia, or Notion AI) covers 80% of use cases. The Solo Tool Stack page lists $97/month bundles that replace a $200K team.",
+  },
+  {
+    q: "What is the highest-paying AI career in 2026?",
+    a: "ML engineers earn $180K-$350K, AI research scientists earn up to $893K total comp at frontier labs, and prompt engineering roles start at $100K. The Learn section maps salaries against the certifications and skills required to qualify.",
+  },
+  {
+    q: "Which AI tool gives the best ROI for small businesses?",
+    a: "It depends on the bottleneck. For customer service, Klarna replaced 700 agents with AI and cut costs 40-60%. For content, Make.com plus ChatGPT replaces a writing team at $50/month. The Tool Selector matches your goal, budget, and team to a verified stack.",
+  },
+  {
+    q: "Is AI replacing jobs or creating them?",
+    a: "Both. Klarna AI replaced 700 customer service agents while AI engineering jobs grew 200% year over year. The B2B section tracks the cost-cutting case studies; the Learn section tracks the new roles, certifications, and salaries.",
+  },
+  {
+    q: "How is AI Business different from other AI directories?",
+    a: "Outcome-first, not catalog-first. Most AI directories list 28,000+ tools without saying which earn money. We focus on 50+ income methods, 146 real case studies with revenue data, and 356 tools reviewed against ROI rather than features.",
+  },
+];
+
+type HomeSectionBlock = {
+  section: "solo" | "startups" | "b2b" | "vc" | "government" | "learn" | "materials";
+  title: string;
+  href: string;
+  description: string;
+  badge: string;
+  cta: string;
+  hoverRingClass: string;
+};
+
+const HOME_SECTION_BLOCKS: HomeSectionBlock[] = [
+  {
+    section: "solo",
+    title: "Solo: Make Money with AI",
+    href: "/solo",
+    description:
+      "Execution playbooks for individuals: AI freelancing, productized services, agency models, and lean solo systems.",
+    badge: "SOLO",
+    cta: "Read guide",
+    hoverRingClass: "hover:ring-amber-500/40",
+  },
+  {
+    section: "startups",
+    title: "Startups: Build and Scale",
+    href: "/startups",
+    description:
+      "Revenue playbooks, market timing, GTM strategy, and hard numbers from AI products moving from idea to ARR.",
+    badge: "STARTUPS",
+    cta: "Read startup brief",
+    hoverRingClass: "hover:ring-purple-500/40",
+  },
+  {
+    section: "b2b",
+    title: "B2B: AI for Business",
+    href: "/b2b",
+    description:
+      "Practical enterprise economics: margin gains, cost savings, and measurable implementation outcomes.",
+    badge: "B2B",
+    cta: "Read case study",
+    hoverRingClass: "hover:ring-blue-500/40",
+  },
+  {
+    section: "vc",
+    title: "VC: Capital and Returns",
+    href: "/vc",
+    description:
+      "What investors track now: metrics, deal structure, valuation logic, and AI portfolio risk/reward dynamics.",
+    badge: "VC",
+    cta: "Read VC analysis",
+    hoverRingClass: "hover:ring-fuchsia-500/40",
+  },
+  {
+    section: "government",
+    title: "Government: Public AI Economics",
+    href: "/government",
+    description:
+      "Public procurement, policy impact, and where state AI spending turns into commercial opportunity.",
+    badge: "GOV",
+    cta: "Read policy brief",
+    hoverRingClass: "hover:ring-indigo-500/40",
+  },
+  {
+    section: "learn",
+    title: "Learn: Skills That Pay",
+    href: "/learn",
+    description:
+      "Salary-backed learning paths, role roadmaps, and practical skill stacks to earn in the AI economy.",
+    badge: "LEARN",
+    cta: "Read learning guide",
+    hoverRingClass: "hover:ring-cyan-500/40",
+  },
+  {
+    section: "materials",
+    title: "Materials: Templates and Resources",
+    href: "/materials",
+    description:
+      "Practical assets you can apply right now: templates, checklists, packs, and monetization-ready frameworks.",
+    badge: "MATERIALS",
+    cta: "Open resource",
+    hoverRingClass: "hover:ring-pink-500/40",
+  },
+];
+
+interface FactCardProps {
+  label: string;
+  value: string;
+  sub: string;
+}
+
+function FactCard({ label, value, sub }: FactCardProps) {
+  return (
+    <div className="rounded-xl border border-black/10 p-4">
+      <p className="mb-1 text-[10px] font-mono uppercase tracking-wider text-black/50">
+        {label}
+      </p>
+      <p className="mb-1 text-2xl font-bold text-black">{value}</p>
+      <p className="text-xs leading-relaxed text-black/60">{sub}</p>
+    </div>
+  );
+}
+
+interface HomeNewsItemListProps {
+  items: { slug: string; title: string; excerpt: string; date: string }[];
+}
+
+interface HomeFaqSchemaProps {
+  items: { q: string; a: string }[];
+}
+
+function HomeWebsiteSchema() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "AI Business",
+    url: "https://aibusiness.vc",
+    inLanguage: "en",
+    description:
+      "How to make money with AI: 146 articles, 356 tool reviews, 36 LLM model profiles, daily news, real income case studies.",
+    publisher: {
+      "@type": "Organization",
+      name: "AI Business",
+      url: "https://aibusiness.vc",
+    },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: "https://aibusiness.vc/news?open={search_term_string}",
+      },
+      "query-input": "required name=search_term_string",
+    },
+  };
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
+function HomeNewsItemListSchema({ items }: HomeNewsItemListProps) {
+  if (items.length === 0) return null;
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Latest AI Business News",
+    description:
+      "Daily AI business news: funding, earnings, tool launches, enterprise deals.",
+    itemListOrder: "https://schema.org/ItemListOrderDescending",
+    numberOfItems: items.length,
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      url: `https://aibusiness.vc/news?open=${item.slug}`,
+      name: item.title,
+      description: item.excerpt,
+    })),
+  };
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
+function HomeFaqSchema({ items }: HomeFaqSchemaProps) {
+  if (items.length === 0) return null;
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.a,
+      },
+    })),
+  };
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
 
 export default async function HomePage() {
   const allArticles = getAllArticles();
   const newsData = await getLatestNews(6);
-  const soloArticles = allArticles.filter((a) => a.category === "Solo").slice(0, 3);
-  const b2bArticles = allArticles.filter((a) => a.category === "B2B").slice(0, 3);
-  const toolsArticles = allArticles.filter((a) => a.category === "Tools").slice(0, 3);
+  const articlesBySection = HOME_SECTION_BLOCKS.map((block) => ({
+    ...block,
+    count: allArticles.filter((article) => article.section === block.section).length,
+    articles: allArticles.filter((article) => article.section === block.section).slice(0, 3),
+  }));
   const signatureToolCtas = [
     {
       href: "/materials/roi-calculator",
@@ -50,24 +275,25 @@ export default async function HomePage() {
     <>
       {/* HERO */}
       <section className="bg-background">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
           <div className="max-w-3xl">
-            <p className="text-accent font-mono text-xs font-medium mb-1.5 tracking-wider uppercase">
+            <p className="mb-1.5 font-mono text-xs font-medium uppercase tracking-wider text-accent">
               The AI Gold Rush is here
             </p>
-            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight leading-[1.15] mb-2 text-white">
+            <h1 className="mb-2 text-2xl font-bold leading-[1.15] tracking-tight text-white sm:text-3xl">
               How to Make Money <span className="text-accent">with AI</span> in 2026
             </h1>
-            <p className="text-sm text-white/70 leading-relaxed mb-3 max-w-xl">
-              50+ proven methods, honest income numbers, the best tools reviewed,
-              and real case studies from people who actually did it.
+            <p className="mb-3 max-w-xl text-sm leading-relaxed text-white/70">
+              50+ income methods with verified $500-$300K/month numbers, 356 AI tools
+              reviewed with ROI data, and 146 case studies across solo earners,
+              startups, and enterprises.
             </p>
-            <div className="flex gap-3 flex-wrap">
+            <div className="flex flex-wrap gap-3">
               <TrackedLink
                 href="/solo"
                 eventName="click_home_cta"
                 eventParams={{ cta: "explore_earning_methods" }}
-                className="px-4 py-1.5 text-sm font-semibold bg-accent text-background rounded-lg hover:bg-accent-hover transition-colors"
+                className="rounded-lg bg-accent px-4 py-1.5 text-sm font-semibold text-background transition-colors hover:bg-accent-hover"
               >
                 Explore Earning Methods
               </TrackedLink>
@@ -75,7 +301,7 @@ export default async function HomePage() {
                 href="/tools/directory"
                 eventName="click_home_cta"
                 eventParams={{ cta: "browse_ai_tools" }}
-                className="px-4 py-1.5 text-sm font-medium border border-card-border text-white rounded-lg hover:bg-card-bg transition-colors"
+                className="rounded-lg border border-card-border px-4 py-1.5 text-sm font-medium text-white transition-colors hover:bg-card-bg"
               >
                 Browse AI Tools
               </TrackedLink>
@@ -83,7 +309,7 @@ export default async function HomePage() {
                 href="/materials/roi-calculator"
                 eventName="click_home_cta"
                 eventParams={{ cta: "calculate_ai_roi" }}
-                className="px-4 py-1.5 text-sm font-medium border border-emerald-500/40 text-emerald-300 rounded-lg hover:bg-emerald-500/10 transition-colors"
+                className="rounded-lg border border-emerald-500/40 px-4 py-1.5 text-sm font-medium text-emerald-300 transition-colors hover:bg-emerald-500/10"
               >
                 Calculate AI ROI
               </TrackedLink>
@@ -93,146 +319,193 @@ export default async function HomePage() {
         <TrendingBar />
       </section>
 
-      {/* SIGNATURE TOOLS */}
-      <section className="bg-white border-b border-black/5">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
-          <div className="flex items-center justify-between mb-5">
-            <h2 className="text-lg font-bold text-black">Signature Tools</h2>
-            <Link href="/materials" className="text-sm text-black/50 hover:text-accent transition-colors">
-              See all materials &rarr;
-            </Link>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {signatureToolCtas.map((tool) => (
-              <TrackedLink
-                key={tool.href}
-                href={tool.href}
-                eventName="click_home_cta"
-                eventParams={{ cta: tool.title.toLowerCase().replace(/\s+/g, "_") }}
-                className="group bg-background rounded-xl p-5 hover:ring-2 hover:ring-accent/40 transition-all hover:-translate-y-1"
-              >
-                <h3 className="font-bold text-white group-hover:text-accent transition-colors">{tool.title}</h3>
-                <p className="text-xs text-white/70 mt-2 leading-relaxed">{tool.description}</p>
-                <span className="text-xs font-medium text-accent mt-3 inline-block">Open tool &rarr;</span>
-              </TrackedLink>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* LATEST NEWS — from /news */}
+      {/* LATEST NEWS */}
       <section className="bg-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8 pb-10">
-          <div className="flex items-center justify-between mb-6">
+        <div className="mx-auto max-w-7xl px-4 pb-10 pt-8 sm:px-6 lg:px-8">
+          <div className="mb-2 flex items-center justify-between">
             <h2 className="text-xl font-bold text-black">Latest News</h2>
-            <Link href="/news" className="text-sm text-black/50 hover:text-accent transition-colors">
+            <Link
+              href="/news"
+              className="text-sm text-black/50 transition-colors hover:text-accent"
+            >
               All news &rarr;
             </Link>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <p className="mb-6 max-w-3xl text-sm text-black/60">
+            Auto-updated daily from TechCrunch, Crunchbase, VentureBeat, MIT Tech Review.
+            Funding rounds, AI earnings, tool launches, enterprise deals.
+          </p>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
             {newsData.slice(0, 6).map((item) => (
               <Link
                 key={item.slug}
                 href={`/news?open=${item.slug}`}
-                className="group bg-background rounded-xl overflow-hidden hover:ring-2 hover:ring-accent/40 transition-all hover:-translate-y-1"
+                className="group overflow-hidden rounded-xl bg-background transition-all hover:-translate-y-1 hover:ring-2 hover:ring-accent/40"
               >
                 <div className="relative h-36 overflow-hidden bg-gray-800">
-                  {item.image && <img src={item.image} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />}
-                  <span className={`absolute top-3 left-3 text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider ${catColors[item.category] ?? "bg-amber-500 text-black"}`}>
+                  {item.image && (
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                  )}
+                  <span
+                    className={`absolute left-3 top-3 rounded px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider ${catColors[item.category] ?? "bg-amber-500 text-black"}`}
+                  >
                     {item.category}
                   </span>
                 </div>
                 <div className="px-4 py-3">
-                  <h3 className="font-semibold text-white text-sm leading-snug mb-1 group-hover:text-accent transition-colors">
+                  <h3 className="mb-1 text-sm font-semibold leading-snug text-white transition-colors group-hover:text-accent">
                     {item.title}
                   </h3>
-                  <p className="text-xs text-white/70 leading-relaxed mb-1.5 line-clamp-2">
+                  <p className="mb-1.5 line-clamp-2 text-xs leading-relaxed text-white/70">
                     {item.excerpt}
                   </p>
                   <div className="flex items-center justify-between">
-                    <span className="text-[11px] font-medium text-accent">Read more &rarr;</span>
+                    <span className="text-[11px] font-medium text-accent">
+                      Read more &rarr;
+                    </span>
                     <span className="text-[10px] text-white/50">{item.date}</span>
                   </div>
                 </div>
               </Link>
             ))}
           </div>
-          <div className="mt-6 text-center">
-            <Link href="/news" className="inline-flex items-center justify-center px-8 py-3 text-base font-bold bg-accent text-background rounded-xl hover:bg-accent-hover transition-colors shadow-lg shadow-amber-500/25">
-              View All News &rarr;
-            </Link>
+        </div>
+      </section>
+
+      {/* QUICK FACTS */}
+      <section className="border-b border-black/5 bg-white">
+        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+          <h2 className="mb-2 text-lg font-bold text-black">
+            What you&rsquo;ll find on AI Business
+          </h2>
+          <p className="mb-5 max-w-3xl text-sm leading-relaxed text-black/70">
+            AI Business is an outcome-first guide to making money with artificial intelligence.
+            Below is what we cover, with concrete numbers so you can decide where to start.
+          </p>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            <FactCard label="Income methods" value="50+" sub="Verified $500-$300K/month" />
+            <FactCard label="AI tools reviewed" value="356" sub="With ROI data and pricing" />
+            <FactCard label="Case studies" value="146" sub="Real numbers, named companies" />
+            <FactCard label="LLM models profiled" value="36" sub="GPT-4o, Claude, Gemini, more" />
           </div>
         </div>
       </section>
 
-      {/* SOLO ARTICLES */}
-      <section className="bg-white border-t border-black/5">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-bold text-black">Solo: Make Money with AI</h2>
-            <Link href="/solo" className="text-sm text-black/50 hover:text-accent transition-colors">
-              All solo guides &rarr;
+      {/* SIGNATURE TOOLS */}
+      <section className="border-b border-black/5 bg-white">
+        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+          <div className="mb-5 flex items-center justify-between">
+            <h2 className="text-lg font-bold text-black">Signature Tools</h2>
+            <Link
+              href="/materials"
+              className="text-sm text-black/50 transition-colors hover:text-accent"
+            >
+              See all materials &rarr;
             </Link>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {soloArticles.map((a) => (
-              <Link key={a.slug} href={`/${a.section}/${a.slug}`}
-                className="group bg-background rounded-xl p-5 hover:ring-2 hover:ring-accent/40 transition-all hover:-translate-y-1">
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider bg-amber-500 text-black">Solo</span>
-                <h3 className="font-bold text-white text-sm mt-3 mb-2 group-hover:text-accent transition-colors leading-snug">{a.title}</h3>
-                <p className="text-xs text-white/70 line-clamp-2">{a.description}</p>
-                <span className="text-xs font-medium text-accent mt-3 inline-block">Read guide &rarr;</span>
-              </Link>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+            {signatureToolCtas.map((tool) => (
+              <TrackedLink
+                key={tool.href}
+                href={tool.href}
+                eventName="click_home_cta"
+                eventParams={{ cta: tool.title.toLowerCase().replace(/\s+/g, "_") }}
+                className="group rounded-xl bg-background p-5 transition-all hover:-translate-y-1 hover:ring-2 hover:ring-accent/40"
+              >
+                <h3 className="font-bold text-white transition-colors group-hover:text-accent">
+                  {tool.title}
+                </h3>
+                <p className="mt-2 text-xs leading-relaxed text-white/70">{tool.description}</p>
+                <span className="mt-3 inline-block text-xs font-medium text-accent">
+                  Open tool &rarr;
+                </span>
+              </TrackedLink>
             ))}
           </div>
         </div>
       </section>
 
-      {/* B2B ARTICLES */}
-      <section className="bg-white border-t border-black/5">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-bold text-black">B2B: AI for Business</h2>
-            <Link href="/b2b" className="text-sm text-black/50 hover:text-accent transition-colors">
-              All B2B articles &rarr;
-            </Link>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {b2bArticles.map((a) => (
-              <Link key={a.slug} href={`/${a.section}/${a.slug}`}
-                className="group bg-background rounded-xl p-5 hover:ring-2 hover:ring-blue-500/40 transition-all hover:-translate-y-1">
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider bg-blue-500 text-white">B2B</span>
-                <h3 className="font-bold text-white text-sm mt-3 mb-2 group-hover:text-accent transition-colors leading-snug">{a.title}</h3>
-                <p className="text-xs text-white/70 line-clamp-2">{a.description}</p>
-                <span className="text-xs font-medium text-accent mt-3 inline-block">Read case study &rarr;</span>
+      {/* SECTION FEEDS */}
+      {articlesBySection.map((block) => (
+        <section key={block.section} className="border-t border-black/5 bg-white">
+          <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+            <div className="mb-2 flex items-center justify-between">
+              <h2 className="text-xl font-bold text-black">{block.title}</h2>
+              <Link
+                href={block.href}
+                className="text-sm text-black/50 transition-colors hover:text-accent"
+              >
+                All {block.badge.toLowerCase()} articles &rarr;
               </Link>
+            </div>
+            <p className="mb-6 max-w-3xl text-sm text-black/60">
+              {block.count} published articles. {block.description}
+            </p>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+              {block.articles.map((article) => (
+                <Link
+                  key={article.slug}
+                  href={`/${article.section}/${article.slug}`}
+                  className={`group overflow-hidden rounded-xl bg-background transition-all hover:-translate-y-1 hover:ring-2 ${block.hoverRingClass}`}
+                >
+                  <div className="relative h-36 overflow-hidden bg-card-bg">
+                    {article.image ? (
+                      <img
+                        src={article.image}
+                        alt={article.title}
+                        className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                    ) : (
+                      <div className="h-full w-full bg-gradient-to-br from-black/40 to-black/70" />
+                    )}
+                    <span
+                      className={`absolute left-3 top-3 rounded px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider ${catColors[article.category] ?? "bg-amber-500 text-black"}`}
+                    >
+                      {block.badge}
+                    </span>
+                  </div>
+                  <div className="p-5">
+                    <h3 className="mb-2 text-sm font-bold leading-snug text-white transition-colors group-hover:text-accent">
+                      {article.title}
+                    </h3>
+                    <p className="line-clamp-2 text-xs text-white/70">{article.description}</p>
+                    <span className="mt-3 inline-block text-xs font-medium text-accent">
+                      {block.cta} &rarr;
+                    </span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      ))}
+
+      {/* COMMON QUESTIONS */}
+      <section className="border-t border-black/5 bg-white">
+        <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+          <h2 className="mb-2 text-xl font-bold text-black">Common questions</h2>
+          <p className="mb-6 max-w-3xl text-sm text-black/60">
+            Direct answers to the questions readers ask most. Each answer links to a deeper
+            guide.
+          </p>
+          <div className="grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-2">
+            {HOME_FAQ.map((item) => (
+              <div key={item.q}>
+                <h3 className="mb-2 text-base font-bold text-black">{item.q}</h3>
+                <p className="text-sm leading-relaxed text-black/70">{item.a}</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* TOOLS ARTICLES */}
-      <section className="bg-white border-t border-black/5">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-bold text-black">Tools & Reviews</h2>
-            <Link href="/tools/directory" className="text-sm text-black/50 hover:text-accent transition-colors">
-              All tools &rarr;
-            </Link>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {toolsArticles.map((a) => (
-              <Link key={a.slug} href={`/${a.section}/${a.slug}`}
-                className="group bg-background rounded-xl p-5 hover:ring-2 hover:ring-emerald-500/40 transition-all hover:-translate-y-1">
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider bg-emerald-500 text-white">Tools</span>
-                <h3 className="font-bold text-white text-sm mt-3 mb-2 group-hover:text-accent transition-colors leading-snug">{a.title}</h3>
-                <p className="text-xs text-white/70 line-clamp-2">{a.description}</p>
-                <span className="text-xs font-medium text-accent mt-3 inline-block">Read review &rarr;</span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+      <HomeWebsiteSchema />
+      <HomeNewsItemListSchema items={newsData} />
+      <HomeFaqSchema items={HOME_FAQ} />
     </>
   );
 }

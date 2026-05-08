@@ -2,6 +2,7 @@
 title: "How to Write and Sell AI-Assisted E-Books ($200-$5,000/Month)"
 description: "Create and sell ebooks using AI. Topic research, writing workflow, publishing on Amazon KDP and Gumroad, marketing strategies."
 date: "2026-03-30"
+author: "Sergei P."
 category: "Solo"
 image: "/images/articles/handshake-deal-1.jpg"
 keywords: ["AI ebook business", "sell ebooks with AI", "Amazon KDP AI", "write ebook with ChatGPT"]
@@ -89,6 +90,6 @@ The secret is not one bestselling book — it is a catalog.
 
 Each new title adds to your passive income stream. Old titles continue selling while you write new ones. This is true compound passive income.
 
-## The Bottom Line
+## Where This Leaves You
 
-AI-assisted ebook publishing has the best effort-to-passive-income ratio of any digital product. 20-30 hours of work per book that sells for years. The AI handles the grunt work of drafting. You bring the expertise, editing, and market knowledge. With a catalog of 10+ titles, $5,000/month in mostly passive income is realistic within 18-24 months.
+Hard to beat the effort-to-passive-income ratio here. 20-30 hours of work per book, and that book sells for years. AI handles the drafting grunt work. You bring the expertise, the editing, and the market instinct. Build a catalog of 10+ titles and $5,000/month in mostly passive income is realistic within 18-24 months.

@@ -7,8 +7,9 @@ export interface ToolComparison {
 }
 
 /**
- * Generate all meaningful comparison pairs within same category.
- * For N tools in a category, generates N*(N-1)/2 pairs.
+ * Generate curated comparison pairs — top 5 tools per category,
+ * creating max 10 pairs per category (~280 total) to avoid thin template pages.
+ * Google penalizes mass-generated template pages with minimal differentiation.
  */
 export function getAllToolComparisons(): ToolComparison[] {
   const byCategory = new Map<string, AITool[]>();
@@ -20,11 +21,12 @@ export function getAllToolComparisons(): ToolComparison[] {
 
   const pairs: ToolComparison[] = [];
   for (const catTools of byCategory.values()) {
-    for (let i = 0; i < catTools.length; i++) {
-      for (let j = i + 1; j < catTools.length; j++) {
-        const a = catTools[i];
-        const b = catTools[j];
-        // Alphabetical order for consistent slugs
+    // Limit to top 5 tools per category to keep comparisons meaningful
+    const top = catTools.slice(0, 5);
+    for (let i = 0; i < top.length; i++) {
+      for (let j = i + 1; j < top.length; j++) {
+        const a = top[i];
+        const b = top[j];
         const [first, second] = a.id < b.id ? [a, b] : [b, a];
         pairs.push({
           slug: `${first.id}-vs-${second.id}`,
@@ -39,6 +41,74 @@ export function getAllToolComparisons(): ToolComparison[] {
 
 export function getComparisonBySlug(slug: string): ToolComparison | null {
   return getAllToolComparisons().find((c) => c.slug === slug) ?? null;
+}
+
+/**
+ * Generate unique analysis content for a comparison to avoid thin template pages.
+ * Each comparison gets unique prose based on tool attributes.
+ */
+export function getComparisonAnalysis(toolA: AITool, toolB: AITool): {
+  pricingVerdict: string;
+  audienceVerdict: string;
+  featureVerdict: string;
+  moneyAngle: string;
+  useCases: { scenario: string; winner: string; reason: string }[];
+} {
+  const aPriceNum = extractPrice(toolA.pricing);
+  const bPriceNum = extractPrice(toolB.pricing);
+  const aFree = toolA.pricing.toLowerCase().includes("free");
+  const bFree = toolB.pricing.toLowerCase().includes("free");
+
+  let pricingVerdict: string;
+  if (aPriceNum > 0 && bPriceNum > 0) {
+    const cheaper = aPriceNum <= bPriceNum ? toolA : toolB;
+    const pricier = aPriceNum <= bPriceNum ? toolB : toolA;
+    const diff = Math.abs(aPriceNum - bPriceNum);
+    if (diff < 5) {
+      pricingVerdict = `${toolA.name} and ${toolB.name} are priced similarly — both in the $${Math.min(aPriceNum, bPriceNum)}-${Math.max(aPriceNum, bPriceNum)}/month range. The decision comes down to which feature set matches your workflow, not cost.`;
+    } else {
+      pricingVerdict = `${cheaper.name} starts at a lower price point ($${Math.min(aPriceNum, bPriceNum)}/mo vs $${Math.max(aPriceNum, bPriceNum)}/mo for ${pricier.name}). That $${diff}/month difference adds up to $${diff * 12}/year — meaningful for solopreneurs but negligible for teams where productivity gains matter more than subscription costs.`;
+    }
+  } else if (aFree && !bFree) {
+    pricingVerdict = `${toolA.name} offers a free tier, making it the clear winner for budget-conscious users testing AI tools. ${toolB.name} requires payment upfront, but the paid-only model often means more focused development and better support.`;
+  } else if (!aFree && bFree) {
+    pricingVerdict = `${toolB.name} offers a free tier, making it the clear winner for budget-conscious users testing AI tools. ${toolA.name} requires payment upfront, but the paid-only model often means more focused development and better support.`;
+  } else {
+    pricingVerdict = `Both ${toolA.name} and ${toolB.name} offer free tiers, so you can test both before committing. Compare the limits of each free plan carefully — free tiers often restrict the features that matter most for professional use.`;
+  }
+
+  const audienceVerdict = toolA.targetUser === toolB.targetUser
+    ? `Both tools target ${toolA.targetUser.toLowerCase()}. The differentiation is in execution: ${toolA.name} leads with ${toolA.keyFeature.toLowerCase()}, while ${toolB.name} focuses on ${toolB.keyFeature.toLowerCase()}.`
+    : `${toolA.name} is built for ${toolA.targetUser.toLowerCase()}, while ${toolB.name} targets ${toolB.targetUser.toLowerCase()}. If you identify more with one audience, that tool will likely feel more intuitive out of the box.`;
+
+  const featureVerdict = `${toolA.name}'s standout feature is ${toolA.keyFeature.toLowerCase()}. ${toolB.name} differentiates with ${toolB.keyFeature.toLowerCase()}. For ${toolA.category.toLowerCase()} workflows, the question is which capability removes your biggest bottleneck.`;
+
+  const moneyAngle = `From an ROI perspective, a ${toolA.category.toLowerCase()} tool that saves you 5 hours/week is worth $${Math.round(50 * 5 * 4)}/month at a $50/hr effective rate. Both ${toolA.name} and ${toolB.name} aim to deliver that time savings — the right choice depends on where your specific workflow loses the most time.`;
+
+  const useCases = [
+    {
+      scenario: `You're a ${toolA.targetUser.toLowerCase().split(",")[0].split("&")[0].trim()} on a tight budget`,
+      winner: aPriceNum <= bPriceNum ? toolA.name : toolB.name,
+      reason: `Lower starting cost means faster payback on your investment`,
+    },
+    {
+      scenario: `You need ${toolA.keyFeature.toLowerCase().slice(0, 60)}`,
+      winner: toolA.name,
+      reason: `${toolA.name} was specifically designed around this capability`,
+    },
+    {
+      scenario: `You need ${toolB.keyFeature.toLowerCase().slice(0, 60)}`,
+      winner: toolB.name,
+      reason: `${toolB.name} was specifically designed around this capability`,
+    },
+  ];
+
+  return { pricingVerdict, audienceVerdict, featureVerdict, moneyAngle, useCases };
+}
+
+function extractPrice(pricing: string): number {
+  const match = pricing.match(/\$(\d+(?:\.\d+)?)/);
+  return match ? parseFloat(match[1]) : 0;
 }
 
 /**

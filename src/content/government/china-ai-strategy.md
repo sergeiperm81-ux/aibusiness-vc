@@ -2,6 +2,7 @@
 title: "China's $150B AI Strategy: How Beijing Plans to Dominate AI by 2030"
 description: "China's national AI plan: $150B government investment, 400+ AI companies, DeepSeek breakthrough. The money behind China's AI ambitions."
 date: "2026-04-05"
+author: "Sergei P."
 category: "Government"
 image: "/images/articles/globe-tech-1.jpg"
 keywords: ["China AI strategy", "China AI investment", "China AI spending", "China vs US AI"]
@@ -63,6 +64,5 @@ The US restricted exports of advanced AI chips (NVIDIA A100, H100) to China. Imp
 
 **Investment opportunities.** Chinese AI companies trade on Hong Kong and mainland exchanges. Baidu, Alibaba, and SenseTime offer public market exposure to Chinese AI growth.
 
-## The Bottom Line
-
+## Dollars and Sense
 China's $150B AI strategy is not aspirational — it is being executed. DeepSeek proved that Chinese AI can match US frontier capabilities. For global AI businesses, China is simultaneously a competitor (challenging US models), an ally (providing cheap open-source alternatives), and a closed market (inaccessible for foreign companies). Understanding China's AI trajectory is essential for anyone operating in the global AI economy.

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getArticlesBySection } from "@/lib/articles";
 import { SectionArticleGrid } from "@/components/SectionPage";
+import SectionHubLinks from "@/components/SectionHubLinks";
 
 export const metadata: Metadata = {
   title: "VC — Venture Capital & AI Investment (2026)",
@@ -27,6 +28,8 @@ export default function VCPage() {
           </p>
         </div>
       </section>
+
+      <SectionHubLinks current="vc" />
 
       <SectionArticleGrid articles={articles} section="vc" totalLabel="articles" />
     </>

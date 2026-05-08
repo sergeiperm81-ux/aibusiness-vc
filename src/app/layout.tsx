@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Header } from "@/components/Header";
-
 import { Footer } from "@/components/Footer";
 import "./globals.css";
+
+const GA_ID = "G-1REBWZYEET";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,7 +23,7 @@ export const metadata: Metadata = {
     google: "yRYv2YyqS-AMtu6oaPdAaEUZMzcubgWv-XVJE9aLnuM",
   },
   title: {
-    default: "AI Business — How to Make Money with AI in 2026",
+    default: "AI Business - How to Make Money with AI in 2026",
     template: "%s | AI Business",
   },
   description:
@@ -36,20 +38,30 @@ export const metadata: Metadata = {
     "AI for business",
   ],
   authors: [{ name: "AI Business", url: "https://aibusiness.vc" }],
+  alternates: {
+    canonical: "./",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://aibusiness.vc",
     siteName: "AI Business",
-    title: "AI Business — How to Make Money with AI in 2026",
+    title: "AI Business - How to Make Money with AI in 2026",
     description:
       "News, tools, and strategies for making money with AI. For solo earners, startups, and enterprises.",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "AI Business - How to Make Money with AI",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI Business — How to Make Money with AI",
-    description:
-      "News, tools, and strategies for making money with AI.",
+    title: "AI Business - How to Make Money with AI",
+    description: "News, tools, and strategies for making money with AI.",
   },
   robots: {
     index: true,
@@ -75,6 +87,13 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-white text-foreground">
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_ID}');`}
+        </Script>
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

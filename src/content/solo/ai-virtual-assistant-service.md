@@ -2,8 +2,9 @@
 title: "AI Virtual Assistant Service: $2K-$6K/Month Managing Executives' Lives"
 description: "Offer AI-powered virtual assistant services to busy executives. Email management, scheduling, research, travel — all AI-accelerated."
 date: "2026-04-01"
+author: "Sergei P."
 category: "Solo"
-image: "/images/articles/music-studio-1.jpg"
+image: "/images/articles/woman-phone-1.jpg"
 keywords: ["AI virtual assistant business", "AI executive assistant", "virtual assistant income", "AI-powered VA service"]
 ---
 
@@ -84,6 +85,6 @@ $74/month in tools. At $5,000/month revenue, tools cost 1.5%.
 
 **Startup accelerators:** Founders in YC, Techstars, and other accelerators are overwhelmed and need help immediately. Offer a discounted first month.
 
-## The Bottom Line
+## Stripped Down
 
-AI virtual assistant services combine the best of both worlds: AI efficiency for routine tasks and human judgment for complex ones. At $500-1,500/month per client, 5-10 clients generates $3,000-9,000/month. The AI does the heavy lifting; you provide the relationship and discretion. In a world where every executive has too many emails and too few hours, this service sells itself.
+AI handles the routine. You bring judgment and discretion. $500-1,500/month per client, 5-10 clients, $3,000-9,000/month. Every executive on the planet has too many emails and not enough hours. Once you demonstrate results, this service practically sells itself.

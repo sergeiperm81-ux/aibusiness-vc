@@ -2,6 +2,7 @@
 title: "HeadshotPro: How One Developer Earns $300K/Month with AI Headshots"
 description: "Danny Postma built HeadshotPro to $300K/month solo from Bali. AI headshot business model, pricing, and what solopreneurs can learn."
 date: "2026-03-31"
+author: "Sergei P."
 category: "Solo"
 image: "/images/articles/office-building-1.jpg"
 keywords: ["HeadshotPro", "AI headshot business", "Danny Postma", "solo founder revenue"]
@@ -63,6 +64,6 @@ Other opportunities following the same pattern:
 
 Each of these can be built by a solo founder with existing AI tools (Stable Diffusion, Flux, ElevenLabs) and standard web infrastructure.
 
-## The Bottom Line
+## What the $300K Proves
 
-$300K/month as a solo founder with no employees and no investors. HeadshotPro is proof that the AI gold rush rewards people who find specific expensive problems and solve them cheaply with AI. The barriers to entry have never been lower — the APIs exist, the infrastructure is commodity, and the demand is real.
+$300K/month. Solo. No employees, no investors. HeadshotPro proves a simple thesis: find something expensive that AI can do cheaply, then charge 10% of the original price to 100x more customers. The APIs exist. The infrastructure is commodity. The demand is very real. The only thing missing is someone willing to build the product.

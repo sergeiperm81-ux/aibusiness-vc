@@ -2,6 +2,7 @@
 title: "How to Build and Launch an AI Micro-SaaS Over a Weekend ($500-$20K/Month)"
 description: "Real examples of micro-SaaS products built in days with AI. The weekend-build playbook for solo developers."
 date: "2026-04-01"
+author: "Sergei P."
 category: "Solo"
 image: "/images/articles/meeting-2.jpg"
 keywords: ["AI micro SaaS", "build SaaS weekend", "vibe coding SaaS", "solo developer SaaS income"]
@@ -88,6 +89,6 @@ Your SaaS costs $20-35/month to run until you have paying customers. First custo
 9. **AI competitor price tracker** — Monitor competitor websites for price changes. $49/mo.
 10. **AI contract summarizer** — Upload contract → plain English summary of key terms. $29/mo.
 
-## The Bottom Line
+## What This Comes Down To
 
-A micro-SaaS built over a weekend with AI tools can generate $3,000-20,000/month within 12-18 months. The startup cost is under $35/month. The build time is 17 hours. The risk is near-zero — if it does not work, you lost a weekend. If it does work, you have a passive income stream that grows while you sleep. This is the most capital-efficient business model in history.
+17 hours of build time. Under $35/month to run. $3,000-20,000/month potential within 12-18 months. If it does not work, you lost a weekend. If it does, you have recurring revenue that grows while you sleep. Try finding a more capital-efficient business model.

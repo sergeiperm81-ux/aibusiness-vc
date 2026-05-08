@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getArticlesBySection } from "@/lib/articles";
 import SectionArticleExplorer from "@/components/SectionArticleExplorer";
 import { TrackedLink } from "@/components/analytics/TrackedLink";
+import SectionHubLinks from "@/components/SectionHubLinks";
 
 export const metadata: Metadata = {
   title: "Solo — Make Money with AI as an Individual (2026)",
@@ -59,6 +60,8 @@ export default function SoloPage() {
           </div>
         </div>
       </section>
+
+      <SectionHubLinks current="solo" />
 
       <SectionArticleExplorer articles={articles} section="solo" totalLabel="articles" />
     </>

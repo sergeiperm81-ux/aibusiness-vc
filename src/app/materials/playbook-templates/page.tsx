@@ -3,9 +3,9 @@ import PlaybookTemplates from "@/components/materials/PlaybookTemplates";
 import { TrackEventOnView } from "@/components/analytics/TrackEventOnView";
 
 export const metadata: Metadata = {
-  title: "AI Playbook Templates - Offers, Sales, SOPs (2026)",
+  title: "Business Prompt Library (2026) - Research, Marketing, Sales, Operations",
   description:
-    "Ready-to-use AI business playbook templates for offers, sales calls, delivery SOPs, and pricing models.",
+    "Execution-grade business prompts with strong structure, constraints, and output formats for real team workflows.",
 };
 
 export default function PlaybookTemplatesPage() {
@@ -16,11 +16,11 @@ export default function PlaybookTemplatesPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
           <p className="text-pink-400 font-mono text-xs font-medium mb-2 tracking-wider uppercase">Materials</p>
           <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">
-            AI Playbook <span className="text-accent">Templates</span>
+            Business <span className="text-accent">Prompt Library</span>
           </h1>
           <p className="text-sm text-muted max-w-3xl">
-            Reuse the same execution frameworks that work: offer templates, discovery scripts, delivery SOPs, and
-            value-based pricing structures.
+            Practical prompts built for execution: clear inputs, strict constraints, and predictable outputs that
+            founders and teams can use immediately.
           </p>
         </div>
       </section>
@@ -31,19 +31,19 @@ export default function PlaybookTemplatesPage() {
             <div className="rounded-xl border border-gray-200 p-4">
               <p className="text-xs uppercase tracking-wider text-gray-500 mb-1">What This Is</p>
               <p className="text-sm text-gray-800">
-                Ready-to-use business templates for selling and delivering AI services, not generic prompts.
+                A copy-paste prompt library with variables to replace using your own data.
               </p>
             </div>
             <div className="rounded-xl border border-gray-200 p-4">
               <p className="text-xs uppercase tracking-wider text-gray-500 mb-1">Who It Is For</p>
               <p className="text-sm text-gray-800">
-                Agencies, consultants, founders, and operators working with client AI projects.
+                Founders, operators, marketers, analysts, and teams who want immediate practical outputs.
               </p>
             </div>
             <div className="rounded-xl border border-gray-200 p-4">
               <p className="text-xs uppercase tracking-wider text-gray-500 mb-1">When To Use</p>
               <p className="text-sm text-gray-800">
-                Before sales calls, offer creation, onboarding, and delivery so you reuse proven structure.
+                Before strategy sessions, vendor decisions, campaigns, sales calls, and operational planning.
               </p>
             </div>
           </div>

@@ -2,6 +2,7 @@
 title: "AI Blog Writer: $9K-$12K/Month Writing 60-80 Posts with AI Assistance"
 description: "Real income report: writing AI-assisted blog posts for SaaS companies. 60-80 posts/month, 25 hours/week, $9K-12K/month."
 date: "2026-03-31"
+author: "Sergei P."
 category: "Solo"
 image: "/images/articles/entrepreneur-1.jpg"
 keywords: ["AI content writer income", "AI blog writing business", "freelance AI writer earnings", "make money writing with AI"]
@@ -9,22 +10,21 @@ keywords: ["AI content writer income", "AI blog writing business", "freelance AI
 
 # AI Blog Writer: $9K-$12K/Month Writing 60-80 Posts with AI Assistance
 
-Michael writes 60-80 blog posts per month for SaaS companies using AI tools. He charges $150 per post and earns $9,000-$12,000 per month working 25 hours per week. Before AI, he could write 15-20 posts per month at the same quality level. AI quadrupled his output without quadrupling his hours.
+Michael cranks out 60-80 blog posts per month for SaaS companies. He uses AI tools, charges $150 per post, and takes home $9,000-$12,000/month working about 25 hours a week. Before AI, he topped out at 15-20 posts monthly at the same quality. AI 4x'd his output without 4x'ing his hours.
 
 ## The Workflow
 
-**Per article (30-40 minutes total):**
+**Each article takes 30-40 minutes:**
 
-1. **Client brief review (5 min):** Read the topic, target keyword, and audience notes
-2. **AI research (5 min):** Use Perplexity or Claude to research the topic, find statistics, identify key points
-3. **AI draft (3 min):** Prompt Claude with the brief, research, brand voice guidelines, and article structure. Generate a 1,500-word first draft
-4. **Human editing (15-20 min):** This is where value is added. Rewrite weak sections, add personal insights, verify all statistics, adjust tone for the brand, add internal links, optimize for SEO
-5. **Final polish (5 min):** Grammarly check, format headers, add meta description, submit
+1. **Brief review (5 min)** — read the topic, target keyword, audience notes
+2. **AI research (5 min)** — Perplexity or Claude to dig up stats and key points
+3. **AI draft (3 min)** — feed Claude the brief, research, brand voice guidelines, and structure. Out comes a 1,500-word first draft
+4. **Human editing (15-20 min)** — this is where the money is. Rewrite weak sections, inject personal insights, verify every statistic, match the brand's tone, add internal links, tweak for SEO
+5. **Final polish (5 min)** — Grammarly pass, format headers, write meta description, submit
 
-**Without AI:** Research (30 min) + Writing (90 min) + Editing (30 min) = 2.5 hours per article
-**With AI:** Research (5 min) + AI Draft (3 min) + Editing (20 min) + Polish (5 min) = 33 minutes per article
+Without AI that same article takes 2.5 hours: 30 min research + 90 min writing + 30 min editing.
 
-That is a 4.5x speed increase. Same quality — because the human editing step ensures everything meets professional standards.
+With AI: 33 minutes total. A 4.5x speed increase at the same quality, because the human editing step catches everything.
 
 ## The Economics
 
@@ -38,50 +38,50 @@ That is a 4.5x speed increase. Same quality — because the human editing step e
 | AI tool costs | $60/month (Claude + Perplexity + Grammarly) |
 | Net monthly income | $8,940-11,940 |
 
-Compare this to traditional freelance writing: $150/article × 20 articles/month = $3,000/month at 50+ hours/week. AI tripled the income while halving the hours.
+Compare that to traditional freelance writing: $150/article x 20 articles/month = $3,000/month at 50+ hours/week. AI tripled his income and cut his hours in half.
 
-## Client Acquisition
+## How He Gets Clients
 
-Michael's clients are B2B SaaS companies that need content marketing but cannot justify hiring a full-time content team.
+Michael works with B2B SaaS companies that need content marketing but cannot justify a full-time content hire.
 
-**How he finds clients:**
-- **LinkedIn** (primary): Posts about content marketing and AI writing 3x/week. Inbound leads come from content marketing managers who see his posts
-- **Referrals**: Happy clients refer him to other SaaS companies. This is now 50%+ of new business
-- **Cold outreach** (early days): Emailed 10 SaaS companies per day with a personalized pitch showing how he could improve their blog
+His channels:
+- **LinkedIn** (main source): Posts about content marketing and AI writing 3x/week. Content marketing managers see his posts and reach out
+- **Referrals**: Happy clients send him to other SaaS companies. Over 50% of new business now comes this way
+- **Cold outreach** (early on): He emailed 10 SaaS companies per day with a personalized pitch showing how he could improve their blog
 
-**Client retention:** Average client stays 8+ months. At $150/post × 8 posts/month × 8 months = $9,600 lifetime value per client. Michael needs only 8-10 active clients to hit $10K/month.
+Average client sticks around 8+ months. At $150/post x 8 posts/month x 8 months, each client is worth $9,600. He only needs 8-10 active clients to hit $10K/month.
 
-## Why $150/Post (Not Less)
+## Why $150/Post Works
 
-Cheap AI content writers charge $20-50/post and deliver raw AI output with minimal editing. The result reads like AI — generic, surface-level, no personality. Companies tried this and saw their content perform worse.
+The cheap AI writers charge $20-50/post and ship barely edited AI output. It reads exactly like what it is — generic, surface-level, no personality. Companies that tried going cheap saw their content tank.
 
-Michael charges $150 because his articles:
-- Include verified statistics from original sources
-- Match the client's specific brand voice
-- Contain original insights, not just reworded information
-- Are SEO-optimized with proper keyword usage
-- Read like a human expert wrote them
+Michael's articles are different:
+- Real statistics from original sources, verified
+- Writing that matches the client's specific brand voice
+- Original insights, not regurgitated information
+- Proper SEO optimization
+- They read like a subject matter expert wrote them
 
-The AI handles the grunt work (research compilation, initial structure, first draft). Michael handles the expertise (insight, voice, accuracy, SEO). Together, the output is better than either could produce alone.
+AI does the grunt work — research, structure, first draft. Michael adds the expertise — insight, voice, accuracy, SEO. The combo produces better content than either could alone.
 
-## Scaling Options
+## Where He Goes From Here
 
-Michael is considering two paths:
+Two paths he is weighing:
 
-**Path A: Raise prices.** Move to $250-350/post for premium clients. Same volume, 2x revenue. Target: $18,000-25,000/month.
+**Raise prices.** Charge $250-350/post for premium clients. Same volume, double the revenue. Target: $18,000-25,000/month.
 
-**Path B: Build a micro-agency.** Hire 2-3 editors at $30-40/hour. Each editor handles 40 posts/month. Total output: 200+ posts/month. Revenue: $30,000+/month.
+**Build a micro-agency.** Hire 2-3 editors at $30-40/hour, each handling 40 posts/month. Total output: 200+ posts/month. Revenue: $30,000+/month.
 
-Both paths leverage AI — Path A uses AI to justify premium pricing through faster turnaround and higher volume. Path B uses AI to make each editor 4x more productive.
+Both paths lean on AI. Path A uses it to justify premium pricing through faster turnaround. Path B uses it to make each editor 4x more productive.
 
-## What Aspiring AI Writers Should Know
+## What You Should Know Before Starting
 
-**The skill is not AI prompting — it is editing.** Anyone can generate a draft with Claude. The value is in making that draft excellent. If you cannot edit well, AI will not save you.
+**The skill is editing, not prompting.** Anybody can generate a draft with Claude. Making that draft genuinely good is the hard part. If you cannot edit well, AI will not save you.
 
-**Niche down.** Michael writes exclusively for B2B SaaS. He knows the terminology, the audience, and the content formats inside out. Generalist AI writers compete on price. Specialists compete on expertise.
+**Pick a niche.** Michael only writes for B2B SaaS. He knows the jargon, the audience, the formats. Generalist AI writers compete on price. Specialists compete on expertise — and they win.
 
-**Show results.** Michael tracks SEO rankings for every article he writes. When he can show a client "this article I wrote ranks #3 for [keyword] and drives 2,000 visits/month," the $150/post conversation is easy.
+**Track your results.** Michael monitors SEO rankings for every article he writes. When he can tell a client "this article ranks #3 for [keyword] and drives 2,000 visits/month," the $150/post price tag is a non-issue.
 
-## The Bottom Line
+## Adding It Up
 
-$9,000-12,000/month writing AI-assisted blog posts. 25 hours/week. $60/month in tools. The AI does the heavy lifting; the human provides the value. This is not a future opportunity — it is a documented present-day income stream. The freelance writers who embrace AI earn 3-4x more than those who resist it.
+$9,000-12,000/month from AI-assisted blog writing. 25 hours/week. $60/month in tools. AI handles the heavy lifting and the human provides the value. Freelance writers who embrace AI are earning 3-4x more than those who refuse to use it. That gap is only widening.

@@ -2,6 +2,7 @@
 title: "AI Social Media Management: Earn $1,200-$5,000/Month Per Client"
 description: "How to offer AI-powered social media management services. Tools, pricing, finding clients, and scaling to $8K+/month."
 date: "2026-03-30"
+author: "Sergei P."
 category: "Solo"
 image: "/images/articles/minimal-desk-1.jpg"
 keywords: ["AI social media management", "AI social media tools", "social media manager AI", "AI content creation social media"]
@@ -19,7 +20,7 @@ Small businesses typically pay $500-2,000/month for social media management. The
 
 ## Your AI-Powered Workflow
 
-Here is how a typical week looks managing one client with AI:
+How a typical week looks managing one client with AI:
 
 **Monday (30 min):** Use ChatGPT or Claude to generate 5-7 post ideas based on the client's industry, trending topics, and upcoming events. Review and refine.
 
@@ -77,4 +78,4 @@ Most freelancers start with the Standard package. At $1,200/month with 5 clients
 
 **Month 7+:** Hire a part-time VA ($500-800/mo) to handle scheduling. Take on more clients. Revenue: $8,000-12,000.
 
-The ceiling is not the work — it is the number of clients you can serve. With AI handling 70% of content creation, the bottleneck is client communication and quality review.
+The ceiling is not the work. It is the number of clients you can serve. AI handles 70% of content creation, so your real bottleneck becomes client communication and quality review.

@@ -2,6 +2,7 @@
 title: "AI Smart Cities: $3B+ Projects Where Governments Pay for AI Infrastructure"
 description: "Dubai, Singapore, Seoul — smart city AI projects worth billions. Traffic, energy, safety, and services powered by AI. Who builds and who pays."
 date: "2026-04-05"
+author: "Sergei P."
 category: "Government"
 image: "/images/articles/neon-city-1.jpg"
 keywords: ["AI smart cities", "smart city investment", "government AI projects", "smart city companies"]
@@ -91,6 +92,5 @@ Smart city contracts offer:
 
 **The entry point:** Start with smaller cities (100K-500K population) that have fewer vendors and less bureaucracy. Build your track record, then approach larger cities.
 
-## The Bottom Line
-
+## Last Call
 Smart city AI is a $40B+ market growing at 20% annually. Cities are spending billions on AI for traffic, safety, energy, and services. For AI companies, government contracts offer stable, long-term revenue at scale. The procurement cycle is slow (6-18 months), but the contracts are large ($500K-50M+) and recurring. If you can prove ROI in taxpayer dollars, cities will buy.

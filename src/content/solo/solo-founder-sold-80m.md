@@ -2,6 +2,7 @@
 title: "Solo Developer Sells AI Startup for $80M After 6 Months — The Base44 Story"
 description: "Maor Shlomo built Base44 alone, hit $189K/month profit, and sold to Wix for $80M in cash. What solo AI founders can learn."
 date: "2026-03-31"
+author: "Sergei P."
 category: "Solo"
 image: "/images/articles/pen-notebook-1.jpg"
 keywords: ["solo founder exit", "AI startup acquisition", "Base44 Wix", "solo developer millionaire"]
@@ -60,6 +61,6 @@ Base44's success validates a specific pattern: take an expensive, complex proces
 
 The pattern: find expensive human expertise, automate 70-80% with AI, charge 20% of the human price. Everybody wins.
 
-## The Bottom Line
+## What This Signals
 
-Maor Shlomo's $80M exit is not an outlier — it is a signal. The cost of building AI-powered products has collapsed to near zero. A single developer with the right idea, the right timing, and the willingness to ship fast can create tens of millions in value. The AI gold rush is real, and solo founders have never had better tools to mine it.
+Maor Shlomo's $80M exit is not an outlier. It is a signal. The cost of building AI-powered products has collapsed to near zero. A single developer with the right idea, the right timing, and the willingness to ship fast can create tens of millions in value. Solo founders have never had better tools. The window is open.

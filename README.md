@@ -34,3 +34,27 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Audit Package Fulfillment (Lemon Squeezy)
+
+Paid audit package delivery is handled by `POST /api/lemonsqueezy/webhook`.
+
+Required environment variables:
+
+```bash
+BREVO_API_KEY=...
+AUDIT_FROM_EMAIL=...
+LEMONSQUEEZY_WEBHOOK_SECRET=...
+```
+
+Optional:
+
+```bash
+AUDIT_OWNER_EMAIL=...   # BCC copy of each package delivery
+LEADS_FROM_EMAIL=...    # fallback sender if AUDIT_FROM_EMAIL is missing
+LEADS_TO_EMAIL=...      # fallback BCC if AUDIT_OWNER_EMAIL is missing
+```
+
+Static human-facing templates are stored in `public/audit-kit/`:
+- `Executive-Brief-Template.pdf`
+- `Manual-Implementation-Guide-Template.docx`

@@ -4,7 +4,7 @@ import { tools, toolCategories } from "@/data/tools";
 import { getAllArticles } from "@/lib/articles";
 import { getAllComparisons } from "@/data/comparisons";
 import { salaries } from "@/data/salaries";
-import { newsData } from "@/data/news";
+import { getLatestNews } from "@/lib/supabase";
 import { regulations } from "@/data/regulations";
 import { getAllToolComparisons, getAllProfessionSlugs } from "@/lib/tool-comparisons";
 
@@ -12,7 +12,7 @@ function slugify(str: string): string {
   return str.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 }
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://aibusiness.vc";
   const now = new Date().toISOString();
 
@@ -100,9 +100,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  const newsPages: MetadataRoute.Sitemap = newsData.map((n) => ({
+  const newsItems = await getLatestNews(200);
+  const newsPages: MetadataRoute.Sitemap = newsItems.map((n) => ({
     url: `${baseUrl}/news/${n.slug}`,
-    lastModified: n.date,
+    lastModified: n.published_at,
     changeFrequency: "daily" as const,
     priority: 0.9,
   }));

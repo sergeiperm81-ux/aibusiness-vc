@@ -2,6 +2,7 @@
 title: "AI Podcast Production: Earn $2K-$8K/Month as a Podcast Producer"
 description: "Offer AI-powered podcast production services. Editing, show notes, clips, transcription — all AI-accelerated. Income and workflow."
 date: "2026-03-31"
+author: "Sergei P."
 category: "Solo"
 image: "/images/articles/macbook-code-1.jpg"
 keywords: ["AI podcast production", "podcast production business", "AI podcast editing", "make money podcast production"]
@@ -83,6 +84,6 @@ $87/month in tools. At $4,000/month revenue, that is 98% gross margin.
 
 **Pitch:** Listen to 3-4 episodes of a potential client's show. Note specific production issues (bad audio, no show notes, no clips). Send a personalized message showing how you would improve their show with a before/after example.
 
-## The Bottom Line
+## One Last Thing
 
-4.4 million podcasts, most with poor production. AI tools cut production time 70%. One person can produce 20-30 episodes per month earning $4,000-10,000. The startup cost is $87/month in tools. The skill requirement is moderate — you need a good ear for editing and basic AI proficiency, not a recording studio or engineering degree.
+4.4 million podcasts out there, and most sound like it. AI cuts production time by 70%. One person producing 20-30 episodes/month can earn $4,000-10,000. Startup cost: $87/month in tools. You need a decent ear for editing and basic AI skills — not a studio or an engineering degree.

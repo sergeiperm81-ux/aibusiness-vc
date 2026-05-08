@@ -2,6 +2,7 @@
 title: "AI Job Displacement: Which Roles Pay More, Which Disappear"
 description: "Which jobs AI will replace, which it will transform, and which are safe. Data-driven analysis by industry with timeline."
 date: "2026-03-30"
+author: "Sergei P."
 category: "B2B"
 image: "/images/articles/calculator-1.jpg"
 keywords: ["will AI replace jobs", "AI job displacement", "AI automation jobs", "jobs AI cannot replace"]
@@ -9,11 +10,11 @@ keywords: ["will AI replace jobs", "AI job displacement", "AI automation jobs", 
 
 # Will AI Replace Your Job? The Honest Answer for Every Industry
 
-According to Goldman Sachs, AI could automate 300 million full-time jobs globally. The World Economic Forum estimates 85 million jobs will be displaced by 2030, but 97 million new roles will emerge. The truth is more nuanced than either panic or denial suggests.
+Goldman Sachs estimates AI could automate 300 million full-time jobs globally. The World Economic Forum says 85 million jobs will be displaced by 2030, but 97 million new roles will emerge. The real answer is messier than either panic or denial.
 
 ## Jobs at Highest Risk of AI Automation
 
-These roles involve repetitive, pattern-based tasks that AI already performs at human level or above:
+These roles involve repetitive, pattern-based tasks that AI already does at or above human level:
 
 | Role | Automation Risk | Timeline | Why |
 |------|----------------|----------|-----|
@@ -28,21 +29,21 @@ These roles involve repetitive, pattern-based tasks that AI already performs at 
 
 ## Jobs That AI Will Transform (But Not Replace)
 
-These roles will change dramatically, but the human element remains essential:
+These roles will change dramatically. The human element stays essential.
 
-**Software developers:** AI writes 40-60% of code (GitHub data), but architects, system designers, and product thinkers are more valuable than ever. Developers who use AI are 55% more productive, not 55% unemployed.
+**Software developers:** AI writes 40-60% of code (GitHub data), but architects, system designers, and product thinkers are more valuable than ever. Developers using AI are 55% more productive — not 55% unemployed.
 
-**Doctors:** AI reads radiology scans better than humans in controlled studies, but diagnosis involves patient history, physical examination, empathy, and judgment that AI cannot replicate. AI becomes the tool, the doctor remains the decision-maker.
+**Doctors:** AI reads radiology scans better than humans in controlled studies, but diagnosis involves patient history, physical examination, empathy, and judgment that AI cannot replicate. AI becomes the tool. The doctor stays the decision-maker.
 
-**Lawyers:** AI handles document review, research, and contract analysis. Senior lawyers focus on strategy, negotiation, and client relationships. The legal profession is not shrinking — it is restructuring.
+**Lawyers:** AI handles document review, research, and contract analysis. Senior lawyers focus on strategy, negotiation, and client relationships. The profession is restructuring, not shrinking.
 
-**Teachers:** AI tutors personalize learning for every student. Teachers become mentors, motivators, and guides rather than information transmitters. The role evolves, not disappears.
+**Teachers:** AI tutors personalize learning for every student. Teachers become mentors, motivators, and guides instead of information transmitters. The role evolves.
 
-**Marketing managers:** AI generates content and analyzes data. Marketers focus on strategy, brand positioning, and creative direction. 78% of marketers already use AI tools, according to HubSpot's 2025 survey.
+**Marketing managers:** AI generates content and crunches data. Marketers focus on strategy, brand positioning, and creative direction. 78% of marketers already use AI tools (HubSpot 2025).
 
 ## Jobs AI Cannot Replace (Foreseeable Future)
 
-Some roles remain resistant to automation due to their fundamental nature:
+Some roles stay resistant to automation because of what they fundamentally require:
 
 - **Skilled trades** (electricians, plumbers, HVAC) — physical work in unpredictable environments
 - **Healthcare workers** (nurses, therapists) — physical care and emotional support
@@ -54,18 +55,18 @@ Some roles remain resistant to automation due to their fundamental nature:
 
 ## The Real Pattern: AI Replaces Tasks, Not Jobs
 
-McKinsey's research reveals the key insight: very few occupations (less than 5%) consist entirely of automatable tasks. But 60% of occupations have at least 30% of their activities that AI can automate.
+McKinsey's research nails the key insight: very few occupations (less than 5%) consist entirely of automatable tasks. But 60% of occupations have at least 30% of their activities that AI can automate.
 
-This means most workers will not lose their jobs — but their jobs will change. The accountant who spent 60% of their time on data entry will instead spend 60% of their time on advisory services. The marketer who wrote first drafts will instead spend that time on strategy.
+What that means: most workers will not lose their jobs, but their jobs will change. The accountant who spent 60% of time on data entry will spend 60% on advisory services instead. The marketer who wrote first drafts will focus on strategy.
 
 ## How to Make Yourself AI-Proof
 
 1. **Learn to use AI tools.** Workers with AI skills earn 28% more than those without.
 2. **Move up the value chain.** If AI handles the routine work, focus on strategy, creativity, and relationships.
-3. **Develop domain expertise.** AI is generalist. Deep, specialized knowledge remains valuable.
+3. **Develop domain expertise.** AI is a generalist. Deep, specialized knowledge stays valuable.
 4. **Build human skills.** Empathy, leadership, negotiation, and communication cannot be automated.
-5. **Stay adaptable.** The specific tools will change. The ability to learn new tools will not.
+5. **Stay adaptable.** The specific tools will change. The ability to learn new ones will not.
 
-## The Bottom Line
+## Where This Is Headed
 
-AI will not create mass unemployment — but it will create mass disruption. The workers who thrive will be those who use AI to amplify their capabilities, not those who compete against it. The World Economic Forum estimates that by 2030, AI will create a net positive of 12 million jobs globally. The question is whether you position yourself on the creation side or the displacement side.
+AI will not cause mass unemployment — but it will cause mass disruption. The workers who thrive will be those using AI to amplify their capabilities, not those competing against it. The World Economic Forum estimates that by 2030, AI will create a net positive of 12 million jobs globally. The question is whether you position yourself on the creation side or the displacement side.

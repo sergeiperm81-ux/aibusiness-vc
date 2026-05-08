@@ -27,6 +27,14 @@ function slugifyCategory(str: string): string {
   return str.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 }
 
+function getToolDomain(url: string): string {
+  try {
+    return new URL(url).hostname.replace(/^www\./, "");
+  } catch {
+    return url;
+  }
+}
+
 type BillingPeriod = "hour" | "month" | "year" | "unknown";
 
 const usdFormatter = new Intl.NumberFormat("en-US", {
@@ -96,6 +104,8 @@ export default async function ToolPage({ params }: Props) {
     .filter((c) => c.toolA.id === tool.id || c.toolB.id === tool.id)
     .slice(0, 4);
 
+  const domain = getToolDomain(tool.url);
+  const findQuery = `"${tool.name}" official`;
   const roiPricingCopy = getRoiPricingCopy(tool.name, tool.pricing, tool.category, tool.targetUser);
   const hasFree = tool.pricing.toLowerCase().includes("free");
 
@@ -132,6 +142,17 @@ export default async function ToolPage({ params }: Props) {
               <p className="text-sm text-muted mt-0.5">
                 {tool.category} &middot; {tool.pricing}
               </p>
+              <div className="flex flex-wrap items-center gap-3 mt-2">
+                <a
+                  href={tool.url}
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                  className="inline-flex items-center px-3 py-1.5 rounded-lg bg-emerald-500 text-black text-xs font-bold hover:bg-emerald-400 transition-colors"
+                >
+                  Open Official Site ↗
+                </a>
+                <span className="text-[11px] text-emerald-300/90 font-mono">{domain}</span>
+              </div>
             </div>
           </div>
         </div>
@@ -140,7 +161,7 @@ export default async function ToolPage({ params }: Props) {
       <section className="bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
           {/* Key Info Cards */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-10">
             <div className="bg-gray-50 rounded-xl p-4">
               <p className="text-xs text-gray-400">Category</p>
               <p className="font-semibold text-gray-900 mt-1">{tool.category}</p>
@@ -159,6 +180,32 @@ export default async function ToolPage({ params }: Props) {
                 {tool.hasAffiliate === true ? "Yes" : tool.hasAffiliate === false ? "No" : "Unknown"}
               </p>
             </div>
+            <div className="bg-gray-50 rounded-xl p-4">
+              <p className="text-xs text-gray-400">Official Website</p>
+              <a
+                href={tool.url}
+                target="_blank"
+                rel="noopener noreferrer nofollow"
+                className="font-semibold text-emerald-700 mt-1 block hover:underline break-all"
+              >
+                {domain}
+              </a>
+            </div>
+          </div>
+
+          <div className="mb-8 rounded-xl border border-amber-200 bg-amber-50 p-4">
+            <p className="text-xs text-gray-600 mb-1">Can&apos;t recognize the brand name right away?</p>
+            <p className="text-sm text-gray-800">
+              Try searching: <span className="font-mono font-semibold">{findQuery}</span> or go directly to{" "}
+              <a
+                href={tool.url}
+                target="_blank"
+                rel="noopener noreferrer nofollow"
+                className="text-amber-700 font-semibold hover:underline"
+              >
+                {domain}
+              </a>.
+            </p>
           </div>
 
           {/* What is it */}

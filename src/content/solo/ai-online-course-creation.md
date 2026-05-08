@@ -2,6 +2,7 @@
 title: "How to Create and Sell an Online Course About AI ($2K-$50K/Month)"
 description: "Step-by-step guide to creating an AI course. Topics that sell, platforms, pricing, marketing, and realistic income timelines."
 date: "2026-03-30"
+author: "Sergei P."
 category: "Solo"
 image: "/images/articles/legal-scales-1.jpg"
 keywords: ["create AI course", "sell online course AI", "AI course business", "teach AI online"]
@@ -61,7 +62,7 @@ The launch is not the end — it is the beginning. Content marketing, email sequ
 
 ## Marketing Without a Following
 
-You do not need 100K followers to sell courses. Here is what works:
+You do not need 100K followers to sell courses. What works:
 
 **SEO content:** Write blog posts and YouTube videos answering the questions your course answers. These become evergreen traffic sources.
 
@@ -85,6 +86,6 @@ You do not need 100K followers to sell courses. Here is what works:
 
 **Year 2:** Established brand, referrals, speaking opportunities. Revenue: $10,000-50,000/month.
 
-## The Bottom Line
+## Straight Talk
 
-AI course creation has the best economics of any digital product: high demand, high margins, one-time creation effort with recurring revenue. The barrier is not technical knowledge — it is the willingness to package your practical AI experience into a structured curriculum. If you can teach someone to do something useful with AI, you can build a $5,000-50,000/month course business.
+High demand. High margins. Create once, sell forever. The only barrier is the willingness to package your practical AI experience into something structured. If you can teach someone to do something useful with AI, a $5,000-50,000/month course business is within reach.

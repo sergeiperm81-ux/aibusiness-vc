@@ -2,6 +2,7 @@
 title: "State-Level AI Initiatives: Which US States Spend the Most on AI and Where the Money Goes"
 description: "US states are spending $18B+ on AI initiatives. California, Texas, Virginia, and New York lead with data centers, workforce programs, and smart infrastructure."
 date: "2026-04-04"
+author: "Sergei P."
 category: "Government"
 image: "/images/articles/dashboard-analytics-1.jpg"
 keywords: ["state AI spending", "US state AI initiatives", "California AI investment", "Texas AI data centers", "state government AI budgets"]
@@ -118,7 +119,7 @@ The most strategic AI companies are actively optimizing their state-level positi
 
 **Targeting state contracts as practice.** State and local government contracts have lower barriers to entry than federal contracts. Winning a $500K state AI contract creates past performance that strengthens federal bids.
 
-## The Bottom Line: Follow the Incentives
+## The Bottom of the Funnel: Follow the Incentives
 
 State-level AI spending is a $18 billion market growing 40%+ annually. The states spending the most aggressively are also creating the most economic value — California's AI sector generates $180 billion in annual economic output, while Texas's AI economy has grown from $22 billion to $48 billion in just three years.
 

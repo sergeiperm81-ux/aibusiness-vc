@@ -2,6 +2,7 @@
 title: "AI YouTube Automation: Build a Channel That Earns $3K-$20K/Month"
 description: "Run profitable YouTube channels with AI doing 80% of the work. Niche selection, RPM data, tools, and real income examples."
 date: "2026-04-01"
+author: "Sergei P."
 category: "Solo"
 image: "/images/articles/network-cables-1.jpg"
 keywords: ["YouTube automation AI", "AI YouTube income", "faceless YouTube revenue", "YouTube passive income AI"]
@@ -86,6 +87,6 @@ Channels following these rules report no negative impact on monetization or reac
 
 At $5,000/month revenue on $87/month in tools, the margin is 98%.
 
-## The Bottom Line
+## The Math That Matters
 
-YouTube + AI = scalable passive income. One person can produce 15-20 videos per month across multiple channels, each video taking under an hour. The income compounds as your video library grows — old videos continue earning indefinitely. $3,000-20,000/month is achievable within 12-18 months. The startup cost is $87/month and your time.
+One person. 15-20 videos per month across multiple channels. Under an hour per video. Income compounds as your library grows — old videos keep earning. $3,000-20,000/month within 12-18 months. $87/month to get started. The only other investment is your time and consistency.

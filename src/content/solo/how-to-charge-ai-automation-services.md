@@ -2,6 +2,7 @@
 title: "AI Automation Pricing: How to Charge $2.5K-$15K Per Project"
 description: "Complete pricing guide for AI automation services. Project-based, retainer, and value-based models with rates for chatbots, workflows, and data automation."
 date: "2026-03-30"
+author: "Sergei P."
 category: "Solo"
 image: "/images/articles/office-modern-1.jpg"
 keywords: ["how much to charge for AI automation services", "AI automation pricing", "AI service pricing guide", "chatbot pricing for agencies", "AI consulting rates"]
@@ -150,4 +151,4 @@ Most clients pick Option B, which is exactly where you want them.
 
 **Evidence:** AI automation providers who increase prices by 20% after their first 10 clients report a 15% decrease in close rate but a 38% increase in per-client revenue and a 22% decrease in churn, according to a 2025 Baremetrics analysis. Higher prices attract more committed clients.
 
-The AI automation market rewards specialists who can demonstrate clear ROI. Price your services based on the value you deliver, not the hours you work, and you will build a business that scales profitably.
+The AI automation market rewards specialists who can demonstrate clear ROI. Price based on the value you deliver, not the hours you work. That single shift in thinking is the difference between a freelance gig and a scalable business.
