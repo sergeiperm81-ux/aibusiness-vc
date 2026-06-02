@@ -16,6 +16,7 @@ const sectionNames: Record<string, string> = {
   materials: "Materials",
   vc: "VC",
   government: "Government",
+  robots: "Robots",
   compare: "Compare",
   salaries: "Salaries",
   regulation: "Regulation",

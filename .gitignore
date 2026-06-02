@@ -41,3 +41,12 @@ yarn-error.log*
 next-env.d.ts
 
 .vercel
+
+# local junk / deploy snapshots / caches (do not commit)
+.codex-deploy-*/
+.codex-last-deploy-dir.txt
+.tmp-cache/
+.tmp-vercel-cli/
+.tmp-vercel-global-cli/
+.vercel-cache/
+cookies.txt

@@ -3,7 +3,7 @@ title: "Free AI Resources: 100+ Courses, Tools, and Datasets Worth $50,000+"
 description: "Curated list of free AI courses, tools, datasets, and communities. Everything you need to learn and build with AI without spending a dollar."
 date: "2026-04-04"
 author: "Sergei P."
-category: "Materials"
+category: "Learn"
 image: "/images/articles/opensource-code-1.jpg"
 keywords: ["free AI courses", "free AI tools", "free machine learning resources", "AI datasets free", "learn AI for free"]
 ---

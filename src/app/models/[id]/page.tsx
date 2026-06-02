@@ -19,6 +19,26 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${model.name} - Benchmarks, Pricing & Review (2026)`,
     description: `${model.name} by ${model.developer}: ELO ${model.elo}, MMLU ${model.mmlu}, ${model.contextWindow} context. Pricing: ${model.inputPrice} input. ${model.description}`,
+    keywords: [
+      `${model.name} benchmark`,
+      `${model.name} pricing`,
+      `${model.name} context window`,
+      `${model.developer} model`,
+      "LLM comparison",
+    ],
+    alternates: {
+      canonical: `/models/${id}`,
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+    openGraph: {
+      title: `${model.name} - Benchmarks and Pricing`,
+      description: `${model.name} by ${model.developer}: benchmark snapshot, pricing, and practical fit.`,
+      url: `https://aibusiness.vc/models/${id}`,
+      type: "article",
+    },
   };
 }
 

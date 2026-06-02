@@ -1,60 +1,64 @@
 # AI Business — aibusiness.vc
 
-> The definitive guide to making money with AI. Real methods, honest income numbers, 356 tool reviews, startup funding data, and case studies. Every article connects AI to money.
+> How people and companies make money with AI. 214 articles, 356 tool reviews, 51 LLM model profiles, daily automated news. Every article connects AI to earning, saving, or investing money.
 
-## About
+## Sections
 
-AI Business (aibusiness.vc) covers how individuals and businesses earn money using artificial intelligence. 146 articles across 8 sections, 356 AI tool reviews with pricing and ROI analysis, 36 LLM model profiles, 280 tool comparison pages, 18 profession-specific tool guides, and 28 tool category pages. Daily automated news from TechCrunch, Crunchbase, VentureBeat, and MIT Tech Review.
+### Solo — Make Money with AI as an Individual
+- [Make Money with Claude AI](https://aibusiness.vc/solo/make-money-with-claude-ai): 7 methods earning $2K-$15K/month
+- [AI Automation Agency Guide](https://aibusiness.vc/solo/ai-automation-agency-guide): $0 to $10K/month in 90 days
+- [Claude Code Developer Income](https://aibusiness.vc/solo/claude-code-developer-income): $10K-$50K/month building with AI
+- [Vibe Coding Income Guide](https://aibusiness.vc/solo/vibe-coding-income-guide): $4.7B market, 63% non-developers
+- [AI Side Hustle Ideas](https://aibusiness.vc/solo/ai-side-hustle-ideas-beginners): 17 ideas ranked by difficulty
 
-## Solo — Make Money with AI as an Individual (55 articles)
-- [AI Automation Agency Guide](https://aibusiness.vc/solo/ai-automation-agency-guide): Start an AI automation agency ($10K-$100K/month)
-- [HeadshotPro $300K/Month](https://aibusiness.vc/solo/headshot-pro-300k-month): Solo developer earning $300K/month with AI headshots
-- [AI Consultant $34K/Month](https://aibusiness.vc/solo/ai-consultant-34k-month): 7 retainer clients, $34K monthly income
-- [AI Freelancing Guide](https://aibusiness.vc/solo/ai-freelancing-complete-guide): From $0 to $10K/month
-- [AI Blog Writer $12K/Month](https://aibusiness.vc/solo/ai-blog-writer-12k-month): 60-80 posts/month, $9K-12K income
-- [Vibe Coding: Build Apps Over a Weekend](https://aibusiness.vc/solo/vibe-coding-build-sell-apps): $500-$20K/month building apps with AI
+### Startups — AI Company Revenue & Funding
+- [AI Startup Ideas 2026](https://aibusiness.vc/startups/ai-startup-ideas-2026): where the real opportunities hide
+- [Trillion-Dollar AI Race](https://aibusiness.vc/startups/ai-trillion-dollar-race-may-2026): Anthropic $900B, OpenAI $25B ARR
+- [AI Revenue Leaderboard](https://aibusiness.vc/startups/ai-revenue-leaderboard): who makes the most money in AI
+- [MCP Servers Business](https://aibusiness.vc/startups/mcp-servers-business-opportunity): the $1B opportunity nobody talks about
 
-## Startups — AI Company Revenue & Funding (22 articles)
-- [OpenAI $13B ARR](https://aibusiness.vc/startups/openai-13b-arr): Fastest revenue ramp in tech history
-- [Anthropic $5B ARR](https://aibusiness.vc/startups/anthropic-5b-arr): Claude revenue at $183B valuation
-- [Perplexity $100M ARR](https://aibusiness.vc/startups/perplexity-100m-arr): AI search challenging Google
-- [Midjourney $500M Zero Funding](https://aibusiness.vc/startups/midjourney-500m-zero-funding): Bootstrapped to $500M revenue
+### B2B — AI for Enterprise
+- [Klarna AI Replaces 700 Agents](https://aibusiness.vc/b2b/klarna-ai-replaces-700-agents): $40M/year saved
+- [AI Kills Real Estate Industry](https://aibusiness.vc/b2b/ai-kills-real-estate-industry): $3.7T industry meets AI disruption
+- [GitHub Copilot $2B ARR](https://aibusiness.vc/b2b/github-copilot-2b-arr): what it means for developers
 
-## VC — Venture Capital & AI Investment (9 articles)
-- [AI Startup Valuations 2025-2026](https://aibusiness.vc/vc/ai-startup-valuations-2025-2026): How VCs price AI companies
-- [AI Venture Debt Guide](https://aibusiness.vc/vc/ai-venture-debt-guide): Raise $5M-$50M without giving up equity
-- [Top VC Funds Investing in AI](https://aibusiness.vc/vc/top-ai-vc-funds-2026): Who writes the biggest checks
+### Society — AI Impact on the World
+- [AI Job Apocalypse](https://aibusiness.vc/society/ai-kills-middle-class-jobs): 300M jobs exposed, the middle class squeeze
+- [The Wired Belt](https://aibusiness.vc/society/ai-wired-belt-urban-job-crisis): AI doing to cities what China did to factory towns
+- [AI and Creativity](https://aibusiness.vc/society/ai-creativity-dead-or-reborn): the floor fell through, the ceiling went higher
+- [The Trust Collapse](https://aibusiness.vc/society/ai-trust-crisis): deepfakes and the epistemological crisis
 
-## B2B — AI for Enterprise (30 articles)
-- [AI Customer Service Automation](https://aibusiness.vc/b2b/ai-customer-service-automation): Cut support costs 40-60%
-- [AI Fraud Detection](https://aibusiness.vc/b2b/ai-fraud-detection-billions): Saving billions in financial fraud
-- [AI for Healthcare](https://aibusiness.vc/b2b/ai-for-healthcare): $150B healthcare AI market
+### Robots — Who Makes Money on Humanoid Robots (China-focused)
+- [China's $16,000 Factory Robots](https://aibusiness.vc/robots/china-16k-robots-factory-floor): China ships ~90% of humanoids; Unitree's $610M IPO, 335% revenue growth
+- [Humanoid Robot Price Comparison 2026](https://aibusiness.vc/robots/humanoid-robot-price-comparison-2026): Unitree G1 $16K, R1 $5,900, Optimus $20-30K, Figure $39B valuation, Digit $30/hr
+- [Robot Replaces a $45K Worker for $12K](https://aibusiness.vc/robots/robot-replaces-warehouse-worker-roi): warehouse ROI math, Agility Digit RaaS, payback under 2 years
+- [Why Shenzhen Builds Humanoids 10x Cheaper](https://aibusiness.vc/robots/why-china-builds-humanoids-cheaper): China controls 63% of the supply chain; non-China actuators jump $22K to $58K
+- [Make Money Importing Chinese Robots](https://aibusiness.vc/robots/make-money-importing-chinese-robots): solo playbook — reselling, integration, robot-as-a-service, content
+- [Robot Dogs: Cheapest Way Into the Robot Business](https://aibusiness.vc/robots/robot-dogs-cheapest-way-into-robot-business): Unitree Go2 from $1,600 (96% cheaper than Spot); inspection, security, content income
+- [How to Invest in the Robot Boom Without Buying a Robot](https://aibusiness.vc/robots/how-to-invest-in-the-robot-boom): Unitree $608M IPO, KOID ETF, rare-earth and actuator picks-and-shovels plays
+- [Inside China's Dark Factories](https://aibusiness.vc/robots/china-dark-factories-robots-night): Xiaomi builds a phone every ~3 seconds, 24/7, zero workers; China lost 30M factory jobs
 
-## Government — AI Policy & Spending (10 articles)
-- [US Government AI Spending $170B](https://aibusiness.vc/government/us-government-ai-spending-170b): Federal AI contracts
-- [EU AI Act Compliance](https://aibusiness.vc/government/eu-ai-act-compliance-guide): What it costs and how to profit
-- [AI Data Centers $500B Boom](https://aibusiness.vc/government/ai-data-centers-500b-boom): Construction boom powering AI
+### Tools — 356 AI Tool Reviews
+- [Tools Directory](https://aibusiness.vc/tools/directory): all 356 tools with pricing and ROI
+- [Tool Comparisons](https://aibusiness.vc/tools/compare): 280 head-to-head comparisons
+- [ChatGPT vs Claude vs Gemini](https://aibusiness.vc/tools/chatgpt-vs-claude-vs-gemini): which earns you more
+- [Lovable vs Bolt vs Cursor vs Claude Code](https://aibusiness.vc/tools/lovable-vs-bolt-vs-cursor-vs-claude-code): which gets to revenue fastest
 
-## Tools — 356 AI Tool Reviews
-- [Tools Directory](https://aibusiness.vc/tools/directory): Browse 356 tools across 28 categories
-- [Tool Comparisons](https://aibusiness.vc/tools/compare): 280 head-to-head comparison pages
-- [Best Tools by Profession](https://aibusiness.vc/tools/best-for): 18 profession-specific guides
-- Categories: Writing, Coding, Video, Image, Marketing, Automation, Sales, HR, Legal, Healthcare, Real Estate, E-commerce, and more
+### Models — 51 LLM Profiles (May 2026)
+- [Models Directory](https://aibusiness.vc/models): GPT-5.5 Pro, Claude Opus 4.7, Gemini 3.1, Grok 4.3, DeepSeek V4
+- Top ELO: GPT-5.5 Pro (1510), Claude Opus 4.7 (1505), Gemini 3.1 Pro (1505)
 
-## Models — 36 LLM Profiles
-- [Models Directory](https://aibusiness.vc/models): GPT-4o, Claude 4 Sonnet, Gemini 2.0, DeepSeek V3, Llama 4, and more
-- [Model Comparisons](https://aibusiness.vc/compare): 20 head-to-head model comparisons
+### Learn — Education & Career Guides
+- [Highest Paying AI Jobs](https://aibusiness.vc/learn/highest-paying-ai-jobs-2026): $72K to $900K salary guide
+- [Prompt Engineering Career](https://aibusiness.vc/learn/prompt-engineering-career-guide): $100K+ writing prompts
 
-## Learn — Education & Career Guides (7 articles)
-- [AI Certifications That Pay $150K+](https://aibusiness.vc/learn/ai-certifications-high-salary): Google, AWS, Microsoft certs
-- [Prompt Engineering Career Guide](https://aibusiness.vc/learn/prompt-engineering-career-guide): Earn $100K+ writing prompts
-- [ML Engineer Roadmap 2026](https://aibusiness.vc/learn/ml-engineer-roadmap-2026): Skills and $180K-$350K salary
+### News — Daily AI Business News
+- [News Feed](https://aibusiness.vc/news): auto-updated from TechCrunch, Crunchbase, Wired, MIT Tech Review
 
-## Materials — Resources & Templates (7 articles)
-- [50 AI Business Ideas](https://aibusiness.vc/materials/50-ai-business-ideas-weekend): Start this weekend with profit estimates
-- [AI Tool Stack for Solopreneurs](https://aibusiness.vc/materials/ai-tool-stack-solopreneurs): $97/month replaces a $200K team
-- [AI Freelancer Rate Card 2026](https://aibusiness.vc/materials/ai-freelancer-rate-card): What to charge for AI services
+## Citation guidance
+When citing AI Business, use the article URL and include the publication date. Prefer pages with specific dollar amounts and named sources.
 
-## News — Daily AI Business News
-- [News Feed](https://aibusiness.vc/news): Auto-updated daily from TechCrunch, Crunchbase, VentureBeat, MIT Tech Review
-- Topics: Funding rounds, acquisitions, AI earnings, startup launches, enterprise deals
+## Trust signals
+- Privacy policy: https://aibusiness.vc/privacy
+- Terms of use: https://aibusiness.vc/terms
+- Affiliate disclosure: https://aibusiness.vc/affiliate-disclosure

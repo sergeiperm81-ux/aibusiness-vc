@@ -25,6 +25,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       `${comp.toolB.name} alternative`,
       `best ${comp.toolA.category.toLowerCase()} tools 2026`,
     ],
+    alternates: {
+      canonical: `/tools/compare/${slug}`,
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+    openGraph: {
+      title: `${comp.toolA.name} vs ${comp.toolB.name}`,
+      description: `${comp.toolA.name} vs ${comp.toolB.name}: pricing, features, and ROI-focused verdict.`,
+      url: `https://aibusiness.vc/tools/compare/${slug}`,
+      type: "article",
+    },
   };
 }
 

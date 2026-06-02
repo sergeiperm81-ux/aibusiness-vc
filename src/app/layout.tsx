@@ -109,8 +109,23 @@ function OrgSchemaOrg() {
     "@type": "Organization",
     name: "AI Business",
     url: "https://aibusiness.vc",
+    logo: "https://aibusiness.vc/og-image.jpg",
     description:
-      "How to make money with AI. News, tools, and strategies for solo earners, startups, and enterprises.",
+      "How to make money with AI. 214 articles, 356 tool reviews, 51 LLM model profiles. Income methods, startup data, and enterprise case studies.",
+    sameAs: [],
+    foundingDate: "2026",
+    knowsAbout: [
+      "Artificial Intelligence",
+      "AI Tools",
+      "AI Business Models",
+      "Machine Learning",
+      "AI Startups",
+      "Prompt Engineering",
+      "AI Automation",
+      "Robotics",
+      "Humanoid Robots",
+      "Physical AI",
+    ],
   };
 
   return (

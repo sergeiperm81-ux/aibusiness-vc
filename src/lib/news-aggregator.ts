@@ -9,20 +9,12 @@ interface FeedSource {
 }
 
 const RSS_FEEDS: FeedSource[] = [
-  // Tier 1: Major tech/AI news (high volume)
+  // 6 reliable fast feeds — reduced from 12 to cut build time and Vercel compute
   { url: "https://techcrunch.com/category/artificial-intelligence/feed/", name: "TechCrunch" },
-  { url: "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml", name: "The Verge" },
   { url: "https://news.crunchbase.com/feed/", name: "Crunchbase" },
   { url: "https://www.technologyreview.com/feed/", name: "MIT Tech Review" },
   { url: "https://siliconangle.com/category/artificial-intelligence/feed/", name: "SiliconAngle" },
-  // Tier 2: Business/Finance + AI
-  { url: "https://www.cnbc.com/id/100727362/device/rss/rss.html", name: "CNBC Tech" },
-  { url: "https://feeds.bloomberg.com/technology/news.rss", name: "Bloomberg Tech" },
   { url: "https://www.wired.com/feed/tag/ai/latest/rss", name: "Wired AI" },
-  { url: "https://arstechnica.com/tag/artificial-intelligence/feed/", name: "Ars Technica" },
-  // Tier 3: Startup/VC focused
-  { url: "https://www.businessinsider.com/sai/rss", name: "Business Insider" },
-  { url: "https://feeds.feedburner.com/TheHackersNews", name: "Hacker News Security" },
   { url: "https://www.artificialintelligence-news.com/feed/", name: "AI News" },
 ];
 
@@ -225,7 +217,7 @@ async function fetchFeed(source: FeedSource): Promise<ParsedArticle[]> {
   try {
     const res = await fetch(source.url, {
       headers: { "User-Agent": "AIBusiness.vc News Aggregator/1.0" },
-      signal: AbortSignal.timeout(10000),
+      signal: AbortSignal.timeout(5000), // 5s max per feed to save Vercel compute
     });
     if (!res.ok) return [];
 

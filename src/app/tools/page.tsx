@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { tools, toolCategories } from "@/data/tools";
 import { getAllToolComparisons, professionToolMap, getToolsForProfession } from "@/lib/tool-comparisons";
 import { getArticlesBySection } from "@/lib/articles";
+import ToolsHubSearch from "@/components/ToolsHubSearch";
 
 function slugify(str: string): string {
   return str.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
@@ -12,6 +13,16 @@ export const metadata: Metadata = {
   title: "Best AI Tools for Making Money (2026) — Honest Reviews & Comparisons",
   description:
     "500+ AI tools reviewed with ROI analysis. Compare tools, find the best stack for your profession, and discover which tools actually help you earn more.",
+  keywords: [
+    "best AI tools",
+    "AI tools for business",
+    "AI tools ROI",
+    "AI tools comparison",
+    "AI software reviews",
+  ],
+  alternates: {
+    canonical: "/tools",
+  },
 };
 
 export default function ToolsPage() {
@@ -53,6 +64,13 @@ export default function ToolsPage() {
               Best For Your Job ({professions.length} roles)
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* Search all tools */}
+      <section className="bg-white border-b border-black/5">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+          <ToolsHubSearch tools={tools} />
         </div>
       </section>
 

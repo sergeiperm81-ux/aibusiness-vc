@@ -1,40 +1,64 @@
 import { NextResponse, type NextRequest } from "next/server";
-import {
-  buildLeadsSessionToken,
-  getExpectedLeadsPassword,
-  getExpectedLeadsUser,
-  SESSION_COOKIE_NAME,
-} from "@/lib/leads-auth";
 
-export async function middleware(request: NextRequest) {
-  const { pathname, search } = request.nextUrl;
-  const expectedUser = getExpectedLeadsUser();
-  const expectedPassword = getExpectedLeadsPassword();
+// Aggressive bots that ignore robots.txt and waste Vercel resources.
+// NOTE: AI answer-engine crawlers (GPTBot, ClaudeBot, PerplexityBot, Google-Extended)
+// are intentionally NOT blocked — they drive our GEO / AI-search visibility.
+const BLOCKED_BOTS = [
+  // SEO / backlink scrapers
+  "AhrefsBot",
+  "SemrushBot",
+  "MJ12bot",
+  "DotBot",
+  "BLEXBot",
+  "DataForSeoBot",
+  "serpstatbot",
+  "Bytespider",
+  "PetalBot",
+  "ZoominfoBot",
+  "Sogou",
+  "YandexBot",
+  "MegaIndex",
+  "BaiduSpider",
+  "Exabot",
+  "CCBot",
+  "Barkrowler",
+  "ImagesiftBot",
+  "Diffbot",
+  "Timpibot",
+  "Amazonbot",
+  // Headless browsers + automation clients — these fire GA as fake "Direct"
+  // sessions that bounce in ~1s and pollute engagement metrics.
+  "HeadlessChrome",
+  "PhantomJS",
+  "Puppeteer",
+  "Playwright",
+  "Selenium",
+  "Scrapy",
+  "python-requests",
+  "python-urllib",
+  "aiohttp",
+  "Go-http-client",
+  "libwww-perl",
+  "Java/",
+  "Apache-HttpClient",
+  "masscan",
+  "zgrab",
+];
 
-  if (!expectedPassword) {
-    return new NextResponse(
-      "Leads dashboard is locked. Set LEADS_DASH_PASSWORD in environment variables.",
-      { status: 503 }
-    );
-  }
+export function middleware(request: NextRequest) {
+  const ua = request.headers.get("user-agent") ?? "";
 
-  if (pathname === "/materials/leads/login") {
-    return NextResponse.next();
-  }
-
-  const expectedToken = await buildLeadsSessionToken(expectedUser, expectedPassword);
-  const token = request.cookies.get(SESSION_COOKIE_NAME)?.value ?? "";
-
-  if (token !== expectedToken) {
-    const loginUrl = new URL("/materials/leads/login", request.url);
-    const nextPath = `${pathname}${search}`;
-    loginUrl.searchParams.set("next", nextPath);
-    return NextResponse.redirect(loginUrl);
+  // Block aggressive bots at edge — zero compute cost
+  if (BLOCKED_BOTS.some((bot) => ua.includes(bot))) {
+    return new NextResponse("Blocked", { status: 403 });
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/materials/leads", "/materials/leads/:path*"],
+  // Run on all pages except static assets
+  matcher: [
+    "/((?!_next/static|_next/image|favicon.ico|images|og-image).*)",
+  ],
 };
