@@ -13,6 +13,20 @@ interface SendArgs {
  * Sends a transactional email via Brevo (Sendinblue).
  * Returns { ok:false } (never throws) so callers can degrade gracefully.
  */
+let senderEnsured = false;
+
+/** Register the configured From address as a Brevo sender (idempotent). On an
+ * already-authenticated sending domain it activates immediately. */
+async function ensureSender(apiKey: string, fromEmail: string): Promise<void> {
+  if (senderEnsured) return;
+  await fetch("https://api.brevo.com/v3/senders", {
+    method: "POST",
+    headers: { accept: "application/json", "content-type": "application/json", "api-key": apiKey },
+    body: JSON.stringify({ name: "AI Business", email: fromEmail }),
+  }).catch(() => undefined);
+  senderEnsured = true;
+}
+
 export async function sendBrevoEmail(args: SendArgs): Promise<{ ok: boolean; error?: string }> {
   const apiKey = process.env.BREVO_API_KEY?.trim();
   const from = process.env.LEADS_FROM_EMAIL?.trim();
@@ -21,6 +35,7 @@ export async function sendBrevoEmail(args: SendArgs): Promise<{ ok: boolean; err
   }
 
   try {
+    await ensureSender(apiKey, from);
     const res = await fetch("https://api.brevo.com/v3/smtp/email", {
       method: "POST",
       headers: {
