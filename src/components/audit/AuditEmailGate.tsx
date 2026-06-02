@@ -17,6 +17,7 @@ const PERKS = [
 
 export function AuditEmailGate({ auditId, domain, overallScore }: Props) {
   const [email, setEmail] = useState("");
+  const [consent, setConsent] = useState(false);
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
   const [message, setMessage] = useState("");
 
@@ -29,7 +30,7 @@ export function AuditEmailGate({ auditId, domain, overallScore }: Props) {
       const res = await fetch("/api/audit/report", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ email: email.trim(), auditId }),
+        body: JSON.stringify({ email: email.trim(), auditId, consent }),
       });
       const data = await res.json();
       if (res.ok && data.ok) {
@@ -101,9 +102,22 @@ export function AuditEmailGate({ auditId, domain, overallScore }: Props) {
               onChange={(e) => setEmail(e.target.value)}
               className="w-full rounded-lg border border-card-border bg-black/20 px-3 py-2.5 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-accent/40"
             />
+            <label className="mt-3 flex items-start gap-2 text-[11px] leading-snug text-white/60">
+              <input
+                type="checkbox"
+                required
+                checked={consent}
+                onChange={(e) => setConsent(e.target.checked)}
+                className="mt-0.5 h-3.5 w-3.5 shrink-0 accent-amber-500"
+              />
+              <span>
+                I agree to receive my report and occasional emails from AI Business. I can
+                unsubscribe anytime.
+              </span>
+            </label>
             <button
               type="submit"
-              disabled={status === "sending"}
+              disabled={status === "sending" || !consent}
               className="mt-3 w-full rounded-lg bg-accent px-4 py-2.5 text-sm font-bold text-black transition hover:brightness-95 disabled:opacity-60"
             >
               {status === "sending" ? "Sending…" : "Email me the full report"}
