@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getLiveQuickAudit } from "@/lib/audit/live";
 import type { AuditMetric, QuickAudit } from "@/lib/audit/mock";
-import { sendBrevoEmail, isValidEmail, escapeHtml } from "@/lib/email/brevo";
+import { sendBrevoEmail, upsertBrevoContact, isValidEmail, escapeHtml } from "@/lib/email/brevo";
 
 export const runtime = "nodejs";
 export const maxDuration = 30;
@@ -41,9 +41,11 @@ function sevColor(s: AuditMetric["severity"]): string {
 }
 
 function buildUserEmail(audit: QuickAudit): { subject: string; html: string; text: string } {
+  // Always recommend the lowest-scoring areas (even a 96/100 site has room to improve).
   const weak = audit.metrics
-    .filter((m) => m.severity === "critical" || m.severity === "warning")
-    .sort((a, b) => a.score - b.score);
+    .filter((m) => m.score < 100)
+    .sort((a, b) => a.score - b.score)
+    .slice(0, 5);
 
   const subject = `Your AI Visibility Report — ${audit.domain} scored ${audit.overallScore}/100`;
 
@@ -82,7 +84,7 @@ function buildUserEmail(audit: QuickAudit): { subject: string; html: string; tex
         (industry average ${audit.industryAverage}/100).</p>
 
       <h2 style="font-size:16px;margin-top:24px">Your GEO action plan</h2>
-      <p style="font-size:14px;color:#555;margin-top:4px">Fix these in order — they have the biggest impact on whether ChatGPT, Perplexity, Gemini and Google's AI Overviews can find and cite you.</p>
+      <p style="font-size:14px;color:#555;margin-top:4px">These are your lowest-scoring areas and exactly how to push each one higher — the biggest levers for getting found and cited by ChatGPT, Perplexity, Gemini and Google's AI Overviews.</p>
       <ol style="padding-left:18px;margin-top:8px">${planItems || "<li>No critical gaps — you're in good shape. Keep content fresh and add FAQ schema.</li>"}</ol>
 
       <h2 style="font-size:16px;margin-top:24px">All 8 metrics</h2>
@@ -119,12 +121,19 @@ function buildUserEmail(audit: QuickAudit): { subject: string; html: string; tex
 
 export async function POST(request: Request) {
   try {
-    const body = (await request.json()) as { email?: string; auditId?: string };
+    const body = (await request.json()) as { email?: string; auditId?: string; consent?: boolean };
     const email = (body.email ?? "").trim().toLowerCase();
     const auditId = (body.auditId ?? "").trim();
+    const consent = body.consent === true;
 
     if (!isValidEmail(email)) {
       return NextResponse.json({ ok: false, error: "Please enter a valid email." }, { status: 400 });
+    }
+    if (!consent) {
+      return NextResponse.json(
+        { ok: false, error: "Please tick the box so we can email you the report." },
+        { status: 400 }
+      );
     }
     if (!auditId) {
       return NextResponse.json({ ok: false, error: "Missing audit." }, { status: 400 });
@@ -158,8 +167,8 @@ export async function POST(request: Request) {
     if (userResult.error) console.error("[audit_report_user_email]", userResult.error);
 
     // 2) Notify the owner (this is where leads are collected).
-    const ownerTo = process.env.LEADS_TO_EMAIL?.trim() || process.env.LEADS_DASH_USER?.trim();
-    if (ownerTo && isValidEmail(ownerTo)) {
+    const ownerTo = (process.env.LEADS_TO_EMAIL?.trim() || process.env.LEADS_DASH_USER?.trim() || "").toLowerCase();
+    if (ownerTo && isValidEmail(ownerTo) && ownerTo !== email) {
       await sendBrevoEmail({
         to: ownerTo,
         replyTo: email,
@@ -169,6 +178,18 @@ export async function POST(request: Request) {
         text: `New AI Audit lead\nEmail: ${email}\nDomain: ${audit.domain}\nScore: ${audit.overallScore}/100\nTime: ${lead.timestamp}\nIP: ${ip || "-"}`,
       });
     }
+
+    // 3) Save the lead to our contact database (Brevo) — ready for future campaigns.
+    const contact = await upsertBrevoContact({
+      email,
+      attributes: {
+        DOMAIN: audit.domain,
+        AUDIT_SCORE: audit.overallScore,
+        SIGNUP_SOURCE: "ai_audit",
+        CONSENT: true,
+      },
+    });
+    if (contact.error) console.error("[audit_lead_contact]", contact.error);
 
     return NextResponse.json({
       ok: true,

@@ -46,6 +46,53 @@ export async function sendBrevoEmail(args: SendArgs): Promise<{ ok: boolean; err
   }
 }
 
+let attributesEnsured = false;
+
+/** Create the audit contact attributes once (idempotent; ignores "already exists"). */
+async function ensureAuditAttributes(apiKey: string): Promise<void> {
+  if (attributesEnsured) return;
+  const attrs: Array<[string, string]> = [
+    ["DOMAIN", "text"],
+    ["AUDIT_SCORE", "float"],
+    ["SIGNUP_SOURCE", "text"],
+    ["CONSENT", "boolean"],
+  ];
+  await Promise.all(
+    attrs.map(([name, type]) =>
+      fetch(`https://api.brevo.com/v3/contacts/attributes/normal/${name}`, {
+        method: "POST",
+        headers: { accept: "application/json", "content-type": "application/json", "api-key": apiKey },
+        body: JSON.stringify({ type }),
+      }).catch(() => undefined)
+    )
+  );
+  attributesEnsured = true;
+}
+
+/**
+ * Saves/updates a lead as a Brevo contact (this is our lead database — viewable
+ * and CSV-exportable in Brevo, ready for future campaigns). Never throws.
+ */
+export async function upsertBrevoContact(args: {
+  email: string;
+  attributes?: Record<string, unknown>;
+}): Promise<{ ok: boolean; error?: string }> {
+  const apiKey = process.env.BREVO_API_KEY?.trim();
+  if (!apiKey) return { ok: false, error: "BREVO_API_KEY not configured" };
+  try {
+    await ensureAuditAttributes(apiKey);
+    const res = await fetch("https://api.brevo.com/v3/contacts", {
+      method: "POST",
+      headers: { accept: "application/json", "content-type": "application/json", "api-key": apiKey },
+      body: JSON.stringify({ email: args.email, attributes: args.attributes ?? {}, updateEnabled: true }),
+    });
+    if (res.status >= 200 && res.status < 300) return { ok: true };
+    return { ok: false, error: `Brevo contact ${res.status}: ${(await res.text()).slice(0, 200)}` };
+  } catch (error) {
+    return { ok: false, error: error instanceof Error ? error.message : "contact upsert failed" };
+  }
+}
+
 export function isValidEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
