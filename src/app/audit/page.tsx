@@ -19,27 +19,26 @@ const SCAN_METRICS = [
 ];
 
 const FULL_REPORT_INCLUDES = [
-  "30+ prioritized findings",
-  "LLM citation tests across major answer engines",
-  "Competitor benchmark snapshot",
-  "Generated llms.txt and llms-full.txt",
-  "Schema patch package",
-  "AI Builder Pack prompts for implementation",
-  "30-day re-scan plan",
+  "Full score breakdown across all 8 signals",
+  "Prioritized GEO action plan — what to fix first",
+  "How to get cited by ChatGPT, Perplexity, Gemini & Google AI",
+  "llms.txt and schema guidance for your site",
+  "Plain-language explanation of every issue",
+  "A simple re-scan plan to track progress",
 ];
 
 const FAQS = [
   {
     q: "What do I get from the scan?",
-    a: "You get a fast technical snapshot with scores and plain-language explanations for the biggest visibility signals.",
+    a: "A fast technical snapshot with an overall score and plain-language explanations for your biggest AI-visibility signals.",
   },
   {
-    q: "When does payment happen?",
-    a: "Only after scan results. Purchase is available on the result page, tied to your domain and audit ID.",
+    q: "How much does the full report cost?",
+    a: "Nothing. Enter your email on the result page and we send the full breakdown plus a GEO action plan — free.",
   },
   {
-    q: "What is in the paid report?",
-    a: "A complete delivery package: one executive PDF, one manual DOCX guide, README, and implementation markdown/json/csv/txt files.",
+    q: "What's in the full report?",
+    a: "Your complete score breakdown, a prioritized list of fixes, GEO recommendations, and llms.txt + schema guidance — everything you need to get cited by AI search.",
   },
   {
     q: "Who is this for?",
@@ -59,8 +58,8 @@ export default function AuditLandingPage() {
             Check how AI search sees your site
           </h1>
           <p className="mb-6 max-w-2xl text-base leading-relaxed text-white/70">
-            Run a domain scan, review your technical visibility signals, then decide
-            whether to unlock the full report.
+            Run a domain scan, review your technical visibility signals, then get the
+            full report and a GEO action plan — free, straight to your inbox.
           </p>
 
           <UrlAuditForm />
@@ -76,7 +75,7 @@ export default function AuditLandingPage() {
             </span>
             <span className="flex items-center gap-1.5">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-              Full report unlock after scan
+              Full report free by email
             </span>
           </div>
         </div>
@@ -105,9 +104,9 @@ export default function AuditLandingPage() {
             </div>
             <div className="rounded-xl border border-black/10 p-6">
               <div className="mb-2 font-mono text-xs font-bold text-accent">STEP 03</div>
-              <h3 className="mb-2 text-lg font-bold text-black">Unlock full report</h3>
+              <h3 className="mb-2 text-lg font-bold text-black">Get full report free</h3>
               <p className="text-sm leading-relaxed text-black/70">
-                Purchase from the result page if you want full implementation detail.
+                Enter your email and we send the full breakdown plus a GEO action plan.
               </p>
             </div>
           </div>

@@ -10,6 +10,7 @@ import {
 } from "@/lib/audit/mock";
 import { getLiveQuickAudit } from "@/lib/audit/live";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { AuditEmailGate } from "@/components/audit/AuditEmailGate";
 
 export async function generateMetadata({
   params,
@@ -186,44 +187,7 @@ export default async function AuditResultPage({
 
       <section className="border-t border-card-border bg-background">
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-          <div className="rounded-2xl border-2 border-accent bg-gradient-to-br from-amber-500/5 to-amber-500/0 p-8">
-            <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-3">
-              <div className="lg:col-span-2">
-                <p className="mb-2 font-mono text-xs font-medium uppercase tracking-wider text-accent">
-                  Want to know exactly what to fix?
-                </p>
-                <h2 className="mb-3 text-2xl font-bold text-white">
-                  Get the full report + AI Builder Pack
-                </h2>
-                <p className="mb-4 text-sm leading-relaxed text-white/70">
-                  30+ ranked findings, LLM citation tests, competitor comparison,
-                  generated <code className="rounded bg-card-bg px-1">llms.txt</code>{" "}
-                  and schema patches, plus copy-paste prompts for your AI coding
-                  assistant.
-                </p>
-                <ul className="grid grid-cols-1 gap-1.5 text-sm text-white/80 sm:grid-cols-2">
-                  <li>30+ specific findings</li>
-                  <li>ChatGPT / Perplexity / Claude / AIO tests</li>
-                  <li>Generated llms.txt + schema patches</li>
-                  <li>AI Builder Pack with all prompts</li>
-                  <li>3 competitor benchmarks</li>
-                </ul>
-              </div>
-              <div className="lg:col-span-1">
-                <div className="rounded-xl border border-card-border bg-card-bg p-5">
-                  <p className="mb-1 text-xs text-white/60">Standard</p>
-                  <p className="mb-1 text-3xl font-bold text-white">EUR 149</p>
-                  <p className="mb-4 text-xs text-white/50">One-time payment</p>
-                  <div className="block w-full cursor-not-allowed rounded-lg border border-card-border bg-white/5 px-4 py-2.5 text-center text-sm font-bold text-white/70">
-                    Coming soon
-                  </div>
-                  <p className="mt-3 text-center text-[11px] text-white/40">
-                    Paid audit package is temporarily unavailable.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <AuditEmailGate auditId={id} domain={audit.domain} overallScore={audit.overallScore} />
         </div>
       </section>
     </>
