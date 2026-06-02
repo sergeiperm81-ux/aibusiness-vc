@@ -11,21 +11,21 @@ const SITE = "https://aibusiness.vc";
 // Concrete GEO fix per metric key — used to build the "action plan".
 const FIXES: Record<string, string> = {
   "llms-txt":
-    "Add an llms.txt (and llms-full.txt) file at your domain root so AI engines know what to read and cite.",
+    "Right now AI assistants have no 'map' of your site, so they skip or misread it. Create an llms.txt file at your domain root (yourdomain.com/llms.txt) listing your most important pages with a one-line description of each, plus a fuller llms-full.txt — a menu you hand to ChatGPT, Perplexity and Claude so they cite the right pages. Hand it to a developer (about half a day), or do it yourself by asking Claude Code / ChatGPT: 'Generate an llms.txt and llms-full.txt for my site from these top pages and a short description of what we do.'",
   schema:
-    "Add JSON-LD structured data — Organization, Article, FAQPage and 'speakable' — so answer engines can parse your pages.",
+    "Search and AI engines read your pages far better when the key facts are labelled in a machine-readable way. Add JSON-LD structured data (Schema.org) across the site — Organization on the homepage, Article on posts, FAQPage for any Q&A, and a 'speakable' block. Give it to a developer, or do it yourself by asking ChatGPT / Claude Code: 'Write JSON-LD structured data (Organization, Article, FAQPage, speakable) for this page and tell me exactly where to paste it.'",
   "ai-crawlers":
-    "Explicitly allow GPTBot, ClaudeBot, PerplexityBot and Google-Extended in robots.txt — these crawlers feed AI answers.",
+    "AI answer engines can only quote you if their bots are allowed to read your site — and many sites block them by accident. Allow the AI crawlers in your robots.txt. It's a 5-minute change: ask your developer, or paste this to ChatGPT: 'Write a robots.txt that allows GPTBot, ClaudeBot, PerplexityBot, Google-Extended and OAI-SearchBot, while keeping my admin pages blocked.'",
   citability:
-    "Restructure content into clear questions and answers with specific numbers, dates and named sources — the format LLMs prefer to quote.",
+    "AI lifts clear, factual sentences and ignores vague marketing copy. Restructure your top pages into a question-and-answer format with concrete numbers, dates and named sources, and add a short FAQ at the bottom — give the AI a clean sentence it can quote and attribute to you. Brief your content team, or ask ChatGPT / Claude: 'Rewrite this page into a clear Q&A format with concrete facts and a short FAQ, optimised to be quoted by AI search.'",
   "page-speed":
-    "Improve Core Web Vitals (LCP / INP / CLS). Slow pages get crawled and cited less.",
+    "Slow pages get crawled less and frustrate visitors, hurting both ranking and AI visibility. Improve Core Web Vitals — compress and lazy-load images, strip unused JavaScript, enable caching and a CDN — aiming for a load time (LCP) under 2.5 seconds. Hand it to a developer, or ask Claude Code: 'Audit this page's Core Web Vitals and apply fixes — image compression, lazy loading, removing unused JS, and caching.'",
   "javascript-dependency":
-    "Render key content server-side so crawlers see it without executing JavaScript.",
+    "Some of your content may only appear after scripts run, and many AI crawlers don't run scripts — so they see a blank page. Make sure important text is in the raw HTML via server-side rendering or static generation (quick test: open a page with JavaScript disabled — if the content vanishes, that's the issue). Ask your developer, or tell Claude Code: 'Make this page render its main content server-side so it's visible without JavaScript.'",
   https:
-    "Serve everything over HTTPS and add security headers (HSTS, X-Content-Type-Options, a Content-Security-Policy).",
+    "Security and trust signals influence how search and AI systems weigh your site. Serve every page over HTTPS with a valid certificate and add standard security headers (HSTS, X-Content-Type-Options, X-Frame-Options and a Content-Security-Policy). Routine for a developer, or ask Claude Code: 'Force HTTPS and add HSTS, X-Content-Type-Options, X-Frame-Options and a Content-Security-Policy to my site.'",
   structure:
-    "Use a clear H1/H2 hierarchy, add a short summary near the top and an FAQ block at the bottom of each page.",
+    "Clear page structure helps AI extract and quote you accurately instead of garbling your message. Give each page one clear H1 and logical H2/H3 sections, a one- or two-sentence summary under the title, short paragraphs, and an FAQ at the end. Mostly an editing pass: brief your team, or ask ChatGPT / Claude: 'Restructure this page with one H1, clear H2/H3 sections, a summary under the title, and an FAQ at the end.'",
 };
 
 function fixFor(metric: AuditMetric): string {
@@ -64,9 +64,9 @@ function buildUserEmail(audit: QuickAudit): { subject: string; html: string; tex
 
   const planItems = weak
     .map(
-      (m, i) => `
+      (m) => `
       <li style="margin-bottom:12px">
-        <strong style="color:#111">${i + 1}. ${escapeHtml(m.label)} (${m.score}/100)</strong><br/>
+        <strong style="color:#111">${escapeHtml(m.label)} (${m.score}/100)</strong><br/>
         <span style="color:#555;font-size:14px">${escapeHtml(fixFor(m))}</span>
       </li>`
     )
@@ -83,15 +83,15 @@ function buildUserEmail(audit: QuickAudit): { subject: string; html: string; tex
         <strong style="color:${audit.overallScore < 65 ? "#ef4444" : "#10b981"}">${audit.overallScore}/100</strong>
         (industry average ${audit.industryAverage}/100).</p>
 
-      <h2 style="font-size:16px;margin-top:24px">Your GEO action plan</h2>
-      <p style="font-size:14px;color:#555;margin-top:4px">These are your lowest-scoring areas and exactly how to push each one higher — the biggest levers for getting found and cited by ChatGPT, Perplexity, Gemini and Google's AI Overviews.</p>
-      <ol style="padding-left:18px;margin-top:8px">${planItems || "<li>No critical gaps — you're in good shape. Keep content fresh and add FAQ schema.</li>"}</ol>
-
-      <h2 style="font-size:16px;margin-top:24px">All 8 metrics</h2>
+      <h2 style="font-size:16px;margin-top:24px">Your scores — all 8 metrics</h2>
       <table style="width:100%;border-collapse:collapse;margin-top:8px">${metricRows}</table>
 
       <h2 style="font-size:16px;margin-top:24px">Why this matters</h2>
-      <p style="font-size:14px;color:#555">AI answer engines now send a fast-growing share of traffic, and they only cite sites they can read, parse and trust. The fixes above make your content machine-readable (llms.txt, schema), crawlable by AI bots, and quotable (clear Q&A, numbers, sources).</p>
+      <p style="font-size:14px;color:#555">AI answer engines now send a fast-growing share of traffic, and they only cite sites they can read, parse and trust. The recommendations below show exactly how to make your content machine-readable (llms.txt, schema), crawlable by AI bots, and quotable (clear Q&A, numbers, sources).</p>
+
+      <h2 style="font-size:16px;margin-top:24px">Recommendations</h2>
+      <p style="font-size:14px;color:#555;margin-top:4px">Your weakest areas, in priority order. You don't have to do them yourself — hand each one to your developer as a task. Or, if you're a hands-on founder, paste the suggested prompt straight into ChatGPT or Claude Code and let it do the heavy lifting. Either way, these are the biggest levers for getting found and cited by ChatGPT, Perplexity, Gemini and Google's AI Overviews.</p>
+      <ol style="padding-left:18px;margin-top:8px">${planItems || "<li>No critical gaps — you're in good shape. Keep content fresh and add FAQ schema.</li>"}</ol>
 
       <div style="margin-top:24px;text-align:center">
         <a href="${SITE}/audit" style="display:inline-block;background:#f59e0b;color:#000;font-weight:700;text-decoration:none;padding:12px 22px;border-radius:8px">Re-run your scan anytime →</a>
@@ -105,13 +105,13 @@ function buildUserEmail(audit: QuickAudit): { subject: string; html: string; tex
     `AI Visibility Report — ${audit.domain}`,
     `Score: ${audit.overallScore}/100 (industry average ${audit.industryAverage}/100)`,
     ``,
-    `GEO ACTION PLAN:`,
+    `YOUR SCORES — ALL METRICS:`,
+    ...audit.metrics.map((m) => `- ${m.label}: ${m.score}/100 (${sevWord(m.severity)})`),
+    ``,
+    `RECOMMENDATIONS:`,
     ...(weak.length
       ? weak.map((m, i) => `${i + 1}. ${m.label} (${m.score}/100): ${fixFor(m)}`)
       : ["No critical gaps — keep content fresh and add FAQ schema."]),
-    ``,
-    `ALL METRICS:`,
-    ...audit.metrics.map((m) => `- ${m.label}: ${m.score}/100 (${sevWord(m.severity)})`),
     ``,
     `Re-run your scan: ${SITE}/audit`,
   ].join("\n");
