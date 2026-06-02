@@ -10,9 +10,9 @@ keywords: ["open source AI business model", "Hugging Face business model", "mone
 
 # Open Source AI Business Models: How Companies Make Money Giving Software Away
 
-How do you make money giving away your product for free? DeepSeek, Llama, Mistral, and Hugging Face figured it out. Here is the playbook.
+How do you make money giving away your product for free? It sounds like a trick question, but DeepSeek, Llama, Mistral, and Hugging Face all answered it — and got rich doing it. Let me show you the playbook, because once you see the logic underneath, you'll never look at "free" software the same way again.
 
-This question haunts every founder who has looked at the AI landscape and noticed something strange: some of the most valuable companies in the industry charge nothing for their core product. Hugging Face is worth $4.5 billion. Mistral AI raised at a $6 billion valuation. Meta's Llama has been downloaded millions of times. DeepSeek released models that rivaled GPT-4 and charged zero for access.
+Here's the strange thing that probably brought you here: some of the most valuable companies in AI charge nothing for their core product. Hugging Face is worth around $4.5 billion. Mistral AI raised at a $6 billion valuation. Meta's Llama has been downloaded millions of times. DeepSeek released models that rivaled GPT-4 and charged zero for access. If you've ever wondered how that's even possible — or whether you could use the same trick — this is for you.
 
 And yet these companies are not charities. They are not burning cash with no plan. They have real revenue, real margins, and in some cases, real profit. The business models are just structured in ways that look backwards until you understand the logic underneath.
 
@@ -88,7 +88,7 @@ This is why you see cloud providers sponsoring open-source AI projects, offering
 
 There is an entire category of billion-dollar companies that do not build AI models at all. They build the tools that people who use AI models need.
 
-Scale AI, valued at $14 billion, provides data labeling and curation services to train and fine-tune models. More open-source models in the world means more people need training data. Scale AI's business grows every time someone downloads Llama and decides to fine-tune it for their specific use case.
+Scale AI, valued at $14 billion, provides data labeling and curation services to train and fine-tune models. More open-source models in the world means more people need training data. Scale AI's business grows every time someone downloads Llama and decides to fine-tune it for their specific use case. (This "sell the shovels" pattern shows up everywhere in AI right now — it's the same logic behind [how to invest in the AI boom without picking a single winner](/startups/ai-etf-investing-guide).)
 
 Weights and Biases, valued at $1.25 billion, provides experiment tracking, model monitoring, and MLOps infrastructure for teams training models. It works with any model, open or closed. The more AI development happening in the world, the more teams need tooling to manage that development.
 
@@ -98,7 +98,9 @@ The pattern is classic: sell picks and shovels to the miners. Open-source models
 
 If you are an AI founder reading this, the implications are practical and immediate.
 
-Consider open-sourcing your model. I know that sounds backwards when you are trying to build a business, but the distribution, trust, and ecosystem effects of open source are nearly impossible to replicate with a closed-source approach. Mistral went from zero to $6 billion faster than any enterprise sales team could have achieved. The model was the marketing. The hosting, the enterprise features, and the services were the business.
+Consider open-sourcing your model. I know that sounds backwards when you are trying to build a business, but the distribution, trust, and ecosystem effects of open source are nearly impossible to replicate with a closed-source approach. Mistral went from zero to $6 billion faster than any enterprise sales team could have achieved. The model was the marketing. The hosting, the enterprise features, and the services were the business. (Midjourney pulled off a different version of the same magic — [hitting $500M with zero funding](/startups/midjourney-500m-zero-funding) by letting the product sell itself.)
+
+If you'd rather build *on top* of these free models than release your own, that's arguably the better bet for most people — the open-source wave you're reading about is exactly what makes a tiny team viable today. Concrete starting points: [AI SaaS ideas for solo developers in 2026](/solo/ai-saas-ideas-2026), [how to make money with AI agents](/solo/how-to-make-money-with-ai-agents), and the [open-source AI models worth building on right now](/tools/open-source-ai-models).
 
 If you use open-source models rather than building them, understand why they are free. Meta gives away Llama to commoditize AI so its ad business becomes more profitable. Mistral gives away small models to create switching costs that drive enterprise sales. DeepSeek gives away models as a showcase for its compute infrastructure. Those incentive structures matter for long-term reliability. A model that is free because the company plans to sell enterprise services is likely to stay free and well-maintained. A model that is free because a larger company wants to undermine its competitors could disappear or change licensing terms if the competitive dynamics shift.
 
@@ -120,5 +122,5 @@ The playbook is not secret. It is just counterintuitive. And the companies that 
 
 - [AI Startup Ideas for 2026](/startups/ai-startup-ideas-2026) -- where the real startup opportunities are right now
 - [How Midjourney Hit $500M with Zero Funding](/startups/midjourney-500m-zero-funding) -- another counterintuitive business model that worked
-- [Lovable vs Bolt vs Cursor vs Claude Code](/tools/lovable-vs-bolt-vs-cursor-vs-claude-code) -- the open-source tools reshaping how software gets built
-- [How AI Is Killing the Real Estate Industry](/b2b/ai-kills-real-estate-industry) -- what happens when AI disrupts a traditional industry
+- [Open-Source AI Models Worth Building On](/tools/open-source-ai-models) -- the free models you'd actually build a business with
+- [AI SaaS Ideas for Solo Developers in 2026](/solo/ai-saas-ideas-2026) -- turn these free models into your own revenue
