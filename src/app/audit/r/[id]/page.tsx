@@ -45,6 +45,11 @@ export default async function AuditResultPage({
   const oks = sortedMetrics.filter((m) => m.severity === "ok");
   const goods = sortedMetrics.filter((m) => m.severity === "good");
 
+  // Teaser: reveal only a few metrics; the rest stay locked behind the email gate.
+  const byScore = [...audit.metrics].sort((a, b) => a.score - b.score);
+  const previewMetrics = byScore.slice(0, 3);
+  const lockedMetrics = byScore.slice(3);
+
   const scoreColor =
     audit.overallScore < 40
       ? "text-red-500"
@@ -142,44 +147,38 @@ export default async function AuditResultPage({
       {critical.length > 0 && (
         <section className="border-t border-card-border bg-background">
           <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-            {critical.map((metric) => (
-              <div
-                key={metric.key}
-                className="mb-3 rounded-2xl border-2 border-red-500/50 bg-red-500/5 p-6"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-red-500/40 bg-red-500/10">
-                    <span className="text-xl font-bold text-red-500">!</span>
-                  </div>
-                  <div className="flex-1">
-                    <div className="mb-1 flex items-center gap-2">
-                      <span className="rounded bg-red-500 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white">
-                        Critical - fix urgently
-                      </span>
-                      <span className="font-mono text-xs text-red-400">
-                        {metric.score} / 100
-                      </span>
-                    </div>
-                    <h3 className="mb-1 text-lg font-bold text-white">
-                      {metric.label}
-                    </h3>
-                    <p className="text-sm leading-relaxed text-white/80">
-                      {metric.shortHuman}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
+            <div className="rounded-2xl border-2 border-red-500/50 bg-red-500/5 p-5 text-center">
+              <p className="text-sm font-semibold text-white">
+                🔒 {critical.length} critical issue{critical.length > 1 ? "s" : ""} detected on your
+                site. Enter your email below to see exactly what they are — and how to fix them.
+              </p>
+            </div>
           </div>
         </section>
       )}
 
       <section className="border-t border-black/5 bg-white">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-          <h2 className="mb-6 text-xl font-bold text-black">All eight metrics</h2>
+          <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
+            <div>
+              <h2 className="text-xl font-bold text-black">
+                We scored {audit.metrics.length} AI-visibility signals on your site
+              </h2>
+              <p className="mt-1 text-sm text-black/60">
+                Here&apos;s a preview. Enter your email below to unlock all{" "}
+                {audit.metrics.length} scores plus your step-by-step fix plan.
+              </p>
+            </div>
+            <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-bold text-amber-700">
+              🔒 {lockedMetrics.length} locked
+            </span>
+          </div>
           <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-            {sortedMetrics.map((metric) => (
+            {previewMetrics.map((metric) => (
               <MetricRow key={metric.key} metric={metric} />
+            ))}
+            {lockedMetrics.map((metric) => (
+              <LockedMetricRow key={metric.key} label={metric.label} />
             ))}
           </div>
         </div>
@@ -254,6 +253,32 @@ function MetricRow({ metric }: { metric: AuditMetric }) {
           </p>
         </div>
       </div>
+    </div>
+  );
+}
+
+function LockedMetricRow({ label }: { label: string }) {
+  return (
+    <div className="relative overflow-hidden rounded-xl border border-black/10 bg-gray-50/50 p-4">
+      <div className="flex items-start justify-between gap-3">
+        <div className="flex flex-1 items-start gap-3">
+          <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-gray-300" />
+          <div className="flex-1">
+            <h3 className="text-sm font-bold text-black">{label}</h3>
+            <div className="mt-2 h-2 w-3/4 rounded bg-gray-200 blur-[2px]" />
+            <div className="mt-1.5 h-2 w-1/2 rounded bg-gray-200 blur-[2px]" />
+          </div>
+        </div>
+        <div className="shrink-0 select-none text-right">
+          <div className="ml-auto h-6 w-10 rounded bg-gray-200 blur-[3px]" />
+          <p className="mt-1 font-mono text-[10px] uppercase tracking-wider text-black/30">
+            / 100
+          </p>
+        </div>
+      </div>
+      <span className="pointer-events-none absolute right-2.5 top-2.5 text-sm" aria-hidden>
+        🔒
+      </span>
     </div>
   );
 }
