@@ -1,7 +1,7 @@
 ---
 title: "Make Money with Claude AI: 7 Proven Methods Earning $2K-$15K/Month"
 description: "Specific ways to earn money using Claude AI. Content writing, coding with Claude Code, research services, and building agents with real income potential."
-date: "2026-03-30"
+date: "2026-06-01"
 author: "Sergei P."
 category: "Solo"
 image: "/images/articles/payment-card-1.jpg"
@@ -121,3 +121,16 @@ The freelancers who listed AI tool proficiency in their 2025 Upwork profiles rec
 So the question isn't whether Claude can make you money. It obviously can. The question is whether you'll spend the next six months reading articles about how to make money with AI, or whether you'll spend them actually doing it. One path leads to a bookmarks folder full of saved posts. The other leads to a client roster and a bank balance that looks different than it does today.
 
 I can't tell you which path you'll choose. But I can tell you that the window doesn't care about your decision timeline. It closes on its own schedule.
+
+---
+
+## Keep Reading
+
+If you're ready to pick a direction, these go deeper into the specific plays above:
+
+- [How to Make Money with AI Agents in 2026](/solo/how-to-make-money-with-ai-agents) — the full playbook for building and selling agents to real businesses, with exact pricing
+- [10 AI SaaS Ideas That Actually Make Money](/solo/ai-saas-ideas-2026) — micro-SaaS opportunities a solo developer can ship in 30 days
+- [How HeadshotPro Hit $300K/Month Solo](/solo/headshot-pro-300k-month) — the clearest example of replacing an expensive human service with AI
+- [GitHub Copilot Crosses $2B ARR](/b2b/github-copilot-2b-arr) — why nearly half of all new code is now AI-generated, and what it means for your rate
+- [Cursor's Rise to $29.3B](/startups/cursor-9b-valuation) — how an AI-native tool beat Microsoft, and the lesson for anyone building with AI
+- [Robot Dogs Are the Cheapest Way Into the Robot Business](/robots/robot-dogs-cheapest-way-into-robot-business) — when AI grows a body, a $1,600 machine becomes a business

@@ -3,7 +3,7 @@ title: "50 AI Business Ideas You Can Start This Weekend (With Profit Estimates)"
 description: "50 proven AI business ideas with realistic profit ranges, startup costs, and execution paths from side hustle to scale."
 date: "2026-04-04"
 author: "Sergei P."
-category: "Materials"
+category: "Solo"
 image: "/images/articles/brainstorm-1.jpg"
 keywords: ["AI business ideas", "AI side hustle", "make money with AI", "AI startup ideas 2026"]
 ---

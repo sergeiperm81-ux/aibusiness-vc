@@ -10,9 +10,11 @@ const catColors: Record<string, string> = {
   B2B: "bg-blue-500 text-white",
   Tools: "bg-emerald-500 text-white",
   Materials: "bg-pink-500 text-white",
+  Society: "bg-pink-500 text-white",
   Learn: "bg-cyan-500 text-white",
   VC: "bg-rose-500 text-white",
   Government: "bg-red-500 text-white",
+  Robots: "bg-orange-500 text-white",
 };
 
 const defaultImages: Record<string, string> = {
@@ -26,8 +28,6 @@ const defaultImages: Record<string, string> = {
   government: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80",
 };
 
-type SortMode = "newest" | "oldest";
-
 interface Props {
   articles: ArticleMeta[];
   section: string;
@@ -38,133 +38,115 @@ function normalize(value: string): string {
   return value.trim().toLowerCase();
 }
 
-function labelizeKeyword(keyword: string): string {
-  const compact = keyword.trim().replace(/\s+/g, " ");
-  return compact.length > 28 ? `${compact.slice(0, 28)}...` : compact;
-}
-
 export default function SectionArticleExplorer({ articles, section, totalLabel }: Props) {
   const [query, setQuery] = useState("");
-  const [activeTopic, setActiveTopic] = useState("all");
-  const [sortMode, setSortMode] = useState<SortMode>("newest");
   const fallbackImg = defaultImages[section] ?? defaultImages.solo;
-
-  const topics = useMemo(() => {
-    const counts = new Map<string, number>();
-    for (const article of articles) {
-      for (const keyword of article.keywords ?? []) {
-        const normalized = normalize(keyword);
-        if (!normalized) continue;
-        counts.set(normalized, (counts.get(normalized) ?? 0) + 1);
-      }
-    }
-
-    return Array.from(counts.entries())
-      .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
-      .slice(0, 12)
-      .map(([value]) => value);
-  }, [articles]);
 
   const filtered = useMemo(() => {
     const q = normalize(query);
+    const sorted = [...articles].sort(
+      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+    );
+    if (!q) return sorted;
 
-    return articles
-      .filter((article) => {
-        if (activeTopic === "all") return true;
-        const topicMatch = (article.keywords ?? []).some((keyword) => normalize(keyword) === activeTopic);
-        return topicMatch;
-      })
-      .filter((article) => {
-        if (!q) return true;
+    const terms = q.split(/\s+/).filter(Boolean);
+    return sorted
+      .map((article) => {
         const haystack = [article.title, article.description, ...(article.keywords ?? [])]
           .map((entry) => normalize(entry))
           .join(" ");
-        return haystack.includes(q);
+        // Score: how many of the typed words appear. Title matches count double.
+        const title = normalize(article.title);
+        let score = 0;
+        for (const term of terms) {
+          if (haystack.includes(term)) score += 1;
+          if (title.includes(term)) score += 1;
+        }
+        return { article, score };
       })
-      .sort((a, b) => {
-        const delta = new Date(b.date).getTime() - new Date(a.date).getTime();
-        return sortMode === "newest" ? delta : -delta;
-      });
-  }, [activeTopic, articles, query, sortMode]);
+      .filter((entry) => entry.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .map((entry) => entry.article);
+  }, [articles, query]);
 
   const featured = filtered.slice(0, 2);
   const rest = filtered.slice(2);
-  const hasFilters = query.trim().length > 0 || activeTopic !== "all" || sortMode !== "newest";
+  const hasQuery = query.trim().length > 0;
 
   return (
     <section className="bg-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
-        <div className="rounded-xl border border-gray-200 bg-gray-50 p-4 sm:p-5 mb-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
-            <label className="block md:col-span-2">
-              <span className="block text-xs font-medium text-gray-600 mb-1">Search articles</span>
+        <div className="mb-6">
+          <span className="block text-sm font-semibold text-gray-700 mb-2">
+            Search articles
+          </span>
+          <form
+            onSubmit={(event) => event.preventDefault()}
+            className="flex items-stretch gap-2"
+          >
+            <div className="relative flex-1">
+              <svg
+                className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <circle cx="11" cy="11" r="7" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              </svg>
               <input
-                type="text"
+                type="search"
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
-                placeholder="Search by title, keyword, or topic"
-                className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-accent/40"
+                placeholder="Type what you're looking for…"
+                className="w-full rounded-xl border-2 border-gray-300 bg-white pl-11 pr-4 py-3 text-base text-gray-900 shadow-sm focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/30"
               />
-            </label>
-            <label className="block">
-              <span className="block text-xs font-medium text-gray-600 mb-1">Sort</span>
-              <select
-                value={sortMode}
-                onChange={(event) => setSortMode(event.target.value as SortMode)}
-                className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-accent/40"
-              >
-                <option value="newest">Newest first</option>
-                <option value="oldest">Oldest first</option>
-              </select>
-            </label>
-          </div>
-
-          {topics.length > 0 && (
-            <div className="flex flex-wrap gap-2 mb-3">
-              <button
-                type="button"
-                onClick={() => setActiveTopic("all")}
-                className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-colors ${
-                  activeTopic === "all"
-                    ? "bg-accent text-black"
-                    : "bg-white text-gray-600 border border-gray-200 hover:border-accent hover:text-accent"
-                }`}
-              >
-                All Topics
-              </button>
-              {topics.map((topic) => (
-                <button
-                  key={topic}
-                  type="button"
-                  onClick={() => setActiveTopic(topic)}
-                  className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-colors ${
-                    activeTopic === topic
-                      ? "bg-accent text-black"
-                      : "bg-white text-gray-600 border border-gray-200 hover:border-accent hover:text-accent"
-                  }`}
-                >
-                  {labelizeKeyword(topic)}
-                </button>
-              ))}
             </div>
-          )}
-
-          <div className="flex items-center justify-between text-xs text-gray-500">
+            <button
+              type="submit"
+              className="shrink-0 inline-flex items-center gap-1.5 rounded-xl bg-accent px-5 sm:px-6 py-3 text-sm font-bold text-black shadow-sm hover:brightness-95 active:brightness-90 transition"
+            >
+              <svg
+                className="h-4 w-4"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <circle cx="11" cy="11" r="7" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              </svg>
+              <span>Search</span>
+            </button>
+          </form>
+          <div className="flex items-center justify-between text-xs text-gray-500 mt-2 px-1">
             <p>
-              Showing <span className="font-semibold text-gray-800">{filtered.length}</span> of {articles.length} articles
-              {totalLabel ? ` (${totalLabel})` : ""}
+              {hasQuery ? (
+                <>
+                  <span className="font-semibold text-gray-800">{filtered.length}</span> result
+                  {filtered.length === 1 ? "" : "s"} for &ldquo;{query.trim()}&rdquo;
+                </>
+              ) : (
+                <>
+                  <span className="font-semibold text-gray-800">{articles.length}</span>{" "}
+                  {totalLabel ?? "articles"}
+                </>
+              )}
             </p>
-            {hasFilters && (
+            {hasQuery && (
               <button
                 type="button"
-                onClick={() => {
-                  setQuery("");
-                  setActiveTopic("all");
-                  setSortMode("newest");
-                }}
+                onClick={() => setQuery("")}
                 className="text-accent hover:text-amber-700 font-semibold"
               >
-                Reset filters
+                Clear
               </button>
             )}
           </div>
@@ -172,8 +154,8 @@ export default function SectionArticleExplorer({ articles, section, totalLabel }
 
         {filtered.length === 0 ? (
           <div className="rounded-xl border border-dashed border-gray-300 p-8 text-center">
-            <h2 className="text-base font-semibold text-gray-900">No articles match this filter</h2>
-            <p className="text-sm text-gray-600 mt-1">Try broader keywords or reset filters.</p>
+            <h2 className="text-base font-semibold text-gray-900">Nothing matched your search</h2>
+            <p className="text-sm text-gray-600 mt-1">Try a different word, or clear the search to see everything.</p>
           </div>
         ) : (
           <>

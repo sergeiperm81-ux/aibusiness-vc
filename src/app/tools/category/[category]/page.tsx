@@ -24,6 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const catName = getCategoryFromSlug(category);
   if (!catName) return { title: "Category Not Found" };
   const catTools = tools.filter((t) => t.category === catName);
+  const shouldIndex = catTools.length >= 3;
   return {
     title: `Best ${catName} AI Tools — ${catTools.length} Tools Reviewed (2026)`,
     description: `Compare the best ${catName.toLowerCase()} AI tools. Pricing, features, and honest reviews of ${catTools.length} tools. Find the right tool for your needs.`,
@@ -32,6 +33,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       `${catName.toLowerCase()} AI software`,
       `AI tools for ${catName.toLowerCase()}`,
     ],
+    alternates: {
+      canonical: `/tools/category/${category}`,
+    },
+    robots: {
+      index: shouldIndex,
+      follow: true,
+    },
+    openGraph: {
+      title: `Best ${catName} AI Tools (2026)`,
+      description: `Compare ${catTools.length} ${catName.toLowerCase()} tools with pricing and use cases.`,
+      url: `https://aibusiness.vc/tools/category/${category}`,
+      type: "article",
+    },
   };
 }
 

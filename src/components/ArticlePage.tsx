@@ -8,8 +8,9 @@ const catColors: Record<string, string> = {
   Startups: "bg-purple-500 text-white",
   B2B: "bg-blue-500 text-white",
   Tools: "bg-emerald-500 text-white",
-  Materials: "bg-pink-500 text-white",
+  Society: "bg-pink-500 text-white",
   Learn: "bg-cyan-500 text-white",
+  Robots: "bg-orange-500 text-white",
 };
 
 const heroImages: Record<string, string> = {
@@ -17,8 +18,9 @@ const heroImages: Record<string, string> = {
   Startups: "/images/articles/startup-funding-1.jpg",
   B2B: "/images/articles/meeting-business-1.jpg",
   Tools: "/images/articles/code-screen-1.jpg",
-  Materials: "/images/articles/podcast-mic-1.jpg",
+  Society: "/images/articles/ai-network-1.jpg",
   Learn: "/images/articles/study-education-1.jpg",
+  Robots: "/images/articles/robot-hero-1.jpg",
 };
 
 // Cross-section discovery links
@@ -32,7 +34,8 @@ const CROSS_LINKS = [
   { href: "/models", label: "LLM Models (36)", section: "models" },
   { href: "/news", label: "Daily News", section: "news" },
   { href: "/learn", label: "Learn AI", section: "learn" },
-  { href: "/materials", label: "Resources", section: "materials" },
+  { href: "/society", label: "AI & Society", section: "society" },
+  { href: "/robots", label: "Robots & China", section: "robots" },
 ];
 
 // Top-performing articles for cross-promotion (based on GA4 data)
@@ -68,6 +71,7 @@ const SIDEBAR_SECTIONS = [
   { href: "/news", label: "Daily News", description: "Auto-updated from RSS", icon: "📰", section: "news" },
   { href: "/learn", label: "Learn AI", description: "Courses & careers", icon: "🎓", section: "learn" },
   { href: "/models", label: "LLM Models", description: "36 models compared", icon: "🤖", section: "models" },
+  { href: "/robots", label: "Robots & China", description: "Who earns on humanoids", icon: "🦾", section: "robots" },
 ];
 
 interface ArticlePageProps {
@@ -461,7 +465,7 @@ function fmt(text: string): string {
   return text
     .replace(/\*\*(.+?)\*\*/g, '<strong style="color:#000;font-weight:700">$1</strong>')
     .replace(/\*(.+?)\*/g, "<em>$1</em>")
-    .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" style="color:#d97706;text-decoration:none">$1</a>')
+    .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" style="color:#d97706;text-decoration:underline;text-underline-offset:2px">$1</a>')
     .replace(/`(.+?)`/g, '<code style="background:#f5f5f5;padding:2px 6px;border-radius:4px;font-size:14px;color:#000">$1</code>');
 }
 
@@ -473,7 +477,7 @@ const SECTION_TO_ARTICLE_SECTION: Record<string, string> = {
   models: "LLM Models",
   news: "News",
   learn: "Learn",
-  materials: "Resources",
+  society: "AI & Society",
   vc: "VC & Funding",
   government: "Government AI",
 };
@@ -487,7 +491,7 @@ const SECTION_TO_KEYWORDS: Record<string, string[]> = {
   vc: ["AI venture capital", "AI investment", "AI startup funding"],
   government: ["AI policy", "AI regulation", "government AI"],
   learn: ["AI career", "AI certifications", "AI skills"],
-  materials: ["AI templates", "AI resources", "AI playbooks"],
+  society: ["AI impact", "future of work", "AI ethics"],
   news: ["AI news"],
 };
 

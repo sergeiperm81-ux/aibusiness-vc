@@ -5,6 +5,7 @@ export type NavItem = {
 
 export const MAIN_NAV: NavItem[] = [
   { name: "News", href: "/news" },
+  { name: "Robots", href: "/robots" },
   { name: "Solo", href: "/solo" },
   { name: "Startups", href: "/startups" },
   { name: "VC", href: "/vc" },
@@ -13,5 +14,5 @@ export const MAIN_NAV: NavItem[] = [
   { name: "Tools", href: "/tools" },
   { name: "Models", href: "/models" },
   { name: "Learn", href: "/learn" },
-  { name: "Materials", href: "/materials" },
+  { name: "Society", href: "/society" },
 ];

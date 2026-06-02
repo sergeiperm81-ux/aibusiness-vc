@@ -15,6 +15,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { profession } = await params;
   const prof = professionToolMap[profession];
   if (!prof) return { title: "Not Found" };
+  const profTools = getToolsForProfession(profession);
+  const shouldIndex = profTools.length >= 4;
   return {
     title: `Best AI Tools for ${prof.title} — Top Picks (2026)`,
     description: prof.description + `. Pricing, features, and honest reviews. Updated 2026.`,
@@ -23,6 +25,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       `AI tools ${prof.title.toLowerCase()}`,
       `${prof.title.toLowerCase()} AI software`,
     ],
+    alternates: {
+      canonical: `/tools/best-for/${profession}`,
+    },
+    robots: {
+      index: shouldIndex,
+      follow: true,
+    },
+    openGraph: {
+      title: `Best AI Tools for ${prof.title} (2026)`,
+      description: prof.description,
+      url: `https://aibusiness.vc/tools/best-for/${profession}`,
+      type: "article",
+    },
   };
 }
 

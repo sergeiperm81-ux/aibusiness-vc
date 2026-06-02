@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { getArticlesBySection } from "@/lib/articles";
-import { SectionArticleGrid } from "@/components/SectionPage";
-import SectionHubLinks from "@/components/SectionHubLinks";
+import SectionArticleExplorer from "@/components/SectionArticleExplorer";
 
 export const metadata: Metadata = {
   title: "Government — AI & the State: Spending, Defense, Regulation, Infrastructure",
@@ -30,9 +29,7 @@ export default function GovernmentPage() {
         </div>
       </section>
 
-      <SectionHubLinks current="government" />
-
-      <SectionArticleGrid articles={articles} section="government" totalLabel="articles" />
+      <SectionArticleExplorer articles={articles} section="government" totalLabel="articles" />
     </>
   );
 }

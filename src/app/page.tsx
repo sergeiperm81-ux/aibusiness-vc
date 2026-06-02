@@ -21,7 +21,7 @@ const catColors: Record<string, string> = {
   VC: "bg-fuchsia-500 text-white",
   Government: "bg-indigo-500 text-white",
   Tools: "bg-emerald-500 text-white",
-  Materials: "bg-pink-500 text-white",
+  Society: "bg-pink-500 text-white",
   Learn: "bg-cyan-500 text-white",
 };
 
@@ -58,7 +58,7 @@ const HOME_FAQ = [
 ];
 
 type HomeSectionBlock = {
-  section: "solo" | "startups" | "b2b" | "vc" | "government" | "learn" | "materials";
+  section: "solo" | "startups" | "b2b" | "vc" | "government" | "learn" | "society" | "robots";
   title: string;
   href: string;
   description: string;
@@ -68,6 +68,16 @@ type HomeSectionBlock = {
 };
 
 const HOME_SECTION_BLOCKS: HomeSectionBlock[] = [
+  {
+    section: "robots",
+    title: "Robots: AI With a Body (and a Price Tag)",
+    href: "/robots",
+    description:
+      "Who actually earns money on humanoid robots — China's $16K factory workers, Tesla Optimus, and the ROI math replacing wages.",
+    badge: "ROBOTS",
+    cta: "Follow the money",
+    hoverRingClass: "hover:ring-orange-500/40",
+  },
   {
     section: "solo",
     title: "Solo: Make Money with AI",
@@ -129,13 +139,13 @@ const HOME_SECTION_BLOCKS: HomeSectionBlock[] = [
     hoverRingClass: "hover:ring-cyan-500/40",
   },
   {
-    section: "materials",
-    title: "Materials: Templates and Resources",
-    href: "/materials",
+    section: "society",
+    title: "Society: AI and the Future of Work",
+    href: "/society",
     description:
-      "Practical assets you can apply right now: templates, checklists, packs, and monetization-ready frameworks.",
-    badge: "MATERIALS",
-    cta: "Open resource",
+      "How AI reshapes jobs, education, creativity, trust, and daily life. Thoughtful analysis beyond the hype.",
+    badge: "SOCIETY",
+    cta: "Read essay",
     hoverRingClass: "hover:ring-pink-500/40",
   },
 ];
@@ -255,19 +265,19 @@ export default async function HomePage() {
   }));
   const signatureToolCtas = [
     {
-      href: "/materials/roi-calculator",
-      title: "AI ROI Calculator",
-      description: "Estimate payback, annual net impact, and profitability uplift.",
+      href: "/tools/directory",
+      title: "AI Tool Directory",
+      description: "356 tools reviewed with pricing, ROI data, and honest ratings.",
     },
     {
-      href: "/materials/tool-selector",
-      title: "AI Tool Selector",
-      description: "Build a revenue stack by goal, budget, and team setup.",
+      href: "/society",
+      title: "AI & Society",
+      description: "How AI reshapes jobs, education, creativity, and daily life.",
     },
     {
-      href: "/materials/playbook-templates",
-      title: "Playbook Templates",
-      description: "Copy ready offers, sales scripts, SOPs, and pricing frameworks.",
+      href: "/learn",
+      title: "Learn AI Skills",
+      description: "Salary-backed career paths, certifications, and learning guides.",
     },
   ];
 
@@ -306,7 +316,7 @@ export default async function HomePage() {
                 Browse AI Tools
               </TrackedLink>
               <TrackedLink
-                href="/materials/roi-calculator"
+                href="/society"
                 eventName="click_home_cta"
                 eventParams={{ cta: "calculate_ai_roi" }}
                 className="rounded-lg border border-emerald-500/40 px-4 py-1.5 text-sm font-medium text-emerald-300 transition-colors hover:bg-emerald-500/10"
@@ -401,10 +411,10 @@ export default async function HomePage() {
           <div className="mb-5 flex items-center justify-between">
             <h2 className="text-lg font-bold text-black">Signature Tools</h2>
             <Link
-              href="/materials"
+              href="/society"
               className="text-sm text-black/50 transition-colors hover:text-accent"
             >
-              See all materials &rarr;
+              See all society essays &rarr;
             </Link>
           </div>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3">

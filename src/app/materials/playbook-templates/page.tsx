@@ -1,60 +1,56 @@
 import type { Metadata } from "next";
-import PlaybookTemplates from "@/components/materials/PlaybookTemplates";
-import { TrackEventOnView } from "@/components/analytics/TrackEventOnView";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Business Prompt Library (2026) - Research, Marketing, Sales, Operations",
+  title: "AI Playbook Templates - Offers, SOPs, and Prompt Workflows",
   description:
-    "Execution-grade business prompts with strong structure, constraints, and output formats for real team workflows.",
+    "Execution-ready AI playbooks: offer templates, delivery SOPs, and practical prompts to run projects faster with better quality control.",
+  alternates: {
+    canonical: "/materials/playbook-templates",
+  },
 };
 
 export default function PlaybookTemplatesPage() {
   return (
-    <>
-      <TrackEventOnView eventName="view_tool" params={{ tool: "playbook_templates", section: "materials" }} />
-      <section className="bg-background">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
-          <p className="text-pink-400 font-mono text-xs font-medium mb-2 tracking-wider uppercase">Materials</p>
-          <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">
-            Business <span className="text-accent">Prompt Library</span>
-          </h1>
-          <p className="text-sm text-muted max-w-3xl">
-            Practical prompts built for execution: clear inputs, strict constraints, and predictable outputs that
-            founders and teams can use immediately.
-          </p>
-        </div>
-      </section>
+    <section className="bg-white">
+      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-12">
+        <p className="text-xs uppercase tracking-wider font-medium text-gray-500 mb-2">Materials</p>
+        <h1 className="text-3xl font-bold text-gray-900 mb-3">AI Playbook Templates</h1>
+        <p className="text-sm text-gray-700 max-w-2xl">
+          Reuse what works: offer outlines, discovery scripts, delivery SOPs, and
+          prompt workflows for implementation teams.
+        </p>
 
-      <section className="bg-white border-b border-gray-100">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <div className="rounded-xl border border-gray-200 p-4">
-              <p className="text-xs uppercase tracking-wider text-gray-500 mb-1">What This Is</p>
-              <p className="text-sm text-gray-800">
-                A copy-paste prompt library with variables to replace using your own data.
-              </p>
-            </div>
-            <div className="rounded-xl border border-gray-200 p-4">
-              <p className="text-xs uppercase tracking-wider text-gray-500 mb-1">Who It Is For</p>
-              <p className="text-sm text-gray-800">
-                Founders, operators, marketers, analysts, and teams who want immediate practical outputs.
-              </p>
-            </div>
-            <div className="rounded-xl border border-gray-200 p-4">
-              <p className="text-xs uppercase tracking-wider text-gray-500 mb-1">When To Use</p>
-              <p className="text-sm text-gray-800">
-                Before strategy sessions, vendor decisions, campaigns, sales calls, and operational planning.
-              </p>
-            </div>
+        <div className="mt-8 rounded-xl border border-amber-200 bg-amber-50 p-5">
+          <h2 className="text-lg font-bold text-amber-900 mb-2">Start from proven guides</h2>
+          <p className="text-sm text-amber-800 mb-4">
+            Use the freshest execution guides and adapt the workflows to your vertical.
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <Link
+              href="/solo"
+              className="inline-flex rounded-md bg-amber-600 px-4 py-2 text-sm font-semibold text-white hover:bg-amber-700 transition-colors"
+            >
+              Solo playbooks
+            </Link>
+            <Link
+              href="/b2b"
+              className="inline-flex rounded-md border border-amber-300 bg-white px-4 py-2 text-sm font-semibold text-amber-800 hover:bg-amber-100 transition-colors"
+            >
+              B2B case studies
+            </Link>
           </div>
         </div>
-      </section>
 
-      <section className="bg-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
-          <PlaybookTemplates />
+        <div className="mt-6 flex gap-3">
+          <Link href="/materials/roi-calculator" className="text-sm text-accent hover:text-amber-700">
+            ROI Calculator &larr;
+          </Link>
+          <Link href="/materials/tool-selector" className="text-sm text-accent hover:text-amber-700">
+            Tool Selector &larr;
+          </Link>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }

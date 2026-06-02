@@ -3,7 +3,7 @@ title: "AI Freelancer Rate Card 2026: What to Charge for AI Services"
 description: "Complete pricing guide for AI freelancers. Hourly rates, project rates, and retainer pricing by service type, experience level, and client size."
 date: "2026-04-04"
 author: "Sergei P."
-category: "Materials"
+category: "Solo"
 image: "/images/articles/calculator-1.jpg"
 keywords: ["AI freelancer rates", "prompt engineering rates", "AI consulting pricing", "what to charge for AI services", "AI freelance pricing 2026"]
 ---

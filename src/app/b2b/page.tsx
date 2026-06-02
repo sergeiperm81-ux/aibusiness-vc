@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { getArticlesBySection } from "@/lib/articles";
 import SectionArticleExplorer from "@/components/SectionArticleExplorer";
-import { TrackedLink } from "@/components/analytics/TrackedLink";
-import SectionHubLinks from "@/components/SectionHubLinks";
 
 export const metadata: Metadata = {
   title: "B2B - AI Implementation for Businesses (2026)",
@@ -28,39 +26,6 @@ export default function B2BPage() {
           </p>
         </div>
       </section>
-
-      <section className="bg-white border-b border-black/5">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <TrackedLink
-              href="/materials/roi-calculator"
-              eventName="click_section_cta"
-              eventParams={{ section: "b2b", cta: "roi_calculator" }}
-              className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-900 hover:border-emerald-300 transition-colors"
-            >
-              Model implementation ROI &rarr;
-            </TrackedLink>
-            <TrackedLink
-              href="/materials/tool-selector"
-              eventName="click_section_cta"
-              eventParams={{ section: "b2b", cta: "tool_selector" }}
-              className="rounded-xl border border-cyan-200 bg-cyan-50 px-4 py-3 text-sm font-semibold text-cyan-900 hover:border-cyan-300 transition-colors"
-            >
-              Build the right enterprise stack &rarr;
-            </TrackedLink>
-            <TrackedLink
-              href="/materials/playbook-templates"
-              eventName="click_section_cta"
-              eventParams={{ section: "b2b", cta: "playbook_templates" }}
-              className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-semibold text-amber-900 hover:border-amber-300 transition-colors"
-            >
-              Use delivery and pricing playbooks &rarr;
-            </TrackedLink>
-          </div>
-        </div>
-      </section>
-
-      <SectionHubLinks current="b2b" />
 
       <SectionArticleExplorer articles={articles} section="b2b" totalLabel="articles" />
     </>

@@ -20,6 +20,30 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${tool.name} Review — Is It Worth the Money? Pricing & ROI (2026)`,
     description: `${tool.name} honest review: ${tool.description} Pricing: ${tool.pricing}. Best for: ${tool.targetUser}. ROI analysis and alternatives.`,
+    keywords: [
+      `${tool.name} review`,
+      `${tool.name} pricing`,
+      `${tool.name} alternatives`,
+      `${tool.category} AI tool`,
+    ],
+    alternates: {
+      canonical: `/tools/directory/${id}`,
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+    openGraph: {
+      title: `${tool.name} Review (2026)`,
+      description: `${tool.name} pricing, fit, and ROI analysis for ${tool.targetUser.toLowerCase()}.`,
+      url: `https://aibusiness.vc/tools/directory/${id}`,
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${tool.name} Review (2026)`,
+      description: `${tool.name}: pricing, alternatives, and ROI.`,
+    },
   };
 }
 

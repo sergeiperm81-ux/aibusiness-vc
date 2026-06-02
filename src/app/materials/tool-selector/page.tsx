@@ -1,59 +1,48 @@
 import type { Metadata } from "next";
-import ToolSelector from "@/components/materials/ToolSelector";
-import { tools } from "@/data/tools";
-import { TrackEventOnView } from "@/components/analytics/TrackEventOnView";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "AI Tool Selector - Build Your Revenue Stack (2026)",
+  title: "AI Tool Selector - Pick the Right Stack by Goal and Budget",
   description:
-    "Select your AI stack by goal, budget, team size, and technical level. Get practical tool recommendations for making money with AI.",
+    "Select AI tools by use case, budget, and team size. Build a practical stack with clear execution priorities.",
+  alternates: {
+    canonical: "/materials/tool-selector",
+  },
 };
 
 export default function ToolSelectorPage() {
   return (
-    <>
-      <TrackEventOnView eventName="view_tool" params={{ tool: "tool_selector", section: "materials" }} />
-      <section className="bg-background">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
-          <p className="text-pink-400 font-mono text-xs font-medium mb-2 tracking-wider uppercase">Materials</p>
-          <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">
-            AI Tool <span className="text-accent">Selector</span>
-          </h1>
-          <p className="text-sm text-muted max-w-3xl">
-            Build your stack for outcomes, not hype. Choose your goal and constraints, then get a practical set of AI
-            tools to test first.
+    <section className="bg-white">
+      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-12">
+        <p className="text-xs uppercase tracking-wider font-medium text-gray-500 mb-2">Materials</p>
+        <h1 className="text-3xl font-bold text-gray-900 mb-3">AI Tool Selector</h1>
+        <p className="text-sm text-gray-700 max-w-2xl">
+          Choose tools by business goal first, not by hype. Start from one bottleneck,
+          then build the minimum viable stack around it.
+        </p>
+
+        <div className="mt-8 rounded-xl border border-cyan-200 bg-cyan-50 p-5">
+          <h2 className="text-lg font-bold text-cyan-900 mb-2">Browse full tool coverage</h2>
+          <p className="text-sm text-cyan-800 mb-4">
+            Compare pricing, fit, and tradeoffs across categories and professions.
           </p>
+          <Link
+            href="/tools"
+            className="inline-flex rounded-md bg-cyan-600 px-4 py-2 text-sm font-semibold text-white hover:bg-cyan-700 transition-colors"
+          >
+            Open Tools Directory
+          </Link>
         </div>
-      </section>
 
-      <section className="bg-white border-b border-gray-100">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <div className="rounded-xl border border-gray-200 p-4">
-              <p className="text-xs uppercase tracking-wider text-gray-500 mb-1">What This Is</p>
-              <p className="text-sm text-gray-800">
-                A practical stack picker that recommends first tools to test based on real constraints.
-              </p>
-            </div>
-            <div className="rounded-xl border border-gray-200 p-4">
-              <p className="text-xs uppercase tracking-wider text-gray-500 mb-1">Who It Is For</p>
-              <p className="text-sm text-gray-800">Solo builders, teams, consultants, and businesses building AI workflows.</p>
-            </div>
-            <div className="rounded-xl border border-gray-200 p-4">
-              <p className="text-xs uppercase tracking-wider text-gray-500 mb-1">When To Use</p>
-              <p className="text-sm text-gray-800">
-                When you have too many tool options and need a fast shortlist by goal, budget, and skill level.
-              </p>
-            </div>
-          </div>
+        <div className="mt-6 flex gap-3">
+          <Link href="/materials/roi-calculator" className="text-sm text-accent hover:text-amber-700">
+            ROI Calculator &larr;
+          </Link>
+          <Link href="/materials/playbook-templates" className="text-sm text-accent hover:text-amber-700">
+            Next: Playbook Templates &rarr;
+          </Link>
         </div>
-      </section>
-
-      <section className="bg-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
-          <ToolSelector tools={tools} />
-        </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }
