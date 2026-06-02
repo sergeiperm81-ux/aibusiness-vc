@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
-import stats from "@/data/stats-snapshot.json";
+import { getStats, type Stats } from "@/lib/ga-stats";
 
 export const metadata: Metadata = {
   title: "Stats",
@@ -27,7 +27,8 @@ export default async function StatsPage({ searchParams }: PageProps) {
     return <PasswordGate hasError={error === "1"} />;
   }
 
-  return <Dashboard />;
+  const { data, live } = await getStats();
+  return <Dashboard stats={data} live={live} />;
 }
 
 function PasswordGate({ hasError }: { hasError: boolean }) {
@@ -112,7 +113,7 @@ function PageRow({ path, views, bounce, tone }: { path: string; views: number; b
   );
 }
 
-function Dashboard() {
+function Dashboard({ stats, live }: { stats: Stats; live: boolean }) {
   const v = stats.visitors;
   const maxCountry = Math.max(...stats.countries.map((c) => c.users));
   const totalDevice = stats.devices.reduce((s, d) => s + d.users, 0) || 1;
@@ -128,8 +129,17 @@ function Dashboard() {
               </p>
               <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">Site Statistics</h1>
               <p className="text-sm text-white/60 max-w-2xl">
-                Live traffic from Google Analytics. Snapshot taken {stats.generatedAt}. &ldquo;All
-                time&rdquo; covers the whole life of the site (since {stats.allTimeSince}).
+                {live ? (
+                  <>
+                    <span className="inline-flex items-center gap-1.5 text-emerald-400 font-medium">
+                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 inline-block" /> Live
+                    </span>{" "}
+                    from Google Analytics — updated {stats.generatedAt}, auto-refreshes every 30 min.
+                  </>
+                ) : (
+                  <>Last saved snapshot ({stats.generatedAt}) — live connection unavailable right now.</>
+                )}{" "}
+                &ldquo;All time&rdquo; covers the whole life of the site (since {stats.allTimeSince}).
               </p>
             </div>
             <form action="/api/stats/logout" method="post">
