@@ -1,0 +1,39 @@
+{
+  "generatedAt": "2026-06-02",
+  "source": "Google Analytics 4 (property 532602792)",
+  "allTimeSince": "2026-01-01",
+  "visitors": {
+    "last7days": { "users": 660, "sessions": 752, "pageviews": 1014 },
+    "last30days": { "users": 2918, "sessions": 3165, "pageviews": 3888 },
+    "allTime": { "users": 3751, "sessions": 4069, "pageviews": 5208 }
+  },
+  "countries": [
+    { "name": "Singapore", "users": 1511 },
+    { "name": "United States", "users": 741 },
+    { "name": "China", "users": 621 },
+    { "name": "Unknown", "users": 158 },
+    { "name": "India", "users": 84 },
+    { "name": "United Kingdom", "users": 55 },
+    { "name": "Canada", "users": 51 },
+    { "name": "Germany", "users": 37 }
+  ],
+  "devices": [
+    { "name": "Desktop", "users": 3341 },
+    { "name": "Mobile", "users": 406 },
+    { "name": "Tablet", "users": 4 }
+  ],
+  "topPages": [
+    { "path": "/solo/make-money-with-claude-ai", "views": 706, "bounce": 55 },
+    { "path": "/", "views": 242, "bounce": 51 },
+    { "path": "/models", "views": 168, "bounce": 60 },
+    { "path": "/solo", "views": 129, "bounce": 36 },
+    { "path": "/startups/ai-startup-ideas-2026", "views": 90, "bounce": 83 }
+  ],
+  "worstPages": [
+    { "path": "/startups/ai-open-source-business-models", "views": 19, "bounce": 100 },
+    { "path": "/solo/ai-saas-ideas-2026", "views": 69, "bounce": 99 },
+    { "path": "/solo/headshot-pro-300k-month", "views": 41, "bounce": 98 },
+    { "path": "/startups/cursor-9b-valuation", "views": 31, "bounce": 97 },
+    { "path": "/startups/anthropic-5b-arr", "views": 23, "bounce": 96 }
+  ]
+}

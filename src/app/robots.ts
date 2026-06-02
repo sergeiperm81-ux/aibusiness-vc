@@ -9,7 +9,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/materials/leads", "/materials/leads/login", "/api/"],
+        disallow: ["/materials/leads", "/materials/leads/login", "/api/", "/stats"],
       },
       // AI search engines — explicitly allowed (these drive traffic)
       { userAgent: "GPTBot", allow: "/" },
