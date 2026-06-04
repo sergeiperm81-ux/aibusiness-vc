@@ -66,12 +66,12 @@ export default function RobotsPage() {
             Robots
           </p>
           <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">
-            Robots — <span className="text-accent">AI With a Body</span>, and Who&apos;s Cashing In
+            Robots — <span className="text-accent">The Economics of Physical AI</span>
           </h1>
           <p className="text-sm text-white/70 max-w-2xl">
-            A robot is just AI that learned to touch the world — and right now it&apos;s being
-            built cheapest and shipped fastest in China. We follow the money: what humanoids
-            cost, who&apos;s buying them, and how people are already earning from the robot boom.
+            A robot is just AI that learned to touch the world — built cheapest and shipped
+            fastest in China. We cover the business of it: what humanoids cost, who&apos;s buying,
+            and where the real opportunities are.
           </p>
         </div>
       </section>

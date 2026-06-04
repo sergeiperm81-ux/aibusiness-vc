@@ -16,14 +16,14 @@ export default function SoloPage() {
       <section className="bg-background">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
           <p className="text-accent font-mono text-xs font-medium mb-2 tracking-wider uppercase">
-            Solo Earners
+            Solo &amp; Independent
           </p>
           <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">
-            Make Money with AI <span className="text-accent">as an Individual</span>
+            AI for <span className="text-accent">Independent Operators</span>
           </h1>
           <p className="text-sm text-white/70 max-w-2xl">
-            No company needed. No employees. Just you and AI. Every method with
-            real income numbers, difficulty levels, and time to first dollar.
+            No company, no team — just you and AI. Practical methods with real
+            numbers, honest difficulty levels, and realistic timelines.
           </p>
         </div>
       </section>

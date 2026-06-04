@@ -44,7 +44,7 @@ export function Footer() {
               <span className="text-xs text-muted font-mono">.vc</span>
             </Link>
             <p className="text-sm text-muted leading-relaxed max-w-md">
-              Outcome-first guide to making money with AI: real numbers, practical
+              Outcome-first analysis of the business of AI: real numbers, practical
               playbooks, and tested tools for operators, founders, and investors.
             </p>
             <div className="mt-4">
