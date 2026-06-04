@@ -2,7 +2,7 @@
 title: "AI Blog Writer: $9K-$12K/Month Writing 60-80 Posts with AI Assistance"
 description: "Real income report: writing AI-assisted blog posts for SaaS companies. 60-80 posts/month, 25 hours/week, $9K-12K/month."
 date: "2026-03-31"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/entrepreneur-1.jpg"
 keywords: ["AI content writer income", "AI blog writing business", "freelance AI writer earnings", "make money writing with AI"]

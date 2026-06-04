@@ -2,7 +2,7 @@
 title: "US Government AI Spending: $140B+ for Defense, $30B for Civilian — Who Gets the Contracts"
 description: "US federal AI spending exceeds $170B through 2028. Pentagon leads, but civilian agencies are catching up. Who wins the contracts."
 date: "2026-04-05"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Government"
 image: "/images/articles/conference-1.jpg"
 keywords: ["US government AI spending", "federal AI contracts", "Pentagon AI budget", "government AI investment"]

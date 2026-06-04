@@ -2,7 +2,7 @@
 title: "ElevenLabs' $500M ARR Signal: Why AI Growth Rounds Are Starting to Look Like Public Markets"
 description: "ElevenLabs crossing $500M ARR while expanding its Series D shows how late-stage AI investing is changing: institutional capital, strategic customers, tenders, and infrastructure-style valuations."
 date: "2026-05-06"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "VC"
 image: "/images/articles/stocks-trading-1.jpg"
 keywords: ["ElevenLabs funding", "AI growth rounds", "AI venture capital 2026", "voice AI ARR", "late-stage AI investing"]

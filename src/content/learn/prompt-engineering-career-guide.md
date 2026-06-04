@@ -2,7 +2,7 @@
 title: "Prompt Engineering Career Guide: How to Earn $100K+ Writing AI Prompts"
 description: "Complete career guide for prompt engineers in 2026. Job boards, freelance rates, required skills, portfolio building, and salary negotiation strategies."
 date: "2026-04-04"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Learn"
 image: "/images/articles/typing-keyboard-1.jpg"
 keywords: ["prompt engineering career", "prompt engineer salary", "prompt engineering jobs", "how to become prompt engineer", "prompt engineering freelance"]

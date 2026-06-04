@@ -2,7 +2,7 @@
 title: "Isomorphic Labs' $2.1B Round: The VC Bet on AI Drug Discovery"
 description: "Isomorphic Labs' $2.1 billion Series B shows how AI drug discovery is moving from research prestige into capital-heavy company building, pharma partnerships, and clinical risk."
 date: "2026-05-13"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "VC"
 image: "/images/articles/medical-tech-1.jpg"
 keywords: ["Isomorphic Labs funding", "AI drug discovery", "AI biotech venture capital", "AI healthcare startups", "DeepMind drug discovery"]

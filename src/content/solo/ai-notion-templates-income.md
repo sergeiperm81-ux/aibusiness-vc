@@ -2,7 +2,7 @@
 title: "Selling AI-Powered Notion Templates: $500-$5K/Month Passive Income"
 description: "Create and sell Notion templates enhanced with AI workflows. Best-selling categories, pricing, platforms, and income examples."
 date: "2026-04-01"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/learning-online-1.jpg"
 keywords: ["Notion templates income", "sell Notion templates", "AI Notion templates", "passive income digital products"]

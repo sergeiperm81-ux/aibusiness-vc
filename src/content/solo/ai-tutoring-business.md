@@ -2,7 +2,7 @@
 title: "AI Tutoring Service: $2K-$10K/Month Teaching Students with AI-Powered Methods"
 description: "Build an AI-enhanced tutoring business. Personalized learning plans, AI homework help, and premium pricing for results."
 date: "2026-04-01"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/money-gold-1.jpg"
 keywords: ["AI tutoring business", "AI education income", "tutoring with AI", "AI learning business"]

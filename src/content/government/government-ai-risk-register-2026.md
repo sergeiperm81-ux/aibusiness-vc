@@ -2,7 +2,7 @@
 title: "Government AI Risk Register (2026): The Risks That Actually Stop Rollouts"
 description: "A practical risk framework for public-sector AI deployments: operational, legal, procurement, and trust risks that derail projects even when pilots look strong."
 date: "2026-04-28"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Government"
 image: "/images/articles/security-lock-1.jpg"
 keywords: ["government AI risk", "public sector AI governance", "AI rollout risks", "responsible AI public sector", "government AI controls"]

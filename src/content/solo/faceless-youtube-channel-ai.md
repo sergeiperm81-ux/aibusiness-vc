@@ -2,7 +2,7 @@
 title: "Faceless YouTube with AI: $500-$80K/Month Without Showing Your Face"
 description: "A realistic faceless YouTube strategy using AI tools, focused on niche selection, production systems, and monetization beyond AdSense."
 date: "2026-03-30"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/notebook-study-1.jpg"
 keywords: ["faceless YouTube channel with AI", "AI YouTube channel", "faceless YouTube", "make money YouTube AI", "AI video creation"]

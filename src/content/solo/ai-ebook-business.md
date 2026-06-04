@@ -2,7 +2,7 @@
 title: "How to Write and Sell AI-Assisted E-Books ($200-$5,000/Month)"
 description: "Create and sell ebooks using AI. Topic research, writing workflow, publishing on Amazon KDP and Gumroad, marketing strategies."
 date: "2026-03-30"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/handshake-deal-1.jpg"
 keywords: ["AI ebook business", "sell ebooks with AI", "Amazon KDP AI", "write ebook with ChatGPT"]

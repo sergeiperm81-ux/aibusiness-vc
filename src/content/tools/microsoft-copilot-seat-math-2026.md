@@ -2,7 +2,7 @@
 title: "Microsoft Copilot Seat Math: When the $30 AI Tool Pays for Itself"
 description: "Microsoft 365 Copilot now has 20 million paid enterprise seats and Accenture is rolling it out to 743,000 workers. Here is the practical money test for buyers."
 date: "2026-05-09"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Tools"
 image: "/images/articles/office-modern-1.jpg"
 keywords: ["Microsoft 365 Copilot ROI", "Copilot pricing", "AI productivity tools", "enterprise AI tools", "Accenture Copilot rollout"]

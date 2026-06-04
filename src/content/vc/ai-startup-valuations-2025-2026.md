@@ -2,7 +2,7 @@
 title: "AI Startup Valuations 2025-2026: How VCs Price AI Companies and What Multiples to Expect"
 description: "Revenue multiples, benchmarks, and valuation drivers for AI startups. How VCs decide if your AI company is worth $50M or $5B."
 date: "2026-04-04"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "VC"
 image: "/images/articles/startup-whiteboard-1.jpg"
 keywords: ["AI startup valuations", "AI company valuation multiples", "how VCs value AI startups", "AI startup funding benchmarks 2026"]

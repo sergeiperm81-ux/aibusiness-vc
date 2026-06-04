@@ -2,7 +2,7 @@
 title: "Champ AI's $8.5M Raise: The Startup Bet on Back-Office Agents"
 description: "Champ AI's seed round shows why founders are chasing the unglamorous work inside operations teams: fraud checks, forms, portals, calls, and the expensive gap between software and real workflow."
 date: "2026-05-12"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Startups"
 image: "/images/articles/team-office-1.jpg"
 keywords: ["Champ AI", "back-office automation", "AI agents", "AI startup funding", "operations automation"]

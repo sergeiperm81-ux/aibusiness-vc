@@ -2,7 +2,7 @@
 title: "How Governments Should Measure AI Projects in 2026: A KPI Framework That Actually Works"
 description: "Public-sector AI programs fail when success metrics are vague. A practical KPI framework for agencies that need measurable outcomes, not just pilot activity."
 date: "2026-04-28"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Government"
 image: "/images/articles/data-chart-1.jpg"
 keywords: ["government AI KPI", "public sector AI measurement", "AI project metrics", "AI governance framework", "government AI outcomes"]

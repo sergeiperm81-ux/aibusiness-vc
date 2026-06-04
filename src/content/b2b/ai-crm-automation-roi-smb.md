@@ -2,7 +2,7 @@
 title: "AI CRM Automation ROI for SMBs in 2026: Where Profit Actually Comes From"
 description: "A practical ROI framework for SMB teams using AI CRM workflows to improve pipeline quality, conversion speed, and forecast confidence."
 date: "2026-04-28"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "B2B"
 image: "/images/articles/dashboard-analytics-1.jpg"
 keywords: ["AI CRM automation ROI", "SMB CRM automation", "B2B AI operations", "CRM workflow AI", "sales ops automation"]

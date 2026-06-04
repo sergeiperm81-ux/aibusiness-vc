@@ -26,7 +26,7 @@ export default function AboutPage() {
           materials workflows.
         </p>
         <p className="text-sm text-gray-700 leading-relaxed">
-          Primary editor attribution across the site: <strong>Sergei P.</strong>
+          Primary editor attribution across the site: <strong>Sergei Ponomarev</strong>
         </p>
       </div>
     </section>

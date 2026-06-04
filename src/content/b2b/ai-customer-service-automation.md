@@ -2,7 +2,7 @@
 title: "How Companies Cut Support Costs 40-60% with AI Customer Service"
 description: "How businesses automate customer service with AI. Chatbots, email triage, voice agents. Tools, ROI data, and implementation guide."
 date: "2026-03-30"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "B2B"
 image: "/images/articles/ai-education-1.jpg"
 keywords: ["AI customer service", "AI chatbot for business", "customer support automation", "AI help desk"]

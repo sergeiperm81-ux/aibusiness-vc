@@ -2,7 +2,7 @@
 title: "Lovable vs Bolt vs Cursor vs Claude Code: Which Stack Gets You to Revenue Faster?"
 description: "A practical comparison of four AI coding tools through one lens: speed to paid outcomes, quality, and long-term maintainability."
 date: "2026-04-28"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Tools"
 image: "/images/articles/code-screen-1.jpg"
 keywords: ["Lovable vs Bolt", "Cursor vs Claude Code", "best vibe coding tool 2026"]

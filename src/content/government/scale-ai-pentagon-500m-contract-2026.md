@@ -2,7 +2,7 @@
 title: "Scale AI's $500M Pentagon Deal: The New Economics of Government AI"
 description: "Scale AI's expanded Pentagon agreement shows how public-sector AI money is moving from demos into data, deployment, and decision-support infrastructure."
 date: "2026-05-08"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Government"
 image: "/images/articles/business-handshake-1.jpg"
 keywords: ["Scale AI Pentagon contract", "government AI procurement", "defense AI spending", "CDAO AI contract", "public sector AI"]

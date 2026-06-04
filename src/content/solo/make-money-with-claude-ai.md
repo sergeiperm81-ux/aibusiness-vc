@@ -2,7 +2,7 @@
 title: "Make Money with Claude AI: 7 Proven Methods Earning $2K-$15K/Month"
 description: "Specific ways to earn money using Claude AI. Content writing, coding with Claude Code, research services, and building agents with real income potential."
 date: "2026-06-01"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/payment-card-1.jpg"
 keywords: ["make money with Claude AI", "Claude AI income", "earn money with Claude", "Claude Code freelancing", "Claude API business"]

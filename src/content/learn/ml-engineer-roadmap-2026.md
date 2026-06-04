@@ -2,7 +2,7 @@
 title: "Machine Learning Engineer Roadmap 2026: Skills, Salary $180K-$350K, and How to Get Hired"
 description: "A realistic ML engineer roadmap for 2026 focused on skill sequencing, portfolio proof, and the fastest route to employable depth."
 date: "2026-04-04"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Learn"
 image: "/images/articles/ai-education-1.jpg"
 keywords: ["ML engineer roadmap", "machine learning career", "ML engineer salary", "how to become ML engineer"]

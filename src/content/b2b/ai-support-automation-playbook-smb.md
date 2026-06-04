@@ -2,7 +2,7 @@
 title: "AI Support Automation Playbook for SMB: Cut Cost Without Breaking Customer Trust"
 description: "How SMB teams implement AI support automation with escalation safeguards, quality controls, and measurable customer-service outcomes."
 date: "2026-04-28"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "B2B"
 image: "/images/articles/chatbot-phone-1.jpg"
 keywords: ["AI support automation", "SMB customer support AI", "support ticket triage AI", "B2B service automation", "AI helpdesk"]

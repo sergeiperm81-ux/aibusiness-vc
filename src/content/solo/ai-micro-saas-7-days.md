@@ -2,7 +2,7 @@
 title: "AI Micro-SaaS in 2026: How to Build a Real $5K/Month Product Without a Team"
 description: "A practical micro-SaaS playbook for solo founders: validation, scoped build, launch rhythm, and retention-focused growth."
 date: "2026-04-28"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/saas-dashboard-1.jpg"
 keywords: ["AI micro SaaS", "build SaaS in a week", "micro SaaS ideas 2026", "solo SaaS"]

@@ -2,7 +2,7 @@
 title: "AI Chatbot Business for Local Businesses: Build a $4K-$40K/Month Service"
 description: "Learn how to build and sell AI chatbots to local businesses. White-label platforms, pricing strategies, and step-by-step client acquisition guide."
 date: "2026-03-30"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/factory-auto-1.jpg"
 keywords: ["AI chatbot business for local businesses", "white-label AI chatbot", "sell chatbots to local businesses", "AI chatbot agency", "chatbot reseller business"]

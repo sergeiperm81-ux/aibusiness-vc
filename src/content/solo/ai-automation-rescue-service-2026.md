@@ -2,7 +2,7 @@
 title: "AI Automation Rescue Service: The Solo Offer for Broken AI Workflows"
 description: "How solo operators can turn the AI-agent reliability backlash into a paid rescue offer for audits, fixes, monitoring, and recurring workflow ownership."
 date: "2026-05-04"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/whiteboard-1.jpg"
 keywords: ["AI automation rescue service", "AI workflow audit", "AI automation agency", "AI agent reliability", "AI operations service"]

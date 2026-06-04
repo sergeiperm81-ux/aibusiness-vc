@@ -2,7 +2,7 @@
 title: "AI Dynamic Pricing: How Retailers Increase Margins 5-15% Automatically"
 description: "A practical guide to AI-driven pricing in retail: where margin gains come from, how to roll out safely, and what separates winners from pricing chaos."
 date: "2026-04-01"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "B2B"
 image: "/images/articles/charts-screen-1.jpg"
 keywords: ["AI dynamic pricing", "AI pricing optimization", "retail AI pricing", "automated pricing"]

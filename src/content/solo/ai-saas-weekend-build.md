@@ -2,7 +2,7 @@
 title: "How to Build and Launch an AI Micro-SaaS Over a Weekend ($500-$20K/Month)"
 description: "Real examples of micro-SaaS products built in days with AI. The weekend-build playbook for solo developers."
 date: "2026-04-01"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/meeting-2.jpg"
 keywords: ["AI micro SaaS", "build SaaS weekend", "vibe coding SaaS", "solo developer SaaS income"]

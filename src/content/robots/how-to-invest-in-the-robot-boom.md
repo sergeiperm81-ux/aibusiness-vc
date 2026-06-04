@@ -2,7 +2,7 @@
 title: "How to Invest in the Humanoid Robot Boom Without Buying a Single Robot"
 description: "Unitree's $610M IPO, the KOID robot ETF, rare-earth magnets, and Nvidia's chips — the real ways ordinary investors can get exposure to a market banks say hits $5 trillion by 2050."
 date: "2026-06-02"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Robots"
 image: "/images/articles/robot-unitree-hq.jpg"
 keywords: ["invest in robot stocks", "humanoid robot ETF KOID", "Unitree IPO", "robot rare earth stocks", "how to invest robotics 2026"]

@@ -2,7 +2,7 @@
 title: "10 AI Startup Ideas with Real Market Demand in 2026"
 description: "Validated AI startup ideas with market size, competition analysis, and what it takes to build each one. For founders ready to start."
 date: "2026-03-30"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Startups"
 image: "/images/articles/saas-dashboard-1.jpg"
 keywords: ["AI startup ideas", "AI business ideas 2026", "AI company ideas", "start AI startup"]

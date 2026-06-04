@@ -2,7 +2,7 @@
 title: "AI in Logistics: How Shipping Companies Save 10-20% on Transportation Costs"
 description: "AI route optimization, carrier selection, and warehouse automation. FedEx, UPS, and DHL save billions. How any company can do it."
 date: "2026-04-01"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "B2B"
 image: "/images/articles/brand-building-1.jpg"
 keywords: ["AI logistics", "AI shipping optimization", "AI route planning", "logistics AI savings"]

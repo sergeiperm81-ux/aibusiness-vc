@@ -2,7 +2,7 @@
 title: "How to Sell AI Chatbots to Local Businesses in 2026 ($5K-$50K per Client)"
 description: "A field-tested playbook for closing local chatbot deals, structuring delivery, and turning 1-2 clients into recurring monthly income."
 date: "2026-04-28"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/chatbot-phone-1.jpg"
 keywords: ["sell AI chatbots", "AI chatbot agency", "chatbot for dentists"]

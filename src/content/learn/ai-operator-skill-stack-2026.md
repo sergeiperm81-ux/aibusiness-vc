@@ -2,7 +2,7 @@
 title: "AI Operator Skill Stack (2026): The Fastest Path from Beginner to Paid Delivery"
 description: "A practical roadmap for becoming an AI operator who can design, ship, and improve business workflows that clients pay for."
 date: "2026-04-28"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Learn"
 image: "/images/articles/learning-online-1.jpg"
 keywords: ["AI operator roadmap", "learn AI for business", "AI skills for freelancers", "AI portfolio projects"]

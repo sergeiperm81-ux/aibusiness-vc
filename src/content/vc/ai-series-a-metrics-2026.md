@@ -2,7 +2,7 @@
 title: "AI Series A in 2026: What Investors Ask in Partner Meetings"
 description: "A practical Series A guide for AI founders: the metrics VCs scrutinize, what changes late in the process, and how to prep your data room."
 date: "2026-04-28"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "VC"
 image: "/images/articles/team-planning-1.jpg"
 keywords: ["AI Series A", "AI startup metrics", "AI fundraising 2026", "VC partner meeting", "raise AI startup funding"]

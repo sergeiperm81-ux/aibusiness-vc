@@ -2,7 +2,7 @@
 title: "AI YouTube Automation: Build a Channel That Earns $3K-$20K/Month"
 description: "Run profitable YouTube channels with AI doing 80% of the work. Niche selection, RPM data, tools, and real income examples."
 date: "2026-04-01"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/network-cables-1.jpg"
 keywords: ["YouTube automation AI", "AI YouTube income", "faceless YouTube revenue", "YouTube passive income AI"]

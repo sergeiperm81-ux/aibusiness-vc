@@ -2,7 +2,7 @@
 title: "Sovereign AI in 2026: Why Governments Are Building National AI Stacks"
 description: "Governments are moving from AI policy talks to sovereign AI execution: compute, models, data controls, and procurement strategy. What this means for budgets and vendors."
 date: "2026-04-28"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Government"
 image: "/images/articles/chip-hardware-1.jpg"
 keywords: ["sovereign AI", "national AI strategy", "government AI infrastructure", "public sector AI policy", "AI sovereignty"]

@@ -2,7 +2,7 @@
 title: "AI Data Collection Service: $2K-$15K/Month Building Scrapers for Businesses"
 description: "A practical guide to launching a data collection service with AI-assisted scraping, from offer design and pricing to legal boundaries and recurring revenue."
 date: "2026-04-01"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/neon-city-1.jpg"
 keywords: ["AI web scraping service", "data collection business", "AI scraper income", "sell data scraping"]

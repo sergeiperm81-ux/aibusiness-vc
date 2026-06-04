@@ -2,7 +2,7 @@
 title: "AI Outbound Agency in 2026: Offer Design, Pricing, and Real Margin Math"
 description: "How to build a profitable AI outbound agency in 2026 with signal-first positioning, delivery controls, and retainer-friendly performance reporting."
 date: "2026-04-28"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/email-inbox-1.jpg"
 keywords: ["AI outbound agency", "AI lead generation service", "outbound automation business", "AI sales agency", "B2B outreach AI"]

@@ -2,7 +2,7 @@
 title: "How AI Cuts Hiring Costs 35% and Time-to-Hire 40%"
 description: "How HR teams use AI for resume screening, candidate sourcing, interview scheduling, and onboarding. Tools, ROI data, and implementation."
 date: "2026-03-30"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "B2B"
 image: "/images/articles/brain-ai-1.jpg"
 keywords: ["AI for HR", "AI recruitment tools", "AI hiring", "AI resume screening"]

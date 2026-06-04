@@ -2,7 +2,7 @@
 title: "Angel Investing in AI Startups: How to Deploy $25K-$100K for 10-50x Returns"
 description: "A practical angel investing guide for AI startups focused on portfolio logic, deal quality, and disciplined deployment."
 date: "2026-04-05"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "VC"
 image: "/images/articles/trading-stocks-1.jpg"
 keywords: ["angel investing AI", "invest in AI startups", "AI angel investor", "AI startup investing returns"]

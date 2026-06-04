@@ -2,7 +2,7 @@
 title: "AI Voice Cloning Business in 2026: A Practical Path to $3K-$15K/Month"
 description: "How solo operators package voice cloning as a high-margin service for media, training, and brand teams."
 date: "2026-04-28"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/ai-voice-1.jpg"
 keywords: ["AI voice cloning business", "ElevenLabs business", "voice over AI", "AI voice actor"]

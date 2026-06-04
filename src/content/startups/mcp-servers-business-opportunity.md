@@ -2,7 +2,7 @@
 title: "MCP Servers in 2026: Startup Opportunities, Revenue Models, and Moats"
 description: "How founders turn Model Context Protocol infrastructure into products, services, and recurring revenue with defensible integration depth."
 date: "2026-04-28"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Startups"
 image: "/images/articles/circuit-board-1.jpg"
 keywords: ["MCP servers business", "Model Context Protocol", "AI integration business", "MCP marketplace"]

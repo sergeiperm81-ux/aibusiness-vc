@@ -2,7 +2,7 @@
 title: "AI Robotics: The $5B Startups Building Humanoid Workers"
 description: "Figure AI, 1X, Physical Intelligence — humanoid robots are real and funded. The companies, the money, and when robots replace workers."
 date: "2026-04-01"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Startups"
 image: "/images/articles/robot-desk-1.jpg"
 keywords: ["AI robotics startups", "humanoid robots", "Figure AI", "robotics funding 2026"]

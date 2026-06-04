@@ -2,7 +2,7 @@
 title: "AI Automation Agency: $0 to $10K/Month in 90 Days (Step-by-Step)"
 description: "Step-by-step guide to launching an AI automation agency. Services, pricing ($2,500-$15,000), tools, and how to land your first client."
 date: "2026-03-30"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/email-inbox-1.jpg"
 keywords: ["how to start an AI automation agency", "AI automation business", "AI agency services", "AI automation pricing", "start AI business"]

@@ -2,7 +2,7 @@
 title: "Why Shenzhen Builds Humanoid Robots 10× Cheaper Than America"
 description: "China controls 63% of the humanoid supply chain. Without Chinese parts, a robot's actuators jump from $22K to $58K. Why the West can't easily catch up — and how to profit anyway."
 date: "2026-06-02"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Robots"
 image: "/images/articles/robot-supplychain-2.jpg"
 keywords: ["China robot supply chain", "why China robots cheaper", "humanoid robot components", "China vs US robotics", "rare earth robots"]

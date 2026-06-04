@@ -2,7 +2,7 @@
 title: "How E-Commerce Stores Boost Revenue 25-50% with AI"
 description: "How ecommerce businesses use AI for product descriptions, customer service, pricing, and personalization. ROI examples and tools."
 date: "2026-03-30"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "B2B"
 image: "/images/articles/analytics-chart-1.jpg"
 keywords: ["AI for ecommerce", "AI ecommerce tools", "AI product descriptions", "AI customer service ecommerce"]

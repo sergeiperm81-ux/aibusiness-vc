@@ -2,7 +2,7 @@
 title: "10 AI Podcasts That Will Make You Smarter About AI and Money"
 description: "Curated list of the best AI podcasts for business, tech, and philosophy. What each covers, episode length, and who should listen."
 date: "2026-03-30"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Society"
 image: "/images/articles/podcast-mic-2.jpg"
 keywords: ["best AI podcasts", "AI podcasts 2026", "artificial intelligence podcast", "AI business podcast"]

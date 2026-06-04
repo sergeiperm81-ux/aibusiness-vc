@@ -2,7 +2,7 @@
 title: "AI-Powered Dropshipping: How Sellers Use AI to Find Winners and Scale to $10K/Month"
 description: "AI tools for product research, listing optimization, ad creative, and customer service. How AI gives dropshippers an unfair advantage."
 date: "2026-04-01"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/growth-chart-1.jpg"
 keywords: ["AI dropshipping", "AI ecommerce income", "AI product research", "dropshipping with AI"]

@@ -2,7 +2,7 @@
 title: "AI Tool Stack for Solopreneurs: The $97/Month Setup That Replaces a $200K Team"
 description: "Build a one-person business with AI tools costing under $100/month that replaces a team of 5-10 people. Every tool tested with ROI analysis."
 date: "2026-04-04"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/desk-laptop-1.jpg"
 keywords: ["AI tools for solopreneurs", "one person business AI", "AI tool stack", "solopreneur AI setup"]

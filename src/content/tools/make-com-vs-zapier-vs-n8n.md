@@ -2,7 +2,7 @@
 title: "Make.com vs Zapier vs n8n: Best AI Automation Platform (2026)"
 description: "Detailed comparison of Make.com, Zapier, and n8n for AI workflows. Pricing, features, ease of use, and which to choose."
 date: "2026-03-30"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Tools"
 image: "/images/articles/study-education-1.jpg"
 keywords: ["Make vs Zapier", "n8n vs Zapier", "best automation platform 2026", "AI workflow automation"]

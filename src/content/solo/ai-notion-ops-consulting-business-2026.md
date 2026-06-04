@@ -2,7 +2,7 @@
 title: "AI + Notion Ops Consulting: A High-Demand Service for Lean Teams in 2026"
 description: "Build a high-margin Notion + AI operations consulting offer for SMB teams with clear process design, automation boundaries, and retention logic."
 date: "2026-04-28"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/notebook-study-1.jpg"
 keywords: ["Notion AI consulting", "Notion operations service", "AI workflow consulting", "Notion automation business", "AI systems for teams"]

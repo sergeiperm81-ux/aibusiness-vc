@@ -2,7 +2,7 @@
 title: "14 AI Digital Product Ideas You Can Create and Sell in 2026"
 description: "Discover 14 profitable digital products you can build with AI. Creation time, pricing, platforms, and realistic income potential for each."
 date: "2026-03-30"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/group-friends-1.jpg"
 keywords: ["AI digital product ideas", "digital products to sell", "AI products to sell online", "passive income AI", "create digital products with AI"]

@@ -2,7 +2,7 @@
 title: "Claude Opus 4.8 Launches: 84% on Computer-Use, 3x Cheaper Fast Mode, and Anthropic's Agentic AI Bet"
 description: "Anthropic shipped Claude Opus 4.8 on May 28 — 84% on Online-Mind2Web (beating GPT-5.5), first model to clear the Legal Agent Benchmark threshold, 4x fewer missed code flaws than 4.7, and a new Fast Mode tier priced to undercut Gemini Pro. Full breakdown of benchmarks, pricing, deployment, and what it means for the AI economy."
 date: "2026-05-28"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Tools"
 image: "/images/articles/code-screen-1.jpg"
 keywords: ["Claude Opus 4.8 launch", "Claude Opus 4.8 benchmarks", "Claude Opus 4.8 pricing", "Anthropic Opus 4.8 vs GPT-5.5", "Online-Mind2Web 84%", "Claude Code dynamic workflows", "Claude Fast Mode pricing"]

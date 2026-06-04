@@ -2,7 +2,7 @@
 title: "OpenAI Hits $13B ARR: The Fastest-Growing Company in History"
 description: "OpenAI generates $1.08B/month. How they went from $0 to $13B annual revenue in 2 years, and what it means for the AI economy."
 date: "2026-03-31"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Startups"
 image: "/images/articles/social-media-1.jpg"
 keywords: ["OpenAI revenue", "OpenAI ARR", "ChatGPT revenue", "fastest growing startup"]

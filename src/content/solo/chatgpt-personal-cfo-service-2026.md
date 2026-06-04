@@ -2,7 +2,7 @@
 title: "ChatGPT Personal CFO Service: The New Solo Offer for Messy Money"
 description: "How solo operators can turn bank-connected AI finance tools into a practical cash-flow cleanup and advisory service for freelancers and small businesses."
 date: "2026-05-18"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/finance-accounting-1.jpg"
 keywords: ["ChatGPT personal finance", "AI CFO service", "AI finance automation", "solo AI business", "cash flow service"]

@@ -2,7 +2,7 @@
 title: "Anthropic Passing OpenAI at Work: The New B2B AI Buying Signal"
 description: "Ramp's spending data shows Anthropic passing OpenAI in paid workplace adoption, turning model choice into a practical procurement, ROI, and workflow-design question for businesses."
 date: "2026-05-14"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "B2B"
 image: "/images/articles/woman-office-1.jpg"
 keywords: ["Anthropic OpenAI workplace adoption", "Ramp AI Index", "enterprise AI procurement", "B2B AI ROI", "Claude business adoption"]

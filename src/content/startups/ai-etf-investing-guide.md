@@ -2,7 +2,7 @@
 title: "AI ETFs: How to Invest in the AI Boom Without Picking Stocks"
 description: "Best AI ETFs for 2026 — CHAT, BAI, AIQ and more. Performance, fees, holdings, and which one to choose for your portfolio."
 date: "2026-03-30"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Startups"
 image: "/images/articles/realestate-house-1.jpg"
 keywords: ["AI ETF", "best AI ETFs 2026", "AI investing", "artificial intelligence ETF", "AI stocks"]

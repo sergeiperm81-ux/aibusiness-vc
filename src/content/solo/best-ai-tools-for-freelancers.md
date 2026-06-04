@@ -2,7 +2,7 @@
 title: "AI Tools That Help Freelancers Earn 40-60% More (Complete Stack)"
 description: "Curated list of 15 AI tools for freelance writers, designers, developers, and marketers. Pricing, ROI, and comparison table included."
 date: "2026-03-30"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/newsletter-email-1.jpg"
 keywords: ["best AI tools for freelancers", "AI freelance tools", "AI tools for writers", "AI tools for designers", "freelancer productivity AI"]

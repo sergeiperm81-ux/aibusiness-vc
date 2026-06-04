@@ -2,7 +2,7 @@
 title: "AI Translation Business: Earn $25K-$100K/Year with AI-Powered Localization"
 description: "How to start an AI translation and localization business. Tools, pricing, niches, and scaling from freelance to agency."
 date: "2026-03-30"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/money-cash-1.jpg"
 keywords: ["AI translation business", "AI localization", "machine translation post-editing", "AI translator income"]

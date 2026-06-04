@@ -2,7 +2,7 @@
 title: "AI Education: The $400B Market Where Startups Are Replacing Textbooks"
 description: "Duolingo, Khan Academy, Coursera — how AI education companies generate billions. Personalized learning at scale."
 date: "2026-04-01"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Startups"
 image: "/images/articles/programming-1.jpg"
 keywords: ["AI education startups", "AI learning companies", "EdTech AI revenue", "AI tutoring market"]

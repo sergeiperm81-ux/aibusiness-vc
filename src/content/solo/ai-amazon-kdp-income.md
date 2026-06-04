@@ -2,7 +2,7 @@
 title: "AI + Amazon KDP: How Self-Publishers Earn $1K-$20K/Month with AI Books"
 description: "AI-assisted self-publishing on Amazon KDP. How authors use AI to write faster, which niches pay best, and realistic income numbers."
 date: "2026-03-31"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/ecommerce-shopping-1.jpg"
 keywords: ["AI Amazon KDP", "AI self publishing income", "make money AI books", "KDP AI income"]

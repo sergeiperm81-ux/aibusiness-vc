@@ -2,7 +2,7 @@
 title: "Anthropic's Revenue Rocket: From $5B ARR to a $965B Valuation and an IPO Filing"
 description: "Anthropic went from $5B ARR in mid-2025 to a ~$47B run-rate, a $965B valuation, and a confidential IPO filing by mid-2026. Here's how Claude became a revenue machine — and what it means for you."
 date: "2026-03-31"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Startups"
 image: "/images/articles/screens-data-1.jpg"
 keywords: ["Anthropic revenue", "Claude revenue", "Anthropic ARR", "Anthropic valuation", "Anthropic IPO"]

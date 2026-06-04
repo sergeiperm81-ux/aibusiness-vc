@@ -2,7 +2,7 @@
 title: "State-Level AI Initiatives: Which US States Spend the Most on AI and Where the Money Goes"
 description: "US states are spending $18B+ on AI initiatives. California, Texas, Virginia, and New York lead with data centers, workforce programs, and smart infrastructure."
 date: "2026-04-04"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Government"
 image: "/images/articles/dashboard-analytics-1.jpg"
 keywords: ["state AI spending", "US state AI initiatives", "California AI investment", "Texas AI data centers", "state government AI budgets"]

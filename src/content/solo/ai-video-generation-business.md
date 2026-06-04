@@ -2,7 +2,7 @@
 title: "AI Video Generation Business: $5K-$25K/Month Creating Videos with Sora, Runway, and Kling"
 description: "How to build a video production business using AI. Real client examples, pricing, and tools comparison."
 date: "2026-04-28"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/video-editing-1.jpg"
 keywords: ["AI video generation business", "Sora business", "Runway ML business", "AI video production"]

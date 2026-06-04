@@ -2,7 +2,7 @@
 title: "17 AI Side Hustle Ideas for Beginners in 2026 (Ranked by Difficulty)"
 description: "Discover 17 beginner-friendly AI side hustles ranked from easiest to hardest. Real income potential, tools needed, and time to first dollar."
 date: "2026-03-30"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/meeting-business-1.jpg"
 keywords: ["AI side hustle ideas for beginners 2026", "AI side hustles", "make money with AI", "beginner AI business", "AI income ideas"]

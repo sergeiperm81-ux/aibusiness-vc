@@ -2,7 +2,7 @@
 title: "Highest Paying AI Jobs in 2026: What Actually Pays and Why"
 description: "A practical salary and positioning guide for AI careers, focused on role economics, skill leverage, and realistic entry paths."
 date: "2026-04-28"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Learn"
 image: "/images/articles/business-suit-1.jpg"
 keywords: ["highest paying AI jobs 2026", "AI salary guide", "AI engineer salary"]

@@ -2,7 +2,7 @@
 title: "AI Cost Pass-Through: Why Enterprise Software Buyers Need a New Pricing Playbook"
 description: "AI infrastructure spending, memory shortages, and incumbent SaaS bundling are turning AI features into a B2B pricing and margin negotiation."
 date: "2026-05-07"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "B2B"
 image: "/images/articles/server-room-1.jpg"
 keywords: ["AI cost pass-through", "enterprise AI pricing", "AI software margins", "B2B AI procurement", "AI SaaS pricing 2026"]

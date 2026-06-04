@@ -2,7 +2,7 @@
 title: "Enterprise AI Deployment Startups: Why the Money Is Moving From Models to Implementation"
 description: "Sierra's $950M round and new enterprise AI ventures from Anthropic and OpenAI show where startup money is moving: deployment, workflow ownership, and measurable ROI."
 date: "2026-05-05"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Startups"
 image: "/images/articles/dashboard-analytics-1.jpg"
 keywords: ["enterprise AI startups", "AI deployment startups", "AI agents ROI", "forward deployed engineers", "AI startup business model"]

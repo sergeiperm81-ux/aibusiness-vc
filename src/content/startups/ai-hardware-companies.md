@@ -2,7 +2,7 @@
 title: "The AI Chip Race: Why NVIDIA Made $130B and Who's Next"
 description: "NVIDIA, AMD, custom silicon from Google and Amazon. The companies building AI chips and why hardware is the real bottleneck."
 date: "2026-03-30"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Startups"
 image: "/images/articles/resume-career-1.jpg"
 keywords: ["AI hardware", "AI chips", "NVIDIA AI", "AI semiconductor", "AI infrastructure"]

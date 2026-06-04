@@ -2,7 +2,7 @@
 title: "AI Design Agency: How Sarah Chen Hit $420K/Year Working 25 Hours/Week"
 description: "Solo founder built an AI-powered design agency to $420K annual revenue in 8 months using ChatGPT, Canva, and Zapier."
 date: "2026-03-31"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/gpu-render-1.jpg"
 keywords: ["AI design agency", "solo founder income", "AI business $420K", "make money AI design"]

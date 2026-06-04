@@ -2,7 +2,7 @@
 title: "AI CRM Migration Service in 2026: High-Ticket Offer with Real ROI"
 description: "How to package AI CRM migration as a premium service with pilot-first delivery, governance controls, and measurable revenue-ops impact."
 date: "2026-04-28"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/dashboard-analytics-1.jpg"
 keywords: ["CRM migration AI", "AI service business", "high-ticket AI offer", "CRM automation consulting", "data cleanup service"]

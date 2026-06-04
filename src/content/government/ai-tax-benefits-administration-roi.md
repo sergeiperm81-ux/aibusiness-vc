@@ -2,7 +2,7 @@
 title: "AI in Tax and Benefits Administration: Where Governments See Real ROI"
 description: "Tax and benefits are among the highest-ROI AI use cases in government, but only when workflow, oversight, and appeals are designed correctly."
 date: "2026-04-28"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Government"
 image: "/images/articles/finance-accounting-1.jpg"
 keywords: ["AI tax administration", "government AI ROI", "public benefits AI", "fraud detection AI government", "public sector automation"]

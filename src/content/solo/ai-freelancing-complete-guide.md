@@ -2,7 +2,7 @@
 title: "AI Freelancing: The Complete Guide to Earning $1K-$10K/Month in 2026"
 description: "A practical AI freelancing guide focused on offer design, client acquisition, pricing logic, and the path from first project to stable retainers."
 date: "2026-03-30"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/home-office-1.jpg"
 keywords: ["AI freelancing guide", "freelancing with AI tools", "AI freelance services", "make money freelancing AI", "AI freelancer"]

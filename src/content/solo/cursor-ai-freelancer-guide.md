@@ -2,7 +2,7 @@
 title: "Cursor AI for Freelancers: How Developers Earn $150-$300/Hour Building Apps 10x Faster"
 description: "Complete guide to freelancing with Cursor AI. Pricing strategies, client acquisition, and real income examples."
 date: "2026-04-28"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/dev-office-1.jpg"
 keywords: ["Cursor AI freelancer", "Cursor developer income", "AI coding freelance", "build apps with Cursor"]

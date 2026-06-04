@@ -2,7 +2,7 @@
 title: "How to Raise a Seed Round for Your AI Startup: The $3-8M Playbook"
 description: "Step-by-step guide to raising $3-8M seed round for AI startups. What investors want, how to pitch, timeline, and common mistakes."
 date: "2026-04-05"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "VC"
 image: "/images/articles/presentation-1.jpg"
 keywords: ["raise seed round AI", "AI startup fundraising", "seed funding AI", "how to pitch AI investors"]

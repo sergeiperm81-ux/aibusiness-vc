@@ -2,7 +2,7 @@
 title: "7 AI Tools That Save Small Business Owners $2,400/Month"
 description: "Practical AI tools for small business owners. Customer service, marketing, bookkeeping, scheduling — each saves hours weekly."
 date: "2026-03-30"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "B2B"
 image: "/images/articles/book-reading-1.jpg"
 keywords: ["AI for small business", "AI tools small business", "small business automation", "AI productivity small business"]

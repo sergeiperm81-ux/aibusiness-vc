@@ -2,7 +2,7 @@
 title: "AI in Space: How NASA, SpaceX, and Satellites Earn Billions from AI"
 description: "A practical look at how AI creates real economic value across satellite analytics, autonomous operations, and space communications."
 date: "2026-04-05"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Government"
 image: "/images/articles/tech-purple-1.jpg"
 keywords: ["AI in space", "NASA AI", "SpaceX AI", "satellite AI", "space AI market"]

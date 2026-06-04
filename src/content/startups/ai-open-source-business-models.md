@@ -2,7 +2,7 @@
 title: "How Open Source AI Companies Turn Free Software into Billions"
 description: "How Hugging Face, Mistral, and others turn open-source AI into billion-dollar businesses. Revenue models and strategies."
 date: "2026-03-30"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Startups"
 image: "/images/articles/retro-tech-1.jpg"
 keywords: ["open source AI business model", "Hugging Face business model", "monetize open source AI", "open source startup revenue"]

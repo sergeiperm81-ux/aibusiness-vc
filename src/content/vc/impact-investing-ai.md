@@ -2,7 +2,7 @@
 title: "Impact Investing in AI: The $28B Market Where Doing Good Pays Well"
 description: "ESG AI funds, climate AI ($7.2B invested), SDG-aligned startups. Impact investing in AI delivers returns AND social value."
 date: "2026-04-05"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "VC"
 image: "/images/articles/globe-tech-1.jpg"
 keywords: ["impact investing AI", "ESG AI", "climate AI investment", "social impact AI startups"]

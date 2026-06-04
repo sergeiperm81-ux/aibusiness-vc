@@ -2,7 +2,7 @@
 title: "Vibe Coding Income Guide 2026: How Non-Developers Earn $4,800/Month Building Apps"
 description: "Vibe coding hit $4.7B in 2026. 63% of users aren't developers. Here's how they're making real money."
 date: "2026-04-28"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/code-colorful-1.jpg"
 keywords: ["vibe coding income", "vibe coding business", "Lovable vs Bolt", "make money vibe coding"]

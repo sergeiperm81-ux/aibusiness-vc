@@ -2,7 +2,7 @@
 title: "AI Exits 2025: The Biggest Acquisitions and What They Mean for Investors"
 description: "Wiz $32B, Base44 $80M, and more. The biggest AI exits of 2025, who profited, and what patterns predict the next big exits."
 date: "2026-04-05"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "VC"
 image: "/images/articles/money-cash-1.jpg"
 keywords: ["AI acquisitions 2025", "AI startup exits", "AI M&A deals", "biggest AI acquisitions"]

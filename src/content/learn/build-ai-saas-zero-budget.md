@@ -2,7 +2,7 @@
 title: "How to Build an AI SaaS Product in 30 Days (With $0 Budget)"
 description: "A practical 30-day launch model for AI SaaS with zero-budget constraints, from validation and MVP scope to first paying users."
 date: "2026-04-04"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Learn"
 image: "/images/articles/startup-garage-1.jpg"
 keywords: ["build AI SaaS", "AI SaaS tutorial", "launch AI product free", "AI startup no budget", "build AI app for free"]

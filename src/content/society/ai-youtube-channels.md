@@ -2,7 +2,7 @@
 title: "12 AI YouTube Channels Worth Your Time: Learn, Build, Earn"
 description: "The best YouTube channels for AI news, tutorials, and business. From beginner explainers to deep technical content."
 date: "2026-03-30"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Society"
 image: "/images/articles/youtube-play-1.jpg"
 keywords: ["best AI YouTube channels", "AI YouTube 2026", "AI tutorials YouTube", "learn AI YouTube"]

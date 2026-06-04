@@ -2,7 +2,7 @@
 title: "Beyond VC for AI Startups (2026): Venture Debt, RBF, and Strategic Capital"
 description: "VC is not the only funding path. A practical guide to venture debt, revenue-based financing, grants, and strategic partnerships for AI founders."
 date: "2026-04-28"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "VC"
 image: "/images/articles/funding-round-1.jpg"
 keywords: ["AI startup funding", "venture debt AI", "revenue-based financing", "non-dilutive capital", "fundraising alternatives"]

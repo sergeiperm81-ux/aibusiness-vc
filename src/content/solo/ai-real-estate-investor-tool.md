@@ -2,7 +2,7 @@
 title: "How AI Helps Real Estate Investors Find Deals 10x Faster"
 description: "AI tools for property analysis, deal sourcing, and market prediction. How investors save 20 hours/week and find better deals."
 date: "2026-03-31"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/marketing-strategy-1.jpg"
 keywords: ["AI real estate investing", "AI property analysis", "AI deal finding", "real estate AI tools"]

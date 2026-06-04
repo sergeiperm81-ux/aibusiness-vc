@@ -2,7 +2,7 @@
 title: "AI in Healthcare Policy: $30B Medicare AI Modernization and the Race to Cut Costs"
 description: "A practical policy view of government healthcare AI spending, with focus on Medicare efficiency, VA operations, and deployment governance."
 date: "2026-04-04"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Government"
 image: "/images/articles/woman-scientist-1.jpg"
 keywords: ["healthcare AI government spending", "Medicare AI modernization", "VA healthcare AI", "NIH AI funding", "CMS AI contracts"]

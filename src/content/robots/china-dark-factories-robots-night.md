@@ -2,7 +2,7 @@
 title: "Inside China's 'Dark Factories': Robots That Build a Phone Every 3 Seconds, All Night, With Nobody There"
 description: "Xiaomi runs an 81,000 m² factory 24/7 with zero workers on the floor — one smartphone every ~3 seconds. China lost 30M factory jobs as exports hit records. Who profits, and how you position."
 date: "2026-06-02"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Robots"
 image: "/images/articles/robot-factory-automation.jpg"
 keywords: ["China dark factory", "lights-out manufacturing", "Xiaomi robot factory", "automation jobs China", "factory robots money"]

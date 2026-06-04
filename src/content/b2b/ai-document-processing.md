@@ -2,7 +2,7 @@
 title: "How AI Document Processing Saves Businesses $165K/Year"
 description: "How AI automates invoice processing, contract review, data extraction. Tools, ROI calculations, and implementation steps."
 date: "2026-03-30"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "B2B"
 image: "/images/articles/ai-face-1.jpg"
 keywords: ["AI document processing", "AI invoice processing", "intelligent document processing", "AI data extraction"]

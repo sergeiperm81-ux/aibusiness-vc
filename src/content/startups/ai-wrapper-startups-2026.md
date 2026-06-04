@@ -2,7 +2,7 @@
 title: "AI Wrapper Startups in 2026: Why Distribution Beats Model Access"
 description: "Where AI wrappers actually win, what moats hold, and how founders turn workflow products into durable recurring revenue."
 date: "2026-04-28"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Startups"
 image: "/images/articles/startup-whiteboard-1.jpg"
 keywords: ["AI wrapper startup", "GPT wrapper business", "AI startup ideas", "build on top of AI"]

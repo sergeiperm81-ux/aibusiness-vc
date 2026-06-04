@@ -2,7 +2,7 @@
 title: "Unitree vs Tesla Optimus vs Figure: What a Humanoid Robot Actually Costs in 2026"
 description: "Unitree G1 starts at ~$16K, Tesla Optimus targets $20–30K, Figure is valued at $39B, Agility's Digit runs $30/hour. A real price breakdown of the humanoid race — and where the money is."
 date: "2026-06-02"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Robots"
 image: "/images/articles/robot-humanoid-2.jpg"
 keywords: ["humanoid robot price 2026", "Unitree G1 price", "Tesla Optimus price", "Figure robot cost", "cheapest humanoid robot"]

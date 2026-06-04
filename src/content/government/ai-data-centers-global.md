@@ -2,7 +2,7 @@
 title: "AI Data Centers: The $500B Construction Boom Powering the AI Economy"
 description: "Microsoft, Amazon, and Google are driving a $500B+ AI infrastructure wave that is reshaping energy, construction, and public budgets."
 date: "2026-04-05"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Government"
 image: "/images/articles/server-room-1.jpg"
 keywords: ["AI data centers", "data center construction", "AI infrastructure spending", "data center investment"]

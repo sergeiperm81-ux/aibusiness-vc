@@ -2,7 +2,7 @@
 title: "China's $150B AI Strategy: How Beijing Plans to Dominate AI by 2030"
 description: "China's national AI plan: $150B government investment, 400+ AI companies, DeepSeek breakthrough. The money behind China's AI ambitions."
 date: "2026-04-05"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Government"
 image: "/images/articles/globe-tech-1.jpg"
 keywords: ["China AI strategy", "China AI investment", "China AI spending", "China vs US AI"]

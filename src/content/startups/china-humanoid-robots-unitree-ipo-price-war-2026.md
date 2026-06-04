@@ -2,7 +2,7 @@
 title: "China Is Winning the Robot War on Price: Unitree's $6.2B IPO and the $4,290 Humanoid"
 description: "China now controls ~80% of humanoid robot shipments, sells working humanoids from $4,290, and Unitree just fast-tracked a $6.2B Shanghai IPO reviewed June 1. While Figure AI sits at a $39B valuation with almost nothing shipped, China is flooding factories. Here's what it means for your money."
 date: "2026-06-01"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Startups"
 image: "/images/articles/robot-humanoid-1.jpg"
 keywords: ["China humanoid robots 2026", "Unitree IPO valuation", "cheapest humanoid robot price", "China robot market share", "Unitree vs Figure AI", "humanoid robot investment 2026"]

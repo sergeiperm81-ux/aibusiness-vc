@@ -2,7 +2,7 @@
 title: "AI Photo Editing Service: $1K-$5K/Month for E-Commerce and Real Estate"
 description: "Offer AI-powered photo editing for product shots, real estate, and portraits. Background removal, enhancement, virtual staging."
 date: "2026-04-01"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/logistics-shipping-1.jpg"
 keywords: ["AI photo editing business", "AI product photography", "photo editing service income", "AI background removal"]

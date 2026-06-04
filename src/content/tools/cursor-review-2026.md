@@ -2,7 +2,7 @@
 title: "Cursor Review: How the $20/Month Tool Saves Developers $50K/Year"
 description: "Honest Cursor review. Features, pricing, what it does well, limitations, and whether it's worth it for developers and non-coders."
 date: "2026-03-30"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Tools"
 image: "/images/articles/stocks-trading-1.jpg"
 keywords: ["Cursor review", "Cursor AI editor", "Cursor vs VS Code", "Cursor pricing", "best AI coding tool"]

@@ -2,7 +2,7 @@
 title: "AI Code Review as a Solo Service: The New Money in Agent-Written Software"
 description: "As CEOs start bragging about AI-written code, companies need humans who can review, govern, and ship it safely. That creates a practical solo service opportunity."
 date: "2026-05-11"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/code-screen-1.jpg"
 keywords: ["AI code review service", "AI coding agents", "solo developer business", "agent-written software", "AI software QA"]

@@ -2,7 +2,7 @@
 title: "How to Make $1,000 a Month With AI: 5 Proven Paths (Step-by-Step)"
 description: "A realistic and practical guide to earning your first $1,000/month with AI by choosing the right lane and executing with consistency."
 date: "2026-03-30"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/online-class-1.jpg"
 keywords: ["how to make $1000 a month with AI", "make money with AI", "AI income", "AI side income", "earn with AI tools"]

@@ -2,7 +2,7 @@
 title: "AI Prompt Engineering Jobs: Salary, Skills & How to Get Hired"
 description: "A practical career guide to prompt engineering roles: what companies pay for, what portfolios should show, and how to enter the market."
 date: "2026-03-30"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/man-laptop-1.jpg"
 keywords: ["prompt engineering jobs", "prompt engineer salary", "AI prompt engineering career", "how to become prompt engineer"]
