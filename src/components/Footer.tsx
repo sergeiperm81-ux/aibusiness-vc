@@ -76,6 +76,9 @@ export function Footer() {
         <div className="border-t border-card-border mt-8 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-xs text-muted">&copy; {new Date().getFullYear()} aibusiness.vc</p>
           <div className="flex gap-4 text-xs text-muted">
+            <Link href="/about" className="hover:text-foreground">
+              About
+            </Link>
             <Link href="/privacy" className="hover:text-foreground">
               Privacy
             </Link>
