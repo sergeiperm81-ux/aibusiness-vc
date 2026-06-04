@@ -11,8 +11,8 @@ export const MAIN_NAV: NavItem[] = [
   { name: "VC", href: "/vc" },
   { name: "B2B", href: "/b2b" },
   { name: "Gov", href: "/government" },
-  { name: "Tools", href: "/tools" },
-  { name: "Models", href: "/models" },
   { name: "Learn", href: "/learn" },
   { name: "Society", href: "/society" },
+  { name: "Tools", href: "/tools" },
+  { name: "Models", href: "/models" },
 ];

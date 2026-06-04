@@ -31,7 +31,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/society`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/robots`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/news`, lastModified: now, changeFrequency: "daily", priority: 0.8 },
-    // /about, /privacy, /terms, /affiliate-disclosure exist but low SEO value
+    { url: `${baseUrl}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
+    // /privacy, /terms, /affiliate-disclosure exist but low SEO value
   ];
 
   // Models — individual profile pages
