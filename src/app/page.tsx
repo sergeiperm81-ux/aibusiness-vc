@@ -32,8 +32,8 @@ const catColors: Record<string, string> = {
 
 const HOME_FAQ = [
   {
-    q: "Can you really make money with AI in 2026?",
-    a: "Yes. We track 146 case studies with verified income from $500/month side hustles to $300K/month solo founders. The fastest paths are AI freelancing, automation agencies, and content stacks built on Claude or ChatGPT. See the Solo section for step-by-step playbooks.",
+    q: "Is AI actually profitable for businesses in 2026?",
+    a: "Yes — and we track the evidence. 146 case studies with verified results, from lean solo operators to enterprises cutting costs 40-60%. The clearest returns come from AI freelancing, automation services, and content systems built on Claude or ChatGPT. See the Solo and B2B sections for step-by-step playbooks.",
   },
   {
     q: "How much does it cost to start an AI side hustle?",
@@ -70,17 +70,17 @@ type HomeSectionBlock = {
 const HOME_SECTION_BLOCKS: HomeSectionBlock[] = [
   {
     section: "robots",
-    title: "Robots: AI With a Body (and a Price Tag)",
+    title: "Robots: The Economics of Physical AI",
     href: "/robots",
     description:
-      "Who actually earns money on humanoid robots — China's $16K factory workers, Tesla Optimus, and the ROI math replacing wages.",
+      "The business of humanoid robots — what they cost, China's supply-chain edge, and where the returns are.",
     badge: "ROBOTS",
-    cta: "Follow the money",
+    cta: "Read analysis",
     hoverRingClass: "hover:ring-orange-500/40",
   },
   {
     section: "solo",
-    title: "Solo: Make Money with AI",
+    title: "Solo: AI for Independent Operators",
     href: "/solo",
     description:
       "Execution playbooks for individuals: AI freelancing, productized services, agency models, and lean solo systems.",
@@ -130,7 +130,7 @@ const HOME_SECTION_BLOCKS: HomeSectionBlock[] = [
   },
   {
     section: "learn",
-    title: "Learn: Skills That Pay",
+    title: "Learn: AI Skills & Careers",
     href: "/learn",
     description:
       "Salary-backed learning paths, role roadmaps, and practical skill stacks to earn in the AI economy.",
@@ -288,15 +288,15 @@ export default async function HomePage() {
         <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
           <div className="max-w-3xl">
             <p className="mb-1.5 font-mono text-xs font-medium uppercase tracking-wider text-accent">
-              The AI Gold Rush is here
+              The business of artificial intelligence
             </p>
             <h1 className="mb-2 text-2xl font-bold leading-[1.15] tracking-tight text-white sm:text-3xl">
-              How to Make Money <span className="text-accent">with AI</span> in 2026
+              How AI Creates <span className="text-accent">Business Value</span> in 2026
             </h1>
             <p className="mb-3 max-w-xl text-sm leading-relaxed text-white/70">
-              50+ income methods with verified $500-$300K/month numbers, 356 AI tools
-              reviewed with ROI data, and 146 case studies across solo earners,
-              startups, and enterprises.
+              Independent, outcome-first analysis of where AI creates value — for operators,
+              founders, and investors. Real numbers, honest ROI, and 356 tools reviewed across
+              solo, startups, and enterprise.
             </p>
             <div className="flex flex-wrap gap-3">
               <TrackedLink
@@ -305,7 +305,7 @@ export default async function HomePage() {
                 eventParams={{ cta: "explore_earning_methods" }}
                 className="rounded-lg bg-accent px-4 py-1.5 text-sm font-semibold text-background transition-colors hover:bg-accent-hover"
               >
-                Explore Earning Methods
+                Explore the Playbooks
               </TrackedLink>
               <TrackedLink
                 href="/tools/directory"
@@ -393,11 +393,11 @@ export default async function HomePage() {
             What you&rsquo;ll find on AI Business
           </h2>
           <p className="mb-5 max-w-3xl text-sm leading-relaxed text-black/70">
-            AI Business is an outcome-first guide to making money with artificial intelligence.
+            AI Business is an outcome-first guide to the business of artificial intelligence.
             Below is what we cover, with concrete numbers so you can decide where to start.
           </p>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            <FactCard label="Income methods" value="50+" sub="Verified $500-$300K/month" />
+            <FactCard label="Income methods" value="50+" sub="With real revenue data" />
             <FactCard label="AI tools reviewed" value="356" sub="With ROI data and pricing" />
             <FactCard label="Case studies" value="146" sub="Real numbers, named companies" />
             <FactCard label="LLM models profiled" value="36" sub="GPT-4o, Claude, Gemini, more" />
@@ -409,7 +409,7 @@ export default async function HomePage() {
       <section className="border-b border-black/5 bg-white">
         <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
           <div className="mb-5 flex items-center justify-between">
-            <h2 className="text-lg font-bold text-black">Signature Tools</h2>
+            <h2 className="text-lg font-bold text-black">Where to Start</h2>
             <Link
               href="/society"
               className="text-sm text-black/50 transition-colors hover:text-accent"
