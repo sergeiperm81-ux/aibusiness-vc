@@ -298,32 +298,6 @@ export default async function HomePage() {
               founders, and investors. Real numbers, honest ROI, and 356 tools reviewed across
               solo, startups, and enterprise.
             </p>
-            <div className="flex flex-wrap gap-3">
-              <TrackedLink
-                href="/solo"
-                eventName="click_home_cta"
-                eventParams={{ cta: "explore_earning_methods" }}
-                className="rounded-lg bg-accent px-4 py-1.5 text-sm font-semibold text-background transition-colors hover:bg-accent-hover"
-              >
-                Explore the Playbooks
-              </TrackedLink>
-              <TrackedLink
-                href="/tools/directory"
-                eventName="click_home_cta"
-                eventParams={{ cta: "browse_ai_tools" }}
-                className="rounded-lg border border-card-border px-4 py-1.5 text-sm font-medium text-white transition-colors hover:bg-card-bg"
-              >
-                Browse AI Tools
-              </TrackedLink>
-              <TrackedLink
-                href="/society"
-                eventName="click_home_cta"
-                eventParams={{ cta: "calculate_ai_roi" }}
-                className="rounded-lg border border-emerald-500/40 px-4 py-1.5 text-sm font-medium text-emerald-300 transition-colors hover:bg-emerald-500/10"
-              >
-                Calculate AI ROI
-              </TrackedLink>
-            </div>
           </div>
         </div>
         <TrendingBar />
