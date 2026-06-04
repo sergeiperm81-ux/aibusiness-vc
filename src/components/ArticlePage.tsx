@@ -1,7 +1,6 @@
 import Link from "next/link";
 import type { Article, ArticleMeta } from "@/lib/articles";
 import { Breadcrumbs, getBreadcrumbsForArticle } from "./Breadcrumbs";
-import { TrackedLink } from "@/components/analytics/TrackedLink";
 
 const catColors: Record<string, string> = {
   Solo: "bg-amber-500 text-black",
@@ -82,7 +81,6 @@ interface ArticlePageProps {
 export function ArticlePageView({ article, relatedArticles = [] }: ArticlePageProps) {
   const heroImg = article.image || (heroImages[article.category] ?? heroImages.Solo);
   const shareUrl = `https://aibusiness.vc/${article.section}/${article.slug}`;
-  const showMonetizationCta = ["solo", "b2b", "startups"].includes(article.section);
 
   return (
     <>
@@ -108,42 +106,6 @@ export function ArticlePageView({ article, relatedArticles = [] }: ArticlePagePr
             {/* Main content — 2/3 width */}
             <article className="lg:col-span-2 min-w-0">
               <MarkdownContent content={article.content} />
-
-          {showMonetizationCta && (
-            <div className="mt-10 p-5 rounded-xl border border-amber-200 bg-amber-50">
-              <p className="text-xs uppercase tracking-wider font-semibold text-amber-800 mb-2">Tools for action</p>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">Turn this insight into execution</h3>
-              <p className="text-sm text-gray-700 mb-4">
-                Use the calculator, stack selector, and playbooks to estimate value and launch faster.
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                <TrackedLink
-                  href="/materials/roi-calculator"
-                  eventName="click_article_cta"
-                  eventParams={{ section: article.section, cta: "roi_calculator", source: article.slug }}
-                  className="rounded-lg border border-emerald-200 bg-white px-3 py-2 text-xs font-semibold text-emerald-700 hover:border-emerald-300 transition-colors"
-                >
-                  Calculate ROI &rarr;
-                </TrackedLink>
-                <TrackedLink
-                  href="/materials/tool-selector"
-                  eventName="click_article_cta"
-                  eventParams={{ section: article.section, cta: "tool_selector", source: article.slug }}
-                  className="rounded-lg border border-cyan-200 bg-white px-3 py-2 text-xs font-semibold text-cyan-700 hover:border-cyan-300 transition-colors"
-                >
-                  Pick your stack &rarr;
-                </TrackedLink>
-                <TrackedLink
-                  href="/materials/playbook-templates"
-                  eventName="click_article_cta"
-                  eventParams={{ section: article.section, cta: "playbook_templates", source: article.slug }}
-                  className="rounded-lg border border-amber-300 bg-white px-3 py-2 text-xs font-semibold text-amber-700 hover:border-amber-400 transition-colors"
-                >
-                  Copy templates &rarr;
-                </TrackedLink>
-              </div>
-            </div>
-          )}
 
           {/* Share buttons */}
           <div className="mt-10 pt-6 border-t border-black/10">
