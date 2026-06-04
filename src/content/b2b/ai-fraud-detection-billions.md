@@ -2,7 +2,7 @@
 title: "AI Fraud Detection: How Banks Save $10B+ Per Year Catching Criminals"
 description: "AI detects fraud in milliseconds, saving financial institutions $10B+ annually. How it works, who builds it, and the business impact."
 date: "2026-04-01"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "B2B"
 image: "/images/articles/books-shelf-1.jpg"
 keywords: ["AI fraud detection", "AI prevents fraud", "banking AI savings", "AI financial crime"]

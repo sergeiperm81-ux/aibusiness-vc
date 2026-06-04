@@ -2,7 +2,7 @@
 title: "AI Smart Cities: $3B+ Projects Where Governments Pay for AI Infrastructure"
 description: "Dubai, Singapore, Seoul — smart city AI projects worth billions. Traffic, energy, safety, and services powered by AI. Who builds and who pays."
 date: "2026-04-05"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Government"
 image: "/images/articles/neon-city-1.jpg"
 keywords: ["AI smart cities", "smart city investment", "government AI projects", "smart city companies"]

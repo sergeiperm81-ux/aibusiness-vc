@@ -2,7 +2,7 @@
 title: "AI Insurance Claims: How Insurers Process Claims 10x Faster and Save Billions"
 description: "AI cuts insurance claims processing from weeks to hours. Fraud detection, damage assessment, and automated payouts saving insurers billions."
 date: "2026-04-01"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "B2B"
 image: "/images/articles/brainstorm-1.jpg"
 keywords: ["AI insurance claims", "AI claims processing", "insurance AI savings", "AI fraud detection insurance"]

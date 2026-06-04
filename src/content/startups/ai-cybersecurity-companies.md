@@ -2,7 +2,7 @@
 title: "AI Cybersecurity Startups in 2026: The $30B+ Market and Who's Winning"
 description: "Wiz, CrowdStrike, and Palo Alto show where AI security revenue is compounding as enterprises defend against AI-powered threats."
 date: "2026-04-01"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Startups"
 image: "/images/articles/presentation-1.jpg"
 keywords: ["AI cybersecurity", "AI security companies", "Wiz acquisition", "cybersecurity AI revenue"]

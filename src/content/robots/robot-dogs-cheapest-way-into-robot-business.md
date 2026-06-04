@@ -2,7 +2,7 @@
 title: "Robot Dogs Are the Cheapest Way Into the Robot Business — and It Starts at $1,600"
 description: "A Unitree Go2 robot dog costs $1,600 — 96% less than Boston Dynamics' Spot. Here's how people turn a cheap Chinese quadruped into inspection, security, and content income."
 date: "2026-06-02"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Robots"
 image: "/images/articles/robot-dog-unitree.jpg"
 keywords: ["Unitree Go2 price", "robot dog business", "make money robot dog", "quadruped robot inspection", "robot dog vs Spot"]

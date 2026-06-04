@@ -2,7 +2,7 @@
 title: "$3 Trillion Goes Public: Inside the SpaceX, Anthropic, and OpenAI IPO Race — and How Not to Get Burned"
 description: "Anthropic just filed for IPO at a $965B valuation, SpaceX starts its roadshow June 4 targeting ~$1.8T, and OpenAI eyes September. Over $3 trillion is coming to public markets in months. Here's what's really happening — and the lockup traps you need to understand before you buy a single share."
 date: "2026-06-02"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "VC"
 image: "/images/articles/wall-street-1.jpg"
 keywords: ["AI IPO 2026", "SpaceX IPO valuation", "Anthropic IPO filing", "OpenAI IPO September", "how to buy AI IPO retail", "AI IPO lockup risk"]

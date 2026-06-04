@@ -2,7 +2,7 @@
 title: "AI Marketing ROI: Companies Using AI Generate 3x More Content at 40% Lower Cost"
 description: "Hard data on AI marketing ROI. 78% of marketers use AI, content output triples, costs drop 40%, and conversion rates improve 14x."
 date: "2026-04-01"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "B2B"
 image: "/images/articles/business-handshake-1.jpg"
 keywords: ["AI marketing ROI", "AI marketing statistics", "AI content marketing results", "marketing automation ROI"]

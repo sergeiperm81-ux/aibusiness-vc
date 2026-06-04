@@ -2,7 +2,7 @@
 title: "EU AI Act Compliance: What It Actually Costs and How to Profit From It"
 description: "EU AI Act compliance costs $50K-$500K per system. But the compliance consulting market is worth $5B+. How to be on the winning side."
 date: "2026-04-05"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Government"
 image: "/images/articles/documents-papers-1.jpg"
 keywords: ["EU AI Act compliance cost", "EU AI Act business", "AI regulation compliance", "EU AI Act consulting"]

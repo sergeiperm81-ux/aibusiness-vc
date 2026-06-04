@@ -2,7 +2,7 @@
 title: "JFrog's AI Agent Bet: Why Faster Coding Is Creating a New Tool Budget"
 description: "JFrog's Q1 results show a practical money problem inside AI coding: when agents write more software, companies need stronger artifact, MCP, and skill governance."
 date: "2026-05-09"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Tools"
 image: "/images/articles/network-cables-1.jpg"
 keywords: ["JFrog AI agents", "AI coding tools governance", "MCP registry", "software supply chain AI", "AI agent security tools"]

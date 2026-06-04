@@ -2,7 +2,7 @@
 title: "Anthropic Closing $30B at $900B Valuation: The Frontier Lab That Just Leapfrogged OpenAI"
 description: "Anthropic is closing its second $30B round of 2026 — this one at $900B post-money, surpassing OpenAI's $852B. Q2 revenue lands at $10.9B with the first $559M operating profit ever from a frontier lab. The race for the most valuable private AI company just flipped."
 date: "2026-05-23"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "VC"
 image: "/images/articles/growth-chart-1.jpg"
 keywords: ["Anthropic $30 billion raise", "Anthropic $900 billion valuation", "Anthropic vs OpenAI valuation", "Anthropic profitable Q2 2026", "Claude $43 billion ARR", "Sequoia Anthropic 2026"]

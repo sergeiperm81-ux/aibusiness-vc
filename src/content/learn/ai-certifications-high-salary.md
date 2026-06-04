@@ -2,7 +2,7 @@
 title: "AI Certifications That Pay $150K+: Google, AWS, Microsoft, and More"
 description: "A practical ROI guide to AI certifications: which ones actually improve compensation and how to combine them with portfolio proof."
 date: "2026-04-04"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Learn"
 image: "/images/articles/study-education-1.jpg"
 keywords: ["AI certifications", "AI certification salary", "Google AI certification", "AWS machine learning certification", "best AI certifications 2026"]

@@ -2,7 +2,7 @@
 title: "AI Data Centers and Ratepayer Protection: The New Public Money Fight"
 description: "AI data-center growth is turning utility rate cases, grid auctions, and ratepayer protections into a major money-with-AI battleground."
 date: "2026-05-01"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Government"
 image: "/images/articles/data-visualization-1.jpg"
 keywords: ["AI data center ratepayer protection", "AI infrastructure regulation", "data center power costs", "utility AI demand", "public sector AI economics"]

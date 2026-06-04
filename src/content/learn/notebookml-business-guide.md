@@ -2,7 +2,7 @@
 title: "NotebookLM for Business: How Teams Turn Document Chaos into Decision Speed"
 description: "A practical NotebookLM guide for operators and managers who need faster research, clearer briefs, and fewer hours lost in document overload."
 date: "2026-04-28"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Learn"
 image: "/images/articles/laptop-charts-1.jpg"
 keywords: ["NotebookLM business", "NotebookLM tutorial", "Google AI tools business", "NotebookLM podcast"]

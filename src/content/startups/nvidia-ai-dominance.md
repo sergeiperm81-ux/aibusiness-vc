@@ -2,7 +2,7 @@
 title: "NVIDIA: $130B Revenue and 80% Market Share — The AI Economy's Kingmaker"
 description: "NVIDIA controls 80%+ of AI chips. $130B data center revenue. $3T market cap. How one company became the backbone of the AI revolution."
 date: "2026-04-01"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Startups"
 image: "/images/articles/social-icons-1.jpg"
 keywords: ["NVIDIA AI revenue", "NVIDIA market share", "NVIDIA dominance", "AI chip market"]

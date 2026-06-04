@@ -2,7 +2,7 @@
 title: "AI Executive Reporting Automation in 2026: From Status Chaos to Decision Clarity"
 description: "How B2B teams automate executive reporting with AI while preserving metric trust, governance discipline, and faster decisions."
 date: "2026-04-28"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "B2B"
 image: "/images/articles/charts-screen-1.jpg"
 keywords: ["AI executive reporting", "automated business reporting", "B2B AI analytics", "weekly leadership brief AI", "operations dashboard AI"]

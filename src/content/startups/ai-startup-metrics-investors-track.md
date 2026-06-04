@@ -2,7 +2,7 @@
 title: "15 AI Startup Metrics Investors Track in 2026 (With Benchmarks)"
 description: "The KPI set VCs and angels actually use: growth quality, retention, burn efficiency, and margin health benchmarks for AI startups."
 date: "2026-04-04"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Startups"
 image: "/images/articles/startup-funding-1.jpg"
 keywords: ["AI startup metrics", "startup KPIs for investors", "AI company benchmarks", "VC metrics"]

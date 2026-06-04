@@ -2,7 +2,7 @@
 title: "AI Music Generation: How Creators Earn with Suno, Udio & AI Audio"
 description: "How to make money with AI music — royalty-free tracks, custom jingles, background music for video. Tools, licensing, and income."
 date: "2026-03-30"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/laptop-coding-1.jpg"
 keywords: ["AI music generation", "make money AI music", "Suno AI", "AI background music business"]

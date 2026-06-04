@@ -2,7 +2,7 @@
 title: "AI Agent Maintenance Retainers in 2026: How Agencies Build Stable MRR"
 description: "Turn one-time AI builds into $3K-$20K/month retainers with clear SLAs, monitoring loops, and measurable post-launch ROI."
 date: "2026-04-28"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/team-office-1.jpg"
 keywords: ["AI maintenance retainer", "AI agency recurring revenue", "AI ops service model", "agent monitoring service", "AI support retainer"]

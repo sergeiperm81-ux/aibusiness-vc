@@ -2,7 +2,7 @@
 title: "How Companies Are Saving Billions with AI: The Biggest ROI Stories of 2026"
 description: "Real companies, real numbers. From JPMorgan saving 360K hours to Klarna replacing 700 agents. The biggest AI ROI stories."
 date: "2026-03-31"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "B2B"
 image: "/images/articles/chip-hardware-1.jpg"
 keywords: ["AI ROI examples", "companies saving money AI", "AI cost savings", "enterprise AI ROI"]

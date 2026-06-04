@@ -2,7 +2,7 @@
 title: "AI Music Production: How Producers Earn $2K-$10K/Month with Suno, Udio, and AIVA"
 description: "Make money creating AI-generated music. Licensing, royalties, and production service pricing."
 date: "2026-04-28"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/music-studio-1.jpg"
 keywords: ["AI music production income", "Suno AI business", "AI music licensing", "make money AI music"]

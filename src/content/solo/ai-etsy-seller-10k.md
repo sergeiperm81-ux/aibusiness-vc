@@ -2,7 +2,7 @@
 title: "AI Etsy Sellers: How Creators Earn $2K-$10K/Month Selling Digital Products"
 description: "Sell AI-generated templates, planners, wall art, and prompts on Etsy. Real seller numbers, best niches, and how to start."
 date: "2026-03-31"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/hologram-1.jpg"
 keywords: ["AI Etsy seller", "sell AI products Etsy", "AI digital products income", "Etsy AI templates"]

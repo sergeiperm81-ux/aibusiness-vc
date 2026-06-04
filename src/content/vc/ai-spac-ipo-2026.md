@@ -2,7 +2,7 @@
 title: "AI Companies Going Public in 2026: SPACs, Direct Listings, and the IPO Pipeline"
 description: "Which AI companies are preparing for IPO in 2026, what routes they are choosing, and how investors can position for the next wave of AI public offerings."
 date: "2026-04-04"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "VC"
 image: "/images/articles/charts-screen-1.jpg"
 keywords: ["AI IPO 2026", "AI companies going public", "AI SPAC deals", "AI direct listing", "pre-IPO AI stocks"]

@@ -2,7 +2,7 @@
 title: "AI Consultant Earning $34K/Month: Sandra's 7-Client Retainer Model"
 description: "Real income breakdown: $5K assessment + $3.5K/month retainer. 7 clients, 30-35 hours/week, $34K-39K/month."
 date: "2026-03-31"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/finance-accounting-1.jpg"
 keywords: ["AI consulting income", "AI consultant revenue", "make money AI consulting", "AI implementation consultant"]

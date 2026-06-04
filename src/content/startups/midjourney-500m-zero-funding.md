@@ -2,7 +2,7 @@
 title: "Midjourney: $500M Revenue, Zero Funding, 40 Employees"
 description: "The most profitable AI startup raised $0 and generates $500M/year with just 40 people. The bootstrapped AI success story."
 date: "2026-03-31"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Startups"
 image: "/images/articles/sky-clouds-1.jpg"
 keywords: ["Midjourney revenue", "Midjourney bootstrapped", "most profitable AI startup", "Midjourney business model"]

@@ -2,7 +2,7 @@
 title: "Will AI Collapse Real Estate in 2026? Winners, Losers, and the New Profit Pool"
 description: "The $3.7T real estate sector is being reshaped by AI, lower friction, and commission pressure. Here's where profits move next."
 date: "2026-04-28"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "B2B"
 image: "/images/articles/construction-site-1.jpg"
 keywords: ["AI real estate disruption", "real estate AI 2026", "AI kills real estate agents", "property market AI"]

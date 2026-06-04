@@ -2,7 +2,7 @@
 title: "Selling AI-Generated Stock Images: $3K-$8K/Month in Passive Income"
 description: "How one creator earns $3K-8K/month selling AI images on stock sites. 2,000-3,000 licenses/month, mostly passive after initial upload."
 date: "2026-03-31"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/mobile-app-1.jpg"
 keywords: ["AI stock images income", "sell AI generated images", "Midjourney stock photos", "passive income AI images"]

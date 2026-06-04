@@ -2,7 +2,7 @@
 title: "The One-Person Company Is Real in 2026 — But Here's Where Solo Founders Hit a Wall"
 description: "A $300-500/month stack of AI agents now does the work of an $80,000+/month team. Solo founders are running real businesses alone. But Fortune just flagged the limits — here's what AI can and can't replace, and how to build a one-person company that actually lasts."
 date: "2026-05-29"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/entrepreneur-cafe-1.jpg"
 keywords: ["one person company AI", "solo founder AI agents 2026", "AI solopreneur stack", "AI agents replace team", "one person business AI", "solopreneur AI tools cost"]

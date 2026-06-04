@@ -2,7 +2,7 @@
 title: "How Cursor Went from a $9B Round to a $29.3B Valuation and Made Microsoft Sweat"
 description: "Cursor raised at $9B, then tripled to $29.3B on $1B+ ARR — built by a tiny team on top of models it doesn't even train. Here's how it beat GitHub Copilot, and what it means for you."
 date: "2026-06-01"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Startups"
 image: "/images/articles/security-lock-1.jpg"
 keywords: ["Cursor valuation", "Cursor AI revenue", "AI coding tool growth", "Cursor vs Copilot", "Anysphere valuation"]

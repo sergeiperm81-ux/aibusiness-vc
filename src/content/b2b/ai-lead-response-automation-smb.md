@@ -2,7 +2,7 @@
 title: "AI Lead Response Automation for SMB: Faster Follow-Up, More Pipeline"
 description: "How SMB teams deploy AI lead response automation to cut delay, improve lead quality, and increase qualified pipeline without extra headcount."
 date: "2026-04-28"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "B2B"
 image: "/images/articles/meeting-business-1.jpg"
 keywords: ["AI lead response automation", "SMB sales automation", "AI lead routing", "B2B AI implementation", "reduce lead response time"]

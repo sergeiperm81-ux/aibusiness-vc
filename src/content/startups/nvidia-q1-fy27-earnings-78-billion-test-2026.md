@@ -2,7 +2,7 @@
 title: "NVIDIA's $78 Billion Test: What Today's Q1 FY27 Earnings Mean for Every AI Stock You Own"
 description: "NVIDIA reports Q1 FY2027 today at 5 PM ET. Consensus: $78B revenue, $73B data center, 74%+ margins. Why this single print resets AI valuations, OpenAI's compute pipeline, and your enterprise AI bill."
 date: "2026-05-20"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Startups"
 image: "/images/articles/gpu-render-1.jpg"
 keywords: ["NVIDIA Q1 FY27 earnings", "NVIDIA data center revenue 2026", "NVIDIA $78 billion quarter", "NVDA stock May 2026", "AI infrastructure spending 2026"]

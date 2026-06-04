@@ -2,7 +2,7 @@
 title: "AI Newsletter Monetization: From Zero to $10K/Month in Sponsorship Revenue"
 description: "A practical monetization guide for AI newsletters focused on audience quality, sponsor economics, and repeatable growth systems."
 date: "2026-03-30"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/laptop-work-1.jpg"
 keywords: ["AI newsletter monetization", "how to monetize a newsletter", "newsletter sponsorship pricing", "AI newsletter business", "Beehiiv newsletter"]

@@ -2,7 +2,7 @@
 title: "The Robot That Replaces a $45K Warehouse Worker for $12K"
 description: "A warehouse humanoid rents for ~$30/hour and pays back in under 2 years — or you buy a Chinese one outright for $16K. The brutal ROI math reshaping who gets hired, and how you profit."
 date: "2026-06-02"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Robots"
 image: "/images/articles/robot-warehouse-1.jpg"
 keywords: ["warehouse robot ROI", "humanoid robot cost vs worker", "Agility Digit price", "robot replaces worker", "robot ROI 2026"]

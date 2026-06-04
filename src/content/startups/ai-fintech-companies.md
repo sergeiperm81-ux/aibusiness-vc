@@ -2,7 +2,7 @@
 title: "AI Fintech: The Startups Making Money at the Intersection of AI and Finance"
 description: "Stripe, Brex, Ramp, and AI-native fintech companies generating billions. How AI is reshaping financial services revenue."
 date: "2026-04-01"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Startups"
 image: "/images/articles/remote-work-1.jpg"
 keywords: ["AI fintech startups", "AI finance companies", "AI banking startups", "fintech AI revenue"]

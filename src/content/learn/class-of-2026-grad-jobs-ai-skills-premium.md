@@ -2,7 +2,7 @@
 title: "1 in 3 Entry-Level Jobs Now Demands AI Skills — and They Pay 56% More. A Class of 2026 Survival Guide."
 description: "Grad unemployment just hit a four-year high and 43% of new grads are underemployed. Meanwhile 35% of entry-level jobs now require AI skills, and those skills carry a 56% wage premium. If you're job-hunting in 2026, here's exactly how to land on the right side of that line."
 date: "2026-05-29"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Learn"
 image: "/images/articles/resume-career-1.jpg"
 keywords: ["class of 2026 jobs", "AI skills premium 56%", "entry level jobs AI 2026", "graduate unemployment 2026", "AI skills salary premium", "new grad job market AI"]

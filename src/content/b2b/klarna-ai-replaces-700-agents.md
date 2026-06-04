@@ -2,7 +2,7 @@
 title: "Klarna's AI Replaces 700 Agents, Saves $40M/Year — The Full Story"
 description: "How Klarna deployed AI customer service that handles 2.3M conversations/month, cut resolution time 82%, and stopped hiring humans."
 date: "2026-03-31"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "B2B"
 image: "/images/articles/phone-app-1.jpg"
 keywords: ["Klarna AI", "AI replaces customer service", "AI cost savings", "AI customer support ROI"]

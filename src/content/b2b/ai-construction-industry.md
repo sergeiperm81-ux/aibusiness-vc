@@ -2,7 +2,7 @@
 title: "AI in Construction: How Builders Save 20% on Project Costs"
 description: "AI reduces construction overruns, improves safety, and optimizes scheduling. Real project savings of 15-25% on million-dollar builds."
 date: "2026-04-01"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "B2B"
 image: "/images/articles/ai-brain-1.jpg"
 keywords: ["AI construction", "AI project management construction", "construction AI savings", "AI building technology"]

@@ -2,7 +2,7 @@
 title: "AI Video Business: Earn $2K-$15K/Month Creating Videos with AI"
 description: "Launch an AI video creation business using Synthesia, HeyGen, and Pictory. Services, pricing, and how to earn $2K-$15K/mo."
 date: "2026-03-30"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/multiple-screens-1.jpg"
 keywords: ["AI video creation business", "Synthesia", "HeyGen", "Pictory", "AI video services", "video production business", "AI explainer videos"]

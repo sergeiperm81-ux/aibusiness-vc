@@ -2,7 +2,7 @@
 title: "AI Coaching & Training: How to Earn $5K-$15K/Month Teaching People AI"
 description: "Teach AI skills to professionals and businesses. 1-on-1 coaching, workshops, corporate training. $200-500/hour rates."
 date: "2026-03-31"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/family-tech-1.jpg"
 keywords: ["AI coaching business", "teach AI skills", "AI training income", "AI workshop business"]

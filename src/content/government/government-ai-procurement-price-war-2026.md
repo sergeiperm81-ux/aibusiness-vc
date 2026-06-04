@@ -2,7 +2,7 @@
 title: "The Government AI Price War: Why $1 Federal Deals Are Really a Go-to-Market Strategy"
 description: "OpenAI, Anthropic, Google, and xAI are using ultra-low federal AI pricing to win adoption, procurement trust, and future government workflow revenue."
 date: "2026-05-01"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Government"
 image: "/images/articles/office-building-1.jpg"
 keywords: ["government AI procurement", "federal AI pricing", "GSA AI contracts", "AI go to market", "public sector AI"]

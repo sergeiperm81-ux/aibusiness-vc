@@ -2,7 +2,7 @@
 title: "AI-First Website Service in 48 Hours (2026): Offer, Stack, Pricing"
 description: "Sell fast website sprints in 48 hours with productized scope, quality controls, and conversion-focused outcomes clients can measure."
 date: "2026-04-28"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/dev-office-1.jpg"
 keywords: ["AI website service", "build websites with AI", "fast website launch service", "AI agency offer", "website productized service"]

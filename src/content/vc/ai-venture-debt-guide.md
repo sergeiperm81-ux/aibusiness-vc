@@ -2,7 +2,7 @@
 title: "AI Venture Debt: How Startups Raise $5M-$50M Without Giving Up Equity"
 description: "Complete guide to venture debt for AI companies. Who offers it, typical terms, when it makes sense, and how AI startups use debt to extend runway without dilution."
 date: "2026-04-04"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "VC"
 image: "/images/articles/calculator-1.jpg"
 keywords: ["AI venture debt", "venture debt for startups", "non-dilutive funding AI", "AI startup debt financing"]

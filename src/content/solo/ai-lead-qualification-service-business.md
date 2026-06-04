@@ -2,7 +2,7 @@
 title: "AI Lead Qualification Service: Build a Focused Agency Offer That SMBs Actually Buy"
 description: "Launch a profitable AI lead qualification service with clear ROI, operational controls, and a recurring optimization retainer model."
 date: "2026-04-28"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/handshake-deal-1.jpg"
 keywords: ["AI lead qualification service", "AI sales automation agency", "lead scoring automation", "SMB AI services", "AI agency offer"]

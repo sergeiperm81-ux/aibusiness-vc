@@ -2,7 +2,7 @@
 title: "How AI Reduces Employee Turnover — Saving Companies $50K Per Lost Worker"
 description: "A practical guide to AI-powered retention strategy: risk detection, intervention design, and how to tie HR analytics to real cost savings."
 date: "2026-03-31"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "B2B"
 image: "/images/articles/business-suit-1.jpg"
 keywords: ["AI employee retention", "AI reduce turnover", "AI HR analytics", "cost of employee turnover"]

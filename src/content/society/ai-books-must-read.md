@@ -2,7 +2,7 @@
 title: "7 AI Books That Change How You Think About Technology and Wealth"
 description: "Essential reading on AI — from business strategy to societal impact. What each book covers and who should read it."
 date: "2026-03-30"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Society"
 image: "/images/articles/books-stack-1.jpg"
 keywords: ["best AI books", "AI books 2026", "artificial intelligence books", "books about AI for business"]

@@ -2,7 +2,7 @@
 title: "Microsoft × Anthropic Maia 200 Deal: The First Real Crack in NVIDIA's Frontier-Model Monopoly"
 description: "Anthropic is in talks to run Claude on Microsoft's Maia 200 chip — the first time a frontier model lab moves serious inference off NVIDIA. Why this $30B Azure relationship just rewrote the AI silicon stack."
 date: "2026-05-22"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Startups"
 image: "/images/articles/chip-hardware-1.jpg"
 keywords: ["Microsoft Maia 200 Anthropic", "Maia chip Claude deal", "NVIDIA monopoly cracking", "AI chip competition 2026", "Azure custom silicon", "Anthropic Microsoft partnership"]

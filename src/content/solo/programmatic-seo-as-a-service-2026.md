@@ -2,7 +2,7 @@
 title: "Programmatic SEO as a Service: How to Sell It Without Shipping Spam"
 description: "How to sell programmatic SEO as a premium 2026 service with intent architecture, quality governance, and measurable pipeline impact."
 date: "2026-04-28"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/laptop-charts-1.jpg"
 keywords: ["programmatic SEO service", "AI SEO business", "pSEO agency", "make money with SEO AI", "GEO content systems"]

@@ -2,7 +2,7 @@
 title: "Someone Is Making Billions Off Your Loneliness: Inside the AI Companion Economy"
 description: "50 million people spent Valentine's Day 2026 with an AI companion. The AI girlfriend app market hit $2.9B and is racing toward $7B+. This isn't a story about better tech — it's about who profits when human connection breaks down. Here's what it means for your wallet and your heart."
 date: "2026-06-02"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Society"
 image: "/images/articles/ai-face-1.jpg"
 keywords: ["AI companion economy", "AI girlfriend app market 2026", "AI companions money", "loneliness business AI", "AI relationships spending", "AI companion market size"]

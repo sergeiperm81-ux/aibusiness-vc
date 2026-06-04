@@ -2,7 +2,7 @@
 title: "How to Win a Government AI Contract: $50B in Federal AI Procurement Up for Grabs in 2026"
 description: "A practical guide to federal AI procurement in 2026: where opportunities live, how vendors should position, and why procurement literacy is a growth asset."
 date: "2026-04-04"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Government"
 image: "/images/articles/business-handshake-1.jpg"
 keywords: ["government AI contracts", "federal AI procurement", "GSA AI contracts", "SBIR AI grants", "SAM.gov AI opportunities"]

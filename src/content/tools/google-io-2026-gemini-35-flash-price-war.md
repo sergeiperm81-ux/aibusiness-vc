@@ -2,7 +2,7 @@
 title: "Google I/O 2026: Gemini 3.5 Flash, $99 Ultra, and the Price War That Just Started"
 description: "Google dropped Gemini 3.5 Flash at 25% lower API pricing, cut Ultra subscription from $250 to $99, and crossed 1 billion AI Mode users — all in one keynote. Why this is the moment Gemini stopped being the dark horse and became the price-setter for the entire AI industry."
 date: "2026-05-22"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Tools"
 image: "/images/articles/hologram-1.jpg"
 keywords: ["Google I/O 2026", "Gemini 3.5 Flash pricing", "Gemini Omni launch", "Google AI Ultra $99", "AI price war 2026", "Gemini vs ChatGPT vs Claude"]

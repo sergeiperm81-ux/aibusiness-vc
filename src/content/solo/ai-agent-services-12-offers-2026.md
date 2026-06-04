@@ -2,7 +2,7 @@
 title: "12 AI Agent Services You Can Sell in 2026 (Pricing + Margins)"
 description: "A practical breakdown of 12 AI service offers, price bands, and delivery models founders use to build recurring revenue."
 date: "2026-04-28"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/team-screens-1.jpg"
 keywords: ["AI agent services", "AI business ideas", "sell AI automation", "AI agency offers", "AI consulting offers"]

@@ -2,7 +2,7 @@
 title: "China Is Putting $16,000 Robots on Factory Floors — and Quietly Getting Rich"
 description: "China ships ~90% of the world's humanoid robots. Unitree sells one for $16K, just filed a $610M IPO, and grew revenue 335%. Here's who's actually making money — and how you can."
 date: "2026-06-02"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Robots"
 image: "/images/articles/robot-factory-1.jpg"
 keywords: ["China humanoid robots", "Unitree robot price", "humanoid robot business", "China robot factory", "make money robots"]

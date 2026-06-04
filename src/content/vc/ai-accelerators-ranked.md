@@ -2,7 +2,7 @@
 title: "Best AI Startup Accelerators: Which Program Gets You Funded Fastest"
 description: "Y Combinator, Techstars, and NVIDIA Inception compared by funding speed, dilution tradeoffs, and practical founder outcomes."
 date: "2026-04-05"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "VC"
 image: "/images/articles/boardroom-1.jpg"
 keywords: ["AI accelerators", "best AI startup programs", "Y Combinator AI", "AI incubator"]

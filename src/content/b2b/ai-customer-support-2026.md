@@ -2,7 +2,7 @@
 title: "AI Customer Support ROI in 2026: Where B2B Margin Gains Are Real"
 description: "A practical guide to AI support economics, rollout strategy, and quality controls that protect both margin and customer trust."
 date: "2026-04-28"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "B2B"
 image: "/images/articles/team-screens-1.jpg"
 keywords: ["AI customer support ROI", "AI chatbot customer service", "Intercom Fin", "Zendesk AI"]

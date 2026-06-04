@@ -2,7 +2,7 @@
 title: "AI for Teachers: How Educators Build a Real $2K-$8K/Month Income Engine"
 description: "A practical, human-first guide for teachers who want to turn AI literacy into coaching, training, and productized income."
 date: "2026-04-28"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/ai-education-1.jpg"
 keywords: ["AI for teachers income", "teacher AI side hustle", "AI tutoring business", "educator AI consultant"]

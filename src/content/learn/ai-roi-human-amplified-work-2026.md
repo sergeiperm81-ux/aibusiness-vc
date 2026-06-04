@@ -2,7 +2,7 @@
 title: "The AI ROI Skill Companies Are Missing: Human-Amplified Work"
 description: "Gartner's latest AI ROI warning shows why layoffs do not make agents profitable. The money is in redesigning work so people can guide, govern, and scale AI."
 date: "2026-05-10"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Learn"
 image: "/images/articles/team-planning-1.jpg"
 keywords: ["AI ROI skills", "AI agents ROI", "human amplified AI", "AI layoffs Gartner", "AI operating model"]

@@ -531,7 +531,7 @@ function buildArticleSchema(
     wordCount,
     author: {
       "@type": "Person",
-      name: article.author || "Sergei P.",
+      name: article.author || "Sergei Ponomarev",
       url: "https://aibusiness.vc/about",
       jobTitle: "Editor, AI Business",
     },

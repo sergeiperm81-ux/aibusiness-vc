@@ -2,7 +2,7 @@
 title: "DeepSeek V3 vs GPT-4o: Save $69K/Year on API Costs"
 description: "Honest comparison of DeepSeek V3 and GPT-4o. Benchmarks, pricing, coding, writing quality, and when to use each."
 date: "2026-03-30"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Tools"
 image: "/images/articles/students-group-1.jpg"
 keywords: ["DeepSeek vs GPT-4", "DeepSeek V3 review", "cheapest AI model", "DeepSeek pricing"]

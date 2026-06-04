@@ -2,7 +2,7 @@
 title: "Public AI Procurement Playbook (2026): How Vendors Actually Win Government Deals"
 description: "A practical procurement guide for AI vendors: risk framing, pilot design, proposal quality, and long-cycle public-sector execution."
 date: "2026-04-28"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Government"
 image: "/images/articles/meeting-business-1.jpg"
 keywords: ["government AI contracts", "public sector AI procurement", "AI tender strategy", "govtech sales"]

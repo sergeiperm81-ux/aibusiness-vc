@@ -2,7 +2,7 @@
 title: "Top 15 VC Funds Investing in AI: Who Writes the Biggest Checks"
 description: "a16z, Sequoia, Lightspeed — the 15 most active AI investors. Portfolio companies, check sizes, and what they look for."
 date: "2026-04-05"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "VC"
 image: "/images/articles/startup-funding-1.jpg"
 keywords: ["AI venture capital", "top AI investors", "VC funds AI", "AI investment firms"]

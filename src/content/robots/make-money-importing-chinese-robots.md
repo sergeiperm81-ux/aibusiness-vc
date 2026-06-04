@@ -2,7 +2,7 @@
 title: "How to Make Money Importing Chinese Robots Before Everyone Else Does"
 description: "A $5,900 Unitree R1 ships worldwide. Here's the honest solo playbook — reselling, integration, robot-as-a-service, and content — to earn from the humanoid boom while it's still early."
 date: "2026-06-02"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Robots"
 image: "/images/articles/robot-arm-1.jpg"
 keywords: ["import Chinese robots", "make money robots", "Unitree reseller", "robot business ideas", "robotics side hustle 2026"]

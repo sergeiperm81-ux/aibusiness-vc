@@ -2,7 +2,7 @@
 title: "AI Startup Due Diligence in 2026: What Breaks Deals (and How to Prepare)"
 description: "A founder-focused diligence guide covering technical, commercial, legal, and data-risk checks that commonly derail AI deals."
 date: "2026-04-28"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "VC"
 image: "/images/articles/documents-papers-1.jpg"
 keywords: ["AI due diligence", "AI startup checklist", "VC diligence AI", "technical due diligence", "AI data compliance"]

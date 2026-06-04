@@ -2,7 +2,7 @@
 title: "Top 15 AI Startups to Watch in 2026"
 description: "The most important AI startups of 2026 — who they are, what they build, how much they raised, and why they matter."
 date: "2026-03-30"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Startups"
 image: "/images/articles/startup-garage-1.jpg"
 keywords: ["top AI startups 2026", "AI startups to watch", "AI unicorns", "AI startup funding"]

@@ -2,7 +2,7 @@
 title: "AI Is Minting Billionaires While You Watch From the Sidelines — Here's How the Game Is Rigged (and What You Can Still Do)"
 description: "AI created 45 new billionaires and $2.9 trillion in fortunes in a year, while 60% of Americans live paycheck to paycheck. The wealth is locked in private markets ordinary people can't touch. Here's exactly how the divide works — and the moves still open to you."
 date: "2026-06-02"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Society"
 image: "/images/articles/money-gold-1.jpg"
 keywords: ["AI wealth inequality 2026", "AI billionaires", "private markets retail investors", "AI wealth divide", "who profits from AI", "AI rich get richer"]

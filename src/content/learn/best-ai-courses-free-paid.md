@@ -2,7 +2,7 @@
 title: "AI Courses That Actually Lead to $100K+ Jobs (Free and Paid)"
 description: "Top AI courses ranked by career impact. Free Google/DeepLearning.AI courses, paid specializations, and which ones actually lead to jobs."
 date: "2026-03-30"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Learn"
 image: "/images/articles/creative-wall-1.jpg"
 keywords: ["best AI courses", "AI courses free", "AI certification 2026", "learn AI online", "AI courses for beginners"]

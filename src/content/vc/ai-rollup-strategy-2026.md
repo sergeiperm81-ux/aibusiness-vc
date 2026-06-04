@@ -2,7 +2,7 @@
 title: "AI Roll-Up Strategy in 2026: Buy Cash Flow, Upgrade Ops, Compound Value"
 description: "How investors and operators use AI-enabled roll-ups to improve margins, operational leverage, and exit quality."
 date: "2026-04-28"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "VC"
 image: "/images/articles/handshake-deal-1.jpg"
 keywords: ["AI roll-up strategy", "AI private equity", "buy and build AI", "service business automation"]

@@ -2,7 +2,7 @@
 title: "AI Startup Term Sheet Guide (2026): What Founders Must Negotiate First"
 description: "A plain-English term sheet guide for AI founders: valuation, liquidation, anti-dilution, board control, and negotiation priorities."
 date: "2026-04-28"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "VC"
 image: "/images/articles/business-suit-1.jpg"
 keywords: ["AI term sheet", "startup term sheet guide", "liquidation preference", "anti-dilution", "VC negotiation"]

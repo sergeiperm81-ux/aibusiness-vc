@@ -2,7 +2,7 @@
 title: "AI Defense Startups in 2026: The $100B+ Contract Market Explained"
 description: "Anduril, Shield AI, and Palantir reveal where defense AI contracts are scaling and how this market is reshaping startup economics."
 date: "2026-04-01"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Startups"
 image: "/images/articles/professional-woman-1.jpg"
 keywords: ["AI defense startups", "Anduril AI", "AI military contracts", "defense AI revenue"]

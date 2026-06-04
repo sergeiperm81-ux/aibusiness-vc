@@ -2,7 +2,7 @@
 title: "AI Cloud Capacity Crunch in 2026: Why Enterprise ROI Now Depends on Compute"
 description: "Google, Amazon, and Microsoft results show AI demand hitting capacity limits, forcing B2B teams to rethink ROI through compute economics."
 date: "2026-04-30"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "B2B"
 image: "/images/articles/network-cables-1.jpg"
 keywords: ["AI cloud capacity", "enterprise AI ROI", "AI infrastructure spending", "B2B AI budget", "AI compute costs"]

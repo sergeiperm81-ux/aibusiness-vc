@@ -2,7 +2,7 @@
 title: "How AI Helps Realtors Close 23% More Deals and Earn More"
 description: "How real estate agents use AI for virtual staging, listing descriptions, lead gen, and market analysis. Top tools with pricing."
 date: "2026-03-30"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "B2B"
 image: "/images/articles/big-data-1.jpg"
 keywords: ["AI for real estate agents", "AI real estate tools", "virtual staging AI", "AI listing descriptions"]

@@ -2,7 +2,7 @@
 title: "White Label AI Chatbot Business: How to Resell AI Chatbots Under Your Brand"
 description: "Start a white label AI chatbot business. Platforms, pricing models, target clients, and how to scale to $10K+/mo reselling AI chatbots."
 date: "2026-03-30"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/portrait-headshot-1.jpg"
 keywords: ["white label AI chatbot business", "resell AI chatbots", "AI chatbot agency", "white label chatbot", "Stammer.ai", "BotPenguin", "ChatLab", "AI reseller"]

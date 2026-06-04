@@ -2,7 +2,7 @@
 title: "Claude Code for Developers: How to Earn $10K-$50K/Month Building with AI"
 description: "How developers use Claude Code to build apps, automate workflows, and earn. Real project examples and pricing."
 date: "2026-04-28"
-author: "Sergei P."
+author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/coding-dark-1.jpg"
 keywords: ["Claude Code income", "Claude Code developer", "make money Claude Code", "AI coding business"]
