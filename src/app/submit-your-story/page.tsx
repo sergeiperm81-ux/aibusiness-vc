@@ -12,7 +12,6 @@ export const metadata: Metadata = {
 };
 
 const BRIEF = `Write your story around these 7 questions
-(send the finished text to ${SUBMIT_EMAIL})
 
 1. Who you are — Company or project name, what you do in one line, who's behind it, and where you're based.
 
