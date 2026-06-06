@@ -32,6 +32,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/robots`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/news`, lastModified: now, changeFrequency: "daily", priority: 0.8 },
     { url: `${baseUrl}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
+    { url: `${baseUrl}/submit-your-story`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     // /privacy, /terms, /affiliate-disclosure exist but low SEO value
   ];
 
