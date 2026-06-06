@@ -11,7 +11,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/submit-your-story" },
 };
 
-const BRIEF = `Write your story around these 7 questions
+const BRIEF = `Answer these 7 questions as a written interview — in your own voice, first person.
+We'll shape your answers into a published interview, so just reply naturally — no need to polish the writing.
 
 1. Who you are — Company or project name, what you do in one line, who's behind it, and where you're based.
 
@@ -31,9 +32,8 @@ RULES
 - Write in English, ~600–900 words (about 2–3 pages).
 - AI must be at the centre of your story — product, implementation, or research.
 - One link to your project (no more).
-- One photo, attached to the email (not huge — about 1200px wide is plenty).
-- Sign it: give us the author's full name and role for the byline.
-- After we publish, share the article on your own channels with a link back to AI Business.
+- One photo, attached to the email (not huge — about 1200px wide is plenty). Tell us who to credit for it (photographer or source).
+- Tell us the founder's or author's full name and role, so we credit you correctly.
 
 Send your story to: ${SUBMIT_EMAIL}`;
 
@@ -60,8 +60,10 @@ export default function SubmitYourStoryPage() {
           </h1>
           <p className="mb-6 max-w-2xl text-base leading-relaxed text-white/70">
             AI Business publishes the stories of companies, startups, research labs, and media
-            doing real work with AI. Tell us yours, and we'll feature it — at no cost, with a link
-            back to your project. The only hard rule: AI has to be at the heart of what you do.
+            doing real work with AI. The format is a written interview: you answer a few questions
+            in your own words, send them to us, and we shape your answers into a polished interview
+            and publish it — at no cost, with a link to your project. The only hard rule: AI has to
+            be at the heart of what you do.
           </p>
           <a
             href={MAILTO}
@@ -90,20 +92,19 @@ export default function SubmitYourStoryPage() {
           <div>
             <h2 className="text-xl font-bold text-gray-900 mb-4">How it works</h2>
             <ol className="space-y-2 text-sm text-gray-700">
-              <li><strong>1.</strong> Copy the brief below and write your story as answers to the 7 questions (just a connected text — no form to fill in).</li>
-              <li><strong>2.</strong> Email it, with one photo attached, to <a href={MAILTO} className="text-amber-600 font-semibold hover:underline">{SUBMIT_EMAIL}</a>.</li>
-              <li><strong>3.</strong> We review and lightly edit it. We may decline pieces that don't fit our editorial policy.</li>
-              <li><strong>4.</strong> We publish it as a <em>Partner Story</em> — with your byline and your one link.</li>
-              <li><strong>5.</strong> You share the published article on your channels with a link back to us. A simple, free exchange.</li>
+              <li><strong>1.</strong> Copy the questions below and answer them in your own words, first person — like a written interview. Just connected text, no form to fill in.</li>
+              <li><strong>2.</strong> Email your answers, with one photo attached, to <a href={MAILTO} className="text-amber-600 font-semibold hover:underline">{SUBMIT_EMAIL}</a>.</li>
+              <li><strong>3.</strong> We review and shape your answers into a clean interview, and may come back with a couple of follow-up questions to confirm details. We may decline pieces that don&rsquo;t fit our editorial policy.</li>
+              <li><strong>4.</strong> We publish it as a <em>Partner Story</em> interview — crediting you and linking to your project. That&rsquo;s it.</li>
             </ol>
           </div>
 
           {/* Copyable brief */}
           <div>
-            <h2 className="text-xl font-bold text-gray-900 mb-1">Write your story around these 7 questions</h2>
+            <h2 className="text-xl font-bold text-gray-900 mb-1">Answer these 7 questions &mdash; we&rsquo;ll turn them into your interview</h2>
             <p className="text-sm text-gray-500 mb-4">
-              Copy the whole brief in one click, paste it into your doc, and write your answers. Cover all
-              seven in a natural, readable flow.
+              Copy the whole brief in one click, paste it into your doc, and answer in your own words.
+              We&rsquo;ll shape your answers into a published interview &mdash; no need to polish the writing yourself.
             </p>
             <CopyBrief text={BRIEF} />
           </div>
@@ -128,11 +129,10 @@ export default function SubmitYourStoryPage() {
           <div className="rounded-xl bg-gray-50 border border-gray-200 p-5">
             <h2 className="text-base font-bold text-gray-900 mb-2">How Partner Stories are labelled</h2>
             <p className="text-sm text-gray-600 leading-relaxed">
-              Every submission is published as a <strong>Partner Story</strong>, clearly marked and
-              carrying the author&rsquo;s byline. The views, claims, and figures are the author&rsquo;s
-              own; AI Business does not independently verify them and does not endorse the company.
-              No payment is exchanged. The link to your project is provided for readers&rsquo;
-              convenience.
+              Every submission is published as a <strong>Partner Story</strong>, clearly marked. The
+              views, claims, and figures belong to the featured company or contributor; AI Business
+              does not independently verify them and does not endorse the company. No payment is
+              exchanged. The link to the project is provided for readers&rsquo; convenience.
             </p>
           </div>
 
