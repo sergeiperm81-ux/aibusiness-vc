@@ -1,7 +1,7 @@
 ---
 title: "Trump's New AI Executive Order: What '30-Day Early Access' Really Means for Your Money"
 description: "On June 2, Trump signed an AI order letting the government preview frontier models for 30 days before release. It's 'voluntary' — but it quietly tilts the board toward the giants. Here's who profits, who pays, and what it means for you."
-date: "2026-06-04"
+date: "2026-06-06"
 author: "Sergei Ponomarev"
 category: "Government"
 image: "/images/articles/legal-scales-1.jpg"
