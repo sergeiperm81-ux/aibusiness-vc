@@ -43,10 +43,10 @@ export function Header() {
           <div className="hidden lg:flex items-center gap-2 ml-2 pl-2 border-l border-card-border">
             <Link
               href="/submit-your-story"
-              className={`px-3 py-1.5 text-[13px] font-semibold rounded-md border transition-colors ${
+              className={`px-3 py-1.5 text-[13px] font-bold rounded-md transition-colors ${
                 isActive("/submit-your-story")
-                  ? "border-accent text-accent"
-                  : "border-card-border text-white hover:border-accent hover:text-accent"
+                  ? "bg-accent-hover text-black"
+                  : "bg-accent text-black hover:bg-accent-hover"
               }`}
             >
               Submit Story
@@ -66,7 +66,7 @@ export function Header() {
           <div className="lg:hidden flex items-center gap-2">
             <Link
               href="/submit-your-story"
-              className="px-2.5 py-1 text-[12px] font-semibold text-white border border-card-border rounded-md"
+              className="px-2.5 py-1 text-[12px] font-bold bg-accent text-black rounded-md"
             >
               Story
             </Link>

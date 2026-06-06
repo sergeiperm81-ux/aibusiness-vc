@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { CopyBrief } from "@/components/CopyBrief";
 
 const SUBMIT_EMAIL = "info@aibusiness.vc";
 const MAILTO = `mailto:${SUBMIT_EMAIL}?subject=Submit%20Your%20Story%20%E2%80%94%20%5BYour%20company%5D`;
@@ -10,44 +11,32 @@ export const metadata: Metadata = {
   alternates: { canonical: "/submit-your-story" },
 };
 
-const QUESTIONS: { q: string; hint: string }[] = [
-  {
-    q: "1. Who you are",
-    hint: "Company or project name, what you do in one line, who's behind it, and where you're based.",
-  },
-  {
-    q: "2. The problem you solve",
-    hint: "What pain you tackle, for whom, and why it matters now.",
-  },
-  {
-    q: "3. Where AI sits at the core",
-    hint: "How exactly AI powers what you do — what it does, which models, tech, or approach you use. Be specific. (This is the one non-negotiable: AI must be central to your story.)",
-  },
-  {
-    q: "4. What makes you different",
-    hint: "Your edge versus the alternatives — what you do that others don't.",
-  },
-  {
-    q: "5. Proof and traction",
-    hint: "Real results: users, revenue, growth, pilots, partnerships, funding. Concrete numbers wherever you can share them.",
-  },
-  {
-    q: "6. A story or a lesson",
-    hint: "One real moment, hard decision, or insight from building this. The human part — it's what makes a feature worth reading.",
-  },
-  {
-    q: "7. What's next, and how to engage",
-    hint: "Your roadmap, what you're looking for (customers, partners, hires, investors), and your single project link as the call to action.",
-  },
-];
+const BRIEF = `Write your story around these 7 questions
+(send the finished text to ${SUBMIT_EMAIL})
 
-const RULES = [
-  "Write in English, roughly 600–900 words (about 2–3 pages).",
-  "AI must be at the centre of your story — product, implementation, or research.",
-  "Include exactly one link to your project (no more).",
-  "Sign it: give us the author's full name and role for the byline.",
-  "After we publish, share the article on your own channels with a link back to AI Business.",
-];
+1. Who you are — Company or project name, what you do in one line, who's behind it, and where you're based.
+
+2. The problem you solve — What pain you tackle, for whom, and why it matters now.
+
+3. Where AI sits at the core — How exactly AI powers what you do: which models, tech, or approach. Be specific. AI must be central to your story.
+
+4. What makes you different — Your edge versus the alternatives; what you do that others don't.
+
+5. Proof and traction — Real results: users, revenue, growth, pilots, partnerships, funding. Concrete numbers wherever you can share them.
+
+6. A story or a lesson — One real moment, hard decision, or insight from building this. The human part — it's what makes a feature worth reading.
+
+7. What's next, and how to engage — Your roadmap, what you're looking for (customers, partners, hires, investors), and your single project link.
+
+RULES
+- Write in English, ~600–900 words (about 2–3 pages).
+- AI must be at the centre of your story — product, implementation, or research.
+- One link to your project (no more).
+- One photo, attached to the email (not huge — about 1200px wide is plenty).
+- Sign it: give us the author's full name and role for the byline.
+- After we publish, share the article on your own channels with a link back to AI Business.
+
+Send your story to: ${SUBMIT_EMAIL}`;
 
 const NOT_FOR = [
   "Agencies or dev shops selling AI build/implementation services for hire (“we'll build AI for you”). Tell your own story — don't advertise services.",
@@ -81,6 +70,18 @@ export default function SubmitYourStoryPage() {
           >
             Email your story to {SUBMIT_EMAIL} &rarr;
           </a>
+
+          {/* Audience / why it's worth it */}
+          <div className="mt-8 rounded-xl border border-card-border bg-card-bg p-5">
+            <p className="text-sm leading-relaxed text-white/80">
+              <strong className="text-white">Why it's worth it:</strong> AI Business draws{" "}
+              <strong className="text-accent">3,000+ visits a month and growing</strong>, with a
+              focused audience of operators, founders, and investors. And the site is engineered for{" "}
+              <strong className="text-white">SEO and AI-search (GEO)</strong> visibility — so your
+              feature keeps earning search traffic and AI citations long after it's published, not
+              just on day one.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -90,39 +91,22 @@ export default function SubmitYourStoryPage() {
           <div>
             <h2 className="text-xl font-bold text-gray-900 mb-4">How it works</h2>
             <ol className="space-y-2 text-sm text-gray-700">
-              <li><strong>1.</strong> Write your story as answers to the 7 questions below (just a connected text — no form to fill in).</li>
-              <li><strong>2.</strong> Email it to <a href={MAILTO} className="text-amber-600 font-semibold hover:underline">{SUBMIT_EMAIL}</a>.</li>
+              <li><strong>1.</strong> Copy the brief below and write your story as answers to the 7 questions (just a connected text — no form to fill in).</li>
+              <li><strong>2.</strong> Email it, with one photo attached, to <a href={MAILTO} className="text-amber-600 font-semibold hover:underline">{SUBMIT_EMAIL}</a>.</li>
               <li><strong>3.</strong> We review and lightly edit it. We may decline pieces that don't fit our editorial policy.</li>
               <li><strong>4.</strong> We publish it as a <em>Partner Story</em> — with your byline and your one link.</li>
               <li><strong>5.</strong> You share the published article on your channels with a link back to us. A simple, free exchange.</li>
             </ol>
           </div>
 
-          {/* The 7 questions */}
+          {/* Copyable brief */}
           <div>
             <h2 className="text-xl font-bold text-gray-900 mb-1">Write your story around these 7 questions</h2>
-            <p className="text-sm text-gray-500 mb-5">Cover all seven in your own words. No need to label them — a natural, readable flow is best.</p>
-            <div className="space-y-4">
-              {QUESTIONS.map((item) => (
-                <div key={item.q} className="rounded-xl border border-gray-200 p-4">
-                  <h3 className="text-sm font-bold text-gray-900">{item.q}</h3>
-                  <p className="mt-1 text-sm text-gray-600 leading-relaxed">{item.hint}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Rules */}
-          <div>
-            <h2 className="text-xl font-bold text-gray-900 mb-4">A few simple rules</h2>
-            <ul className="space-y-2">
-              {RULES.map((r) => (
-                <li key={r} className="flex items-start gap-2 text-sm text-gray-700">
-                  <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-emerald-500" />
-                  {r}
-                </li>
-              ))}
-            </ul>
+            <p className="text-sm text-gray-500 mb-4">
+              Copy the whole brief in one click, paste it into your doc, and write your answers. Cover all
+              seven in a natural, readable flow.
+            </p>
+            <CopyBrief text={BRIEF} />
           </div>
 
           {/* What we don't feature */}
