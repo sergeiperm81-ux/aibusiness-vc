@@ -36,6 +36,24 @@ Figure's BMW relationship is worth more than a thousand viral clips, for one sim
 
 None of this means Tesla loses. With $41 billion in cash, Tesla has options no other humanoid maker has — it can burn money for years, undercut everyone on price (the Gen 3 target is below $20,000), and lean on its car-manufacturing muscle to scale faster than anyone once it actually starts. The honest read isn't "Tesla is doomed." It's "Tesla is still at the promising stage while Figure is at the doing stage, and you should price each company according to which stage it's actually in" — not according to which founder has the louder megaphone.
 
+## The math that's actually driving every purchase order
+
+Let me show you the single calculation BMW almost certainly ran before letting a Figure robot onto its line, because once you see it, the whole industry stops being about cool videos and starts being about a spreadsheet.
+
+A human automotive worker in the US costs roughly **$50,000–$70,000 a year** once you add wages, benefits, payroll taxes, and the cost of turnover. That worker covers one shift. A humanoid robot priced at Tesla's **sub-$20,000 target** — or a Chinese unit at **$16,000** — runs multiple shifts, takes no breaks, files no workers' comp claims, and doesn't quit in eight months. Even being generous and adding $5,000–$10,000 a year for energy, maintenance, and software, the robot's all-in annual cost lands somewhere near **$10,000–$15,000** against a human's $60,000.
+
+Here's the payback in plain numbers. A $16,000 robot replacing even *one* $60,000 worker pays for itself in **under four months**, then saves roughly **$45,000+ per year, every year after**. Put it across two shifts and the math doubles. That is not a marginal efficiency gain — it's the kind of cost collapse that reorganizes an entire industry, and it's the same brutal logic I walked through in detail in [the warehouse-robot ROI breakdown](/robots/robot-replaces-warehouse-worker-roi).
+
+Now multiply. The BMW deployment loaded **90,000+ sheet-metal parts** over ten months. At even a conservative labor-equivalent, that's hundreds of thousands of dollars of work, done by a machine that costs less than the annual salary of the person it stands in for. When the savings are *that* lopsided, the question for a manufacturer stops being "should we?" and becomes "how fast can we get more?" — which is exactly why Figure's order book matters more than Tesla's stage demos.
+
+## How big the prize actually is
+
+Step back from the two companies and look at the size of the pool they're fighting over, because the numbers reframe everything.
+
+The forecasts are staggering and they keep getting revised *up*. Goldman Sachs projects the humanoid market reaches **$38 billion by 2035** — a figure it raised sixfold after AI progress outran its own analysts. Morgan Stanley goes much further: **$5 trillion by 2050**, with close to a billion robots in the world, roughly 90% of them doing industrial and commercial work. Nvidia's Jensen Huang calls humanoid labor a **$40 trillion** opportunity and labels this "the ChatGPT moment for robotics."
+
+When the most cautious bank, the most aggressive bank, and the company selling the picks and shovels all point in the same direction, the trend itself stops being the question. The only open question is *who captures the money* — and that's the lens I'd use to weigh Figure's proven-but-pricey deployment against Tesla's unproven-but-cheap promise. I put the broader valuation picture in context in [AI robotics: the startups building humanoid workers](/startups/ai-robotics-billions), and it's worth holding those numbers in your head for the rest of this piece.
+
 ## The part everyone forgets: neither of them is China
 
 Here's where I have to zoom out and pop the American bubble a little, because the Figure-versus-Tesla framing quietly assumes the race is between two US companies. It isn't.
