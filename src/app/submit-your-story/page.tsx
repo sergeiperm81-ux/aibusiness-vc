@@ -38,7 +38,6 @@ RULES
 Send your story to: ${SUBMIT_EMAIL}`;
 
 const NOT_FOR = [
-  "Agencies or dev shops selling AI build/implementation services for hire (“we'll build AI for you”). Tell your own story — don't advertise services.",
   "Gambling, casinos, betting.",
   "Alcohol, tobacco, vaping.",
   "Adult content.",
