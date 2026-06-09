@@ -210,6 +210,21 @@
     "description": "Anthropic's latest flagship model (May 28, 2026). 4x less likely to overlook code flaws than Opus 4.7. First model to complete every case on Super-Agent benchmark. Highest score ever on Legal Agent Benchmark. New dynamic workflows enable parallel subagents. Fast mode available at $10/$50 per million tokens."
   },
   {
+    "id": "claude-fable-5",
+    "name": "Claude Fable 5",
+    "developer": "Anthropic",
+    "released": "2026-06",
+    "elo": null,
+    "mmlu": null,
+    "humanEval": null,
+    "gsm8k": null,
+    "contextWindow": "1M",
+    "inputPrice": "$10.00",
+    "outputPrice": "$50.00",
+    "openSource": false,
+    "description": "Anthropic's first publicly available Mythos-class model (June 9, 2026) and its most powerful general-release model ever. Leads agentic coding at 80.3% on SWE-bench Pro (vs 69.2% for Opus 4.8), with a 1M-token context window and 128K max output. Built for long-horizon autonomous work — Stripe used it to compress a months-long codebase migration into a single day. High-risk queries (e.g. cybersecurity, biology) are routed to Opus 4.8; safeguards trigger in under 5% of sessions. Priced at $10/$50 per MTok, with up to 90% input savings via prompt caching."
+  },
+  {
     "id": "claude-sonnet-4.6",
     "name": "Claude Sonnet 4.6",
     "developer": "Anthropic",
