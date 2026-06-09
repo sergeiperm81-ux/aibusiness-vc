@@ -1,7 +1,7 @@
 ---
 title: "Companies Cut 113,000 Jobs for AI in 2026 — Gartner Says the ROI Never Showed Up"
 description: "80% of companies deploying autonomous AI cut headcount, but Gartner's survey of 350 executives found zero correlation between layoffs and returns. The $725B AI capex paradox, why CEOs do it anyway, and what actually drives ROI."
-date: "2026-05-29"
+date: "2026-06-06"
 author: "Sergei Ponomarev"
 category: "B2B"
 image: "/images/articles/hr-interview-1.jpg"
