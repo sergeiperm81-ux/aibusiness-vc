@@ -107,20 +107,19 @@ export default function AboutPage() {
           </p>
 
           <h2 className="text-xl font-bold text-gray-900 mt-8 mb-3">Who&rsquo;s behind it</h2>
-          <div className="not-prose flex flex-col sm:flex-row gap-5 items-start">
+          <div className="not-prose text-sm leading-relaxed text-gray-700">
             <Image
               src="/images/sergei-ponomarev.jpg"
               alt="Sergei Ponomarev, founder of AI Business"
               width={180}
               height={194}
-              className="rounded-xl border border-gray-200 w-[150px] sm:w-[180px] h-auto shrink-0"
+              className="float-left mr-5 mb-2 rounded-xl border border-gray-200 w-[140px] sm:w-[180px] h-auto"
             />
-            <div className="space-y-3 text-sm leading-relaxed text-gray-700">
-              <p>
+              <p className="mb-3">
                 AI Business was founded and is led by <strong>Sergei Ponomarev</strong>, who writes
                 and edits across the site.
               </p>
-              <p>
+              <p className="mb-3">
                 For more than 20 years I&rsquo;ve studied how digital services actually get built and
                 adopted inside government. In 2014 I defended a PhD in Political Science at Moscow
                 State University on the implementation of e-government in Russia, completed a
@@ -149,8 +148,8 @@ export default function AboutPage() {
                 </a>
                 .
               </p>
-            </div>
           </div>
+          <div className="clear-both" />
 
           <h3 className="text-base font-bold text-gray-900 mt-8 mb-2">Education</h3>
           <ul className="not-prose space-y-1.5">
