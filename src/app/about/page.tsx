@@ -25,15 +25,6 @@ const COVERS = [
   ["Tools & Models", "350+ AI tools reviewed against ROI, plus an LLM model leaderboard."],
 ];
 
-const ANALYTICS = [
-  "Led research and quality-monitoring of state and municipal services commissioned by federal and regional governments.",
-  "Designed and assessed administrative regulations, and wrote policy briefs and recommendations for government bodies.",
-  "Ran independent evaluations and “mystery shopping” to expose bottlenecks and barriers in public-service delivery.",
-  "Authored the Information Openness Standard for the Perm City Duma and co-developed the “Open Healthcare” project in Perm Krai.",
-  "Served on a working group on reducing administrative barriers for business in Perm Krai (Chamber of Commerce and Industry).",
-  "Trained federal and municipal civil servants; moderated focus groups, expert panels, and forum sessions; commented as an expert in print, radio, and TV.",
-];
-
 const EDUCATION = [
   "PhD in Political Science — Moscow State University (2014)",
   "MA in Political Science — Moscow School of Social & Economic Sciences, validated by the University of Manchester (2004)",
@@ -121,7 +112,7 @@ export default function AboutPage() {
               src="/images/sergei-ponomarev.jpg"
               alt="Sergei Ponomarev, founder of AI Business"
               width={180}
-              height={225}
+              height={194}
               className="rounded-xl border border-gray-200 w-[150px] sm:w-[180px] h-auto shrink-0"
             />
             <div className="space-y-3 text-sm leading-relaxed text-gray-700">
@@ -134,12 +125,15 @@ export default function AboutPage() {
                 adopted inside government. In 2014 I defended a PhD in Political Science at Moscow
                 State University on the implementation of e-government in Russia, completed a
                 fellowship on government openness at the Kennan Institute in Washington, D.C., and
-                taught for 14 years as a university lecturer. I spent 7 years assessing the quality
-                of public administration at an analytics center — including writing transparency
-                standards for government bodies — served 5 years as an aide to a municipal deputy,
-                and trained entrepreneurs for 4 years. Along the way I worked across social
-                entrepreneurship and impact investing. For the last year and a half I&rsquo;ve been
-                building software and AI agents hands-on.
+                taught for 14 years as a university lecturer. For seven of those years I ran applied
+                research at a public-policy center — leading nationwide monitoring of state and
+                municipal services, running independent evaluations and &ldquo;mystery shopping&rdquo;
+                to find where citizens actually get stuck, authoring the Information Openness Standard
+                for the Perm City Duma, and commenting as an expert in print, on radio, and on TV. I
+                then served 5 years as an aide to a municipal deputy and spent 4 years training
+                entrepreneurs. Along the way I worked across social entrepreneurship and impact
+                investing. For the last year and a half I&rsquo;ve been building software and AI
+                agents hands-on.
               </p>
               <p>
                 AI Business is where those two worlds meet — two decades of understanding how
@@ -157,20 +151,6 @@ export default function AboutPage() {
               </p>
             </div>
           </div>
-
-          <h3 className="text-base font-bold text-gray-900 mt-8 mb-2">Background: public administration &amp; e-government</h3>
-          <p className="text-sm leading-relaxed mb-2">
-            As Head of Analytics at a public-policy research center (2009&ndash;2015), I led applied
-            research on how government serves citizens:
-          </p>
-          <ul className="not-prose space-y-1.5">
-            {ANALYTICS.map((item) => (
-              <li key={item} className="flex items-start gap-2 text-sm text-gray-700">
-                <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-amber-400" />
-                {item}
-              </li>
-            ))}
-          </ul>
 
           <h3 className="text-base font-bold text-gray-900 mt-8 mb-2">Education</h3>
           <ul className="not-prose space-y-1.5">
