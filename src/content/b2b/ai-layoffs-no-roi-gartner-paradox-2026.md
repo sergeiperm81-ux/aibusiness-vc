@@ -4,7 +4,7 @@ description: "80% of companies deploying autonomous AI cut headcount, but Gartne
 date: "2026-06-06"
 author: "Sergei Ponomarev"
 category: "B2B"
-image: "/images/articles/hr-interview-1.jpg"
+image: "/images/articles/boardroom-1.jpg"
 keywords: ["AI layoffs ROI 2026", "Gartner AI layoffs study", "AI automation no returns", "AI workforce reduction ROI", "enterprise AI ROI paradox", "AI job cuts 2026"]
 ---
 
