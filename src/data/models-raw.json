@@ -199,7 +199,7 @@
     "name": "Claude Opus 4.8",
     "developer": "Anthropic",
     "released": "2026-05",
-    "elo": null,
+    "elo": 1512,
     "mmlu": null,
     "humanEval": null,
     "gsm8k": null,
