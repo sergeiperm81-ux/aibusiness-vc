@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { MAIN_NAV } from "@/lib/navigation";
+import { CookieSettingsLink } from "@/components/CookieSettingsLink";
 
 export function Footer() {
   return (
@@ -57,6 +58,7 @@ export function Footer() {
             <Link href="/affiliate-disclosure" className="hover:text-foreground">
               Affiliate Disclosure
             </Link>
+            <CookieSettingsLink />
             <Link href="/stats" className="text-muted/50 hover:text-foreground" rel="nofollow">
               Stats
             </Link>

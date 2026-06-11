@@ -111,8 +111,11 @@ export function AuditEmailGate({ auditId, domain, overallScore }: Props) {
                 className="mt-0.5 h-3.5 w-3.5 shrink-0 accent-amber-500"
               />
               <span>
-                I agree to receive my report and occasional emails from AI Business. I can
-                unsubscribe anytime.
+                I agree to receive my report and occasional emails from AI Business, and to the{" "}
+                <a href="/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:text-white/80">
+                  Privacy Policy
+                </a>
+                . I can unsubscribe anytime.
               </span>
             </label>
             <button
