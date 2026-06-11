@@ -105,6 +105,13 @@ export default function AboutPage() {
             downside, we name it. The site also publishes daily AI-business news and offers a
             free AI-visibility (GEO) audit for any website.
           </p>
+          <p className="text-sm leading-relaxed mt-3">
+            <strong>How these articles are made.</strong> Research and first drafts are produced
+            with the help of AI; every article is then edited and fact-checked personally by
+            Sergei Ponomarev, who holds editorial responsibility for everything published on this
+            site. AI helps gather material and draft &mdash; the judgment, the checking, and the
+            final word are human.
+          </p>
 
           <h2 className="text-xl font-bold text-gray-900 mt-8 mb-3">Who&rsquo;s behind it</h2>
           <div className="not-prose text-sm leading-relaxed text-gray-700">
