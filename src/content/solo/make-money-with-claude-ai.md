@@ -124,6 +124,17 @@ I can't tell you which path you'll choose. But I can tell you that the window do
 
 ---
 
+## Frequently Asked Questions
+
+**Can you really make money with Claude AI?**
+Yes. People earn from a few hundred dollars a month as a side hustle up to $30K+/month running a productized service or agency. The model is the same at every level — what separates the income tiers is the service you sell, your clients, and your pricing.
+
+**How much does it cost to start making money with Claude?**
+About $20/month for a Claude Pro subscription, or $100–$200/month for the Max tiers if you use Claude Code heavily. Against a single client paying $1,000–$5,000/month, the tool cost is a rounding error.
+
+**What's the fastest way to earn your first dollar with Claude?**
+Pick one service you can describe in a sentence, use Claude to produce a real proof piece, and send personalized outreach with it attached. A focused week of this is usually enough to land a first paying client.
+
 ## Keep Reading
 
 If you're ready to pick a direction, these go deeper into the specific plays above:
