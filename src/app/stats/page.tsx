@@ -164,6 +164,36 @@ function Dashboard({ stats, live }: { stats: Stats; live: boolean }) {
             <p className="text-xs text-gray-400 mt-2">Numbers are people (active users). Note: a large share of traffic is automated (bots/crawlers).</p>
           </div>
 
+          {/* Daily breakdown — last 7 days */}
+          {stats.daily && stats.daily.length > 0 && (
+            <div>
+              <h2 className="text-lg font-bold text-gray-900 mb-1">Last 7 days, day by day</h2>
+              <p className="text-xs text-gray-400 mb-4">Daily dynamics. The most recent day is still in progress.</p>
+              <div className="overflow-x-auto rounded-xl border border-gray-200">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="bg-gray-50 text-left text-xs uppercase tracking-wider text-gray-400">
+                      <th className="px-4 py-2.5 font-medium">Day</th>
+                      <th className="px-4 py-2.5 font-medium text-right">People</th>
+                      <th className="px-4 py-2.5 font-medium text-right">Sessions</th>
+                      <th className="px-4 py-2.5 font-medium text-right">Views</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {stats.daily.map((d) => (
+                      <tr key={d.date} className="border-t border-gray-100">
+                        <td className="px-4 py-2.5 font-medium text-gray-900">{d.date}</td>
+                        <td className="px-4 py-2.5 text-right tabular-nums text-gray-700">{fmt(d.users)}</td>
+                        <td className="px-4 py-2.5 text-right tabular-nums text-gray-700">{fmt(d.sessions)}</td>
+                        <td className="px-4 py-2.5 text-right tabular-nums text-gray-700">{fmt(d.pageviews)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+
           {/* Countries + Devices */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div className="bg-white rounded-xl border border-gray-200 p-5">
