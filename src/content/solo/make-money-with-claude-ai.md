@@ -128,6 +128,11 @@ I can't tell you which path you'll choose. But I can tell you that the window do
 
 If you're ready to pick a direction, these go deeper into the specific plays above:
 
+- [Claude vs ChatGPT: Which Makes You More Money?](/solo/claude-vs-chatgpt-make-money) — a task-by-task breakdown of which AI actually earns a freelancer more
+- [How Much Can You Really Make with Claude AI?](/solo/how-much-money-claude-ai) — honest income tiers, from your first $500 to a $30K/month agency
+- [The Best Claude Prompts for Making Money](/solo/claude-prompts-make-money) — six copy-paste prompts wired into a paid workflow, not party tricks
+- [How to Land Your First Paying Client with Claude](/solo/first-client-claude-ai) — a concrete 7-day plan to earn the hardest dollar
+- [What a One-Person AI Business Really Pays](/solo/claude-api-cost-side-business) — Claude API and subscription costs, and the margin math behind AI services
 - [How to Make Money with AI Agents in 2026](/solo/how-to-make-money-with-ai-agents) — the full playbook for building and selling agents to real businesses, with exact pricing
 - [10 AI SaaS Ideas That Actually Make Money](/solo/ai-saas-ideas-2026) — micro-SaaS opportunities a solo developer can ship in 30 days
 - [How HeadshotPro Hit $300K/Month Solo](/solo/headshot-pro-300k-month) — the clearest example of replacing an expensive human service with AI
