@@ -7,6 +7,16 @@
     "last30days": { "users": 2918, "sessions": 3165, "pageviews": 3888 },
     "allTime": { "users": 3751, "sessions": 4069, "pageviews": 5208 }
   },
+  "daily": [
+    { "date": "Jun 5", "users": 97, "sessions": 104, "pageviews": 139 },
+    { "date": "Jun 6", "users": 82, "sessions": 96, "pageviews": 142 },
+    { "date": "Jun 7", "users": 90, "sessions": 98, "pageviews": 139 },
+    { "date": "Jun 8", "users": 98, "sessions": 112, "pageviews": 115 },
+    { "date": "Jun 9", "users": 146, "sessions": 161, "pageviews": 222 },
+    { "date": "Jun 10", "users": 132, "sessions": 148, "pageviews": 210 },
+    { "date": "Jun 11", "users": 101, "sessions": 110, "pageviews": 153 },
+    { "date": "Jun 12", "users": 2, "sessions": 3, "pageviews": 4 }
+  ],
   "countries": [
     { "name": "Singapore", "users": 1511 },
     { "name": "United States", "users": 741 },

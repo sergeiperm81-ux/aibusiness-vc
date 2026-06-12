@@ -105,6 +105,12 @@ async function batchRunReports(token: string): Promise<GaReport[]> {
         orderBys: [{ metric: { metricName: "bounceRate" }, desc: true }],
         limit: 5,
       },
+      {
+        dateRanges: [{ startDate: "7daysAgo", endDate: "today" }],
+        dimensions: [{ name: "date" }],
+        metrics: [{ name: "activeUsers" }, { name: "sessions" }, { name: "screenPageViews" }],
+        orderBys: [{ dimension: { dimensionName: "date" } }],
+      },
     ],
   };
 
@@ -118,7 +124,7 @@ async function batchRunReports(token: string): Promise<GaReport[]> {
   );
   if (!res.ok) throw new Error(`runReport failed: ${res.status}`);
   const json = (await res.json()) as { reports?: GaReport[] };
-  if (!json.reports || json.reports.length < 4) throw new Error("unexpected GA response");
+  if (!json.reports || json.reports.length < 5) throw new Error("unexpected GA response");
   return json.reports;
 }
 
@@ -130,9 +136,17 @@ function todayIso(): string {
   return new Date().toISOString().slice(0, 10);
 }
 
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+// GA returns the `date` dimension as "YYYYMMDD" — format it as "Jun 12".
+function fmtGaDate(d: string): string {
+  if (d.length !== 8) return d;
+  const month = MONTHS[Number(d.slice(4, 6)) - 1] ?? d.slice(4, 6);
+  return `${month} ${Number(d.slice(6, 8))}`;
+}
+
 async function fetchLiveStats(): Promise<Stats> {
   const token = await getAccessToken();
-  const [overview, countriesR, topR, worstR] = await batchRunReports(token);
+  const [overview, countriesR, topR, worstR, dailyR] = await batchRunReports(token);
 
   // Overview: rows = device x dateRange (date_range_0=7d, _1=30d, _2=all-time)
   const totals = [
@@ -173,6 +187,13 @@ async function fetchLiveStats(): Promise<Stats> {
       bounce: Math.round((Number(row.metricValues?.[1]?.value ?? 0)) * 100),
     }));
 
+  const daily = (dailyR.rows ?? []).map((row) => ({
+    date: fmtGaDate(row.dimensionValues?.[0]?.value ?? ""),
+    users: num(row.metricValues?.[0]?.value),
+    sessions: num(row.metricValues?.[1]?.value),
+    pageviews: num(row.metricValues?.[2]?.value),
+  }));
+
   return {
     generatedAt: todayIso(),
     source: snapshot.source,
@@ -182,6 +203,7 @@ async function fetchLiveStats(): Promise<Stats> {
       last30days: totals[1],
       allTime: totals[2],
     },
+    daily,
     countries,
     devices,
     topPages: mapPages(topR),
