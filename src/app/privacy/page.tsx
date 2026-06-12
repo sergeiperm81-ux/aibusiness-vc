@@ -13,7 +13,7 @@ export default function PrivacyPage() {
     <section className="bg-white">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-12">
         <h1 className="text-3xl font-bold text-gray-900 mb-6">Privacy Policy</h1>
-        <p className="text-sm text-gray-400 mb-8">Last updated: June 11, 2026</p>
+        <p className="text-sm text-gray-400 mb-8">Last updated: June 12, 2026</p>
         <div className="prose prose-gray max-w-none text-gray-700 space-y-4">
           <p>
             This policy explains what personal data <strong>AI Business</strong> (aibusiness.vc)
