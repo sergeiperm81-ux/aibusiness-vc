@@ -1,7 +1,7 @@
 ---
 title: "One Hour, One AI, One Closed Data Breach — and Four Years of AI Costs Paid Back"
 description: "A live PII leak — 16,000 emails exposed through weak database security. I closed it in an hour with AI for $0 in extra cost. The old way: $15,000–$40,000 and a month or two. Here's the money math, and the lesson for anyone running a Supabase or Firebase app."
-date: "2026-06-11"
+date: "2026-06-12"
 author: "Sergei Ponomarev"
 category: "Solo"
 image: "/images/articles/cybersecurity-1.jpg"

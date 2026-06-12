@@ -1,7 +1,7 @@
 ---
 title: "95% of Corporate AI Shows No Return — Because Companies Start in the Wrong Place"
 description: "MIT found 95% of enterprise GenAI delivers no measurable P&L impact. The hidden reason isn't the models — it's where companies deploy AI. They start in back-office functions. The money, and the easier wins, are in the services customers actually pay for. A CEO's case for flipping the order."
-date: "2026-06-11"
+date: "2026-06-12"
 author: "Sergei Ponomarev"
 category: "B2B"
 image: "/images/articles/team-laptop-1.jpg"
