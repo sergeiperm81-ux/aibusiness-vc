@@ -6,7 +6,7 @@ export type Stats = typeof snapshot;
 
 const PROPERTY_ID = process.env.GA_PROPERTY_ID || "532602792";
 const ALL_TIME_SINCE = "2026-01-01";
-const TTL_MS = 1000 * 60 * 30; // 30 minutes
+const TTL_MS = 1000 * 60 * 60 * 12; // 12 hours — stats don't need fresher; cuts GA calls + CPU
 
 let cache: { at: number; data: Stats } | null = null;
 

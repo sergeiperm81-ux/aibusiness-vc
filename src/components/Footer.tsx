@@ -59,9 +59,6 @@ export function Footer() {
               Affiliate Disclosure
             </Link>
             <CookieSettingsLink />
-            <Link href="/stats" className="text-muted/50 hover:text-foreground" rel="nofollow">
-              Stats
-            </Link>
           </div>
         </div>
       </div>
