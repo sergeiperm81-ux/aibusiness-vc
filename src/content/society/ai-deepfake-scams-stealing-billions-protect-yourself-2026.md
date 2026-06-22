@@ -43,6 +43,20 @@ The scams have evolved far past the old "Nigerian prince" email. Here are the fo
 
 The common thread is that AI removed the *tells*. Bad grammar, robotic voices, mismatched faces — every signal we used to rely on to spot a fake is now gone. That's why this is a genuinely new threat, not just an old one with a fresh coat of paint, and it's the personal-finance version of [the broader AI trust crisis](/society/ai-trust-crisis): when you can't believe what you see or hear, every interaction needs a new layer of verification.
 
+## The real cases that show how bad it's gotten
+
+Statistics can feel abstract, so let me make this concrete with attacks that actually happened. These aren't hypotheticals — they're a preview of what's coming to your phone.
+
+**The $25.6 million video call.** I opened with Arup, but the detail worth dwelling on is *how ordinary* it felt. The employee was suspicious at first — the request came by email and smelled like phishing. So the scammers escalated to a video call, where the "CFO" and several "colleagues" appeared live, looked right, sounded right, and chatted naturally. The human instinct "I can see their faces, so it's real" is exactly what got weaponized. Seeing is no longer believing.
+
+**The cloned-CEO voice that moved $243,000.** In one of the earliest cases, criminals used AI to mimic a parent-company CEO's voice — accent, cadence, and all — and called a subsidiary's managing director to urgently authorize a wire transfer. He recognized the voice and paid. The cost of cloning that voice? Trivial. The cost to the company? Nearly a quarter-million dollars in minutes.
+
+**The "kidnapped daughter" that wasn't.** A growing wave of voice-cloning scams targets parents directly. A mother gets a call: her daughter's exact voice, sobbing, saying she's been taken and a "kidnapper" then demands ransom. The daughter was safe at school the entire time — the voice was cloned from a TikTok video. These calls work because no parent runs a fact-check while their child is screaming.
+
+**The fake-job-candidate infiltration.** Companies are now being scammed from the *hiring* side. Deepfake candidates pass video interviews using real-time face-swapping, get hired into remote roles, and gain access to internal systems and data — or simply collect salaries under stolen or synthetic identities. Experian flagged deepfake job candidates as a *top* fraud threat for 2026 for exactly this reason.
+
+Notice the range: a global firm, a mid-sized subsidiary, an ordinary parent, an HR department. There's no profile of "the kind of person this happens to" anymore. If you have a voice, a face, money, or access, you're a target — which is the whole reason this belongs in a piece about everyday life, not just corporate security.
+
 ## Why this is exploding now
 
 You might wonder why this all hit at once. The answer is the same democratization that makes AI exciting: the tools got cheap, good, and available to everyone — including criminals.
@@ -54,6 +68,22 @@ Cloning a voice used to require a studio and expertise. Now it takes a free or c
 Here's the money flip side, because every threat this big creates an industry to fight it. Companies are pouring money into AI that detects AI — deepfake-detection tools, voice-authentication systems, and identity-verification platforms that can spot a synthetic face or a cloned voice faster than a human can.
 
 This is one of the fastest-growing corners of tech for a reason, and I've mapped the players in [the AI cybersecurity companies guide](/startups/ai-cybersecurity-companies) and the [fraud-detection boom that's saving companies billions](/b2b/ai-fraud-detection-billions). For businesses, this is now a required line item, not a nice-to-have. For job seekers, it's one of the most durable career bets out there — fraud isn't going away, so the people who fight it with AI are in permanent demand, the kind of role I flag in [the highest-paying AI jobs of 2026](/learn/highest-paying-ai-jobs-2026). The arms race between AI attackers and AI defenders is going to run for years, and there's real money on the defending side.
+
+## How to actually spot a deepfake in the moment
+
+The verification habits below are your first line of defense, but sometimes you're already on a suspicious call and need to make a judgment fast. Deepfakes in 2026 are good — but they're not perfect, and there are still tells if you know where to look. None of these are foolproof on their own; treat them as a checklist, where two or three red flags together should make you stop.
+
+**On a video call, ask them to do something physical.** Real-time deepfakes still struggle with sudden, unusual movements. Ask the person to turn their head fully sideways, wave a hand slowly in front of their face, or stand up. Face-swap models often glitch, smear, or briefly break when a hand crosses the face or the head hits a sharp profile angle. A real person does it without a hitter; a fake often flickers.
+
+**Watch the eyes and mouth edges.** Look for unnatural blinking (too little or oddly timed), eyes that don't quite track where they should, and the boundary where the face meets hair or neck — deepfakes frequently show subtle warping, blurring, or mismatched lighting right at those edges. Inconsistent lighting between the face and the background is another classic giveaway.
+
+**Listen for the audio seams.** Cloned voices are scarily good on short phrases but can falter on emotion, breathing, and natural pauses. Flat affect during something that should be emotional, a too-perfect cadence with no "ums" or breaths, or a slight robotic edge on longer sentences are warning signs. Background noise that's suspiciously clean — or weirdly absent — can also signal synthesis.
+
+**Inject the unexpected.** A script-following scammer (or a real-time deepfake operator) struggles with genuine spontaneity. Ask a personal question only the real person would know and couldn't quickly look up — not "what's your mother's maiden name" (findable) but "what did we argue about at dinner last week?" Or reference something false on purpose ("good to see you back from Chicago!") and watch whether they correct you or just play along.
+
+**Trust the lag.** Real-time generation takes compute, and that often shows up as a slight delay between your words and their reaction, or audio that's a beat out of sync with the lips. A conversation that feels *just slightly* off in its timing — where responses come a hair too slow or too rehearsed — is worth a second look.
+
+Here's the honest caveat: the technology is improving fast, and a year from now several of these tells will be gone. That's exactly why the verification habits in the next section matter more than spotting glitches — you should never have to win a staring contest with a deepfake when a simple callback settles it.
 
 ## The simple moves that actually protect you
 
