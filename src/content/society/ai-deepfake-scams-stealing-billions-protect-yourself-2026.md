@@ -1,7 +1,7 @@
 ---
 title: "An AI Phoned a Company Pretending to Be the Boss and Walked Away With $25.6 Million. You're Next on the List."
 description: "AI scams stole over $12.5B in 2024 and deepfakes now drive 11% of all fraud. A cloned-voice call, a fake video boss, a synthetic 'daughter in trouble' — here's exactly how AI fraud works in 2026 and the simple moves that actually protect you and your money."
-date: "2026-06-13"
+date: "2026-06-22"
 author: "Sergei Ponomarev"
 category: "Society"
 image: "/images/articles/ai-face-1.jpg"

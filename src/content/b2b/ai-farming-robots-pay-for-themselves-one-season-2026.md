@@ -1,7 +1,7 @@
 ---
 title: "Farm Robots Now Pay for Themselves in One Season — The Quietest AI Money Story of 2026"
 description: "While everyone watches chatbots, AI is quietly transforming the $3.4B agtech market. Robotic weeders cut herbicide costs 60%, save $40K–$80K a year per unit, and pay back in 1–3 seasons. Here's the farming ROI nobody's talking about."
-date: "2026-06-13"
+date: "2026-06-22"
 author: "Sergei Ponomarev"
 category: "B2B"
 image: "/images/articles/drone-1.jpg"

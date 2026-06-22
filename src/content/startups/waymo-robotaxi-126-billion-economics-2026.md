@@ -1,7 +1,7 @@
 ---
 title: "Waymo Is Worth $126 Billion and Nobody's Driving — The Robotaxi Money Story Hiding in Plain Sight"
 description: "Waymo raised $16B at a $126B valuation, runs 1M+ rides a week, and is expanding to London and Tokyo. The driverless-car future stopped being a demo and became a real business. Here's the robotaxi economics — who gets rich, who gets replaced, and what it means for you."
-date: "2026-06-13"
+date: "2026-06-22"
 author: "Sergei Ponomarev"
 category: "Startups"
 image: "/images/articles/city-skyline-1.jpg"

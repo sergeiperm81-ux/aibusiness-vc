@@ -1,7 +1,7 @@
 ---
 title: "The US Government Just Switched Off the World's Best AI Model — 3 Days After Launch. Here's What It Means for Your Business."
 description: "On June 12, Washington ordered Anthropic to globally disable Claude Fable 5 and Mythos 5 — for every user on Earth, including paying enterprises — after a viral jailbreak. The first time a government killed a public AI model overnight. The concentration-risk lesson every business needs now."
-date: "2026-06-13"
+date: "2026-06-22"
 author: "Sergei Ponomarev"
 category: "Government"
 image: "/images/articles/security-lock-1.jpg"
