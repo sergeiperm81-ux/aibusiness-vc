@@ -1,7 +1,7 @@
 ---
 title: "Meta Is Spending $135 Billion This Year to Catch OpenAI — and Just Launched Muse Spark to Prove It"
 description: "Meta unveiled Muse Spark, its first flagship model from Alexandr Wang's Superintelligence Labs, and announced $115–135B in 2026 AI capex — nearly double last year. The most expensive catch-up attempt in tech history. Here's what it means for your money."
-date: "2026-06-13"
+date: "2026-06-22"
 author: "Sergei Ponomarev"
 category: "Tools"
 image: "/images/articles/ai-network-1.jpg"

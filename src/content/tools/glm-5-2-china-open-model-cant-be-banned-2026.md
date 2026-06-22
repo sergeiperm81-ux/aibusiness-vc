@@ -1,7 +1,7 @@
 ---
 title: "The US Banned Its Best AI Model. The Same Week, China Gave Away One Almost as Good — and Nobody Can Switch It Off."
 description: "On June 13, Zhipu released GLM-5.2 — a frontier-class Chinese model, open-weight under MIT license, ranked #1 on DesignArena and #2 on Code Arena. At ~$80/month (10x cheaper than Claude Max) or free to self-host, it's the model no government can ban. Here's why that matters for your money."
-date: "2026-06-13"
+date: "2026-06-22"
 author: "Sergei Ponomarev"
 category: "Tools"
 image: "/images/articles/gpu-render-1.jpg"
