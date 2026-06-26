@@ -18,39 +18,29 @@ export default function LibraryPage() {
       {/* Black / gold banner */}
       <div className="bg-gray-950">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-          <div className="flex flex-col gap-8 sm:flex-row sm:items-center">
-            <div className="flex-1">
-              <p className="font-mono text-xs font-medium uppercase tracking-[0.2em] text-amber-400">
-                Library
-              </p>
-              <h1 className="mt-3 text-3xl font-bold leading-tight text-white sm:text-4xl">
-                Methods &amp; tools for an AI that serves people
-              </h1>
-              <p className="mt-4 max-w-xl text-base leading-relaxed text-gray-300">
-                Original methods and ready-to-use tools for governing AI from the human side —
-                free, and built to be used today.
-              </p>
-              <div className="mt-6 h-1 w-16 rounded-full bg-amber-400" />
-            </div>
-            <Image
-              src="/images/sergei-ponomarev.jpg"
-              alt="Sergei Ponomarev, founder of AI Business"
-              width={180}
-              height={194}
-              priority
-              className="h-auto w-[120px] shrink-0 rounded-xl border-2 border-amber-400/50 sm:w-[160px]"
-            />
-          </div>
+          <p className="font-mono text-xs font-medium uppercase tracking-[0.2em] text-amber-400">
+            Library
+          </p>
+          <h1 className="mt-3 text-3xl font-bold leading-tight text-white sm:text-4xl">
+            Methods &amp; tools for an AI that serves people
+          </h1>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-gray-300">
+            An author&apos;s library — my own methods for governing AI from the human side,
+            published here as I build them. Free, and made to be used today.
+          </p>
+          <div className="mt-6 h-1 w-16 rounded-full bg-amber-400" />
         </div>
       </div>
 
       {/* White body */}
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         <p className="max-w-2xl text-base leading-relaxed text-gray-700">
-          Each guide takes one piece of the problem — how to judge an AI service, how to describe
-          one, how to keep it accountable — and turns it into something you can use today. Built
-          from twenty years of standards, quality assessment, and civic control, now applied to AI.
-          New guides added regularly.
+          This is a personal library: the methods here are my own work, collected and published as
+          I develop them. Where a guide draws on someone else&apos;s work, I say so — everything
+          else is mine. Each one takes a single piece of the problem — how to judge an AI service,
+          how to describe one, how to keep it accountable — and turns it into something you can use
+          today. Built from twenty years of standards, quality assessment, and civic control, now
+          applied to AI. New methods added regularly.
         </p>
 
         <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2">
@@ -82,7 +72,7 @@ export default function LibraryPage() {
               alt="Sergei Ponomarev"
               width={180}
               height={194}
-              className="h-auto w-[120px] shrink-0 rounded-xl border border-gray-200"
+              className="h-32 w-32 shrink-0 self-start rounded-xl border border-gray-200 object-cover object-top"
             />
             <div>
               <h2 className="text-lg font-bold text-gray-900">About the author</h2>
