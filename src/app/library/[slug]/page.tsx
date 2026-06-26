@@ -35,28 +35,39 @@ export default async function GuidePage({ params }: Props) {
   if (!guide) notFound();
 
   return (
-    <section className="bg-background">
+    <section className="bg-white">
+      {/* Black / gold banner */}
+      <div className="bg-gray-950">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+          <Link
+            href="/library"
+            className="text-xs text-gray-400 transition-colors hover:text-amber-400"
+          >
+            ← Library
+          </Link>
+          <p className="mt-6 font-mono text-xs font-medium uppercase tracking-[0.2em] text-amber-400">
+            {guide.kicker}
+          </p>
+          <h1 className="mt-2 text-3xl font-bold leading-tight text-white sm:text-4xl">
+            {guide.title}
+          </h1>
+          <p className="mt-3 text-lg text-gray-300">{guide.tagline}</p>
+          <div className="mt-6 h-1 w-16 rounded-full bg-amber-400" />
+        </div>
+      </div>
+
+      {/* White body */}
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
-        <Link href="/library" className="text-xs text-muted transition-colors hover:text-accent">
-          ← Library
-        </Link>
+        <p className="text-base leading-relaxed text-gray-700">{guide.description}</p>
 
-        <p className="mt-6 font-mono text-xs font-medium uppercase tracking-wider text-accent">
-          {guide.kicker}
-        </p>
-        <h1 className="mt-2 text-3xl font-bold text-white sm:text-4xl">{guide.title}</h1>
-        <p className="mt-3 text-lg text-white/70">{guide.tagline}</p>
-
-        <p className="mt-6 text-sm leading-relaxed text-white/80">{guide.description}</p>
-
-        <div className="mt-8 rounded-xl border border-card-border bg-card-bg p-5">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-white/60">
+        <div className="mt-8 rounded-xl border border-gray-200 bg-gray-50 p-5">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-gray-500">
             What&apos;s inside · {guide.pages} pages
           </p>
           <ul className="space-y-2">
             {guide.includes.map((item) => (
-              <li key={item} className="flex items-start gap-2 text-sm text-white/80">
-                <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent" />
+              <li key={item} className="flex items-start gap-2 text-sm text-gray-700">
+                <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-amber-400" />
                 {item}
               </li>
             ))}
