@@ -43,17 +43,17 @@ export function LibraryDownloadGate({ slug, title, pdf }: Props) {
 
   if (status === "done") {
     return (
-      <div className="rounded-2xl border border-emerald-500/40 bg-emerald-500/5 p-6 text-center">
+      <div className="rounded-2xl border border-emerald-300 bg-emerald-50 p-6 text-center">
         <div className="mb-2 text-2xl">✅</div>
-        <h3 className="mb-1 text-lg font-bold text-white">Your guide is ready</h3>
-        <p className="mb-4 text-sm text-white/70">
+        <h3 className="mb-1 text-lg font-bold text-gray-900">Your guide is ready</h3>
+        <p className="mb-4 text-sm text-gray-600">
           If the download didn&apos;t open automatically, use the button below.
         </p>
         <a
           href={pdf}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block rounded-lg bg-accent px-5 py-2.5 text-sm font-bold text-black transition hover:brightness-95"
+          className="inline-block rounded-lg bg-amber-500 px-5 py-2.5 text-sm font-bold text-gray-950 transition hover:bg-amber-400"
         >
           Download the PDF →
         </a>
@@ -62,15 +62,15 @@ export function LibraryDownloadGate({ slug, title, pdf }: Props) {
   }
 
   return (
-    <div className="rounded-2xl border border-accent bg-gradient-to-br from-amber-500/5 to-amber-500/0 p-6">
-      <h3 className="mb-1 text-lg font-bold text-white">Get the PDF — free</h3>
-      <p className="mb-4 text-sm text-white/70">
+    <div className="rounded-2xl border border-amber-300 bg-amber-50 p-6">
+      <h3 className="mb-1 text-lg font-bold text-gray-900">Get the PDF — free</h3>
+      <p className="mb-4 text-sm text-gray-600">
         Drop your email and we&apos;ll open{" "}
-        <span className="text-white">{title}</span> for you. No spam — just an occasional note when a
-        new guide is published.
+        <span className="font-semibold text-gray-900">{title}</span> for you. No spam — just an
+        occasional note when a new guide is published.
       </p>
-      <form onSubmit={handleSubmit} className="rounded-xl border border-card-border bg-card-bg p-4">
-        <label htmlFor="library-email" className="mb-1 block text-xs text-white/60">
+      <form onSubmit={handleSubmit} className="rounded-xl border border-gray-200 bg-white p-4">
+        <label htmlFor="library-email" className="mb-1 block text-xs text-gray-500">
           Your email
         </label>
         <input
@@ -81,9 +81,9 @@ export function LibraryDownloadGate({ slug, title, pdf }: Props) {
           placeholder="you@email.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full rounded-lg border border-card-border bg-black/20 px-3 py-2.5 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-accent/40"
+          className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-400/50"
         />
-        <label className="mt-3 flex items-start gap-2 text-[11px] leading-snug text-white/60">
+        <label className="mt-3 flex items-start gap-2 text-[11px] leading-snug text-gray-500">
           <input
             type="checkbox"
             required
@@ -97,7 +97,7 @@ export function LibraryDownloadGate({ slug, title, pdf }: Props) {
               href="/privacy"
               target="_blank"
               rel="noopener noreferrer"
-              className="underline hover:text-white/80"
+              className="underline hover:text-gray-700"
             >
               Privacy Policy
             </a>
@@ -107,12 +107,12 @@ export function LibraryDownloadGate({ slug, title, pdf }: Props) {
         <button
           type="submit"
           disabled={status === "sending" || !consent}
-          className="mt-3 w-full rounded-lg bg-accent px-4 py-2.5 text-sm font-bold text-black transition hover:brightness-95 disabled:opacity-60"
+          className="mt-3 w-full rounded-lg bg-amber-500 px-4 py-2.5 text-sm font-bold text-gray-950 transition hover:bg-amber-400 disabled:opacity-60"
         >
           {status === "sending" ? "Preparing…" : "Get the guide"}
         </button>
-        {status === "error" && <p className="mt-2 text-xs text-red-400">{message}</p>}
-        <p className="mt-3 text-center text-[11px] text-white/40">
+        {status === "error" && <p className="mt-2 text-xs text-red-500">{message}</p>}
+        <p className="mt-3 text-center text-[11px] text-gray-400">
           Free. No spam. Unsubscribe anytime.
         </p>
       </form>
