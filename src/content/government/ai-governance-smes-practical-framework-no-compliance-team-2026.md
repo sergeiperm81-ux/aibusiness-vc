@@ -1,7 +1,7 @@
 ---
 title: "AI Governance for Small Businesses: The 4-Part Framework That Costs a Spreadsheet, Not a Compliance Team"
 description: "You don't need lawyers or a compliance department to govern AI safely. This lightweight 4-part framework — inventory, data map, rules, ownership — protects you from fines, wins enterprise deals, and takes a weekend to set up. Here's exactly how, and what it's worth."
-date: "2026-07-20"
+date: "2026-07-03"
 author: "Sergei Ponomarev"
 category: "Government"
 image: "/images/articles/team-office-1.jpg"
