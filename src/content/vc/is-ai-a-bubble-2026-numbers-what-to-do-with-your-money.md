@@ -1,7 +1,7 @@
 ---
 title: "Is the AI Boom a Bubble? The 2026 Numbers That Should Scare You — and the Ones That Say 'Not Yet'"
 description: "The top 10 stocks are now 35% of the S&P 500, Nvidia is worth $5.3 trillion, and the Shiller P/E just passed 40 for the first time since the dot-com crash. But AI's leaders earn real 25%+ margins. Here's an honest look at the bubble question — and what it means for your money."
-date: "2026-07-01"
+date: "2026-07-20"
 author: "Sergei Ponomarev"
 category: "VC"
 image: "/images/articles/stocks-trading-1.jpg"

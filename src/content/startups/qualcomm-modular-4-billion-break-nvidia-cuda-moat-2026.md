@@ -1,7 +1,7 @@
 ---
 title: "Qualcomm Just Spent $3.9 Billion to Break Nvidia's Real Moat — and It Could Lower the Price of All AI"
 description: "Qualcomm is buying Modular, Chris Lattner's AI-software startup, for ~$3.9B — a direct attack on CUDA, the software lock-in behind Nvidia's ~$5 trillion empire. Paired with its Tenstorrent chip bet, it's a full-stack assault. Here's why it matters for the cost of every AI tool you use."
-date: "2026-07-01"
+date: "2026-07-20"
 author: "Sergei Ponomarev"
 category: "Startups"
 image: "/images/articles/server-room-1.jpg"
