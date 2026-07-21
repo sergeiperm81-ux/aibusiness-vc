@@ -1,7 +1,7 @@
 ---
 title: "Claude Sonnet 5 Is Here: Near-Opus Power at 40% Off — But the Token Bill Hides a Catch"
 description: "Anthropic just launched Claude Sonnet 5 — agentic power close to Opus 4.8 at a much lower sticker price ($2/$10 intro per million tokens). But it uses ~30% more tokens, and one analysis found its real per-task cost landed ABOVE Opus. Here's the actual money math."
-date: "2026-07-20"
+date: "2026-07-07"
 author: "Sergei Ponomarev"
 category: "Tools"
 image: "/images/articles/ai-abstract-1.jpg"
