@@ -1,7 +1,7 @@
 ---
 title: "The EU Just Blinked: How the 'Digital Omnibus' Quietly Softened the World's Toughest AI Law — and Who Just Saved Millions"
 description: "Brussels just agreed to delay and simplify its own landmark AI Act. High-risk rules pushed to 2027–2028, lighter duties for smaller firms, fewer systems classed 'high-risk.' Here's the money story behind the U-turn — who saves, who's exposed, and what it means for you."
-date: "2026-07-01"
+date: "2026-07-20"
 author: "Sergei Ponomarev"
 category: "Government"
 image: "/images/articles/office-building-1.jpg"

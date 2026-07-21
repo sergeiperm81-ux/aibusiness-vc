@@ -1,7 +1,7 @@
 ---
 title: "Agentic Commerce Is Here: Your AI Now Shops and Pays for You — and a $3 Trillion Fight Over the Checkout Just Started"
 description: "AI agents can now find a product, choose it, and buy it without you ever seeing a checkout page. ChatGPT, Amazon, Visa, Mastercard and Google are racing to own it — a market projected at $1T in the US and $3–5T globally by 2030. Here's who gets paid, and what it does to your business."
-date: "2026-07-01"
+date: "2026-07-20"
 author: "Sergei Ponomarev"
 category: "B2B"
 image: "/images/articles/ecommerce-shopping-1.jpg"

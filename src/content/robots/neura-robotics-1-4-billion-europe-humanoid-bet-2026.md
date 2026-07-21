@@ -1,7 +1,7 @@
 ---
 title: "Nvidia and Amazon Just Backed Europe's $1.4 Billion Humanoid Robot — and Its €98,000 Worker Changes the Math"
 description: "Neura Robotics just raised up to $1.4B at a $7B valuation — Europe's biggest humanoid bet, backed by Nvidia, Amazon, Qualcomm, Tether and the EU itself. Its Porsche-designed 4NE-1 costs €98,000 and has a €1B order book. Here's the ROI math on a robot worker."
-date: "2026-07-01"
+date: "2026-07-20"
 author: "Sergei Ponomarev"
 category: "Robots"
 image: "/images/articles/robot-factory-1.jpg"

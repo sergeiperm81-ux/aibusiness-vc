@@ -1,7 +1,7 @@
 ---
 title: "The UK Government Mapped 5 Futures for AI by 2030 — Each One Is a Different Map of Where the Money Goes"
 description: "The UK's Chief Scientific Adviser just published 5 official scenarios for AI in 2030, from 'Slow Burn' to 'Take-Off.' Autonomous task length jumped from 4 minutes to 12 hours in under 2 years. Here's what the government's own forecast means for your money and your job."
-date: "2026-06-22"
+date: "2026-07-20"
 author: "Sergei Ponomarev"
 category: "Government"
 image: "/images/articles/ai-network-1.jpg"
