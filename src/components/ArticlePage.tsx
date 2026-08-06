@@ -59,18 +59,21 @@ const SECTION_LINKS = [
   { href: "/models", label: "Models" },
 ];
 
-// Sidebar sections (like mylo.family "Choose your legacy area")
+// Sidebar sections — mirror the main site menu (MAIN_NAV) so the article
+// sidebar duplicates the homepage navigation, same order and labels.
 const SIDEBAR_SECTIONS = [
-  { href: "/solo", label: "Solo Earners", description: "Side hustles & freelancing", icon: "💰", section: "solo" },
-  { href: "/tools", label: "AI Tools", description: "356 tools reviewed", icon: "🛠", section: "tools" },
+  { href: "/news", label: "News", description: "Daily AI business news", icon: "📰", section: "news" },
+  { href: "/library", label: "Library", description: "Free frameworks & guides", icon: "📚", section: "library" },
+  { href: "/robots", label: "Robots", description: "Who earns on humanoids", icon: "🦾", section: "robots" },
+  { href: "/solo", label: "Solo", description: "Side hustles & freelancing", icon: "💰", section: "solo" },
   { href: "/startups", label: "Startups", description: "Funding & revenue data", icon: "🚀", section: "startups" },
-  { href: "/b2b", label: "B2B Enterprise", description: "AI implementation ROI", icon: "🏢", section: "b2b" },
-  { href: "/vc", label: "VC & Funding", description: "Investment & exits", icon: "📊", section: "vc" },
-  { href: "/government", label: "Government AI", description: "Policy & contracts", icon: "🏛", section: "government" },
-  { href: "/news", label: "Daily News", description: "Auto-updated from RSS", icon: "📰", section: "news" },
-  { href: "/learn", label: "Learn AI", description: "Courses & careers", icon: "🎓", section: "learn" },
-  { href: "/models", label: "LLM Models", description: "36 models compared", icon: "🤖", section: "models" },
-  { href: "/robots", label: "Robots & China", description: "Who earns on humanoids", icon: "🦾", section: "robots" },
+  { href: "/vc", label: "VC", description: "Investment & exits", icon: "📊", section: "vc" },
+  { href: "/b2b", label: "B2B", description: "AI implementation ROI", icon: "🏢", section: "b2b" },
+  { href: "/government", label: "Gov", description: "Policy & contracts", icon: "🏛", section: "government" },
+  { href: "/learn", label: "Learn", description: "Courses & careers", icon: "🎓", section: "learn" },
+  { href: "/society", label: "Society", description: "AI, jobs & daily life", icon: "🌐", section: "society" },
+  { href: "/tools", label: "Tools", description: "356 tools reviewed", icon: "🛠", section: "tools" },
+  { href: "/models", label: "Models", description: "36 models compared", icon: "🤖", section: "models" },
 ];
 
 interface ArticlePageProps {
@@ -201,7 +204,6 @@ export function ArticlePageView({ article, relatedArticles = [] }: ArticlePagePr
               <div className="space-y-2">
                 {SIDEBAR_SECTIONS
                   .filter((s) => s.section !== article.section)
-                  .slice(0, 5)
                   .map((s) => (
                     <Link
                       key={s.href}

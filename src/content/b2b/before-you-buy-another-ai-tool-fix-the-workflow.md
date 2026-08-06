@@ -10,7 +10,7 @@ keywords: ["AI workflow", "AI ROI", "AI adoption", "business process automation"
 
 # Before You Buy Another AI Tool, Fix the Workflow
 
-*Partner Story · a contributed guest article by Gen Gacer, founder of <a href="https://www.leivaassistants.com/" target="_blank" rel="nofollow" style="color:#d97706;text-decoration:underline;text-underline-offset:2px">Leiva Assistants</a> — published through our free [Submit Your Story](/submit-your-story) program. The argument and examples below are the author's own, edited for clarity and style. No payment was involved.*
+*Partner Story · a contributed guest article by Gen Gacer, founder of [Leiva Assistants](https://www.leivaassistants.com/) — published through our free [Submit Your Story](/submit-your-story) program. The argument and examples below are the author's own, edited for clarity and style. No payment was involved.*
 
 **By Gen Gacer, founder of Leiva Assistants**
 
