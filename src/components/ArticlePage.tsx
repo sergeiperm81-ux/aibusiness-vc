@@ -98,14 +98,19 @@ export function ArticlePageView({ article, relatedArticles = [] }: ArticlePagePr
               {article.title}
             </h1>
             <p className="text-sm text-white/60 mt-2">
-              By{" "}
-              <Link
-                href="/about"
-                className="font-medium text-white/80 underline underline-offset-2 hover:text-accent"
-              >
-                {article.author}
-              </Link>{" "}
-              • {article.date}
+              {article.author ? (
+                <>
+                  By{" "}
+                  <Link
+                    href="/about"
+                    className="font-medium text-white/80 underline underline-offset-2 hover:text-accent"
+                  >
+                    {article.author}
+                  </Link>{" "}
+                  •{" "}
+                </>
+              ) : null}
+              {article.date}
             </p>
           </div>
         </div>

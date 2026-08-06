@@ -2,7 +2,7 @@
 title: "Before You Buy Another AI Tool, Fix the Workflow"
 description: "A contributed guest piece by Leiva Assistants founder Gen Gacer on why fixing your workflows — ownership, decision rules, and honest ROI math — beats buying another AI tool. With a worked $6,960 first-year return and McKinsey and IBM data."
 date: "2026-08-06"
-author: "Sergei Ponomarev"
+author: ""
 category: "B2B"
 image: "/images/articles/team-planning-1.jpg"
 keywords: ["AI workflow", "AI ROI", "AI adoption", "business process automation", "AI implementation", "operational leverage"]
