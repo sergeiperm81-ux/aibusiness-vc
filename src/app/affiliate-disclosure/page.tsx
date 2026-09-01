@@ -66,7 +66,7 @@ export default function AffiliateDisclosurePage() {
           </ul>
           <p>
             This list changes as we add or remove partnerships. Not every tool
-            mentioned on the site has an affiliate link — most of our 356 tool
+            mentioned on the site has an affiliate link — most of our tool
             reviews contain no affiliate relationship at all.
           </p>
 
