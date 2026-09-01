@@ -116,7 +116,7 @@ function OrgSchemaOrg() {
     url: "https://aibusiness.vc",
     logo: "https://aibusiness.vc/og-image.jpg",
     description:
-      "How to make money with AI. 214 articles, 356 tool reviews, 51 LLM model profiles. Income methods, startup data, and enterprise case studies.",
+      "How to make money with AI. 290+ articles and 71 LLM model profiles. Income methods, startup data, tool economics, and enterprise case studies.",
     sameAs: [],
     foundingDate: "2026",
     knowsAbout: [
