@@ -67,17 +67,15 @@ RULES
 
 Send your story to: ${SUBMIT_EMAIL}`;
 
-const FORWARD = `Subject: Free feature for [company] on AI Business
+const FORWARD = `Hi [Name],
 
-Hi [Name],
+Came across this and thought of you. AI Business runs free written interviews with founders building AI products. You answer seven questions.
 
-Came across this and thought of you. AI Business runs free written interviews with founders building AI products. You answer seven questions in your own words, email them in, and they publish it with a link to your project. No payment, no catch. They just want real AI stories.
-
-I think [company] would fit. Here is the brief: https://aibusiness.vc/submit-your-story
+I think it would fit your work with AI: https://aibusiness.vc/submit-your-story
 
 If they ask who sent you, say it was me.
 
-[Your name]`;
+Best wishes`;
 
 const QUESTIONS = [
   ["01", "Who you are", "Company or project name, what you do in one line, who's behind it, and where you're based."],
