@@ -2,7 +2,13 @@
 
 import { useState } from "react";
 
-export function CopyBrief({ text }: { text: string }) {
+export function CopyBrief({
+  text,
+  label = "Your story brief",
+}: {
+  text: string;
+  label?: string;
+}) {
   const [copied, setCopied] = useState(false);
 
   async function copy() {
@@ -18,7 +24,7 @@ export function CopyBrief({ text }: { text: string }) {
   return (
     <div className="rounded-xl border-2 border-gray-300 bg-gray-50 overflow-hidden">
       <div className="flex items-center justify-between gap-3 border-b border-gray-200 bg-white px-4 py-2.5">
-        <span className="text-sm font-bold text-gray-900">Your story brief</span>
+        <span className="text-base font-bold text-gray-900">{label}</span>
         <button
           type="button"
           onClick={copy}
@@ -27,7 +33,7 @@ export function CopyBrief({ text }: { text: string }) {
           {copied ? "Copied ✓" : "Copy to clipboard"}
         </button>
       </div>
-      <pre className="whitespace-pre-wrap px-4 py-4 text-[13px] leading-relaxed text-gray-700 font-sans">
+      <pre className="whitespace-pre-wrap px-5 py-5 text-base leading-relaxed text-gray-800 font-sans">
         {text}
       </pre>
     </div>
