@@ -24,7 +24,7 @@ The rollout is deliberately staged. Per OpenAI's model documentation, access beg
 
 One clarification worth making, because the two are easy to conflate: the **Trusted Access Program** is the named first cohort for the general model. **Daybreak Blue** — described in reporting as a restricted channel for advanced cyber capabilities — is a separate, controlled track, not another name for the initial rollout group.
 
-The published specifications are unusually generous in one respect. The documented context window is **1,050,000 tokens** (922,000 maximum input, 128,000 maximum output), and the model exposes reasoning effort levels from `low` through `medium`, `high`, `xhigh` to `max` — meaning you can dial compute up or down per call, which is directly a cost control.
+The published specifications are unusually generous in one respect. The model has a **1,050,000-token context window** and supports up to **128,000 output tokens**, leaving approximately 922,000 tokens for input when the maximum output allowance is reserved. It also exposes reasoning effort levels from `low` through `medium`, `high`, `xhigh` to `max` — meaning you can dial compute up or down per call, which is directly a cost control. As the next section shows, using that window fully is priced differently from using part of it.
 
 ## The performance numbers, and one thing worth correcting
 
@@ -50,7 +50,20 @@ Astra is the most expensive mainstream model on the board. Per OpenAI's model do
 | Claude Opus 4.8 | $5 | — | $25 |
 | Claude Sonnet 5 (standard) | $3 | — | $15 |
 
-That cached-input rate is the detail worth planning around: at **$1 versus $10**, re-reading the same context costs a tenth of sending it fresh. On long agentic runs that repeatedly reference the same codebase or document set, cache discipline is not a micro-optimisation — it is the difference between a viable unit cost and an unaffordable one.
+That cached-input rate is the detail worth planning around: at **$1 versus $10**, re-reading the same context costs a tenth of sending it fresh. Writing to the cache is billed separately at **$12.50 per million** — 1.25x the uncached input rate — so caching pays off when context is reused, not on a single pass.
+
+**The million-token window is not served at those base rates, and this is the most important qualification in the whole price list.** OpenAI's documentation states that prompts with more than **272,000 input tokens** are priced at **2x input and cache rates and 1.5x output for the full request**. Not for the excess above the threshold — for the entire request. Cross that line and your effective rates become:
+
+| | Under 272K input | **Over 272K input** |
+|---|---|---|
+| Input | $10 | **$20** |
+| Cached input | $1 | **$2** |
+| Output | $50 | **$75** |
+| Same, in Fast mode | $20 / $2 / $100 | **$40 / $4 / $150** |
+
+So the headline "1.05 million token context" and the headline "$10/$50" do not describe the same request. Roughly a quarter of the way into that window, the price of everything changes — and because the multiplier applies to the full request, a prompt at 273,000 tokens costs meaningfully more than one at 271,000. Anyone planning to exploit the large window for long agentic runs should budget at the upper rates, not the advertised ones.
+
+Two levers cut the other way. Cached input remains ten times cheaper than fresh input at both tiers, so context reuse is the single biggest saving available. And **Batch and Flex processing are priced at 50% of standard rates**, which is the obvious home for anything that does not need to finish immediately.
 
 Astra's output tokens cost **twice** Opus 4.8 and **more than three times** Sonnet 5. That arrives in a market that had been moving the other way all year, through [Gemini Flash price cuts](/tools/google-io-2026-gemini-35-flash-price-war), [near-free open models from China](/tools/glm-5-2-china-open-model-cant-be-banned-2026) and [Anthropic's own cache-price reductions](/tools/claude-fable-5-1-cache-price-cut-2026). Astra is a deliberate step in the opposite direction: a premium tier for work that could not be done at all before.
 
@@ -78,7 +91,7 @@ Two things follow. First, government involvement in frontier-model releases is b
 
 Two disclosed details are worth recording because they say something about where model development has gone.
 
-Astra was trained using OpenAI's **Stargate infrastructure in Texas, whose disclosed scale exceeds 100,000 GPUs**. It is worth being precise here rather than repeating the shorthand: the size of that facility is documented, but I could not find a primary source confirming that this specific training run used all of it. What the site does illustrate is the capital intensity behind the model — the same physical build-out driving [Nvidia's revenue](/startups/nvidia-q1-fy27-earnings-78-billion-test-2026) and [OpenAI's $38 billion annual loss](/vc/openai-852-billion-valuation-1-trillion-ipo-what-it-means-2026).
+According to the reporting cited below, Astra was trained using OpenAI's **Stargate infrastructure in Texas**. The facility's disclosed scale exceeds **100,000 GPUs**, but no primary source found for this article confirms how much of that capacity was used for Astra. What the site does illustrate is the capital intensity behind the model — the same physical build-out driving [Nvidia's revenue](/startups/nvidia-q1-fy27-earnings-78-billion-test-2026) and [OpenAI's $38 billion annual loss](/vc/openai-852-billion-valuation-1-trillion-ipo-what-it-means-2026).
 
 More interesting technically: according to reporting cited below, this is the first OpenAI model where **other models played a significant role in supervising training**. If accurate, AI systems are now meaningfully involved in producing the next generation of AI systems — a genuine milestone, and also the sort of claim that deserves scrutiny rather than applause, since it makes the training process harder for outsiders to audit. It does not appear in the public model documentation.
 
