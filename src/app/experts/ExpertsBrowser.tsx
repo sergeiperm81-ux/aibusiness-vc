@@ -82,7 +82,7 @@ export function ExpertsBrowser() {
         <p className="mt-8 rounded-xl border border-gray-200 bg-gray-50 p-6 text-sm text-gray-600">
           Nobody matches that yet. Try a wider region, or{" "}
           <Link href="/experts/apply" className="font-semibold text-amber-600 hover:underline">
-            add yourself to the register
+            join the community
           </Link>
           .
         </p>

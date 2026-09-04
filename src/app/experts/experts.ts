@@ -121,19 +121,19 @@ export function initials(name: string): string {
 /** What a person gets out of being listed. Used on the register, the form and the home page. */
 export const REGISTER_BENEFITS = [
   {
-    title: "Be found when it matters",
-    body: "Companies come here looking for a person, not a consultancy. Your profile is what they read.",
+    title: "Clients find a person",
+    body: "Companies come here looking for someone who can do the work, not for a consultancy. Your profile is what they read.",
   },
   {
-    title: "Be readable by AI search",
-    body: "Every profile ships as a machine-readable card, so ChatGPT and Perplexity can find and cite you when someone asks who does this work.",
+    title: "AI search can cite you",
+    body: "Every profile ships as a machine-readable card, so ChatGPT and Perplexity can name you when someone asks who does this work.",
   },
   {
-    title: "Get the briefs",
+    title: "Briefs come to you",
     body: "When a company writes to us needing help, we point them at the people who fit. No fee, no bidding.",
   },
   {
-    title: "Stand with the people writing the rules",
-    body: "This profession is being invented right now. The register is where its practitioners become visible to each other.",
+    title: "You meet your peers",
+    body: "The profession is young and scattered. This is where its practitioners become visible to each other.",
   },
 ] as const;

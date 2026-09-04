@@ -33,7 +33,7 @@ export default async function ExpertPage({ params }: Props) {
       <div className="bg-gray-950">
         <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
           <Link href="/experts" className="text-xs text-gray-400 hover:text-accent">
-            &larr; The register
+            &larr; The community
           </Link>
 
           <div className="mt-8 flex flex-col gap-6 sm:flex-row sm:items-start">
@@ -125,13 +125,13 @@ export default async function ExpertPage({ params }: Props) {
             <div className="mt-6 rounded-2xl bg-accent p-6">
               <p className="text-base font-bold text-black">Do this work too?</p>
               <p className="mt-1.5 text-sm leading-relaxed text-black/75">
-                The register is open, free, and there is no ranking to buy.
+                The community is open, free, and there is no ranking to buy.
               </p>
               <Link
                 href="/experts/apply"
                 className="mt-4 inline-block rounded-lg bg-gray-950 px-5 py-2.5 text-sm font-bold text-white transition hover:bg-gray-800"
               >
-                Add yourself
+                Join us
               </Link>
             </div>
           </aside>
