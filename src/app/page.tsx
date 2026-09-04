@@ -409,7 +409,7 @@ export default async function HomePage() {
                       alt="Sergei Ponomarev"
                       width={630}
                       height={449}
-                      className="h-40 w-full rounded-xl object-cover object-[50%_22%]"
+                      className="h-36 w-full rounded-xl object-cover object-[50%_22%]"
                     />
                     <p className="mt-3 text-lg font-bold leading-tight text-black">
                       Sergei Ponomarev, PhD
@@ -432,13 +432,14 @@ export default async function HomePage() {
                       </Link>
                     ))}
                   </div>
-                  <div className="mt-5 border-t border-black/20 pt-4">
+                  <div className="mt-5 flex flex-1 flex-col border-t border-black/20 pt-4">
                     <p className="text-sm font-bold text-black">A word from the author</p>
                     <p className="mt-2 text-sm leading-relaxed text-black/80">
-                      Welcome. Two questions run through everything here: how AI creates real
-                      value for people, and by what rules it works.
+                      Welcome, and thanks for stopping by. Two questions run through everything
+                      here: how AI creates real value for people, and by what rules it works.
+                      I hope you find something worth using.
                     </p>
-                    <div className="mt-3 rounded-xl border-2 border-black/25 px-3 py-2.5">
+                    <div className="mt-auto rounded-xl border-2 border-black/25 px-3 py-2.5">
                       <p className="text-sm leading-snug text-black/85">
                         Interested in working together?{" "}
                         <ContactEmail
