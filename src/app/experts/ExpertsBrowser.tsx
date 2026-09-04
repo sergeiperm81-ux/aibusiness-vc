@@ -13,18 +13,9 @@ export function ExpertsBrowser() {
     const q = query.trim().toLowerCase();
     return EXPERTS.filter((e) => {
       if (region && e.region !== region) return false;
-      if (skill && !e.expertise.includes(skill as (typeof EXPERTISE)[number])) return false;
+      if (skill && !e.expertise.includes(skill)) return false;
       if (!q) return true;
-      const haystack = [
-        e.name,
-        e.headline,
-        e.country,
-        e.city ?? "",
-        e.about,
-        ...e.expertise,
-        ...e.services,
-        ...e.languages,
-      ]
+      const haystack = [e.name, e.headline, e.location, e.about, ...e.expertise, ...e.services]
         .join(" ")
         .toLowerCase();
       return haystack.includes(q);
@@ -111,11 +102,7 @@ export function ExpertsBrowser() {
                   <p className="truncate font-bold text-gray-900 group-hover:text-amber-700">
                     {e.name}
                   </p>
-                  <p className="truncate text-xs text-gray-500">
-                    {e.city ? `${e.city}, ` : ""}
-                    {e.country}
-                    {e.remote ? " · remote" : ""}
-                  </p>
+                  <p className="truncate text-xs text-gray-500">{e.location}</p>
                 </div>
               </div>
 

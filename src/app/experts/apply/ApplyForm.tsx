@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { EXPERTISE, REGIONS, WORK_TYPES } from "../experts";
+import { EXPERTISE, REGIONS } from "../experts";
 
 type Status = "idle" | "sending" | "done" | "error";
 
@@ -13,7 +13,7 @@ export function ApplyForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
   const [expertise, setExpertise] = useState<string[]>([]);
-  const [workTypes, setWorkTypes] = useState<string[]>([]);
+  const [other, setOther] = useState("");
 
   function toggle(list: string[], value: string, set: (v: string[]) => void) {
     set(list.includes(value) ? list.filter((v) => v !== value) : [...list, value]);
@@ -29,24 +29,20 @@ export function ApplyForm() {
       email: String(form.get("email") ?? "").trim(),
       headline: String(form.get("headline") ?? "").trim(),
       region: String(form.get("region") ?? ""),
-      country: String(form.get("country") ?? "").trim(),
-      city: String(form.get("city") ?? "").trim(),
-      languages: String(form.get("languages") ?? "").trim(),
+      location: String(form.get("location") ?? "").trim(),
       linkedin: String(form.get("linkedin") ?? "").trim(),
       website: String(form.get("website") ?? "").trim(),
       organisation: String(form.get("organisation") ?? "").trim(),
       role: String(form.get("role") ?? "").trim(),
       about: String(form.get("about") ?? "").trim(),
       services: String(form.get("services") ?? "").trim(),
-      proof: String(form.get("proof") ?? "").trim(),
-      environment: String(form.get("environment") ?? ""),
       notes: String(form.get("notes") ?? "").trim(),
-      expertise,
-      workTypes,
+      expertise: other.trim() ? [...expertise, `Other: ${other.trim()}`] : expertise,
       consent: form.get("consent") === "on",
+      marketingConsent: form.get("marketingConsent") === "on",
     };
 
-    if (expertise.length === 0) {
+    if (expertise.length === 0 && !other.trim()) {
       setStatus("error");
       setMessage("Pick at least one area of expertise.");
       return;
@@ -136,9 +132,10 @@ export function ApplyForm() {
       <fieldset className="space-y-4">
         <legend className="mb-1 text-lg font-bold text-gray-900">Where you are</legend>
         <p className="mb-3 text-sm text-gray-600">
-          The region drives the search filter. Country and city are shown on your card.
+          The region drives the search filter. The second line is shown on your card exactly as
+          you write it.
         </p>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
             <label className={LABEL} htmlFor="region">
               Region *
@@ -155,34 +152,16 @@ export function ApplyForm() {
             </select>
           </div>
           <div>
-            <label className={LABEL} htmlFor="country">
-              Country *
+            <label className={LABEL} htmlFor="location">
+              Location *
             </label>
-            <input id="country" name="country" required className={FIELD} placeholder="Germany" />
-          </div>
-          <div>
-            <label className={LABEL} htmlFor="city">
-              City
-            </label>
-            <input id="city" name="city" className={FIELD} placeholder="Berlin" />
-          </div>
-        </div>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <div>
-            <label className={LABEL} htmlFor="languages">
-              Working languages *
-            </label>
-            <input id="languages" name="languages" required className={FIELD} placeholder="English, German" />
-          </div>
-          <div>
-            <label className={LABEL} htmlFor="environment">
-              Work environment
-            </label>
-            <select id="environment" name="environment" defaultValue="Remote" className={FIELD}>
-              <option>Remote</option>
-              <option>Hybrid</option>
-              <option>On-site</option>
-            </select>
+            <input
+              id="location"
+              name="location"
+              required
+              className={FIELD}
+              placeholder="Berlin, or Germany, or Berlin, Germany"
+            />
           </div>
         </div>
       </fieldset>
@@ -208,23 +187,18 @@ export function ApplyForm() {
           ))}
         </div>
 
-        <p className="mb-3 mt-6 text-sm text-gray-600">How you take work on</p>
-        <div className="flex flex-wrap gap-2">
-          {WORK_TYPES.map((w) => (
-            <button
-              key={w}
-              type="button"
-              onClick={() => toggle(workTypes, w, setWorkTypes)}
-              aria-pressed={workTypes.includes(w)}
-              className={
-                workTypes.includes(w)
-                  ? "rounded-lg border-2 border-amber-500 bg-amber-50 px-3 py-1.5 text-sm font-semibold text-amber-900"
-                  : "rounded-lg border border-gray-300 px-3 py-1.5 text-sm text-gray-700 hover:border-amber-400"
-              }
-            >
-              {w}
-            </button>
-          ))}
+        <div className="mt-4">
+          <label className={LABEL} htmlFor="other">
+            Other, in your own words
+          </label>
+          <input
+            id="other"
+            name="other"
+            value={other}
+            onChange={(e) => setOther(e.target.value)}
+            className={FIELD}
+            placeholder="Something the list above does not cover"
+          />
         </div>
 
         <div className="mt-6 space-y-4">
@@ -261,7 +235,7 @@ export function ApplyForm() {
       <fieldset className="space-y-4">
         <legend className="mb-1 text-lg font-bold text-gray-900">Links</legend>
         <p className="mb-3 text-sm text-gray-600">
-          We confirm identity from these. LinkedIn is required, one more link helps.
+          This is how we confirm you are you.
         </p>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
@@ -285,18 +259,6 @@ export function ApplyForm() {
           </div>
         </div>
         <div>
-          <label className={LABEL} htmlFor="proof">
-            Supporting links
-          </label>
-          <textarea
-            id="proof"
-            name="proof"
-            rows={2}
-            className={FIELD}
-            placeholder="Publications, talks, certifications, company page. One per line."
-          />
-        </div>
-        <div>
           <label className={LABEL} htmlFor="notes">
             Anything else we should know?
           </label>
@@ -304,12 +266,19 @@ export function ApplyForm() {
         </div>
       </fieldset>
 
-      <div className="rounded-xl border border-gray-200 bg-gray-50 p-4">
+      <div className="space-y-3 rounded-xl border border-gray-200 bg-gray-50 p-4">
         <label className="flex items-start gap-2.5 text-sm leading-snug text-gray-700">
           <input type="checkbox" name="consent" required className="mt-1 h-4 w-4 shrink-0 accent-amber-500" />
           <span>
             I am submitting my own details and agree to have this profile published on
             aibusiness.vc. I can ask for it to be changed or removed at any time. *
+          </span>
+        </label>
+        <label className="flex items-start gap-2.5 text-sm leading-snug text-gray-700">
+          <input type="checkbox" name="marketingConsent" className="mt-1 h-4 w-4 shrink-0 accent-amber-500" />
+          <span>
+            Send me occasional email from AI Business: new people in the register, briefs from
+            companies looking for help, and what the register is doing next.
           </span>
         </label>
       </div>

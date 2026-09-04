@@ -432,7 +432,19 @@ export default async function HomePage() {
                       </Link>
                     ))}
                   </div>
-                  <div className="mt-5 flex flex-1 flex-col border-t border-black/20 pt-4">
+                  <Link
+                    href="/experts/apply"
+                    className="mt-4 block rounded-xl border-2 border-black/25 px-4 py-3 transition hover:bg-black/5"
+                  >
+                    <span className="block text-sm font-bold text-black">
+                      Join the AI governance register &rarr;
+                    </span>
+                    <span className="mt-0.5 block text-xs leading-snug text-black/75">
+                      Be found by clients, be citable by AI search, get the briefs. Free.
+                    </span>
+                  </Link>
+
+                  <div className="mt-4 flex flex-1 flex-col border-t border-black/20 pt-4">
                     <p className="text-sm font-bold text-black">A word from the author</p>
                     <p className="mt-2 text-sm leading-relaxed text-black/80">
                       Welcome, and thanks for stopping by. Two questions run through everything
