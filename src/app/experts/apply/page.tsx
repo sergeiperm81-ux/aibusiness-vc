@@ -4,9 +4,9 @@ import { ApplyForm } from "./ApplyForm";
 import { REGISTER_BENEFITS } from "../experts";
 
 export const metadata: Metadata = {
-  title: "Join the AI Governance Experts Community",
+  title: "Join the AI Experts Community",
   description:
-    "Join the open community of AI governance experts. Free, and the profile stays yours.",
+    "Join the open community of AI experts. Free, and the profile stays yours.",
   alternates: { canonical: "/experts/apply" },
 };
 
@@ -22,7 +22,7 @@ export default function ApplyPage() {
             Join the community
           </p>
           <h1 className="mt-3 text-3xl font-bold leading-tight text-white sm:text-4xl">
-            Put yourself on the map of AI governance
+            Put yourself on the map of AI
           </h1>
           <p className="mt-3 max-w-2xl text-base leading-relaxed text-gray-300">
             Write the profile in your own words. We confirm you are you, publish it, and from that
@@ -99,7 +99,8 @@ export default function ApplyPage() {
                   </li>
                   <li>
                     <strong className="font-bold text-white">We check identity, not talent.</strong>{" "}
-                    Your links prove you are you. Your work speaks for itself.
+                    Your links prove you are you. Whether you build AI, adopt it or govern it,
+                    your work speaks for itself.
                   </li>
                   <li>
                     <strong className="font-bold text-white">Yours to edit or remove.</strong> One

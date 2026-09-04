@@ -6,7 +6,7 @@ import {
   EXPERTS,
   FRAMEWORKS,
   INDUSTRIES,
-  PRACTICE_AREAS,
+  PRACTICE_GROUPS,
   REGIONS,
   REGISTER_BENEFITS,
   initials,
@@ -119,10 +119,14 @@ export function ExpertsBrowser() {
       <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
         <select value={practice} onChange={(e) => setPractice(e.target.value)} aria-label="Practice area" className={CONTROL}>
           <option value="">All practice areas</option>
-          {PRACTICE_AREAS.map((s) => (
-            <option key={s} value={s}>
-              {s}
-            </option>
+          {PRACTICE_GROUPS.map((group) => (
+            <optgroup key={group.label} label={group.label}>
+              {group.items.map((s) => (
+                <option key={s} value={s}>
+                  {s}
+                </option>
+              ))}
+            </optgroup>
           ))}
         </select>
         <select value={framework} onChange={(e) => setFramework(e.target.value)} aria-label="Framework" className={CONTROL}>
