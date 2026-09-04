@@ -1094,4 +1094,20 @@
     "openSource": false,
     "description": "The same model as Fable 5.1 without the production safeguards, released the same day and priced identically. Not generally available: access runs through restricted programmes for vetted cybersecurity and life-sciences organisations that need capabilities those safeguards normally constrain. Prices checked 1 September 2026."
   }
+,
+  {
+    "id": "gpt-6-astra",
+    "name": "GPT-6 Astra",
+    "developer": "OpenAI",
+    "released": "2026-09",
+    "elo": null,
+    "mmlu": null,
+    "humanEval": null,
+    "gsm8k": null,
+    "contextWindow": "1.05M",
+    "inputPrice": "$10.00",
+    "outputPrice": "$50.00",
+    "openSource": false,
+    "description": "OpenAI's new frontier model, released 3 September 2026 to partners and rolled out publicly the next day. Scores 96% on GPQA Diamond and 74.1% on DeepSWE v1.1, with the real gains on computer use, terminal work, cybersecurity and long multi-step tasks rather than the saturated reasoning benchmarks. It introduces recurrent depth, a reasoning method that hides part of the chain of thought, which is why the release drew safety scrutiny. 1.05M-token context, up to 128K tokens per answer, knowledge cutoff April 2026. Long-context requests are billed at $20 input and $75 output per million. Prices checked 5 September 2026."
+  }
 ]
