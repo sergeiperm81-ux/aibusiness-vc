@@ -258,7 +258,7 @@ export default function AboutPage() {
           </h2>
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[auto_1fr] lg:gap-12">
             <Image
-              src="/images/sergei-ponomarev.jpg"
+              src="/images/sergei-desk.png"
               alt="Sergei Ponomarev, founder of AI Business"
               width={220}
               height={240}
@@ -340,7 +340,7 @@ function AboutSchema() {
         name: "Sergei Ponomarev",
         jobTitle: "Founder & Editor",
         url: "https://aibusiness.vc/sergei-ponomarev",
-        image: "https://aibusiness.vc/images/sergei-ponomarev.jpg",
+        image: "https://aibusiness.vc/images/sergei-desk.png",
         description:
           "Founder of AI Business. PhD in Political Science specializing in e-government; a career across public-administration analytics, university teaching, and AI development.",
         alumniOf: [

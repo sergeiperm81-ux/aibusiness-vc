@@ -194,7 +194,7 @@ function profileSchema() {
       name: "Sergei Ponomarev",
       honorificSuffix: "PhD",
       url: `${SITE}/sergei-ponomarev`,
-      image: `${SITE}/images/sergei-ponomarev.jpg`,
+      image: `${SITE}/images/sergei-desk.png`,
       jobTitle: "Methodologist of technology adoption; independent tester of AI agents",
       description:
         "A career on one question: how a new technology actually gets adopted inside an organisation, not on paper but in practice. A PhD on e-government, seven years leading nationwide evaluation of public services with quality standards, independent assessments and test purchases, and now AI agents built and tested hands-on.",
@@ -231,12 +231,12 @@ export default function SergeiPonomarevPage() {
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[auto_1fr] lg:gap-12">
             <Image
-              src="/images/sergei-ponomarev.jpg"
+              src="/images/sergei-desk.png"
               alt="Sergei Ponomarev"
-              width={240}
-              height={260}
+              width={630}
+              height={449}
               priority
-              className="h-auto w-44 rounded-2xl object-cover sm:w-60"
+              className="h-56 w-44 rounded-2xl object-cover object-[50%_22%] sm:h-72 sm:w-60"
             />
             <div>
               <h1 className="mb-2 text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">

@@ -543,7 +543,7 @@ export default function ServiceCheckPage() {
               </div>
               <div className="flex gap-5 rounded-2xl border border-card-border bg-card-bg p-6">
                 <Image
-                  src="/images/sergei-ponomarev.jpg"
+                  src="/images/sergei-desk.png"
                   alt="Sergei Ponomarev"
                   width={96}
                   height={96}

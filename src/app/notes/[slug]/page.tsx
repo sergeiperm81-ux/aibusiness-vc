@@ -113,11 +113,11 @@ export default async function NotePage({ params }: Props) {
             <div className="mt-6 h-1 w-16 rounded-full bg-black/30" />
           </div>
           <Image
-            src="/images/sergei-ponomarev.jpg"
+            src="/images/sergei-desk.png"
             alt="Sergei Ponomarev"
             width={200}
             height={216}
-            className="hidden h-auto w-40 rounded-2xl border-2 border-black/15 object-cover object-top shadow-lg lg:block lg:w-44 lg:justify-self-end"
+            className="hidden h-auto w-40 rounded-2xl border-2 border-black/15 object-cover object-[50%_22%] shadow-lg lg:block lg:w-44 lg:justify-self-end"
           />
         </div>
       </div>

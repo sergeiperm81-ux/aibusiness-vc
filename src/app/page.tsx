@@ -409,7 +409,7 @@ export default async function HomePage() {
                       alt="Sergei Ponomarev"
                       width={630}
                       height={449}
-                      className="h-44 w-full rounded-xl object-cover object-top"
+                      className="h-44 w-full rounded-xl object-cover object-[50%_22%]"
                     />
                     <p className="mt-3 text-lg font-bold leading-tight text-black">
                       Sergei Ponomarev, PhD
