@@ -46,22 +46,12 @@ function buildBenchmarks(): Benchmark[] {
     {
       href: "/service-check",
       kicker: "Service quality",
-      title: "AI Service Check",
+      title: "AI Test Purchase",
       blurb:
         "Mystery shopping for customer-facing AI: ten real situations per bot, checked against the company's own published rules, with a quote as evidence for every finding.",
       stat: "10",
       statLabel: "situations per test",
       status: "live",
-    },
-    {
-      href: null,
-      kicker: "In progress",
-      title: "AI Receptionist Test",
-      blurb:
-        "Independent test calls to the AI receptionists small businesses actually buy. Does it quote the right price, book the appointment, admit it's AI, and hand you to a human when it can't help?",
-      stat: "5–10",
-      statLabel: "services under test",
-      status: "building",
     },
     {
       href: "/audit",
