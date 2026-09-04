@@ -24,11 +24,19 @@ export default function ExpertsPage() {
             People who build AI, put it into a business, govern it and check that it works.
             Listed one by one, not as firms.
           </p>
+          <div className="mt-6">
+            <Link
+              href="/experts/apply"
+              className="inline-block rounded-lg bg-accent px-6 py-3 text-sm font-bold text-black transition hover:bg-accent-hover"
+            >
+              Create your profile
+            </Link>
+          </div>
           <p className="mt-5 inline-flex items-start gap-2 rounded-lg border border-accent/40 bg-accent/10 px-4 py-2.5 text-sm leading-snug text-accent">
             <span aria-hidden className="font-bold">&#10003;</span>
             <span>
-              Every profile is checked by hand before it goes live. We confirm the person is real
-              and that the links, sites and social accounts are theirs.
+              We check every profile before it goes live: that the person is real, and that the
+              links, sites and social accounts are theirs.
             </span>
           </p>
         </div>

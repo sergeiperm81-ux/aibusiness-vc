@@ -123,6 +123,14 @@ export default async function ExpertPage({ params }: Props) {
             People who build AI, put it into a business, govern it and check that it works.
             Listed one by one, not as firms.
           </p>
+          <div className="mt-6">
+            <Link
+              href="/experts/apply"
+              className="inline-block rounded-lg bg-accent px-6 py-3 text-sm font-bold text-black transition hover:bg-accent-hover"
+            >
+              Create your profile
+            </Link>
+          </div>
         </div>
       </div>
 
