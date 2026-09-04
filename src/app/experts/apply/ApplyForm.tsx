@@ -9,10 +9,11 @@ type Status = "idle" | "sending" | "done" | "error";
 const FIELD =
   "w-full rounded-lg border-2 border-gray-300 bg-gray-50 px-3 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:border-amber-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-amber-400/40";
 const LABEL = "mb-1 block text-sm font-semibold text-gray-900";
-// float + full width takes the legend out of the border notch and drops it
-// inside the box as a normal block.
+// The visible heading is a plain block inside the box. A real <legend> sits on
+// the fieldset border and floating it to move it inside breaks the layout, so
+// the legend is kept for screen readers only.
 const LEGEND =
-  "float-left mb-4 w-full rounded-lg bg-accent px-4 py-1.5 text-base font-bold uppercase tracking-wide text-black";
+  "mb-4 rounded-lg bg-accent px-4 py-1.5 text-base font-bold uppercase tracking-wide text-black";
 
 export function ApplyForm() {
   const [status, setStatus] = useState<Status>("idle");
@@ -109,7 +110,8 @@ export function ApplyForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-10">
       <fieldset className="rounded-2xl border-2 border-gray-200 p-6">
-        <legend className={LEGEND}>Your photo *</legend>
+        <legend className="sr-only">Your photo *</legend>
+        <div className={LEGEND}>Your photo *</div>
         <p className="mb-4 text-sm text-gray-600">
           Position your face inside the circle. That square is exactly what gets published.
         </p>
@@ -117,7 +119,8 @@ export function ApplyForm() {
       </fieldset>
 
       <fieldset className="space-y-4 rounded-2xl border-2 border-gray-200 p-6">
-        <legend className={LEGEND}>You</legend>
+        <legend className="sr-only">You</legend>
+        <div className={LEGEND}>You</div>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
             <label className={LABEL} htmlFor="name">
@@ -235,7 +238,8 @@ export function ApplyForm() {
       </div>
 
       <fieldset className="rounded-2xl border-2 border-gray-200 p-6">
-        <legend className={LEGEND}>Your expertise</legend>
+        <legend className="sr-only">Your expertise</legend>
+        <div className={LEGEND}>Your expertise</div>
 
         <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
@@ -323,7 +327,8 @@ export function ApplyForm() {
       </fieldset>
 
       <fieldset className="space-y-5 rounded-2xl border-2 border-gray-200 p-6">
-        <legend className={LEGEND}>Contacts</legend>
+        <legend className="sr-only">Contacts</legend>
+        <div className={LEGEND}>Contacts</div>
         <p className="text-sm text-gray-600">
           You decide what is public. Anything published here is written into the page so that
           scrapers cannot lift it, the same way our own address is handled.
