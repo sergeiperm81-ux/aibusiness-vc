@@ -14,7 +14,7 @@ One freelancer charges $1,800/month per law firm for AI-powered SEO content. Nin
 
 ## Why Law Firms Pay Premium for Content
 
-Law firms spend $10,000-50,000/month on digital marketing. SEO-optimized content is the highest-ROI channel — a single blog post ranking for "personal injury lawyer [city]" can drive 50-100 qualified leads per month, each worth $3,000-10,000 in case fees.
+Law firms spend $10,000-50,000/month on digital marketing. SEO-optimized content is the highest-ROI channel, a single blog post ranking for "personal injury lawyer [city]" can drive 50-100 qualified leads per month, each worth $3,000-10,000 in case fees.
 
 The problem: lawyers cannot write their own marketing content (too busy billing $300-500/hour), and generic content writers do not understand legal terminology, compliance requirements, or the nuances of different practice areas.
 
@@ -28,7 +28,7 @@ Each law firm client receives:
 - Monthly keyword strategy report
 - Basic local SEO recommendations
 
-**Pricing: $1,800/month per firm** — less than a single billable hour for most partners, and it generates leads worth thousands per month.
+**Pricing: $1,800/month per firm**: less than a single billable hour for most partners, and it generates leads worth thousands per month.
 
 ## The Workflow Per Article
 
@@ -55,7 +55,7 @@ Each law firm client receives:
 
 **Step 2:** Create 5 sample legal blog posts using AI. Topics like "What to Do After a Car Accident in [State]" or "How Much Does a Divorce Cost in [State]."
 
-**Step 3:** Cold email 30 law firms per week. Target solo practitioners and small firms (2-10 attorneys) — they need content but cannot afford a marketing agency. Larger firms have in-house marketing teams.
+**Step 3:** Cold email 30 law firms per week. Target solo practitioners and small firms (2-10 attorneys), they need content but cannot afford a marketing agency. Larger firms have in-house marketing teams.
 
 **Step 4:** Offer a free trial month at half price for the first 2-3 clients. Use their results as case studies.
 
@@ -65,10 +65,10 @@ Each law firm client receives:
 
 Legal content commands premium pricing because:
 - **High client value:** One new case is worth $3,000-50,000+ to a lawyer
-- **Compliance requirements:** Content must follow bar advertising rules — not everyone can write this
-- **Domain expertise needed:** "Personal injury" vs "medical malpractice" vs "products liability" — knowing the difference matters
+- **Compliance requirements:** Content must follow bar advertising rules, not everyone can write this
+- **Domain expertise needed:** "Personal injury" vs "medical malpractice" vs "products liability", knowing the difference matters
 - **Low price sensitivity:** Lawyers understand ROI. $1,800/month that generates 5 leads worth $15,000+ each is an easy yes.
 
 ## Where the Money Lands
 
-$16,200/month. The premium comes from domain expertise — AI cannot replace knowing the difference between personal injury and products liability, but it amplifies that knowledge dramatically. Lawyers need content, AI makes you 4x faster at producing it, and bridging that gap pays $135+/hour.
+$16,200/month. The premium comes from domain expertise: AI cannot replace knowing the difference between personal injury and products liability, but it amplifies that knowledge dramatically. Lawyers need content, AI makes you 4x faster at producing it, and bridging that gap pays $135+/hour.

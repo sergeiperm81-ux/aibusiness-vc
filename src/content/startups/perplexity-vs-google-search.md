@@ -29,7 +29,7 @@ Perplexity AI now handles over 100 million queries a month and just got valued a
 
 ## Where Perplexity Wins
 
-**Research and analysis.** Ask "What are the pros and cons of Make.com vs n8n for AI automation?" Google serves up blog posts to wade through. Perplexity gives you a structured comparison table with sources — saves 20-30 minutes of reading.
+**Research and analysis.** Ask "What are the pros and cons of Make.com vs n8n for AI automation?" Google serves up blog posts to wade through. Perplexity gives you a structured comparison table with sources, saves 20-30 minutes of reading.
 
 **Complex questions.** "Which AI tools have the highest affiliate commissions and cookie durations?" Perplexity synthesizes data from multiple affiliate program pages. Google would mean visiting 10+ sites yourself.
 
@@ -37,21 +37,21 @@ Perplexity AI now handles over 100 million queries a month and just got valued a
 
 ## Where Google Still Wins
 
-**Navigation.** "Open my Gmail" or "Facebook login" — Google is still faster for getting to a specific site.
+**Navigation.** "Open my Gmail" or "Facebook login": Google is still faster for getting to a specific site.
 
-**Shopping.** Product listings, price comparisons, Google Shopping integration — unmatched.
+**Shopping.** Product listings, price comparisons, Google Shopping integration, unmatched.
 
 **Local.** "Pizza near me" with maps, reviews, and directions. Google Maps integration is irreplaceable.
 
-**Video and images.** YouTube results, image search, visual content — that's Google's turf.
+**Video and images.** YouTube results, image search, visual content, that's Google's turf.
 
 ## What This Means for Business
 
-For professionals, Perplexity is becoming the go-to research tool. Market research that used to eat 2 hours on Google takes 20 minutes. Competitive analysis, due diligence, industry research — all dramatically faster.
+For professionals, Perplexity is becoming the go-to research tool. Market research that used to eat 2 hours on Google takes 20 minutes. Competitive analysis, due diligence, industry research, all dramatically faster.
 
-For content creators and SEO pros, Perplexity's growth means a new optimization target. Getting cited by AI search (GEO — Generative Engine Optimization) is becoming as important as ranking on Google.
+For content creators and SEO pros, Perplexity's growth means a new optimization target. Getting cited by AI search (GEO: Generative Engine Optimization) is becoming as important as ranking on Google.
 
 For investors, Perplexity at $9 billion is a bet that AI-native search carves out a real chunk of Google's $300+ billion search revenue. Whether that takes 2 years or 10 is the question.
 
 ## Final Word
-Perplexity isn't replacing Google. It's replacing the way knowledge workers use Google. For research, analysis, and complex questions — it's already better. For navigation, shopping, and local search — Google is still essential. The smart move in 2026: use both.
+Perplexity isn't replacing Google. It's replacing the way knowledge workers use Google. For research, analysis, and complex questions, it's already better. For navigation, shopping, and local search, Google is still essential. The smart move in 2026: use both.

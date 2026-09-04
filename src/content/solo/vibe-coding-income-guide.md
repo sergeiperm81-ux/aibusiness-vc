@@ -51,15 +51,15 @@ Four platforms dominate. Each has a different sweet spot.
 
 **Lovable** is the closest thing to magic for non-developers. You describe an app, it builds the frontend, backend, database, and authentication. A teacher in Ohio used Lovable to build a parent-teacher communication app and pre-sold 30 subscriptions at $12/month before the app was even finished.
 
-**Bolt.new** is the speed demon. The 3-minute build is real — you can go from description to deployed prototype in under 3 minutes. The catch: those prototypes often need polish before they are customer-ready. But for validating ideas and building landing pages, nothing is faster.
+**Bolt.new** is the speed demon. The 3-minute build is real, you can go from description to deployed prototype in under 3 minutes. The catch: those prototypes often need polish before they are customer-ready. But for validating ideas and building landing pages, nothing is faster.
 
-**Cursor** is where the serious money lives. It has a $29.3 billion valuation for a reason — professional developers and power users build production-grade software with it. The learning curve is steeper, but the output quality is significantly higher. If you are willing to invest 2-3 weeks learning, Cursor unlocks $100-350/hour freelancing rates.
+**Cursor** is where the serious money lives. It has a $29.3 billion valuation for a reason, professional developers and power users build production-grade software with it. The learning curve is steeper, but the output quality is significantly higher. If you are willing to invest 2-3 weeks learning, Cursor unlocks $100-350/hour freelancing rates.
 
 **Replit** is the on-ramp. Great for learning, solid for building, and the community aspect helps you find your first collaborators and customers.
 
 ## Income Model 1: Freelancing ($100-$350/Hour)
 
-This is the fastest path to income. Businesses need custom tools, internal dashboards, and workflow automations. They used to pay $150-300/hour to traditional developers. Now they pay vibe coders $100-350/hour — and the work gets done in a fraction of the time.
+This is the fastest path to income. Businesses need custom tools, internal dashboards, and workflow automations. They used to pay $150-300/hour to traditional developers. Now they pay vibe coders $100-350/hour, and the work gets done in a fraction of the time.
 
 | Deliverable | Price Range | Time to Build | Effective Rate |
 |-------------|------------|---------------|----------------|
@@ -70,7 +70,7 @@ This is the fastest path to income. Businesses need custom tools, internal dashb
 | AI chatbot integration | $1,500-4,000 | 3-7 days | $200-$600/hr |
 | Workflow automation | $800-3,000 | 2-5 days | $100-$375/hr |
 
-Where to find clients: Upwork (search "AI app builder" — postings up 340% since 2025), Fiverr, LinkedIn outreach, and local business networking. The sweet spot is local businesses that need custom software but cannot afford a traditional development agency.
+Where to find clients: Upwork (search "AI app builder", postings up 340% since 2025), Fiverr, LinkedIn outreach, and local business networking. The sweet spot is local businesses that need custom software but cannot afford a traditional development agency.
 
 A freelancer charging $150/hour working 20 billable hours per week makes $12,000/month. That is entirely realistic within 3-6 months of starting.
 
@@ -91,7 +91,7 @@ The numbers across the vibe coding community paint a clear picture:
 | Average time to first paying customer | 23 days |
 | Average monthly churn | 6.2% |
 
-Let me be honest here. That $4,200 median is the median among people who actually launch and get customers. 70% of vibe-coded products earn under $1,000/month. Many earn nothing. The difference between the two groups is almost never the code quality — it is whether the builder talked to customers before building.
+Let me be honest here. That $4,200 median is the median among people who actually launch and get customers. 70% of vibe-coded products earn under $1,000/month. Many earn nothing. The difference between the two groups is almost never the code quality, it is whether the builder talked to customers before building.
 
 **Validated niches producing real revenue:**
 
@@ -122,7 +122,7 @@ Build a template once, sell it many times. Marketplaces like Gumroad, Lemon Sque
 | Landing page pack | $19-49 | 60-200 | $1,140-9,800 |
 | E-commerce template | $39-99 | 25-60 | $975-5,940 |
 
-Top template creators earn $10,000-30,000/month. The median is closer to $800-1,500/month. But the beauty is zero marginal cost — every additional sale is pure profit.
+Top template creators earn $10,000-30,000/month. The median is closer to $800-1,500/month. But the beauty is zero marginal cost, every additional sale is pure profit.
 
 ## The 2-Phase Workflow That Actually Works
 
@@ -130,7 +130,7 @@ After interviewing dozens of successful vibe coders, a consistent pattern emerge
 
 ### Phase 1: Rapid Prototype (Bolt.new or Lovable)
 
-Use the fastest tool available to build a working prototype in hours, not weeks. The goal is not perfection — it is validation. Show the prototype to 10 potential customers. If 3 or more say "I would pay for this," move to Phase 2. If not, build a different prototype. This phase should cost you nothing but time.
+Use the fastest tool available to build a working prototype in hours, not weeks. The goal is not perfection, it is validation. Show the prototype to 10 potential customers. If 3 or more say "I would pay for this," move to Phase 2. If not, build a different prototype. This phase should cost you nothing but time.
 
 Time budget: 1-4 hours maximum per prototype.
 
@@ -142,7 +142,7 @@ Questions to answer in Phase 1:
 
 ### Phase 2: Production Build (Cursor or Claude Code)
 
-Once validated, rebuild for production quality. Cursor and Claude Code handle the heavy lifting: proper database architecture, authentication, payment processing, error handling, and scalability. This is where you invest real time — but only after you know the product will sell.
+Once validated, rebuild for production quality. Cursor and Claude Code handle the heavy lifting: proper database architecture, authentication, payment processing, error handling, and scalability. This is where you invest real time, but only after you know the product will sell.
 
 Phase 2 typically takes 1-3 weeks for a micro-SaaS, and the result is something you can confidently charge money for and support long-term.
 
@@ -171,7 +171,7 @@ The median active practitioner (someone spending 15+ hours per week) earns appro
 
 ## Getting Started: The First 30 Days
 
-**Week 1:** Pick one tool (Lovable for non-technical, Cursor for semi-technical). Build 3 small projects — a landing page, a simple dashboard, and a basic CRUD app. These are for practice, not for selling.
+**Week 1:** Pick one tool (Lovable for non-technical, Cursor for semi-technical). Build 3 small projects, a landing page, a simple dashboard, and a basic CRUD app. These are for practice, not for selling.
 
 **Week 2:** Identify a niche you understand. Talk to 10 people in that niche. Find out what software they wish existed or what manual processes waste their time. Do not build anything yet.
 
@@ -193,13 +193,13 @@ Most people who follow this 30-day plan have revenue by day 30. It might be $100
 
 ## The $4.7 Billion Market Is Still Early
 
-The vibe coding market hit $4.7 billion in 2026, and projections suggest $12-15 billion by 2028. We are still in the phase where demand for custom AI-powered software dramatically exceeds supply. Every dentist, realtor, restaurant owner, and consultant needs custom tools — and traditional development is too expensive and too slow for most of them.
+The vibe coding market hit $4.7 billion in 2026, and projections suggest $12-15 billion by 2028. We are still in the phase where demand for custom AI-powered software dramatically exceeds supply. Every dentist, realtor, restaurant owner, and consultant needs custom tools, and traditional development is too expensive and too slow for most of them.
 
 The competition is growing, but so is the market. Two years from now, vibe coding will be as normal as using Canva for design. The people who start now are building client relationships, portfolios, and recurring revenue streams that will be very hard to compete with later.
 
 ## What This Comes Down To
 
-The $4.7 billion vibe coding market is real. The income potential is real. But so is the fact that 70% of people earn under $1,000/month. The difference between the 70% and the top 30% is not technical skill — it is business fundamentals. Validate before you build. Talk to customers. Solve specific problems for specific people. Do that, and $4,800/month is not just achievable — it is conservative.
+The $4.7 billion vibe coding market is real. The income potential is real. But so is the fact that 70% of people earn under $1,000/month. The difference between the 70% and the top 30% is not technical skill, it is business fundamentals. Validate before you build. Talk to customers. Solve specific problems for specific people. Do that, and $4,800/month is not just achievable, it is conservative.
 
 Start with one tool. Build one prototype. Talk to ten potential customers. That is the entire playbook. Everything else is execution
 

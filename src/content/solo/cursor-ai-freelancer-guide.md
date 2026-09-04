@@ -20,7 +20,7 @@ The money math is simple: if you can deliver the same quality in half the time, 
 
 Let me cut through the marketing. I have used all three extensively, and they target different workflows.
 
-**Cursor Pro ($20/month)** is a full IDE built on VS Code with AI integrated into every interaction. You do not just get autocomplete — you get multi-file editing, codebase-aware chat, and an agent mode that can plan and execute multi-step coding tasks. Cursor understands your entire project context. You can select 5 files and tell it "refactor the authentication system to use JWT tokens instead of sessions" and it will modify all 5 files correctly. That kind of cross-file reasoning is what saves you hours, not just minutes.
+**Cursor Pro ($20/month)** is a full IDE built on VS Code with AI integrated into every interaction. You do not just get autocomplete, you get multi-file editing, codebase-aware chat, and an agent mode that can plan and execute multi-step coding tasks. Cursor understands your entire project context. You can select 5 files and tell it "refactor the authentication system to use JWT tokens instead of sessions" and it will modify all 5 files correctly. That kind of cross-file reasoning is what saves you hours, not just minutes.
 
 **GitHub Copilot ($10/month for Individual, $19/month for Business)** is an autocomplete engine that lives inside VS Code. It is excellent at completing individual functions and suggesting boilerplate code. But it does not reason across your entire codebase the way Cursor does. Copilot's chat feature improved in 2025, but it still treats each file as mostly independent context. For freelancers building full applications, this limitation adds up.
 
@@ -45,7 +45,7 @@ For freelancing specifically, Cursor Pro at $20/month is the clear winner. The $
 
 ## What Freelance Projects to Target
 
-Not all projects benefit equally from Cursor. Here is where AI-assisted development creates the most leverage — and earns you the highest effective rates.
+Not all projects benefit equally from Cursor. Here is where AI-assisted development creates the most leverage, and earns you the highest effective rates.
 
 **CRUD SaaS Applications ($3,000-$15,000 per project)**
 
@@ -53,7 +53,7 @@ Standard business applications with user authentication, database CRUD operation
 
 **MVP Builds for Startups ($5,000-$25,000 per project)**
 
-Startup founders need working prototypes fast. They do not care how you build it — they care about speed and cost. Cursor lets you build a functional MVP in 1-3 weeks that would traditionally take 6-10 weeks. Charge $8,000-$15,000 for a 2-week MVP sprint. Your effective hourly rate: $200-$375.
+Startup founders need working prototypes fast. They do not care how you build it, they care about speed and cost. Cursor lets you build a functional MVP in 1-3 weeks that would traditionally take 6-10 weeks. Charge $8,000-$15,000 for a 2-week MVP sprint. Your effective hourly rate: $200-$375.
 
 **Landing Pages and Marketing Sites ($1,000-$5,000 per project)**
 
@@ -65,7 +65,7 @@ Connecting third-party APIs (Stripe, Twilio, SendGrid, various CRMs) into existi
 
 **Internal Tools and Dashboards ($3,000-$12,000 per project)**
 
-Companies need internal admin panels, reporting dashboards, and workflow tools. These projects are repetitive and high-value — perfect for Cursor. Build a custom admin dashboard with Retool or Next.js in 15-25 hours. Charge $6,000-$10,000.
+Companies need internal admin panels, reporting dashboards, and workflow tools. These projects are repetitive and high-value, perfect for Cursor. Build a custom admin dashboard with Retool or Next.js in 15-25 hours. Charge $6,000-$10,000.
 
 | Project Type | Traditional Time | With Cursor | Your Price | Effective Rate |
 |---|---|---|---|---|
@@ -100,7 +100,7 @@ Price based on the value of the deliverable to the client, not the hours it take
 
 ## Monthly Income: Real Numbers
 
-**Level 1 — Side Hustle ($5,000-$10,000/month)**
+**Level 1: Side Hustle ($5,000-$10,000/month)**
 
 Working 15-20 hours per week. 2-3 active projects at any time. Sourcing clients from Upwork and referrals.
 
@@ -110,7 +110,7 @@ Working 15-20 hours per week. 2-3 active projects at any time. Sourcing clients 
 | Month 2 | 1 MVP build ($6,000) + 1 API integration ($3,000) | $9,000 |
 | Month 3 | 1 SaaS app ($8,000) + 1 landing page ($2,500) | $10,500 |
 
-**Level 2 — Full-Time Freelance ($15,000-$25,000/month)**
+**Level 2: Full-Time Freelance ($15,000-$25,000/month)**
 
 Working 30-40 hours per week. 3-5 active projects. Mix of Upwork, LinkedIn, and direct referrals.
 
@@ -120,7 +120,7 @@ Working 30-40 hours per week. 3-5 active projects. Mix of Upwork, LinkedIn, and 
 | Slow Month | 2 SaaS apps ($8,000 each) + 1 landing page ($3,000) | $19,000 |
 | **Average** | | **$22,500** |
 
-**Level 3 — Agency of One ($30,000-$50,000/month)**
+**Level 3: Agency of One ($30,000-$50,000/month)**
 
 You have 1-2 subcontractors handling smaller tasks. You focus on sales, architecture, and complex features. Working 35-45 hours per week.
 
@@ -137,13 +137,13 @@ You have 1-2 subcontractors handling smaller tasks. You focus on sales, architec
 
 **Upwork (still the highest volume)**
 
-Filter for projects tagged "Full Stack Development," "SaaS," "MVP," and "Web Application." Ignore anything under $1,000 — those clients will haggle and scope-creep. Focus on fixed-price projects over $3,000 where the client has a verified payment method and previous hiring history. Send 3-5 proposals per day with a video walkthrough of a similar project you have built.
+Filter for projects tagged "Full Stack Development," "SaaS," "MVP," and "Web Application." Ignore anything under $1,000, those clients will haggle and scope-creep. Focus on fixed-price projects over $3,000 where the client has a verified payment method and previous hiring history. Send 3-5 proposals per day with a video walkthrough of a similar project you have built.
 
 Top Upwork earners in web development gross $20,000-$50,000/month. The platform takes 10% on the first $500, 5% on $500-$10,000, and 3% above $10,000 per client.
 
 **Toptal ($80-$200+/hour guaranteed)**
 
-Toptal claims to accept only 3% of applicants. The screening process is brutal — a timed coding challenge, a live project, and a technical interview. But once accepted, you get access to clients like Bridgestone, Motorola, and HP Enterprise who pay $80-$200/hour for freelance developers. At those rates, with Cursor making you 50% faster, you are earning the equivalent of $120-$300/hour in terms of output per hour.
+Toptal claims to accept only 3% of applicants. The screening process is brutal, a timed coding challenge, a live project, and a technical interview. But once accepted, you get access to clients like Bridgestone, Motorola, and HP Enterprise who pay $80-$200/hour for freelance developers. At those rates, with Cursor making you 50% faster, you are earning the equivalent of $120-$300/hour in terms of output per hour.
 
 **LinkedIn Direct Outreach**
 
@@ -155,7 +155,7 @@ The startup community on X and Indie Hackers is full of non-technical founders w
 
 ## Cursor Workflow Secrets That Save You Hours
 
-**Use .cursorrules files**. Create a `.cursorrules` file in every project root. Include your preferred tech stack, coding conventions, naming patterns, and architectural decisions. Cursor reads this file and applies it to every generation. A good `.cursorrules` file reduces back-and-forth corrections by 60-70%.
+**Use.cursorrules files**. Create a `.cursorrules` file in every project root. Include your preferred tech stack, coding conventions, naming patterns, and architectural decisions. Cursor reads this file and applies it to every generation. A good `.cursorrules` file reduces back-and-forth corrections by 60-70%.
 
 **Start every project with an architecture prompt**. Before writing any code, open Cursor's Composer and describe the entire project: tech stack, database schema, API endpoints, page routes, authentication flow. Let Cursor generate the scaffolding. Then iterate on individual components. Starting with structure instead of diving into individual files saves 3-5 hours per project.
 
@@ -179,7 +179,7 @@ $85/month in tools. At $15,000/month income, that is 0.6% of revenue.
 
 ## One Last Thing
 
-Cursor Pro costs $20/month. The average freelance web developer on Upwork charges $50-$100/hour and works 160 hours per month for $8,000-$16,000. With Cursor, that same developer delivers the same output in 60-80% of the time — meaning either more projects per month or the same projects at higher effective rates. The developers earning $150-$300/hour effective rates are not better coders. They are faster coders who price on project value, not hourly time. Cursor is the tool that makes the speed gap large enough to matter financially. The $20 investment pays for itself before lunch on day one
+Cursor Pro costs $20/month. The average freelance web developer on Upwork charges $50-$100/hour and works 160 hours per month for $8,000-$16,000. With Cursor, that same developer delivers the same output in 60-80% of the time, meaning either more projects per month or the same projects at higher effective rates. The developers earning $150-$300/hour effective rates are not better coders. They are faster coders who price on project value, not hourly time. Cursor is the tool that makes the speed gap large enough to matter financially. The $20 investment pays for itself before lunch on day one
 
 ## Related Reads
 

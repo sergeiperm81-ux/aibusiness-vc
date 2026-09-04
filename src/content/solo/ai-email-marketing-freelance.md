@@ -10,7 +10,7 @@ keywords: ["AI email marketing freelance", "email copywriter income", "AI email 
 
 # AI Email Marketing Freelancer: $3K-$8K/Month Writing Sequences That Convert
 
-Email marketing returns $36 for every $1 spent — nothing else comes close. And yet most businesses have terrible email sequences. Generic welcome emails, sporadic newsletters, zero automation. That is your opening. Use AI for drafting and personalization, charge $500-2,000 per sequence or $1,500-3,000/month on retainer.
+Email marketing returns $36 for every $1 spent, nothing else comes close. And yet most businesses have terrible email sequences. Generic welcome emails, sporadic newsletters, zero automation. That is your opening. Use AI for drafting and personalization, charge $500-2,000 per sequence or $1,500-3,000/month on retainer.
 
 ## Why Businesses Pay for Email Sequences
 
@@ -60,13 +60,13 @@ The sweet spot: 2-3 retainer clients at $2,000/month + occasional one-time proje
 
 ## Finding Clients
 
-**E-commerce stores (primary target):** Search Shopify stores in growing niches. If they have an email popup but no welcome sequence (subscribe and check — most do not), they are a prospect.
+**E-commerce stores (primary target):** Search Shopify stores in growing niches. If they have an email popup but no welcome sequence (subscribe and check, most do not), they are a prospect.
 
 **SaaS companies:** SaaS businesses with free trials need onboarding email sequences. Many have weak or nonexistent ones.
 
 **Coaches and course creators:** Online educators need launch sequences, webinar followup sequences, and enrollment campaigns.
 
-**How to reach them:** Cold email (ironic but effective — your own emails demonstrate your skill), LinkedIn outreach to marketing managers, Upwork proposals targeting email marketing projects.
+**How to reach them:** Cold email (ironic but effective, your own emails demonstrate your skill), LinkedIn outreach to marketing managers, Upwork proposals targeting email marketing projects.
 
 ## What the Numbers Say
 

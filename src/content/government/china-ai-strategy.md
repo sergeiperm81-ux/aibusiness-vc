@@ -18,7 +18,7 @@ China's AI investment comes from three sources:
 
 **Government direct investment ($50B+):** National and provincial governments fund AI research labs, subsidize AI companies, build AI industrial parks, and offer tax incentives. The city of Shanghai alone allocated $15 billion for AI development.
 
-**State-backed funds ($40B+):** Government-backed venture funds and industrial funds invest in AI companies. The National Integrated Circuit Investment Fund (Big Fund) invested $40 billion in semiconductor development — critical infrastructure for AI.
+**State-backed funds ($40B+):** Government-backed venture funds and industrial funds invest in AI companies. The National Integrated Circuit Investment Fund (Big Fund) invested $40 billion in semiconductor development, critical infrastructure for AI.
 
 **Private sector ($60B+):** Baidu, Alibaba, Tencent, ByteDance, and hundreds of startups invest heavily in AI. Chinese private AI investment exceeded $60 billion in 2025.
 
@@ -38,9 +38,9 @@ China's AI investment comes from three sources:
 
 DeepSeek V3 shocked the industry by matching GPT-4 performance at a fraction of the training cost. While OpenAI spent an estimated $100M+ training GPT-4, DeepSeek achieved comparable results for $5-10M. This proves that:
 
-1. **Algorithmic efficiency can compensate for compute restrictions** — even with US chip export bans, Chinese AI can compete
-2. **Open-source from China is real** — DeepSeek V3 is fully open source and commercially usable
-3. **The cost of frontier AI is dropping faster than expected** — this benefits AI businesses worldwide
+1. **Algorithmic efficiency can compensate for compute restrictions**, even with US chip export bans, Chinese AI can compete
+2. **Open-source from China is real**: DeepSeek V3 is fully open source and commercially usable
+3. **The cost of frontier AI is dropping faster than expected**, this benefits AI businesses worldwide
 
 ## US Chip Export Bans: Impact on China's AI
 
@@ -56,13 +56,13 @@ The US restricted exports of advanced AI chips (NVIDIA A100, H100) to China. Imp
 
 ## What This Means for Global AI Business
 
-**Competition is global.** Chinese AI companies compete in every segment — LLMs, autonomous driving, computer vision, AI hardware. Any AI company must consider Chinese competitors.
+**Competition is global.** Chinese AI companies compete in every segment: LLMs, autonomous driving, computer vision, AI hardware. Any AI company must consider Chinese competitors.
 
-**Open-source benefits everyone.** Chinese open-source models (DeepSeek, Qwen) are freely available worldwide. This lowers the cost of AI for businesses everywhere — including your business.
+**Open-source benefits everyone.** Chinese open-source models (DeepSeek, Qwen) are freely available worldwide. This lowers the cost of AI for businesses everywhere, including your business.
 
-**Market access is restricted.** China's AI market is effectively closed to foreign companies. But Chinese AI is increasingly exported — DeepSeek's API serves global customers at 10x cheaper pricing than OpenAI.
+**Market access is restricted.** China's AI market is effectively closed to foreign companies. But Chinese AI is increasingly exported: DeepSeek's API serves global customers at 10x cheaper pricing than OpenAI.
 
 **Investment opportunities.** Chinese AI companies trade on Hong Kong and mainland exchanges. Baidu, Alibaba, and SenseTime offer public market exposure to Chinese AI growth.
 
 ## Dollars and Sense
-China's $150B AI strategy is not aspirational — it is being executed. DeepSeek proved that Chinese AI can match US frontier capabilities. For global AI businesses, China is simultaneously a competitor (challenging US models), an ally (providing cheap open-source alternatives), and a closed market (inaccessible for foreign companies). Understanding China's AI trajectory is essential for anyone operating in the global AI economy.
+China's $150B AI strategy is not aspirational, it is being executed. DeepSeek proved that Chinese AI can match US frontier capabilities. For global AI businesses, China is simultaneously a competitor (challenging US models), an ally (providing cheap open-source alternatives), and a closed market (inaccessible for foreign companies). Understanding China's AI trajectory is essential for anyone operating in the global AI economy.

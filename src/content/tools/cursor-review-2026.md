@@ -14,14 +14,14 @@ Cursor passed GitHub Copilot as the most popular AI coding tool this year. $9 bi
 
 ## What Cursor Actually Is
 
-Cursor is a code editor built on top of VS Code with AI deeply integrated into every interaction. It is not a plugin — it is a complete editor where AI is the default way to write code.
+Cursor is a code editor built on top of VS Code with AI deeply integrated into every interaction. It is not a plugin, it is a complete editor where AI is the default way to write code.
 
-**How it differs from Copilot:** Copilot bolts AI autocomplete onto VS Code. Cursor rethinks the entire editing experience with AI at the core. Multi-file editing, codebase-wide context, natural language commands — all built in, not bolted on.
+**How it differs from Copilot:** Copilot bolts AI autocomplete onto VS Code. Cursor rethinks the entire editing experience with AI at the core. Multi-file editing, codebase-wide context, natural language commands, all built in, not bolted on.
 
 ## What It Does Well
 
 ### Multi-File Editing (Composer)
-This is Cursor's killer feature. Describe what you want in natural language, and Cursor edits multiple files simultaneously. "Add user authentication with JWT to the Express API" — Cursor creates the auth middleware, updates routes, adds the user model, and modifies the config file. All at once.
+This is Cursor's killer feature. Describe what you want in natural language, and Cursor edits multiple files simultaneously. "Add user authentication with JWT to the Express API": Cursor creates the auth middleware, updates routes, adds the user model, and modifies the config file. All at once.
 
 Nothing else does this as well right now. Copilot is one file at a time. Claude Code handles multi-file via CLI. Cursor gives you the visual, in-editor experience.
 
@@ -32,7 +32,7 @@ Cursor indexes your entire codebase and uses it as context. When you ask "refact
 The autocomplete is spooky good. It predicts not just the next token but multi-line changes based on surrounding code and your recent edits. Noticeably more accurate than Copilot's predictions.
 
 ### Inline Chat
-Highlight code, press Cmd+K, and ask a question or request a change. "Make this function async and add error handling" — Cursor rewrites it in place.
+Highlight code, press Cmd+K, and ask a question or request a change. "Make this function async and add error handling": Cursor rewrites it in place.
 
 ## What It Does Not Do Well
 
@@ -42,7 +42,7 @@ Highlight code, press Cmd+K, and ask a question or request a change. "Make this 
 
 **Offline use.** Requires internet connection for AI features. No AI without connectivity.
 
-**Free tier limitations.** The free tier includes 2,000 completions and 50 slow premium requests per month — enough to try it, not enough to rely on it.
+**Free tier limitations.** The free tier includes 2,000 completions and 50 slow premium requests per month, enough to try it, not enough to rely on it.
 
 ## Pricing
 
@@ -52,7 +52,7 @@ Highlight code, press Cmd+K, and ask a question or request a change. "Make this 
 | Pro | $20/mo | Unlimited completions, 500 fast requests/mo |
 | Business | $40/user/mo | Team features, admin controls, SSO |
 
-Pro at $20/month is the obvious choice. If Cursor saves you just 30 minutes a day — and it will — that is 10+ hours per month. You are paying $2/hour for that productivity. The math is not complicated.
+Pro at $20/month is the obvious choice. If Cursor saves you just 30 minutes a day, and it will, that is 10+ hours per month. You are paying $2/hour for that productivity. The math is not complicated.
 
 ## Who Should Use Cursor
 

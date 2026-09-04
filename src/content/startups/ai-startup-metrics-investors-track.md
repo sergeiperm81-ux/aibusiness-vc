@@ -1,6 +1,6 @@
 ---
-title: "15 AI Startup Metrics Investors Track in 2026 (With Benchmarks)"
-description: "The KPI set VCs and angels actually use: growth quality, retention, burn efficiency, and margin health benchmarks for AI startups."
+title: "The 15 Numbers AI Investors Check Before They Fund You (2026 Benchmarks)"
+description: "What good looks like in 2026: the exact growth, retention, burn and margin thresholds VCs use to say yes or no, with the benchmark figures for each."
 date: "2026-04-04"
 author: "Sergei Ponomarev"
 category: "Startups"
@@ -10,7 +10,7 @@ keywords: ["AI startup metrics", "startup KPIs for investors", "AI company bench
 
 # 15 AI Startup Metrics That Investors Actually Track (With Benchmarks)
 
-By 2026, investors have funded thousands of AI startups. They've built precise benchmarks for evaluating AI companies. If you're building one and plan to raise, these 15 metrics determine whether you get funded — and at what valuation.
+By 2026, investors have funded thousands of AI startups. They've built precise benchmarks for evaluating AI companies. If you're building one and plan to raise, these 15 metrics determine whether you get funded, and at what valuation. For the numbers the largest AI companies actually post against these benchmarks, see the [AI Revenue Leaderboard](/startups/ai-revenue-leaderboard), including which of them disclose a profit.
 
 ## Revenue Metrics
 
@@ -83,7 +83,7 @@ Burn multiple = net burn / net new ARR. The single most scrutinized efficiency m
 
 ### 6. LTV:CAC Ratio
 
-Lifetime Value to Customer Acquisition Cost — your return on sales and marketing spend.
+Lifetime Value to Customer Acquisition Cost, your return on sales and marketing spend.
 
 | Rating | LTV:CAC | Meaning |
 |---|---|---|
@@ -146,7 +146,7 @@ AI products with instant time-to-value convert 3-5x better than those that need 
 
 | Stage | Revenue/Employee | Benchmark |
 |---|---|---|
-| Pre-revenue | N/A | — |
+| Pre-revenue | N/A | n/a |
 | Early | $100K-200K | Growing |
 | Growth | $200K-400K | Healthy |
 | Scale | $400K-1M+ | Efficient |

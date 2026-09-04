@@ -21,10 +21,10 @@ Charge $2,500-5,000 for setup plus $500-2,000/month retainers.
 Your goal is 3-5 retainer clients. At $2,000/month average, that gets you $6,000-10,000/month in recurring revenue.
 
 How you actually get those clients:
-1. Cold outreach on LinkedIn — find business owners complaining about manual processes (there are tons)
-2. Free AI audits — look at a prospect's business and show them 3 things you could automate
-3. Local networking — BNI groups, chamber of commerce events still work incredibly well for this
-4. Upwork/Fiverr — grab 2-3 projects early on for portfolio pieces and testimonials
+1. Cold outreach on LinkedIn, find business owners complaining about manual processes (there are tons)
+2. Free AI audits, look at a prospect's business and show them 3 things you could automate
+3. Local networking: BNI groups, chamber of commerce events still work incredibly well for this
+4. Upwork/Fiverr, grab 2-3 projects early on for portfolio pieces and testimonials
 
 Expect to work 40-50 hours/week between selling, building, and managing clients.
 
@@ -73,7 +73,7 @@ Your offerings expand as you grow, and so do your prices:
 | Small team | + workflow automation, AI agents | $2,500/mo |
 | Full agency | + strategy consulting, custom AI, training | $5,000-10,000/mo |
 
-The real play is upselling existing clients. Start them with a chatbot. Add workflow automation. Then AI agents. Then strategy consulting. Eventually you become their outsourced AI department. Client lifetime value goes from $18,000/year to $60,000-120,000/year — same client, much bigger check.
+The real play is upselling existing clients. Start them with a chatbot. Add workflow automation. Then AI agents. Then strategy consulting. Eventually you become their outsourced AI department. Client lifetime value goes from $18,000/year to $60,000-120,000/year, same client, much bigger check.
 
 ## Key Metrics to Track
 
@@ -89,11 +89,11 @@ The real play is upselling existing clients. Start them with a chatbot. Add work
 ## Common Mistakes
 
 1. **Hiring too early.** Do not hire until you are consistently maxed out with 5+ clients. Premature hiring eats cash you do not have yet.
-2. **Underpricing.** $500/month retainers attract the worst clients — the ones who expect the most and complain constantly. Start at $1,500 minimum.
+2. **Underpricing.** $500/month retainers attract the worst clients, the ones who expect the most and complain constantly. Start at $1,500 minimum.
 3. **Building custom everything.** Templates and repeatable workflows are how you make money. Custom work destroys margins.
 4. **Neglecting sales.** This one kills more agencies than anything else. The second you stop selling, growth flatlines. Never let delivery eat 100% of your time.
 5. **No SOPs.** If only you know how to do something, you cannot scale. Write down every process, even the ones that seem obvious.
 
 ## The Honest Take
 
-$100K/month in agency revenue with $60K+ in net margin is real and achievable. Solo to $10K in months 1-4, first hire to $30K in months 5-8, team to $100K in months 9-18. The AI automation market is growing at 49.6% CAGR, and client demand still far exceeds supply. But that window narrows every month as more competitors show up. If this model interests you, start selling this week — not next month.
+$100K/month in agency revenue with $60K+ in net margin is real and achievable. Solo to $10K in months 1-4, first hire to $30K in months 5-8, team to $100K in months 9-18. The AI automation market is growing at 49.6% CAGR, and client demand still far exceeds supply. But that window narrows every month as more competitors show up. If this model interests you, start selling this week, not next month.

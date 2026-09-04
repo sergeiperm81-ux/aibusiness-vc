@@ -10,7 +10,7 @@ keywords: ["AI chatbot business income", "dental practice chatbot", "AI chatbot 
 
 # AI Chatbot Builder: How David Earns $5,400/Month Serving 15 Dental Practices
 
-David sells AI chatbots to dental and medical practices. $800 for setup, $200/month for maintenance. Fifteen clients. $4,600-$5,400/month. Fifteen hours of work per week. Not hypothetical — this is a documented income report from a real person running this business solo.
+David sells AI chatbots to dental and medical practices. $800 for setup, $200/month for maintenance. Fifteen clients. $4,600-$5,400/month. Fifteen hours of work per week. Not hypothetical, this is a documented income report from a real person running this business solo.
 
 ## The Business Model
 
@@ -55,7 +55,7 @@ At $200/month per client with $30-50 in costs, David's gross margin is 75-85% pe
 
 **Months 1-2:** Cold-called 50 dental practices. Offered free 2-week trial. 5 said yes. 4 converted to paying clients.
 
-**Months 3-4:** Asked happy clients for referrals. Dental communities are tight — word spread. Got 6 more clients through referrals.
+**Months 3-4:** Asked happy clients for referrals. Dental communities are tight, word spread. Got 6 more clients through referrals.
 
 **Months 5-6:** Created a simple one-page website showing case studies. Ran $200/month in Google Ads targeting "dental practice chatbot." Got 5 more clients.
 
@@ -63,7 +63,7 @@ At $200/month per client with $30-50 in costs, David's gross margin is 75-85% pe
 
 ## Where It Goes From Here
 
-David's target is 50 clients ($10,000+/month recurring) by end of 2026. At that scale, he hires a part-time assistant ($1,500/month) for setup and maintenance while he focuses on sales and expands into other medical specialties — dermatology, physical therapy, optometry.
+David's target is 50 clients ($10,000+/month recurring) by end of 2026. At that scale, he hires a part-time assistant ($1,500/month) for setup and maintenance while he focuses on sales and expands into other medical specialties, dermatology, physical therapy, optometry.
 
 With 100+ clients and an assistant, this is a $25,000+/month business at 70% margins. Built on a service he learned in 2 weeks, running on less than $100/month in tools.
 
@@ -71,14 +71,14 @@ With 100+ clients and an assistant, this is a $25,000+/month business at 70% mar
 
 David's model works for any local business drowning in repetitive inquiries:
 
-- **Real estate agencies** — property questions, showing schedules
-- **Law firms** — intake questions, consultation booking
-- **Fitness studios** — class schedules, membership pricing
-- **Auto repair shops** — service pricing, appointment booking
-- **Restaurants** — reservations, menu, hours
+- **Real estate agencies**: property questions, showing schedules
+- **Law firms**: intake questions, consultation booking
+- **Fitness studios**: class schedules, membership pricing
+- **Auto repair shops**: service pricing, appointment booking
+- **Restaurants**: reservations, menu, hours
 
 Pick one vertical. Get really good at building the chatbot for that niche. Land 5 clients. Referrals take care of the rest.
 
 ## The Core of It
 
-$5,400/month. 15 hours/week. 15 clients. No coding. No employees. No office. David's business proves you do not need some groundbreaking AI product — you need a specific service, a specific market, and the willingness to pick up the phone.
+$5,400/month. 15 hours/week. 15 clients. No coding. No employees. No office. David's business proves you do not need some groundbreaking AI product, you need a specific service, a specific market, and the willingness to pick up the phone.

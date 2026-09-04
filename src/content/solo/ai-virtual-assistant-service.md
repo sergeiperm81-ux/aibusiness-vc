@@ -1,6 +1,6 @@
 ---
 title: "AI Virtual Assistant Service: $2K-$6K/Month Managing Executives' Lives"
-description: "Offer AI-powered virtual assistant services to busy executives. Email management, scheduling, research, travel — all AI-accelerated."
+description: "Offer AI-powered virtual assistant services to busy executives. Email management, scheduling, research, travel, all AI-accelerated."
 date: "2026-04-01"
 author: "Sergei Ponomarev"
 category: "Solo"
@@ -14,7 +14,7 @@ Traditional virtual assistants charge $25-50/hour and handle 1-3 clients. AI-pow
 
 ## Why Executives Pay Premium for AI VAs
 
-A full-time executive assistant costs $50,000-80,000/year. A fractional AI-powered VA costs $6,000-18,000/year — 70-85% less — and is available 24/7.
+A full-time executive assistant costs $50,000-80,000/year. A fractional AI-powered VA costs $6,000-18,000/year, 70-85% less, and is available 24/7.
 
 **What executives need managed:**
 - **Email triage:** 100-300 emails/day sorted by priority, with draft responses for routine messages
@@ -37,7 +37,7 @@ AI handles 70-80% of these tasks. You handle the 20-30% that requires judgment, 
 
 ### Calendar Management (saves 1 hour/day)
 1. Calendly or Reclaim.ai handles scheduling requests automatically
-2. AI optimizes the calendar — groups meetings, adds travel buffers, protects focus time
+2. AI optimizes the calendar, groups meetings, adds travel buffers, protects focus time
 3. You handle rescheduling conflicts and VIP meeting coordination
 
 ### Research (saves 3-5 hours/week)
@@ -81,7 +81,7 @@ $74/month in tools. At $5,000/month revenue, tools cost 1.5%.
 
 **Referral networks:** One happy CEO refers you to three others. Executive circles are tight.
 
-**Upwork:** Search for "virtual assistant for executive" — the demand is constant.
+**Upwork:** Search for "virtual assistant for executive", the demand is constant.
 
 **Startup accelerators:** Founders in YC, Techstars, and other accelerators are overwhelmed and need help immediately. Offer a discounted first month.
 

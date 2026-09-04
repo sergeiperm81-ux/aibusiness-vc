@@ -47,7 +47,7 @@ Annual income: approximately $400,000-475,000. Working 30-35 hours per week. No 
 
 ## How She Became an AI Consultant
 
-Sandra's background: 8 years as a marketing director at a mid-size company. When ChatGPT launched, she became her company's unofficial AI champion — testing tools, creating workflows, training colleagues.
+Sandra's background: 8 years as a marketing director at a mid-size company. When ChatGPT launched, she became her company's unofficial AI champion, testing tools, creating workflows, training colleagues.
 
 **Month 1-2:** Left corporate. Offered free AI assessments to 3 businesses she knew personally. All three became paying retainer clients.
 
@@ -74,16 +74,16 @@ Sandra's pricing follows a simple formula: **charge 10-20% of the value you crea
 
 If an AI setup saves a company $200,000/year in labor costs, a $42,000 annual retainer ($3,500/month) is a 5:1 ROI for the client. Easy to justify.
 
-The key: do not charge by the hour. Charge by value. A 2-hour assessment that identifies $500,000 in AI opportunities is worth $5,000 — not $300.
+The key: do not charge by the hour. Charge by value. A 2-hour assessment that identifies $500,000 in AI opportunities is worth $5,000, not $300.
 
 ## Who Can Replicate This
 
 You do not need a tech background. You need:
 
-1. **Deep knowledge of AI tools** — spend 100 hours testing ChatGPT, Claude, Make.com, Zapier, and industry-specific AI tools
-2. **Business process understanding** — experience working in or with businesses
-3. **Communication skills** — the ability to explain AI value in business terms, not tech jargon
-4. **Sales ability** — willingness to do assessments, present findings, and close retainers
+1. **Deep knowledge of AI tools**, spend 100 hours testing ChatGPT, Claude, Make.com, Zapier, and industry-specific AI tools
+2. **Business process understanding**, experience working in or with businesses
+3. **Communication skills**, the ability to explain AI value in business terms, not tech jargon
+4. **Sales ability**, willingness to do assessments, present findings, and close retainers
 
 The market is massive. 58% of businesses use AI but most do it poorly. 92% plan to increase AI investment. Every company needs someone who can bridge the gap between "we should use AI" and "here is exactly how."
 

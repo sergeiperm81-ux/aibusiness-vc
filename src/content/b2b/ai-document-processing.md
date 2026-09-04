@@ -48,13 +48,13 @@ Employees snap a photo of a receipt. AI reads the merchant, amount, date, and ca
 
 Modern AI document processing stacks three layers:
 
-**Layer 1 — OCR (Optical Character Recognition):** Converts images and scanned PDFs into machine-readable text. 99%+ accuracy for printed text, 85-95% for handwriting.
+**Layer 1: OCR (Optical Character Recognition):** Converts images and scanned PDFs into machine-readable text. 99%+ accuracy for printed text, 85-95% for handwriting.
 
-**Layer 2 — NLP (Natural Language Processing):** Understands document structure. Knows that "Total Due: $4,750" is an amount field, not random text. Handles different layouts and formats without breaking.
+**Layer 2: NLP (Natural Language Processing):** Understands document structure. Knows that "Total Due: $4,750" is an amount field, not random text. Handles different layouts and formats without breaking.
 
-**Layer 3 — Validation:** Cross-references extracted data against existing databases. Catches duplicates, mismatches, and anomalies. Routes exceptions to human reviewers.
+**Layer 3: Validation:** Cross-references extracted data against existing databases. Catches duplicates, mismatches, and anomalies. Routes exceptions to human reviewers.
 
-Combined accuracy: 95-99% on standard business documents. The remaining 1-5% goes to human reviewers — but they are reviewing exceptions, not processing every single document.
+Combined accuracy: 95-99% on standard business documents. The remaining 1-5% goes to human reviewers, but they are reviewing exceptions, not processing every single document.
 
 ## ROI Calculation
 
@@ -69,8 +69,8 @@ Combined accuracy: 95-99% on standard business documents. The remaining 1-5% goe
 | Monthly labor cost | $16,500 | $1,500 |
 | AI tool cost | $0 | $1,200 |
 | Error rate | 3-5% | 0.5-1% |
-| **Monthly savings** | — | **$13,800** |
-| **Annual savings** | — | **$165,600** |
+| **Monthly savings** | n/a | **$13,800** |
+| **Annual savings** | n/a | **$165,600** |
 
 ## Implementation Steps
 

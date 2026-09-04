@@ -1,24 +1,26 @@
 ---
-title: "GitHub Copilot Crosses $2B ARR — 46% of Code Is Now AI-Generated"
-description: "Microsoft's AI coding tool generates $2B+/year. 77,000 organizations, 55% faster coding, 46% of GitHub code is AI-written."
-date: "2026-06-01"
+title: "GitHub Copilot in 2026: 4.7M Paid Seats, a ~$1B Business, and 46% of Code Is Now AI-Written"
+description: "The '$2B ARR' headline didn't survive analyst scrutiny, the real Copilot numbers are 4.7M paid subscribers (+75% YoY) and an estimated $0.9-1.1B ARR. What the honest figures mean for your career and your company."
+date: "2026-08-04"
 author: "Sergei Ponomarev"
 category: "B2B"
 image: "/images/articles/coffee-meeting-1.jpg"
 keywords: ["GitHub Copilot revenue", "AI coding business impact", "AI generated code statistics", "Copilot ROI"]
 ---
 
-# GitHub Copilot Crosses $2B ARR -- What That Actually Means for Your Career and Your Company
+# GitHub Copilot in 2026: 4.7M Paid Seats, a ~$1B Business -- and 46% of Code Is Now AI-Written
 
-Look, if you landed on this page, you probably saw the headline somewhere -- GitHub Copilot hit $2 billion in annual recurring revenue -- and you're trying to figure out what that number actually means. Not in some abstract "the future of software" sense. In the sense of: does this change anything for me? For my team? For the company I'm building or working at?
+*Updated August 2026. An earlier version of this article carried the "$2B ARR" figure that circulated widely in the press -- including here. Microsoft has never actually disclosed Copilot's revenue, and independent analyst work now puts it at roughly $0.9-1.1B. We've corrected the numbers below, because on this site honest figures beat big ones. The remarkable part is: the story holds up anyway.*
+
+Look, if you landed on this page, you probably saw a headline somewhere about GitHub Copilot's billions -- and you're trying to figure out what the numbers actually mean. Not in some abstract "the future of software" sense. In the sense of: does this change anything for me? For my team? For the company I'm building or working at?
 
 The short answer is yes. But the full story is way more interesting than the headline.
 
 ## The Number Behind the Number
 
-$2 billion in ARR. Let that sink in for a second. GitHub Copilot launched publicly in mid-2022. It crossed $2 billion roughly three years later. For context, Slack took about six years to hit $1 billion in ARR. Zoom took about four years. Copilot doubled both of their trajectories.
+Here's what Microsoft actually disclosed, on its FY26 Q2 earnings call: **4.7 million paid Copilot subscribers, up roughly 75% year over year.** Analysts who build revenue estimates from that seat count and the tier mix land at **$0.9-1.1 billion in ARR**. Not the mythical $2B -- but let that real number sink in anyway. Copilot launched publicly in mid-2022. Slack took about six years to reach $1B in ARR; Zoom took about four. Copilot did it in roughly three, as a feature of a code-hosting platform.
 
-More than 77,000 organizations are paying for it. Not individual developers tinkering with the free tier -- 77,000 companies decided this tool was worth putting on the corporate credit card. And the individual subscriber count is in the millions.
+More than 77,000 organizations pay for it. Not individual developers tinkering with the free tier -- companies that decided this tool was worth putting on the corporate credit card. And in June 2026 GitHub switched all Copilot plans to usage-based billing (AI Credits), which is what you do when your product has stopped being an experiment and started being infrastructure.
 
 But here's the stat that should genuinely make you stop and think: 46% of all new code pushed to GitHub is now AI-generated. Not AI-assisted. Not "AI helped me think about it." Nearly half of the actual code flowing into the world's largest code repository was written by a machine and approved by a human.
 
@@ -26,7 +28,7 @@ That's not a trend. That's a phase change.
 
 ## Why This Revenue Number Matters More Than You Think
 
-I've been tracking AI tool revenue for a while now, and there's something specific about Copilot's $2 billion that makes it different from, say, ChatGPT's revenue or Midjourney's numbers.
+I've been tracking AI tool revenue for a while now, and there's something specific about Copilot's billion that makes it different from, say, ChatGPT's revenue or Midjourney's numbers.
 
 Copilot's revenue is almost entirely B2B subscription revenue. Companies paying $39 per user per month, every month, because the tool delivers measurable ROI. This isn't consumers paying $20/month for a chatbot they might cancel after the novelty wears off. This is engineering managers looking at productivity dashboards and deciding to renew because the numbers are undeniable.
 
@@ -72,9 +74,7 @@ Maybe you're a CTO or VP of Engineering reading this. Here's the uncomfortable t
 
 Think about that from a business strategy perspective. Your competitor ships features twice as fast as you, with the same size team. Or they ship at the same pace with half the team and invest the savings in sales, marketing, or new product lines. Either way, you're falling behind every single quarter you delay adoption.
 
-And it's not just Copilot. Cursor (which recently hit a $29.3 billion valuation) has captured a massive chunk of the developer market with its AI-first editor. Claude Code from Anthropic is changing how entire codebases get refactored. Amazon CodeWhisperer is making inroads in AWS-heavy shops.
-
-The market for AI coding tools is now well past $2 billion annually, growing at roughly 40-50% year over year. This is not a fad. This is not something you can wait out and see if it sticks.
+And it's not just Copilot -- in fact, the sharpest twist of 2026 is that Copilot is no longer the revenue leader in its own category. Cursor blew past it to **$2B+ in ARR with about 50 people** (at a ~$50B valuation), and Copilot's market share among AI coding tools has slipped to roughly 51%. Claude Code from Anthropic is changing how entire codebases get refactored. The market for AI coding tools is now several billion dollars annually and still compounding. This is not a fad. This is not something you can wait out and see if it sticks.
 
 I talk to engineering leaders regularly, and the ones at companies that haven't adopted AI tools yet consistently say one of two things: either "we're worried about code quality and security" (valid concern, but the data shows quality goes up, and enterprise plans include security features), or "our developers don't want to use it" (which usually means one or two senior engineers are resistant while the rest of the team would adopt it tomorrow if given the chance).
 
@@ -98,7 +98,7 @@ If you're an engineering leader: run the numbers for your team. Copilot Enterpri
 
 If you're a founder: factor this into your hiring math. You might not need that fifth engineer if your four engineers are all using AI tools effectively. That's $200K+ you can redirect to sales, marketing, or runway extension.
 
-The $2 billion is not the story. The story is the 46% -- nearly half of all new code is now AI-generated, and that number is going up, not down. Software development is being restructured at its foundation, and the financial impact on every company that writes code is going to be massive.
+The revenue -- whichever estimate you take -- is not the story. The story is the 46%: nearly half of all new code is now AI-generated, and that number is going up, not down. Software development is being restructured at its foundation, and the financial impact on every company that writes code is going to be massive.
 
 ---
 
@@ -110,3 +110,4 @@ If this got you thinking about how AI tools are reshaping the economics of build
 - [Highest-Paying AI Jobs in 2026](/learn/highest-paying-ai-jobs-2026) -- What skills command premium salaries in the AI-augmented workforce
 - [How Klarna's AI Replaced 700 Customer Service Agents](/b2b/klarna-ai-replaces-700-agents) -- The same "AI productivity math" playing out in customer support, not just engineering
 - [AI Startup Ideas Worth Building in 2026](/startups/ai-startup-ideas-2026) -- If the cost of building software just dropped 55%, what becomes possible?
+- [The AI Implementation Playbook for Small Business](/b2b/how-to-implement-ai-in-small-business) -- How to bring this productivity math into a company with no CTO and no IT department

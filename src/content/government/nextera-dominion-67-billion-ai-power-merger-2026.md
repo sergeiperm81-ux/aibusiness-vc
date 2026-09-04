@@ -1,6 +1,6 @@
 ---
 title: "NextEra Buys Dominion for $67 Billion: The Largest US Utility Merger Ever Is a Pure Bet on AI"
-description: "NextEra's $67B all-stock acquisition of Dominion Energy creates the world's largest utility — and it exists for one reason: powering the AI data center boom in Virginia and beyond. What it means for hyperscalers, ratepayers, and your AI bill."
+description: "NextEra's $67B all-stock acquisition of Dominion Energy creates the world's largest utility, and it exists for one reason: powering the AI data center boom in Virginia and beyond. What it means for hyperscalers, ratepayers, and your AI bill."
 date: "2026-05-20"
 author: "Sergei Ponomarev"
 category: "Government"

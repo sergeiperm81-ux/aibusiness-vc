@@ -10,11 +10,11 @@ keywords: ["AI logistics", "AI shipping optimization", "AI route planning", "log
 
 # AI in Logistics: How Shipping Companies Save 10-20% on Transportation Costs
 
-FedEx, UPS, and DHL collectively spend over $200 billion per year on transportation. AI route optimization, predictive demand, and automated warehouse operations save 10-20% of those costs — tens of billions in aggregate. The same AI capabilities are now available to companies of any size through SaaS platforms at $500-5,000/month.
+FedEx, UPS, and DHL collectively spend over $200 billion per year on transportation. AI route optimization, predictive demand, and automated warehouse operations save 10-20% of those costs, tens of billions in aggregate. The same AI capabilities are now available to companies of any size through SaaS platforms at $500-5,000/month.
 
 ## Route Optimization: The Biggest Win
 
-The classic "traveling salesman problem" — finding the most efficient route through multiple stops — is what AI was built for. AI factors in traffic patterns, delivery windows, vehicle capacity, driver hours, road restrictions, and weather to find routes humans simply cannot calculate by hand.
+The classic "traveling salesman problem", finding the most efficient route through multiple stops, is what AI was built for. AI factors in traffic patterns, delivery windows, vehicle capacity, driver hours, road restrictions, and weather to find routes humans simply cannot calculate by hand.
 
 **UPS's ORION system** saves the company $400 million per year by optimizing delivery routes. Cutting each driver's route by just 1 mile per day saves UPS $50 million annually across 125,000 drivers.
 
@@ -22,7 +22,7 @@ The classic "traveling salesman problem" — finding the most efficient route th
 
 ## Predictive Demand: Right Inventory, Right Place
 
-AI predicts what products will be needed where and when — so companies can pre-position inventory and avoid expensive emergency shipments.
+AI predicts what products will be needed where and when, so companies can pre-position inventory and avoid expensive emergency shipments.
 
 **Amazon's anticipatory shipping** uses AI to move products to fulfillment centers before customers order. Delivery time and shipping costs both drop.
 

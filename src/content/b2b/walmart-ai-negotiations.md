@@ -1,5 +1,5 @@
 ---
-title: "Walmart's AI Negotiates Better Deals Than Humans — Saving Billions"
+title: "Walmart's AI Negotiates Better Deals Than Humans: Saving Billions"
 description: "Walmart's AI negotiation software closes 68% of supplier deals without humans. 3% savings per contract on $650B+ procurement."
 date: "2026-03-31"
 author: "Sergei Ponomarev"
@@ -8,13 +8,13 @@ image: "/images/articles/coworking-1.jpg"
 keywords: ["Walmart AI negotiation", "AI procurement", "AI saves billions", "AI business negotiation"]
 ---
 
-# Walmart's AI Negotiates Better Deals Than Humans — Saving Billions
+# Walmart's AI Negotiates Better Deals Than Humans: Saving Billions
 
-Walmart deployed AI negotiation software for procurement with tail-end suppliers. The AI negotiates contracts via chat, crunching market prices, historical costs, and vendor performance data. Results: 68% of negotiations completed without any human involvement, 3% average savings per contract, 70% faster negotiation cycles. And here is the kicker — suppliers reported higher satisfaction than with human negotiators.
+Walmart deployed AI negotiation software for procurement with tail-end suppliers. The AI negotiates contracts via chat, crunching market prices, historical costs, and vendor performance data. Results: 68% of negotiations completed without any human involvement, 3% average savings per contract, 70% faster negotiation cycles. And here is the kicker, suppliers reported higher satisfaction than with human negotiators.
 
 ## Why This Matters
 
-Walmart's annual procurement exceeds $650 billion. Even a 1% improvement across all procurement translates to $6.5 billion in savings. The AI handles "tail-end" suppliers — the thousands of smaller vendors supplying everything from store fixtures to cleaning supplies to office equipment.
+Walmart's annual procurement exceeds $650 billion. Even a 1% improvement across all procurement translates to $6.5 billion in savings. The AI handles "tail-end" suppliers, the thousands of smaller vendors supplying everything from store fixtures to cleaning supplies to office equipment.
 
 These are not strategic partnerships where a senior buyer sits across from a CEO. These are routine negotiations for standard goods where the process is repetitive and the variables are well-defined. Exactly the kind of work AI handles best.
 
@@ -30,7 +30,7 @@ Then the AI:
 4. **Handles counteroffers.** Evaluates responses against predefined parameters. Adjusts based on logic, not emotion
 5. **Closes or escalates.** Agreement reached? Finalize the contract. Supplier's position outside acceptable range? Hand off to a human buyer
 
-**Here is what makes it work:** The AI does not "win" by pressuring suppliers. It gets better outcomes through data — showing suppliers their pricing is above market, or offering volume commitments in exchange for discounts. Suppliers appreciate the transparency, which is why their satisfaction scores are actually higher than with humans.
+**Here is what makes it work:** The AI does not "win" by pressuring suppliers. It gets better outcomes through data, showing suppliers their pricing is above market, or offering volume commitments in exchange for discounts. Suppliers appreciate the transparency, which is why their satisfaction scores are actually higher than with humans.
 
 ## The Results
 
@@ -55,17 +55,17 @@ If the world's largest company trusts AI to negotiate deals worth millions, the 
 - Has buyers spending time on routine renewals
 
 **Available tools:**
-- **Pactum AI** — the platform Walmart uses, now available to other enterprises
-- **Fairmarkit** — AI-powered procurement for mid-market companies
-- **Keelvar** — AI sourcing optimization
-- **Coupa AI** — Procurement suite with AI negotiation
+- **Pactum AI**: the platform Walmart uses, now available to other enterprises
+- **Fairmarkit**: AI-powered procurement for mid-market companies
+- **Keelvar**: AI sourcing optimization
+- **Coupa AI**: Procurement suite with AI negotiation
 
 ## The Bigger Picture
 
-Walmart's AI negotiation is one example of a broader shift: AI handling tasks that were considered "too human" for automation. Negotiation requires understanding context, reading signals, making trade-offs — things we assumed only people could do.
+Walmart's AI negotiation is one example of a broader shift: AI handling tasks that were considered "too human" for automation. Negotiation requires understanding context, reading signals, making trade-offs, things we assumed only people could do.
 
 If AI can negotiate better than humans in 68% of cases, what other "human-only" business tasks are next? The companies that answer that question first will carry structural cost advantages that competitors cannot match.
 
 ## The Takeaway
 
-68% of negotiations automated. 3% savings per contract. Higher supplier satisfaction. Faster cycles. This is not a pilot — it runs at full scale at the world's largest company. For procurement teams everywhere, AI negotiation has moved from experimental to standard.
+68% of negotiations automated. 3% savings per contract. Higher supplier satisfaction. Faster cycles. This is not a pilot, it runs at full scale at the world's largest company. For procurement teams everywhere, AI negotiation has moved from experimental to standard.

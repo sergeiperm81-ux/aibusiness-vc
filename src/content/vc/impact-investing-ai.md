@@ -10,7 +10,7 @@ keywords: ["impact investing AI", "ESG AI", "climate AI investment", "social imp
 
 # Impact Investing in AI: The $28B Market Where Doing Good Pays Well
 
-The ESG investing market hit $28 billion in revenue in 2024 and is projected to reach $80 billion by 2030. Climate AI alone attracted $7.2 billion in 2025. Impact investing in AI isn't charity work — it's a fast-growing market where social good and financial returns line up.
+The ESG investing market hit $28 billion in revenue in 2024 and is projected to reach $80 billion by 2030. Climate AI alone attracted $7.2 billion in 2025. Impact investing in AI isn't charity work, it's a fast-growing market where social good and financial returns line up.
 
 ## Why Impact AI Is Growing
 
@@ -64,19 +64,19 @@ Three forces are pushing it forward:
 
 Investors use AI to verify impact claims:
 
-- **Clarity AI** — Broad ESG and SDG alignment scoring
-- **MSCI ESG Research** — Institutional-grade ratings
-- **Sustainalytics** — Incident detection, risk assessment
-- **Project Liberty + ImpactVC** — AI due diligence for impact startups, cuts verification time 70%
+- **Clarity AI**: Broad ESG and SDG alignment scoring
+- **MSCI ESG Research**: Institutional-grade ratings
+- **Sustainalytics**: Incident detection, risk assessment
+- **Project Liberty + ImpactVC**: AI due diligence for impact startups, cuts verification time 70%
 
 ## For Founders Building Impact AI
 
 Impact AI startups have structural advantages:
 
-1. **Patient capital** — Impact investors accept longer timelines and lower near-term returns
-2. **Government funding** — Climate and health AI get grants and subsidies that pure commercial AI doesn't
-3. **Talent magnet** — Mission-driven companies attract better people at lower cost
-4. **Regulatory tailwinds** — EU taxonomy and SEC climate disclosure rules create built-in demand
+1. **Patient capital**: Impact investors accept longer timelines and lower near-term returns
+2. **Government funding**: Climate and health AI get grants and subsidies that pure commercial AI doesn't
+3. **Talent magnet**: Mission-driven companies attract better people at lower cost
+4. **Regulatory tailwinds**: EU taxonomy and SEC climate disclosure rules create built-in demand
 
 ## The Punchline
-$28 billion ESG market heading to $80B by 2030. Climate AI pulled $7.2B in one year. Impact investing in AI isn't about sacrificing returns — it's about accessing a growing capital pool that demands financial performance AND measurable social good. For AI founders, the impact angle is a competitive advantage, not a compromise.
+$28 billion ESG market heading to $80B by 2030. Climate AI pulled $7.2B in one year. Impact investing in AI isn't about sacrificing returns, it's about accessing a growing capital pool that demands financial performance AND measurable social good. For AI founders, the impact angle is a competitive advantage, not a compromise.

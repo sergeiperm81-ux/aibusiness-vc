@@ -20,23 +20,23 @@ Let me walk through the five most impressive real-world cases, with actual dolla
 
 Klarna's story might be the single most important case study in enterprise AI, because it is the one that made every CEO in the world sit up and ask their team: "Why are we not doing this?"
 
-In 2024, the Swedish fintech deployed an AI customer service agent built on OpenAI's technology. Within the first month, that AI handled 2.3 million customer conversations. Not simple FAQ lookups. Real customer service interactions — resolving disputes, processing returns, answering billing questions, handling complaints in multiple languages simultaneously.
+In 2024, the Swedish fintech deployed an AI customer service agent built on OpenAI's technology. Within the first month, that AI handled 2.3 million customer conversations. Not simple FAQ lookups. Real customer service interactions, resolving disputes, processing returns, answering billing questions, handling complaints in multiple languages simultaneously.
 
 The results were immediate and dramatic. Resolution time dropped from eleven minutes per conversation to two minutes. That is an 82 percent reduction in the time customers spend waiting and explaining their problems. Customer satisfaction scores for the AI agent matched those of human agents, which surprised almost everyone, including Klarna's own leadership.
 
 But the number that changed the industry was this: the AI does the work of approximately 700 full-time customer service agents. At an estimated cost of roughly $57,000 per agent per year when you factor in salary, benefits, training, management overhead, and workspace, that translates to approximately $40 million in annual savings. From a single AI deployment.
 
-Klarna's CEO Sebastian Siemiatkowski said publicly that the company stopped hiring customer service agents entirely. Not reduced hiring. Stopped. The AI handles two-thirds of all customer inquiries without any human involvement. The remaining third — complex escalations, sensitive situations, cases requiring judgment — still goes to human agents, but those humans now focus exclusively on the work that actually requires human empathy and decision-making.
+Klarna's CEO Sebastian Siemiatkowski said publicly that the company stopped hiring customer service agents entirely. Not reduced hiring. Stopped. The AI handles two-thirds of all customer inquiries without any human involvement. The remaining third, complex escalations, sensitive situations, cases requiring judgment, still goes to human agents, but those humans now focus exclusively on the work that actually requires human empathy and decision-making.
 
 What makes this case particularly instructive is what it tells you about the economics. Klarna did not spend $40 million on AI to save $40 million on agents. The AI deployment cost a fraction of the savings. The ongoing cost of running the AI is a fraction of the ongoing cost of the agents it replaced. This is not a break-even automation play. It is a massively positive ROI that gets better as the AI improves and handles an increasing percentage of conversations.
 
 ## JPMorgan: When AI Does 360,000 Hours of Lawyer Work
 
-JPMorgan's Contract Intelligence platform — they call it COiN — might be the most quietly transformative AI deployment in corporate America. It is not flashy. It does not generate headlines the way ChatGPT does. But the impact on the bank's operations is staggering.
+JPMorgan's Contract Intelligence platform, they call it COiN, might be the most quietly transformative AI deployment in corporate America. It is not flashy. It does not generate headlines the way ChatGPT does. But the impact on the bank's operations is staggering.
 
 COiN uses AI to review commercial loan agreements. Before the system existed, that work was done by lawyers and loan officers, and it consumed approximately 360,000 hours of their time every year. Think about that number for a moment. Three hundred and sixty thousand hours. That is the equivalent of roughly 180 full-time employees doing nothing but reading loan documents, eight hours a day, five days a week, fifty-two weeks a year.
 
-The AI reviews those same documents in seconds. Not minutes. Seconds. A loan agreement that would take a lawyer two weeks to review is processed almost instantaneously. And the accuracy improved, not just the speed. The human error rate on these reviews was approximately 5 percent. The AI's error rate is near zero. So JPMorgan simultaneously eliminated 360,000 hours of manual work, dramatically reduced errors, and freed up some of the most expensive labor in the company — lawyers — to work on problems that actually require legal reasoning rather than document review.
+The AI reviews those same documents in seconds. Not minutes. Seconds. A loan agreement that would take a lawyer two weeks to review is processed almost instantaneously. And the accuracy improved, not just the speed. The human error rate on these reviews was approximately 5 percent. The AI's error rate is near zero. So JPMorgan simultaneously eliminated 360,000 hours of manual work, dramatically reduced errors, and freed up some of the most expensive labor in the company, lawyers, to work on problems that actually require legal reasoning rather than document review.
 
 The estimated value of this is north of $150 million in annual labor savings. And that is conservative. It only accounts for the direct labor cost. It does not include the revenue acceleration from processing loans faster, the risk reduction from fewer errors, or the opportunity cost of what those lawyers can now work on instead.
 
@@ -44,9 +44,9 @@ JPMorgan now spends $17 billion annually on technology, and AI is the fastest-gr
 
 ## Walmart: AI That Negotiates Better Than Humans
 
-This is the case study that genuinely surprised me, because it challenges a fundamental assumption about what AI can and cannot do. Most people assume that negotiation is inherently human — it requires reading the room, building rapport, making judgment calls in real time. Walmart's procurement AI proved that assumption wrong, at least for a specific category of negotiations.
+This is the case study that genuinely surprised me, because it challenges a fundamental assumption about what AI can and cannot do. Most people assume that negotiation is inherently human, it requires reading the room, building rapport, making judgment calls in real time. Walmart's procurement AI proved that assumption wrong, at least for a specific category of negotiations.
 
-Walmart deployed AI negotiation software for procurement with what they call "tail-end suppliers" — the thousands of smaller vendors who supply non-strategic goods. The AI conducts negotiations entirely via chat, analyzing market prices, historical cost data, vendor performance metrics, and competitive alternatives in real time as the negotiation progresses.
+Walmart deployed AI negotiation software for procurement with what they call "tail-end suppliers", the thousands of smaller vendors who supply non-strategic goods. The AI conducts negotiations entirely via chat, analyzing market prices, historical cost data, vendor performance metrics, and competitive alternatives in real time as the negotiation progresses.
 
 The results defied expectations. Sixty-eight percent of negotiations were completed with zero human involvement. The AI identified the right price points, made counteroffers, and closed deals faster and cheaper than human procurement agents. Average savings were 3 percent per contract, which does not sound like much until you remember the scale.
 
@@ -58,7 +58,7 @@ Negotiation cycles also compressed by 70 percent. Deals that used to take weeks 
 
 ## Microsoft GitHub Copilot: The $2 Billion Productivity Machine
 
-GitHub Copilot is interesting because it generates revenue directly — over $2 billion in ARR as of 2025 — while simultaneously generating savings for every company that uses it. It is both a product and a cost-reduction tool, and understanding both sides of the equation matters.
+GitHub Copilot is interesting because it generates revenue directly, over $2 billion in ARR as of 2025, while simultaneously generating savings for every company that uses it. It is both a product and a cost-reduction tool, and understanding both sides of the equation matters.
 
 More than 77,000 organizations now use Copilot. The internal productivity data is compelling: developers complete tasks 55 percent faster with Copilot active. Thirty percent of all suggested code gets accepted by developers. And here is the number that stopped me cold: 46 percent of all code on GitHub is now AI-generated. Nearly half. That is not a productivity tool. That is a fundamental restructuring of how software gets built.
 
@@ -66,7 +66,7 @@ Let me run the math on what this means for a single company. Take a mid-size tec
 
 That is a 36x return on investment. You spend $228,000 and get $8.25 million in equivalent productivity. Even if you cut the productivity gain in half to be conservative, it is still an 18x return. There is almost nothing else in enterprise software that delivers those kinds of economics.
 
-The broader implication is even more striking. If 46 percent of code is AI-generated and that percentage is climbing, the effective output of the global developer workforce is increasing dramatically without any increase in headcount. Companies can build more software, faster, with fewer people. For every company that depends on software — which is essentially every company — that changes the economics of everything they build.
+The broader implication is even more striking. If 46 percent of code is AI-generated and that percentage is climbing, the effective output of the global developer workforce is increasing dramatically without any increase in headcount. Companies can build more software, faster, with fewer people. For every company that depends on software, which is essentially every company, that changes the economics of everything they build.
 
 ## Moderna: AI That Shaves Years Off Drug Development
 
@@ -88,7 +88,7 @@ If you run a fifty-person company, your most expensive repetitive process might 
 
 Step two: deploy AI to handle 60 to 80 percent of that work automatically. Not 100 percent. This is important. Every successful AI deployment I have studied leaves humans in the loop for the cases that require judgment, empathy, or creativity. Klarna's AI handles two-thirds of conversations. The remaining third still goes to humans. That hybrid model is what makes the system work reliably without generating the kind of errors that destroy customer trust.
 
-Step three: redirect the humans to higher-value work. This is the step most companies skip, and it is the step that turns a cost-saving exercise into a competitive advantage. When JPMorgan freed up 360,000 hours of lawyer time, those lawyers did not sit idle. They worked on complex deals, regulatory strategy, and risk analysis — work that generates revenue rather than processing paperwork. The savings from AI are real, but the upside from redeploying human talent is often even larger.
+Step three: redirect the humans to higher-value work. This is the step most companies skip, and it is the step that turns a cost-saving exercise into a competitive advantage. When JPMorgan freed up 360,000 hours of lawyer time, those lawyers did not sit idle. They worked on complex deals, regulatory strategy, and risk analysis, work that generates revenue rather than processing paperwork. The savings from AI are real, but the upside from redeploying human talent is often even larger.
 
 Step four: measure ROI monthly and expand. Do not wait a year to evaluate your AI deployment. The companies seeing the best returns are the ones that measure results every month and use that data to decide where to deploy AI next. Each successful deployment builds organizational confidence and internal expertise that makes the next deployment faster and cheaper.
 
@@ -100,7 +100,7 @@ Every month you wait is money you are choosing to spend that you do not have to.
 
 ## Keep Reading
 
-- [Klarna AI Replaces 700 Agents: The Full Story](/b2b/klarna-ai-replaces-700-agents) — a deeper look at the deployment that changed how every company thinks about customer service.
-- [AI Kills the Real Estate Industry — or Transforms It](/b2b/ai-kills-real-estate-industry) — AI disruption hitting another major industry, with specific dollar impacts.
-- [The Trillion-Dollar AI Race](/startups/ai-trillion-dollar-race-may-2026) — the companies spending the most to build and deploy AI at scale.
-- [Highest-Paying AI Jobs in 2026](/learn/highest-paying-ai-jobs-2026) — as companies automate repetitive work, these are the AI roles commanding premium salaries.
+- [Klarna AI Replaces 700 Agents: The Full Story](/b2b/klarna-ai-replaces-700-agents), a deeper look at the deployment that changed how every company thinks about customer service.
+- [AI Kills the Real Estate Industry: or Transforms It](/b2b/ai-kills-real-estate-industry): AI disruption hitting another major industry, with specific dollar impacts.
+- [The Trillion-Dollar AI Race](/startups/ai-trillion-dollar-race-may-2026), the companies spending the most to build and deploy AI at scale.
+- [Highest-Paying AI Jobs in 2026](/learn/highest-paying-ai-jobs-2026), as companies automate repetitive work, these are the AI roles commanding premium salaries.

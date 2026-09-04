@@ -82,4 +82,4 @@ The biggest risk of an AI content agency is quality degradation. Your reputation
 
 ## When You Do the Math
 
-Every business needs content. AI multiplies output per editor. Clients pay monthly retainers. With $400/month in tools and no employees, $10,000/month is realistic within 90 days. Add a team and the ceiling is $100,000+/month. The trick: treat AI as your production engine and spend your own time on strategy, quality, and client relationships — not writing first drafts.
+Every business needs content. AI multiplies output per editor. Clients pay monthly retainers. With $400/month in tools and no employees, $10,000/month is realistic within 90 days. Add a team and the ceiling is $100,000+/month. The trick: treat AI as your production engine and spend your own time on strategy, quality, and client relationships, not writing first drafts.

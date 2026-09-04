@@ -14,7 +14,7 @@ Traditional video production costs $1,000-$10,000 per minute of finished content
 
 Then OpenAI launched Sora in early 2025, Runway shipped Gen-3 Alpha Turbo, Kling hit version 1.6 with 2-minute generation, and Pika Labs dropped their 2.0 model. Suddenly, you can generate broadcast-quality video for $0.10-$2.00 per clip. The production cost collapsed. The demand did not.
 
-Wyzowl's 2025 State of Video Marketing report says 91% of businesses use video as a marketing tool, up from 87% in 2024. HubSpot found that 52% of companies say video gives them the best ROI of any content type. The bottleneck was never demand — it was cost. AI just removed the bottleneck.
+Wyzowl's 2025 State of Video Marketing report says 91% of businesses use video as a marketing tool, up from 87% in 2024. HubSpot found that 52% of companies say video gives them the best ROI of any content type. The bottleneck was never demand, it was cost. AI just removed the bottleneck.
 
 ## The AI Video Tools: What They Actually Cost
 
@@ -24,7 +24,7 @@ Let me break down the four platforms that matter right now, because the pricing 
 
 **Runway Gen-3 Alpha Turbo** is the workhorse for production studios. It offers text-to-video, image-to-video, and video-to-video transformation. The Runway Standard plan is $12/month for 625 credits (about 25 seconds of Gen-3 video). The Pro plan at $28/month gives you 2,250 credits. The Unlimited plan at $76/month gives you unlimited generations. For a business generating video daily, the $76/month Unlimited plan is the obvious choice.
 
-**Kling by Kuaishou** came out of China and surprised everyone. Kling 1.6 generates videos up to 2 minutes long — the longest of any platform. Quality is slightly below Sora but above Runway for natural motion. Kling Pro is $66/month for 3,000 credits (roughly 66 five-second clips at high quality). Their API pricing is $0.014 per second of generated video.
+**Kling by Kuaishou** came out of China and surprised everyone. Kling 1.6 generates videos up to 2 minutes long, the longest of any platform. Quality is slightly below Sora but above Runway for natural motion. Kling Pro is $66/month for 3,000 credits (roughly 66 five-second clips at high quality). Their API pricing is $0.014 per second of generated video.
 
 **Pika Labs** focuses on stylized and motion-graphic content. Their 2.0 model excels at product shots, abstract visuals, and logo animations. Pika Pro is $8/month for 700 credits. For quick social media content and product demos, it is the cheapest option.
 
@@ -76,7 +76,7 @@ Client sends you their product info, target audience, and key messages. You writ
 
 **Day 2-3: Storyboard and Asset Generation (4-6 hours)**
 
-Break the script into 10-15 scenes. For each scene, generate 3-5 visual options using Sora and Runway. You will go through 50-100 generations to get 12-15 perfect clips. This is where experience matters — knowing the right prompts, camera angles, and style references separates a $500 freelancer from a $3,000 production service.
+Break the script into 10-15 scenes. For each scene, generate 3-5 visual options using Sora and Runway. You will go through 50-100 generations to get 12-15 perfect clips. This is where experience matters, knowing the right prompts, camera angles, and style references separates a $500 freelancer from a $3,000 production service.
 
 **Day 4-5: Editing and Assembly (3-5 hours)**
 
@@ -84,7 +84,7 @@ Import clips into DaVinci Resolve (free) or Premiere Pro ($22.99/month). Add tra
 
 **Day 6: Review and Revisions (1-2 hours)**
 
-Client review. Most projects need 1-2 rounds of revisions. AI makes revisions fast — regenerate a scene in 2 minutes instead of reshooting.
+Client review. Most projects need 1-2 rounds of revisions. AI makes revisions fast, regenerate a scene in 2 minutes instead of reshooting.
 
 **Day 7: Final Delivery**
 
@@ -162,16 +162,16 @@ You hire a part-time editor ($1,500-$2,500/month) and focus on sales and creativ
 
 Be honest with clients about current limitations:
 
-- **Human hands and fingers**: AI still generates weird hand movements about 30% of the time. Solution — use AI for wide shots and b-roll, stock footage for close-ups of hands.
-- **Consistent characters across scenes**: Sora improved this significantly, but it is not perfect. Solution — use image-to-video with a consistent reference image for character shots.
-- **Text and signage**: AI-generated text in videos is often garbled. Solution — add all text in post-production using Premiere or DaVinci Resolve.
-- **Specific brand elements**: AI cannot perfectly reproduce a specific logo or product. Solution — composite real product photos into AI-generated scenes.
+- **Human hands and fingers**: AI still generates weird hand movements about 30% of the time. Solution, use AI for wide shots and b-roll, stock footage for close-ups of hands.
+- **Consistent characters across scenes**: Sora improved this significantly, but it is not perfect. Solution, use image-to-video with a consistent reference image for character shots.
+- **Text and signage**: AI-generated text in videos is often garbled. Solution, add all text in post-production using Premiere or DaVinci Resolve.
+- **Specific brand elements**: AI cannot perfectly reproduce a specific logo or product. Solution, composite real product photos into AI-generated scenes.
 
-These workarounds take 10-15 extra minutes per project. Clients do not care how you solve the problem — they care that the final video looks right.
+These workarounds take 10-15 extra minutes per project. Clients do not care how you solve the problem, they care that the final video looks right.
 
 ## One Last Thing
 
-The video production industry charges $1,000-$10,000 per minute of finished content because production was expensive — cameras, crews, locations, editing. AI dropped the production cost to $0.10-$2.00 per clip. The skill that matters now is not operating a camera. It is creative direction: knowing what to generate, how to prompt it, and how to edit 50 AI clips into one cohesive video that sells. That skill, combined with $350/month in tools, is a $5,000-$25,000/month business for a solo operator. The agencies charging $15,000 per commercial have not lowered their prices. You are simply offering the same output at a fraction of their cost and keeping the margin
+The video production industry charges $1,000-$10,000 per minute of finished content because production was expensive, cameras, crews, locations, editing. AI dropped the production cost to $0.10-$2.00 per clip. The skill that matters now is not operating a camera. It is creative direction: knowing what to generate, how to prompt it, and how to edit 50 AI clips into one cohesive video that sells. That skill, combined with $350/month in tools, is a $5,000-$25,000/month business for a solo operator. The agencies charging $15,000 per commercial have not lowered their prices. You are simply offering the same output at a fraction of their cost and keeping the margin
 
 ## Related Reads
 

@@ -12,7 +12,7 @@ keywords: ["AI consulting business", "how to become an AI consultant", "AI consu
 
 You do not need a PhD in machine learning to start an AI consulting business. Not even close. The most in-demand services in 2026 have nothing to do with building models from scratch. Businesses need help picking the right AI tools, plugging them into existing workflows, training their teams, and figuring out an AI strategy. That takes practical experience, communication skills, and the ability to translate tech capabilities into business results.
 
-The market is huge — $19.4 billion in 2025, growing at 26.1% CAGR through 2030 (MarketsandMarkets). And Deloitte's 2025 enterprise AI survey found 72% of businesses struggling with AI cite "lack of internal expertise in tool selection and setup" as their top barrier — not the inability to build AI themselves.
+The market is huge, $19.4 billion in 2025, growing at 26.1% CAGR through 2030 (MarketsandMarkets). And Deloitte's 2025 enterprise AI survey found 72% of businesses struggling with AI cite "lack of internal expertise in tool selection and setup" as their top barrier, not the inability to build AI themselves.
 
 ## What You Actually Do
 

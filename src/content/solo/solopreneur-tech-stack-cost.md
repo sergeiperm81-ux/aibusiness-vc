@@ -10,7 +10,7 @@ keywords: ["solopreneur AI stack", "AI tools for solopreneurs", "cheap AI busine
 
 # The $200/Month AI Solopreneur Stack That Replaces a $50K/Year Team
 
-A complete solopreneur tech stack in 2026 runs $150-300/month — a 95-98% reduction compared to hiring employees for the same functions. Every tool below is what you need to run a one-person business that operates like a 5-person team.
+A complete solopreneur tech stack in 2026 runs $150-300/month, a 95-98% reduction compared to hiring employees for the same functions. Every tool below is what you need to run a one-person business that operates like a 5-person team.
 
 ## The Full Stack
 
@@ -84,7 +84,7 @@ This is not theoretical. Documented examples include:
 
 Do not buy all 10 tools at once. Start with what generates revenue fastest:
 
-**Week 1:** Claude Pro ($20) + Canva Pro ($13) = $33/month. These two tools handle content creation — the most common solopreneur need.
+**Week 1:** Claude Pro ($20) + Canva Pro ($13) = $33/month. These two tools handle content creation, the most common solopreneur need.
 
 **Week 2:** Add Make.com ($9) + Calendly ($12) = $54/month total. Automate repetitive tasks and scheduling.
 

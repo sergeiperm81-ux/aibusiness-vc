@@ -10,12 +10,12 @@ keywords: ["AI defense startups", "Anduril AI", "AI military contracts", "defens
 
 # AI Defense Startups: The $100B+ Market Nobody Talks About
 
-Consumer AI hogs the spotlight. But defense AI is where some of the biggest checks get signed. Anduril raised $2.8 billion at a $28 billion valuation. Palantir's market cap topped $250 billion. Shield AI hit $5.3 billion. The US Department of Defense plans to spend $140+ billion on AI through 2028. This is the AI market that most tech media glosses over — and it's enormous.
+Consumer AI hogs the spotlight. But defense AI is where some of the biggest checks get signed. Anduril raised $2.8 billion at a $28 billion valuation. Palantir's market cap topped $250 billion. Shield AI hit $5.3 billion. The US Department of Defense plans to spend $140+ billion on AI through 2028. This is the AI market that most tech media glosses over, and it's enormous.
 
 ## The Key Players
 
 ### Palantir ($2.8B Revenue, $250B+ Market Cap)
-Palantir is the godfather of defense AI. Their software — Gotham for government, Foundry for commercial — processes massive datasets for military decision-making, intelligence analysis, and battlefield operations. Revenue hit $2.8 billion in 2025 with 30%+ growth. The stock crushed it.
+Palantir is the godfather of defense AI. Their software, Gotham for government, Foundry for commercial, processes massive datasets for military decision-making, intelligence analysis, and battlefield operations. Revenue hit $2.8 billion in 2025 with 30%+ growth. The stock crushed it.
 
 ### Anduril ($2.8B Raised, $28B Valuation)
 Palmer Luckey (the guy who created Oculus VR) started Anduril to build AI-powered defense hardware: autonomous drones, surveillance towers, underwater vehicles. Their Lattice AI platform ties it all into an integrated command system. Revenue is reportedly $1B+ per year from US and allied government contracts.
@@ -38,17 +38,17 @@ Best known for data labeling, but Scale AI's government division provides AI dat
 
 ## Why This Market Keeps Growing
 
-**$140 billion in planned US DoD AI spending through 2028.** The Pentagon has said it plainly: AI is the top modernization priority. Autonomous systems, intelligence analysis, logistics, cyber defense — all of it needs AI.
+**$140 billion in planned US DoD AI spending through 2028.** The Pentagon has said it plainly: AI is the top modernization priority. Autonomous systems, intelligence analysis, logistics, cyber defense, all of it needs AI.
 
-**Allied nations copy the playbook.** NATO allies, Australia (AUKUS), Japan, South Korea — they're all building similar AI defense programs. Every US contract spawns follow-on opportunities abroad.
+**Allied nations copy the playbook.** NATO allies, Australia (AUKUS), Japan, South Korea, they're all building similar AI defense programs. Every US contract spawns follow-on opportunities abroad.
 
-**Speed decides battles now.** Modern warfare runs at machine speed. AI processes satellite imagery, drone feeds, and signals intelligence faster than human analysts — and the gap keeps widening.
+**Speed decides battles now.** Modern warfare runs at machine speed. AI processes satellite imagery, drone feeds, and signals intelligence faster than human analysts, and the gap keeps widening.
 
 ## The Controversy
 
 Defense AI is polarizing. AI-powered weapons raise hard questions about autonomous killing decisions. AI surveillance raises privacy concerns. Concentrating AI talent in military applications pulls it away from civilian uses.
 
-These are real concerns that governments, the industry, and society have to sort out. They're also not slowing spending — defense AI budgets are accelerating.
+These are real concerns that governments, the industry, and society have to sort out. They're also not slowing spending, defense AI budgets are accelerating.
 
 ## What This Means for AI Professionals
 

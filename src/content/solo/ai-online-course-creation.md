@@ -10,11 +10,11 @@ keywords: ["create AI course", "sell online course AI", "AI course business", "t
 
 # How to Create and Sell an Online Course About AI ($2K-$50K/Month)
 
-The e-learning market is projected to exceed $400 billion by 2026. AI courses are the hottest segment — demand surged 340% from 2023 to 2025 according to Udemy's marketplace data. You do not need a PhD to teach AI. You need practical experience and the ability to explain things clearly.
+The e-learning market is projected to exceed $400 billion by 2026. AI courses are the hottest segment, demand surged 340% from 2023 to 2025 according to Udemy's marketplace data. You do not need a PhD to teach AI. You need practical experience and the ability to explain things clearly.
 
 ## Why AI Courses Sell
 
-Every professional is scrambling to learn AI. Not the theory — the practice. How do I use ChatGPT for my marketing? How do I automate my business? How do I start freelancing with AI? The demand vastly exceeds the supply of quality instructors.
+Every professional is scrambling to learn AI. Not the theory, the practice. How do I use ChatGPT for my marketing? How do I automate my business? How do I start freelancing with AI? The demand vastly exceeds the supply of quality instructors.
 
 **The math:** A course priced at $97 with 50 sales per month = $4,850/month. A premium course at $297 with 20 sales per month = $5,940/month. Top AI course creators on platforms like Udemy and Skillshare report $10,000-50,000/month.
 
@@ -43,10 +43,10 @@ Survey your target audience. What are they struggling with? What have they tried
 You do not need a studio. A good microphone ($100), screen recording software (Loom or OBS, free), and clear slides (Canva AI) are sufficient. Aim for 3-6 hours of content broken into 5-15 minute lessons.
 
 **Week 5: Edit and Upload**
-Use Descript ($24/month) for AI-powered editing — it removes filler words, fixes audio, and generates transcripts automatically. Upload to your chosen platform.
+Use Descript ($24/month) for AI-powered editing, it removes filler words, fixes audio, and generates transcripts automatically. Upload to your chosen platform.
 
 **Week 6+: Launch and Market**
-The launch is not the end — it is the beginning. Content marketing, email sequences, and student testimonials drive ongoing sales.
+The launch is not the end, it is the beginning. Content marketing, email sequences, and student testimonials drive ongoing sales.
 
 ## Where to Sell
 

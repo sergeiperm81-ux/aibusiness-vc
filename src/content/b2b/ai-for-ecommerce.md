@@ -38,7 +38,7 @@ AI chatbots handle 70% of e-commerce support tickets without human help. Respons
 - Size and fit guidance
 - FAQ answers
 
-**Top tools:** Tidio ($29/mo), Intercom ($74/mo), Zendesk AI ($55/mo). Average ROI: 300% — every $1 spent on AI support saves $3 in support costs.
+**Top tools:** Tidio ($29/mo), Intercom ($74/mo), Zendesk AI ($55/mo). Average ROI: 300%, every $1 spent on AI support saves $3 in support costs.
 
 ## Dynamic Pricing
 
@@ -48,7 +48,7 @@ Smaller stores can use Prisync ($99/mo) or Competera for the same approach. Busi
 
 ## Personalized Recommendations
 
-"Customers who bought this also bought..." — that AI-driven recommendation engine drives 35% of Amazon's total revenue. Any e-commerce store can build something similar now.
+"Customers who bought this also bought...", that AI-driven recommendation engine drives 35% of Amazon's total revenue. Any e-commerce store can build something similar now.
 
 **Tools:** Nosto, Dynamic Yield, Clerk.io (from $99/mo). Average revenue bump from personalization: 10-30%.
 
@@ -68,7 +68,7 @@ AI-personalized emails get 29% higher open rates and 41% higher click-through ra
 - Win-back campaigns for lapsed customers with dynamic discount offers
 - Welcome sequences that adapt messaging based on browsing behavior
 
-**Tools:** Klaviyo ($20+/mo with AI features), Omnisend ($16/mo), Mailchimp ($13/mo with AI). Stores using AI email personalization report 15-25% of total revenue from email — up from 5-10% with generic campaigns.
+**Tools:** Klaviyo ($20+/mo with AI features), Omnisend ($16/mo), Mailchimp ($13/mo with AI). Stores using AI email personalization report 15-25% of total revenue from email, up from 5-10% with generic campaigns.
 
 ## Inventory and Demand Forecasting
 
@@ -94,4 +94,4 @@ For an average e-commerce store doing $50K/month, AI tools costing $300-700/mont
 
 ## Where to Start
 
-Start with product descriptions and customer service automation — fastest payback. Then layer on email personalization, dynamic pricing, and demand forecasting as revenue grows. The AI stack pays for itself within the first week for most stores.
+Start with product descriptions and customer service automation, fastest payback. Then layer on email personalization, dynamic pricing, and demand forecasting as revenue grows. The AI stack pays for itself within the first week for most stores.
