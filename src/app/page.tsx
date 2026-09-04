@@ -10,6 +10,7 @@ import { GUIDES } from "@/app/library/guides";
 import { tools } from "@/data/tools";
 import { TrackedLink } from "@/components/analytics/TrackedLink";
 import { StoryBadge } from "@/components/StoryBadge";
+import { ContactEmail } from "@/components/ContactEmail";
 
 export const metadata: Metadata = {
   title: "AI Business - How to Make Money with AI in 2026",
@@ -397,8 +398,8 @@ export default async function HomePage() {
 
             {/* Author's desk — sticky side panel */}
             <aside className="lg:col-span-1">
-              <div className="lg:sticky lg:top-6">
-                <div className="rounded-2xl bg-accent p-5">
+              <div className="h-full">
+                <div className="flex h-full flex-col rounded-2xl bg-accent p-5">
                   <p className="mb-4 font-mono text-base font-bold uppercase tracking-[0.2em] text-black">
                     Author&apos;s desk
                   </p>
@@ -434,9 +435,9 @@ export default async function HomePage() {
                   <div className="mt-5 border-t border-black/20 pt-4">
                     <p className="text-sm font-bold text-black">A word from the author</p>
                     <p className="mt-2 text-sm leading-relaxed text-black/80">
-                      Welcome. This site collects what actually matters in the business of AI:
-                      where the money goes, what the tools really cost, and which rules are coming
-                      into force.
+                      Welcome to my site. Two questions run through everything here: how AI
+                      creates real value for people, and by what rules it should work while it
+                      does.
                     </p>
                     <p className="mt-2 text-sm leading-relaxed text-black/80">
                       For seven years I ran nationwide quality monitoring and test purchases of
@@ -444,11 +445,8 @@ export default async function HomePage() {
                       actually receive. I now do the same for AI.
                     </p>
                     <p className="mt-2 text-sm leading-relaxed text-black/80">
-                      Building something with AI worth telling about?{" "}
-                      <Link href="/submit-your-story" className="font-bold text-black underline underline-offset-2">
-                        Share your story
-                      </Link>
-                      , I read every one.
+                      Questions or ideas?{" "}
+                      <ContactEmail className="font-bold text-black underline underline-offset-2" />
                     </p>
                   </div>
                 </div>
