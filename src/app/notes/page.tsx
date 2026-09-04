@@ -38,12 +38,12 @@ export default function NotesPage() {
             <div className="mt-6 h-1 w-16 rounded-full bg-black/30" />
           </div>
           <Image
-            src="/images/sergei-ponomarev.jpg"
+            src="/images/sergei-desk.png"
             alt="Sergei Ponomarev"
             width={260}
             height={280}
             priority
-            className="h-auto w-40 justify-self-start rounded-2xl border-2 border-black/15 object-cover object-top shadow-lg sm:w-52 lg:w-56 lg:justify-self-end"
+            className="h-auto w-40 justify-self-start rounded-2xl border-2 border-black/15 object-cover object-[50%_22%] shadow-lg sm:w-52 lg:w-56 lg:justify-self-end"
           />
         </div>
       </div>
@@ -71,11 +71,11 @@ export default function NotesPage() {
         {/* Author */}
         <div className="mt-16 flex items-center gap-5 rounded-2xl border border-gray-200 bg-gray-50 p-6">
           <Image
-            src="/images/sergei-ponomarev.jpg"
+            src="/images/sergei-desk.png"
             alt="Sergei Ponomarev"
             width={96}
             height={104}
-            className="h-20 w-20 shrink-0 rounded-xl border border-gray-200 object-cover object-top"
+            className="h-20 w-20 shrink-0 rounded-xl border border-gray-200 object-cover object-[50%_22%]"
           />
           <div>
             <p className="text-base leading-relaxed text-gray-700">
