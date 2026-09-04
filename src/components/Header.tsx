@@ -1,11 +1,18 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { MAIN_NAV } from "@/lib/navigation";
 
 export function Header() {
   const pathname = usePathname();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Any navigation closes the panel — otherwise it stays open over the new page.
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [pathname]);
 
   function isActive(href: string) {
     if (href === "/") return pathname === "/";
@@ -51,16 +58,6 @@ export function Header() {
             >
               Submit Story
             </Link>
-            <Link
-              href="/audit"
-              className={`px-3 py-1.5 text-[13px] font-bold rounded-md transition-colors ${
-                isActive("/audit")
-                  ? "bg-accent-hover text-black"
-                  : "bg-accent text-black hover:bg-accent-hover"
-              }`}
-            >
-              AI Audit
-            </Link>
           </div>
 
           <div className="lg:hidden flex items-center gap-2">
@@ -70,20 +67,50 @@ export function Header() {
             >
               Story
             </Link>
-            <Link
-              href="/audit"
-              className="px-2.5 py-1 text-[12px] font-bold bg-accent text-black rounded-md"
-            >
-              Audit
-            </Link>
-            <Link
-              href="/news"
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen((open) => !open)}
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-nav"
               className="px-2.5 py-1.5 text-[13px] text-white hover:text-accent"
             >
-              Menu
-            </Link>
+              {mobileMenuOpen ? "Close" : "Menu"}
+            </button>
           </div>
         </div>
+
+        {mobileMenuOpen && (
+          <div id="mobile-nav" className="lg:hidden border-t border-card-border py-3">
+            <div className="grid grid-cols-2 gap-1">
+              {MAIN_NAV.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={`px-3 py-2 text-sm font-semibold rounded-md ${
+                    isActive(item.href)
+                      ? "text-accent bg-card-bg"
+                      : "text-white hover:text-accent hover:bg-card-bg"
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              ))}
+              <Link
+                href="/service-check"
+                className="px-3 py-2 text-sm font-semibold rounded-md text-white hover:text-accent hover:bg-card-bg"
+              >
+                AI Test Purchase
+              </Link>
+              <Link
+                href="/audit"
+                className="px-3 py-2 text-sm font-semibold rounded-md text-white hover:text-accent hover:bg-card-bg"
+              >
+                AI Visibility Audit
+              </Link>
+
+            </div>
+          </div>
+        )}
       </nav>
     </header>
   );
