@@ -398,10 +398,10 @@ export default async function HomePage() {
             {/* Author's desk — sticky side panel */}
             <aside className="lg:col-span-1">
               <div className="lg:sticky lg:top-6">
-                <p className="mb-3 font-mono text-xs font-bold uppercase tracking-wider text-black">
-                  Author&apos;s desk
-                </p>
-                <div className="rounded-2xl bg-accent p-4">
+                <div className="rounded-2xl bg-accent p-5">
+                  <p className="mb-4 font-mono text-base font-bold uppercase tracking-[0.2em] text-black">
+                    Author&apos;s desk
+                  </p>
                   <Link href="/sergei-ponomarev" className="group block">
                     <Image
                       src="/images/sergei-desk.png"
@@ -430,6 +430,26 @@ export default async function HomePage() {
                         <p className="mt-0.5 text-xs leading-snug text-white/60">{s.text}</p>
                       </Link>
                     ))}
+                  </div>
+                  <div className="mt-5 border-t border-black/20 pt-4">
+                    <p className="text-sm font-bold text-black">A word from the author</p>
+                    <p className="mt-2 text-sm leading-relaxed text-black/80">
+                      Welcome. This site collects what actually matters in the business of AI:
+                      where the money goes, what the tools really cost, and which rules are coming
+                      into force.
+                    </p>
+                    <p className="mt-2 text-sm leading-relaxed text-black/80">
+                      For seven years I ran nationwide quality monitoring and test purchases of
+                      public services, checking what organisations promise against what people
+                      actually receive. I now do the same for AI.
+                    </p>
+                    <p className="mt-2 text-sm leading-relaxed text-black/80">
+                      Building something with AI worth telling about?{" "}
+                      <Link href="/submit-your-story" className="font-bold text-black underline underline-offset-2">
+                        Share your story
+                      </Link>
+                      , I read every one.
+                    </p>
                   </div>
                 </div>
               </div>
