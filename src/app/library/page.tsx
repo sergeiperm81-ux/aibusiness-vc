@@ -19,7 +19,7 @@ export default function LibraryPage() {
     <section className="bg-white">
       {/* Black / gold banner */}
       <div className="bg-gray-950">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
           <p className="font-mono text-sm font-bold uppercase tracking-[0.2em] text-amber-400">
             An author&apos;s library
           </p>
