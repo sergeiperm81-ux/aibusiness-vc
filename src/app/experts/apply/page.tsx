@@ -51,11 +51,11 @@ export default function ApplyPage() {
                     },
                     {
                       title: "We check it",
-                      body: "We confirm the person is real and the links are yours. A couple of days, and we write to you if anything is unclear.",
+                      body: "We confirm you are a real person and that the links, sites and social accounts are yours. A couple of days, and we write if anything is unclear.",
                     },
                     {
-                      title: "It goes live",
-                      body: "The profile is published in the community and you get an email with the link.",
+                      title: "It goes live, or we decline",
+                      body: "Published profiles get an email with the link. We can also decline at our own discretion, without giving reasons.",
                     },
                   ].map((step, index) => (
                     <li key={step.title} className="flex gap-3">
@@ -101,6 +101,11 @@ export default function ApplyPage() {
                     <strong className="font-bold text-white">We check identity, not talent.</strong>{" "}
                     Your links prove you are you. Whether you build AI, adopt it or govern it,
                     your work speaks for itself.
+                  </li>
+                  <li>
+                    <strong className="font-bold text-white">Admission is our decision.</strong> AI
+                    Business decides what goes into the register and may decline a profile at its
+                    own discretion, without giving reasons.
                   </li>
                   <li>
                     <strong className="font-bold text-white">Yours to edit or remove.</strong> One

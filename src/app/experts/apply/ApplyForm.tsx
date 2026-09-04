@@ -504,8 +504,9 @@ export function ApplyForm() {
           <span>
             These are my own details. I agree to have this profile published on aibusiness.vc and
             to receive email from AI Business: new people in the community, work coming through,
-            and what the register is doing next. I can have the profile changed or removed, and
-            unsubscribe, at any time. *
+            and what the register is doing next. I understand AI Business decides what goes into
+            the register and may decline a profile without giving reasons. I can have the profile
+            changed or removed, and unsubscribe, at any time. *
           </span>
         </label>
       </div>
