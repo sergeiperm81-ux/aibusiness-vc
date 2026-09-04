@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ContactEmail } from "@/components/ContactEmail";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -6,7 +7,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/privacy" },
 };
 
-const CONTACT_EMAIL = "info@aibusiness.vc";
+
 
 export default function PrivacyPage() {
   return (
@@ -25,9 +26,7 @@ export default function PrivacyPage() {
           <p>
             AI Business (aibusiness.vc) is an independent publication operated by Sergei Ponomarev,
             who acts as the data controller. For any privacy question or request, contact{" "}
-            <a href={`mailto:${CONTACT_EMAIL}`} className="text-amber-600 hover:underline">
-              {CONTACT_EMAIL}
-            </a>
+            <ContactEmail className="text-amber-600 hover:underline" />
             .
           </p>
 
@@ -98,9 +97,7 @@ export default function PrivacyPage() {
             If you are in the EU/EEA or UK, you have the right to access, rectify, erase, restrict,
             or object to the processing of your personal data, to data portability, and to withdraw
             consent at any time. To exercise any of these, email{" "}
-            <a href={`mailto:${CONTACT_EMAIL}`} className="text-amber-600 hover:underline">
-              {CONTACT_EMAIL}
-            </a>
+            <ContactEmail className="text-amber-600 hover:underline" />
             . You also have the right to lodge a complaint with your local data protection
             authority.
           </p>

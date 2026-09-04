@@ -27,7 +27,31 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
   const article = getArticleBySlug(SECTION, slug);
   if (!article) return { title: "Not Found" };
-  return { title: article.title, description: article.description, keywords: article.keywords };
+  const url = `https://aibusiness.vc/society/${slug}`;
+  const image = article.image || "/og-image.jpg";
+  return {
+    title: article.title,
+    description: article.description,
+    keywords: article.keywords,
+    alternates: { canonical: url },
+    // An unlisted piece is reachable by its direct link but must not enter the
+    // search index until the company it is about has signed off on it.
+    ...(article.unlisted ? { robots: { index: false, follow: false } } : {}),
+    openGraph: {
+      type: "article",
+      url,
+      title: article.title,
+      description: article.description,
+      publishedTime: article.date,
+      images: [{ url: image, width: 1200, height: 630, alt: article.title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: article.title,
+      description: article.description,
+      images: [image],
+    },
+  };
 }
 
 export default async function Page({ params }: Props) {

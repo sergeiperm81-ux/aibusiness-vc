@@ -6,11 +6,12 @@ interface Props {
   slug: string;
   title: string;
   pdf: string;
+  fileLabel?: string;
 }
 
 type Status = "idle" | "sending" | "done" | "error";
 
-export function LibraryDownloadGate({ slug, title, pdf }: Props) {
+export function LibraryDownloadGate({ slug, title, pdf, fileLabel = "PDF" }: Props) {
   const [email, setEmail] = useState("");
   const [consent, setConsent] = useState(false);
   const [status, setStatus] = useState<Status>("idle");
@@ -55,7 +56,7 @@ export function LibraryDownloadGate({ slug, title, pdf }: Props) {
           rel="noopener noreferrer"
           className="inline-block rounded-lg bg-amber-500 px-5 py-2.5 text-sm font-bold text-gray-950 transition hover:bg-amber-400"
         >
-          Download the PDF →
+          Download the {fileLabel} →
         </a>
       </div>
     );
@@ -63,11 +64,11 @@ export function LibraryDownloadGate({ slug, title, pdf }: Props) {
 
   return (
     <div className="rounded-2xl border border-amber-300 bg-amber-50 p-6">
-      <h3 className="mb-1 text-lg font-bold text-gray-900">Get the PDF — free</h3>
+      <h3 className="mb-1 text-lg font-bold text-gray-900">Get the {fileLabel} — free</h3>
       <p className="mb-4 text-sm text-gray-600">
-        Drop your email and we&apos;ll open{" "}
-        <span className="font-semibold text-gray-900">{title}</span> for you. No spam — just an
-        occasional note when a new guide is published.
+        Drop your email and get instant access to{" "}
+        <span className="font-semibold text-gray-900">{title}</span>. No spam — just an occasional
+        note when a new guide is published.
       </p>
       <form onSubmit={handleSubmit} className="rounded-xl border border-gray-200 bg-white p-4">
         <label htmlFor="library-email" className="mb-1 block text-xs text-gray-500">

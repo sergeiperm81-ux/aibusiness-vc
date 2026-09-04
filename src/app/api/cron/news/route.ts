@@ -13,7 +13,13 @@ export async function GET(request: Request) {
   const authHeader = request.headers.get("authorization");
   const cronSecret = process.env.CRON_SECRET;
 
-  if (cronSecret && authHeader !== `Bearer ${cronSecret}`) {
+  // Fail closed: an unset secret used to leave this open to everyone, letting
+  // anyone trigger revalidation in a loop.
+  if (!cronSecret) {
+    console.error("[cron/news] CRON_SECRET is not set; refusing to run");
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+  if (authHeader !== `Bearer ${cronSecret}`) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 

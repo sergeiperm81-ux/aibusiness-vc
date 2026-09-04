@@ -293,39 +293,6 @@ function NewsPageInner({ news }: Props) {
                 </div>
               </div>
 
-              {/* Trending Tools */}
-              <div className="bg-emerald-500 rounded-t-xl px-5 py-3 flex items-center justify-between">
-                <h3 className="text-sm font-bold text-white uppercase tracking-wider">
-                  Trending Tools
-                </h3>
-                <Link href="/tools/directory" className="text-xs text-white/70 hover:text-white">
-                  View all &rarr;
-                </Link>
-              </div>
-              <div className="bg-white border border-gray-200 border-t-0 rounded-b-xl">
-                {[
-                  { name: "Cursor", cat: "Coding", slug: "cursor", rank: 1 },
-                  { name: "Make.com", cat: "Automation", slug: "make", rank: 2 },
-                  { name: "Claude", cat: "AI Assistant", slug: "claude", rank: 3 },
-                  { name: "Semrush", cat: "SEO", slug: "semrush", rank: 4 },
-                  { name: "ElevenLabs", cat: "Audio", slug: "elevenlabs", rank: 5 },
-                ].map((t) => (
-                  <Link
-                    key={t.name}
-                    href={`/tools/directory/${t.slug}`}
-                    className="flex items-center gap-3 px-5 py-3 border-b border-gray-100 last:border-0 hover:bg-gray-50"
-                  >
-                    <span className="text-sm font-bold text-gray-300 w-5">{t.rank}</span>
-                    <span className="w-8 h-8 rounded-lg bg-amber-50 flex items-center justify-center text-amber-600 text-xs font-bold flex-shrink-0">
-                      {t.name[0]}
-                    </span>
-                    <div>
-                      <p className="text-sm font-semibold text-gray-900">{t.name}</p>
-                      <p className="text-xs text-gray-400">{t.cat}</p>
-                    </div>
-                  </Link>
-                ))}
-              </div>
             </div>
           </div>
         </div>

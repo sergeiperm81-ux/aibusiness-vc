@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
+import { verifySessionToken } from "@/lib/admin-session";
 import { getStats, type Stats } from "@/lib/ga-stats";
+import { GUIDES } from "@/app/library/guides";
 
 export const metadata: Metadata = {
   title: "Stats",
@@ -20,7 +22,7 @@ function fmt(n: number): string {
 export default async function StatsPage({ searchParams }: PageProps) {
   const cookieStore = await cookies();
   const expected = process.env.STATS_PASSWORD;
-  const authed = !!expected && cookieStore.get("stats_auth")?.value === expected;
+  const authed = verifySessionToken(cookieStore.get("stats_auth")?.value, "stats", expected);
 
   if (!authed) {
     const { error } = await searchParams;
@@ -113,6 +115,31 @@ function PageRow({ path, views, bounce, tone }: { path: string; views: number; b
   );
 }
 
+function LibraryDownloads({ stats }: { stats: Stats }) {
+  const counts = new Map((stats.downloads ?? []).map((d) => [d.file, d.count]));
+  const rows = GUIDES.map((g) => ({ title: g.title, count: counts.get(g.pdf) ?? 0 })).sort(
+    (a, b) => b.count - a.count
+  );
+  const total = rows.reduce((s, r) => s + r.count, 0);
+  const max = Math.max(1, ...rows.map((r) => r.count));
+
+  return (
+    <div>
+      <h2 className="text-lg font-bold text-gray-900 mb-1">Library downloads</h2>
+      <p className="text-xs text-gray-400 mb-4">
+        Download clicks per brochure, all time — {fmt(total)} total. Only counts visitors whose
+        analytics is active, and GA under-recorded downloads between Jun 12 and Jul 16, so treat these
+        as a floor, not the full number.
+      </p>
+      <div className="bg-white rounded-xl border border-gray-200 p-5 space-y-4">
+        {rows.map((r) => (
+          <BarRow key={r.title} name={r.title} value={fmt(r.count)} max={max} accent="bg-amber-500" />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function Dashboard({ stats, live }: { stats: Stats; live: boolean }) {
   const v = stats.visitors;
   const maxCountry = Math.max(...stats.countries.map((c) => c.users));
@@ -163,6 +190,9 @@ function Dashboard({ stats, live }: { stats: Stats; live: boolean }) {
             </div>
             <p className="text-xs text-gray-400 mt-2">Numbers are people (active users). Note: a large share of traffic is automated (bots/crawlers).</p>
           </div>
+
+          {/* Library downloads */}
+          <LibraryDownloads stats={stats} />
 
           {/* Daily breakdown — last 7 days */}
           {stats.daily && stats.daily.length > 0 && (

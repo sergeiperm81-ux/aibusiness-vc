@@ -1,6 +1,10 @@
 import Link from "next/link";
 import type { Article, ArticleMeta } from "@/lib/articles";
 import { Breadcrumbs, getBreadcrumbsForArticle } from "./Breadcrumbs";
+import { StartHereRail } from "./StartHereRail";
+import { ReadingTracker } from "./analytics/ReadingTracker";
+
+import { StoryBadge } from "@/components/StoryBadge";
 
 const catColors: Record<string, string> = {
   Solo: "bg-amber-500 text-black",
@@ -22,15 +26,30 @@ const heroImages: Record<string, string> = {
   Robots: "/images/articles/robot-hero-1.jpg",
 };
 
+import { TestAgentsCallout } from "@/components/TestAgentsCallout";
+import { StoryVote } from "@/components/StoryVote";
+
+/**
+ * Articles where a customer-facing agent is the subject, not a passing
+ * mention. The service block appears only on these: a link that fires on
+ * every article is an advert, one that fires on the right article is help.
+ */
+const AGENT_TOPIC = /\b(chatbot|chat bot|conversational ai|ai agent|ai agents|virtual assistant|customer (?:service|support) ai|support automation)\b/i;
+
+function isAgentArticle(article: { title: string; description?: string; keywords?: string[] }): boolean {
+  const haystack = [article.title, article.description ?? "", ...(article.keywords ?? [])].join(" ");
+  return AGENT_TOPIC.test(haystack);
+}
+
 // Cross-section discovery links
 const CROSS_LINKS = [
   { href: "/solo", label: "Solo Earners", section: "solo" },
-  { href: "/tools", label: "AI Tools (356)", section: "tools" },
+  { href: "/tools", label: "Tools & Technology", section: "tools" },
   { href: "/startups", label: "AI Startups", section: "startups" },
   { href: "/b2b", label: "B2B / Enterprise", section: "b2b" },
   { href: "/vc", label: "VC & Funding", section: "vc" },
   { href: "/government", label: "Government AI", section: "government" },
-  { href: "/models", label: "LLM Models (36)", section: "models" },
+  { href: "/models", label: "LLM Models (71)", section: "models" },
   { href: "/news", label: "Daily News", section: "news" },
   { href: "/learn", label: "Learn AI", section: "learn" },
   { href: "/society", label: "AI & Society", section: "society" },
@@ -72,8 +91,8 @@ const SIDEBAR_SECTIONS = [
   { href: "/government", label: "Gov", description: "Policy & contracts", icon: "🏛", section: "government" },
   { href: "/learn", label: "Learn", description: "Courses & careers", icon: "🎓", section: "learn" },
   { href: "/society", label: "Society", description: "AI, jobs & daily life", icon: "🌐", section: "society" },
-  { href: "/tools", label: "Tools", description: "356 tools reviewed", icon: "🛠", section: "tools" },
-  { href: "/models", label: "Models", description: "36 models compared", icon: "🤖", section: "models" },
+  { href: "/tools", label: "Tools", description: "Model launches & real costs", icon: "🛠", section: "tools" },
+  { href: "/models", label: "Models", description: "71 models compared", icon: "🤖", section: "models" },
 ];
 
 interface ArticlePageProps {
@@ -87,6 +106,8 @@ export function ArticlePageView({ article, relatedArticles = [] }: ArticlePagePr
 
   return (
     <>
+      <ReadingTracker contentId={`${article.section}/${article.slug}`} section={article.section} />
+
       {/* Hero image */}
       <section className="relative h-56 sm:h-72 overflow-hidden">
         <img src={heroImg} alt={article.title} className="w-full h-full object-cover" />
@@ -123,6 +144,12 @@ export function ArticlePageView({ article, relatedArticles = [] }: ArticlePagePr
             {/* Main content — 2/3 width */}
             <article className="lg:col-span-2 min-w-0">
               <MarkdownContent content={article.content} />
+
+              {/* Reader sentiment scale, Partner Stories only: the label is in
+                  the intro note every such piece carries. */}
+              {article.content.includes("Partner Story") && (
+                <StoryVote slug={article.slug} />
+              )}
 
           {/* Share buttons */}
           <div className="mt-10 pt-6 border-t border-black/10">
@@ -169,6 +196,16 @@ export function ArticlePageView({ article, relatedArticles = [] }: ArticlePagePr
             </div>
           </div>
 
+          {isAgentArticle(article) && (
+            <div className="mt-10">
+              <TestAgentsCallout
+                heading="Is your own chatbot doing what you think?"
+                body="Reading about agents is one thing; knowing what yours says to a paying customer is another. A test purchase of your AI agent walks the service end to end and compares your published promises against the transcript and the system log."
+                anchor="Check your AI agent"
+              />
+            </div>
+          )}
+
           {/* Explore More Topics — cross-section internal links */}
           <div className="mt-10 pt-6 border-t border-black/10">
             <h3 className="text-sm font-bold text-black mb-3">Explore More Topics</h3>
@@ -201,32 +238,11 @@ export function ArticlePageView({ article, relatedArticles = [] }: ArticlePagePr
 
         {/* Sidebar — 1/3 width, sticky */}
         <aside className="hidden lg:block">
-          <div className="sticky top-20 space-y-6">
-            {/* Explore sections — dark card */}
-            <div className="bg-background rounded-2xl p-6">
-              <p className="text-accent text-xs font-bold uppercase tracking-[0.2em] mb-1">Explore</p>
-              <p className="text-white font-bold text-lg mb-5">Choose a topic</p>
-              <div className="space-y-2">
-                {SIDEBAR_SECTIONS
-                  .filter((s) => s.section !== article.section)
-                  .map((s) => (
-                    <Link
-                      key={s.href}
-                      href={s.href}
-                      className="flex items-center justify-between px-4 py-3 rounded-xl bg-white/5 border border-white/10 hover:border-accent/50 hover:bg-white/10 transition-all group"
-                    >
-                      <div className="flex items-center gap-3">
-                        <span className="text-accent text-sm">{s.icon}</span>
-                        <div>
-                          <p className="text-white text-sm font-medium leading-tight">{s.label}</p>
-                          <p className="text-white/40 text-xs">{s.description}</p>
-                        </div>
-                      </div>
-                      <span className="text-white/30 group-hover:text-accent group-hover:translate-x-0.5 transition-all text-sm">&rarr;</span>
-                    </Link>
-                  ))}
-              </div>
-            </div>
+          {/* Sticky only works while the column fits the screen: a rail taller
+              than the viewport has nowhere to pin, so it just scrolls away.
+              Cap it at screen height and let the overflow scroll inside. */}
+          <div className="sticky top-20 max-h-[calc(100vh-6rem)] space-y-6 overflow-y-auto overscroll-contain pr-1">
+            <StartHereRail sticky={false} />
 
             {/* Related reading — light card */}
             {relatedArticles.length > 0 && (
@@ -249,8 +265,11 @@ export function ArticlePageView({ article, relatedArticles = [] }: ArticlePagePr
                         </div>
                       )}
                       <div className="flex-1 min-w-0">
-                        <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded uppercase ${catColors[a.category] ?? "bg-amber-500 text-black"}`}>
-                          {a.category}
+                        <span className="flex flex-wrap items-center gap-1">
+                          <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded uppercase ${catColors[a.category] ?? "bg-amber-500 text-black"}`}>
+                            {a.category === "Government" ? "AI Governance" : a.category}
+                          </span>
+                          <StoryBadge story={a.story} size="xs" />
                         </span>
                         <p className="text-sm font-semibold text-black group-hover:text-amber-600 transition-colors mt-1 leading-snug line-clamp-2">
                           {a.title}
@@ -276,7 +295,7 @@ export function ArticlePageView({ article, relatedArticles = [] }: ArticlePagePr
                       className="block group"
                     >
                       <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded uppercase ${catColors[p.category] ?? "bg-amber-500 text-black"}`}>
-                        {p.category}
+                        {p.category === "Government" ? "AI Governance" : p.category}
                       </span>
                       <p className="text-sm font-semibold text-black group-hover:text-amber-600 transition-colors mt-1 leading-snug line-clamp-2">
                         {p.title}
@@ -285,6 +304,43 @@ export function ArticlePageView({ article, relatedArticles = [] }: ArticlePagePr
                   ))}
               </div>
             </div>
+
+            {/* Browse sections — mirrors the main site menu (SIDEBAR_SECTIONS) */}
+            <nav aria-label="Site sections" className="bg-gray-50 rounded-2xl border border-gray-200 p-6">
+              <p className="text-accent text-xs font-bold uppercase tracking-[0.2em] mb-4">Browse sections</p>
+              <div className="space-y-1">
+                {SIDEBAR_SECTIONS.map((s) => {
+                  const isCurrent = s.section === article.section.toLowerCase();
+                  const inner = (
+                    <>
+                      <span aria-hidden="true" className="w-5 shrink-0 text-center text-sm">
+                        {s.icon}
+                      </span>
+                      <span className="shrink-0 text-sm font-semibold">{s.label}</span>
+                      <span className="min-w-0 truncate text-xs text-black/45">{s.description}</span>
+                    </>
+                  );
+
+                  return isCurrent ? (
+                    <span
+                      key={s.href}
+                      aria-current="page"
+                      className="flex items-center gap-2 rounded-lg border border-amber-200 bg-amber-50 px-2 py-1.5 text-amber-700"
+                    >
+                      {inner}
+                    </span>
+                  ) : (
+                    <Link
+                      key={s.href}
+                      href={s.href}
+                      className="flex items-center gap-2 rounded-lg border border-transparent px-2 py-1.5 text-black/70 transition-colors hover:bg-white hover:text-amber-600"
+                    >
+                      {inner}
+                    </Link>
+                  );
+                })}
+              </div>
+            </nav>
           </div>
         </aside>
       </div>
@@ -313,8 +369,11 @@ export function ArticlePageView({ article, relatedArticles = [] }: ArticlePagePr
                     </div>
                   )}
                   <div className="p-4">
-                    <span className={`text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider ${catColors[a.category] ?? "bg-amber-500 text-black"}`}>
-                      {a.category}
+                    <span className="flex flex-wrap items-center gap-1">
+                      <span className={`text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider ${catColors[a.category] ?? "bg-amber-500 text-black"}`}>
+                        {a.category === "Government" ? "AI Governance" : a.category}
+                      </span>
+                      <StoryBadge story={a.story} />
                     </span>
                     <h3 className="font-bold text-black text-sm mt-2 leading-snug group-hover:text-amber-600 transition-colors">
                       {a.title}
@@ -345,7 +404,7 @@ export function ArticlePageView({ article, relatedArticles = [] }: ArticlePagePr
                   className="group bg-card-bg rounded-xl p-4 hover:ring-2 hover:ring-accent/40 transition-all hover:-translate-y-1"
                 >
                   <span className={`text-[9px] font-bold px-2 py-0.5 rounded uppercase tracking-wider ${catColors[p.category] ?? "bg-amber-500 text-black"}`}>
-                    {p.category}
+                    {p.category === "Government" ? "AI Governance" : p.category}
                   </span>
                   <h3 className="font-semibold text-white text-sm mt-2 leading-snug group-hover:text-accent transition-colors line-clamp-2">
                     {p.title}
@@ -492,7 +551,13 @@ function buildArticleSchema(
     : heroImg;
   const sectionKey = article.section.toLowerCase();
   const articleSection = SECTION_TO_ARTICLE_SECTION[sectionKey] ?? article.category;
-  const keywords = SECTION_TO_KEYWORDS[sectionKey] ?? [];
+  // The article's own keywords name the thing it is about (a model, a company,
+  // a price). The section defaults name only the department. Prefer the specific
+  // ones: an engine asked about "Claude Fable 5.1" needs that string in the data,
+  // not "AI tool review".
+  const keywords = article.keywords?.length
+    ? article.keywords
+    : SECTION_TO_KEYWORDS[sectionKey] ?? [];
   const wordCount = countArticleWords(article.content);
 
   return {
@@ -529,6 +594,31 @@ function buildArticleSchema(
     speakable: {
       "@type": "SpeakableSpecification",
       cssSelector: ["h1", "h2"],
+    },
+    ...buildPartnerEntity(article),
+  };
+}
+
+/**
+ * The GEO entity layer: binds the article to the company it is about.
+ *
+ * Without this, a machine reading a Partner Story sees only our author and
+ * publisher; the featured company exists in prose alone. With `about`, an AI
+ * engine gets the explicit statement "this article is about Organization X at
+ * URL Y, founded by Z" — which is what makes the story citable in answers
+ * about that company, with aibusiness.vc named as the source.
+ */
+function buildPartnerEntity(article: Article) {
+  const partner = article.partner;
+  if (!partner) return {};
+  return {
+    about: {
+      "@type": "Organization",
+      name: partner.company,
+      url: partner.url,
+      ...(partner.founder
+        ? { founder: { "@type": "Person", name: partner.founder } }
+        : {}),
     },
   };
 }

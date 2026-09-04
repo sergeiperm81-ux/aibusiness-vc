@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ArticleMeta } from "@/lib/articles";
+import { StoryBadge } from "@/components/StoryBadge";
 
 const catColors: Record<string, string> = {
   Solo: "bg-amber-500 text-black",
@@ -53,11 +54,14 @@ export function SectionArticleGrid({ articles, section, totalLabel }: SectionPag
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-5">
-                  <span
-                    className={`text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider ${catColors[a.category] ?? "bg-amber-500 text-black"}`}
-                  >
-                    {a.category}
-                  </span>
+                  <div className="flex flex-wrap items-center gap-1">
+                    <span
+                      className={`text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider ${catColors[a.category] ?? "bg-amber-500 text-black"}`}
+                    >
+                      {a.category === "Government" ? "AI Governance" : a.category}
+                    </span>
+                    <StoryBadge story={a.story} />
+                  </div>
                   <h2 className="font-bold text-white text-lg mt-2 leading-snug group-hover:text-accent transition-colors">
                     {a.title}
                   </h2>
@@ -76,12 +80,20 @@ export function SectionArticleGrid({ articles, section, totalLabel }: SectionPag
                 href={`/${a.section}/${a.slug}`}
                 className="group rounded-xl overflow-hidden border border-black/5 hover:shadow-lg transition-all hover:-translate-y-1"
               >
-                <div className="h-48 overflow-hidden">
+                <div className="relative h-48 overflow-hidden">
                   <img
                     src={a.image || fallbackImg}
                     alt={a.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
+                  <div className="absolute left-3 top-3 flex flex-wrap items-center gap-1">
+                    <span
+                      className={`text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider ${catColors[a.category] ?? "bg-amber-500 text-black"}`}
+                    >
+                      {a.category === "Government" ? "AI Governance" : a.category}
+                    </span>
+                    <StoryBadge story={a.story} />
+                  </div>
                 </div>
                 <div className="p-4">
                   <h3 className="font-bold text-black text-sm leading-snug group-hover:text-amber-600 transition-colors">

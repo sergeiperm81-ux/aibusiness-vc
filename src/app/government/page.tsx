@@ -3,9 +3,9 @@ import { getArticlesBySection } from "@/lib/articles";
 import SectionArticleExplorer from "@/components/SectionArticleExplorer";
 
 export const metadata: Metadata = {
-  title: "Government — AI & the State: Spending, Defense, Regulation, Infrastructure",
+  title: "AI Governance — Regulation, Policy & Government AI Initiatives",
   description:
-    "AI government spending, defense contracts, data centers, regulation, smart cities, space. Trillions at stake in public AI.",
+    "EU AI Act, national AI strategies, executive orders, regulatory frameworks, government procurement, and the political economy of AI oversight.",
 };
 
 export default function GovernmentPage() {
@@ -16,14 +16,14 @@ export default function GovernmentPage() {
       <section className="bg-background">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
           <p className="text-red-400 font-mono text-xs font-medium mb-2 tracking-wider uppercase">
-            Government & AI
+            AI Governance
           </p>
           <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">
-            AI & the State — <span className="text-accent">Public Spending & Policy</span>
+            AI Governance — <span className="text-accent">Regulation, Policy & State Initiatives</span>
           </h1>
           <p className="text-sm text-white/70 max-w-2xl">
-            Government AI spending, defense contracts, data-center infrastructure, regulation,
-            smart cities, and AI in space — and what it all means for businesses.
+            EU AI Act, national AI strategies, executive orders, regulatory frameworks,
+            government procurement, and the political economy of AI oversight.
           </p>
         </div>
       </section>

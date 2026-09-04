@@ -34,7 +34,7 @@ export const START_HERE_ITEMS = [
   {
     href: "/sergei-ponomarev",
     title: "About the founder",
-    text: "Twenty years of service standards, evaluation and testing.",
+    text: "Seven years of service standards, evaluation and test purchases.",
   },
 ] as const;
 

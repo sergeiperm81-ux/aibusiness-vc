@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { checkRateLimit, clientIpFrom } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
 export const maxDuration = 10;
@@ -203,6 +204,19 @@ async function deliverLeadEmailWithBrevo(leadEvent: LeadEvent): Promise<Delivery
 
 export async function POST(request: Request) {
   try {
+    const limit = await checkRateLimit({
+      scope: "leads",
+      key: clientIpFrom(request),
+      limit: 5,
+      windowSeconds: 3600,
+    });
+    if (!limit.allowed) {
+      return NextResponse.json(
+        { ok: false, error: "Too many requests. Please try again shortly." },
+        { status: 429, headers: { "retry-after": String(limit.retryAfterSeconds) } }
+      );
+    }
+
     const body = (await request.json()) as LeadRequestBody;
     const email = (body.email ?? "").trim().toLowerCase();
     const source = body.source;

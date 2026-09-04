@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { MAIN_NAV } from "@/lib/navigation";
 import { CookieSettingsLink } from "@/components/CookieSettingsLink";
+import { ContactEmail } from "@/components/ContactEmail";
 
 export function Footer() {
   return (
@@ -17,12 +18,24 @@ export function Footer() {
               Outcome-first analysis of the business of AI: real numbers, practical
               playbooks, and tested tools for operators, founders, and investors.
             </p>
-            <div className="mt-4">
+            <div className="mt-4 flex flex-wrap gap-2">
               <Link
                 href="/audit"
                 className="inline-flex items-center rounded-md bg-accent px-3 py-1.5 text-xs font-bold text-black hover:bg-accent-hover transition-colors"
               >
-                AI Audit
+                AI Visibility Audit
+              </Link>
+              <Link
+                href="/service-check"
+                className="inline-flex items-center rounded-md border border-card-border px-3 py-1.5 text-xs font-bold text-white hover:border-accent hover:text-accent transition-colors"
+              >
+                AI Service Check
+              </Link>
+              <Link
+                href="/benchmarks"
+                className="inline-flex items-center rounded-md border border-card-border px-3 py-1.5 text-xs font-bold text-white hover:border-accent hover:text-accent transition-colors"
+              >
+                Benchmarks
               </Link>
             </div>
           </div>
@@ -44,8 +57,17 @@ export function Footer() {
         </div>
 
         <div className="border-t border-card-border mt-8 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-muted">&copy; {new Date().getFullYear()} aibusiness.vc</p>
+          <p className="text-xs text-muted">
+            &copy; {new Date().getFullYear()} aibusiness.vc
+            <span className="mx-2" aria-hidden>
+              &middot;
+            </span>
+            <ContactEmail className="hover:text-foreground" />
+          </p>
           <div className="flex gap-4 text-xs text-muted">
+            <Link href="/notes" className="hover:text-foreground">
+              Founder&apos;s Notes
+            </Link>
             <Link href="/about" className="hover:text-foreground">
               About
             </Link>
