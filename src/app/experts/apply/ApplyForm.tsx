@@ -93,10 +93,11 @@ export function ApplyForm() {
     return (
       <div className="rounded-2xl border border-emerald-300 bg-emerald-50 p-8 text-center">
         <div className="mb-2 text-2xl">✅</div>
-        <h2 className="mb-2 text-xl font-bold text-gray-900">You are in the queue</h2>
+        <h2 className="mb-2 text-xl font-bold text-gray-900">Sent for review</h2>
         <p className="mx-auto max-w-lg text-sm leading-relaxed text-gray-700">
-          We check that the person and the links are real, nothing more, and that usually takes a
-          couple of days. If anything is unclear we will write to you before publishing.
+          Your profile is not on the site yet. We check that the person and the links are real,
+          nothing more, and that usually takes a couple of days. If anything is unclear we write
+          to you first, and you get an email the moment the profile goes live.
         </p>
       </div>
     );
@@ -207,7 +208,7 @@ export function ApplyForm() {
             {expertise.slice(0, 2).map((s) => (
               <span
                 key={s}
-                className="rounded-md bg-amber-100 px-2 py-0.5 text-[11px] font-semibold text-amber-900"
+                className="rounded-md bg-accent px-2 py-0.5 text-[11px] font-bold text-black"
               >
                 {s}
               </span>
@@ -421,12 +422,16 @@ export function ApplyForm() {
 
       {status === "error" && <p className="text-sm font-semibold text-red-600">{message}</p>}
 
+      <p className="text-sm text-gray-600">
+        Nothing is published straight away: this goes to the editor first.
+      </p>
+
       <button
         type="submit"
         disabled={status === "sending"}
         className="rounded-lg bg-amber-500 px-6 py-3 text-sm font-bold text-gray-950 transition hover:bg-amber-400 disabled:opacity-60"
       >
-        {status === "sending" ? "Sending…" : "Create my profile"}
+        {status === "sending" ? "Sending…" : "Send for review"}
       </button>
     </form>
   );

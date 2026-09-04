@@ -41,7 +41,7 @@ function ExpertCard({ expert: e }: { expert: Expert }) {
         {e.expertise.slice(0, 2).map((s) => (
           <span
             key={s}
-            className="rounded-md bg-amber-100 px-2 py-0.5 text-[11px] font-semibold text-amber-900"
+            className="rounded-md bg-accent px-2 py-0.5 text-[11px] font-bold text-black"
           >
             {s}
           </span>

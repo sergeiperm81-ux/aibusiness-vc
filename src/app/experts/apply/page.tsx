@@ -57,6 +57,38 @@ export default function ApplyPage() {
                 </ul>
               </div>
 
+              <div className="mt-4 rounded-2xl border-2 border-gray-200 p-6">
+                <p className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-amber-700">
+                  How it works
+                </p>
+                <ol className="mt-4 space-y-4">
+                  {[
+                    {
+                      title: "You fill this in",
+                      body: "Write the profile in your own words and add a photo. Nothing goes live at this point.",
+                    },
+                    {
+                      title: "We check it",
+                      body: "We confirm the person is real and the links are yours. A couple of days, and we write to you if anything is unclear.",
+                    },
+                    {
+                      title: "It goes live",
+                      body: "The profile is published in the community and you get an email with the link.",
+                    },
+                  ].map((step, index) => (
+                    <li key={step.title} className="flex gap-3">
+                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent text-sm font-bold text-black">
+                        {index + 1}
+                      </span>
+                      <div>
+                        <p className="text-sm font-bold text-gray-900">{step.title}</p>
+                        <p className="mt-0.5 text-sm leading-snug text-gray-600">{step.body}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+
               <div className="mt-4 rounded-2xl bg-gray-950 p-6">
                 <p className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-accent">
                   The rules
