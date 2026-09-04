@@ -111,10 +111,9 @@ export async function POST(request: Request) {
     const ext = (photo.type ?? "image/jpeg").split("/")[1]?.replace("jpeg", "jpg") ?? "jpg";
     const safeName = (body.name ?? "expert").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
+    // Applications belong in the editorial inbox, not the shared leads one.
     const ownerTo = (
-      process.env.LEADS_TO_EMAIL?.trim() ||
-      process.env.LEADS_DASH_USER?.trim() ||
-      ""
+      process.env.EXPERTS_TO_EMAIL?.trim() || "info@aibusiness.vc"
     ).toLowerCase();
 
     if (!ownerTo || !isValidEmail(ownerTo)) {
