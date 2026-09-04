@@ -7,8 +7,6 @@ export const metadata: Metadata = {
   description:
     "An open community of the people who set the standards for AI, audit it, evaluate it and put it to work. Individuals, not firms. Free to join, free to search.",
   alternates: { canonical: "/experts" },
-  // Kept out of search while the community is being built and holds no real entries.
-  robots: { index: false, follow: false },
 };
 
 export default function ExpertsPage() {

@@ -20,8 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${expert.name} — AI governance expert`,
     description: expert.headline,
     alternates: { canonical: `/experts/${expert.slug}` },
-    robots: { index: false, follow: false },
-  };
+    };
 }
 
 export default async function ExpertPage({ params }: Props) {

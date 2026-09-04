@@ -328,9 +328,8 @@ export default async function HomePage() {
               How AI Creates <span className="text-accent">Business Value</span> in 2026
             </h1>
             <p className="mb-3 max-w-xl text-sm leading-relaxed text-white/70">
-              Independent, outcome-first analysis of where AI creates value — for operators,
-              founders, and investors. Real numbers, honest ROI, and independent checks of the
-              AI services behind them.
+              How AI creates real value for people, and by what rules it works. Real numbers,
+              honest ROI, and independent checks of the AI services behind them.
             </p>
           </div>
         </div>
