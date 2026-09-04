@@ -127,10 +127,10 @@ export function PhotoPicker({ onChange }: Props) {
   const dispH = (img?.naturalHeight ?? FRAME) * scale;
 
   return (
-    <div className="rounded-2xl border border-gray-200 bg-gray-50 p-5">
+    <div className="rounded-2xl border-2 border-amber-300 bg-amber-50 p-5">
       <div className="flex flex-col gap-6 sm:flex-row sm:items-start">
         <div
-          className="relative shrink-0 select-none overflow-hidden rounded-full border-4 border-white bg-gray-200 shadow-md"
+          className="relative shrink-0 select-none overflow-hidden rounded-full border-4 border-amber-400 bg-white shadow-md"
           style={{ width: FRAME, height: FRAME, cursor: src ? "grab" : "default", touchAction: "none" }}
           onPointerDown={onPointerDown}
           onPointerMove={onPointerMove}
@@ -155,14 +155,14 @@ export function PhotoPicker({ onChange }: Props) {
               }}
             />
           ) : (
-            <span className="flex h-full w-full items-center justify-center px-6 text-center text-sm text-gray-500">
+            <span className="flex h-full w-full items-center justify-center px-6 text-center text-sm font-semibold text-amber-800/70">
               Your face goes here
             </span>
           )}
         </div>
 
         <div className="flex-1">
-          <label className="inline-block cursor-pointer rounded-lg bg-gray-950 px-5 py-2.5 text-sm font-bold text-white transition hover:bg-gray-800">
+          <label className="inline-block cursor-pointer rounded-lg bg-amber-500 px-5 py-3 text-sm font-bold text-gray-950 transition hover:bg-amber-400">
             {src ? "Choose another photo" : "Choose a photo"}
             <input type="file" accept="image/*" onChange={handleFile} className="hidden" />
           </label>
@@ -198,7 +198,7 @@ export function PhotoPicker({ onChange }: Props) {
           )}
 
           {!src && (
-            <p className="mt-3 max-w-sm text-sm leading-relaxed text-gray-600">
+            <p className="mt-3 max-w-sm text-sm leading-relaxed text-amber-900">
               A clear portrait, looking at the camera. This is the first thing anyone sees, so it
               is worth a good one.
             </p>

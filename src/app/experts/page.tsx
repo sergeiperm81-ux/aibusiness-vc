@@ -1,8 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ContactEmail } from "@/components/ContactEmail";
 import { ExpertsBrowser } from "./ExpertsBrowser";
-import { REGISTER_BENEFITS } from "./experts";
 
 export const metadata: Metadata = {
   title: "AI Governance Experts — The Open Community",
@@ -38,51 +36,6 @@ export default function ExpertsPage() {
           Under construction: the cards above are placeholders showing the layout. No real person
           is listed yet.
         </p>
-
-        <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-[1.4fr_1fr]">
-          <div className="rounded-2xl bg-accent p-8 sm:p-10">
-            <p className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-black">
-              Claim your place
-            </p>
-            <h2 className="mt-2 max-w-xl text-3xl font-bold leading-tight text-black">
-              Somebody is looking for exactly what you do. Right now they cannot find you.
-            </h2>
-            <div className="mt-7 grid grid-cols-1 gap-5 sm:grid-cols-2">
-              {REGISTER_BENEFITS.map((b) => (
-                <div key={b.title}>
-                  <p className="text-sm font-bold text-black">{b.title}</p>
-                  <p className="mt-0.5 text-sm leading-snug text-black/75">{b.body}</p>
-                </div>
-              ))}
-            </div>
-            <Link
-              href="/experts/apply"
-              className="mt-8 inline-block rounded-lg bg-gray-950 px-6 py-3 text-sm font-bold text-white transition hover:bg-gray-800"
-            >
-              Claim your expertise &rarr;
-            </Link>
-            <p className="mt-2 text-xs text-black/70">
-              Free. No paid tier. The profile stays yours.
-            </p>
-          </div>
-
-          <div className="rounded-2xl bg-gray-950 p-8 sm:p-10">
-            <p className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-accent">
-              Need an expert?
-            </p>
-            <h2 className="mt-2 text-2xl font-bold leading-tight text-white">
-              Tell us the task, get three names.
-            </h2>
-            <p className="mt-3 text-sm leading-relaxed text-gray-300">
-              Send what you are trying to solve. We reply with the people who actually fit, and
-              nothing about your request is ever published.
-            </p>
-            <ContactEmail
-              className="mt-4 inline-block text-sm font-bold text-accent underline underline-offset-2"
-              subject="Looking for an AI governance expert"
-            />
-          </div>
-        </div>
 
         <div className="mt-12 grid grid-cols-1 gap-6 rounded-2xl border border-gray-200 bg-gray-50 p-6 sm:p-8 md:grid-cols-3">
           <div>
