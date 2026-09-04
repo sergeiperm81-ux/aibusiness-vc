@@ -9,7 +9,10 @@ type Status = "idle" | "sending" | "done" | "error";
 const FIELD =
   "w-full rounded-lg border-2 border-gray-300 bg-gray-50 px-3 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:border-amber-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-amber-400/40";
 const LABEL = "mb-1 block text-sm font-semibold text-gray-900";
-const LEGEND = "mb-1 text-lg font-bold text-gray-900";
+// float + full width takes the legend out of the border notch and drops it
+// inside the box as a normal block.
+const LEGEND =
+  "float-left mb-4 w-full rounded-lg bg-accent px-4 py-1.5 text-base font-bold uppercase tracking-wide text-black";
 
 export function ApplyForm() {
   const [status, setStatus] = useState<Status>("idle");
@@ -182,9 +185,12 @@ export function ApplyForm() {
       </fieldset>
 
       <div className="rounded-2xl border-2 border-amber-300 bg-amber-50 p-6">
-        <p className="mb-1 text-lg font-bold text-gray-900">Your card, as people will see it</p>
-        <p className="mb-5 text-sm text-gray-700">
-          This is the preview in the catalogue. Everything else you write lives on your own page.
+        <p className="mb-2 text-2xl font-bold leading-tight text-gray-900">
+          How your card will look in the catalogue
+        </p>
+        <p className="mb-6 text-base leading-relaxed text-gray-800">
+          This is the preview people scroll past. Everything else you write lives on your own
+          page, one click deeper.
         </p>
         <div className="mx-auto flex w-full max-w-xs flex-col rounded-2xl border-2 border-gray-200 bg-white p-6 text-center shadow-sm">
           {photo ? (
