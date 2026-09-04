@@ -1,14 +1,20 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 import { TrendingBar } from "@/components/TrendingBar";
 import { getAllArticles } from "@/lib/articles";
 import { getLatestNews } from "@/lib/supabase";
+import { getAllNotes } from "@/lib/notes-content";
+import { models } from "@/data/models";
+import { GUIDES } from "@/app/library/guides";
+import { tools } from "@/data/tools";
 import { TrackedLink } from "@/components/analytics/TrackedLink";
+import { StoryBadge } from "@/components/StoryBadge";
 
 export const metadata: Metadata = {
   title: "AI Business - How to Make Money with AI in 2026",
   description:
-    "How to make money with AI: 50+ income methods with $500-$300K/month verified numbers, 356 AI tools reviewed with ROI data, 146 case studies. Updated daily.",
+    "How to make money with AI: 50+ income methods with $500-$300K/month verified numbers, 146 case studies, and independent test purchases of AI agents. Updated daily.",
   alternates: {
     canonical: "/",
   },
@@ -19,16 +25,17 @@ const catColors: Record<string, string> = {
   Startups: "bg-purple-500 text-white",
   B2B: "bg-blue-500 text-white",
   VC: "bg-fuchsia-500 text-white",
-  Government: "bg-indigo-500 text-white",
+  Government: "bg-red-500 text-white",
   Tools: "bg-emerald-500 text-white",
   Society: "bg-pink-500 text-white",
   Learn: "bg-cyan-500 text-white",
 };
 
-// No revalidate — page is rebuilt fresh on every deploy.
-// News section uses getLatestNews() which fetches RSS at build time.
-// Cron /api/cron/news calls revalidatePath("/") daily at 7am Sofia
-// to refresh news without a full redeploy.
+// Hourly ISR, same as /news: the Latest News block re-fetches RSS when the page
+// regenerates in the background. The daily cron proved unreliable, so the homepage
+// must not depend on it — without this the news block freezes at deploy time.
+export const dynamic = "force-static";
+export const revalidate = 3600;
 
 const HOME_FAQ = [
   {
@@ -53,7 +60,7 @@ const HOME_FAQ = [
   },
   {
     q: "How is AI Business different from other AI directories?",
-    a: "Outcome-first, not catalog-first. Most AI directories list 28,000+ tools without saying which earn money. We focus on 50+ income methods, 146 real case studies with revenue data, and 356 tools reviewed against ROI rather than features.",
+    a: "Outcome-first, not catalog-first. Most AI directories list 28,000+ tools without saying which earn money. We focus on 50+ income methods, 146 real case studies with revenue data, and independent test purchases that check whether an AI service does what its owner promised.",
   },
 ];
 
@@ -184,7 +191,7 @@ function HomeWebsiteSchema() {
     url: "https://aibusiness.vc",
     inLanguage: "en",
     description:
-      "How to make money with AI: 146 articles, 356 tool reviews, 36 LLM model profiles, daily news, real income case studies.",
+      "How to make money with AI: 146 articles, 360+ tool reviews, 54 LLM model profiles, daily news, real income case studies.",
     publisher: {
       "@type": "Organization",
       name: "AI Business",
@@ -258,6 +265,29 @@ function HomeFaqSchema({ items }: HomeFaqSchemaProps) {
 export default async function HomePage() {
   const allArticles = getAllArticles();
   const newsData = await getLatestNews(6);
+  const latestNotes = getAllNotes().slice(0, 3);
+  const startHere = [
+    {
+      href: "/service-check",
+      title: "AI Test Purchase",
+      text: "An independent check of whether your AI does what you promise.",
+    },
+    {
+      href: "/audit",
+      title: "AI Visibility Audit",
+      text: "See how ChatGPT and AI search read your site.",
+    },
+    {
+      href: "/library",
+      title: "Playbooks",
+      text: "Free methods, checklists and templates. No registration.",
+    },
+    {
+      href: "/sergei-ponomarev",
+      title: "About the author",
+      text: "Twenty years of service standards, evaluation and testing.",
+    },
+  ];
   const articlesBySection = HOME_SECTION_BLOCKS.map((block) => ({
     ...block,
     count: allArticles.filter((article) => article.section === block.section).length,
@@ -265,19 +295,22 @@ export default async function HomePage() {
   }));
   const signatureToolCtas = [
     {
-      href: "/tools/directory",
-      title: "AI Tool Directory",
-      description: "356 tools reviewed with pricing, ROI data, and honest ratings.",
+      href: "/service-check",
+      title: "AI Test Purchase",
+      description:
+        "An independent check of your AI service against the requirements you set for it, with evidence and a verification in the public registry.",
     },
     {
-      href: "/society",
-      title: "AI & Society",
-      description: "How AI reshapes jobs, education, creativity, and daily life.",
+      href: "/audit",
+      title: "AI Visibility Audit",
+      description:
+        "See what ChatGPT knows about your business and how AI search reads your site. Free scan in 30 seconds.",
     },
     {
-      href: "/learn",
-      title: "Learn AI Skills",
-      description: "Salary-backed career paths, certifications, and learning guides.",
+      href: "/library",
+      title: "Library",
+      description:
+        "Free original methods for governing AI from the customer's side, including the full test purchase methodology. No registration.",
     },
   ];
 
@@ -285,7 +318,7 @@ export default async function HomePage() {
     <>
       {/* HERO */}
       <section className="bg-background">
-        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
+        <div className="mx-auto max-w-[88rem] px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
           <div className="max-w-3xl">
             <p className="mb-1.5 font-mono text-xs font-medium uppercase tracking-wider text-accent">
               The business of artificial intelligence
@@ -295,8 +328,8 @@ export default async function HomePage() {
             </h1>
             <p className="mb-3 max-w-xl text-sm leading-relaxed text-white/70">
               Independent, outcome-first analysis of where AI creates value — for operators,
-              founders, and investors. Real numbers, honest ROI, and 356 tools reviewed across
-              solo, startups, and enterprise.
+              founders, and investors. Real numbers, honest ROI, and independent checks of the
+              AI services behind them.
             </p>
           </div>
         </div>
@@ -305,7 +338,7 @@ export default async function HomePage() {
 
       {/* LATEST NEWS */}
       <section className="bg-white">
-        <div className="mx-auto max-w-7xl px-4 pb-10 pt-8 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[88rem] px-4 pb-10 pt-8 sm:px-6 lg:px-8">
           <div className="mb-2 flex items-center justify-between">
             <h2 className="text-xl font-bold text-black">Latest News</h2>
             <Link
@@ -319,7 +352,10 @@ export default async function HomePage() {
             Auto-updated daily from TechCrunch, Crunchbase, VentureBeat, MIT Tech Review.
             Funding rounds, AI earnings, tool launches, enterprise deals.
           </p>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+            {/* News — 2 columns on desktop */}
+            <div className="lg:col-span-2">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             {newsData.slice(0, 6).map((item) => (
               <Link
                 key={item.slug}
@@ -337,7 +373,7 @@ export default async function HomePage() {
                   <span
                     className={`absolute left-3 top-3 rounded px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider ${catColors[item.category] ?? "bg-amber-500 text-black"}`}
                   >
-                    {item.category}
+                    {item.category === "Government" ? "AI Governance" : item.category}
                   </span>
                 </div>
                 <div className="px-4 py-3">
@@ -356,13 +392,97 @@ export default async function HomePage() {
                 </div>
               </Link>
             ))}
+              </div>
+            </div>
+
+            {/* Author's desk — sticky side panel */}
+            <aside className="lg:col-span-1">
+              <div className="lg:sticky lg:top-6">
+                <p className="mb-3 font-mono text-xs font-bold uppercase tracking-wider text-black">
+                  Author&apos;s desk
+                </p>
+                <Link
+                  href="/sergei-ponomarev"
+                  className="mb-2 flex items-center gap-3 rounded-xl bg-amber-400 px-4 py-3 transition-all hover:bg-amber-300"
+                >
+                  <Image
+                    src="/images/sergei-ponomarev.jpg"
+                    alt="Sergei Ponomarev"
+                    width={180}
+                    height={194}
+                    className="h-14 w-14 shrink-0 rounded-lg object-cover object-top"
+                  />
+                  <span>
+                    <span className="block text-sm font-bold text-amber-950">
+                      Sergei Ponomarev, PhD
+                    </span>
+                    <span className="mt-0.5 block text-xs leading-snug text-amber-900">
+                      I help companies adopt AI in the interests of their customers
+                    </span>
+                  </span>
+                </Link>
+                <div className="space-y-2">
+                  {startHere.map((s) => (
+                    <Link
+                      key={s.href}
+                      href={s.href}
+                      className="group block rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 transition-all hover:border-amber-500 hover:bg-amber-100"
+                    >
+                      <h3 className="text-sm font-bold text-amber-950">{s.title}</h3>
+                      <p className="mt-0.5 text-xs leading-snug text-amber-900">{s.text}</p>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </aside>
           </div>
         </div>
       </section>
 
+      {/* SERGEI'S NOTES */}
+      {latestNotes.length > 0 && (
+        <section className="bg-accent">
+          <div className="mx-auto max-w-[88rem] px-4 py-10 sm:px-6 lg:px-8">
+            <div className="mb-2 flex items-center justify-between">
+              <h2 className="text-xl font-bold text-gray-950">Founder&rsquo;s Notes</h2>
+              <Link href="/notes" className="text-sm font-semibold text-black/60 transition-colors hover:text-black">
+                All notes &rarr;
+              </Link>
+            </div>
+            <p className="mb-6 max-w-3xl text-base text-black/70">
+              Founder commentary on AI business, service quality, automation, and where the money
+              is moving.
+            </p>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+              {latestNotes.map((n) => (
+                <Link
+                  key={n.slug}
+                  href={`/notes/${n.slug}`}
+                  className="group rounded-xl bg-white p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-lg"
+                >
+                  <p className="text-sm text-gray-500">
+                    {new Date(n.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+                    {" · "}{n.author}
+                  </p>
+                  <h3 className="mt-2 text-lg font-bold leading-snug text-gray-950 transition-colors group-hover:text-accent-hover">
+                    {n.title}
+                  </h3>
+                  <p className="mt-2 line-clamp-3 text-base leading-relaxed text-gray-700">
+                    {n.description}
+                  </p>
+                  <span className="mt-3 inline-block text-base font-bold text-accent-hover">
+                    Read note &rarr;
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* QUICK FACTS */}
       <section className="border-b border-black/5 bg-white">
-        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[88rem] px-4 py-8 sm:px-6 lg:px-8">
           <h2 className="mb-2 text-lg font-bold text-black">
             What you&rsquo;ll find on AI Business
           </h2>
@@ -371,25 +491,19 @@ export default async function HomePage() {
             Below is what we cover, with concrete numbers so you can decide where to start.
           </p>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            <FactCard label="Income methods" value="50+" sub="With real revenue data" />
-            <FactCard label="AI tools reviewed" value="356" sub="With ROI data and pricing" />
-            <FactCard label="Case studies" value="146" sub="Real numbers, named companies" />
-            <FactCard label="LLM models profiled" value="36" sub="GPT-4o, Claude, Gemini, more" />
+            <FactCard label="Test purchases of AI agents" value="3 layers" sub="What you promised · what the bot said · what the system recorded" />
+            <FactCard label="Free methods in the library" value={String(GUIDES.length)} sub="Including the full 35-page test purchase method" />
+            <FactCard label="Partner Stories published" value="14" sub="Written interviews with AI founders, free" />
+            <FactCard label="LLM models profiled" value={String(models.length)} sub="Price per million tokens, context window, public ELO" />
           </div>
         </div>
       </section>
 
       {/* SIGNATURE TOOLS */}
       <section className="border-b border-black/5 bg-white">
-        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[88rem] px-4 py-8 sm:px-6 lg:px-8">
           <div className="mb-5 flex items-center justify-between">
             <h2 className="text-lg font-bold text-black">Where to Start</h2>
-            <Link
-              href="/society"
-              className="text-sm text-black/50 transition-colors hover:text-accent"
-            >
-              See all society essays &rarr;
-            </Link>
           </div>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
             {signatureToolCtas.map((tool) => (
@@ -405,7 +519,7 @@ export default async function HomePage() {
                 </h3>
                 <p className="mt-2 text-xs leading-relaxed text-white/70">{tool.description}</p>
                 <span className="mt-3 inline-block text-xs font-medium text-accent">
-                  Open tool &rarr;
+                  Open &rarr;
                 </span>
               </TrackedLink>
             ))}
@@ -416,7 +530,7 @@ export default async function HomePage() {
       {/* SECTION FEEDS */}
       {articlesBySection.map((block) => (
         <section key={block.section} className="border-t border-black/5 bg-white">
-          <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-[88rem] px-4 py-10 sm:px-6 lg:px-8">
             <div className="mb-2 flex items-center justify-between">
               <h2 className="text-xl font-bold text-black">{block.title}</h2>
               <Link
@@ -446,11 +560,14 @@ export default async function HomePage() {
                     ) : (
                       <div className="h-full w-full bg-gradient-to-br from-black/40 to-black/70" />
                     )}
-                    <span
-                      className={`absolute left-3 top-3 rounded px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider ${catColors[article.category] ?? "bg-amber-500 text-black"}`}
-                    >
-                      {block.badge}
-                    </span>
+                    <div className="absolute left-3 top-3 flex flex-wrap items-center gap-1">
+                      <span
+                        className={`rounded px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider ${catColors[article.category] ?? "bg-amber-500 text-black"}`}
+                      >
+                        {block.badge}
+                      </span>
+                      <StoryBadge story={article.story} />
+                    </div>
                   </div>
                   <div className="p-5">
                     <h3 className="mb-2 text-sm font-bold leading-snug text-white transition-colors group-hover:text-accent">
@@ -470,7 +587,7 @@ export default async function HomePage() {
 
       {/* COMMON QUESTIONS */}
       <section className="border-t border-black/5 bg-white">
-        <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-[88rem] px-4 py-10 sm:px-6 lg:px-8">
           <h2 className="mb-2 text-xl font-bold text-black">Common questions</h2>
           <p className="mb-6 max-w-3xl text-sm text-black/60">
             Direct answers to the questions readers ask most. Each answer links to a deeper
