@@ -5,7 +5,7 @@ import {
   AVAILABILITY,
   FRAMEWORKS,
   INDUSTRIES,
-  PRACTICE_AREAS,
+  PRACTICE_GROUPS,
   REGIONS,
   WORK_FORMATS,
 } from "../experts";
@@ -285,25 +285,31 @@ export function ApplyForm() {
         </div>
 
         <p className="mb-2 text-sm font-semibold text-gray-900">
-          Practice areas: what you are hired to do *
+          Practice areas: what you actually do *
         </p>
-        <p className="mb-3 text-sm text-gray-600">
-          This register is for people who govern, assess, verify or secure AI systems, rather than
-          people who only build them.
+        <p className="mb-4 text-sm text-gray-600">
+          Pick everything that applies, across as many groups as you like.
         </p>
-        <div className="flex flex-wrap gap-2">
-          {PRACTICE_AREAS.map((s) => (
-            <button
-              key={s}
-              type="button"
-              onClick={() => toggle(s, setPracticeAreas)}
-              aria-pressed={practiceAreas.includes(s)}
-              className={chip(practiceAreas.includes(s))}
-            >
-              {s}
-            </button>
-          ))}
-        </div>
+        {PRACTICE_GROUPS.map((group) => (
+          <div key={group.label} className="mb-5">
+            <p className="mb-2 font-mono text-xs font-bold uppercase tracking-wider text-amber-700">
+              {group.label}
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {group.items.map((s) => (
+                <button
+                  key={s}
+                  type="button"
+                  onClick={() => toggle(s, setPracticeAreas)}
+                  aria-pressed={practiceAreas.includes(s)}
+                  className={chip(practiceAreas.includes(s))}
+                >
+                  {s}
+                </button>
+              ))}
+            </div>
+          </div>
+        ))}
 
         <div className="mt-4">
           <label className={LABEL} htmlFor="other">

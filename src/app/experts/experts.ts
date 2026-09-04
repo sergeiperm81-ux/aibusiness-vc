@@ -21,29 +21,57 @@ export const REGIONS = [
 export type Region = (typeof REGIONS)[number];
 
 /**
- * Practice areas: the work itself.
+ * Practice areas, grouped.
  *
- * The admission rule behind this list: a person is hired to govern, assess,
- * verify or secure an AI system, not merely to build one. A technical red
- * teamer belongs here; someone who ships chatbots without governance practice
- * does not.
+ * The register covers the whole craft, not one niche: people who build AI,
+ * people who put it into a business, and people who govern, test and secure it.
+ * A company looking for help asks for "an AI expert", not for a category, and a
+ * register that turns away engineers simply sends them somewhere else.
+ *
+ * Groups exist so a list this long stays readable in a dropdown.
  */
-export const PRACTICE_AREAS = [
-  "Governance operating models & AI policy",
-  "Legal, regulatory & standards compliance",
-  "AI risk & impact assessment",
-  "Assurance, audit & conformity assessment",
-  "Evaluation & testing",
-  "Red teaming",
-  "AI safety, security & incident response",
-  "Data governance, privacy & documentation",
-  "Human oversight, transparency & accountability",
-  "Procurement & third-party risk",
-  "Governed AI adoption & process redesign",
-  "AI literacy & training",
-  "Ethics, human rights & fairness",
-  "AI governance research & public policy",
+export const PRACTICE_GROUPS = [
+  {
+    label: "Build & engineer",
+    items: [
+      "AI engineering & development",
+      "Machine learning & data science",
+      "AI agents & automation",
+      "LLM applications & prompt engineering",
+      "Data engineering & infrastructure",
+      "AI product management",
+      "AI design & user experience",
+    ],
+  },
+  {
+    label: "Adopt & operate",
+    items: [
+      "AI strategy & transformation",
+      "Governed AI adoption & process redesign",
+      "Procurement & third-party risk",
+      "AI literacy & training",
+      "Change management",
+    ],
+  },
+  {
+    label: "Govern, assure & secure",
+    items: [
+      "Governance operating models & AI policy",
+      "Legal, regulatory & standards compliance",
+      "AI risk & impact assessment",
+      "Assurance, audit & conformity assessment",
+      "Evaluation & testing",
+      "Red teaming",
+      "AI safety, security & incident response",
+      "Data governance, privacy & documentation",
+      "Human oversight, transparency & accountability",
+      "Ethics, human rights & fairness",
+      "AI research & public policy",
+    ],
+  },
 ] as const;
+
+export const PRACTICE_AREAS = PRACTICE_GROUPS.flatMap((g) => g.items as readonly string[]);
 export type PracticeArea = (typeof PRACTICE_AREAS)[number];
 
 /** The rulebooks a person actually works against. */
@@ -137,7 +165,7 @@ const SERGEI: Expert = {
     "Governance operating models & AI policy",
     "Human oversight, transparency & accountability",
     "Governed AI adoption & process redesign",
-    "AI governance research & public policy",
+    "AI research & public policy",
   ],
   frameworks: ["EU AI Act"],
   industries: ["Public sector", "Retail & consumer", "Technology & software"],

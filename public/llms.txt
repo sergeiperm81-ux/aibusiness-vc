@@ -76,11 +76,11 @@ Each story is a written interview with the founder of a working AI product: what
 - [AI Visibility Benchmark](https://aibusiness.vc/audit): how AI search engines read a website — llms.txt, crawler access, schema, citation readiness
 - Free to cite with attribution to AI Business (aibusiness.vc)
 
-### AI Governance Experts — Open register of people (not firms)
-- [AI Governance Experts](https://aibusiness.vc/experts): an open, free community of individuals working in AI governance, assurance, evaluation and responsible adoption. Other directories list consultancies; this lists people, one profile per person.
+### AI Experts — Open register of people (not firms)
+- [AI Experts](https://aibusiness.vc/experts): an open, free community of individuals who work with AI professionally: engineering and data science, adoption inside a business, and governance, assurance, evaluation and security. Other directories list consultancies; this lists people, one profile per person.
 - Each profile carries schema.org ProfilePage and Person structured data, including practice areas, frameworks, industries, languages and links.
-- Filterable by practice area, framework (EU AI Act, ISO/IEC 42001, NIST AI RMF, GDPR), industry and region.
-- Admission rule: people hired to govern, assess, verify or secure AI systems, rather than only to build them.
+- Filterable by practice area (grouped into build and engineer, adopt and operate, govern and assure), framework (EU AI Act, ISO/IEC 42001, NIST AI RMF, GDPR), industry and region.
+- Admission rule: a real person who works with AI professionally, whose identity and links are verified before publication.
 - [Join the register](https://aibusiness.vc/experts/apply): free, identity and links verified before publication, profile owned by the person and removable on request.
 
 ### Founder's Notes — Commentary by the founder (human-written)

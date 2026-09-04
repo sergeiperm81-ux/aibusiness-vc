@@ -19,11 +19,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const expert = getExpert(slug);
   if (!expert) return { title: "Not found" };
   return {
-    title: `${expert.name} — AI governance expert`,
+    title: `${expert.name} — AI expert`,
     description: expert.headline,
     alternates: { canonical: `/experts/${expert.slug}` },
     openGraph: {
-      title: `${expert.name} — AI governance expert`,
+      title: `${expert.name} — AI expert`,
       description: expert.headline,
       url: `${SITE}/experts/${expert.slug}`,
       type: "profile",
@@ -67,7 +67,7 @@ function ExpertSchema({ expert }: { expert: Expert }) {
     "@context": "https://schema.org",
     "@type": "ProfilePage",
     url: `${SITE}/experts/${expert.slug}`,
-    name: `${expert.name} — AI governance expert`,
+    name: `${expert.name} — AI expert`,
     isPartOf: { "@type": "WebSite", name: "AI Business", url: SITE },
     about: person,
     mainEntity: person,
@@ -118,11 +118,11 @@ export default async function ExpertPage({ params }: Props) {
             The open community
           </p>
           <h1 className="mt-3 text-3xl font-bold leading-tight text-white sm:text-4xl">
-            AI governance experts
+            AI experts
           </h1>
           <p className="mt-3 max-w-2xl text-base leading-relaxed text-gray-300">
-            The people who set the standards for AI, audit it, evaluate how it works and put it
-            into practice. Listed one by one, not as firms.
+            People who build AI, put it into a business, govern it and check that it works.
+            Listed one by one, not as firms.
           </p>
         </div>
       </div>

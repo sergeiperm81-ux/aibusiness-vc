@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 import { ExpertsBrowser } from "./ExpertsBrowser";
 
 export const metadata: Metadata = {
-  title: "AI Governance Experts — The Open Community",
+  title: "AI Experts — The Open Community",
   description:
-    "An open community of the people who set the standards for AI, audit it, evaluate it and put it to work. Individuals, not firms. Free to join, free to search.",
+    "An open community of people who work with AI: building it, putting it into businesses, governing it, testing it and keeping it accountable. Individuals, not firms. Free to join, free to search.",
   alternates: { canonical: "/experts" },
 };
 
@@ -18,11 +18,11 @@ export default function ExpertsPage() {
             The open community
           </p>
           <h1 className="mt-3 text-3xl font-bold leading-tight text-white sm:text-4xl">
-            AI governance experts
+            AI experts
           </h1>
           <p className="mt-3 max-w-2xl text-base leading-relaxed text-gray-300">
-            The people who set the standards for AI, audit it, evaluate how it works and put it
-            into practice. Listed one by one, not as firms.
+            People who build AI, put it into a business, govern it and check that it works.
+            Listed one by one, not as firms.
           </p>
         </div>
       </div>
@@ -38,9 +38,9 @@ export default function ExpertsPage() {
           <div>
             <h2 className="text-base font-bold text-gray-900">Who belongs here</h2>
             <p className="mt-2 text-sm leading-relaxed text-gray-700">
-              People working on governance, compliance, assurance, evaluation, data protection,
-              policy and responsible adoption of AI, including the ones who design how AI fits an
-              actual business process.
+              Anyone who works with AI professionally: engineers and data scientists, the people
+              who adopt it inside a business, and the people who govern, test, audit and secure
+              it. One profile per person.
             </p>
           </div>
           <div>
