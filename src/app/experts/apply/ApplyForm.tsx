@@ -1,7 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { EXPERTISE, REGIONS } from "../experts";
+import {
+  AVAILABILITY,
+  FRAMEWORKS,
+  INDUSTRIES,
+  PRACTICE_AREAS,
+  REGIONS,
+  WORK_FORMATS,
+} from "../experts";
 import { PhotoPicker, type PickedPhoto } from "./PhotoPicker";
 
 type Status = "idle" | "sending" | "done" | "error";
@@ -18,7 +25,10 @@ const LEGEND =
 export function ApplyForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
-  const [expertise, setExpertise] = useState<string[]>([]);
+  const [practiceAreas, setPracticeAreas] = useState<string[]>([]);
+  const [frameworks, setFrameworks] = useState<string[]>([]);
+  const [industries, setIndustries] = useState<string[]>([]);
+  const [workFormats, setWorkFormats] = useState<string[]>([]);
   const [other, setOther] = useState("");
   const [photo, setPhoto] = useState<PickedPhoto | null>(null);
   // Kept in state so the person can watch their card take shape while filling this in.
@@ -26,10 +36,11 @@ export function ApplyForm() {
   const [headline, setHeadline] = useState("");
   const [location, setLocation] = useState("");
 
-  function toggle(value: string) {
-    setExpertise((list) =>
-      list.includes(value) ? list.filter((v) => v !== value) : [...list, value]
-    );
+  function toggle(
+    value: string,
+    set: React.Dispatch<React.SetStateAction<string[]>>
+  ) {
+    set((list) => (list.includes(value) ? list.filter((v) => v !== value) : [...list, value]));
   }
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -44,9 +55,9 @@ export function ApplyForm() {
       setMessage("Add a photo. It is the first thing anyone sees.");
       return;
     }
-    if (expertise.length === 0 && !other.trim()) {
+    if (practiceAreas.length === 0 && !other.trim()) {
       setStatus("error");
-      setMessage("Pick at least one area of expertise.");
+      setMessage("Pick at least one practice area.");
       return;
     }
 
@@ -67,8 +78,15 @@ export function ApplyForm() {
       showPhone: form.get("showPhone") === "on",
       showLinkedin: form.get("showLinkedin") === "on",
       showWebsite: form.get("showWebsite") === "on",
-      expertise: other.trim() ? [...expertise, `Other: ${other.trim()}`] : expertise,
+      practiceAreas: other.trim() ? [...practiceAreas, `Other: ${other.trim()}`] : practiceAreas,
+      frameworks,
+      industries,
+      workFormats,
+      jurisdictions: text("jurisdictions"),
+      languages: text("languages"),
+      availability: text("availability"),
       consent: form.get("consent") === "on",
+      newsletter: form.get("newsletter") === "on",
       photo,
     };
 
@@ -92,6 +110,11 @@ export function ApplyForm() {
       setMessage("Network error. Try again.");
     }
   }
+
+  const chip = (active: boolean) =>
+    active
+      ? "rounded-lg border-2 border-amber-500 bg-amber-400 px-3 py-1.5 text-sm font-bold text-gray-950"
+      : "rounded-lg border-2 border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 hover:border-amber-500 hover:bg-amber-50";
 
   if (status === "done") {
     return (
@@ -214,7 +237,7 @@ export function ApplyForm() {
             {headline || "Your one-line headline goes here"}
           </p>
           <div className="mt-4 flex flex-wrap justify-center gap-1.5">
-            {expertise.slice(0, 2).map((s) => (
+            {practiceAreas.slice(0, 2).map((s) => (
               <span
                 key={s}
                 className="rounded-md bg-accent px-2 py-0.5 text-[11px] font-bold text-black"
@@ -222,17 +245,17 @@ export function ApplyForm() {
                 {s}
               </span>
             ))}
-            {expertise.length > 2 && (
+            {practiceAreas.length > 2 && (
               <span className="rounded-md bg-gray-900 px-2 py-0.5 text-[11px] font-semibold text-white">
-                +{expertise.length - 2}
+                +{practiceAreas.length - 2}
               </span>
             )}
           </div>
         </div>
-        {expertise.length > 2 && (
+        {practiceAreas.length > 2 && (
           <p className="mt-4 text-center text-xs text-gray-600">
-            Tick as many areas as you like: the card shows the first two and a counter, and your
-            page lists them all.
+            Tick as many as you like: the card shows the first two and a counter, and your page
+            lists them all.
           </p>
         )}
       </div>
@@ -261,21 +284,21 @@ export function ApplyForm() {
           </div>
         </div>
 
+        <p className="mb-2 text-sm font-semibold text-gray-900">
+          Practice areas: what you are hired to do *
+        </p>
         <p className="mb-3 text-sm text-gray-600">
-          What are you an expert in? Pick everything that applies. *
+          This register is for people who govern, assess, verify or secure AI systems, rather than
+          people who only build them.
         </p>
         <div className="flex flex-wrap gap-2">
-          {EXPERTISE.map((s) => (
+          {PRACTICE_AREAS.map((s) => (
             <button
               key={s}
               type="button"
-              onClick={() => toggle(s)}
-              aria-pressed={expertise.includes(s)}
-              className={
-                expertise.includes(s)
-                  ? "rounded-lg border-2 border-amber-500 bg-amber-400 px-3 py-1.5 text-sm font-bold text-gray-950"
-                  : "rounded-lg border-2 border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 hover:border-amber-500 hover:bg-amber-50"
-              }
+              onClick={() => toggle(s, setPracticeAreas)}
+              aria-pressed={practiceAreas.includes(s)}
+              className={chip(practiceAreas.includes(s))}
             >
               {s}
             </button>
@@ -293,6 +316,92 @@ export function ApplyForm() {
             className={FIELD}
             placeholder="Something the list above does not cover"
           />
+        </div>
+
+        <p className="mb-3 mt-8 text-sm font-semibold text-gray-900">
+          Frameworks you work against
+        </p>
+        <div className="flex flex-wrap gap-2">
+          {FRAMEWORKS.map((s) => (
+            <button
+              key={s}
+              type="button"
+              onClick={() => toggle(s, setFrameworks)}
+              aria-pressed={frameworks.includes(s)}
+              className={chip(frameworks.includes(s))}
+            >
+              {s}
+            </button>
+          ))}
+        </div>
+
+        <p className="mb-3 mt-8 text-sm font-semibold text-gray-900">Industries you know</p>
+        <div className="flex flex-wrap gap-2">
+          {INDUSTRIES.map((s) => (
+            <button
+              key={s}
+              type="button"
+              onClick={() => toggle(s, setIndustries)}
+              aria-pressed={industries.includes(s)}
+              className={chip(industries.includes(s))}
+            >
+              {s}
+            </button>
+          ))}
+        </div>
+
+        <p className="mb-3 mt-8 text-sm font-semibold text-gray-900">Work you are open to</p>
+        <div className="flex flex-wrap gap-2">
+          {WORK_FORMATS.map((s) => (
+            <button
+              key={s}
+              type="button"
+              onClick={() => toggle(s, setWorkFormats)}
+              aria-pressed={workFormats.includes(s)}
+              className={chip(workFormats.includes(s))}
+            >
+              {s}
+            </button>
+          ))}
+        </div>
+
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
+          <div>
+            <label className={LABEL} htmlFor="languages">
+              Working languages *
+            </label>
+            <input
+              id="languages"
+              name="languages"
+              required
+              className={FIELD}
+              placeholder="English, German"
+            />
+          </div>
+          <div>
+            <label className={LABEL} htmlFor="jurisdictions">
+              Jurisdictions
+            </label>
+            <input
+              id="jurisdictions"
+              name="jurisdictions"
+              className={FIELD}
+              placeholder="EU, UK, Switzerland"
+            />
+          </div>
+          <div>
+            <label className={LABEL} htmlFor="availability">
+              Availability
+            </label>
+            <select id="availability" name="availability" defaultValue="" className={FIELD}>
+              <option value="">Prefer not to say</option>
+              {AVAILABILITY.map((a) => (
+                <option key={a} value={a}>
+                  {a}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
 
         <div className="mt-6 space-y-4">
@@ -330,8 +439,10 @@ export function ApplyForm() {
         <legend className="sr-only">Contacts</legend>
         <div className={LEGEND}>Contacts</div>
         <p className="text-sm text-gray-600">
-          You decide what is public. Anything published here is written into the page so that
-          scrapers cannot lift it, the same way our own address is handled.
+          You decide what is public. Published addresses are written into the page in a form
+          that makes casual harvesting harder, the same way our own address is handled, but
+          anything published anywhere can eventually be read. If you would rather not risk it,
+          leave the box unticked and we pass enquiries on to you ourselves.
         </p>
 
         <div>
@@ -414,7 +525,7 @@ export function ApplyForm() {
         </div>
       </fieldset>
 
-      <div className="rounded-xl border border-gray-200 bg-gray-50 p-4">
+      <div className="space-y-3 rounded-xl border-2 border-gray-200 bg-gray-50 p-4">
         <label className="flex items-start gap-2.5 text-sm leading-snug text-gray-700">
           <input
             type="checkbox"
@@ -423,10 +534,15 @@ export function ApplyForm() {
             className="mt-1 h-4 w-4 shrink-0 accent-amber-500"
           />
           <span>
-            These are my own details. I agree to have this profile published on aibusiness.vc and
-            to receive email from AI Business: new members, briefs from companies looking for
-            help, and community news. I can edit or remove the profile, or unsubscribe, at any
-            time. *
+            These are my own details, and I agree to have this profile published on
+            aibusiness.vc. I can have it changed or removed at any time. *
+          </span>
+        </label>
+        <label className="flex items-start gap-2.5 text-sm leading-snug text-gray-700">
+          <input type="checkbox" name="newsletter" className="mt-1 h-4 w-4 shrink-0 accent-amber-500" />
+          <span>
+            Send me occasional email from AI Business: new people in the community, work coming
+            through, and what the register is doing next. Optional, and you can stop it any time.
           </span>
         </label>
       </div>

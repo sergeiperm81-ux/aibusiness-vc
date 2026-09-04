@@ -62,12 +62,20 @@ export function Footer() {
             <p className="mb-3 mt-6 font-mono text-xs uppercase tracking-wider text-muted">
               Take part
             </p>
-            <Link
-              href="/submit-your-story"
-              className="inline-flex items-center rounded-md bg-accent px-3 py-1.5 text-xs font-bold text-black transition-colors hover:bg-accent-hover"
-            >
-              Submit Story
-            </Link>
+            <div className="flex flex-wrap gap-2">
+              <Link
+                href="/experts"
+                className="inline-flex items-center rounded-md bg-accent px-3 py-1.5 text-xs font-bold text-black transition-colors hover:bg-accent-hover"
+              >
+                AI Experts
+              </Link>
+              <Link
+                href="/submit-your-story"
+                className="inline-flex items-center rounded-md border border-card-border px-3 py-1.5 text-xs font-bold text-white transition-colors hover:border-accent hover:text-accent"
+              >
+                Submit Story
+              </Link>
+            </div>
           </div>
         </div>
 
