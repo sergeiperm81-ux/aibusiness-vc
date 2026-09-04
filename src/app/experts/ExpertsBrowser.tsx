@@ -181,7 +181,7 @@ export function ExpertsBrowser() {
               Create your profile &rarr;
             </Link>
             <p className="mt-2 text-xs text-gray-400">
-              Free. No paid tier. The profile stays yours.
+              Free, and the profile stays yours.
             </p>
           </div>
 
