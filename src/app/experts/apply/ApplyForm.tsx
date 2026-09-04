@@ -7,7 +7,7 @@ import { PhotoPicker, type PickedPhoto } from "./PhotoPicker";
 type Status = "idle" | "sending" | "done" | "error";
 
 const FIELD =
-  "w-full rounded-lg border border-gray-300 bg-white px-3 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-400/50";
+  "w-full rounded-lg border-2 border-gray-300 bg-gray-50 px-3 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:border-amber-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-amber-400/40";
 const LABEL = "mb-1 block text-sm font-semibold text-gray-900";
 const LEGEND = "mb-1 text-lg font-bold text-gray-900";
 
@@ -55,7 +55,6 @@ export function ApplyForm() {
       linkedin: text("linkedin"),
       website: text("website"),
       phone: text("phone"),
-      notes: text("notes"),
       showEmail: form.get("showEmail") === "on",
       showPhone: form.get("showPhone") === "on",
       expertise: other.trim() ? [...expertise, `Other: ${other.trim()}`] : expertise,
@@ -99,7 +98,7 @@ export function ApplyForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-10">
-      <fieldset>
+      <fieldset className="rounded-2xl border-2 border-gray-200 p-6">
         <legend className={LEGEND}>Your photo *</legend>
         <p className="mb-4 text-sm text-gray-600">
           Position your face inside the circle. That square is exactly what gets published.
@@ -107,7 +106,7 @@ export function ApplyForm() {
         <PhotoPicker onChange={setPhoto} />
       </fieldset>
 
-      <fieldset className="space-y-4">
+      <fieldset className="space-y-4 rounded-2xl border-2 border-gray-200 p-6">
         <legend className={LEGEND}>You</legend>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
@@ -180,9 +179,11 @@ export function ApplyForm() {
         </div>
       </fieldset>
 
-      <fieldset>
-        <legend className={LEGEND}>What you do</legend>
-        <p className="mb-3 text-sm text-gray-600">Pick everything that applies *</p>
+      <fieldset className="rounded-2xl border-2 border-gray-200 p-6">
+        <legend className={LEGEND}>Your expertise</legend>
+        <p className="mb-3 text-sm text-gray-600">
+          What are you an expert in? Pick everything that applies. *
+        </p>
         <div className="flex flex-wrap gap-2">
           {EXPERTISE.map((s) => (
             <button
@@ -192,8 +193,8 @@ export function ApplyForm() {
               aria-pressed={expertise.includes(s)}
               className={
                 expertise.includes(s)
-                  ? "rounded-lg border-2 border-amber-500 bg-amber-50 px-3 py-1.5 text-sm font-semibold text-amber-900"
-                  : "rounded-lg border border-gray-300 px-3 py-1.5 text-sm text-gray-700 hover:border-amber-400"
+                  ? "rounded-lg border-2 border-amber-500 bg-amber-400 px-3 py-1.5 text-sm font-bold text-gray-950"
+                  : "rounded-lg border-2 border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 hover:border-amber-500 hover:bg-amber-50"
               }
             >
               {s}
@@ -231,7 +232,7 @@ export function ApplyForm() {
           </div>
           <div>
             <label className={LABEL} htmlFor="services">
-              Services you offer *
+              Services you offer, in plain words *
             </label>
             <textarea
               id="services"
@@ -245,7 +246,7 @@ export function ApplyForm() {
         </div>
       </fieldset>
 
-      <fieldset className="space-y-5">
+      <fieldset className="space-y-5 rounded-2xl border-2 border-gray-200 p-6">
         <legend className={LEGEND}>Contacts</legend>
         <p className="text-sm text-gray-600">
           You decide what is public. Anything published here is written into the page so that
@@ -270,7 +271,9 @@ export function ApplyForm() {
               name="showEmail"
               className="mt-0.5 h-4 w-4 shrink-0 accent-amber-500"
             />
-            <span>Show my email on my profile. Leave it unticked and only we see it.</span>
+            <span>
+              Show my email on my profile. Leave it unticked and only AI Business sees it.
+            </span>
           </label>
         </div>
 
@@ -312,12 +315,6 @@ export function ApplyForm() {
           </div>
         </div>
 
-        <div>
-          <label className={LABEL} htmlFor="notes">
-            Anything else we should know?
-          </label>
-          <textarea id="notes" name="notes" rows={2} className={FIELD} />
-        </div>
       </fieldset>
 
       <div className="rounded-xl border border-gray-200 bg-gray-50 p-4">
@@ -344,7 +341,7 @@ export function ApplyForm() {
         disabled={status === "sending"}
         className="rounded-lg bg-amber-500 px-6 py-3 text-sm font-bold text-gray-950 transition hover:bg-amber-400 disabled:opacity-60"
       >
-        {status === "sending" ? "Sending…" : "Claim my expertise"}
+        {status === "sending" ? "Sending…" : "Create my profile"}
       </button>
     </form>
   );

@@ -60,56 +60,42 @@ export interface Expert {
   sample?: boolean;
 }
 
-export const EXPERTS: Expert[] = [
-  {
-    slug: "sample-jane-doe",
-    name: "Jane Doe",
-    headline: "EU AI Act compliance lead for regulated industries",
-    region: "Europe",
-    location: "Amsterdam, Netherlands",
-    expertise: ["EU AI Act", "ISO/IEC 42001", "Risk assessment & audit"],
-    about:
-      "Placeholder profile used while the register is under construction. It shows how a full entry is laid out: what the person does, who they help and how they can be reached.",
-    services: [
-      "Article 50 transparency readiness",
-      "ISO/IEC 42001 gap assessment",
-      "Vendor AI risk review",
-    ],
-    sample: true,
-  },
-  {
-    slug: "sample-john-roe",
-    name: "John Roe",
-    headline: "Independent evaluator: red teaming and agent testing",
-    region: "North America",
-    location: "Boston, United States",
-    expertise: [
-      "Evaluation, testing & red teaming",
-      "Responsible AI deployment",
-      "AI governance & policy",
-    ],
-    about:
-      "Placeholder profile used while the register is under construction. It shows how a full entry is laid out: what the person does, who they help and how they can be reached.",
-    services: ["Agent red teaming", "Pre-launch evaluation", "Model release review"],
-    sample: true,
-  },
-  {
-    slug: "sample-alex-sample",
-    name: "Alex Sample",
-    headline: "Data governance for AI in healthcare",
-    region: "Asia-Pacific",
-    location: "Singapore",
-    expertise: [
-      "GDPR & data protection",
-      "AI governance & policy",
-      "AI implementation & business process design",
-    ],
-    about:
-      "Placeholder profile used while the register is under construction. It shows how a full entry is laid out: what the person does, who they help and how they can be reached.",
-    services: ["Data governance design", "Clinical AI oversight", "Policy drafting"],
-    sample: true,
-  },
+/**
+ * Placeholder rows while the community is being built.
+ *
+ * The names are the standard legal placeholders (Doe, Roe, Major, Stiles), never
+ * invented people: every card is badged as a sample so nobody mistakes one for a
+ * real member.
+ */
+const SAMPLE_SEED: [string, string, Region, string, string[]][] = [
+  ["Jane Doe", "EU AI Act compliance lead for regulated industries", "Europe", "Amsterdam, Netherlands", ["EU AI Act", "ISO/IEC 42001", "Risk assessment & audit"]],
+  ["John Roe", "Independent evaluator: red teaming and agent testing", "North America", "Boston, United States", ["Evaluation, testing & red teaming", "AI security"]],
+  ["Mary Major", "Data governance for AI in healthcare", "Asia-Pacific", "Singapore", ["GDPR & data protection", "AI governance & policy"]],
+  ["Richard Roe", "Turns AI pilots into processes people actually follow", "Europe", "Munich, Germany", ["AI implementation & business process design", "Training & AI literacy"]],
+  ["Jane Public", "AI procurement and vendor due diligence", "Europe", "Dublin, Ireland", ["Procurement & vendor assessment", "Risk assessment & audit"]],
+  ["John Stiles", "Regulatory counsel for AI products", "North America", "Toronto, Canada", ["Legal & regulatory advice", "EU AI Act"]],
+  ["Alan Ample", "Fairness testing and bias audits", "Europe", "Barcelona, Spain", ["AI ethics & fairness", "Evaluation, testing & red teaming"]],
+  ["Sam Sample", "Responsible deployment for customer-facing agents", "Latin America", "Sao Paulo, Brazil", ["Responsible AI deployment", "AI governance & policy"]],
+  ["Paula Ployer", "ISO/IEC 42001 implementation and internal audit", "Middle East & Africa", "Dubai, United Arab Emirates", ["ISO/IEC 42001", "Risk assessment & audit"]],
+  ["Robin Roe", "Security review of LLM applications", "Europe", "Warsaw, Poland", ["AI security", "Responsible AI deployment"]],
+  ["Chris Coe", "AI policy research and public consultations", "Europe", "Brussels, Belgium", ["Research", "AI governance & policy"]],
+  ["Dana Doe", "AI literacy programmes for non-technical teams", "Asia-Pacific", "Melbourne, Australia", ["Training & AI literacy", "AI implementation & business process design"]],
 ];
+
+const SAMPLE_ABOUT =
+  "Placeholder profile used while the community is being built. It shows how a full entry is laid out: what the person does, who they help and how they can be reached.";
+
+export const EXPERTS: Expert[] = SAMPLE_SEED.map(([name, headline, region, location, expertise]) => ({
+  slug: `sample-${name.toLowerCase().replace(/[^a-z]+/g, "-")}`,
+  name,
+  headline,
+  region,
+  location,
+  expertise,
+  about: SAMPLE_ABOUT,
+  services: ["Assessment and gap analysis", "Hands-on implementation support", "Review and second opinion"],
+  sample: true,
+}));
 
 export function getExpert(slug: string): Expert | undefined {
   return EXPERTS.find((e) => e.slug === slug);

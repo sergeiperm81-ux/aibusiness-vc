@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { EXPERTISE, EXPERTS, REGIONS, initials, type Expert } from "./experts";
+import { EXPERTISE, EXPERTS, REGIONS, REGISTER_BENEFITS, initials, type Expert } from "./experts";
 
 type SortKey = "name" | "region" | "expertise";
 
@@ -12,6 +12,45 @@ const SORTERS: Record<SortKey, (a: Expert, b: Expert) => number> = {
   expertise: (a, b) =>
     (a.expertise[0] ?? "").localeCompare(b.expertise[0] ?? "") || a.name.localeCompare(b.name),
 };
+
+/** How many cards come before the join block. */
+const BEFORE_CTA = 8;
+
+function ExpertCard({ expert: e }: { expert: Expert }) {
+  return (
+    <Link
+      href={`/experts/${e.slug}`}
+      className="group flex flex-col rounded-2xl border border-gray-200 bg-white p-6 text-center transition hover:border-amber-400 hover:shadow-lg"
+    >
+      {e.photo ? (
+        /* eslint-disable-next-line @next/next/no-img-element */
+        <img src={e.photo} alt={e.name} className="mx-auto h-24 w-24 rounded-full object-cover" />
+      ) : (
+        <span className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-gray-950 text-xl font-bold text-accent">
+          {initials(e.name)}
+        </span>
+      )}
+      <p className="mt-4 text-base font-bold text-gray-900 group-hover:text-amber-700">{e.name}</p>
+      <p className="mt-0.5 text-xs text-gray-500">{e.location}</p>
+      <p className="mt-3 flex-1 text-sm leading-relaxed text-gray-700">{e.headline}</p>
+      <div className="mt-4 flex flex-wrap justify-center gap-1.5">
+        {e.expertise.slice(0, 2).map((s) => (
+          <span
+            key={s}
+            className="rounded-md bg-amber-50 px-2 py-0.5 text-[11px] font-semibold text-amber-800"
+          >
+            {s}
+          </span>
+        ))}
+      </div>
+      {e.sample && (
+        <span className="mt-3 text-[10px] font-bold uppercase tracking-wide text-gray-400">
+          Sample
+        </span>
+      )}
+    </Link>
+  );
+}
 
 const CONTROL =
   "w-full rounded-lg border border-gray-300 bg-white px-3 py-2.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-amber-400/50";
@@ -102,52 +141,49 @@ export function ExpertsBrowser() {
           .
         </p>
       ) : (
-        <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {results.map((e) => (
+        <>
+          <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {results.slice(0, BEFORE_CTA).map((e) => (
+              <ExpertCard key={e.slug} expert={e} />
+            ))}
+          </div>
+
+          {/* The call sits inside the list, not under it: with a hundred people
+              below, anything after the grid would never be seen. */}
+          <div className="mt-6 rounded-2xl bg-accent p-8 sm:p-10">
+            <p className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-black">
+              Claim your place
+            </p>
+            <h2 className="mt-2 max-w-2xl text-2xl font-bold leading-tight text-black sm:text-3xl">
+              Somebody is looking for exactly what you do. Right now they cannot find you.
+            </h2>
+            <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {REGISTER_BENEFITS.map((b) => (
+                <div key={b.title}>
+                  <p className="text-sm font-bold text-black">{b.title}</p>
+                  <p className="mt-0.5 text-sm leading-snug text-black/75">{b.body}</p>
+                </div>
+              ))}
+            </div>
             <Link
-              key={e.slug}
-              href={`/experts/${e.slug}`}
-              className="group flex flex-col rounded-2xl border border-gray-200 bg-white p-6 text-center transition hover:border-amber-400 hover:shadow-lg"
+              href="/experts/apply"
+              className="mt-7 inline-block rounded-lg bg-gray-950 px-6 py-3 text-sm font-bold text-white transition hover:bg-gray-800"
             >
-              {e.photo ? (
-                /* eslint-disable-next-line @next/next/no-img-element */
-                <img
-                  src={e.photo}
-                  alt={e.name}
-                  className="mx-auto h-24 w-24 rounded-full object-cover"
-                />
-              ) : (
-                <span className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-gray-950 text-xl font-bold text-accent">
-                  {initials(e.name)}
-                </span>
-              )}
-
-              <p className="mt-4 text-base font-bold text-gray-900 group-hover:text-amber-700">
-                {e.name}
-              </p>
-              <p className="mt-0.5 text-xs text-gray-500">{e.location}</p>
-
-              <p className="mt-3 flex-1 text-sm leading-relaxed text-gray-700">{e.headline}</p>
-
-              <div className="mt-4 flex flex-wrap justify-center gap-1.5">
-                {e.expertise.slice(0, 2).map((s) => (
-                  <span
-                    key={s}
-                    className="rounded-md bg-amber-50 px-2 py-0.5 text-[11px] font-semibold text-amber-800"
-                  >
-                    {s}
-                  </span>
-                ))}
-              </div>
-
-              {e.sample && (
-                <span className="mt-3 text-[10px] font-bold uppercase tracking-wide text-gray-400">
-                  Sample
-                </span>
-              )}
+              Create your profile &rarr;
             </Link>
-          ))}
-        </div>
+            <p className="mt-2 text-xs text-black/70">
+              Free. No paid tier. The profile stays yours.
+            </p>
+          </div>
+
+          {results.length > BEFORE_CTA && (
+            <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {results.slice(BEFORE_CTA).map((e) => (
+                <ExpertCard key={e.slug} expert={e} />
+              ))}
+            </div>
+          )}
+        </>
       )}
     </div>
   );
