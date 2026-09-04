@@ -2,46 +2,26 @@
 
 import { useState } from "react";
 import { EXPERTISE, REGIONS } from "../experts";
+import { PhotoPicker, type PickedPhoto } from "./PhotoPicker";
 
 type Status = "idle" | "sending" | "done" | "error";
 
 const FIELD =
   "w-full rounded-lg border border-gray-300 bg-white px-3 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-400/50";
 const LABEL = "mb-1 block text-sm font-semibold text-gray-900";
+const LEGEND = "mb-1 text-lg font-bold text-gray-900";
 
 export function ApplyForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
   const [expertise, setExpertise] = useState<string[]>([]);
   const [other, setOther] = useState("");
-  const [photo, setPhoto] = useState<{ name: string; type: string; data: string } | null>(null);
-  const [photoError, setPhotoError] = useState("");
+  const [photo, setPhoto] = useState<PickedPhoto | null>(null);
 
-  function onPhotoChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const file = event.target.files?.[0];
-    setPhotoError("");
-    if (!file) {
-      setPhoto(null);
-      return;
-    }
-    if (!file.type.startsWith("image/")) {
-      setPhotoError("Please choose an image file.");
-      return;
-    }
-    if (file.size > 2 * 1024 * 1024) {
-      setPhotoError("Keep the photo under 2 MB.");
-      return;
-    }
-    const reader = new FileReader();
-    reader.onload = () => {
-      const result = String(reader.result ?? "");
-      setPhoto({ name: file.name, type: file.type, data: result.split(",")[1] ?? "" });
-    };
-    reader.readAsDataURL(file);
-  }
-
-  function toggle(list: string[], value: string, set: (v: string[]) => void) {
-    set(list.includes(value) ? list.filter((v) => v !== value) : [...list, value]);
+  function toggle(value: string) {
+    setExpertise((list) =>
+      list.includes(value) ? list.filter((v) => v !== value) : [...list, value]
+    );
   }
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -49,35 +29,39 @@ export function ApplyForm() {
     if (status === "sending") return;
 
     const form = new FormData(event.currentTarget);
-    const payload = {
-      name: String(form.get("name") ?? "").trim(),
-      email: String(form.get("email") ?? "").trim(),
-      headline: String(form.get("headline") ?? "").trim(),
-      region: String(form.get("region") ?? ""),
-      location: String(form.get("location") ?? "").trim(),
-      linkedin: String(form.get("linkedin") ?? "").trim(),
-      website: String(form.get("website") ?? "").trim(),
-      organisation: String(form.get("organisation") ?? "").trim(),
-      role: String(form.get("role") ?? "").trim(),
-      about: String(form.get("about") ?? "").trim(),
-      services: String(form.get("services") ?? "").trim(),
-      notes: String(form.get("notes") ?? "").trim(),
-      expertise: other.trim() ? [...expertise, `Other: ${other.trim()}`] : expertise,
-      consent: form.get("consent") === "on",
-      photo,
-    };
+    const text = (key: string) => String(form.get(key) ?? "").trim();
 
     if (!photo) {
       setStatus("error");
-      setMessage("Add a photo: it is what people see first.");
+      setMessage("Add a photo. It is the first thing anyone sees.");
       return;
     }
-
     if (expertise.length === 0 && !other.trim()) {
       setStatus("error");
       setMessage("Pick at least one area of expertise.");
       return;
     }
+
+    const payload = {
+      name: text("name"),
+      email: text("email"),
+      headline: text("headline"),
+      role: text("role"),
+      organisation: text("organisation"),
+      region: text("region"),
+      location: text("location"),
+      about: text("about"),
+      services: text("services"),
+      linkedin: text("linkedin"),
+      website: text("website"),
+      phone: text("phone"),
+      notes: text("notes"),
+      showEmail: form.get("showEmail") === "on",
+      showPhone: form.get("showPhone") === "on",
+      expertise: other.trim() ? [...expertise, `Other: ${other.trim()}`] : expertise,
+      consent: form.get("consent") === "on",
+      photo,
+    };
 
     setStatus("sending");
     setMessage("");
@@ -104,7 +88,7 @@ export function ApplyForm() {
     return (
       <div className="rounded-2xl border border-emerald-300 bg-emerald-50 p-8 text-center">
         <div className="mb-2 text-2xl">✅</div>
-        <h2 className="mb-2 text-xl font-bold text-gray-900">Application received</h2>
+        <h2 className="mb-2 text-xl font-bold text-gray-900">You are in the queue</h2>
         <p className="mx-auto max-w-lg text-sm leading-relaxed text-gray-700">
           We check that the person and the links are real, nothing more, and that usually takes a
           couple of days. If anything is unclear we will write to you before publishing.
@@ -114,9 +98,17 @@ export function ApplyForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-8">
+    <form onSubmit={handleSubmit} className="space-y-10">
+      <fieldset>
+        <legend className={LEGEND}>Your photo *</legend>
+        <p className="mb-4 text-sm text-gray-600">
+          Position your face inside the circle. That square is exactly what gets published.
+        </p>
+        <PhotoPicker onChange={setPhoto} />
+      </fieldset>
+
       <fieldset className="space-y-4">
-        <legend className="mb-3 text-lg font-bold text-gray-900">You</legend>
+        <legend className={LEGEND}>You</legend>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
             <label className={LABEL} htmlFor="name">
@@ -125,56 +117,17 @@ export function ApplyForm() {
             <input id="name" name="name" required className={FIELD} placeholder="Your name" />
           </div>
           <div>
-            <label className={LABEL} htmlFor="email">
-              Email * <span className="font-normal text-gray-500">(admin only, not published)</span>
+            <label className={LABEL} htmlFor="headline">
+              One-line headline *
             </label>
-            <input id="email" name="email" type="email" required className={FIELD} placeholder="you@email.com" />
-          </div>
-        </div>
-        <div>
-          <label className={LABEL} htmlFor="headline">
-            One-line headline *
-          </label>
-          <input
-            id="headline"
-            name="headline"
-            required
-            maxLength={120}
-            className={FIELD}
-            placeholder="EU AI Act compliance lead for regulated industries"
-          />
-        </div>
-        <div>
-          <label className={LABEL} htmlFor="photo">
-            Your photo *
-          </label>
-          <div className="flex items-center gap-4">
-            {photo ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={`data:${photo.type};base64,${photo.data}`}
-                alt="Preview"
-                className="h-16 w-16 rounded-full border border-gray-200 object-cover"
-              />
-            ) : (
-              <span className="flex h-16 w-16 items-center justify-center rounded-full border border-dashed border-gray-300 text-xs text-gray-400">
-                photo
-              </span>
-            )}
-            <div className="flex-1">
-              <input
-                id="photo"
-                name="photo"
-                type="file"
-                accept="image/*"
-                onChange={onPhotoChange}
-                className="block w-full text-sm text-gray-700 file:mr-3 file:rounded-lg file:border-0 file:bg-gray-950 file:px-3 file:py-2 file:text-sm file:font-bold file:text-white hover:file:bg-gray-800"
-              />
-              <p className="mt-1 text-xs text-gray-500">
-                A clear portrait, under 2 MB. It goes on your card and your profile.
-              </p>
-              {photoError && <p className="mt-1 text-xs font-semibold text-red-600">{photoError}</p>}
-            </div>
+            <input
+              id="headline"
+              name="headline"
+              required
+              maxLength={120}
+              className={FIELD}
+              placeholder="EU AI Act compliance lead for regulated industries"
+            />
           </div>
         </div>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -188,17 +141,14 @@ export function ApplyForm() {
             <label className={LABEL} htmlFor="organisation">
               Organisation
             </label>
-            <input id="organisation" name="organisation" className={FIELD} placeholder="Company or independent" />
+            <input
+              id="organisation"
+              name="organisation"
+              className={FIELD}
+              placeholder="Company, or independent"
+            />
           </div>
         </div>
-      </fieldset>
-
-      <fieldset className="space-y-4">
-        <legend className="mb-1 text-lg font-bold text-gray-900">Where you are</legend>
-        <p className="mb-3 text-sm text-gray-600">
-          The region drives the search filter. The second line is shown on your card exactly as
-          you write it.
-        </p>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
             <label className={LABEL} htmlFor="region">
@@ -231,14 +181,14 @@ export function ApplyForm() {
       </fieldset>
 
       <fieldset>
-        <legend className="mb-1 text-lg font-bold text-gray-900">What you do</legend>
-        <p className="mb-3 text-sm text-gray-600">Areas of expertise, pick all that apply *</p>
+        <legend className={LEGEND}>What you do</legend>
+        <p className="mb-3 text-sm text-gray-600">Pick everything that applies *</p>
         <div className="flex flex-wrap gap-2">
           {EXPERTISE.map((s) => (
             <button
               key={s}
               type="button"
-              onClick={() => toggle(expertise, s, setExpertise)}
+              onClick={() => toggle(s)}
               aria-pressed={expertise.includes(s)}
               className={
                 expertise.includes(s)
@@ -257,7 +207,6 @@ export function ApplyForm() {
           </label>
           <input
             id="other"
-            name="other"
             value={other}
             onChange={(e) => setOther(e.target.value)}
             className={FIELD}
@@ -277,7 +226,7 @@ export function ApplyForm() {
               rows={4}
               maxLength={900}
               className={FIELD}
-              placeholder="What you work on, who you help and what you are known for. A short paragraph."
+              placeholder="What you work on, who you help and what you are known for."
             />
           </div>
           <div>
@@ -296,32 +245,73 @@ export function ApplyForm() {
         </div>
       </fieldset>
 
-      <fieldset className="space-y-4">
-        <legend className="mb-1 text-lg font-bold text-gray-900">Links</legend>
-        <p className="mb-3 text-sm text-gray-600">
-          This is how we confirm you are you.
+      <fieldset className="space-y-5">
+        <legend className={LEGEND}>Contacts</legend>
+        <p className="text-sm text-gray-600">
+          You decide what is public. Anything published here is written into the page so that
+          scrapers cannot lift it, the same way our own address is handled.
         </p>
+
+        <div>
+          <label className={LABEL} htmlFor="email">
+            Email *
+          </label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            required
+            className={FIELD}
+            placeholder="you@email.com"
+          />
+          <label className="mt-2 flex items-start gap-2.5 text-sm leading-snug text-gray-700">
+            <input
+              type="checkbox"
+              name="showEmail"
+              className="mt-0.5 h-4 w-4 shrink-0 accent-amber-500"
+            />
+            <span>Show my email on my profile. Leave it unticked and only we see it.</span>
+          </label>
+        </div>
+
+        <div>
+          <label className={LABEL} htmlFor="linkedin">
+            LinkedIn *{" "}
+            <span className="font-normal text-gray-500">(published, and how we verify you)</span>
+          </label>
+          <input
+            id="linkedin"
+            name="linkedin"
+            type="url"
+            required
+            className={FIELD}
+            placeholder="https://www.linkedin.com/in/..."
+          />
+        </div>
+
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
-            <label className={LABEL} htmlFor="linkedin">
-              LinkedIn *
-            </label>
-            <input
-              id="linkedin"
-              name="linkedin"
-              type="url"
-              required
-              className={FIELD}
-              placeholder="https://www.linkedin.com/in/..."
-            />
-          </div>
-          <div>
             <label className={LABEL} htmlFor="website">
-              Website
+              Website <span className="font-normal text-gray-500">(published if given)</span>
             </label>
             <input id="website" name="website" type="url" className={FIELD} placeholder="https://" />
           </div>
+          <div>
+            <label className={LABEL} htmlFor="phone">
+              Phone
+            </label>
+            <input id="phone" name="phone" type="tel" className={FIELD} placeholder="+49 ..." />
+            <label className="mt-2 flex items-start gap-2.5 text-sm leading-snug text-gray-700">
+              <input
+                type="checkbox"
+                name="showPhone"
+                className="mt-0.5 h-4 w-4 shrink-0 accent-amber-500"
+              />
+              <span>Show my phone on my profile</span>
+            </label>
+          </div>
         </div>
+
         <div>
           <label className={LABEL} htmlFor="notes">
             Anything else we should know?
@@ -332,7 +322,12 @@ export function ApplyForm() {
 
       <div className="rounded-xl border border-gray-200 bg-gray-50 p-4">
         <label className="flex items-start gap-2.5 text-sm leading-snug text-gray-700">
-          <input type="checkbox" name="consent" required className="mt-1 h-4 w-4 shrink-0 accent-amber-500" />
+          <input
+            type="checkbox"
+            name="consent"
+            required
+            className="mt-1 h-4 w-4 shrink-0 accent-amber-500"
+          />
           <span>
             These are my own details. I agree to have this profile published on aibusiness.vc and
             to receive email from AI Business: new members, briefs from companies looking for
@@ -349,7 +344,7 @@ export function ApplyForm() {
         disabled={status === "sending"}
         className="rounded-lg bg-amber-500 px-6 py-3 text-sm font-bold text-gray-950 transition hover:bg-amber-400 disabled:opacity-60"
       >
-        {status === "sending" ? "Sending…" : "Submit application"}
+        {status === "sending" ? "Sending…" : "Claim my expertise"}
       </button>
     </form>
   );

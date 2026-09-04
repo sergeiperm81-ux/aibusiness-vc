@@ -35,7 +35,6 @@ export const EXPERTISE = [
   "Legal & regulatory advice",
   "Training & AI literacy",
   "Research",
-  "Industry specialist (health, finance, public sector and so on)",
 ] as const;
 export type Expertise = (typeof EXPERTISE)[number];
 
@@ -49,8 +48,14 @@ export interface Expert {
   expertise: string[];
   about: string;
   services: string[];
+  /** Chosen by the person: only what they marked public is rendered. */
   linkedin?: string;
   website?: string;
+  /** Published obfuscated so scrapers cannot lift it. */
+  email?: string;
+  phone?: string;
+  /** Optional square portrait, cropped by the applicant. */
+  photo?: string;
   /** Placeholder row used while the register is being built. Never a real person. */
   sample?: boolean;
 }
@@ -97,7 +102,7 @@ export const EXPERTS: Expert[] = [
     expertise: [
       "GDPR & data protection",
       "AI governance & policy",
-      "Industry specialist (health, finance, public sector and so on)",
+      "AI implementation & business process design",
     ],
     about:
       "Placeholder profile used while the register is under construction. It shows how a full entry is laid out: what the person does, who they help and how they can be reached.",

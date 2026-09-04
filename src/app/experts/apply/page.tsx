@@ -42,10 +42,10 @@ export default function ApplyPage() {
             <div className="lg:sticky lg:top-6">
               <div className="rounded-2xl bg-accent p-6">
                 <p className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-black">
-                  What changes
+                  Claim your place
                 </p>
                 <h2 className="mt-2 text-2xl font-bold leading-tight text-black">
-                  The day your profile goes live
+                  Somebody is looking for exactly what you do.
                 </h2>
                 <ul className="mt-5 space-y-4">
                   {REGISTER_BENEFITS.map((b) => (
