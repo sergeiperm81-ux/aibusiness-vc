@@ -300,11 +300,12 @@ export default function SergeiPonomarevPage() {
       {/* Selected work */}
       <section className="border-y border-black/5 bg-white">
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-          <h2 className="mb-8 text-2xl font-bold tracking-tight text-black sm:text-3xl">
-            Selected work
-          </h2>
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1.2fr_1fr] lg:gap-14">
-            <ul className="space-y-4">
+            <div>
+              <h2 className="mb-8 text-2xl font-bold tracking-tight text-black sm:text-3xl">
+                Selected work
+              </h2>
+              <ul className="space-y-4">
               {SELECTED_SLUGS.map((slug) => GUIDES.find((g) => g.slug === slug))
                 .filter((guide): guide is (typeof GUIDES)[number] => Boolean(guide))
                 .map((guide) => (
@@ -321,7 +322,8 @@ export default function SergeiPonomarevPage() {
                   </div>
                 </li>
               ))}
-            </ul>
+              </ul>
+            </div>
 
             <div className="flex flex-col gap-5">
               <Link
