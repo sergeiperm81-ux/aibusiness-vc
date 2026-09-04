@@ -17,13 +17,14 @@ export async function GET(request: Request) {
   }
 
   const apiKey = process.env.LEMONSQUEEZY_API_KEY?.trim();
+  // Fail closed. Previously a missing key reported every order as verified,
+  // which turned a configuration slip into free fulfilment for anyone.
   if (!apiKey) {
-    return NextResponse.json({
-      ok: true,
-      verified: true,
-      mode: "unverified_fallback",
-      note: "LEMONSQUEEZY_API_KEY is not set. Skipping payment verification.",
-    });
+    console.error("[resume-payment-verify] LEMONSQUEEZY_API_KEY is not set; cannot verify");
+    return NextResponse.json(
+      { ok: false, verified: false, error: "Payment verification is unavailable." },
+      { status: 503 }
+    );
   }
 
   try {

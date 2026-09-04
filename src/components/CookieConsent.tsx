@@ -19,6 +19,24 @@ function applyConsent(granted: boolean) {
 }
 
 /**
+ * GDPR applies to the EU/EEA/UK. We approximate the visitor's region from the
+ * browser timezone: all "Europe/*" zones (deliberately over-inclusive) plus the
+ * EEA Atlantic islands. Everyone else gets analytics enabled without a banner —
+ * consent-first is only legally required in the GDPR zone, and the banner was
+ * making ~85% of visitors invisible to analytics. The footer "Cookie preferences"
+ * link still lets anyone, anywhere, opt out.
+ */
+function isGdprRegion(): boolean {
+  try {
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone ?? "";
+    if (tz.startsWith("Europe/")) return true;
+    return ["Atlantic/Reykjavik", "Atlantic/Canary", "Atlantic/Madeira", "Atlantic/Azores", "Atlantic/Faroe"].includes(tz);
+  } catch {
+    return true; // can't tell — stay conservative and show the banner
+  }
+}
+
+/**
  * Cookie consent banner using Google Consent Mode v2.
  * Analytics defaults to "denied" (set in layout before gtag config); this banner
  * lets the visitor grant or decline. Choice persists in localStorage. Visitors can
@@ -39,8 +57,12 @@ export function CookieConsent() {
       applyConsent(true);
     } else if (stored === "denied") {
       applyConsent(false);
-    } else {
+    } else if (isGdprRegion()) {
       setVisible(true);
+    } else {
+      // Outside the GDPR zone: enable analytics, no banner. Not persisted, so a
+      // later explicit choice via "Cookie preferences" always takes precedence.
+      applyConsent(true);
     }
 
     function reopen() {

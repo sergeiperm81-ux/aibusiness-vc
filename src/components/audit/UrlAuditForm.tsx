@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { encodeDomainAsId } from "@/lib/audit/mock";
+import { isAcceptableHostname } from "@/lib/audit/hostname";
 
 interface UrlAuditFormProps {
   variant?: "hero" | "compact";
@@ -24,14 +25,15 @@ export function UrlAuditForm({ variant = "hero" }: UrlAuditFormProps) {
       return;
     }
 
-    const looksValid = /\.[a-z]{2,}/i.test(trimmed);
-    if (!looksValid) {
-      setError("That doesn't look like a valid URL.");
+    const id = encodeDomainAsId(trimmed);
+    const hostname = id.replace(/^demo-/, "").replace(/__dot__/g, ".");
+    const check = isAcceptableHostname(hostname);
+    if (!check.ok) {
+      setError(check.reason ?? "That doesn't look like a valid domain.");
       return;
     }
 
     setSubmitting(true);
-    const id = encodeDomainAsId(trimmed);
     router.push(`/audit/r/${id}`);
   }
 

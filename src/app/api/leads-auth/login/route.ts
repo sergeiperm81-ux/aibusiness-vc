@@ -1,6 +1,12 @@
 import { NextResponse } from "next/server";
 import {
-  buildLeadsSessionToken,
+  clearAttempts,
+  createSessionToken,
+  isLockedOut,
+  passwordMatches,
+  recordFailedAttempt,
+} from "@/lib/admin-session";
+import {
   getExpectedLeadsPassword,
   getExpectedLeadsUser,
   normalizeLeadsUser,
@@ -35,12 +41,30 @@ export async function POST(request: Request) {
   const password = String(formData.get("password") ?? "");
   const nextPath = normalizeNextPath(String(formData.get("next") ?? "/materials/leads"));
 
-  if (username !== expectedUser || password.trim() !== expectedPassword) {
+  const clientKey = `leads:${
+    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
+    request.headers.get("x-real-ip") ??
+    "unknown"
+  }`;
+
+  if (await isLockedOut(clientKey)) {
+    return redirectTo(
+      request.url,
+      `/materials/leads/login?error=locked&next=${encodeURIComponent(nextPath)}`
+    );
+  }
+
+  const userOk = username === expectedUser;
+  const passOk = passwordMatches(password.trim(), expectedPassword);
+  if (!userOk || !passOk) {
+    await recordFailedAttempt(clientKey);
     return redirectTo(request.url, `/materials/leads/login?error=1&next=${encodeURIComponent(nextPath)}`);
   }
 
+  await clearAttempts(clientKey);
+
   const response = redirectTo(request.url, nextPath);
-  const token = await buildLeadsSessionToken(expectedUser, expectedPassword);
+  const token = createSessionToken("leads", expectedPassword, SESSION_COOKIE_MAX_AGE_SECONDS);
   response.cookies.set({
     name: SESSION_COOKIE_NAME,
     value: token,

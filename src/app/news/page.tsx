@@ -2,8 +2,13 @@ import type { Metadata } from "next";
 import { getLatestNews } from "@/lib/supabase";
 import { NewsPageClient } from "./news-client";
 
-// No time-based revalidation. Page updates ONLY when cron calls revalidatePath("/news").
-// Between cron runs, Vercel serves from CDN cache — zero compute.
+// Time-based ISR: the page is statically regenerated at most once an hour, in the
+// background, on the serverless runtime — so RSS is re-fetched hourly and news stays
+// fresh without depending on the daily cron. force-static keeps the uncached RSS
+// fetches from turning this into a slow per-request SSR page; visitors always get the
+// cached static HTML instantly, and hand-curated seed items always render.
+export const dynamic = "force-static";
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "AI Business News — Funding, Launches & Money Moves (2026)",

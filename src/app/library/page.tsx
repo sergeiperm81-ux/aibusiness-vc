@@ -45,7 +45,7 @@ export default function LibraryPage() {
               published as I develop them. Where a guide draws on someone else&apos;s work, I
               say so — everything else is mine. Each one takes a single piece of the problem —
               how to judge an AI service, how to describe one, how to keep it accountable — and
-              turns it into something you can use today. Built from twenty years of standards,
+              turns it into something you can use today. Built from long practice in standards,
               quality assessment, and civic control, now applied to AI. New methods added
               regularly.
             </p>
@@ -91,9 +91,9 @@ export default function LibraryPage() {
                   <p className="mt-3 text-sm leading-relaxed text-gray-700">
                     <span className="font-semibold text-gray-900">Sergei Ponomarev, PhD</span> —
                     founder of aibusiness.vc and a specialist in assessing service quality from
-                    the consumer&apos;s side. Twenty years across e-government, standards,
-                    nationwide quality monitoring, independent assessment and test purchases —
-                    now applied to AI.
+                    the consumer&apos;s side. A PhD on e-government and seven years leading nationwide
+                    quality monitoring, independent assessment and test purchases of public
+                    services — now applied to AI.
                   </p>
                   <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm">
                     <Link

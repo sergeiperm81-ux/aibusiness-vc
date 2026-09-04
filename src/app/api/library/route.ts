@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { checkRateLimit, clientIpFrom } from "@/lib/rate-limit";
 import { sendBrevoEmail, upsertBrevoContact, isValidEmail, escapeHtml } from "@/lib/email/brevo";
 import { getGuide } from "@/app/library/guides";
 
@@ -13,6 +14,19 @@ interface LibraryRequestBody {
 
 export async function POST(request: Request) {
   try {
+    const limit = await checkRateLimit({
+      scope: "library",
+      key: clientIpFrom(request),
+      limit: 8,
+      windowSeconds: 3600,
+    });
+    if (!limit.allowed) {
+      return NextResponse.json(
+        { ok: false, error: "Too many requests. Please try again shortly." },
+        { status: 429, headers: { "retry-after": String(limit.retryAfterSeconds) } }
+      );
+    }
+
     const body = (await request.json()) as LibraryRequestBody;
     const email = (body.email ?? "").trim().toLowerCase();
     const consent = body.consent === true;

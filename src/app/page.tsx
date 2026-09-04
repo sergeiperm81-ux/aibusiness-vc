@@ -286,7 +286,7 @@ export default async function HomePage() {
     {
       href: "/sergei-ponomarev",
       title: "About the author",
-      text: "Twenty years of service standards, evaluation and testing.",
+      text: "Seven years of service standards, evaluation and test purchases.",
     },
   ];
   const articlesBySection = HOME_SECTION_BLOCKS.map((block) => ({
@@ -439,15 +439,15 @@ export default async function HomePage() {
                       creates real value for people, and by what rules it should work while it
                       does.
                     </p>
-                    <p className="mt-2 text-sm leading-relaxed text-black/80">
-                      For seven years I ran nationwide quality monitoring and test purchases of
-                      public services, checking what organisations promise against what people
-                      actually receive. I now do the same for AI.
-                    </p>
-                    <p className="mt-2 text-sm leading-relaxed text-black/80">
-                      Questions or ideas?{" "}
-                      <ContactEmail className="font-bold text-black underline underline-offset-2" />
-                    </p>
+                    <div className="mt-4 rounded-xl border-2 border-black/25 p-4">
+                      <p className="text-sm leading-relaxed text-black/85">
+                        Interested in partnering or working together? Write to me:
+                      </p>
+                      <ContactEmail
+                        className="mt-1 inline-block text-sm font-bold text-black underline underline-offset-2"
+                        subject="Partnership"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
