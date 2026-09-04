@@ -42,23 +42,6 @@ export default function ApplyPage() {
             <div className="lg:sticky lg:top-6">
               <div className="rounded-2xl bg-accent p-6">
                 <p className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-black">
-                  Claim your place
-                </p>
-                <h2 className="mt-2 text-2xl font-bold leading-tight text-black">
-                  Somebody is looking for exactly what you do.
-                </h2>
-                <ul className="mt-5 space-y-4">
-                  {REGISTER_BENEFITS.map((b) => (
-                    <li key={b.title}>
-                      <p className="text-sm font-bold text-black">{b.title}</p>
-                      <p className="mt-0.5 text-sm leading-snug text-black/75">{b.body}</p>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="mt-4 rounded-2xl border-2 border-gray-200 p-6">
-                <p className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-amber-700">
                   How it works
                 </p>
                 <ol className="mt-4 space-y-4">
@@ -77,16 +60,33 @@ export default function ApplyPage() {
                     },
                   ].map((step, index) => (
                     <li key={step.title} className="flex gap-3">
-                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent text-sm font-bold text-black">
+                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-gray-950 text-sm font-bold text-accent">
                         {index + 1}
                       </span>
                       <div>
-                        <p className="text-sm font-bold text-gray-900">{step.title}</p>
-                        <p className="mt-0.5 text-sm leading-snug text-gray-600">{step.body}</p>
+                        <p className="text-sm font-bold text-black">{step.title}</p>
+                        <p className="mt-0.5 text-sm leading-snug text-black/75">{step.body}</p>
                       </div>
                     </li>
                   ))}
                 </ol>
+              </div>
+
+              <div className="mt-4 rounded-2xl border-2 border-gray-200 p-6">
+                <p className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-amber-700">
+                  Claim your place
+                </p>
+                <h2 className="mt-2 text-xl font-bold leading-tight text-gray-900">
+                  Somebody is looking for exactly what you do.
+                </h2>
+                <ul className="mt-5 space-y-4">
+                  {REGISTER_BENEFITS.map((b) => (
+                    <li key={b.title}>
+                      <p className="text-sm font-bold text-gray-900">{b.title}</p>
+                      <p className="mt-0.5 text-sm leading-snug text-gray-600">{b.body}</p>
+                    </li>
+                  ))}
+                </ul>
               </div>
 
               <div className="mt-4 rounded-2xl bg-gray-950 p-6">

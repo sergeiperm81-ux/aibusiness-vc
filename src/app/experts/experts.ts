@@ -151,8 +151,8 @@ export const REGISTER_BENEFITS = [
     body: "Your card is machine-readable. Ask an AI who does this work, and the answer can be your name.",
   },
   {
-    title: "Briefs land in your inbox",
-    body: "Companies write to us with a task. We send it to the three people who fit. No fee, no bidding.",
+    title: "Another channel for work",
+    body: "Companies already write to us looking for help. The register is where we look first when they do.",
   },
   {
     title: "Your peers, in one place",

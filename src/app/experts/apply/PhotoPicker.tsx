@@ -128,7 +128,7 @@ export function PhotoPicker({ onChange }: Props) {
 
   return (
     <div className="rounded-2xl border-2 border-amber-300 bg-amber-50 p-5">
-      <div className="flex flex-col gap-6 sm:flex-row sm:items-start">
+      <div className="flex flex-col items-center gap-6 sm:flex-row sm:items-center">
         <div
           className="relative shrink-0 select-none overflow-hidden rounded-full border-4 border-amber-400 bg-white shadow-md"
           style={{ width: FRAME, height: FRAME, cursor: src ? "grab" : "default", touchAction: "none" }}
@@ -161,7 +161,7 @@ export function PhotoPicker({ onChange }: Props) {
           )}
         </div>
 
-        <div className="flex-1">
+        <div className="flex-1 text-center sm:text-left">
           <label className="inline-block cursor-pointer rounded-lg bg-amber-500 px-5 py-3 text-sm font-bold text-gray-950 transition hover:bg-amber-400">
             {src ? "Choose another photo" : "Choose a photo"}
             <input type="file" accept="image/*" onChange={handleFile} className="hidden" />
