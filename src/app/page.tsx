@@ -432,18 +432,6 @@ export default async function HomePage() {
                       </Link>
                     ))}
                   </div>
-                  <Link
-                    href="/experts/apply"
-                    className="mt-4 block rounded-xl border-2 border-black/25 px-4 py-3 transition hover:bg-black/5"
-                  >
-                    <span className="block text-sm font-bold text-black">
-                      Join the AI governance community &rarr;
-                    </span>
-                    <span className="mt-0.5 block text-xs leading-snug text-black/75">
-                      Be found by clients, be citable by AI search, get the briefs. Free.
-                    </span>
-                  </Link>
-
                   <div className="mt-4 flex flex-1 flex-col border-t border-black/20 pt-4">
                     <p className="text-sm font-bold text-black">A word from the author</p>
                     <p className="mt-2 text-sm leading-relaxed text-black/80">

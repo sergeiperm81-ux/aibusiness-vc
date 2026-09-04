@@ -17,6 +17,10 @@ export function ApplyForm() {
   const [expertise, setExpertise] = useState<string[]>([]);
   const [other, setOther] = useState("");
   const [photo, setPhoto] = useState<PickedPhoto | null>(null);
+  // Kept in state so the person can watch their card take shape while filling this in.
+  const [name, setName] = useState("");
+  const [headline, setHeadline] = useState("");
+  const [location, setLocation] = useState("");
 
   function toggle(value: string) {
     setExpertise((list) =>
@@ -43,13 +47,13 @@ export function ApplyForm() {
     }
 
     const payload = {
-      name: text("name"),
+      name: name.trim(),
       email: text("email"),
-      headline: text("headline"),
+      headline: headline.trim(),
       role: text("role"),
       organisation: text("organisation"),
       region: text("region"),
-      location: text("location"),
+      location: location.trim(),
       about: text("about"),
       services: text("services"),
       linkedin: text("linkedin"),
@@ -57,6 +61,8 @@ export function ApplyForm() {
       phone: text("phone"),
       showEmail: form.get("showEmail") === "on",
       showPhone: form.get("showPhone") === "on",
+      showLinkedin: form.get("showLinkedin") === "on",
+      showWebsite: form.get("showWebsite") === "on",
       expertise: other.trim() ? [...expertise, `Other: ${other.trim()}`] : expertise,
       consent: form.get("consent") === "on",
       photo,
@@ -113,20 +119,32 @@ export function ApplyForm() {
             <label className={LABEL} htmlFor="name">
               Full name *
             </label>
-            <input id="name" name="name" required className={FIELD} placeholder="Your name" />
+            <input
+              id="name"
+              name="name"
+              required
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className={FIELD}
+              placeholder="Your name"
+            />
           </div>
           <div>
             <label className={LABEL} htmlFor="headline">
-              One-line headline *
+              One-line headline *{" "}
+              <span className="font-normal text-amber-700">this is the line on your card</span>
             </label>
             <input
               id="headline"
               name="headline"
               required
               maxLength={120}
+              value={headline}
+              onChange={(e) => setHeadline(e.target.value)}
               className={FIELD}
               placeholder="EU AI Act compliance lead for regulated industries"
             />
+            <p className="mt-1 text-xs text-gray-500">{headline.length}/120</p>
           </div>
         </div>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -172,12 +190,61 @@ export function ApplyForm() {
               id="location"
               name="location"
               required
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
               className={FIELD}
               placeholder="Berlin, or Germany, or Berlin, Germany"
             />
           </div>
         </div>
       </fieldset>
+
+      <div className="rounded-2xl border-2 border-amber-300 bg-amber-50 p-6">
+        <p className="mb-1 text-lg font-bold text-gray-900">Your card, as people will see it</p>
+        <p className="mb-5 text-sm text-gray-700">
+          This is the preview in the catalogue. Everything else you write lives on your own page.
+        </p>
+        <div className="mx-auto flex w-full max-w-xs flex-col rounded-2xl border-2 border-gray-200 bg-white p-6 text-center shadow-sm">
+          {photo ? (
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img
+              src={`data:${photo.type};base64,${photo.data}`}
+              alt=""
+              className="mx-auto h-24 w-24 rounded-full object-cover"
+            />
+          ) : (
+            <span className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-gray-950 text-xs font-bold text-accent">
+              photo
+            </span>
+          )}
+          <p className="mt-4 text-base font-bold text-gray-900">{name || "Your name"}</p>
+          <p className="mt-0.5 text-xs text-gray-500">{location || "Your location"}</p>
+          <p className="mt-3 text-sm leading-relaxed text-gray-700">
+            {headline || "Your one-line headline goes here"}
+          </p>
+          <div className="mt-4 flex flex-wrap justify-center gap-1.5">
+            {expertise.slice(0, 2).map((s) => (
+              <span
+                key={s}
+                className="rounded-md bg-amber-100 px-2 py-0.5 text-[11px] font-semibold text-amber-900"
+              >
+                {s}
+              </span>
+            ))}
+            {expertise.length > 2 && (
+              <span className="rounded-md bg-gray-900 px-2 py-0.5 text-[11px] font-semibold text-white">
+                +{expertise.length - 2}
+              </span>
+            )}
+          </div>
+        </div>
+        {expertise.length > 2 && (
+          <p className="mt-4 text-center text-xs text-gray-600">
+            Tick as many areas as you like: the card shows the first two and a counter, and your
+            page lists them all.
+          </p>
+        )}
+      </div>
 
       <fieldset className="rounded-2xl border-2 border-gray-200 p-6">
         <legend className={LEGEND}>Your expertise</legend>
@@ -279,8 +346,7 @@ export function ApplyForm() {
 
         <div>
           <label className={LABEL} htmlFor="linkedin">
-            LinkedIn *{" "}
-            <span className="font-normal text-gray-500">(published, and how we verify you)</span>
+            LinkedIn * <span className="font-normal text-gray-500">(how we verify you)</span>
           </label>
           <input
             id="linkedin"
@@ -290,14 +356,32 @@ export function ApplyForm() {
             className={FIELD}
             placeholder="https://www.linkedin.com/in/..."
           />
+          <label className="mt-2 flex items-start gap-2.5 text-sm leading-snug text-gray-700">
+            <input
+              type="checkbox"
+              name="showLinkedin"
+              defaultChecked
+              className="mt-0.5 h-4 w-4 shrink-0 accent-amber-500"
+            />
+            <span>Show my LinkedIn on my profile</span>
+          </label>
         </div>
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
             <label className={LABEL} htmlFor="website">
-              Website <span className="font-normal text-gray-500">(published if given)</span>
+              Website
             </label>
             <input id="website" name="website" type="url" className={FIELD} placeholder="https://" />
+            <label className="mt-2 flex items-start gap-2.5 text-sm leading-snug text-gray-700">
+              <input
+                type="checkbox"
+                name="showWebsite"
+                defaultChecked
+                className="mt-0.5 h-4 w-4 shrink-0 accent-amber-500"
+              />
+              <span>Show my website on my profile</span>
+            </label>
           </div>
           <div>
             <label className={LABEL} htmlFor="phone">
@@ -314,7 +398,6 @@ export function ApplyForm() {
             </label>
           </div>
         </div>
-
       </fieldset>
 
       <div className="rounded-xl border border-gray-200 bg-gray-50 p-4">

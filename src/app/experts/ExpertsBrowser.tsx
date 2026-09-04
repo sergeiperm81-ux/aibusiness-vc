@@ -20,35 +20,40 @@ function ExpertCard({ expert: e }: { expert: Expert }) {
   return (
     <Link
       href={`/experts/${e.slug}`}
-      className="group flex flex-col rounded-2xl bg-accent p-6 text-center transition hover:-translate-y-0.5 hover:shadow-lg"
+      className="group flex flex-col rounded-2xl border-2 border-gray-200 bg-white p-6 text-center shadow-sm transition hover:-translate-y-0.5 hover:border-accent hover:shadow-lg"
     >
       {e.photo ? (
         /* eslint-disable-next-line @next/next/no-img-element */
         <img
           src={e.photo}
           alt={e.name}
-          className="mx-auto h-24 w-24 rounded-full object-cover ring-2 ring-black/15"
+          className="mx-auto h-24 w-24 rounded-full object-cover"
         />
       ) : (
-        <span className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-gray-950 text-xl font-bold text-accent ring-2 ring-black/10">
+        <span className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-gray-950 text-xl font-bold text-accent">
           {initials(e.name)}
         </span>
       )}
-      <p className="mt-4 text-base font-bold text-black">{e.name}</p>
-      <p className="mt-0.5 text-xs text-black/60">{e.location}</p>
-      <p className="mt-3 flex-1 text-sm leading-relaxed text-black/80">{e.headline}</p>
+      <p className="mt-4 text-base font-bold text-gray-900">{e.name}</p>
+      <p className="mt-0.5 text-xs text-gray-500">{e.location}</p>
+      <p className="mt-3 flex-1 text-sm leading-relaxed text-gray-700">{e.headline}</p>
       <div className="mt-4 flex flex-wrap justify-center gap-1.5">
         {e.expertise.slice(0, 2).map((s) => (
           <span
             key={s}
-            className="rounded-md bg-black/10 px-2 py-0.5 text-[11px] font-semibold text-black/80"
+            className="rounded-md bg-amber-100 px-2 py-0.5 text-[11px] font-semibold text-amber-900"
           >
             {s}
           </span>
         ))}
+        {e.expertise.length > 2 && (
+          <span className="rounded-md bg-gray-900 px-2 py-0.5 text-[11px] font-semibold text-white">
+            +{e.expertise.length - 2}
+          </span>
+        )}
       </div>
       {e.sample && (
-        <span className="mt-3 text-[10px] font-bold uppercase tracking-wide text-black/40">
+        <span className="mt-3 text-[10px] font-bold uppercase tracking-wide text-gray-400">
           Sample
         </span>
       )}
