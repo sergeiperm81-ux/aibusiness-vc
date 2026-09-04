@@ -30,7 +30,7 @@ Let me show you the math that every business owner immediately understands:
 | Training time for new info | Days-weeks | Minutes | 99% faster |
 | Consistency | Variable | 100% consistent | No bad days |
 
-When you sit across from a dental practice owner and show them that their front desk spends 3 hours per day answering the same 15 questions — "Do you accept Delta Dental?" "What are your hours?" "How do I reschedule?" — and that an AI chatbot handles all of that for $2,500/month instead of the $4,500/month they are paying a part-time receptionist for those hours, the sale practically closes itself.
+When you sit across from a dental practice owner and show them that their front desk spends 3 hours per day answering the same 15 questions, "Do you accept Delta Dental?" "What are your hours?" "How do I reschedule?", and that an AI chatbot handles all of that for $2,500/month instead of the $4,500/month they are paying a part-time receptionist for those hours, the sale practically closes itself.
 
 This is not a hard sell. It is a math problem.
 
@@ -49,7 +49,7 @@ Not every business type is equally good for chatbot sales. Here are the vertical
 
 **Dental practices** are the single best entry point. There are 200,000+ dental practices in the US. They all have the same problems: phone lines jammed with routine questions, missed calls turning into lost patients, and front desk staff overwhelmed during peak hours. An AI chatbot on their website and connected to their phone system solves all three.
 
-The Tampa developer I mentioned started with one dentist friend. That dentist referred two others. Those two referred two more. Six clients in four months, all through referrals. Dental practices talk to each other constantly — local study clubs, dental associations, Facebook groups. One happy client is a marketing engine.
+The Tampa developer I mentioned started with one dentist friend. That dentist referred two others. Those two referred two more. Six clients in four months, all through referrals. Dental practices talk to each other constantly, local study clubs, dental associations, Facebook groups. One happy client is a marketing engine.
 
 **Law firms** are the highest-value vertical. A personal injury firm that misses a lead at 9 PM might lose a $50,000+ case. An AI chatbot that captures that lead, qualifies it ("Were you injured in a car accident in the last two years?"), and schedules a consultation is worth $5,000-$15,000 in setup and $2,500-$5,000/month. Law firms have the budget and the urgency.
 
@@ -125,7 +125,7 @@ Add them to a simple spreadsheet: business name, owner name (find on LinkedIn), 
 
 Send a personalized email or LinkedIn message. Here is the script that works:
 
-"Hi [Name], I help [dental practices/law firms/etc.] in [city] capture more leads after hours using AI chatbots. I noticed your website does not have automated chat — which means you are probably missing inquiries that come in after 5 PM. I put together a quick 2-minute demo specific to [their business name] to show you what it would look like. Can I send it over?"
+"Hi [Name], I help [dental practices/law firms/etc.] in [city] capture more leads after hours using AI chatbots. I noticed your website does not have automated chat, which means you are probably missing inquiries that come in after 5 PM. I put together a quick 2-minute demo specific to [their business name] to show you what it would look like. Can I send it over?"
 
 The key: mention their specific business. Make a 2-minute Loom video showing a chatbot prototype with their branding, their FAQs, and their services. This takes 15-20 minutes per prospect but converts at 3-5x the rate of generic outreach.
 
@@ -135,13 +135,13 @@ The key: mention their specific business. Make a 2-minute Loom video showing a c
 
 Do not pitch features. Pitch outcomes.
 
-"Your front desk handles about [X] calls per day. Based on similar practices, roughly 40% of those calls are routine questions — insurance, hours, scheduling. That is [Y] hours per day your staff spends on questions a chatbot handles instantly. At your current staffing cost, that is approximately $[Z] per month in labor on routine inquiries alone. My chatbot handles all of that for $2,500/month, works 24/7, and never calls in sick."
+"Your front desk handles about [X] calls per day. Based on similar practices, roughly 40% of those calls are routine questions, insurance, hours, scheduling. That is [Y] hours per day your staff spends on questions a chatbot handles instantly. At your current staffing cost, that is approximately $[Z] per month in labor on routine inquiries alone. My chatbot handles all of that for $2,500/month, works 24/7, and never calls in sick."
 
 Show them the prototype you built for their business. Let them interact with it. When they see their own branding, their own services, and their own FAQs in a working chatbot, the sale is 70% done.
 
 ### Step 4: Close and Implement (Week 1-2)
 
-Close with a 90-day agreement. Not a 12-month contract — that scares small businesses. A 90-day trial period shows confidence. If the chatbot delivers value (and it will), they stay. Average retention is 18+ months across all verticals.
+Close with a 90-day agreement. Not a 12-month contract, that scares small businesses. A 90-day trial period shows confidence. If the chatbot delivers value (and it will), they stay. Average retention is 18+ months across all verticals.
 
 **Implementation timeline:**
 
@@ -187,7 +187,7 @@ Let me break down the Tampa developer's exact numbers:
 
 **Clients 2-3 (Month 2-3):** Referrals from Client 1. Both in the same dental study club. Same setup, same pricing. One practice reported a 34% reduction in front desk phone calls within 60 days.
 
-**Clients 4-6 (Month 3-4):** Two more referrals plus one from a local dental conference where he spoke for 15 minutes about AI in dental practices. He did not even pitch his services — he just showed results, and three dentists approached him afterward.
+**Clients 4-6 (Month 3-4):** Two more referrals plus one from a local dental conference where he spoke for 15 minutes about AI in dental practices. He did not even pitch his services, he just showed results, and three dentists approached him afterward.
 
 **Current Monthly P&L:**
 
@@ -207,20 +207,20 @@ After the initial setup work (15-25 hours per client), ongoing maintenance is ro
 ## Common Objections (and How to Handle Them)
 
 **"Our patients/clients prefer talking to a real person."**
-"Absolutely, and they still can. The chatbot handles the 40% of inquiries that are routine — hours, insurance, directions, scheduling. Your team focuses on the conversations that actually need a human touch. You are not replacing people, you are freeing them to do their best work."
+"Absolutely, and they still can. The chatbot handles the 40% of inquiries that are routine, hours, insurance, directions, scheduling. Your team focuses on the conversations that actually need a human touch. You are not replacing people, you are freeing them to do their best work."
 
 **"We tried a chatbot before and it was terrible."**
-"Most chatbots before 2025 were rule-based — they could only answer questions they were explicitly programmed for. This uses AI that understands natural language. It reads your entire website, your FAQ page, and your service descriptions. It actually understands what patients are asking, even when they phrase things in unusual ways."
+"Most chatbots before 2025 were rule-based, they could only answer questions they were explicitly programmed for. This uses AI that understands natural language. It reads your entire website, your FAQ page, and your service descriptions. It actually understands what patients are asking, even when they phrase things in unusual ways."
 
 **"$2,500/month seems expensive."**
-"I understand. Let me ask — how many calls does your front desk miss per week? [Usually 10-20]. If even 3 of those are potential new patients worth $2,000-5,000 in lifetime value, that is $6,000-15,000 in recovered revenue per month. The chatbot pays for itself with one captured lead."
+"I understand. Let me ask, how many calls does your front desk miss per week? [Usually 10-20]. If even 3 of those are potential new patients worth $2,000-5,000 in lifetime value, that is $6,000-15,000 in recovered revenue per month. The chatbot pays for itself with one captured lead."
 
 **"What about privacy/HIPAA?"**
-"Great question. The chatbot does not access patient records. It handles scheduling and general questions using only publicly available information — your website, your hours, your services, your insurance list. For anything requiring personal health information, it routes to your staff. Full HIPAA compliance documentation is included."
+"Great question. The chatbot does not access patient records. It handles scheduling and general questions using only publicly available information, your website, your hours, your services, your insurance list. For anything requiring personal health information, it routes to your staff. Full HIPAA compliance documentation is included."
 
 ## What This Comes Down To
 
-An AI chatbot costs $0.10-$0.50 per conversation. A human costs $12-$25 per ticket. Every local business that handles customer inquiries — which is virtually all of them — saves money with a chatbot. Your job is to show them the math, build the solution, and collect recurring revenue.
+An AI chatbot costs $0.10-$0.50 per conversation. A human costs $12-$25 per ticket. Every local business that handles customer inquiries, which is virtually all of them, saves money with a chatbot. Your job is to show them the math, build the solution, and collect recurring revenue.
 
 Start with one vertical. Reach out to 50 prospects. Close 1-3 clients. Deliver results. Let referrals do the rest. Within 6 months, $10,000-15,000/month in recurring revenue is realistic. Within 12-18 months, $30,000-50,000/month with a small team.
 

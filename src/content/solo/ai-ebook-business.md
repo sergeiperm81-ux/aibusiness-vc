@@ -10,7 +10,7 @@ keywords: ["AI ebook business", "sell ebooks with AI", "Amazon KDP AI", "write e
 
 # How to Write and Sell AI-Assisted E-Books ($200-$5,000/Month)
 
-Self-publishing hit $2.3 billion in revenue in 2025. AI tools cut ebook creation time from weeks to days while maintaining quality that readers actually pay for. The key word is "AI-assisted" — you use AI as a drafting tool, but your expertise, editing, and unique angle make the product worth buying.
+Self-publishing hit $2.3 billion in revenue in 2025. AI tools cut ebook creation time from weeks to days while maintaining quality that readers actually pay for. The key word is "AI-assisted", you use AI as a drafting tool, but your expertise, editing, and unique angle make the product worth buying.
 
 ## Why E-Books Still Work
 
@@ -37,24 +37,24 @@ Non-fiction ebooks in practical, how-to niches consistently outsell other catego
 ## The AI-Assisted Writing Workflow
 
 **Step 1: Research (2-3 hours)**
-Use Perplexity AI or Claude to research your topic deeply. Identify 10-15 chapters that cover the topic comprehensively. Check Amazon for competing titles — read their reviews to find what readers wish was covered better.
+Use Perplexity AI or Claude to research your topic deeply. Identify 10-15 chapters that cover the topic comprehensively. Check Amazon for competing titles, read their reviews to find what readers wish was covered better.
 
 **Step 2: Outline (1-2 hours)**
-Create a detailed chapter-by-chapter outline. Each chapter should have 5-8 subheadings. This is where YOUR expertise shapes the book — AI cannot substitute for knowing what actually matters.
+Create a detailed chapter-by-chapter outline. Each chapter should have 5-8 subheadings. This is where YOUR expertise shapes the book: AI cannot substitute for knowing what actually matters.
 
 **Step 3: Draft with AI (6-10 hours)**
-Use Claude or ChatGPT to draft each chapter based on your outline. Feed it your outline, key points, and tone guidance. Generate chapter by chapter — do not try to generate the entire book in one prompt.
+Use Claude or ChatGPT to draft each chapter based on your outline. Feed it your outline, key points, and tone guidance. Generate chapter by chapter, do not try to generate the entire book in one prompt.
 
 **Step 4: Edit and Personalize (8-12 hours)**
 This is the most important step. Read every word. Cut generic AI filler. Add personal anecdotes, specific examples, and nuanced opinions. Verify every statistic and claim. A reader should feel they are learning from an expert, not reading AI output.
 
 **Step 5: Design (2-3 hours)**
-Create a professional cover with Canva AI ($13/month). Interior formatting with Amazon's Kindle Create (free) or Atticus ($147 one-time). Cover quality directly impacts sales — invest time here.
+Create a professional cover with Canva AI ($13/month). Interior formatting with Amazon's Kindle Create (free) or Atticus ($147 one-time). Cover quality directly impacts sales, invest time here.
 
 **Step 6: Publish (1-2 hours)**
 Upload to Amazon KDP. Set pricing. Write a keyword-rich description. Choose relevant categories. Publish.
 
-**Total time: 20-30 hours per ebook.** At $2,000/month in passive sales, that is $67-100/hour effective rate — and it keeps paying forever.
+**Total time: 20-30 hours per ebook.** At $2,000/month in passive sales, that is $67-100/hour effective rate, and it keeps paying forever.
 
 ## Where to Sell
 
@@ -80,7 +80,7 @@ Upload to Amazon KDP. Set pricing. Write a keyword-rich description. Choose rele
 
 ## Scaling to $5,000/Month
 
-The secret is not one bestselling book — it is a catalog.
+The secret is not one bestselling book, it is a catalog.
 
 **Month 1-2:** Publish your first ebook. Revenue: $50-200/month.
 **Month 3-4:** Publish second and third ebooks. Revenue: $200-600/month.

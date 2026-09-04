@@ -10,7 +10,7 @@ keywords: ["AI startup funding", "AI venture capital", "AI investment 2026", "ho
 
 # AI Startup Funding in 2026: Who's Investing, How Much, and Where
 
-AI startup funding hit $72 billion in 2025 — more than double the year before. But the money isn't spread evenly. A handful of frontier model companies grabbed the majority, and thousands of application-layer startups fought over the rest. Here's where the money is flowing and what founders need to know.
+AI startup funding hit $72 billion in 2025, more than double the year before. But the money isn't spread evenly. A handful of frontier model companies grabbed the majority, and thousands of application-layer startups fought over the rest. Here's where the money is flowing and what founders need to know.
 
 ## The Numbers
 
@@ -26,34 +26,34 @@ Total AI private investment in 2025: $72 billion globally, per Stanford's AI Ind
 | Series B | $45M | 15% |
 | Growth/Late | $200M+ | 66% |
 
-The late-stage concentration is extreme — OpenAI ($6.6B), Anthropic ($3.5B), and xAI ($6B) alone ate over $16 billion, or 22% of all AI funding.
+The late-stage concentration is extreme: OpenAI ($6.6B), Anthropic ($3.5B), and xAI ($6B) alone ate over $16 billion, or 22% of all AI funding.
 
 ## Top AI Investors in 2026
 
 **Most active VC firms in AI:**
-- **Andreessen Horowitz (a16z)** — Biggest AI fund at $7.5 billion. Invested in Mistral, Character.AI, ElevenLabs.
-- **Sequoia Capital** — Early OpenAI backer. Active in AI infrastructure and apps.
-- **Lightspeed Venture Partners** — Backed Stability AI, Glean, and multiple AI-native SaaS companies.
-- **Accel** — Strong in AI developer tools and enterprise AI.
-- **Khosla Ventures** — Focused on AI for science, healthcare, and deep tech.
+- **Andreessen Horowitz (a16z)**: Biggest AI fund at $7.5 billion. Invested in Mistral, Character.AI, ElevenLabs.
+- **Sequoia Capital**: Early OpenAI backer. Active in AI infrastructure and apps.
+- **Lightspeed Venture Partners**: Backed Stability AI, Glean, and multiple AI-native SaaS companies.
+- **Accel**: Strong in AI developer tools and enterprise AI.
+- **Khosla Ventures**: Focused on AI for science, healthcare, and deep tech.
 
 **Corporate investors:**
-- **Google/Alphabet** — Major Anthropic investor ($2B+), plus internal AI bets.
-- **Microsoft** — $13B+ committed to OpenAI. Also invested in Mistral.
-- **NVIDIA** — Strategic investments across the AI stack.
-- **Amazon** — $4B into Anthropic for AWS integration.
-- **Salesforce Ventures** — Active in enterprise AI apps.
+- **Google/Alphabet**: Major Anthropic investor ($2B+), plus internal AI bets.
+- **Microsoft**: $13B+ committed to OpenAI. Also invested in Mistral.
+- **NVIDIA**: Strategic investments across the AI stack.
+- **Amazon**: $4B into Anthropic for AWS integration.
+- **Salesforce Ventures**: Active in enterprise AI apps.
 
 ## Where the Money Is Going
 
 **Hottest AI sectors in 2026:**
 
-1. **AI Infrastructure** (37%) — Chips, cloud, training compute, data centers. The picks-and-shovels play.
-2. **Foundation Models** (25%) — LLMs, multimodal models, specialized models. Winner-take-most dynamics.
-3. **Enterprise AI Applications** (18%) — AI for sales, marketing, support, operations. Fastest-growing category.
-4. **AI Developer Tools** (10%) — Coding assistants, testing, deployment, monitoring.
-5. **AI Healthcare** (6%) — Drug discovery, diagnostics, clinical documentation.
-6. **AI Robotics** (4%) — Autonomous vehicles, warehouse robots, humanoid robots.
+1. **AI Infrastructure** (37%): Chips, cloud, training compute, data centers. The picks-and-shovels play.
+2. **Foundation Models** (25%): LLMs, multimodal models, specialized models. Winner-take-most dynamics.
+3. **Enterprise AI Applications** (18%): AI for sales, marketing, support, operations. Fastest-growing category.
+4. **AI Developer Tools** (10%): Coding assistants, testing, deployment, monitoring.
+5. **AI Healthcare** (6%): Drug discovery, diagnostics, clinical documentation.
+6. **AI Robotics** (4%): Autonomous vehicles, warehouse robots, humanoid robots.
 
 ## How to Raise Funding for an AI Startup
 

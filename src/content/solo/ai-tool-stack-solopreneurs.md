@@ -28,13 +28,13 @@ Here is the exact stack, what it costs, and which traditional hire each tool rep
 
 That is a **236x return on investment**. For every dollar you spend on AI tools, you get $236 worth of labor equivalent.
 
-## Layer 1: The Brain — ChatGPT Plus ($20/month)
+## Layer 1: The Brain: ChatGPT Plus ($20/month)
 
 Twenty bucks a month gets you a research analyst, strategy consultant, and general assistant rolled into one. Here is what it actually handles in practice:
 
 **Market research:** Ask it to analyze competitors, summarize industry reports, identify market trends. What used to take a research assistant 2 days takes 10 minutes.
 
-**Strategy planning:** Business model analysis, pricing strategy, go-to-market planning. Not perfect — but 80% of what a $200/hour consultant delivers.
+**Strategy planning:** Business model analysis, pricing strategy, go-to-market planning. Not perfect, but 80% of what a $200/hour consultant delivers.
 
 **Email drafting:** Client communications, partnership outreach, vendor negotiations. It writes professional emails in your voice after 3-4 examples.
 
@@ -42,9 +42,9 @@ Twenty bucks a month gets you a research analyst, strategy consultant, and gener
 
 **ROI calculation:** $20/month for unlimited analysis across all these functions. A human research analyst costs $4,000-5,000/month. You save $4,980/month.
 
-## Layer 2: The Builder — Cursor Pro ($20/month)
+## Layer 2: The Builder: Cursor Pro ($20/month)
 
-For $20/month, you get something close to a junior developer. Not a perfect one — but good enough to ship real products. What it does:
+For $20/month, you get something close to a junior developer. Not a perfect one, but good enough to ship real products. What it does:
 
 **Website development:** Build a full Next.js site with database integration in hours, not weeks. Cursor's AI writes 80% of the code while you direct the architecture.
 
@@ -56,7 +56,7 @@ For $20/month, you get something close to a junior developer. Not a perfect one 
 
 **ROI calculation:** $20/month replaces $6,000-7,500/month developer salary. You save $6,980/month. Even if you ship 70% slower than a dedicated dev, you ship 10x faster than if you had no developer at all.
 
-## Layer 3: The Writer — Jasper Creator ($49/month)
+## Layer 3: The Writer: Jasper Creator ($49/month)
 
 $49/month and you can stop hiring freelance writers for most of your content needs. What Jasper actually produces:
 
@@ -70,7 +70,7 @@ $49/month and you can stop hiring freelance writers for most of your content nee
 
 **ROI calculation:** $49/month replaces $4,000-6,000/month in freelance writing costs. You save $5,951/month.
 
-## Layer 4: The Designer — Canva Pro ($13/month)
+## Layer 4: The Designer: Canva Pro ($13/month)
 
 Canva Pro with AI features replaces your graphic designer. Deliverables:
 
@@ -84,7 +84,7 @@ Canva Pro with AI features replaces your graphic designer. Deliverables:
 
 **ROI calculation:** $13/month replaces $3,500-5,000/month designer salary. You save $4,987/month.
 
-## Layer 5: The Automator — Make.com (Free tier)
+## Layer 5: The Automator: Make.com (Free tier)
 
 Make.com replaces your operations assistant. Automations include:
 
@@ -98,7 +98,7 @@ Make.com replaces your operations assistant. Automations include:
 
 **ROI calculation:** $0/month (free tier handles 1,000 operations/month). A virtual assistant doing these tasks costs $2,000-3,000/month. Pure savings.
 
-## Layer 6: The Listener — Otter.ai (Free tier)
+## Layer 6: The Listener: Otter.ai (Free tier)
 
 Otter.ai replaces meeting transcription and note-taking. Uses:
 
@@ -116,11 +116,11 @@ Once you are earning $5,000+/month, upgrade to:
 
 | Tool | Monthly Cost | Upgrade From |
 |---|---|---|
-| ChatGPT Plus | $20 | — |
+| ChatGPT Plus | $20 | n/a |
 | Claude Pro | $20 | Add for coding and analysis |
-| Cursor Pro | $20 | — |
+| Cursor Pro | $20 | n/a |
 | Jasper Pro | $125 | Creator tier |
-| Canva Pro | $13 | — |
+| Canva Pro | $13 | n/a |
 | Make.com Starter | $9 | Free tier |
 | ElevenLabs Starter | $11 | Add for voiceovers |
 | Descript Pro | $24 | Add for video editing |
@@ -133,13 +133,13 @@ This upgraded stack produces the output equivalent of a 10-person team. Your ann
 
 Time for some honesty about what AI still cannot handle in 2026:
 
-1. **Strategic judgment** — AI helps you analyze, but you make the final call on business direction
-2. **Client relationships** — The human touch in sales and client management still matters
-3. **Quality control** — Everything AI produces needs your review before it ships
-4. **Creative direction** — AI executes, but you decide the brand vision and creative strategy
-5. **Legal and financial decisions** — Always verify with professionals for contracts, taxes, and compliance
+1. **Strategic judgment**: AI helps you analyze, but you make the final call on business direction
+2. **Client relationships**: The human touch in sales and client management still matters
+3. **Quality control**: Everything AI produces needs your review before it ships
+4. **Creative direction**: AI executes, but you decide the brand vision and creative strategy
+5. **Legal and financial decisions**: Always verify with professionals for contracts, taxes, and compliance
 
-The model works because you handle these five things — the parts that require a human brain and human relationships — while AI grinds through the other 95% of operational work.
+The model works because you handle these five things, the parts that require a human brain and human relationships, while AI grinds through the other 95% of operational work.
 
 ## Getting Started This Weekend
 

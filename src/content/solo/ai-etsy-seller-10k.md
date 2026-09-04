@@ -54,22 +54,22 @@ Creation time per product: 30-60 minutes with AI. A catalog of 200 products take
 
 ## Getting Started
 
-**Week 1:** Research top sellers in your chosen niche. Identify gaps — products people search for but few sellers offer. Use Etsy search and eRank (free tool) for keyword research.
+**Week 1:** Research top sellers in your chosen niche. Identify gaps, products people search for but few sellers offer. Use Etsy search and eRank (free tool) for keyword research.
 
-**Week 2-3:** Create your first 20 products using AI tools. Quality over quantity initially — each product should look professional and solve a clear need.
+**Week 2-3:** Create your first 20 products using AI tools. Quality over quantity initially, each product should look professional and solve a clear need.
 
 **Week 4:** List everything with SEO-optimized titles, tags, and descriptions. Use all 13 tags Etsy allows. Include keywords in your title that buyers actually search for.
 
 **Month 2-3:** Analyze which products get views and sales. Double down on winners. Create variations and bundles. Add 10-20 new products per week.
 
-**Month 4-6:** Catalog reaches 100+ products. Sales should be $500-2,000/month. Continue adding products — every new listing is another potential passive income stream.
+**Month 4-6:** Catalog reaches 100+ products. Sales should be $500-2,000/month. Continue adding products, every new listing is another potential passive income stream.
 
 ## Etsy AI Policies (2026)
 
-Etsy requires sellers to disclose AI involvement in product creation. Products must be listed under "Designed by a seller" category. You must provide original prompts when requested. Hand-editing and curation of AI output is expected — raw, unedited AI output is discouraged.
+Etsy requires sellers to disclose AI involvement in product creation. Products must be listed under "Designed by a seller" category. You must provide original prompts when requested. Hand-editing and curation of AI output is expected, raw, unedited AI output is discouraged.
 
 These policies actually help quality sellers: they create a barrier that prevents low-effort AI spam while rewarding sellers who use AI as a tool to create genuinely useful products.
 
 ## The Deal
 
-AI builds the products. Etsy sends the traffic. You handle strategy and curation. $2,000-10,000/month is achievable within 6-12 months if you build a catalog of 200+ quality products. Startup cost is basically nothing — $30-50/month in AI tools and $0.20 per Etsy listing.
+AI builds the products. Etsy sends the traffic. You handle strategy and curation. $2,000-10,000/month is achievable within 6-12 months if you build a catalog of 200+ quality products. Startup cost is basically nothing, $30-50/month in AI tools and $0.20 per Etsy listing.

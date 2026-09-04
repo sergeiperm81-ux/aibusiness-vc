@@ -14,7 +14,7 @@ Personal branding is the highest-use activity for freelancers, consultants, and 
 
 ## Why Personal Brand Matters for Income
 
-Freelancers with a strong personal brand charge 40-60% higher rates than equally skilled competitors, according to Upwork's 2025 Freelancer Survey. The difference is perceived expertise — when clients come to you instead of you chasing them, the pricing dynamic flips.
+Freelancers with a strong personal brand charge 40-60% higher rates than equally skilled competitors, according to Upwork's 2025 Freelancer Survey. The difference is perceived expertise, when clients come to you instead of you chasing them, the pricing dynamic flips.
 
 **The math:** A freelancer charging $75/hour who builds a personal brand and raises rates to $120/hour earns an additional $93,600/year on the same 40 hours per week. That is the ROI of 30 minutes per day invested in content.
 
@@ -24,7 +24,7 @@ Freelancers with a strong personal brand charge 40-60% higher rates than equally
 
 **Step 1:** Open Claude or ChatGPT. Share what you worked on yesterday, a problem you solved, or an insight from your industry. Ask it to draft a LinkedIn post.
 
-**Step 2:** Edit for your voice. Add a personal anecdote. Remove anything generic. The AI provides structure and speed — you provide authenticity and insight.
+**Step 2:** Edit for your voice. Add a personal anecdote. Remove anything generic. The AI provides structure and speed, you provide authenticity and insight.
 
 **Step 3:** Post to LinkedIn. Queue an adapted version for X using Buffer.
 
@@ -38,13 +38,13 @@ Freelancers with a strong personal brand charge 40-60% higher rates than equally
 
 The content that builds authority follows a simple framework:
 
-**40% — Lessons from your work.** "Today I helped a client automate their invoicing with Make.com. Here's what I learned about [specific insight]."
+**40%: Lessons from your work.** "Today I helped a client automate their invoicing with Make.com. Here's what I learned about [specific insight]."
 
-**30% — Industry observations.** "I've noticed that AI agencies charging per-project are outearning those charging hourly. Here's why."
+**30%: Industry observations.** "I've noticed that AI agencies charging per-project are outearning those charging hourly. Here's why."
 
-**20% — Tactical how-tos.** "Step-by-step: how I set up an AI chatbot for a dental practice in 3 hours."
+**20%: Tactical how-tos.** "Step-by-step: how I set up an AI chatbot for a dental practice in 3 hours."
 
-**10% — Personal stories.** "6 months ago I was a teacher. Today I earned more in one week of AI freelancing than I used to earn in a month."
+**10%: Personal stories.** "6 months ago I was a teacher. Today I earned more in one week of AI freelancing than I used to earn in a month."
 
 ## The AI Tool Stack for Personal Branding
 
@@ -60,14 +60,14 @@ The content that builds authority follows a simple framework:
 
 ## Platform Strategy
 
-### LinkedIn (Primary — highest ROI for B2B)
-Post daily. LinkedIn's algorithm rewards consistency — posting 5 days per week gets 3x more reach than posting twice per week. Text posts with a hook perform best. Carousel posts for how-to content. Video for personal stories.
+### LinkedIn (Primary, highest ROI for B2B)
+Post daily. LinkedIn's algorithm rewards consistency, posting 5 days per week gets 3x more reach than posting twice per week. Text posts with a hook perform best. Carousel posts for how-to content. Video for personal stories.
 
-### X / Twitter (Secondary — for tech/startup audience)
+### X / Twitter (Secondary, for tech/startup audience)
 Shorter, punchier versions of your LinkedIn content. Threads perform well for how-to content. Quote-tweeting industry news with your take builds engagement.
 
 ### Newsletter (Long-term asset)
-Weekly email newsletter is the most defensible personal brand asset — you own the subscriber list. No algorithm changes can take it away. Grow it by adding a "Subscribe to my weekly newsletter" CTA on every LinkedIn post.
+Weekly email newsletter is the most defensible personal brand asset, you own the subscriber list. No algorithm changes can take it away. Grow it by adding a "Subscribe to my weekly newsletter" CTA on every LinkedIn post.
 
 ## Growth Timeline
 
@@ -81,4 +81,4 @@ Weekly email newsletter is the most defensible personal brand asset — you own 
 
 ## The Math
 
-You are not trying to become famous. You are trying to become the obvious choice when someone in your niche needs help. AI gets the time commitment down to 30 minutes/day while keeping things authentic. Give it 6-12 months and the compound returns are wild — higher rates, inbound leads, expert positioning. All from a daily habit that takes less time than your morning coffee.
+You are not trying to become famous. You are trying to become the obvious choice when someone in your niche needs help. AI gets the time commitment down to 30 minutes/day while keeping things authentic. Give it 6-12 months and the compound returns are wild, higher rates, inbound leads, expert positioning. All from a daily habit that takes less time than your morning coffee.

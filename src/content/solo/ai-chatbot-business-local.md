@@ -14,11 +14,11 @@ Can you actually make real money selling AI chatbots to restaurants, dentists, a
 
 Local businesses lose an estimated 67% of potential customers who call outside business hours (2025 Podium report). A chatbot that answers questions, books appointments, and captures leads around the clock fixes a problem these businesses already feel. And because white-label platforms let you deploy in hours instead of weeks, your margins are excellent.
 
-The market is massive. The global chatbot market hit $7.01 billion in 2024 and is growing at 23.3% CAGR through 2030 (Grand View Research). Local business adoption is the fastest-growing segment — 58% of small businesses say they want AI customer service tools (2025 Salesforce SMB survey).
+The market is massive. The global chatbot market hit $7.01 billion in 2024 and is growing at 23.3% CAGR through 2030 (Grand View Research). Local business adoption is the fastest-growing segment, 58% of small businesses say they want AI customer service tools (2025 Salesforce SMB survey).
 
 ## Why Local Businesses Are Perfect Customers
 
-Three things make them ideal. They depend on phone calls and walk-ins, so missed opportunities happen every single day. They have no technical staff to build anything themselves. And the ROI is immediately visible — more booked appointments, more captured leads.
+Three things make them ideal. They depend on phone calls and walk-ins, so missed opportunities happen every single day. They have no technical staff to build anything themselves. And the ROI is immediately visible, more booked appointments, more captured leads.
 
 Think about a dental practice getting 40 calls a day. During busy times, they miss 12 of them. At an average patient lifetime value of $3,500, recovering just 3 patients/month through a chatbot means $10,500 in revenue. You charge $297/month. That math sells itself.
 
@@ -32,11 +32,11 @@ You are not building chatbot technology from scratch. White-label platforms hand
 
 **Stammer.ai** is built specifically for agencies selling to local businesses. $49/month for the agency plan with unlimited deployments. Branded dashboard for clients, lead capture forms, Google Business Profile integration. Uses GPT-4 and Claude, and you can train bots on each client's specific business info.
 
-**BotSailor** specializes in WhatsApp and Facebook Messenger — great for restaurants and retail. $149/month reseller plan with unlimited bots. Visual flow builder, no coding needed. Built-in e-commerce lets restaurants take orders right through the chatbot.
+**BotSailor** specializes in WhatsApp and Facebook Messenger, great for restaurants and retail. $149/month reseller plan with unlimited bots. Visual flow builder, no coding needed. Built-in e-commerce lets restaurants take orders right through the chatbot.
 
 **Tidio** has a white-label option at $394/month for agencies. More expensive, but it is a mature platform with solid reliability and a polished interface that impresses during client demos. Also supports live chat handoff for businesses that want it.
 
-**Chatbase** starts at $19/month per bot and is excellent at learning from custom data. Upload a client's website, FAQ docs, and product catalogs — the bot figures out how to answer questions about that specific business. High accuracy, minimal setup time.
+**Chatbase** starts at $19/month per bot and is excellent at learning from custom data. Upload a client's website, FAQ docs, and product catalogs, the bot figures out how to answer questions about that specific business. High accuracy, minimal setup time.
 
 Agencies using white-label platforms report 78% average margins on chatbot services, compared to 35-45% for custom development (2025 HubSpot survey). Deployment time drops from 2-4 weeks to 2-4 hours.
 
@@ -56,7 +56,7 @@ Your cost per client: $30-140/month depending on platform and API usage. At the 
 
 Setup fees give you immediate cash. Charge $500-1,500 for initial configuration, data training, and integration. This covers your time and filters out people who are not serious.
 
-A 2025 Agency Analytics report found AI agencies retain chatbot clients for 14 months on average — lifetime value of $3,360-9,758 per client depending on tier. Monthly churn averages 7%, which is lower than most SaaS products.
+A 2025 Agency Analytics report found AI agencies retain chatbot clients for 14 months on average, lifetime value of $3,360-9,758 per client depending on tier. Monthly churn averages 7%, which is lower than most SaaS products.
 
 ## Getting Your First 10 Clients
 
@@ -65,11 +65,11 @@ A 2025 Agency Analytics report found AI agencies retain chatbot clients for 14 m
 Specializing in one type of business makes everything faster. You learn the pain points, build reusable templates, and create case studies that resonate with similar businesses.
 
 Strong niches for chatbot services:
-- Dental practices — appointment booking, insurance questions
-- Restaurants — reservations, menu inquiries, online ordering
-- HVAC and plumbing — emergency requests, quote scheduling
-- Real estate agents — property inquiries, showing scheduling
-- Medical spas and salons — booking, services, pricing
+- Dental practices, appointment booking, insurance questions
+- Restaurants, reservations, menu inquiries, online ordering
+- HVAC and plumbing, emergency requests, quote scheduling
+- Real estate agents, property inquiries, showing scheduling
+- Medical spas and salons, booking, services, pricing
 
 ### Build a Demo That Sells Itself
 
@@ -83,7 +83,7 @@ Prospects who interact with a live demo convert at 3.2x the rate of those who ju
 
 **Google Maps prospecting** costs nothing and is highly targeted. Search for businesses in your niche, check their websites, and spot the ones with no chat. Send a personalized email or LinkedIn message showing exactly what a chatbot would do for them.
 
-**Cold outreach that works:** Lead with something specific about their business. Point out a missed opportunity — no after-hours contact option, slow Google listing response, no chat on their site. Offer a free 15-minute demo with a chatbot pre-built for their business type.
+**Cold outreach that works:** Lead with something specific about their business. Point out a missed opportunity, no after-hours contact option, slow Google listing response, no chat on their site. Offer a free 15-minute demo with a chatbot pre-built for their business type.
 
 **Facebook and Instagram ads** targeting local business owners cost $5-15 per lead when you offer a free chatbot audit. Close them on a discovery call where you demo the live chatbot.
 
@@ -99,7 +99,7 @@ A 2025 Clutch survey found AI agencies serving 50+ local businesses average $37,
 
 ## Mistakes to Avoid
 
-**Over-promising accuracy.** Chatbots handle 80-90% of common queries well, but they will occasionally get things wrong. Set that expectation upfront — routine questions get handled, complex issues route to the business owner.
+**Over-promising accuracy.** Chatbots handle 80-90% of common queries well, but they will occasionally get things wrong. Set that expectation upfront, routine questions get handled, complex issues route to the business owner.
 
 **Ignoring optimization.** The best agencies review conversation logs monthly, find weak spots, and retrain the bot. This is what justifies your monthly fee and keeps clients from leaving.
 

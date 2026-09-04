@@ -17,7 +17,7 @@ The median AI seed round in 2026 is $4.2 million. Startups that raise successful
 The bar is higher than 2023. "We use GPT-4" doesn't count as a pitch anymore.
 
 ### 1. Revenue ($10K-50K MRR minimum)
-Even at seed, investors want paying customers. AI tools ship fast — if you've been building for 6 months with nothing to show for it revenue-wise, they'll ask why.
+Even at seed, investors want paying customers. AI tools ship fast, if you've been building for 6 months with nothing to show for it revenue-wise, they'll ask why.
 
 **The reasoning:** AI slashes build time so dramatically that the old "build for a year then raise" model is dead. If your AI product works, someone should already be paying.
 
@@ -25,11 +25,11 @@ Even at seed, investors want paying customers. AI tools ship fast — if you've 
 "We built a ChatGPT wrapper" gets instant rejection. Investors need to know what stops OpenAI, Google, or a motivated hacker from copying you.
 
 **Moats that work:**
-- **Proprietary data** — Data nobody else has (industry-specific, user-generated, licensed)
-- **Domain expertise** — Deep knowledge of a specific industry's pain points
-- **Network effects** — More users make the product better
-- **Integration depth** — Product is woven into customer workflows (painful to rip out)
-- **Cost advantage** — You deliver AI meaningfully cheaper (like DeepSeek's approach)
+- **Proprietary data**: Data nobody else has (industry-specific, user-generated, licensed)
+- **Domain expertise**: Deep knowledge of a specific industry's pain points
+- **Network effects**: More users make the product better
+- **Integration depth**: Product is woven into customer workflows (painful to rip out)
+- **Cost advantage**: You deliver AI meaningfully cheaper (like DeepSeek's approach)
 
 ### 3. Clear Buyer with Budget
 "Everyone can use this" means nobody will buy it. Investors want a specific buyer persona who already has budget for the problem you solve.
@@ -51,18 +51,18 @@ Even at seed, investors want paying customers. AI tools ship fast — if you've 
 
 ## The Pitch Deck (10-12 slides)
 
-1. **Problem** — What expensive problem exists? Put a dollar sign on it.
-2. **Solution** — How your AI fixes it. Demo or screenshot.
-3. **Market** — TAM/SAM/SOM with bottom-up math.
-4. **Traction** — Revenue, customers, growth, retention.
-5. **Product** — How it works. What AI does vs. what humans do.
-6. **Business model** — Pricing, unit economics, LTV/CAC.
-7. **Moat** — Why can't someone rebuild this over a weekend?
-8. **Competition** — Honest landscape. How you win.
-9. **Team** — Why this team? Domain depth, technical chops.
-10. **Go-to-market** — How you get customers. CAC, channels, cycle length.
-11. **Financials** — 3-year projection, key assumptions, use of funds.
-12. **Ask** — How much, what milestones it funds.
+1. **Problem**: What expensive problem exists? Put a dollar sign on it.
+2. **Solution**: How your AI fixes it. Demo or screenshot.
+3. **Market**: TAM/SAM/SOM with bottom-up math.
+4. **Traction**: Revenue, customers, growth, retention.
+5. **Product**: How it works. What AI does vs. what humans do.
+6. **Business model**: Pricing, unit economics, LTV/CAC.
+7. **Moat**: Why can't someone rebuild this over a weekend?
+8. **Competition**: Honest landscape. How you win.
+9. **Team**: Why this team? Domain depth, technical chops.
+10. **Go-to-market**: How you get customers. CAC, channels, cycle length.
+11. **Financials**, 3-year projection, key assumptions, use of funds.
+12. **Ask**: How much, what milestones it funds.
 
 ## Common Mistakes
 
@@ -78,12 +78,12 @@ Even at seed, investors want paying customers. AI tools ship fast — if you've 
 
 ## Where to Find AI Investors
 
-- **OpenVC** — Free VC database with AI focus filters
-- **Failory** — 142 AI/ML VC firms listed
-- **Crunchbase** — Search by stage and sector
-- **AngelList** — AI syndicates and angels
-- **LinkedIn** — Search "AI investor" or "AI partner at [fund]"
-- **YC Demo Day** — If you're in YC, 1,000+ investors attend
+- **OpenVC**: Free VC database with AI focus filters
+- **Failory**: 142 AI/ML VC firms listed
+- **Crunchbase**: Search by stage and sector
+- **AngelList**: AI syndicates and angels
+- **LinkedIn**: Search "AI investor" or "AI partner at [fund]"
+- **YC Demo Day**: If you're in YC, 1,000+ investors attend
 
 ## Eyes Wide Open
-Raising seed for an AI startup in 2026 means having revenue traction, a defensible moat, and a buyer who actually has budget. Median check: $4.2M. Timeline: 3-5 months. The bar is higher than 2023 — but so is the money available. $150B went into AI in 2025, and it's still flowing. If you have a real product with real customers, the capital is there for the taking.
+Raising seed for an AI startup in 2026 means having revenue traction, a defensible moat, and a buyer who actually has budget. Median check: $4.2M. Timeline: 3-5 months. The bar is higher than 2023, but so is the money available. $150B went into AI in 2025, and it's still flowing. If you have a real product with real customers, the capital is there for the taking.

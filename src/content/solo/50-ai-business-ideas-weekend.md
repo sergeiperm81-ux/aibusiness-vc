@@ -113,4 +113,4 @@ That leverage is why these models are so compelling. The upside rarely comes fro
 
 ## Related Reads
 
-To turn one of these ideas into a priced offer, continue with [AI Freelancer Rate Card](/materials/ai-freelancer-rate-card), [AI Tool Stack for Solopreneurs](/materials/ai-tool-stack-solopreneurs), and [12 AI Agent Services You Can Sell](/solo/ai-agent-services-12-offers-2026).
+To turn one of these ideas into a priced offer, continue with [AI Freelancer Rate Card](/solo/ai-freelancer-rate-card), [AI Tool Stack for Solopreneurs](/solo/ai-tool-stack-solopreneurs), and [12 AI Agent Services You Can Sell](/solo/ai-agent-services-12-offers-2026).

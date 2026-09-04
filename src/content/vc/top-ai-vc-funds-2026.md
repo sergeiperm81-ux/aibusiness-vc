@@ -1,6 +1,6 @@
 ---
 title: "Top 15 VC Funds Investing in AI: Who Writes the Biggest Checks"
-description: "a16z, Sequoia, Lightspeed — the 15 most active AI investors. Portfolio companies, check sizes, and what they look for."
+description: "a16z, Sequoia, Lightspeed, the 15 most active AI investors. Portfolio companies, check sizes, and what they look for."
 date: "2026-04-05"
 author: "Sergei Ponomarev"
 category: "VC"
@@ -10,9 +10,9 @@ keywords: ["AI venture capital", "top AI investors", "VC funds AI", "AI investme
 
 # Top 15 VC Funds Investing in AI: Who Writes the Biggest Checks
 
-If you are raising money for an AI startup right now, you are entering the most competitive fundraising environment in the history of venture capital. Almost half of all global venture funding in 2025 went into AI — over $150 billion. But here is the thing nobody tells you when you start the process: the money is absurdly concentrated. A handful of firms write the checks that matter, and knowing who they are is only the first step. What actually separates founders who get funded from those who get ghosted is understanding what each firm looks for, how they make decisions, and what kind of company they want you to become.
+If you are raising money for an AI startup right now, you are entering the most competitive fundraising environment in the history of venture capital. Almost half of all global venture funding in 2025 went into AI, over $150 billion. But here is the thing nobody tells you when you start the process: the money is absurdly concentrated. A handful of firms write the checks that matter, and knowing who they are is only the first step. What actually separates founders who get funded from those who get ghosted is understanding what each firm looks for, how they make decisions, and what kind of company they want you to become.
 
-I have spent the last two years tracking every major AI deal, and the pattern is clear. There are roughly fifteen firms that control the AI investment landscape. They collectively deployed over $80 billion into AI companies in 2025 alone. If your startup is not on the radar of at least three or four of these firms, you are fishing in the wrong pond. Let me walk you through who they are, what makes each one different, and — most importantly — how to figure out which ones are right for your specific company.
+I have spent the last two years tracking every major AI deal, and the pattern is clear. There are roughly fifteen firms that control the AI investment landscape. They collectively deployed over $80 billion into AI companies in 2025 alone. If your startup is not on the radar of at least three or four of these firms, you are fishing in the wrong pond. Let me walk you through who they are, what makes each one different, and most importantly, how to figure out which ones are right for your specific company.
 
 ## The Mega-Funds: Where the Biggest Checks Come From
 
@@ -66,17 +66,17 @@ Check sizes range from $5 million to $100 million. If you are building AI for sc
 
 Radical Ventures is the purest AI-focused fund on this list. Founded by AI researchers, they bring a level of technical due diligence that most generalist VCs simply cannot match. Their portfolio includes Cohere, Waabi, and Deep Genomics.
 
-Their check sizes are smaller — $5 million to $50 million — but the value they add on the technical side is disproportionate. If you are a technical founder building something genuinely novel at the model or algorithm level, Radical's ability to evaluate your work and help you recruit top AI talent is worth more than a bigger check from a firm that cannot tell the difference between a transformer and a diffusion model.
+Their check sizes are smaller, $5 million to $50 million, but the value they add on the technical side is disproportionate. If you are a technical founder building something genuinely novel at the model or algorithm level, Radical's ability to evaluate your work and help you recruit top AI talent is worth more than a bigger check from a firm that cannot tell the difference between a transformer and a diffusion model.
 
 ### Lux Capital
 
-Lux Capital operates at the intersection of AI, defense, and robotics — a space that has exploded in the past two years. Their portfolio includes Anduril, Shield AI, and Figure AI.
+Lux Capital operates at the intersection of AI, defense, and robotics, a space that has exploded in the past two years. Their portfolio includes Anduril, Shield AI, and Figure AI.
 
-If you are building AI for physical-world applications — robotics, autonomous vehicles, defense systems, manufacturing — Lux has the deepest network and the most relevant expertise. Their check sizes range from $5 million to $100 million, and they are comfortable with the long timelines and high capital requirements that hardware-adjacent AI companies often require. Most software-focused VCs get nervous when you mention hardware. Lux gets excited.
+If you are building AI for physical-world applications, robotics, autonomous vehicles, defense systems, manufacturing, Lux has the deepest network and the most relevant expertise. Their check sizes range from $5 million to $100 million, and they are comfortable with the long timelines and high capital requirements that hardware-adjacent AI companies often require. Most software-focused VCs get nervous when you mention hardware. Lux gets excited.
 
 ## The Corporate AI Investors
 
-Corporate venture capital plays a different game entirely, and understanding that game can be enormously valuable — or disastrous — depending on your situation.
+Corporate venture capital plays a different game entirely, and understanding that game can be enormously valuable, or disastrous, depending on your situation.
 
 ### Google Ventures (GV)
 
@@ -86,7 +86,7 @@ The risk? Google is also your potential competitor. If your AI company operates 
 
 ### Microsoft Ventures (M12)
 
-Microsoft's investment in OpenAI — over $13 billion — is the most consequential corporate venture bet in AI. Beyond OpenAI, they have invested in Mistral AI and other model companies. The strategic value is Azure integration, enterprise distribution, and access to the GitHub and LinkedIn ecosystems.
+Microsoft's investment in OpenAI, over $13 billion, is the most consequential corporate venture bet in AI. Beyond OpenAI, they have invested in Mistral AI and other model companies. The strategic value is Azure integration, enterprise distribution, and access to the GitHub and LinkedIn ecosystems.
 
 For AI companies focused on enterprise sales, Microsoft's endorsement opens doors that would take years to open on your own. Their enterprise sales force is one of the largest on the planet, and if your product integrates well with the Microsoft stack, that distribution advantage is worth taking dilution for.
 
@@ -106,13 +106,13 @@ If you have revenue traction and need $20 million or more, the mega-funds become
 
 If you are building in defense or robotics, Lux Capital understands your space in a way that a generalist fund never will. If you are building in healthcare or biotech, Khosla has the conviction and the patience for the long timelines your industry requires.
 
-The worst mistake I see founders make is treating fundraising as a prestige contest — chasing the most famous name instead of the most useful partner. A $10 million check from a firm that deeply understands your market and can make introductions to your first twenty enterprise customers is worth more than a $50 million check from a firm that writes the check and disappears.
+The worst mistake I see founders make is treating fundraising as a prestige contest, chasing the most famous name instead of the most useful partner. A $10 million check from a firm that deeply understands your market and can make introductions to your first twenty enterprise customers is worth more than a $50 million check from a firm that writes the check and disappears.
 
 ## What Their Bets Tell You About the Future
 
 If you are not raising money but want to understand where AI is headed, these fifteen firms' portfolios are essentially a map of the future drawn by the people with the most information and the strongest financial incentives to be right.
 
-The bets are clustering around a few clear themes: foundation models continue to receive massive investment. Vertical AI in healthcare, legal, and finance is accelerating. AI infrastructure — compute, data labeling, evaluation tools — is getting funded at scale. And AI for physical-world applications, particularly robotics and defense, is emerging as a major new category.
+The bets are clustering around a few clear themes: foundation models continue to receive massive investment. Vertical AI in healthcare, legal, and finance is accelerating. AI infrastructure, compute, data labeling, evaluation tools, is getting funded at scale. And AI for physical-world applications, particularly robotics and defense, is emerging as a major new category.
 
 Following these firms' investments through Crunchbase and PitchBook is free market intelligence that most people ignore. When three or four of these firms simultaneously invest in companies in the same category, that is a signal worth paying attention to. It means the smartest money in the world has independently concluded that this category is about to matter.
 
@@ -122,7 +122,7 @@ Fifteen firms. Over $80 billion deployed in a single year. This is the infrastru
 
 ## Keep Reading
 
-- [AI Startup Valuations 2025-2026: The Math Behind the Multiples](/vc/ai-startup-valuations-2025-2026) — how VCs actually calculate what your AI company is worth.
-- [The Trillion-Dollar AI Race](/startups/ai-trillion-dollar-race-may-2026) — the companies spending the most to win AI, and what their bets reveal.
-- [Cursor Hit $9B Valuation](/startups/cursor-9b-valuation) — inside the fastest-growing developer tool in AI.
-- [Highest-Paying AI Jobs in 2026](/learn/highest-paying-ai-jobs-2026) — where the money flows on the talent side of the AI economy.
+- [AI Startup Valuations 2025-2026: The Math Behind the Multiples](/vc/ai-startup-valuations-2025-2026), how VCs actually calculate what your AI company is worth.
+- [The Trillion-Dollar AI Race](/startups/ai-trillion-dollar-race-may-2026), the companies spending the most to win AI, and what their bets reveal.
+- [Cursor Hit $9B Valuation](/startups/cursor-9b-valuation), inside the fastest-growing developer tool in AI.
+- [Highest-Paying AI Jobs in 2026](/learn/highest-paying-ai-jobs-2026), where the money flows on the talent side of the AI economy.

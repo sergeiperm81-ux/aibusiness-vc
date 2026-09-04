@@ -1,6 +1,6 @@
 ---
 title: "AI Smart Cities: $3B+ Projects Where Governments Pay for AI Infrastructure"
-description: "Dubai, Singapore, Seoul — smart city AI projects worth billions. Traffic, energy, safety, and services powered by AI. Who builds and who pays."
+description: "Dubai, Singapore, Seoul, smart city AI projects worth billions. Traffic, energy, safety, and services powered by AI. Who builds and who pays."
 date: "2026-04-05"
 author: "Sergei Ponomarev"
 category: "Government"
@@ -10,7 +10,7 @@ keywords: ["AI smart cities", "smart city investment", "government AI projects",
 
 # AI Smart Cities: $3B+ Projects Where Governments Pay for AI Infrastructure
 
-Cities worldwide are spending billions on AI infrastructure — traffic management, energy optimization, public safety, waste management, and citizen services. Dubai committed $3 billion to its AI smart city program. Singapore invested $2.5 billion. Seoul, New York, London, and dozens of others have AI budgets exceeding $500 million each. For AI companies, smart city contracts are some of the largest and most stable revenue sources available.
+Cities worldwide are spending billions on AI infrastructure, traffic management, energy optimization, public safety, waste management, and citizen services. Dubai committed $3 billion to its AI smart city program. Singapore invested $2.5 billion. Seoul, New York, London, and dozens of others have AI budgets exceeding $500 million each. For AI companies, smart city contracts are some of the largest and most stable revenue sources available.
 
 ## What Smart Cities Actually Buy
 
@@ -62,7 +62,7 @@ AI chatbots handle citizen inquiries, automate permit processing, and streamline
 | City/Country | Investment | Focus Areas |
 |---|---|---|
 | Dubai | $3B+ | Traffic, tourism AI, government services |
-| Singapore | $2.5B+ | "Smart Nation" — healthcare, transport, government |
+| Singapore | $2.5B+ | "Smart Nation", healthcare, transport, government |
 | Seoul | $1.5B+ | Traffic, safety, citizen services |
 | New York | $1B+ | Traffic, public safety, 311 AI |
 | London | $800M+ | Transport, safety, environment |
@@ -85,10 +85,10 @@ AI chatbots handle citizen inquiries, automate permit processing, and streamline
 ## For AI Entrepreneurs
 
 Smart city contracts offer:
-- **Long-term revenue** — 3-7 year contracts with renewal options
-- **Stable payment** — Government clients pay (eventually — budget cycles are slow but reliable)
-- **Reference value** — "Used by the City of New York" opens every other door
-- **Scale potential** — A solution that works in one city can be sold to hundreds
+- **Long-term revenue**: 3-7 year contracts with renewal options
+- **Stable payment**: Government clients pay (eventually, budget cycles are slow but reliable)
+- **Reference value**: "Used by the City of New York" opens every other door
+- **Scale potential**: A solution that works in one city can be sold to hundreds
 
 **The entry point:** Start with smaller cities (100K-500K population) that have fewer vendors and less bureaucracy. Build your track record, then approach larger cities.
 

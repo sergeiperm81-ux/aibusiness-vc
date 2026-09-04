@@ -10,7 +10,7 @@ keywords: ["AI acquisitions 2025", "AI startup exits", "AI M&A deals", "biggest 
 
 # AI Exits 2025: The Biggest Acquisitions and What They Mean for Investors
 
-2025 broke records for AI M&A. Google bought Wiz for $32 billion — largest cybersecurity acquisition ever. Wix grabbed Base44 for $80 million — a solo developer's 6-month project. Total AI M&A topped $96 billion. For investors and founders, these exits show clear patterns about what buyers pay for and why.
+2025 broke records for AI M&A. Google bought Wiz for $32 billion, largest cybersecurity acquisition ever. Wix grabbed Base44 for $80 million, a solo developer's 6-month project. Total AI M&A topped $96 billion. For investors and founders, these exits show clear patterns about what buyers pay for and why.
 
 ## The Biggest AI Exits of 2025
 
@@ -26,7 +26,7 @@ keywords: ["AI acquisitions 2025", "AI startup exits", "AI M&A deals", "biggest 
 ## Patterns in AI Exits
 
 ### Pattern 1: Acqui-hires Are the New M&A
-Google, Microsoft, and Amazon are buying AI companies primarily for the people, not the products. Character.AI's product was mostly shelved after acquisition — Google wanted the researchers who built it.
+Google, Microsoft, and Amazon are buying AI companies primarily for the people, not the products. Character.AI's product was mostly shelved after acquisition: Google wanted the researchers who built it.
 
 **What it means:** If your team has top AI researchers, your company has a floor valuation based on talent alone. AI researchers pull $500K-1M+ annually. A team of 10 is worth $5M-10M+ in acqui-hire value regardless of what your product does.
 
@@ -50,13 +50,13 @@ Google, Microsoft, Amazon, Meta, and Apple account for the majority of AI acquis
 Based on current patterns, likely 2026 targets:
 
 **High probability:**
-- AI coding companies (Cursor, Codeium — Microsoft or Google likely)
-- AI voice companies (ElevenLabs, Resemble AI — Apple, Meta, or Amazon)
-- AI video generation (Runway, Pika — Adobe, Apple)
+- AI coding companies (Cursor, Codeium: Microsoft or Google likely)
+- AI voice companies (ElevenLabs, Resemble AI: Apple, Meta, or Amazon)
+- AI video generation (Runway, Pika: Adobe, Apple)
 - Vertical AI agents (industry-specific automation)
 
 **Medium probability:**
-- AI search (Perplexity — unless they IPO first)
+- AI search (Perplexity, unless they IPO first)
 - AI data companies (Weights & Biases, Comet)
 - AI compliance/governance tools (new category, growing rapidly)
 

@@ -15,7 +15,7 @@ HR departments using AI report 40% faster time-to-hire and 35% lower cost-per-hi
 ## Where AI Fits in the Hiring Pipeline
 
 ### Resume Screening (Biggest Time Saver)
-The average corporate job posting pulls 250 applications. A recruiter spends 7 seconds per resume on initial screening — but even at that speed, 250 resumes eat over 30 minutes per position. Multiply by 10 open roles and screening alone consumes 5+ hours daily.
+The average corporate job posting pulls 250 applications. A recruiter spends 7 seconds per resume on initial screening, but even at that speed, 250 resumes eat over 30 minutes per position. Multiply by 10 open roles and screening alone consumes 5+ hours daily.
 
 AI resume screening tools analyze all 250 applications in under 2 minutes, ranking candidates by fit against job requirements, skills, experience level, and career trajectory.
 
@@ -30,12 +30,12 @@ AI resume screening tools analyze all 250 applications in under 2 minutes, ranki
 **Impact:** Recruiters using AI screening process 3x more candidates in the same time while improving quality-of-hire scores by 25%.
 
 ### Candidate Sourcing
-AI scours LinkedIn, GitHub, Stack Overflow, and other platforms to find candidates matching your requirements — including passive candidates who are not actively job searching.
+AI scours LinkedIn, GitHub, Stack Overflow, and other platforms to find candidates matching your requirements, including passive candidates who are not actively job searching.
 
 LinkedIn Recruiter's AI features suggest candidates based on your company's past successful hires. Tools like hireEZ and Seekout go deeper, analyzing patents, publications, and open-source contributions.
 
 ### Interview Scheduling
-The back-and-forth of scheduling interviews wastes an average of 45 minutes per candidate. AI scheduling tools (Calendly, GoodTime, Paradox Olivia) kill this entirely — candidates self-schedule into available slots.
+The back-and-forth of scheduling interviews wastes an average of 45 minutes per candidate. AI scheduling tools (Calendly, GoodTime, Paradox Olivia) kill this entirely, candidates self-schedule into available slots.
 
 **Impact:** 45 minutes saved per interview times 50 candidates per month = 37.5 hours saved monthly. Nearly an entire week recovered for one recruiter.
 
@@ -53,19 +53,19 @@ AI chatbots answer new hire questions (benefits, IT setup, policies), automate p
 | Recruiter capacity | 15 positions/month | 25 positions/month |
 | Candidate experience score | 3.2/5 | 4.1/5 |
 | Quality of hire (1-year retention) | 72% | 85% |
-| **Annual savings (10 hires/mo)** | — | **$192,000** |
+| **Annual savings (10 hires/mo)** | n/a | **$192,000** |
 
 ## Bias and Fairness Concerns
 
 AI in hiring is powerful but comes with real risk. Amazon famously scrapped an AI recruiting tool in 2018 because it discriminated against women. Modern tools address this with:
 
-- **Bias audits** — regular testing for demographic disparities
-- **Blind screening** — stripping names, photos, and demographic indicators
-- **Diverse training data** — the AI learns from inclusive datasets
-- **Human oversight** — AI suggests, humans decide
+- **Bias audits**: regular testing for demographic disparities
+- **Blind screening**: stripping names, photos, and demographic indicators
+- **Diverse training data**: the AI learns from inclusive datasets
+- **Human oversight**: AI suggests, humans decide
 
 The EU AI Act classifies hiring AI as "high-risk," requiring conformity assessments and transparency. Companies deploying AI in hiring should talk to legal counsel and run regular bias audits.
 
 ## Getting Started
 
-AI recruitment tools pay for themselves within the first quarter through faster hiring, lower costs, and better candidate quality. Start with resume screening (biggest time saver), add AI scheduling (easiest to implement), then expand to sourcing and onboarding. Keep humans in the final decision loop — AI surfaces the best candidates, people choose them.
+AI recruitment tools pay for themselves within the first quarter through faster hiring, lower costs, and better candidate quality. Start with resume screening (biggest time saver), add AI scheduling (easiest to implement), then expand to sourcing and onboarding. Keep humans in the final decision loop: AI surfaces the best candidates, people choose them.

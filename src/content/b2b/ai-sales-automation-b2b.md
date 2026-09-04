@@ -10,7 +10,7 @@ keywords: ["AI sales automation", "AI for sales teams", "AI lead scoring", "AI s
 
 # AI Sales Automation: How B2B Teams Are Closing 3x More Deals
 
-B2B sales teams using AI close 3x more deals while spending 40% less time on admin work (Salesforce's 2025 State of Sales report). AI is not replacing salespeople — it is killing the busywork that keeps them from actually selling.
+B2B sales teams using AI close 3x more deals while spending 40% less time on admin work (Salesforce's 2025 State of Sales report). AI is not replacing salespeople, it is killing the busywork that keeps them from actually selling.
 
 ## What AI Actually Does for Sales Teams
 
@@ -34,17 +34,17 @@ The average B2B sales rep spends only 28% of their time selling (Salesforce rese
 ## ROI by Function
 
 ### AI Lead Scoring
-Old-school lead scoring uses manual rules. AI analyzes hundreds of signals — website behavior, email engagement, company size, tech stack, hiring patterns — to predict which leads are ready to buy.
+Old-school lead scoring uses manual rules. AI analyzes hundreds of signals, website behavior, email engagement, company size, tech stack, hiring patterns, to predict which leads are ready to buy.
 
 **Impact:** 30-50% improvement in lead-to-opportunity conversion rates. Reps stop wasting time on leads that were never going to close.
 
 ### AI Email Personalization
-Generic cold emails get 1-2% reply rates. AI-personalized emails — referencing the prospect's company news, role changes, or recent content — pull 8-15% reply rates.
+Generic cold emails get 1-2% reply rates. AI-personalized emails, referencing the prospect's company news, role changes, or recent content, pull 8-15% reply rates.
 
 **The math:** 50 emails per day at 10% reply rate = 5 conversations daily. At 20% meeting rate, that is 1 meeting per day, 20 per month. If 25% of meetings close at $10K ACV, that is $50,000/month in new revenue per rep.
 
 ### AI Call Intelligence
-Gong and Chorus record, transcribe, and analyze every sales call. AI figures out what top performers do differently — talk-to-listen ratios, discovery question patterns, objection handling — and coaches everyone else to match.
+Gong and Chorus record, transcribe, and analyze every sales call. AI figures out what top performers do differently, talk-to-listen ratios, discovery question patterns, objection handling, and coaches everyone else to match.
 
 **Impact:** Teams using AI call intelligence see 27% higher win rates within 6 months.
 

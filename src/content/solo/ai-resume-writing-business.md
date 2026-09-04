@@ -16,7 +16,7 @@ Professional resume writers charge $200-500 per resume and spend 3-5 hours on ea
 
 The average job posting receives 250 applications. 75% of resumes are rejected by ATS (Applicant Tracking Systems) before a human ever sees them. A professionally written, ATS-optimized resume increases interview callbacks by 40%, according to TopResume research.
 
-For someone applying to $100K+ roles, paying $200 for a resume that doubles their interview rate is the easiest ROI calculation they will ever make. One successful placement is worth $100,000+ — the resume cost is 0.2% of first-year salary.
+For someone applying to $100K+ roles, paying $200 for a resume that doubles their interview rate is the easiest ROI calculation they will ever make. One successful placement is worth $100,000+, the resume cost is 0.2% of first-year salary.
 
 ## The AI-Powered Workflow
 
@@ -54,9 +54,9 @@ At 20 clients per month (part-time), you earn $4,000/month working 16 hours. Ful
 
 ## Finding Clients
 
-**LinkedIn (primary):** Post resume tips and before/after examples. Job seekers are already on LinkedIn — meet them where they are. Offer free resume audits to attract initial clients.
+**LinkedIn (primary):** Post resume tips and before/after examples. Job seekers are already on LinkedIn, meet them where they are. Offer free resume audits to attract initial clients.
 
-**Reddit:** r/resumes (1.2M members) — provide free feedback, build credibility, link to your paid service in your profile.
+**Reddit:** r/resumes (1.2M members), provide free feedback, build credibility, link to your paid service in your profile.
 
 **Upwork/Fiverr:** Start here for reviews and testimonials. Charge lower initially ($50-100), then raise prices as reviews accumulate.
 
@@ -78,4 +78,4 @@ $88/month in tools. At $4,000/month revenue, tools cost 2.2% of revenue.
 
 ## Why This Works Long-Term
 
-Low barrier. High margins. AI handles the analytical work — keyword optimization, ATS formatting, achievement quantification. You bring the human side — career narrative, strategic positioning, personal branding. $100-500 per resume, 20-40 clients per month, $2,000-12,000/month in revenue. People will always need jobs. That demand never dries up.
+Low barrier. High margins. AI handles the analytical work, keyword optimization, ATS formatting, achievement quantification. You bring the human side, career narrative, strategic positioning, personal branding. $100-500 per resume, 20-40 clients per month, $2,000-12,000/month in revenue. People will always need jobs. That demand never dries up.

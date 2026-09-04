@@ -47,7 +47,7 @@ Teach small groups with AI handling individual differentiation. While you explai
 **Income:** 10 group sessions/week x 6 students x $35 = $8,400/month
 
 ### AI Tutoring Platform (Subscription Model)
-Build a platform where students access AI-powered practice, get instant feedback, and book live sessions with you for complex topics. This is the scalable path — your income is no longer capped by your hours.
+Build a platform where students access AI-powered practice, get instant feedback, and book live sessions with you for complex topics. This is the scalable path, your income is no longer capped by your hours.
 
 **Income:** 100 subscribers x $49/month = $4,900/month + live session revenue
 

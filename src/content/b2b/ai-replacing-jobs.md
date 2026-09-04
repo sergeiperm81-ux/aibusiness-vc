@@ -31,7 +31,7 @@ These roles involve repetitive, pattern-based tasks that AI already does at or a
 
 These roles will change dramatically. The human element stays essential.
 
-**Software developers:** AI writes 40-60% of code (GitHub data), but architects, system designers, and product thinkers are more valuable than ever. Developers using AI are 55% more productive — not 55% unemployed.
+**Software developers:** AI writes 40-60% of code (GitHub data), but architects, system designers, and product thinkers are more valuable than ever. Developers using AI are 55% more productive, not 55% unemployed.
 
 **Doctors:** AI reads radiology scans better than humans in controlled studies, but diagnosis involves patient history, physical examination, empathy, and judgment that AI cannot replicate. AI becomes the tool. The doctor stays the decision-maker.
 
@@ -45,13 +45,13 @@ These roles will change dramatically. The human element stays essential.
 
 Some roles stay resistant to automation because of what they fundamentally require:
 
-- **Skilled trades** (electricians, plumbers, HVAC) — physical work in unpredictable environments
-- **Healthcare workers** (nurses, therapists) — physical care and emotional support
-- **Emergency responders** — split-second decisions in chaotic, physical environments
-- **Senior leadership** — strategic vision, organizational culture, stakeholder management
-- **Creative directors** — original creative vision and cultural understanding
-- **Specialized consultants** — deep domain expertise with nuanced judgment
-- **Mental health professionals** — therapeutic relationships require human connection
+- **Skilled trades** (electricians, plumbers, HVAC), physical work in unpredictable environments
+- **Healthcare workers** (nurses, therapists), physical care and emotional support
+- **Emergency responders**: split-second decisions in chaotic, physical environments
+- **Senior leadership**: strategic vision, organizational culture, stakeholder management
+- **Creative directors**: original creative vision and cultural understanding
+- **Specialized consultants**: deep domain expertise with nuanced judgment
+- **Mental health professionals**: therapeutic relationships require human connection
 
 ## The Real Pattern: AI Replaces Tasks, Not Jobs
 
@@ -69,4 +69,4 @@ What that means: most workers will not lose their jobs, but their jobs will chan
 
 ## Where This Is Headed
 
-AI will not cause mass unemployment — but it will cause mass disruption. The workers who thrive will be those using AI to amplify their capabilities, not those competing against it. The World Economic Forum estimates that by 2030, AI will create a net positive of 12 million jobs globally. The question is whether you position yourself on the creation side or the displacement side.
+AI will not cause mass unemployment, but it will cause mass disruption. The workers who thrive will be those using AI to amplify their capabilities, not those competing against it. The World Economic Forum estimates that by 2030, AI will create a net positive of 12 million jobs globally. The question is whether you position yourself on the creation side or the displacement side.

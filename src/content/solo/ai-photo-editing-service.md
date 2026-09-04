@@ -64,7 +64,7 @@ Professional photo editing costs $5-50 per image. AI tools do the same work in s
 
 ## Finding Clients
 
-**E-commerce:** Browse Shopify stores and Amazon sellers with poor product photos. Send a before/after sample — edit one of their existing product images for free and show the improvement.
+**E-commerce:** Browse Shopify stores and Amazon sellers with poor product photos. Send a before/after sample, edit one of their existing product images for free and show the improvement.
 
 **Real estate:** Contact agents through local MLS directories. Offer a free virtual staging of one property. The before/after is so dramatic it sells itself.
 

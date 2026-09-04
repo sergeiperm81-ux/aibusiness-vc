@@ -23,7 +23,7 @@ Forget the clunky chatbots from 2020 that could barely handle FAQs. Today's AI c
 ## The Three Layers of AI Customer Service
 
 ### Layer 1: AI Chatbot (Handles 40-50% of Queries)
-Instant answers to the common stuff — order tracking, business hours, return policy, product info. No human needed.
+Instant answers to the common stuff, order tracking, business hours, return policy, product info. No human needed.
 
 **Best tools:**
 | Tool | Price | Best For |
@@ -43,7 +43,7 @@ Teams using AI email triage say their agents handle 3x more tickets per day beca
 ### Layer 3: AI Voice Agents (The New Frontier)
 AI voice agents handle phone calls with natural conversation. They verify identity, pull up account info, process simple requests, and transfer to humans for the complex stuff.
 
-Bland AI, Vapi, and Air AI offer voice agent platforms starting at $0.09/minute — compared to $25-35/hour for human agents.
+Bland AI, Vapi, and Air AI offer voice agent platforms starting at $0.09/minute, compared to $25-35/hour for human agents.
 
 ## ROI Calculation
 
@@ -57,7 +57,7 @@ Bland AI, Vapi, and Air AI offer voice agent platforms starting at $0.09/minute 
 | AI tool cost | $0 | $2,500 |
 | Response time | 4 hours avg | 12 min avg |
 | Customer satisfaction | 72% | 89% |
-| **Monthly savings** | — | **$17,500** |
+| **Monthly savings** | n/a | **$17,500** |
 
 Payback period: typically 30-60 days.
 
@@ -67,7 +67,7 @@ Payback period: typically 30-60 days.
 
 **Week 3-4:** Set up an AI chatbot with answers to those top questions. Connect it to your knowledge base, order system, and CRM.
 
-**Month 2:** Turn on AI email triage. Start with "draft mode" — AI suggests responses, humans approve.
+**Month 2:** Turn on AI email triage. Start with "draft mode": AI suggests responses, humans approve.
 
 **Month 3:** Shift to auto-resolve for high-confidence responses. Humans focus on complex cases only.
 

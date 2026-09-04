@@ -1,5 +1,5 @@
 ---
-title: "US Government AI Spending: $140B+ for Defense, $30B for Civilian — Who Gets the Contracts"
+title: "US Government AI Spending: $140B+ for Defense, $30B for Civilian. Who Gets the Contracts"
 description: "US federal AI spending exceeds $170B through 2028. Pentagon leads, but civilian agencies are catching up. Who wins the contracts."
 date: "2026-04-05"
 author: "Sergei Ponomarev"
@@ -8,9 +8,9 @@ image: "/images/articles/conference-1.jpg"
 keywords: ["US government AI spending", "federal AI contracts", "Pentagon AI budget", "government AI investment"]
 ---
 
-# US Government AI Spending: $140B+ for Defense, $30B for Civilian — Who Gets the Contracts
+# US Government AI Spending: $140B+ for Defense, $30B for Civilian. Who Gets the Contracts
 
-The US federal government is the single largest AI buyer on Earth. The Department of Defense alone plans to spend $140+ billion on AI through 2028. Civilian agencies — IRS, Social Security, Medicare, NASA — add another $30+ billion. For AI companies, government contracts represent massive, long-term revenue with near-guaranteed payment.
+The US federal government is the single largest AI buyer on Earth. The Department of Defense alone plans to spend $140+ billion on AI through 2028. Civilian agencies, IRS, Social Security, Medicare, NASA, add another $30+ billion. For AI companies, government contracts represent massive, long-term revenue with near-guaranteed payment.
 
 ## Defense AI: $140B+ Through 2028
 
@@ -56,7 +56,7 @@ The Pentagon has declared AI its top modernization priority. AI spending spans:
 | AWS | $10B+ (JWCC) | GovCloud AI services |
 | Google | $1B+ | CDAO cloud, Vertex AI |
 
-**For AI startups:** Getting a Pentagon contract is the holy grail — multi-year, multi-billion-dollar revenue with near-zero churn. But the barriers are high: security clearances, CMMC compliance, FedRAMP authorization, and 12-18 month sales cycles.
+**For AI startups:** Getting a Pentagon contract is the holy grail, multi-year, multi-billion-dollar revenue with near-zero churn. But the barriers are high: security clearances, CMMC compliance, FedRAMP authorization, and 12-18 month sales cycles.
 
 ## Civilian Agency AI ($30B+)
 

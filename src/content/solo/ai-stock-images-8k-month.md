@@ -10,11 +10,11 @@ keywords: ["AI stock images income", "sell AI generated images", "Midjourney sto
 
 # Selling AI-Generated Stock Images: $3K-$8K/Month in Passive Income
 
-One documented creator earns $3,000-8,000 per month selling AI-generated images on stock photography sites, licensing 2,000-3,000 images monthly. The income is largely passive — after the initial creation and upload phase, images sell repeatedly with zero additional work.
+One documented creator earns $3,000-8,000 per month selling AI-generated images on stock photography sites, licensing 2,000-3,000 images monthly. The income is largely passive, after the initial creation and upload phase, images sell repeatedly with zero additional work.
 
 ## How It Works
 
-**Step 1: Generate.** Use Midjourney ($10-30/month), DALL-E, or Stable Diffusion to create high-quality images that businesses actually need. Not art — commercial imagery.
+**Step 1: Generate.** Use Midjourney ($10-30/month), DALL-E, or Stable Diffusion to create high-quality images that businesses actually need. Not art, commercial imagery.
 
 **Step 2: Curate.** Not every AI image is sellable. Select the best 10-20% that look professional, have clean compositions, and serve clear commercial purposes.
 
@@ -29,7 +29,7 @@ The highest-earning categories for AI-generated stock images:
 | Category | Why It Sells | Avg Downloads/Image |
 |----------|-------------|-------------------|
 | Business/Corporate | Every presentation, website, brochure needs these | 50-200/year |
-| Technology/AI | Ironic but true — AI articles need AI imagery | 100-500/year |
+| Technology/AI | Ironic but true: AI articles need AI imagery | 100-500/year |
 | Abstract Backgrounds | Used in design, presentations, apps | 200-1000/year |
 | Nature/Landscapes | Always in demand | 50-150/year |
 | Food/Lifestyle | Marketing, social media | 30-100/year |

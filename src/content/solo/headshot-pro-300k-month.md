@@ -48,7 +48,7 @@ For a solo operator. Let that number sit with you for a second.
 
 Danny Postma didn't wake up one day and think "headshots." He's a serial builder. Before HeadshotPro, he created a string of AI products -- some successful, some not. He built AI art generators, AI interior design tools, and several smaller experiments. What he was really doing was testing a thesis.
 
-The thesis was this: find an expensive human service, replace it with AI, charge 10% of the original price, and serve 100x more customers. The revenue math works because you're converting a small, high-ticket market into a massive, low-ticket market. It's the single most repeatable playbook in solo AI right now — I've catalogued a dozen more openings that fit it exactly in [AI SaaS ideas for solo developers in 2026](/solo/ai-saas-ideas-2026).
+The thesis was this: find an expensive human service, replace it with AI, charge 10% of the original price, and serve 100x more customers. The revenue math works because you're converting a small, high-ticket market into a massive, low-ticket market. It's the single most repeatable playbook in solo AI right now: I've catalogued a dozen more openings that fit it exactly in [AI SaaS ideas for solo developers in 2026](/solo/ai-saas-ideas-2026).
 
 Not every service fits this pattern. Danny reportedly evaluated dozens of options before landing on headshots, and the selection criteria were specific.
 
@@ -86,7 +86,7 @@ Most copycats use off-the-shelf models with minimal customization. They compete 
 
 HeadshotPro is the highest-profile example of a pattern that's repeating across dozens of niches. The economics are specific and worth understanding.
 
-API costs for AI inference have dropped roughly 90% since 2023. What cost $50 in compute to generate a set of images in early 2023 costs $2-5 today. This margin expansion means that solo founders can capture dramatically more profit per customer than they could even two years ago — and it's the same force making the [one-person company a genuinely viable business model in 2026](/solo/one-person-company-ai-agents-limits-2026).
+API costs for AI inference have dropped roughly 90% since 2023. What cost $50 in compute to generate a set of images in early 2023 costs $2-5 today. This margin expansion means that solo founders can capture dramatically more profit per customer than they could even two years ago, and it's the same force making the [one-person company a genuinely viable business model in 2026](/solo/one-person-company-ai-agents-limits-2026).
 
 Infrastructure costs are similarly minimal. Next.js on Vercel, Supabase for the database, Stripe for payments, a queue system for processing -- the entire stack runs for a few hundred dollars a month until you're doing serious volume, at which point it's a rounding error against revenue.
 

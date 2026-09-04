@@ -16,11 +16,11 @@ Michael cranks out 60-80 blog posts per month for SaaS companies. He uses AI too
 
 **Each article takes 30-40 minutes:**
 
-1. **Brief review (5 min)** — read the topic, target keyword, audience notes
-2. **AI research (5 min)** — Perplexity or Claude to dig up stats and key points
-3. **AI draft (3 min)** — feed Claude the brief, research, brand voice guidelines, and structure. Out comes a 1,500-word first draft
-4. **Human editing (15-20 min)** — this is where the money is. Rewrite weak sections, inject personal insights, verify every statistic, match the brand's tone, add internal links, tweak for SEO
-5. **Final polish (5 min)** — Grammarly pass, format headers, write meta description, submit
+1. **Brief review (5 min)**, read the topic, target keyword, audience notes
+2. **AI research (5 min)**: Perplexity or Claude to dig up stats and key points
+3. **AI draft (3 min)**, feed Claude the brief, research, brand voice guidelines, and structure. Out comes a 1,500-word first draft
+4. **Human editing (15-20 min)**, this is where the money is. Rewrite weak sections, inject personal insights, verify every statistic, match the brand's tone, add internal links, tweak for SEO
+5. **Final polish (5 min)**: Grammarly pass, format headers, write meta description, submit
 
 Without AI that same article takes 2.5 hours: 30 min research + 90 min writing + 30 min editing.
 
@@ -53,7 +53,7 @@ Average client sticks around 8+ months. At $150/post x 8 posts/month x 8 months,
 
 ## Why $150/Post Works
 
-The cheap AI writers charge $20-50/post and ship barely edited AI output. It reads exactly like what it is — generic, surface-level, no personality. Companies that tried going cheap saw their content tank.
+The cheap AI writers charge $20-50/post and ship barely edited AI output. It reads exactly like what it is, generic, surface-level, no personality. Companies that tried going cheap saw their content tank.
 
 Michael's articles are different:
 - Real statistics from original sources, verified
@@ -62,7 +62,7 @@ Michael's articles are different:
 - Proper SEO optimization
 - They read like a subject matter expert wrote them
 
-AI does the grunt work — research, structure, first draft. Michael adds the expertise — insight, voice, accuracy, SEO. The combo produces better content than either could alone.
+AI does the grunt work, research, structure, first draft. Michael adds the expertise, insight, voice, accuracy, SEO. The combo produces better content than either could alone.
 
 ## Where He Goes From Here
 
@@ -78,7 +78,7 @@ Both paths lean on AI. Path A uses it to justify premium pricing through faster 
 
 **The skill is editing, not prompting.** Anybody can generate a draft with Claude. Making that draft genuinely good is the hard part. If you cannot edit well, AI will not save you.
 
-**Pick a niche.** Michael only writes for B2B SaaS. He knows the jargon, the audience, the formats. Generalist AI writers compete on price. Specialists compete on expertise — and they win.
+**Pick a niche.** Michael only writes for B2B SaaS. He knows the jargon, the audience, the formats. Generalist AI writers compete on price. Specialists compete on expertise, and they win.
 
 **Track your results.** Michael monitors SEO rankings for every article he writes. When he can tell a client "this article ranks #3 for [keyword] and drives 2,000 visits/month," the $150/post price tag is a non-issue.
 

@@ -16,7 +16,7 @@ Healthcare AI is a $32 billion market in 2026, growing at 38% annually (Grand Vi
 
 ### AI-Assisted Diagnostics
 
-Radiology leads AI adoption in healthcare. AI reads X-rays, CT scans, and MRIs faster and more consistently than human radiologists for specific conditions. A 2025 Nature Medicine study found AI-assisted radiologists hit 94.5% diagnostic accuracy versus 87.4% unassisted — a 7.1 percentage point improvement that directly reduces misdiagnosis costs.
+Radiology leads AI adoption in healthcare. AI reads X-rays, CT scans, and MRIs faster and more consistently than human radiologists for specific conditions. A 2025 Nature Medicine study found AI-assisted radiologists hit 94.5% diagnostic accuracy versus 87.4% unassisted, a 7.1 percentage point improvement that directly reduces misdiagnosis costs.
 
 The companies building profitable businesses on clinical outcomes:
 
@@ -28,11 +28,11 @@ The companies building profitable businesses on clinical outcomes:
 | Aidoc | Radiology triage | 19 | Flags critical findings 60% faster | $100K-$300K/year per site |
 | Paige.AI | Cancer pathology | 2 | First FDA-approved AI for cancer diagnosis | $250K-$750K/year per lab |
 
-Viz.ai's stroke detection platform alone has pulled in over $200 million in cumulative revenue, serving 1,400+ hospitals. Their 26-minute reduction in door-to-treatment time directly improves patient outcomes — and hospitals with faster stroke response times negotiate higher reimbursement rates from insurers.
+Viz.ai's stroke detection platform alone has pulled in over $200 million in cumulative revenue, serving 1,400+ hospitals. Their 26-minute reduction in door-to-treatment time directly improves patient outcomes, and hospitals with faster stroke response times negotiate higher reimbursement rates from insurers.
 
 ### Clinical Documentation (The $400K Opportunity)
 
-Physicians spend an average of 2 hours and 15 minutes per day on documentation — time that generates zero revenue. AI ambient scribes listen to patient encounters and write clinical notes automatically, giving that time back for actual patient care.
+Physicians spend an average of 2 hours and 15 minutes per day on documentation, time that generates zero revenue. AI ambient scribes listen to patient encounters and write clinical notes automatically, giving that time back for actual patient care.
 
 **Top documentation AI tools and their financial impact:**
 
@@ -51,16 +51,16 @@ Nuance DAX runs about $2,000-$3,500 per physician per month ($24,000-$42,000/yea
 
 AI is compressing drug discovery from 10+ years to 2-4 years for certain compound classes. The financial stakes are massive: bringing a drug to market costs $2.6 billion on average, and AI can cut that by 30-50%.
 
-**Insilico Medicine** used AI to find a novel drug candidate for idiopathic pulmonary fibrosis in 18 months — typically a 4.5-year process. Their AI platform analyzed 20 million compounds and shortlisted 10 in weeks instead of years. The company has raised $400+ million at a $1.2 billion valuation.
+**Insilico Medicine** used AI to find a novel drug candidate for idiopathic pulmonary fibrosis in 18 months, typically a 4.5-year process. Their AI platform analyzed 20 million compounds and shortlisted 10 in weeks instead of years. The company has raised $400+ million at a $1.2 billion valuation.
 
-**Recursion Pharmaceuticals** ($4.4 billion market cap) runs the largest biological dataset in pharma — 50+ petabytes of cellular imaging data. Their AI has identified drug candidates across 40+ programs simultaneously, something impossible with traditional methods.
+**Recursion Pharmaceuticals** ($4.4 billion market cap) runs the largest biological dataset in pharma, 50+ petabytes of cellular imaging data. Their AI has identified drug candidates across 40+ programs simultaneously, something impossible with traditional methods.
 
 ## Operational AI: Where Hospitals Cut Costs
 
 ### Patient Flow Optimization
 AI predicts patient arrivals, optimizes bed assignments, and reduces wait times. Hospitals using AI scheduling report 15-20% improvement in operating room utilization (worth $1-3 million per year for a mid-size hospital) and 30% fewer patient wait times.
 
-**Qventus**, the leading patient flow AI, processes data from 600+ hospitals. Their platform cuts emergency department boarding times by 30% and increases surgical case volume by 5-8% — that is $2-5 million in incremental annual revenue per hospital.
+**Qventus**, the leading patient flow AI, processes data from 600+ hospitals. Their platform cuts emergency department boarding times by 30% and increases surgical case volume by 5-8%, that is $2-5 million in incremental annual revenue per hospital.
 
 ### Revenue Cycle Management
 AI automates insurance coding, claims processing, and denial management. Healthcare organizations using AI for revenue cycle report:
@@ -89,7 +89,7 @@ AI predicts patient volume 72 hours out and optimizes nurse scheduling. Hospital
 Healthcare AI faces unique barriers: HIPAA compliance, FDA clearance requirements for clinical tools, clinician skepticism, and integration with legacy EHR systems (Epic and Cerner control 60%+ of the market).
 
 **What successful implementations have in common:**
-1. Start with a clinical champion — a physician who pushes for the technology internally
+1. Start with a clinical champion, a physician who pushes for the technology internally
 2. Pick one clearly defined use case with measurable ROI (documentation AI is the most common starting point because the time savings are immediately obvious)
 3. Run a 90-day pilot with 5-10 physicians, tracking time saved and patient volume changes
 4. Present hard ROI data to the C-suite: "Dr. Smith saw 4.2 more patients per day and generated $312K in additional billings during the pilot"
