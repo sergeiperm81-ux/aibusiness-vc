@@ -24,6 +24,13 @@ export default function ExpertsPage() {
             People who build AI, put it into a business, govern it and check that it works.
             Listed one by one, not as firms.
           </p>
+          <p className="mt-5 inline-flex items-start gap-2 rounded-lg border border-accent/40 bg-accent/10 px-4 py-2.5 text-sm leading-snug text-accent">
+            <span aria-hidden className="font-bold">&#10003;</span>
+            <span>
+              Every profile is checked by hand before it goes live. We confirm the person is real
+              and that the links, sites and social accounts are theirs.
+            </span>
+          </p>
         </div>
       </div>
 
@@ -46,9 +53,11 @@ export default function ExpertsPage() {
           <div>
             <h2 className="text-base font-bold text-gray-900">What we check</h2>
             <p className="mt-2 text-sm leading-relaxed text-gray-700">
-              That the person exists, that the links are theirs, and that the organisation is
-              real. We confirm identity and sources. We do not rate anyone&apos;s professional
-              quality, and a listing is not a recommendation.
+              That the person exists, that the links, sites and social accounts are theirs, and
+              that the organisation is real. We confirm identity and sources, not professional
+              quality, and a listing is not a recommendation. AI Business decides what goes into
+              the register and may decline a profile at its own discretion, without giving
+              reasons.
             </p>
           </div>
           <div>
