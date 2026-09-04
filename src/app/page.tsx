@@ -401,37 +401,36 @@ export default async function HomePage() {
                 <p className="mb-3 font-mono text-xs font-bold uppercase tracking-wider text-black">
                   Author&apos;s desk
                 </p>
-                <Link
-                  href="/sergei-ponomarev"
-                  className="mb-2 flex items-center gap-3 rounded-xl bg-amber-400 px-4 py-3 transition-all hover:bg-amber-300"
-                >
-                  <Image
-                    src="/images/sergei-ponomarev.jpg"
-                    alt="Sergei Ponomarev"
-                    width={180}
-                    height={194}
-                    className="h-14 w-14 shrink-0 rounded-lg object-cover object-top"
-                  />
-                  <span>
-                    <span className="block text-sm font-bold text-amber-950">
+                <div className="rounded-2xl bg-accent p-4">
+                  <Link href="/sergei-ponomarev" className="group block">
+                    <Image
+                      src="/images/sergei-desk.png"
+                      alt="Sergei Ponomarev"
+                      width={630}
+                      height={449}
+                      className="h-44 w-full rounded-xl object-cover object-top"
+                    />
+                    <p className="mt-3 text-lg font-bold leading-tight text-black">
                       Sergei Ponomarev, PhD
-                    </span>
-                    <span className="mt-0.5 block text-xs leading-snug text-amber-900">
+                    </p>
+                    <p className="mt-1 text-sm leading-snug text-black/75">
                       I help companies adopt AI in the interests of their customers
-                    </span>
-                  </span>
-                </Link>
-                <div className="space-y-2">
-                  {startHere.map((s) => (
-                    <Link
-                      key={s.href}
-                      href={s.href}
-                      className="group block rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 transition-all hover:border-amber-500 hover:bg-amber-100"
-                    >
-                      <h3 className="text-sm font-bold text-amber-950">{s.title}</h3>
-                      <p className="mt-0.5 text-xs leading-snug text-amber-900">{s.text}</p>
-                    </Link>
-                  ))}
+                    </p>
+                  </Link>
+                  <div className="mt-4 space-y-2">
+                    {startHere.map((s) => (
+                      <Link
+                        key={s.href}
+                        href={s.href}
+                        className="group block rounded-xl bg-background px-4 py-3 transition-all hover:ring-2 hover:ring-black/30"
+                      >
+                        <h3 className="text-sm font-bold text-white transition-colors group-hover:text-accent">
+                          {s.title}
+                        </h3>
+                        <p className="mt-0.5 text-xs leading-snug text-white/60">{s.text}</p>
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               </div>
             </aside>
