@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { EXPERTS, getExpert, initials } from "../experts";
+import { ExpertEmail } from "../ExpertEmail";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -134,7 +135,11 @@ export default async function ExpertPage({ params }: Props) {
                     </a>
                   )}
                   {expert.email && (
-                    <span className="font-semibold text-gray-800">{expert.email}</span>
+                    <ExpertEmail
+                      user={expert.email.user}
+                      host={expert.email.host}
+                      className="font-semibold text-amber-600 hover:underline"
+                    />
                   )}
                   {expert.phone && <span className="font-semibold text-gray-800">{expert.phone}</span>}
                 </div>

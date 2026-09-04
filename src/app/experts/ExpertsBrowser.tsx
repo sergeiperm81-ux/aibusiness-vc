@@ -20,31 +20,35 @@ function ExpertCard({ expert: e }: { expert: Expert }) {
   return (
     <Link
       href={`/experts/${e.slug}`}
-      className="group flex flex-col rounded-2xl border border-gray-200 bg-white p-6 text-center transition hover:border-amber-400 hover:shadow-lg"
+      className="group flex flex-col rounded-2xl bg-accent p-6 text-center transition hover:-translate-y-0.5 hover:shadow-lg"
     >
       {e.photo ? (
         /* eslint-disable-next-line @next/next/no-img-element */
-        <img src={e.photo} alt={e.name} className="mx-auto h-24 w-24 rounded-full object-cover" />
+        <img
+          src={e.photo}
+          alt={e.name}
+          className="mx-auto h-24 w-24 rounded-full object-cover ring-2 ring-black/15"
+        />
       ) : (
-        <span className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-gray-950 text-xl font-bold text-accent">
+        <span className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-gray-950 text-xl font-bold text-accent ring-2 ring-black/10">
           {initials(e.name)}
         </span>
       )}
-      <p className="mt-4 text-base font-bold text-gray-900 group-hover:text-amber-700">{e.name}</p>
-      <p className="mt-0.5 text-xs text-gray-500">{e.location}</p>
-      <p className="mt-3 flex-1 text-sm leading-relaxed text-gray-700">{e.headline}</p>
+      <p className="mt-4 text-base font-bold text-black">{e.name}</p>
+      <p className="mt-0.5 text-xs text-black/60">{e.location}</p>
+      <p className="mt-3 flex-1 text-sm leading-relaxed text-black/80">{e.headline}</p>
       <div className="mt-4 flex flex-wrap justify-center gap-1.5">
         {e.expertise.slice(0, 2).map((s) => (
           <span
             key={s}
-            className="rounded-md bg-amber-50 px-2 py-0.5 text-[11px] font-semibold text-amber-800"
+            className="rounded-md bg-black/10 px-2 py-0.5 text-[11px] font-semibold text-black/80"
           >
             {s}
           </span>
         ))}
       </div>
       {e.sample && (
-        <span className="mt-3 text-[10px] font-bold uppercase tracking-wide text-gray-400">
+        <span className="mt-3 text-[10px] font-bold uppercase tracking-wide text-black/40">
           Sample
         </span>
       )}
@@ -150,28 +154,28 @@ export function ExpertsBrowser() {
 
           {/* The call sits inside the list, not under it: with a hundred people
               below, anything after the grid would never be seen. */}
-          <div className="mt-6 rounded-2xl bg-accent p-8 sm:p-10">
-            <p className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-black">
+          <div className="mt-6 rounded-2xl bg-gray-950 p-8 sm:p-10">
+            <p className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-accent">
               Claim your place
             </p>
-            <h2 className="mt-2 max-w-2xl text-2xl font-bold leading-tight text-black sm:text-3xl">
+            <h2 className="mt-2 max-w-2xl text-2xl font-bold leading-tight text-white sm:text-3xl">
               Somebody is looking for exactly what you do. Right now they cannot find you.
             </h2>
             <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {REGISTER_BENEFITS.map((b) => (
                 <div key={b.title}>
-                  <p className="text-sm font-bold text-black">{b.title}</p>
-                  <p className="mt-0.5 text-sm leading-snug text-black/75">{b.body}</p>
+                  <p className="text-sm font-bold text-accent">{b.title}</p>
+                  <p className="mt-0.5 text-sm leading-snug text-gray-300">{b.body}</p>
                 </div>
               ))}
             </div>
             <Link
               href="/experts/apply"
-              className="mt-7 inline-block rounded-lg bg-gray-950 px-6 py-3 text-sm font-bold text-white transition hover:bg-gray-800"
+              className="mt-7 inline-block rounded-lg bg-accent px-6 py-3 text-sm font-bold text-black transition hover:bg-accent-hover"
             >
               Create your profile &rarr;
             </Link>
-            <p className="mt-2 text-xs text-black/70">
+            <p className="mt-2 text-xs text-gray-400">
               Free. No paid tier. The profile stays yours.
             </p>
           </div>

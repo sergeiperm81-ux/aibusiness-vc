@@ -51,8 +51,8 @@ export interface Expert {
   /** Chosen by the person: only what they marked public is rendered. */
   linkedin?: string;
   website?: string;
-  /** Published obfuscated so scrapers cannot lift it. */
-  email?: string;
+  /** Split in two so the page source never carries a user@domain pattern. */
+  email?: { user: string; host: string };
   phone?: string;
   /** Optional square portrait, cropped by the applicant. */
   photo?: string;
@@ -85,7 +85,37 @@ const SAMPLE_SEED: [string, string, Region, string, string[]][] = [
 const SAMPLE_ABOUT =
   "Placeholder profile used while the community is being built. It shows how a full entry is laid out: what the person does, who they help and how they can be reached.";
 
-export const EXPERTS: Expert[] = SAMPLE_SEED.map(([name, headline, region, location, expertise]) => ({
+const SERGEI: Expert = {
+  slug: "sergei-ponomarev",
+  name: "Sergei Ponomarev, PhD",
+  headline:
+    "Independent test purchases of customer-facing AI: does your agent do what you promised?",
+  region: "Europe",
+  location: "Sveti Vlas, Bulgaria",
+  photo: "/images/sergei-desk.png",
+  expertise: [
+    "Evaluation, testing & red teaming",
+    "EU AI Act",
+    "AI governance & policy",
+    "Risk assessment & audit",
+    "AI implementation & business process design",
+    "Research",
+  ],
+  about:
+    "Political scientist with a PhD on e-government, and for two decades I have worked on one question: what happens to accountability when an institution adopts a new technology. For seven years I led nationwide research and evaluation of public services for government clients, using independent assessments, test purchases, interviews and surveys, and I authored a transparency standard adopted by a city legislature. Since 2024 I have applied the same craft to AI through aibusiness.vc, publishing original methods on AI transparency and accountability, including a toolkit for EU AI Act Article 50 disclosure and a full test purchase method for customer-facing agents, piloted with a Swiss AI metrology company. I also build AI agents hands-on, which keeps the governance work grounded in how these systems actually behave.",
+  services: [
+    "Test purchase of an AI agent: going through your service as a customer would, then comparing what the agent promised against what the system recorded",
+    "AI Service Passport: describing a service so it can be handed to an agent safely, and doubling as your Article 50 disclosure",
+    "AI visibility audit: how ChatGPT and AI search read and cite your website",
+    "Standards and methodology: writing the rules and quality criteria for AI services at scale",
+    "Monitoring and independent evaluation of AI services, carried over from public-service practice",
+  ],
+  linkedin: "https://www.linkedin.com/in/sergei-ponomarev/",
+  website: "https://aibusiness.vc",
+  email: { user: "info", host: "aibusiness.vc" },
+};
+
+export const EXPERTS: Expert[] = [SERGEI, ...SAMPLE_SEED.map(([name, headline, region, location, expertise]) => ({
   slug: `sample-${name.toLowerCase().replace(/[^a-z]+/g, "-")}`,
   name,
   headline,
@@ -95,7 +125,7 @@ export const EXPERTS: Expert[] = SAMPLE_SEED.map(([name, headline, region, locat
   about: SAMPLE_ABOUT,
   services: ["Assessment and gap analysis", "Hands-on implementation support", "Review and second opinion"],
   sample: true,
-}));
+}))];
 
 export function getExpert(slug: string): Expert | undefined {
   return EXPERTS.find((e) => e.slug === slug);
