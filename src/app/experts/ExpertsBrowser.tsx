@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import {
+  ANY_INDUSTRY,
   EXPERTS,
   INDUSTRIES,
   PRACTICE_GROUPS,
@@ -81,7 +82,14 @@ export function ExpertsBrowser() {
     return EXPERTS.filter((e) => {
       if (region && e.region !== region) return false;
       if (practice && !e.practiceAreas.includes(practice)) return false;
-      if (industry && !(e.industries ?? []).includes(industry)) return false;
+      // Someone who works across sectors should surface under every industry.
+      if (
+        industry &&
+        !(e.industries ?? []).includes(industry) &&
+        !(e.industries ?? []).includes(ANY_INDUSTRY)
+      ) {
+        return false;
+      }
       if (!q) return true;
       const haystack = [
         e.name,
