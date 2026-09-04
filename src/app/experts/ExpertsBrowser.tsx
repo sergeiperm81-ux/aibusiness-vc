@@ -39,15 +39,15 @@ export function ExpertsBrowser() {
 
   return (
     <div>
-      <input
-        type="search"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        placeholder="Search by name, skill, service or place"
-        aria-label="Search experts"
-        className={`${CONTROL} placeholder:text-gray-400`}
-      />
-      <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-3">
+      <div className="grid grid-cols-1 gap-3 lg:grid-cols-[2fr_1fr_1fr_1fr]">
+        <input
+          type="search"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search by name, skill, service or place"
+          aria-label="Search experts"
+          className={`${CONTROL} placeholder:text-gray-400`}
+        />
         <select value={region} onChange={(e) => setRegion(e.target.value)} aria-label="Region" className={CONTROL}>
           <option value="">All regions</option>
           {REGIONS.map((r) => (
@@ -102,37 +102,46 @@ export function ExpertsBrowser() {
           .
         </p>
       ) : (
-        <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {results.map((e) => (
             <Link
               key={e.slug}
               href={`/experts/${e.slug}`}
-              className="group flex flex-col rounded-xl border border-gray-200 bg-white p-4 transition hover:border-amber-400 hover:shadow-md"
+              className="group flex flex-col rounded-2xl border border-gray-200 bg-white p-6 text-center transition hover:border-amber-400 hover:shadow-lg"
             >
-              <div className="flex items-center gap-2.5">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gray-950 text-xs font-bold text-accent">
+              {e.photo ? (
+                /* eslint-disable-next-line @next/next/no-img-element */
+                <img
+                  src={e.photo}
+                  alt={e.name}
+                  className="mx-auto h-24 w-24 rounded-full object-cover"
+                />
+              ) : (
+                <span className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-gray-950 text-xl font-bold text-accent">
                   {initials(e.name)}
                 </span>
-                <div className="min-w-0">
-                  <p className="truncate text-sm font-bold text-gray-900 group-hover:text-amber-700">
-                    {e.name}
-                  </p>
-                  <p className="truncate text-[11px] text-gray-500">{e.location}</p>
-                </div>
-              </div>
-              <p className="mt-3 flex-1 text-xs leading-relaxed text-gray-700">{e.headline}</p>
-              <div className="mt-3 flex flex-wrap gap-1">
+              )}
+
+              <p className="mt-4 text-base font-bold text-gray-900 group-hover:text-amber-700">
+                {e.name}
+              </p>
+              <p className="mt-0.5 text-xs text-gray-500">{e.location}</p>
+
+              <p className="mt-3 flex-1 text-sm leading-relaxed text-gray-700">{e.headline}</p>
+
+              <div className="mt-4 flex flex-wrap justify-center gap-1.5">
                 {e.expertise.slice(0, 2).map((s) => (
                   <span
                     key={s}
-                    className="truncate rounded bg-amber-50 px-1.5 py-0.5 text-[10px] font-semibold text-amber-800"
+                    className="rounded-md bg-amber-50 px-2 py-0.5 text-[11px] font-semibold text-amber-800"
                   >
                     {s}
                   </span>
                 ))}
               </div>
+
               {e.sample && (
-                <span className="mt-2 text-[10px] font-bold uppercase tracking-wide text-gray-400">
+                <span className="mt-3 text-[10px] font-bold uppercase tracking-wide text-gray-400">
                   Sample
                 </span>
               )}

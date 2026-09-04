@@ -17,6 +17,9 @@ interface ExpertApplication {
   about?: string;
   services?: string;
   notes?: string;
+  phone?: string;
+  showEmail?: boolean;
+  showPhone?: boolean;
   expertise?: string[];
   consent?: boolean;
   photo?: { name?: string; type?: string; data?: string };
@@ -132,6 +135,9 @@ export async function POST(request: Request) {
           row("Services", body.services),
           row("LinkedIn", body.linkedin),
           row("Website", body.website),
+          row("Phone", body.phone),
+          row("Publish email?", body.showEmail ? "yes" : "no, admin only"),
+          row("Publish phone?", body.phone ? (body.showPhone ? "yes" : "no") : ""),
           row("Notes", body.notes),
           `<p style="margin:0 0 8px"><strong>Photo:</strong> attached as ${escapeHtml(`${safeName}.${ext}`)}</p>`,
           `<p style="margin-top:12px;color:#666">Submitted ${escapeHtml(timestamp)}</p>`,
