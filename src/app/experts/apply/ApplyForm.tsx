@@ -149,25 +149,6 @@ export function ApplyForm() {
         </div>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
-            <label className={LABEL} htmlFor="role">
-              Current role
-            </label>
-            <input id="role" name="role" className={FIELD} placeholder="Independent consultant" />
-          </div>
-          <div>
-            <label className={LABEL} htmlFor="organisation">
-              Organisation
-            </label>
-            <input
-              id="organisation"
-              name="organisation"
-              className={FIELD}
-              placeholder="Company, or independent"
-            />
-          </div>
-        </div>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <div>
             <label className={LABEL} htmlFor="region">
               Region *
             </label>
@@ -248,6 +229,27 @@ export function ApplyForm() {
 
       <fieldset className="rounded-2xl border-2 border-gray-200 p-6">
         <legend className={LEGEND}>Your expertise</legend>
+
+        <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div>
+            <label className={LABEL} htmlFor="role">
+              Current role
+            </label>
+            <input id="role" name="role" className={FIELD} placeholder="Independent consultant" />
+          </div>
+          <div>
+            <label className={LABEL} htmlFor="organisation">
+              Organisation
+            </label>
+            <input
+              id="organisation"
+              name="organisation"
+              className={FIELD}
+              placeholder="Company, or independent"
+            />
+          </div>
+        </div>
+
         <p className="mb-3 text-sm text-gray-600">
           What are you an expert in? Pick everything that applies. *
         </p>
