@@ -163,7 +163,7 @@ export default async function ExpertPage({ params }: Props) {
                   Do this work too? Be where clients look.
                 </p>
                 <p className="mt-2 text-sm leading-snug text-black/75">
-                  Free, no paid tier, and the profile stays yours.
+                  Free, and the profile stays yours.
                 </p>
                 <Link
                   href="/experts/apply"

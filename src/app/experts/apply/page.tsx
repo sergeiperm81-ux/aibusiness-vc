@@ -6,7 +6,7 @@ import { REGISTER_BENEFITS } from "../experts";
 export const metadata: Metadata = {
   title: "Join the AI Governance Experts Community",
   description:
-    "Join the open community of AI governance experts. Free, no paid tier, and the profile stays yours.",
+    "Join the open community of AI governance experts. Free, and the profile stays yours.",
   alternates: { canonical: "/experts/apply" },
   robots: { index: false, follow: false },
 };
@@ -95,8 +95,8 @@ export default function ApplyPage() {
                 </p>
                 <ul className="mt-3 space-y-3 text-sm leading-relaxed text-gray-300">
                   <li>
-                    <strong className="font-bold text-white">Free, and it stays free.</strong> No
-                    paid tier, no sponsored ranking, nobody can buy a place above you.
+                    <strong className="font-bold text-white">Free.</strong> Joining the community
+                    and being listed costs nothing.
                   </li>
                   <li>
                     <strong className="font-bold text-white">We check identity, not talent.</strong>{" "}

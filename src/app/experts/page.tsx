@@ -33,8 +33,7 @@ export default function ExpertsPage() {
         <ExpertsBrowser />
 
         <p className="mt-6 rounded-lg border border-gray-200 bg-gray-50 px-4 py-2.5 text-xs text-gray-600">
-          Under construction: the cards above are placeholders showing the layout. No real person
-          is listed yet.
+          The community is just getting started. New people are added as they join.
         </p>
 
         <div className="mt-12 grid grid-cols-1 gap-6 rounded-2xl border border-gray-200 bg-gray-50 p-6 sm:p-8 md:grid-cols-3">
@@ -57,8 +56,8 @@ export default function ExpertsPage() {
           <div>
             <h2 className="text-base font-bold text-gray-900">What it costs</h2>
             <p className="mt-2 text-sm leading-relaxed text-gray-700">
-              Nothing, and there is no paid tier and no sponsored placement. The profile stays
-              yours: ask, and it is changed or removed the same week.
+              Nothing. Joining and being listed is free. The profile stays yours: ask, and it is
+              changed or removed the same week.
             </p>
           </div>
         </div>
