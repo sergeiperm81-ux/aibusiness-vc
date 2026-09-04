@@ -117,8 +117,11 @@ export async function POST(request: Request) {
       ""
     ).toLowerCase();
 
-    if (ownerTo && isValidEmail(ownerTo)) {
-      await sendBrevoEmail({
+    if (!ownerTo || !isValidEmail(ownerTo)) {
+      // Without a destination the application would vanish silently.
+      console.error("[expert_application_no_recipient]", "LEADS_TO_EMAIL is not configured");
+    } else {
+      const sent = await sendBrevoEmail({
         to: ownerTo,
         replyTo: email,
         subject: `[EXPERTS] ${body.name} — ${body.region}`,
@@ -147,6 +150,8 @@ export async function POST(request: Request) {
         text: `New expert application\n${body.name} <${email}>\n${body.headline}\n${body.region} / ${body.location}\nLinkedIn: ${body.linkedin}`,
         attachments: [{ name: `${safeName}.${ext}`, content: photo.data as string }],
       });
+      if (!sent.ok) console.error("[expert_application_mail_failed]", sent.error);
+      else console.log("[expert_application_mailed]", ownerTo);
     }
 
     return NextResponse.json({ ok: true });
