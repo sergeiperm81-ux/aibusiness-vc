@@ -8,7 +8,6 @@ export const metadata: Metadata = {
   description:
     "Join the open community of AI governance experts. Free, and the profile stays yours.",
   alternates: { canonical: "/experts/apply" },
-  robots: { index: false, follow: false },
 };
 
 export default function ApplyPage() {
