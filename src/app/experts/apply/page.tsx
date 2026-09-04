@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 import { ApplyForm } from "./ApplyForm";
 
 export const metadata: Metadata = {
-  title: "Join the AI Governance Expert Register",
+  title: "Join the AI Governance Experts Community",
   description:
-    "Add yourself to the open register of AI governance experts. Free, no paid tier, and the profile stays yours.",
+    "Join the open community of AI governance experts. Free, no paid tier, and the profile stays yours.",
   alternates: { canonical: "/experts/apply" },
   robots: { index: false, follow: false },
 };
@@ -16,17 +16,17 @@ export default function ApplyPage() {
       <div className="bg-gray-950">
         <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
           <Link href="/experts" className="text-xs text-gray-400 hover:text-amber-400">
-            &larr; The register
+            &larr; The community
           </Link>
           <p className="mt-6 font-mono text-sm font-bold uppercase tracking-[0.2em] text-amber-400">
-            Join the register
+            Join the community
           </p>
           <h1 className="mt-3 text-3xl font-bold leading-tight text-white sm:text-4xl">
-            Add yourself to the register
+            Join the AI governance community
           </h1>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-gray-300">
             Free, with no paid tier and no ranking to buy. We confirm that you exist and that the
-            links are yours, then publish the profile you wrote. Ask, and it comes down.
+            links are yours, then publish the profile you wrote in your own words.
           </p>
           <div className="mt-6 h-1 w-16 rounded-full bg-amber-400" />
         </div>

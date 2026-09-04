@@ -437,7 +437,7 @@ export default async function HomePage() {
                     className="mt-4 block rounded-xl border-2 border-black/25 px-4 py-3 transition hover:bg-black/5"
                   >
                     <span className="block text-sm font-bold text-black">
-                      Join the AI governance register &rarr;
+                      Join the AI governance community &rarr;
                     </span>
                     <span className="mt-0.5 block text-xs leading-snug text-black/75">
                       Be found by clients, be citable by AI search, get the briefs. Free.
