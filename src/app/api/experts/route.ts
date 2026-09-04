@@ -9,29 +9,24 @@ interface ExpertApplication {
   email?: string;
   headline?: string;
   region?: string;
-  country?: string;
-  city?: string;
-  languages?: string;
+  location?: string;
   linkedin?: string;
   website?: string;
   organisation?: string;
   role?: string;
   about?: string;
   services?: string;
-  proof?: string;
-  environment?: string;
   notes?: string;
   expertise?: string[];
-  workTypes?: string[];
   consent?: boolean;
+  marketingConsent?: boolean;
 }
 
 const REQUIRED: (keyof ExpertApplication)[] = [
   "name",
   "headline",
   "region",
-  "country",
-  "languages",
+  "location",
   "about",
   "services",
   "linkedin",
@@ -79,7 +74,7 @@ export async function POST(request: Request) {
         SIGNUP_SOURCE: "experts_register",
         FIRSTNAME: (body.name ?? "").split(" ")[0] ?? "",
         REGION: body.region ?? "",
-        CONSENT: true,
+        CONSENT: body.marketingConsent === true,
       },
     });
     if (contact.error) console.error("[expert_contact]", contact.error);
@@ -111,21 +106,17 @@ export async function POST(request: Request) {
           row("Role", body.role),
           row("Organisation", body.organisation),
           row("Region", body.region),
-          row("Country", body.country),
-          row("City", body.city),
-          row("Languages", body.languages),
-          row("Work environment", body.environment),
+          row("Location", body.location),
           row("Expertise", body.expertise),
-          row("Work types", body.workTypes),
           row("About", body.about),
           row("Services", body.services),
           row("LinkedIn", body.linkedin),
           row("Website", body.website),
-          row("Supporting links", body.proof),
           row("Notes", body.notes),
+          row("Email opt-in", body.marketingConsent ? "yes" : "no"),
           `<p style="margin-top:12px;color:#666">Submitted ${escapeHtml(timestamp)}</p>`,
         ].join(""),
-        text: `New expert application\n${body.name} <${email}>\n${body.headline}\n${body.region} / ${body.country}\nLinkedIn: ${body.linkedin}`,
+        text: `New expert application\n${body.name} <${email}>\n${body.headline}\n${body.region} / ${body.location}\nLinkedIn: ${body.linkedin}`,
       });
     }
 

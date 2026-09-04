@@ -1,10 +1,10 @@
 /**
  * The expert register.
  *
- * Location is stored in two layers on purpose: `region` comes from a fixed list
- * so the catalogue can actually be filtered, while `country` and `city` are free
- * text for display. Filtering on free text alone falls apart the moment two people
- * write "UK" and "United Kingdom".
+ * Location is deliberately two fields and no more: `region` comes from a fixed
+ * list so the catalogue can be filtered, and `location` is whatever the person
+ * wants to show (a city, a country, or both). Filtering on free text alone falls
+ * apart the moment two people write "UK" and "United Kingdom".
  */
 
 export const REGIONS = [
@@ -16,45 +16,41 @@ export const REGIONS = [
 ] as const;
 export type Region = (typeof REGIONS)[number];
 
+/**
+ * What people in this profession actually do. Labels are written so that nobody
+ * has to guess what a category means.
+ */
 export const EXPERTISE = [
   "EU AI Act",
   "ISO/IEC 42001",
-  "GDPR & AI",
-  "AI governance",
+  "GDPR & data protection",
+  "AI governance & policy",
   "AI ethics & fairness",
   "Risk assessment & audit",
-  "Evaluation & red teaming",
-  "Responsible LLM deployment",
-  "AI policy & strategy",
-  "Sector expertise",
+  "Evaluation, testing & red teaming",
+  "AI security",
+  "Responsible AI deployment",
+  "Procurement & vendor assessment",
+  "Legal & regulatory advice",
+  "Training & AI literacy",
+  "Research",
+  "Industry specialist (health, finance, public sector and so on)",
 ] as const;
 export type Expertise = (typeof EXPERTISE)[number];
-
-export const WORK_TYPES = [
-  "Project based",
-  "Fractional",
-  "Advisory",
-  "Full time",
-  "Short-term",
-] as const;
-export type WorkType = (typeof WORK_TYPES)[number];
 
 export interface Expert {
   slug: string;
   name: string;
   headline: string;
   region: Region;
-  country: string;
-  city?: string;
-  languages: string[];
-  expertise: Expertise[];
-  workTypes: WorkType[];
-  remote: boolean;
+  /** Free text, shown as given: a city, a country, or both. */
+  location: string;
+  expertise: string[];
   about: string;
   services: string[];
   linkedin?: string;
   website?: string;
-  /** Placeholder row used while the register is being built. Never shown as a real person. */
+  /** Placeholder row used while the register is being built. Never a real person. */
   sample?: boolean;
 }
 
@@ -64,12 +60,8 @@ export const EXPERTS: Expert[] = [
     name: "Jane Doe",
     headline: "EU AI Act compliance lead for regulated industries",
     region: "Europe",
-    country: "Netherlands",
-    city: "Amsterdam",
-    languages: ["English", "Dutch"],
+    location: "Amsterdam, Netherlands",
     expertise: ["EU AI Act", "ISO/IEC 42001", "Risk assessment & audit"],
-    workTypes: ["Project based", "Fractional"],
-    remote: true,
     about:
       "Placeholder profile used while the register is under construction. It shows how a full entry is laid out: what the person does, who they help and how they can be reached.",
     services: [
@@ -84,12 +76,12 @@ export const EXPERTS: Expert[] = [
     name: "John Roe",
     headline: "Independent evaluator: red teaming and agent testing",
     region: "North America",
-    country: "United States",
-    city: "Boston",
-    languages: ["English"],
-    expertise: ["Evaluation & red teaming", "Responsible LLM deployment", "AI governance"],
-    workTypes: ["Project based", "Short-term"],
-    remote: true,
+    location: "Boston, United States",
+    expertise: [
+      "Evaluation, testing & red teaming",
+      "Responsible AI deployment",
+      "AI governance & policy",
+    ],
     about:
       "Placeholder profile used while the register is under construction. It shows how a full entry is laid out: what the person does, who they help and how they can be reached.",
     services: ["Agent red teaming", "Pre-launch evaluation", "Model release review"],
@@ -100,11 +92,12 @@ export const EXPERTS: Expert[] = [
     name: "Alex Sample",
     headline: "Data governance for AI in healthcare",
     region: "Asia-Pacific",
-    country: "Singapore",
-    languages: ["English", "Mandarin"],
-    expertise: ["GDPR & AI", "AI policy & strategy", "Sector expertise"],
-    workTypes: ["Advisory", "Fractional"],
-    remote: true,
+    location: "Singapore",
+    expertise: [
+      "GDPR & data protection",
+      "AI governance & policy",
+      "Industry specialist (health, finance, public sector and so on)",
+    ],
     about:
       "Placeholder profile used while the register is under construction. It shows how a full entry is laid out: what the person does, who they help and how they can be reached.",
     services: ["Data governance design", "Clinical AI oversight", "Policy drafting"],
@@ -124,3 +117,23 @@ export function initials(name: string): string {
     .map((part) => part[0]?.toUpperCase() ?? "")
     .join("");
 }
+
+/** What a person gets out of being listed. Used on the register, the form and the home page. */
+export const REGISTER_BENEFITS = [
+  {
+    title: "Be found when it matters",
+    body: "Companies come here looking for a person, not a consultancy. Your profile is what they read.",
+  },
+  {
+    title: "Be readable by AI search",
+    body: "Every profile ships as a machine-readable card, so ChatGPT and Perplexity can find and cite you when someone asks who does this work.",
+  },
+  {
+    title: "Get the briefs",
+    body: "When a company writes to us needing help, we point them at the people who fit. No fee, no bidding.",
+  },
+  {
+    title: "Stand with the people writing the rules",
+    body: "This profession is being invented right now. The register is where its practitioners become visible to each other.",
+  },
+] as const;
