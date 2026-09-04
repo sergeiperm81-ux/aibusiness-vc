@@ -48,7 +48,6 @@ function ExpertSchema({ expert }: { expert: Expert }) {
     url: `${SITE}/experts/${expert.slug}`,
     knowsAbout: [
       ...expert.practiceAreas,
-      ...(expert.frameworks ?? []),
       ...(expert.industries ?? []),
     ],
   };
@@ -235,16 +234,7 @@ export default async function ExpertPage({ params }: Props) {
             <div className="lg:sticky lg:top-6">
               <div className="rounded-2xl border-2 border-gray-200 p-6">
                 <Tags title="Practice areas" items={expert.practiceAreas} />
-                <Tags title="Frameworks" items={expert.frameworks ?? []} dark />
                 <Tags title="Industries" items={expert.industries ?? []} dark />
-                {expert.jurisdictions && (
-                  <div className="mt-6">
-                    <p className="text-xs font-bold uppercase tracking-wider text-gray-500">
-                      Jurisdictions
-                    </p>
-                    <p className="mt-1 text-sm text-gray-800">{expert.jurisdictions}</p>
-                  </div>
-                )}
                 {expert.workFormats?.length ? (
                   <div className="mt-6">
                     <p className="text-xs font-bold uppercase tracking-wider text-gray-500">

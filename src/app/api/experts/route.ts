@@ -18,10 +18,8 @@ interface ExpertApplication {
   services?: string;
   phone?: string;
   languages?: string;
-  jurisdictions?: string;
   availability?: string;
   practiceAreas?: string[];
-  frameworks?: string[];
   industries?: string[];
   workFormats?: string[];
   showEmail?: boolean;
@@ -29,7 +27,6 @@ interface ExpertApplication {
   showLinkedin?: boolean;
   showWebsite?: boolean;
   consent?: boolean;
-  newsletter?: boolean;
   photo?: { name?: string; type?: string; data?: string };
 }
 
@@ -48,7 +45,6 @@ const LIMITS: Record<string, number> = {
   services: 1500,
   phone: 40,
   languages: 160,
-  jurisdictions: 160,
   availability: 40,
 };
 
@@ -59,7 +55,6 @@ const REQUIRED = [
   "location",
   "about",
   "linkedin",
-  "languages",
 ] as const;
 
 /** Base64 of a 2 MB file is about 2.7 MB. */
@@ -140,7 +135,6 @@ export async function POST(request: Request) {
         { status: 400 }
       );
     }
-    const frameworks = cleanTags(body.frameworks);
     const industries = cleanTags(body.industries);
     const workFormats = cleanTags(body.workFormats);
 
@@ -181,11 +175,9 @@ export async function POST(request: Request) {
         role: body.role,
         organisation: body.organisation,
         practiceAreas,
-        frameworks,
         industries,
         workFormats,
         languages: body.languages,
-        jurisdictions: body.jurisdictions,
         availability: body.availability,
         about: body.about,
         services: body.services,
@@ -196,13 +188,11 @@ export async function POST(request: Request) {
         showPhone: body.showPhone === true,
         showLinkedin: body.showLinkedin === true,
         showWebsite: body.showWebsite === true,
-        newsletter: body.newsletter === true,
       })
     );
 
-    // Only people who asked for email go on the mailing list: consent to be
-    // published is not consent to be marketed to.
-    if (body.newsletter === true) {
+    // One combined consent covers publication and email, by the owner's decision.
+    {
       const contact = await upsertBrevoContact({
         email,
         attributes: {
@@ -240,10 +230,8 @@ export async function POST(request: Request) {
         row("Region", body.region),
         row("Location", body.location),
         row("Languages", body.languages),
-        row("Jurisdictions", body.jurisdictions),
         row("Availability", body.availability),
         row("Practice areas", practiceAreas),
-        row("Frameworks", frameworks),
         row("Industries", industries),
         row("Open to", workFormats),
         row("About", body.about),
@@ -255,7 +243,6 @@ export async function POST(request: Request) {
         row("Publish phone?", body.phone ? (body.showPhone ? "yes" : "no") : ""),
         row("Publish LinkedIn?", body.showLinkedin ? "yes" : "no"),
         row("Publish website?", website ? (body.showWebsite ? "yes" : "no") : ""),
-        row("Newsletter opt-in", body.newsletter ? "yes" : "no"),
         `<p style="margin:0 0 8px"><strong>Photo:</strong> attached as ${escapeHtml(
           `${safeName}.${ext}`
         )}</p>`,
