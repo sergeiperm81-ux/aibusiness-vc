@@ -14,6 +14,31 @@ export function ApplyForm() {
   const [message, setMessage] = useState("");
   const [expertise, setExpertise] = useState<string[]>([]);
   const [other, setOther] = useState("");
+  const [photo, setPhoto] = useState<{ name: string; type: string; data: string } | null>(null);
+  const [photoError, setPhotoError] = useState("");
+
+  function onPhotoChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    setPhotoError("");
+    if (!file) {
+      setPhoto(null);
+      return;
+    }
+    if (!file.type.startsWith("image/")) {
+      setPhotoError("Please choose an image file.");
+      return;
+    }
+    if (file.size > 2 * 1024 * 1024) {
+      setPhotoError("Keep the photo under 2 MB.");
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = String(reader.result ?? "");
+      setPhoto({ name: file.name, type: file.type, data: result.split(",")[1] ?? "" });
+    };
+    reader.readAsDataURL(file);
+  }
 
   function toggle(list: string[], value: string, set: (v: string[]) => void) {
     set(list.includes(value) ? list.filter((v) => v !== value) : [...list, value]);
@@ -39,8 +64,14 @@ export function ApplyForm() {
       notes: String(form.get("notes") ?? "").trim(),
       expertise: other.trim() ? [...expertise, `Other: ${other.trim()}`] : expertise,
       consent: form.get("consent") === "on",
-      marketingConsent: form.get("marketingConsent") === "on",
+      photo,
     };
+
+    if (!photo) {
+      setStatus("error");
+      setMessage("Add a photo: it is what people see first.");
+      return;
+    }
 
     if (expertise.length === 0 && !other.trim()) {
       setStatus("error");
@@ -112,6 +143,39 @@ export function ApplyForm() {
             className={FIELD}
             placeholder="EU AI Act compliance lead for regulated industries"
           />
+        </div>
+        <div>
+          <label className={LABEL} htmlFor="photo">
+            Your photo *
+          </label>
+          <div className="flex items-center gap-4">
+            {photo ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={`data:${photo.type};base64,${photo.data}`}
+                alt="Preview"
+                className="h-16 w-16 rounded-full border border-gray-200 object-cover"
+              />
+            ) : (
+              <span className="flex h-16 w-16 items-center justify-center rounded-full border border-dashed border-gray-300 text-xs text-gray-400">
+                photo
+              </span>
+            )}
+            <div className="flex-1">
+              <input
+                id="photo"
+                name="photo"
+                type="file"
+                accept="image/*"
+                onChange={onPhotoChange}
+                className="block w-full text-sm text-gray-700 file:mr-3 file:rounded-lg file:border-0 file:bg-gray-950 file:px-3 file:py-2 file:text-sm file:font-bold file:text-white hover:file:bg-gray-800"
+              />
+              <p className="mt-1 text-xs text-gray-500">
+                A clear portrait, under 2 MB. It goes on your card and your profile.
+              </p>
+              {photoError && <p className="mt-1 text-xs font-semibold text-red-600">{photoError}</p>}
+            </div>
+          </div>
         </div>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
@@ -266,19 +330,14 @@ export function ApplyForm() {
         </div>
       </fieldset>
 
-      <div className="space-y-3 rounded-xl border border-gray-200 bg-gray-50 p-4">
+      <div className="rounded-xl border border-gray-200 bg-gray-50 p-4">
         <label className="flex items-start gap-2.5 text-sm leading-snug text-gray-700">
           <input type="checkbox" name="consent" required className="mt-1 h-4 w-4 shrink-0 accent-amber-500" />
           <span>
-            I am submitting my own details and agree to have this profile published on
-            aibusiness.vc. I can ask for it to be changed or removed at any time. *
-          </span>
-        </label>
-        <label className="flex items-start gap-2.5 text-sm leading-snug text-gray-700">
-          <input type="checkbox" name="marketingConsent" className="mt-1 h-4 w-4 shrink-0 accent-amber-500" />
-          <span>
-            Send me occasional email from AI Business: new people in the register, briefs from
-            companies looking for help, and what the register is doing next.
+            These are my own details. I agree to have this profile published on aibusiness.vc and
+            to receive email from AI Business: new members, briefs from companies looking for
+            help, and community news. I can edit or remove the profile, or unsubscribe, at any
+            time. *
           </span>
         </label>
       </div>

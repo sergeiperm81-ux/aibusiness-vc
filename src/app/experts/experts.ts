@@ -30,6 +30,7 @@ export const EXPERTISE = [
   "Evaluation, testing & red teaming",
   "AI security",
   "Responsible AI deployment",
+  "AI implementation & business process design",
   "Procurement & vendor assessment",
   "Legal & regulatory advice",
   "Training & AI literacy",
@@ -118,22 +119,22 @@ export function initials(name: string): string {
     .join("");
 }
 
-/** What a person gets out of being listed. Used on the register, the form and the home page. */
+/** What a person gets out of being listed. Used on the community page, the form and the home page. */
 export const REGISTER_BENEFITS = [
   {
-    title: "Clients find a person",
-    body: "Companies come here looking for someone who can do the work, not for a consultancy. Your profile is what they read.",
+    title: "Clients find you, not a firm",
+    body: "People come here to hire a person. Make sure the person they find is you.",
   },
   {
-    title: "AI search can cite you",
-    body: "Every profile ships as a machine-readable card, so ChatGPT and Perplexity can name you when someone asks who does this work.",
+    title: "ChatGPT can name you",
+    body: "Your card is machine-readable. Ask an AI who does this work, and the answer can be your name.",
   },
   {
-    title: "Briefs come to you",
-    body: "When a company writes to us needing help, we point them at the people who fit. No fee, no bidding.",
+    title: "Briefs land in your inbox",
+    body: "Companies write to us with a task. We send it to the three people who fit. No fee, no bidding.",
   },
   {
-    title: "You meet your peers",
-    body: "The profession is young and scattered. This is where its practitioners become visible to each other.",
+    title: "Your peers, in one place",
+    body: "This profession is a year old and scattered across the world. Be visible to the others doing it.",
   },
 ] as const;

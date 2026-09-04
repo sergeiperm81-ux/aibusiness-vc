@@ -2,12 +2,25 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { EXPERTISE, EXPERTS, REGIONS, initials } from "./experts";
+import { EXPERTISE, EXPERTS, REGIONS, initials, type Expert } from "./experts";
+
+type SortKey = "name" | "region" | "expertise";
+
+const SORTERS: Record<SortKey, (a: Expert, b: Expert) => number> = {
+  name: (a, b) => a.name.localeCompare(b.name),
+  region: (a, b) => a.region.localeCompare(b.region) || a.name.localeCompare(b.name),
+  expertise: (a, b) =>
+    (a.expertise[0] ?? "").localeCompare(b.expertise[0] ?? "") || a.name.localeCompare(b.name),
+};
+
+const CONTROL =
+  "w-full rounded-lg border border-gray-300 bg-white px-3 py-2.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-amber-400/50";
 
 export function ExpertsBrowser() {
   const [query, setQuery] = useState("");
   const [region, setRegion] = useState("");
   const [skill, setSkill] = useState("");
+  const [sort, setSort] = useState<SortKey>("name");
 
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -19,26 +32,23 @@ export function ExpertsBrowser() {
         .join(" ")
         .toLowerCase();
       return haystack.includes(q);
-    });
-  }, [query, region, skill]);
+    }).sort(SORTERS[sort]);
+  }, [query, region, skill, sort]);
+
+  const filtered = Boolean(region || skill || query);
 
   return (
     <div>
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-[2fr_1fr_1fr]">
-        <input
-          type="search"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search by name, skill, service or country"
-          aria-label="Search experts"
-          className="w-full rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-400/50"
-        />
-        <select
-          value={region}
-          onChange={(e) => setRegion(e.target.value)}
-          aria-label="Filter by region"
-          className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-amber-400/50"
-        >
+      <input
+        type="search"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        placeholder="Search by name, skill, service or place"
+        aria-label="Search experts"
+        className={`${CONTROL} placeholder:text-gray-400`}
+      />
+      <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-3">
+        <select value={region} onChange={(e) => setRegion(e.target.value)} aria-label="Region" className={CONTROL}>
           <option value="">All regions</option>
           {REGIONS.map((r) => (
             <option key={r} value={r}>
@@ -46,12 +56,7 @@ export function ExpertsBrowser() {
             </option>
           ))}
         </select>
-        <select
-          value={skill}
-          onChange={(e) => setSkill(e.target.value)}
-          aria-label="Filter by expertise"
-          className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-amber-400/50"
-        >
+        <select value={skill} onChange={(e) => setSkill(e.target.value)} aria-label="Expertise" className={CONTROL}>
           <option value="">All expertise</option>
           {EXPERTISE.map((s) => (
             <option key={s} value={s}>
@@ -59,11 +64,21 @@ export function ExpertsBrowser() {
             </option>
           ))}
         </select>
+        <select
+          value={sort}
+          onChange={(e) => setSort(e.target.value as SortKey)}
+          aria-label="Sort"
+          className={CONTROL}
+        >
+          <option value="name">Sort: by name</option>
+          <option value="region">Sort: by region</option>
+          <option value="expertise">Sort: by expertise</option>
+        </select>
       </div>
 
       <p className="mt-4 text-sm text-gray-500">
         {results.length} {results.length === 1 ? "person" : "people"}
-        {(region || skill || query) && (
+        {filtered && (
           <button
             type="button"
             onClick={() => {
@@ -73,57 +88,54 @@ export function ExpertsBrowser() {
             }}
             className="ml-3 font-semibold text-amber-600 hover:underline"
           >
-            Reset filters
+            Reset
           </button>
         )}
       </p>
 
       {results.length === 0 ? (
-        <p className="mt-8 rounded-xl border border-gray-200 bg-gray-50 p-6 text-sm text-gray-600">
-          Nobody matches that yet. Try a wider region, or{" "}
+        <p className="mt-6 rounded-xl border border-gray-200 bg-gray-50 p-6 text-sm text-gray-600">
+          Nobody matches that yet. Widen the region, or{" "}
           <Link href="/experts/apply" className="font-semibold text-amber-600 hover:underline">
-            join the community
+            be the first
           </Link>
           .
         </p>
       ) : (
-        <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {results.map((e) => (
             <Link
               key={e.slug}
               href={`/experts/${e.slug}`}
-              className="group flex flex-col rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:border-amber-300 hover:shadow-md"
+              className="group flex flex-col rounded-xl border border-gray-200 bg-white p-4 transition hover:border-amber-400 hover:shadow-md"
             >
-              <div className="flex items-center gap-3">
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gray-900 text-sm font-bold text-amber-400">
+              <div className="flex items-center gap-2.5">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gray-950 text-xs font-bold text-accent">
                   {initials(e.name)}
                 </span>
                 <div className="min-w-0">
-                  <p className="truncate font-bold text-gray-900 group-hover:text-amber-700">
+                  <p className="truncate text-sm font-bold text-gray-900 group-hover:text-amber-700">
                     {e.name}
                   </p>
-                  <p className="truncate text-xs text-gray-500">{e.location}</p>
+                  <p className="truncate text-[11px] text-gray-500">{e.location}</p>
                 </div>
               </div>
-
-              {e.sample && (
-                <span className="mt-3 inline-flex w-fit items-center rounded-md bg-gray-200 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-gray-700">
-                  Sample entry
-                </span>
-              )}
-
-              <p className="mt-3 flex-1 text-sm leading-relaxed text-gray-700">{e.headline}</p>
-
-              <div className="mt-4 flex flex-wrap gap-1.5">
-                {e.expertise.slice(0, 3).map((s) => (
+              <p className="mt-3 flex-1 text-xs leading-relaxed text-gray-700">{e.headline}</p>
+              <div className="mt-3 flex flex-wrap gap-1">
+                {e.expertise.slice(0, 2).map((s) => (
                   <span
                     key={s}
-                    className="rounded-md bg-amber-50 px-2 py-0.5 text-[11px] font-semibold text-amber-800"
+                    className="truncate rounded bg-amber-50 px-1.5 py-0.5 text-[10px] font-semibold text-amber-800"
                   >
                     {s}
                   </span>
                 ))}
               </div>
+              {e.sample && (
+                <span className="mt-2 text-[10px] font-bold uppercase tracking-wide text-gray-400">
+                  Sample
+                </span>
+              )}
             </Link>
           ))}
         </div>
