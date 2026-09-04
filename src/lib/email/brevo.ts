@@ -7,6 +7,8 @@ interface SendArgs {
   html: string;
   text: string;
   replyTo?: string;
+  /** Base64-encoded files, e.g. a photo sent with an application. */
+  attachments?: { name: string; content: string }[];
 }
 
 /**
@@ -50,6 +52,7 @@ export async function sendBrevoEmail(args: SendArgs): Promise<{ ok: boolean; err
         subject: args.subject,
         htmlContent: args.html,
         textContent: args.text,
+        ...(args.attachments?.length ? { attachment: args.attachments } : {}),
       }),
     });
     if (!res.ok) {

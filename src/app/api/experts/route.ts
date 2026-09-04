@@ -19,8 +19,11 @@ interface ExpertApplication {
   notes?: string;
   expertise?: string[];
   consent?: boolean;
-  marketingConsent?: boolean;
+  photo?: { name?: string; type?: string; data?: string };
 }
+
+/** Base64 of a 2 MB file is about 2.7 MB; anything larger is rejected before it reaches email. */
+const MAX_PHOTO_BASE64 = 2_800_000;
 
 const REQUIRED: (keyof ExpertApplication)[] = [
   "name",
@@ -74,7 +77,7 @@ export async function POST(request: Request) {
         SIGNUP_SOURCE: "experts_register",
         FIRSTNAME: (body.name ?? "").split(" ")[0] ?? "",
         REGION: body.region ?? "",
-        CONSENT: body.marketingConsent === true,
+        CONSENT: true,
       },
     });
     if (contact.error) console.error("[expert_contact]", contact.error);
@@ -86,6 +89,23 @@ export async function POST(request: Request) {
         text
       ).replace(/\n/g, "<br/>")}</p>`;
     };
+
+    const photo = body.photo;
+    const photoOk =
+      photo &&
+      typeof photo.data === "string" &&
+      photo.data.length > 0 &&
+      photo.data.length <= MAX_PHOTO_BASE64 &&
+      typeof photo.type === "string" &&
+      photo.type.startsWith("image/");
+    if (!photoOk) {
+      return NextResponse.json(
+        { ok: false, error: "Please add a photo under 2 MB." },
+        { status: 400 }
+      );
+    }
+    const ext = (photo.type ?? "image/jpeg").split("/")[1]?.replace("jpeg", "jpg") ?? "jpg";
+    const safeName = (body.name ?? "expert").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
     const ownerTo = (
       process.env.LEADS_TO_EMAIL?.trim() ||
@@ -113,10 +133,11 @@ export async function POST(request: Request) {
           row("LinkedIn", body.linkedin),
           row("Website", body.website),
           row("Notes", body.notes),
-          row("Email opt-in", body.marketingConsent ? "yes" : "no"),
+          `<p style="margin:0 0 8px"><strong>Photo:</strong> attached as ${escapeHtml(`${safeName}.${ext}`)}</p>`,
           `<p style="margin-top:12px;color:#666">Submitted ${escapeHtml(timestamp)}</p>`,
         ].join(""),
         text: `New expert application\n${body.name} <${email}>\n${body.headline}\n${body.region} / ${body.location}\nLinkedIn: ${body.linkedin}`,
+        attachments: [{ name: `${safeName}.${ext}`, content: photo.data as string }],
       });
     }
 
