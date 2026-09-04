@@ -349,7 +349,7 @@ export default async function HomePage() {
               All news &rarr;
             </Link>
           </div>
-          <p className="mb-6 max-w-3xl text-sm text-black/60">
+          <p className="mb-6 max-w-4xl text-sm text-black/60">
             Auto-updated daily from TechCrunch, Crunchbase, VentureBeat, MIT Tech Review.
             Funding rounds, AI earnings, tool launches, enterprise deals.
           </p>
@@ -610,7 +610,7 @@ export default async function HomePage() {
             Direct answers to the questions readers ask most. Each answer links to a deeper
             guide.
           </p>
-          <div className="grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-x-12 gap-y-6 md:grid-cols-2">
             {HOME_FAQ.map((item) => (
               <div key={item.q}>
                 <h3 className="mb-2 text-base font-bold text-black">{item.q}</h3>
