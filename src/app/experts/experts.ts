@@ -74,16 +74,6 @@ export const PRACTICE_GROUPS = [
 export const PRACTICE_AREAS = PRACTICE_GROUPS.flatMap((g) => g.items as readonly string[]);
 export type PracticeArea = (typeof PRACTICE_AREAS)[number];
 
-/** The rulebooks a person actually works against. */
-export const FRAMEWORKS = [
-  "EU AI Act",
-  "ISO/IEC 42001",
-  "NIST AI RMF",
-  "GDPR",
-  "Sector regulation",
-] as const;
-export type Framework = (typeof FRAMEWORKS)[number];
-
 export const INDUSTRIES = [
   "Financial services",
   "Health & life sciences",
@@ -128,10 +118,7 @@ export interface Expert {
   /** Free text, shown as given: a city, a country, or both. */
   location: string;
   practiceAreas: string[];
-  frameworks?: string[];
   industries?: string[];
-  /** Legal orders a person actually advises on, free text: "EU, UK, Switzerland". */
-  jurisdictions?: string;
   languages?: string[];
   workFormats?: string[];
   availability?: Availability;
@@ -167,9 +154,7 @@ const SERGEI: Expert = {
     "Governed AI adoption & process redesign",
     "AI research & public policy",
   ],
-  frameworks: ["EU AI Act"],
   industries: ["Public sector", "Retail & consumer", "Technology & software"],
-  jurisdictions: "EU",
   languages: ["English", "Russian"],
   workFormats: ["Consulting", "Advisory & board work", "Research collaboration", "Speaking"],
   availability: "Open to work now",

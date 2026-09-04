@@ -59,6 +59,12 @@ export function Header() {
               AI Experts
             </Link>
             <Link
+              href="/experts/apply"
+              className="px-3 py-1.5 text-[13px] font-bold rounded-md border border-accent text-accent transition-colors hover:bg-accent hover:text-black"
+            >
+              Create your profile
+            </Link>
+            <Link
               href="/submit-your-story"
               className={`px-3 py-1.5 text-[13px] font-bold rounded-md transition-colors ${
                 isActive("/submit-your-story")
@@ -76,6 +82,12 @@ export function Header() {
               className="px-2.5 py-1 text-[12px] font-bold bg-accent text-black rounded-md"
             >
               Experts
+            </Link>
+            <Link
+              href="/experts/apply"
+              className="px-2.5 py-1 text-[12px] font-bold border border-accent text-accent rounded-md"
+            >
+              Join
             </Link>
             <Link
               href="/submit-your-story"

@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import {
   EXPERTS,
-  FRAMEWORKS,
   INDUSTRIES,
   PRACTICE_GROUPS,
   REGIONS,
@@ -74,7 +73,6 @@ export function ExpertsBrowser() {
   const [query, setQuery] = useState("");
   const [region, setRegion] = useState("");
   const [practice, setPractice] = useState("");
-  const [framework, setFramework] = useState("");
   const [industry, setIndustry] = useState("");
   const [sort, setSort] = useState<SortKey>("name");
 
@@ -83,7 +81,6 @@ export function ExpertsBrowser() {
     return EXPERTS.filter((e) => {
       if (region && e.region !== region) return false;
       if (practice && !e.practiceAreas.includes(practice)) return false;
-      if (framework && !(e.frameworks ?? []).includes(framework)) return false;
       if (industry && !(e.industries ?? []).includes(industry)) return false;
       if (!q) return true;
       const haystack = [
@@ -93,7 +90,6 @@ export function ExpertsBrowser() {
         e.about,
         e.organisation ?? "",
         ...e.practiceAreas,
-        ...(e.frameworks ?? []),
         ...(e.industries ?? []),
         ...(e.languages ?? []),
         ...(e.services ?? []),
@@ -102,9 +98,9 @@ export function ExpertsBrowser() {
         .toLowerCase();
       return haystack.includes(q);
     }).sort(SORTERS[sort]);
-  }, [query, region, practice, framework, industry, sort]);
+  }, [query, region, practice, industry, sort]);
 
-  const filtered = Boolean(region || practice || framework || industry || query);
+  const filtered = Boolean(region || practice || industry || query);
 
   return (
     <div>
@@ -116,7 +112,7 @@ export function ExpertsBrowser() {
         aria-label="Search experts"
         className={`${CONTROL} placeholder:text-gray-400`}
       />
-      <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
+      <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
         <select value={practice} onChange={(e) => setPractice(e.target.value)} aria-label="Practice area" className={CONTROL}>
           <option value="">All practice areas</option>
           {PRACTICE_GROUPS.map((group) => (
@@ -127,14 +123,6 @@ export function ExpertsBrowser() {
                 </option>
               ))}
             </optgroup>
-          ))}
-        </select>
-        <select value={framework} onChange={(e) => setFramework(e.target.value)} aria-label="Framework" className={CONTROL}>
-          <option value="">All frameworks</option>
-          {FRAMEWORKS.map((s) => (
-            <option key={s} value={s}>
-              {s}
-            </option>
           ))}
         </select>
         <select value={industry} onChange={(e) => setIndustry(e.target.value)} aria-label="Industry" className={CONTROL}>
@@ -174,7 +162,6 @@ export function ExpertsBrowser() {
               setQuery("");
               setRegion("");
               setPractice("");
-              setFramework("");
               setIndustry("");
             }}
             className="ml-3 font-semibold text-amber-600 hover:underline"

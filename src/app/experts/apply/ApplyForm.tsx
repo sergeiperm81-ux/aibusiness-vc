@@ -3,7 +3,6 @@
 import { useState } from "react";
 import {
   AVAILABILITY,
-  FRAMEWORKS,
   INDUSTRIES,
   PRACTICE_GROUPS,
   REGIONS,
@@ -26,7 +25,6 @@ export function ApplyForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
   const [practiceAreas, setPracticeAreas] = useState<string[]>([]);
-  const [frameworks, setFrameworks] = useState<string[]>([]);
   const [industries, setIndustries] = useState<string[]>([]);
   const [workFormats, setWorkFormats] = useState<string[]>([]);
   const [other, setOther] = useState("");
@@ -79,10 +77,8 @@ export function ApplyForm() {
       showLinkedin: form.get("showLinkedin") === "on",
       showWebsite: form.get("showWebsite") === "on",
       practiceAreas: other.trim() ? [...practiceAreas, `Other: ${other.trim()}`] : practiceAreas,
-      frameworks,
       industries,
       workFormats,
-      jurisdictions: text("jurisdictions"),
       languages: text("languages"),
       availability: text("availability"),
       consent: form.get("consent") === "on",
@@ -324,23 +320,6 @@ export function ApplyForm() {
           />
         </div>
 
-        <p className="mb-3 mt-8 text-sm font-semibold text-gray-900">
-          Frameworks you work against
-        </p>
-        <div className="flex flex-wrap gap-2">
-          {FRAMEWORKS.map((s) => (
-            <button
-              key={s}
-              type="button"
-              onClick={() => toggle(s, setFrameworks)}
-              aria-pressed={frameworks.includes(s)}
-              className={chip(frameworks.includes(s))}
-            >
-              {s}
-            </button>
-          ))}
-        </div>
-
         <p className="mb-3 mt-8 text-sm font-semibold text-gray-900">Industries you know</p>
         <div className="flex flex-wrap gap-2">
           {INDUSTRIES.map((s) => (
@@ -371,29 +350,12 @@ export function ApplyForm() {
           ))}
         </div>
 
-        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
             <label className={LABEL} htmlFor="languages">
-              Working languages *
+              Working languages
             </label>
-            <input
-              id="languages"
-              name="languages"
-              required
-              className={FIELD}
-              placeholder="English, German"
-            />
-          </div>
-          <div>
-            <label className={LABEL} htmlFor="jurisdictions">
-              Jurisdictions
-            </label>
-            <input
-              id="jurisdictions"
-              name="jurisdictions"
-              className={FIELD}
-              placeholder="EU, UK, Switzerland"
-            />
+            <input id="languages" name="languages" className={FIELD} placeholder="English, German" />
           </div>
           <div>
             <label className={LABEL} htmlFor="availability">
@@ -531,7 +493,7 @@ export function ApplyForm() {
         </div>
       </fieldset>
 
-      <div className="space-y-3 rounded-xl border-2 border-gray-200 bg-gray-50 p-4">
+      <div className="rounded-xl border-2 border-gray-200 bg-gray-50 p-4">
         <label className="flex items-start gap-2.5 text-sm leading-snug text-gray-700">
           <input
             type="checkbox"
@@ -540,15 +502,10 @@ export function ApplyForm() {
             className="mt-1 h-4 w-4 shrink-0 accent-amber-500"
           />
           <span>
-            These are my own details, and I agree to have this profile published on
-            aibusiness.vc. I can have it changed or removed at any time. *
-          </span>
-        </label>
-        <label className="flex items-start gap-2.5 text-sm leading-snug text-gray-700">
-          <input type="checkbox" name="newsletter" className="mt-1 h-4 w-4 shrink-0 accent-amber-500" />
-          <span>
-            Send me occasional email from AI Business: new people in the community, work coming
-            through, and what the register is doing next. Optional, and you can stop it any time.
+            These are my own details. I agree to have this profile published on aibusiness.vc and
+            to receive email from AI Business: new people in the community, work coming through,
+            and what the register is doing next. I can have the profile changed or removed, and
+            unsubscribe, at any time. *
           </span>
         </label>
       </div>
