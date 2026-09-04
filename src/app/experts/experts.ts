@@ -74,7 +74,11 @@ export const PRACTICE_GROUPS = [
 export const PRACTICE_AREAS = PRACTICE_GROUPS.flatMap((g) => g.items as readonly string[]);
 export type PracticeArea = (typeof PRACTICE_AREAS)[number];
 
+/** Marks someone whose work does not depend on the sector. Matches every filter. */
+export const ANY_INDUSTRY = "Any industry";
+
 export const INDUSTRIES = [
+  ANY_INDUSTRY,
   "Financial services",
   "Health & life sciences",
   "Public sector",
