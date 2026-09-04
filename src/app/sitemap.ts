@@ -4,6 +4,7 @@ import { getAllArticles } from "@/lib/articles";
 import { salaries } from "@/data/salaries";
 import { regulations } from "@/data/regulations";
 import { GUIDES } from "@/app/library/guides";
+import { EXPERTS } from "@/app/experts/experts";
 import { getAllNotes } from "@/lib/notes-content";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -25,6 +26,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/robots`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/news`, lastModified: now, changeFrequency: "daily", priority: 0.8 },
     { url: `${baseUrl}/library`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${baseUrl}/experts`, lastModified: now, changeFrequency: "daily", priority: 0.9 },
+    { url: `${baseUrl}/experts/apply`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${baseUrl}/notes`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/service-check`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${baseUrl}/audit`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
@@ -44,6 +47,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   // Library guides — flagship original content
+  const expertPages: MetadataRoute.Sitemap = EXPERTS.map((e) => ({
+    url: `${baseUrl}/experts/${e.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
   const libraryPages: MetadataRoute.Sitemap = GUIDES.map((g) => ({
     url: `${baseUrl}/library/${g.slug}`,
     lastModified: now,
@@ -93,6 +103,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...staticPages,
     ...notePages,
     ...libraryPages,
+    ...expertPages,
     ...modelPages,
     ...articlePages,
     ...salaryPages,

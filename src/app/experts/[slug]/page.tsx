@@ -1,8 +1,10 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { EXPERTS, getExpert, initials } from "../experts";
+import { EXPERTS, getExpert, initials, type Expert } from "../experts";
 import { ExpertEmail } from "../ExpertEmail";
+
+const SITE = "https://aibusiness.vc";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -20,7 +22,85 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${expert.name} — AI governance expert`,
     description: expert.headline,
     alternates: { canonical: `/experts/${expert.slug}` },
-    };
+    openGraph: {
+      title: `${expert.name} — AI governance expert`,
+      description: expert.headline,
+      url: `${SITE}/experts/${expert.slug}`,
+      type: "profile",
+    },
+  };
+}
+
+/**
+ * Structured data for one member.
+ *
+ * A ProfilePage wrapping a Person is what lets a search engine or an assistant
+ * answer "who works on this" with a name instead of a paragraph. Only the fields
+ * the person chose to publish end up here.
+ */
+function ExpertSchema({ expert }: { expert: Expert }) {
+  const person: Record<string, unknown> = {
+    "@type": "Person",
+    "@id": `${SITE}/experts/${expert.slug}#person`,
+    name: expert.name,
+    description: expert.about,
+    jobTitle: expert.headline,
+    url: `${SITE}/experts/${expert.slug}`,
+    knowsAbout: [
+      ...expert.practiceAreas,
+      ...(expert.frameworks ?? []),
+      ...(expert.industries ?? []),
+    ],
+  };
+  if (expert.photo) person.image = `${SITE}${expert.photo}`;
+  if (expert.languages?.length) person.knowsLanguage = expert.languages;
+  if (expert.organisation) person.worksFor = { "@type": "Organization", name: expert.organisation };
+  if (expert.location) {
+    person.address = { "@type": "PostalAddress", addressLocality: expert.location };
+  }
+  if (expert.email) person.email = `${expert.email.user}@${expert.email.host}`;
+  if (expert.phone) person.telephone = expert.phone;
+  const sameAs = [expert.linkedin, expert.website].filter(Boolean);
+  if (sameAs.length) person.sameAs = sameAs;
+
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    url: `${SITE}/experts/${expert.slug}`,
+    name: `${expert.name} — AI governance expert`,
+    isPartOf: { "@type": "WebSite", name: "AI Business", url: SITE },
+    about: person,
+    mainEntity: person,
+  };
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
+function Tags({ title, items, dark }: { title: string; items: string[]; dark?: boolean }) {
+  if (items.length === 0) return null;
+  return (
+    <div className="mt-6 first:mt-0">
+      <p className="text-xs font-bold uppercase tracking-wider text-gray-500">{title}</p>
+      <div className="mt-2 flex flex-wrap gap-2">
+        {items.map((s) => (
+          <span
+            key={s}
+            className={
+              dark
+                ? "rounded-md bg-gray-900 px-3 py-1.5 text-xs font-semibold text-white"
+                : "rounded-md bg-accent px-3 py-1.5 text-xs font-bold text-black"
+            }
+          >
+            {s}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
 }
 
 export default async function ExpertPage({ params }: Props) {
@@ -53,7 +133,6 @@ export default async function ExpertPage({ params }: Props) {
         </Link>
 
         <div className="mt-6 grid grid-cols-1 gap-10 lg:grid-cols-3 lg:gap-12">
-          {/* The person */}
           <div className="lg:col-span-2">
             <div className="flex flex-col gap-6 sm:flex-row sm:items-start">
               {expert.photo ? (
@@ -71,12 +150,18 @@ export default async function ExpertPage({ params }: Props) {
               <div className="min-w-0">
                 <h2 className="text-3xl font-bold leading-tight text-gray-900">{expert.name}</h2>
                 <p className="mt-2 text-lg leading-snug text-gray-700">{expert.headline}</p>
+                {(expert.role || expert.organisation) && (
+                  <p className="mt-1 text-sm text-gray-600">
+                    {[expert.role, expert.organisation].filter(Boolean).join(", ")}
+                  </p>
+                )}
                 <p className="mt-2 text-sm text-gray-500">
                   {expert.location} &middot; {expert.region}
+                  {expert.languages?.length ? ` · ${expert.languages.join(", ")}` : ""}
                 </p>
-                {expert.sample && (
-                  <p className="mt-3 inline-flex items-center rounded-md bg-gray-100 px-3 py-1 text-xs font-bold uppercase tracking-wide text-gray-500">
-                    Sample entry, not a real person
+                {expert.availability && (
+                  <p className="mt-3 inline-flex items-center rounded-md bg-emerald-100 px-3 py-1 text-xs font-bold uppercase tracking-wide text-emerald-800">
+                    {expert.availability}
                   </p>
                 )}
               </div>
@@ -85,29 +170,21 @@ export default async function ExpertPage({ params }: Props) {
             <h3 className="mt-10 text-lg font-bold text-gray-900">About</h3>
             <p className="mt-3 text-base leading-relaxed text-gray-800">{expert.about}</p>
 
-            <h3 className="mt-10 text-lg font-bold text-gray-900">Services offered</h3>
-            <ul className="mt-4 space-y-3">
-              {expert.services.map((s) => (
-                <li
-                  key={s}
-                  className="rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm font-medium text-gray-800"
-                >
-                  {s}
-                </li>
-              ))}
-            </ul>
-
-            <h3 className="mt-10 text-lg font-bold text-gray-900">Expertise</h3>
-            <div className="mt-4 flex flex-wrap gap-2">
-              {expert.expertise.map((s) => (
-                <span
-                  key={s}
-                  className="rounded-md bg-gray-900 px-3 py-1.5 text-xs font-semibold text-white"
-                >
-                  {s}
-                </span>
-              ))}
-            </div>
+            {expert.services && expert.services.length > 0 && (
+              <>
+                <h3 className="mt-10 text-lg font-bold text-gray-900">What they do</h3>
+                <ul className="mt-4 space-y-3">
+                  {expert.services.map((s) => (
+                    <li
+                      key={s}
+                      className="rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm font-medium text-gray-800"
+                    >
+                      {s}
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
 
             {(expert.linkedin || expert.website || expert.email || expert.phone) && (
               <>
@@ -140,7 +217,9 @@ export default async function ExpertPage({ params }: Props) {
                       className="font-semibold text-amber-600 hover:underline"
                     />
                   )}
-                  {expert.phone && <span className="font-semibold text-gray-800">{expert.phone}</span>}
+                  {expert.phone && (
+                    <span className="font-semibold text-gray-800">{expert.phone}</span>
+                  )}
                 </div>
               </>
             )}
@@ -154,15 +233,34 @@ export default async function ExpertPage({ params }: Props) {
           {/* This column belongs to the site: our call, and room for what comes next. */}
           <aside className="lg:col-span-1">
             <div className="lg:sticky lg:top-6">
-              <div className="rounded-2xl bg-accent p-6">
+              <div className="rounded-2xl border-2 border-gray-200 p-6">
+                <Tags title="Practice areas" items={expert.practiceAreas} />
+                <Tags title="Frameworks" items={expert.frameworks ?? []} dark />
+                <Tags title="Industries" items={expert.industries ?? []} dark />
+                {expert.jurisdictions && (
+                  <div className="mt-6">
+                    <p className="text-xs font-bold uppercase tracking-wider text-gray-500">
+                      Jurisdictions
+                    </p>
+                    <p className="mt-1 text-sm text-gray-800">{expert.jurisdictions}</p>
+                  </div>
+                )}
+                {expert.workFormats?.length ? (
+                  <div className="mt-6">
+                    <p className="text-xs font-bold uppercase tracking-wider text-gray-500">
+                      Open to
+                    </p>
+                    <p className="mt-1 text-sm text-gray-800">{expert.workFormats.join(", ")}</p>
+                  </div>
+                ) : null}
+              </div>
+
+              <div className="mt-4 rounded-2xl bg-accent p-6">
                 <p className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-black">
                   Claim your place
                 </p>
                 <p className="mt-2 text-xl font-bold leading-tight text-black">
                   Do this work too? Be where clients look.
-                </p>
-                <p className="mt-2 text-sm leading-snug text-black/75">
-                  Free, and the profile stays yours.
                 </p>
                 <Link
                   href="/experts/apply"
@@ -191,6 +289,8 @@ export default async function ExpertPage({ params }: Props) {
           </aside>
         </div>
       </div>
+
+      <ExpertSchema expert={expert} />
     </section>
   );
 }

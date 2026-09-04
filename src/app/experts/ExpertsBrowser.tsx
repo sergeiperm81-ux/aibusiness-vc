@@ -2,15 +2,25 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { EXPERTISE, EXPERTS, REGIONS, REGISTER_BENEFITS, initials, type Expert } from "./experts";
+import {
+  EXPERTS,
+  FRAMEWORKS,
+  INDUSTRIES,
+  PRACTICE_AREAS,
+  REGIONS,
+  REGISTER_BENEFITS,
+  initials,
+  type Expert,
+} from "./experts";
 
-type SortKey = "name" | "region" | "expertise";
+type SortKey = "name" | "region" | "practice";
 
 const SORTERS: Record<SortKey, (a: Expert, b: Expert) => number> = {
   name: (a, b) => a.name.localeCompare(b.name),
   region: (a, b) => a.region.localeCompare(b.region) || a.name.localeCompare(b.name),
-  expertise: (a, b) =>
-    (a.expertise[0] ?? "").localeCompare(b.expertise[0] ?? "") || a.name.localeCompare(b.name),
+  practice: (a, b) =>
+    (a.practiceAreas[0] ?? "").localeCompare(b.practiceAreas[0] ?? "") ||
+    a.name.localeCompare(b.name),
 };
 
 /** How many cards come before the join block. */
@@ -38,7 +48,7 @@ function ExpertCard({ expert: e }: { expert: Expert }) {
       <p className="mt-0.5 text-xs text-gray-500">{e.location}</p>
       <p className="mt-3 flex-1 text-sm leading-relaxed text-gray-700">{e.headline}</p>
       <div className="mt-4 flex flex-wrap justify-center gap-1.5">
-        {e.expertise.slice(0, 2).map((s) => (
+        {e.practiceAreas.slice(0, 2).map((s) => (
           <span
             key={s}
             className="rounded-md bg-accent px-2 py-0.5 text-[11px] font-bold text-black"
@@ -46,17 +56,13 @@ function ExpertCard({ expert: e }: { expert: Expert }) {
             {s}
           </span>
         ))}
-        {e.expertise.length > 2 && (
+        {e.practiceAreas.length > 2 && (
           <span className="rounded-md bg-gray-900 px-2 py-0.5 text-[11px] font-semibold text-white">
-            +{e.expertise.length - 2}
+            +{e.practiceAreas.length - 2}
           </span>
         )}
       </div>
-      {e.sample && (
-        <span className="mt-3 text-[10px] font-bold uppercase tracking-wide text-gray-400">
-          Sample
-        </span>
-      )}
+
     </Link>
   );
 }
@@ -67,48 +73,79 @@ const CONTROL =
 export function ExpertsBrowser() {
   const [query, setQuery] = useState("");
   const [region, setRegion] = useState("");
-  const [skill, setSkill] = useState("");
+  const [practice, setPractice] = useState("");
+  const [framework, setFramework] = useState("");
+  const [industry, setIndustry] = useState("");
   const [sort, setSort] = useState<SortKey>("name");
 
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();
     return EXPERTS.filter((e) => {
       if (region && e.region !== region) return false;
-      if (skill && !e.expertise.includes(skill)) return false;
+      if (practice && !e.practiceAreas.includes(practice)) return false;
+      if (framework && !(e.frameworks ?? []).includes(framework)) return false;
+      if (industry && !(e.industries ?? []).includes(industry)) return false;
       if (!q) return true;
-      const haystack = [e.name, e.headline, e.location, e.about, ...e.expertise, ...e.services]
+      const haystack = [
+        e.name,
+        e.headline,
+        e.location,
+        e.about,
+        e.organisation ?? "",
+        ...e.practiceAreas,
+        ...(e.frameworks ?? []),
+        ...(e.industries ?? []),
+        ...(e.languages ?? []),
+        ...(e.services ?? []),
+      ]
         .join(" ")
         .toLowerCase();
       return haystack.includes(q);
     }).sort(SORTERS[sort]);
-  }, [query, region, skill, sort]);
+  }, [query, region, practice, framework, industry, sort]);
 
-  const filtered = Boolean(region || skill || query);
+  const filtered = Boolean(region || practice || framework || industry || query);
 
   return (
     <div>
-      <div className="grid grid-cols-1 gap-3 lg:grid-cols-[2fr_1fr_1fr_1fr]">
-        <input
-          type="search"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search by name, skill, service or place"
-          aria-label="Search experts"
-          className={`${CONTROL} placeholder:text-gray-400`}
-        />
+      <input
+        type="search"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        placeholder="Search by name, practice, industry or place"
+        aria-label="Search experts"
+        className={`${CONTROL} placeholder:text-gray-400`}
+      />
+      <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
+        <select value={practice} onChange={(e) => setPractice(e.target.value)} aria-label="Practice area" className={CONTROL}>
+          <option value="">All practice areas</option>
+          {PRACTICE_AREAS.map((s) => (
+            <option key={s} value={s}>
+              {s}
+            </option>
+          ))}
+        </select>
+        <select value={framework} onChange={(e) => setFramework(e.target.value)} aria-label="Framework" className={CONTROL}>
+          <option value="">All frameworks</option>
+          {FRAMEWORKS.map((s) => (
+            <option key={s} value={s}>
+              {s}
+            </option>
+          ))}
+        </select>
+        <select value={industry} onChange={(e) => setIndustry(e.target.value)} aria-label="Industry" className={CONTROL}>
+          <option value="">All industries</option>
+          {INDUSTRIES.map((s) => (
+            <option key={s} value={s}>
+              {s}
+            </option>
+          ))}
+        </select>
         <select value={region} onChange={(e) => setRegion(e.target.value)} aria-label="Region" className={CONTROL}>
           <option value="">All regions</option>
           {REGIONS.map((r) => (
             <option key={r} value={r}>
               {r}
-            </option>
-          ))}
-        </select>
-        <select value={skill} onChange={(e) => setSkill(e.target.value)} aria-label="Expertise" className={CONTROL}>
-          <option value="">All expertise</option>
-          {EXPERTISE.map((s) => (
-            <option key={s} value={s}>
-              {s}
             </option>
           ))}
         </select>
@@ -120,7 +157,7 @@ export function ExpertsBrowser() {
         >
           <option value="name">Sort: by name</option>
           <option value="region">Sort: by region</option>
-          <option value="expertise">Sort: by expertise</option>
+          <option value="practice">Sort: by practice area</option>
         </select>
       </div>
 
@@ -132,7 +169,9 @@ export function ExpertsBrowser() {
             onClick={() => {
               setQuery("");
               setRegion("");
-              setSkill("");
+              setPractice("");
+              setFramework("");
+              setIndustry("");
             }}
             className="ml-3 font-semibold text-amber-600 hover:underline"
           >

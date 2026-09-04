@@ -1,10 +1,14 @@
 /**
  * The expert register.
  *
- * Location is deliberately two fields and no more: `region` comes from a fixed
- * list so the catalogue can be filtered, and `location` is whatever the person
- * wants to show (a city, a country, or both). Filtering on free text alone falls
- * apart the moment two people write "UK" and "United Kingdom".
+ * Three separate dimensions, deliberately not mixed into one list: what a person
+ * does (practice areas), which rulebooks they work against (frameworks), and
+ * where they do it (industries, jurisdictions). Putting a law, a standard and a
+ * job title in the same dropdown is what made the first version unusable.
+ *
+ * Location is two fields: `region` comes from a fixed list so the catalogue can
+ * be filtered, and `location` is free text shown as given. Filtering on free
+ * text alone falls apart the moment two people write "UK" and "United Kingdom".
  */
 
 export const REGIONS = [
@@ -17,27 +21,76 @@ export const REGIONS = [
 export type Region = (typeof REGIONS)[number];
 
 /**
- * What people in this profession actually do. Labels are written so that nobody
- * has to guess what a category means.
+ * Practice areas: the work itself.
+ *
+ * The admission rule behind this list: a person is hired to govern, assess,
+ * verify or secure an AI system, not merely to build one. A technical red
+ * teamer belongs here; someone who ships chatbots without governance practice
+ * does not.
  */
-export const EXPERTISE = [
-  "EU AI Act",
-  "ISO/IEC 42001",
-  "GDPR & data protection",
-  "AI governance & policy",
-  "AI ethics & fairness",
-  "Risk assessment & audit",
+export const PRACTICE_AREAS = [
+  "Governance operating models & AI policy",
+  "Legal, regulatory & standards compliance",
+  "AI risk & impact assessment",
+  "Assurance, audit & conformity assessment",
   "Evaluation & testing",
   "Red teaming",
-  "AI security",
-  "Responsible AI deployment",
-  "AI implementation & business process design",
-  "Procurement & vendor assessment",
-  "Legal & regulatory advice",
-  "Training & AI literacy",
-  "Research",
+  "AI safety, security & incident response",
+  "Data governance, privacy & documentation",
+  "Human oversight, transparency & accountability",
+  "Procurement & third-party risk",
+  "Governed AI adoption & process redesign",
+  "AI literacy & training",
+  "Ethics, human rights & fairness",
+  "AI governance research & public policy",
 ] as const;
-export type Expertise = (typeof EXPERTISE)[number];
+export type PracticeArea = (typeof PRACTICE_AREAS)[number];
+
+/** The rulebooks a person actually works against. */
+export const FRAMEWORKS = [
+  "EU AI Act",
+  "ISO/IEC 42001",
+  "NIST AI RMF",
+  "GDPR",
+  "Sector regulation",
+] as const;
+export type Framework = (typeof FRAMEWORKS)[number];
+
+export const INDUSTRIES = [
+  "Financial services",
+  "Health & life sciences",
+  "Public sector",
+  "Technology & software",
+  "Retail & consumer",
+  "Manufacturing & industry",
+  "Insurance",
+  "Education",
+  "Legal services",
+  "Media",
+  "Energy & utilities",
+  "Transport & logistics",
+] as const;
+export type Industry = (typeof INDUSTRIES)[number];
+
+/**
+ * What someone is open to, rather than what they sell.
+ *
+ * Researchers, policy people and academics belong in this register too, and
+ * "services offered" quietly excludes them.
+ */
+export const WORK_FORMATS = [
+  "Consulting",
+  "Advisory & board work",
+  "Research collaboration",
+  "Speaking",
+  "Media commentary",
+  "Training",
+  "Employment",
+] as const;
+export type WorkFormat = (typeof WORK_FORMATS)[number];
+
+export const AVAILABILITY = ["Open to work now", "Limited availability", "Not available"] as const;
+export type Availability = (typeof AVAILABILITY)[number];
 
 export interface Expert {
   slug: string;
@@ -46,19 +99,27 @@ export interface Expert {
   region: Region;
   /** Free text, shown as given: a city, a country, or both. */
   location: string;
-  expertise: string[];
+  practiceAreas: string[];
+  frameworks?: string[];
+  industries?: string[];
+  /** Legal orders a person actually advises on, free text: "EU, UK, Switzerland". */
+  jurisdictions?: string;
+  languages?: string[];
+  workFormats?: string[];
+  availability?: Availability;
   about: string;
-  services: string[];
-  /** Chosen by the person: only what they marked public is rendered. */
+  /** What they do for people. Optional: research and policy work is not a service list. */
+  services?: string[];
+  role?: string;
+  organisation?: string;
+  /** Only what the person marked public is ever rendered. */
   linkedin?: string;
   website?: string;
   /** Split in two so the page source never carries a user@domain pattern. */
   email?: { user: string; host: string };
   phone?: string;
-  /** Optional square portrait, cropped by the applicant. */
+  /** Square portrait, cropped by the applicant. */
   photo?: string;
-  /** Placeholder row used while the register is being built. Never a real person. */
-  sample?: boolean;
 }
 
 const SERGEI: Expert = {
@@ -68,13 +129,22 @@ const SERGEI: Expert = {
   region: "Europe",
   location: "Sveti Vlas, Bulgaria",
   photo: "/images/sergei-desk.png",
-  expertise: [
+  role: "Founder and editor",
+  organisation: "aibusiness.vc",
+  practiceAreas: [
     "Evaluation & testing",
-    "EU AI Act",
-    "AI governance & policy",
-    "AI implementation & business process design",
-    "Research",
+    "Assurance, audit & conformity assessment",
+    "Governance operating models & AI policy",
+    "Human oversight, transparency & accountability",
+    "Governed AI adoption & process redesign",
+    "AI governance research & public policy",
   ],
+  frameworks: ["EU AI Act"],
+  industries: ["Public sector", "Retail & consumer", "Technology & software"],
+  jurisdictions: "EU",
+  languages: ["English", "Russian"],
+  workFormats: ["Consulting", "Advisory & board work", "Research collaboration", "Speaking"],
+  availability: "Open to work now",
   about:
     "Political scientist with a PhD on e-government. For seven years I led nationwide research and evaluation of public services for government clients, using independent assessments, test purchases, interviews and surveys, and I authored a transparency standard adopted by a city legislature. Since 2024 I have applied the same craft to AI through aibusiness.vc, publishing original methods on AI transparency and accountability, including a toolkit for EU AI Act Article 50 disclosure and a full test purchase method for customer-facing agents, piloted with a Swiss AI metrology company. I also build AI agents hands-on, which keeps the governance work grounded in how these systems actually behave.",
   services: [
@@ -89,7 +159,6 @@ const SERGEI: Expert = {
 
 export const EXPERTS: Expert[] = [SERGEI];
 
-
 export function getExpert(slug: string): Expert | undefined {
   return EXPERTS.find((e) => e.slug === slug);
 }
@@ -103,15 +172,15 @@ export function initials(name: string): string {
     .join("");
 }
 
-/** What a person gets out of being listed. Used on the community page, the form and the home page. */
+/** What a person gets out of being listed. Used on the community page and the form. */
 export const REGISTER_BENEFITS = [
   {
     title: "Clients find you, not a firm",
     body: "People come here to hire a person. Make sure the person they find is you.",
   },
   {
-    title: "ChatGPT can name you",
-    body: "Your card is machine-readable. Ask an AI who does this work, and the answer can be your name.",
+    title: "Built to be read by machines",
+    body: "Your profile ships with structured data, so search engines and AI assistants can read who you are and what you do.",
   },
   {
     title: "Another channel for work",
@@ -119,6 +188,6 @@ export const REGISTER_BENEFITS = [
   },
   {
     title: "Your peers, in one place",
-    body: "This profession is a year old and scattered across the world. Be visible to the others doing it.",
+    body: "This profession is young and scattered across the world. Be visible to the others doing it.",
   },
 ] as const;

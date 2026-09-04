@@ -106,8 +106,9 @@ export default function ApplyPage() {
                     email, and the profile changes or disappears the same week.
                   </li>
                   <li>
-                    <strong className="font-bold text-white">Email stays private.</strong> It is
-                    never shown on the site.
+                    <strong className="font-bold text-white">You choose what is public.</strong>{" "}
+                    Your email is only shown if you ask for it. Otherwise we keep it and pass
+                    enquiries on to you.
                   </li>
                 </ul>
               </div>
