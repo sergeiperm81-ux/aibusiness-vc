@@ -279,7 +279,7 @@ export default async function HomePage() {
     },
     {
       href: "/library",
-      title: "Playbooks",
+      title: "Author's Library",
       text: "Free methods, checklists and templates. No registration.",
     },
     {
