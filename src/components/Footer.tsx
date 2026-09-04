@@ -9,7 +9,6 @@ const AUTHOR_DESK = [
   { name: "AI Test Purchase", href: "/service-check" },
   { name: "AI Visibility Audit", href: "/audit" },
   { name: "Author's Library", href: "/library" },
-  { name: "Benchmarks", href: "/benchmarks" },
   { name: "Founder's Notes", href: "/notes" },
   { name: "About the author", href: "/sergei-ponomarev" },
 ];
@@ -18,7 +17,7 @@ export function Footer() {
   return (
     <footer className="border-t border-card-border mt-auto bg-background">
       <ScrollToTop />
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
           <div>
             <Link href="/" className="mb-4 flex items-center gap-2">
@@ -26,24 +25,23 @@ export function Footer() {
               <span className="text-lg font-semibold text-white">Business</span>
               <span className="font-mono text-xs text-muted">.vc</span>
             </Link>
-            <p className="mb-5 max-w-md text-sm leading-relaxed text-muted">
+            <p className="mb-4 max-w-md text-sm leading-relaxed text-muted">
               How AI creates real value for people, and by what rules it works.
             </p>
             <p className="mb-3 font-mono text-xs uppercase tracking-wider text-accent">
               Author&apos;s desk
             </p>
-            <ul className="space-y-2">
+            <div className="grid grid-cols-2 gap-x-6 gap-y-2">
               {AUTHOR_DESK.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="text-sm text-white/85 transition-colors hover:text-accent"
-                  >
-                    {item.name}
-                  </Link>
-                </li>
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="text-sm font-semibold text-accent transition-colors hover:text-accent-hover"
+                >
+                  {item.name}
+                </Link>
               ))}
-            </ul>
+            </div>
           </div>
 
           <div>
@@ -61,23 +59,15 @@ export function Footer() {
                 </Link>
               ))}
             </div>
-            <p className="mb-3 mt-8 font-mono text-xs uppercase tracking-wider text-muted">
+            <p className="mb-3 mt-6 font-mono text-xs uppercase tracking-wider text-muted">
               Take part
             </p>
-            <div className="flex flex-wrap gap-2">
-              <Link
-                href="/submit-your-story"
-                className="inline-flex items-center rounded-md bg-accent px-3 py-1.5 text-xs font-bold text-black transition-colors hover:bg-accent-hover"
-              >
-                Submit Story
-              </Link>
-              <Link
-                href="/audit"
-                className="inline-flex items-center rounded-md border border-card-border px-3 py-1.5 text-xs font-bold text-white transition-colors hover:border-accent hover:text-accent"
-              >
-                AI Visibility Audit
-              </Link>
-            </div>
+            <Link
+              href="/submit-your-story"
+              className="inline-flex items-center rounded-md bg-accent px-3 py-1.5 text-xs font-bold text-black transition-colors hover:bg-accent-hover"
+            >
+              Submit Story
+            </Link>
           </div>
         </div>
 
@@ -90,9 +80,6 @@ export function Footer() {
             <ContactEmail className="hover:text-foreground" />
           </p>
           <div className="flex gap-4 text-xs text-muted">
-            <Link href="/notes" className="hover:text-foreground">
-              Founder&apos;s Notes
-            </Link>
             <Link href="/about" className="hover:text-foreground">
               About
             </Link>
