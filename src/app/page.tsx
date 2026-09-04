@@ -409,7 +409,7 @@ export default async function HomePage() {
                       alt="Sergei Ponomarev"
                       width={630}
                       height={449}
-                      className="h-44 w-full rounded-xl object-cover object-[50%_22%]"
+                      className="h-40 w-full rounded-xl object-cover object-[50%_22%]"
                     />
                     <p className="mt-3 text-lg font-bold leading-tight text-black">
                       Sergei Ponomarev, PhD
@@ -435,18 +435,17 @@ export default async function HomePage() {
                   <div className="mt-5 border-t border-black/20 pt-4">
                     <p className="text-sm font-bold text-black">A word from the author</p>
                     <p className="mt-2 text-sm leading-relaxed text-black/80">
-                      Welcome to my site. Two questions run through everything here: how AI
-                      creates real value for people, and by what rules it should work while it
-                      does.
+                      Welcome. Two questions run through everything here: how AI creates real
+                      value for people, and by what rules it works.
                     </p>
-                    <div className="mt-4 rounded-xl border-2 border-black/25 p-4">
-                      <p className="text-sm leading-relaxed text-black/85">
-                        Interested in partnering or working together? Write to me:
+                    <div className="mt-3 rounded-xl border-2 border-black/25 px-3 py-2.5">
+                      <p className="text-sm leading-snug text-black/85">
+                        Interested in working together?{" "}
+                        <ContactEmail
+                          className="font-bold text-black underline underline-offset-2"
+                          subject="Partnership"
+                        />
                       </p>
-                      <ContactEmail
-                        className="mt-1 inline-block text-sm font-bold text-black underline underline-offset-2"
-                        subject="Partnership"
-                      />
                     </div>
                   </div>
                 </div>
