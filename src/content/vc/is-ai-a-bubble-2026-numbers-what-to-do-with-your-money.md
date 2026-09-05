@@ -1,6 +1,6 @@
 ---
 title: "Is the AI Boom a Bubble? The 2026 Numbers That Should Scare You, and the Ones That Say 'Not Yet'"
-description: "The top 10 stocks are now 35% of the S&P 500, Nvidia is worth $5.3 trillion, and the Shiller P/E just passed 40 for the first time since the dot-com crash. But AI's leaders earn real 25%+ margins. Here's an honest look at the bubble question, and what it means for your money."
+description: "The top 10 stocks are now over 36% of the S&P 500, Nvidia is worth $5.5 trillion, and the Shiller P/E just passed 40 for the first time since the dot-com crash. But AI's leaders earn real 25%+ margins. Here's an honest look at the bubble question, and what it means for your money."
 date: "2026-07-19"
 author: "Sergei Ponomarev"
 category: "VC"
@@ -20,13 +20,13 @@ Start with the bear case, because it's strong and you should sit with it honestl
 
 | Metric | 2026 reading | Why it's worrying |
 |---|---|---|
-| Top 10 stocks as share of S&P 500 | **~35%** | Higher than the ~25% at the dot-com peak, extreme concentration |
+| Top 10 stocks as share of S&P 500 | **over 36%** | Higher than the ~25% at the dot-com peak, extreme concentration |
 | Shiller P/E (US market) | **>40** | First time above 40 since the dot-com crash |
 | S&P 500 forward P/E | **~23×** | Well above the long-run average; priced for perfection |
-| Nvidia market cap | **~$5.3 trillion** | One company carrying a huge share of the whole market |
+| Nvidia market cap | **~$5.5 trillion** | One company carrying a huge share of the whole market |
 | Annual AI infrastructure spend | **$400B+** | Enormous capex with, so far, limited enterprise payback |
 
-Read that top row twice, because it's the one that should change how you think about your own portfolio. When the ten biggest companies are 35% of the entire S&P 500, and most of them are riding the same AI trade, your "diversified" index fund is quietly a concentrated bet on AI. That's more concentrated than the market was at the height of the dot-com mania. The Shiller P/E above 40 and a forward multiple of 23× say the market is priced as if everything goes right. That's the setup, historically, where disappointment gets punished hard.
+Read that top row twice, because it's the one that should change how you think about your own portfolio. When the ten biggest companies are more than 36% of the entire S&P 500, and most of them are riding the same AI trade, your "diversified" index fund is quietly a concentrated bet on AI. That's more concentrated than the market was at the height of the dot-com mania. The Shiller P/E above 40 and a forward multiple of 23× say the market is priced as if everything goes right. That's the setup, historically, where disappointment gets punished hard.
 
 ## Why it rhymes with 1999
 
@@ -77,7 +77,7 @@ None of these rings a bell at the exact top. But together they tell you far more
 
 I can't tell you what to do with your specific portfolio, that depends on you, and it's a conversation for a licensed advisor. But here are the general principles this data points to, the same ones I keep coming back to on this site.
 
-**Know your real exposure.** The single most important move is to understand that if you own a broad index fund, you already own a big, concentrated AI bet, because the top 10 stocks are 35% of it. "I'm diversified in the S&P 500" is much less true than it was a decade ago. Whether that concentration is right for you is a personal question, but you should at least *know* it's there rather than discover it in a crash.
+**Know your real exposure.** The single most important move is to understand that if you own a broad index fund, you already own a big, concentrated AI bet, because the top 10 stocks are over 36% of it. "I'm diversified in the S&P 500" is much less true than it was a decade ago. Whether that concentration is right for you is a personal question, but you should at least *know* it's there rather than discover it in a crash.
 
 **Beware over-concentration you didn't choose.** If you work at an AI or tech company, get paid partly in its stock, *and* hold tech-heavy index funds, your job, your equity, and your investments may all be leveraged to the same trade. That's three bets on one horse. Spreading risk, the boring, unglamorous discipline behind [investing in the theme without picking single winners](/startups/ai-etf-investing-guide), exists precisely for moments that look like this.
 

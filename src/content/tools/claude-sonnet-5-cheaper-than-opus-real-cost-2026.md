@@ -1,6 +1,6 @@
 ---
 title: "Claude Sonnet 5 Is Here: Near-Opus Power at 40% Off, But the Token Bill Hides a Catch"
-description: "Anthropic just launched Claude Sonnet 5, agentic power close to Opus 4.8 at a much lower sticker price ($2/$10 intro per million tokens). But it uses ~30% more tokens, and one analysis found its real per-task cost landed ABOVE Opus. Here's the actual money math."
+description: "Anthropic just launched Claude Sonnet 5, agentic power close to Opus 4.8 at a much lower sticker price ($3/$15 per million tokens at standard rates). But it uses ~30% more tokens, and one analysis found its real per-task cost landed ABOVE Opus. Here's the actual money math."
 date: "2026-07-07"
 author: "Sergei Ponomarev"
 category: "Tools"
@@ -18,7 +18,7 @@ But I want to save you from a mistake I'm already watching people make this week
 
 First the facts. Claude Sonnet 5 is billed as the most agentic Sonnet model yet: it makes plans, uses tools, and runs autonomously through multi-step tasks rather than just answering a single prompt. It's available everywhere at once: Free, Pro, Max, Team, and Enterprise plans, inside Claude Code, and on the Claude Platform (the API) for builders. It ships with the full **1-million-token context window** at standard pricing, which matters if you feed it big codebases or document piles.
 
-The pitch is simple and, on the benchmarks, largely true: performance close to Opus 4.8 at a lower price, with an introductory-pricing window to get everyone to try it. This slots directly beneath the model I broke down in [the Claude Opus 4.8 deep dive](/tools/claude-opus-4-8-launch-benchmarks-pricing-deep-dive-2026) and alongside the specialized [Fable 5 and Mythos 5 models](/tools/claude-fable-5-mythos-5-launch-2026), a family where the whole game, for your wallet, is picking the right model for each job. Get that routing right and you can cut your AI bill dramatically; get it wrong and you overpay on every call.
+The pitch is simple and, on the benchmarks, largely true: performance close to Opus 4.8 at a lower price. Anthropic opened with a discounted introductory window, which has since closed. This slots directly beneath the model I broke down in [the Claude Opus 4.8 deep dive](/tools/claude-opus-4-8-launch-benchmarks-pricing-deep-dive-2026) and alongside the specialized [Fable 5 and Mythos 5 models](/tools/claude-fable-5-mythos-5-launch-2026), a family where the whole game, for your wallet, is picking the right model for each job. Get that routing right and you can cut your AI bill dramatically; get it wrong and you overpay on every call.
 
 ## Where it lands on the benchmarks
 
@@ -33,15 +33,15 @@ Read those rows honestly and you get a clear picture. Sonnet 5 is a big jump ove
 
 ## The sticker price: real savings on paper
 
-Here's the pricing that's driving the excitement. Through August 31, 2026, Anthropic is running introductory rates, after which Sonnet 5 settles at its standard price. Compared to Opus 4.8, the per-token discount is real:
+Here's the pricing. Anthropic ran introductory rates through August 31, 2026; since September 1 the standard price applies, and that is the number to budget against today. Compared to Opus 4.8, the per-token discount is real:
 
 | Model | Input ($/M tokens) | Output ($/M tokens) |
 |---|---|---|
-| **Sonnet 5, intro (through Aug 31)** | $2 | $10 |
-| **Sonnet 5, standard (from Sep 1)** | $3 | $15 |
+| **Sonnet 5, standard (current)** | $3 | $15 |
+| Sonnet 5, launch promo (expired 31 Aug 2026) | $2 | $10 |
 | Opus 4.8 | $5 | $25 |
 
-On paper this is a clean win. At the introductory rate, Sonnet 5 output tokens cost 60% less than Opus. Even at the standard rate, you're paying $15 per million output tokens versus Opus's $25, a 40% discount per token. For a high-volume application making millions of calls, a 40% cut on the dominant cost line looks like the difference between a business that works and one that doesn't. This is the same relentless price pressure I've tracked across the industry, from [Google's Gemini Flash price war](/tools/google-io-2026-gemini-35-flash-price-war) to [China's GLM going open and nearly free](/tools/glm-5-2-china-open-model-cant-be-banned-2026). The cost of intelligence keeps falling, and Sonnet 5 is the latest cut.
+On paper this is a clean win. At the current standard rate you're paying $15 per million output tokens versus Opus's $25, a 40% discount per token. For a high-volume application making millions of calls, a 40% cut on the dominant cost line looks like the difference between a business that works and one that doesn't. This is the same relentless price pressure I've tracked across the industry, from [Google's Gemini Flash price war](/tools/google-io-2026-gemini-35-flash-price-war) to [China's GLM going open and nearly free](/tools/glm-5-2-china-open-model-cant-be-banned-2026). The cost of intelligence keeps falling, and Sonnet 5 is the latest cut.
 
 ## The catch: why price-per-token lies
 
@@ -86,7 +86,7 @@ Notice the counterintuitive middle: for your *hardest, longest* agentic jobs, th
 
 Depending on how you use AI, here's the practical read.
 
-**If you're a solo builder or run a side business on the API**, Sonnet 5 is very likely a win for the bulk of your calls, but prove it before you migrate everything. Run your real tasks, measure tokens per task, and only switch the workloads where the math actually favors it. Grab the introductory pricing window to run those tests cheaply, and remember the price steps up on September 1. The discipline pays for itself the first month, the same way it does in [the Claude-vs-ChatGPT money comparison](/solo/claude-vs-chatgpt-make-money).
+**If you're a solo builder or run a side business on the API**, Sonnet 5 is very likely a win for the bulk of your calls, but prove it before you migrate everything. Run your real tasks, measure tokens per task, and only switch the workloads where the math actually favors it. Budget against the standard $3/$15, since the launch discount is gone. The discipline pays for itself the first month, the same way it does in [the Claude-vs-ChatGPT money comparison](/solo/claude-vs-chatgpt-make-money).
 
 **If you run engineering or a team**, this is a routing opportunity, not a wholesale switch. Move your medium-complexity coding and tool-use to Sonnet 5, keep the gnarliest agentic and reasoning work on Opus 4.8, and instrument your token usage so you can see the real per-task cost by workload. The seat-and-usage math matters more than the sticker, exactly as it did in [the Microsoft Copilot seat-cost breakdown](/tools/microsoft-copilot-seat-math-2026).
 

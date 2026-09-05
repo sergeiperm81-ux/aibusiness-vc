@@ -48,13 +48,17 @@ Here's the part you actually came for. Forget the sci-fi; run the numbers like y
 | Line item | Human worker | 4NE-1 robot |
 |---|---|---|
 | Upfront cost | ~€0 | ~€98,000 |
-| Annual cost (loaded wages / capex + upkeep) | ~€45,000/yr (pay, tax, benefits) | ~€25,000/yr (amortized over 5 yrs + energy/maintenance) |
+| Running cost per year | ~€45,000 (pay, tax, benefits) | ~€5,000 (energy, maintenance) |
 | Hours available | ~1 shift, sick days, holidays | Multiple shifts, no sick days |
-| Year 1 total | ~€45,000 | ~€123,000 |
-| Year 3 cumulative | ~€135,000 | ~€173,000 |
-| Year 5 cumulative | ~€225,000 | ~€223,000 |
+| Year 1 cumulative | ~€45,000 | ~€103,000 |
+| Year 3 cumulative | ~€135,000 | ~€113,000 |
+| Year 5 cumulative | ~€225,000 | ~€123,000 |
 
-Read the bottom rows. Spreading the €98,000 purchase over a five-year life and adding, say, €5,000 a year for energy and maintenance, the robot runs about **€25,000 a year all-in**, versus roughly **€45,000** for one fully-loaded human worker. On a strict single-shift, one-for-one basis, the robot draws level with human cost at around the five-year mark. But that comparison is unfair to the robot, and here's why: it doesn't work one shift. Run it across two shifts and it's doing the work of ~1.5-2 people while still costing €25,000 a year, which drops the real payback to **well under two years**, after which it's close to pure savings.
+Read the cumulative rows, because that is where the two lines cross. The robot starts far behind: €98,000 on day one against a human's zero. But it then costs about €5,000 a year to run against roughly €45,000 in loaded wages, so the gap closes by about €40,000 every year. Set the two cumulative totals equal and the robot overtakes the human at **roughly two and a half years**, on a strict single-shift, one-for-one basis. By year five the robot has cost €123,000 against the human's €225,000.
+
+Stated the other way, if you prefer an annualised figure: spreading €98,000 over a five-year life is about €19,600 a year, plus €5,000 of upkeep, so roughly **€25,000 a year all-in** against €45,000 for the human. Use one framing or the other, not both, since the purchase price is either paid upfront or amortised, never counted twice.
+
+And this still understates the machine. A robot does not work one shift. Run it across two and it covers the work of roughly 1.5 to 2 people for the same €5,000 of upkeep, which pulls the crossover down to **little more than a year**, after which it is close to pure savings.
 
 This is exactly the ROI pattern I've documented before, in [how farming robots pay for themselves in one season](/b2b/ai-farming-robots-pay-for-themselves-one-season-2026) and [the warehouse-worker replacement math](/robots/robot-replaces-warehouse-worker-roi). A humanoid is a capital asset that converts a recurring labor bill into a one-time purchase plus cheap upkeep. The €1 billion order book isn't idealism; it's companies who've run this arithmetic and decided the machine is cheaper than the payroll.
 
@@ -69,7 +73,7 @@ Neura isn't alone, and to understand the bet you need the board. The humanoid ra
 | **Tesla** | US | Optimus Gen 3 | Not for sale yet | Fremont production late 2026; 100K-300K target |
 | **Unitree** | China | H2 | Under $41,000 | 5,500+ shipped in 2025, more than everyone else combined |
 
-The split is stark. The Chinese approach, led by [Unitree](/startups/china-humanoid-robots-unitree-ipo-price-war-2026), is to win on price and volume, an H2 under $41,000 and thousands already shipped, the manufacturing-scale advantage I unpacked in [why China builds humanoids cheaper](/robots/why-china-builds-humanoids-cheaper). The American approach, from [Figure and Tesla](/robots/figure-vs-tesla-optimus-real-vs-hype-2026), is high-tech pilots and vertical integration, with Tesla's wildcard 100K-300K production target that could reset the whole cost curve if it lands. Neura's European play sits in between: premium, heavy-duty, transparently priced, and crucially, built for the regulatory world it's born into. For the full field, I keep a running [humanoid price comparison](/robots/humanoid-robot-price-comparison-2026).
+The split is stark. The Chinese approach, led by [Unitree](/startups/china-humanoid-robots-unitree-ipo-price-war-2026), is to win on price and volume, with the smaller G1 at around $16,000, the larger H2 under $41,000, and thousands already shipped, the manufacturing-scale advantage I unpacked in [why China builds humanoids cheaper](/robots/why-china-builds-humanoids-cheaper). The American approach, from [Figure and Tesla](/robots/figure-vs-tesla-optimus-real-vs-hype-2026), is high-tech pilots and vertical integration, with Tesla's wildcard 100K-300K production target that could reset the whole cost curve if it lands. Neura's European play sits in between: premium, heavy-duty, transparently priced, and crucially, built for the regulatory world it's born into. For the full field, I keep a running [humanoid price comparison](/robots/humanoid-robot-price-comparison-2026).
 
 ## Europe's real edge: built for the rules
 
