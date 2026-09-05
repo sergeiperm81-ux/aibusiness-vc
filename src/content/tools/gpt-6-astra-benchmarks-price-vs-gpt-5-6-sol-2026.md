@@ -44,6 +44,8 @@ Astra did not arrive at a new price point invented from scratch. It is a clean m
 | Claude Opus 4.8 | $5 | $25 | 1.25x |
 | Claude Sonnet 5 | $3 | $15 | 0.75x |
 
+One note on the Claude rows, because it trips people up. This price table lists Opus 4.8, the generation with published per-token rates at the time of writing. The benchmark tables further down cite Claude Opus 5, the newer model, because that is what the benchmark runs report. Different generations, deliberately, so do not read the $5/$25 line as the price of the model scoring 70.2% on OSWorld.
+
 Sol itself got cheaper in late August, with input down about 20% and output down about 33%, and that promotional pricing runs at least into late November. So Astra launched at 2.5x a price that had just been cut, which widens the gap a buyer feels rather than narrowing it.
 
 ## What the independent index found

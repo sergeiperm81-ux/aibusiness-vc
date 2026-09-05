@@ -56,9 +56,9 @@ Let's add it up honestly, because scattered across categories this hides in plai
 | Rent (algorithmic pricing markets) | Hundreds to ~$1,000+ |
 | Travel & airfare (personalized fares) | ~$100-400 |
 | Retail & subscriptions | ~$100-300 |
-| **Plausible total** | **~$1,500-3,000+ per year** |
+| **Illustrative total, household exposed in several categories** | **a few hundred dollars at the low end, ~$3,000+ at the high end** |
 
-Even at the low end, that's real money, a vacation, an emergency fund contribution, a month of groceries, quietly redirected from your budget to a retailer's margin because an algorithm decided you'd pay it without noticing. And the genius (for them) is the invisibility: you never see the *other* price, so you never feel robbed. You just pay a little more, everywhere, forever. That's why I think of surveillance pricing as a tax you didn't vote for, small per transaction, significant per year, and completely opaque.
+Be clear about what that bottom row is and isn't. It is an addition of upper-bound estimates, not a measured household bill, and every line depends on whether you are exposed to that market at all. Someone who rarely orders delivery, owns their home, and books travel on price alone might lose a couple of hundred dollars a year. Someone who does all four in an algorithmically priced city sits near the top of the range. Even at the low end, that's real money, a vacation, an emergency fund contribution, a month of groceries, quietly redirected from your budget to a retailer's margin because an algorithm decided you'd pay it without noticing. And the genius (for them) is the invisibility: you never see the *other* price, so you never feel robbed. You just pay a little more, everywhere, forever. That's why I think of surveillance pricing as a tax you didn't vote for, small per transaction, significant per year, and completely opaque.
 
 ## The fight to rein it in
 
@@ -87,7 +87,7 @@ Here's the practical part, because you're not powerless. Surveillance pricing ru
 
 **Be a harder target for travel.** For flights and hotels, the most aggressively personalized category, as I noted in [the AI travel-booking shakeup](/b2b/ai-travel-planning-expedia-booking-disruption-2026), compare incognito, check a couple of sources, and avoid obsessively reloading the same fare.
 
-Done consistently, these habits can recover a meaningful chunk of that $1,500-3,000 a year. It's not about paranoia; it's about not being the easiest wallet in the room.
+Done consistently, these habits can recover a meaningful chunk of whatever your own number is. It's not about paranoia; it's about not being the easiest wallet in the room.
 
 ## Who profits, and the honest other side
 

@@ -45,12 +45,13 @@ While the treaty waits, the operative rules arrived from somewhere else entirely
 | Prohibited practices, AI literacy duties | 2 February 2025 |
 | General-purpose AI obligations | 2 August 2025 |
 | Transparency rules (Article 50) | August 2026 |
-| High-risk enforcement deadline | **2 August 2026** |
-| Certain high-risk categories (post-Omnibus) | **2 December 2027** |
+| Annex III high-risk systems (standalone, e.g. hiring, credit, education) | **2 August 2026** |
+| Certain high-risk categories moved by the Omnibus | **2 December 2027** |
+| Annex I high-risk (AI embedded in regulated products) | **2 August 2028** under the Omnibus timetable |
 
 The penalties give it teeth: up to **€35 million or 7% of global turnover** for the most serious breaches. The EU AI Office has begun high-risk audits, and first enforcement actions are expected as national regulators build inspection capacity.
 
-Note the last row, because it is the part most coverage still gets wrong. The Digital Omnibus political agreement in May 2026 moved certain high-risk obligations to **2 December 2027**, the softening I covered in [how the EU quietly delayed its own AI Act](/government/eu-digital-omnibus-ai-act-simplification-2026). Delay is not repeal, and the 2 August 2026 date has already passed for the categories it covers.
+Note the last row, because it is the part most coverage still gets wrong. The Digital Omnibus political agreement in May 2026 moved certain high-risk obligations to **2 December 2027**, the softening I covered in [how the EU quietly delayed its own AI Act](/government/eu-digital-omnibus-ai-act-simplification-2026). Delay is not repeal, and the 2 August 2026 date has already passed for the Annex III systems it covers. The two dates are not in conflict: 2 August 2026 bound standalone high-risk systems, the Omnibus pushed a subset of those to December 2027, and AI built into products already regulated under sectoral law sits further out again, at 2 August 2028 on the Omnibus timetable. Which row applies to you depends entirely on which annex your system falls under, and that is the first question to answer before anything else.
 
 ## The actual enforcement mechanism turned out to be procurement
 
