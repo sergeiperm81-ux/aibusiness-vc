@@ -111,9 +111,6 @@ export const WORK_FORMATS = [
 ] as const;
 export type WorkFormat = (typeof WORK_FORMATS)[number];
 
-export const AVAILABILITY = ["Open to work now", "Limited availability", "Not available"] as const;
-export type Availability = (typeof AVAILABILITY)[number];
-
 export interface Expert {
   slug: string;
   name: string;
@@ -125,7 +122,6 @@ export interface Expert {
   industries?: string[];
   languages?: string[];
   workFormats?: string[];
-  availability?: Availability;
   about: string;
   /** What they do for people. Optional: research and policy work is not a service list. */
   services?: string[];
@@ -161,7 +157,6 @@ const SERGEI: Expert = {
   industries: ["Public sector", "Retail & consumer", "Technology & software"],
   languages: ["English", "Russian"],
   workFormats: ["Consulting", "Advisory & board work", "Research collaboration", "Speaking"],
-  availability: "Open to work now",
   about:
     "Political scientist with a PhD on e-government. For seven years I led nationwide research and evaluation of public services for government clients, using independent assessments, test purchases, interviews and surveys, and I authored a transparency standard adopted by a city legislature. Since 2024 I have applied the same craft to AI through aibusiness.vc, publishing original methods on AI transparency and accountability, including a toolkit for EU AI Act Article 50 disclosure and a full test purchase method for customer-facing agents, piloted with a Swiss AI metrology company. I also build AI agents hands-on, which keeps the governance work grounded in how these systems actually behave.",
   services: [
@@ -195,7 +190,6 @@ const AMANDA: Expert = {
   industries: ["Retail & consumer", "Education", "Technology & software", "Media"],
   languages: ["English"],
   workFormats: ["Consulting", "Advisory & board work", "Research collaboration", "Media commentary"],
-  availability: "Limited availability",
   about:
     "I support organisations to adopt AI with clearer business context, practical operating foundations and accountable review. My work focuses on AI strategy, organisational capability, governed adoption and the practical integration of AI into real work, with clearer boundaries around privacy, accuracy, transparency and accountability. Through Savvy Pixel®, I work with organisations that are already experimenting with AI but need greater consistency, confidence and structure around how it is used.",
   services: [
