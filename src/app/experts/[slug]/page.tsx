@@ -166,11 +166,6 @@ export default async function ExpertPage({ params }: Props) {
                   {expert.location} &middot; {expert.region}
                   {expert.languages?.length ? ` · ${expert.languages.join(", ")}` : ""}
                 </p>
-                {expert.availability && (
-                  <p className="mt-3 inline-flex items-center rounded-md bg-emerald-100 px-3 py-1 text-xs font-bold uppercase tracking-wide text-emerald-800">
-                    {expert.availability}
-                  </p>
-                )}
               </div>
             </div>
 

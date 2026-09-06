@@ -18,7 +18,6 @@ interface ExpertApplication {
   services?: string;
   phone?: string;
   languages?: string;
-  availability?: string;
   practiceAreas?: string[];
   industries?: string[];
   workFormats?: string[];
@@ -45,7 +44,6 @@ const LIMITS: Record<string, number> = {
   services: 1500,
   phone: 40,
   languages: 160,
-  availability: 40,
 };
 
 const REQUIRED = [
@@ -178,7 +176,6 @@ export async function POST(request: Request) {
         industries,
         workFormats,
         languages: body.languages,
-        availability: body.availability,
         about: body.about,
         services: body.services,
         linkedin,
@@ -230,7 +227,6 @@ export async function POST(request: Request) {
         row("Region", body.region),
         row("Location", body.location),
         row("Languages", body.languages),
-        row("Availability", body.availability),
         row("Practice areas", practiceAreas),
         row("Industries", industries),
         row("Open to", workFormats),

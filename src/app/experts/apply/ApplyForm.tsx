@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import {
-  AVAILABILITY,
   INDUSTRIES,
   PRACTICE_GROUPS,
   REGIONS,
@@ -80,7 +79,6 @@ export function ApplyForm() {
       industries,
       workFormats,
       languages: text("languages"),
-      availability: text("availability"),
       consent: form.get("consent") === "on",
       newsletter: form.get("newsletter") === "on",
       photo,
@@ -350,26 +348,11 @@ export function ApplyForm() {
           ))}
         </div>
 
-        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <div>
-            <label className={LABEL} htmlFor="languages">
-              Working languages
-            </label>
-            <input id="languages" name="languages" className={FIELD} placeholder="English, German" />
-          </div>
-          <div>
-            <label className={LABEL} htmlFor="availability">
-              Availability
-            </label>
-            <select id="availability" name="availability" defaultValue="" className={FIELD}>
-              <option value="">Prefer not to say</option>
-              {AVAILABILITY.map((a) => (
-                <option key={a} value={a}>
-                  {a}
-                </option>
-              ))}
-            </select>
-          </div>
+        <div className="mt-8">
+          <label className={LABEL} htmlFor="languages">
+            Working languages
+          </label>
+          <input id="languages" name="languages" className={FIELD} placeholder="English, German" />
         </div>
 
         <div className="mt-6 space-y-4">
