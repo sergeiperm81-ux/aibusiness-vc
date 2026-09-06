@@ -179,7 +179,7 @@ export default async function ExpertPage({ params }: Props) {
 
             {expert.services && expert.services.length > 0 && (
               <>
-                <h3 className="mt-10 text-lg font-bold text-gray-900">What they do</h3>
+                <h3 className="mt-10 text-lg font-bold text-gray-900">What I do</h3>
                 <ul className="mt-4 space-y-3">
                   {expert.services.map((s) => (
                     <li
@@ -192,6 +192,19 @@ export default async function ExpertPage({ params }: Props) {
                 </ul>
               </>
             )}
+
+            <div className="mt-10 rounded-2xl border border-gray-200 bg-gray-50 p-6">
+              <Tags title="Practice areas" items={expert.practiceAreas} />
+              <Tags title="Industries" items={expert.industries ?? []} dark />
+              {expert.workFormats?.length ? (
+                <div className="mt-6">
+                  <p className="text-xs font-bold uppercase tracking-wider text-gray-500">
+                    Open to
+                  </p>
+                  <p className="mt-1 text-sm text-gray-800">{expert.workFormats.join(", ")}</p>
+                </div>
+              ) : null}
+            </div>
 
             {(expert.linkedin || expert.website || expert.email || expert.phone) && (
               <>
@@ -240,20 +253,7 @@ export default async function ExpertPage({ params }: Props) {
           {/* This column belongs to the site: our call, and room for what comes next. */}
           <aside className="lg:col-span-1">
             <div className="lg:sticky lg:top-6">
-              <div className="rounded-2xl border-2 border-gray-200 p-6">
-                <Tags title="Practice areas" items={expert.practiceAreas} />
-                <Tags title="Industries" items={expert.industries ?? []} dark />
-                {expert.workFormats?.length ? (
-                  <div className="mt-6">
-                    <p className="text-xs font-bold uppercase tracking-wider text-gray-500">
-                      Open to
-                    </p>
-                    <p className="mt-1 text-sm text-gray-800">{expert.workFormats.join(", ")}</p>
-                  </div>
-                ) : null}
-              </div>
-
-              <div className="mt-4 rounded-2xl bg-accent p-6">
+              <div className="rounded-2xl bg-accent p-6">
                 <p className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-black">
                   Claim your place
                 </p>
