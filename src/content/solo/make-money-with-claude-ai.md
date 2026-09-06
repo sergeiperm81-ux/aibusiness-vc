@@ -158,6 +158,7 @@ No, but the premium is compressing. Freelancers who list AI proficiency get 38% 
 
 If you're ready to pick a direction, these go deeper into the specific plays above:
 
+- [How to Make Money with AI in 2026: 9 Proven Methods](/solo/how-to-make-money-with-ai-2026), the hub for this whole family of guides, pick your business model first, then the tool
 - [Claude vs ChatGPT: Which Makes You More Money?](/solo/claude-vs-chatgpt-make-money), a task-by-task breakdown of which AI actually earns a freelancer more
 - [How Much Can You Really Make with Claude AI?](/solo/how-much-money-claude-ai), honest income tiers, from your first $500 to a $30K/month agency
 - [The Best Claude Prompts for Making Money](/solo/claude-prompts-make-money), six copy-paste prompts wired into a paid workflow, not party tricks
