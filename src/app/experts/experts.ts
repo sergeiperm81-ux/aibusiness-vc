@@ -174,7 +174,48 @@ const SERGEI: Expert = {
   email: { user: "info", host: "aibusiness.vc" },
 };
 
-export const EXPERTS: Expert[] = [SERGEI];
+const AMANDA: Expert = {
+  slug: "amanda-cunningham",
+  name: "Amanda Cunningham",
+  headline: "Responsible AI adoption and AI operating foundations for organisations",
+  region: "Europe",
+  location: "Ilkley, West Yorkshire, United Kingdom",
+  photo: "/images/experts/amanda-cunningham.jpg",
+  role: "Founder & AI Adoption Consultant",
+  organisation: "Savvy Pixel®",
+  practiceAreas: [
+    "AI strategy & transformation",
+    "Governed AI adoption & process redesign",
+    "AI literacy & training",
+    "Change management",
+    "Governance operating models & AI policy",
+    "Data governance, privacy & documentation",
+    "Human oversight, transparency & accountability",
+  ],
+  industries: ["Retail & consumer", "Education", "Technology & software", "Media"],
+  languages: ["English"],
+  workFormats: ["Consulting", "Advisory & board work", "Research collaboration", "Media commentary"],
+  availability: "Limited availability",
+  about:
+    "I support organisations to adopt AI with clearer business context, practical operating foundations and accountable review. My work focuses on AI strategy, organisational capability, governed adoption and the practical integration of AI into real work, with clearer boundaries around privacy, accuracy, transparency and accountability. Through Savvy Pixel®, I work with organisations that are already experimenting with AI but need greater consistency, confidence and structure around how it is used.",
+  services: [
+    "AI adoption strategy",
+    "AI operating foundations",
+    "AI business context and workspace design",
+    "AI use-case and workflow review",
+    "Responsible AI adoption guidance",
+    "AI governance and policy-to-practice guidance",
+    "AI capability and role induction",
+    "AI responsibility mapping",
+    "AI and software sense checks",
+    "90-day AI adoption planning",
+  ],
+  linkedin: "https://www.linkedin.com/in/amandasavvypixel",
+  website: "https://www.savvypixel.co.uk/",
+  email: { user: "amanda", host: "savvypixel.co.uk" },
+};
+
+export const EXPERTS: Expert[] = [SERGEI, AMANDA];
 
 export function getExpert(slug: string): Expert | undefined {
   return EXPERTS.find((e) => e.slug === slug);
