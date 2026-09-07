@@ -574,9 +574,9 @@ function buildArticleSchema(
     wordCount,
     author: {
       "@type": "Person",
-      name: article.author || "Sergei Ponomarev",
-      url: "https://aibusiness.vc/about",
-      jobTitle: "Editor, AI Business",
+      ...(article.author && article.author !== "Sergei Ponomarev"
+        ? { name: article.author }
+        : { "@id": "https://aibusiness.vc/sergei-ponomarev#person", name: "Sergei Ponomarev", url: "https://aibusiness.vc/sergei-ponomarev" }),
     },
     publisher: {
       "@type": "Organization",

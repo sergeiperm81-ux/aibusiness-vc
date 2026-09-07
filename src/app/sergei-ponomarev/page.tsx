@@ -191,6 +191,7 @@ function profileSchema() {
     url: `${SITE}/sergei-ponomarev`,
     mainEntity: {
       "@type": "Person",
+      "@id": "https://aibusiness.vc/sergei-ponomarev#person",
       name: "Sergei Ponomarev",
       honorificSuffix: "PhD",
       url: `${SITE}/sergei-ponomarev`,

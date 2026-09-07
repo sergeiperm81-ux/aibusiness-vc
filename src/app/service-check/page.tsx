@@ -48,8 +48,8 @@ function structuredData(faqs: readonly { q: string; a: string }[]) {
       areaServed: "Worldwide",
       provider: {
         "@type": "Person",
+        "@id": "https://aibusiness.vc/sergei-ponomarev#person",
         name: "Sergei Ponomarev",
-        jobTitle: "AI service assurance methodologist",
         url: `${SITE}/sergei-ponomarev`,
         affiliation: {
           "@type": "Organization",

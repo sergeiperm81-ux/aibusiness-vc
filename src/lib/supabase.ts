@@ -93,10 +93,17 @@ export async function getLatestNews(limit = 50): Promise<NewsRow[]> {
       }
     }
 
+    // Newest first, so hand-picked dated items and fresh RSS lead the feed
+    merged.sort(
+      (a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime()
+    );
+
     return merged.slice(0, limit);
   } catch (err) {
     console.error("Failed to fetch RSS news, falling back to seed:", err);
-    return seedToRows().slice(0, limit);
+    return seedToRows()
+      .sort((a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime())
+      .slice(0, limit);
   }
 }
 

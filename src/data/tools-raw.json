@@ -1,5 +1,48 @@
 [
   {
+    "id": "factbutcher",
+    "name": "Factbutcher",
+    "url": "https://factbutcher.com/en",
+    "category": "Writing & Content",
+    "description": "A fact checker for short texts. You paste up to 1,000 characters, and it pulls the individual factual claims out of the passage, checks each one against outside sources, and returns a verdict per claim: true, false, mixed, or insufficient evidence, with the supporting links. Claim extraction and analysis run on OpenAI models, verification pulls from the Google Fact Check Tools API and Perplexity. English and Russian interfaces. Also available as a Chrome extension, so a claim can be checked on the page where it was found.",
+    "pricing": "Free to use on the site; no paid tier published",
+    "targetUser": "Writers, editors and marketers publishing AI-assisted copy, and anyone who has to decide whether a specific sentence is true before it goes out",
+    "keyFeature": "It grades claim by claim rather than scoring the whole text, so you see exactly which sentence is the problem",
+    "hasAffiliate": false,
+    "credentials": "Built by Teplitsa (te-st.org), a non-profit that develops tools for civic and non-profit organisations",
+    "caveat": "It checks a passage you paste in, not your live AI agent or your published site. The tool itself states that a verdict depends on what sources exist: recent events often come back as insufficient evidence rather than false, and the result is meant to inform your judgement, not replace it."
+  },
+  {
+    "id": "neomundi-controltower",
+    "name": "NeoMundi",
+    "url": "https://neomundi.io",
+    "category": "Legal & Compliance",
+    "description": "AI Runtime Measurement & Governance Infrastructure. Swiss layer that scores every LLM response in real time and returns an ALLOW or FLAG decision with reasons. Factual risk: flags outputs requiring stronger factual validation, alongside semantic coherence and safety checks. Two modes: OBS observes outputs that can still be corrected; GOV sits inside the execution path and can continue, regenerate, reroute, validate, limit, stop or escalate before the next step. Works across OpenAI, Anthropic, Mistral, Cohere, Perplexity, DeepSeek and other providers.",
+    "pricing": "Free trial (100 requests) · prepaid from 0.025 CHF/request (Tier 1) to 0.085 CHF (Tier 3)",
+    "targetUser": "Compliance, risk and engineering teams running LLMs in production under EU AI Act traceability requirements",
+    "keyFeature": "instrumentation of the execution itself: it turns the observable behavior of an AI system into measurements and signals that other infrastructures can consume. One fundamental measurement layer, multiple uses, across heterogeneous infrastructures, without replacing the systems that consume it",
+    "hasAffiliate": null,
+    "evidence": "FLAG signals correlated with confirmed problematic outputs in around 76% of cases across a cumulative corpus (observed under the conditions studied, not a universal guarantee).",
+    "credentials": "Member of the NVIDIA Inception program. The NeoMundi Observatory is developed with Infomaniak, a Swiss infrastructure partner.",
+    "caveat": "NeoMundi measures how the system behaves, not whether the company kept its promise to the customer. In our pilot, a truthful receipt and a deliberately falsified one produced identical runtime scores. Behavioural measurement and conformity to a declared standard are different questions.",
+    "dataHandling": "Data handling is configurable: depending on the integration mode, NeoMundi can receive only normalised metrics, or prompts can pass through in real time without durable storage. Retention depends on the integration mode and the client's policy.",
+    "layer": "AI Runtime Measurement & Governance Infrastructure",
+    "positioning": "NeoMundi is not a business-function tool like Harvey AI, CoCounsel or Ironclad. It is an independent runtime behavioral measurement layer that such systems (GRC, compliance, audit, observability, orchestration) can consume. It works alongside them, not instead of them.",
+    "evidenceLayer": "Traceability and evidence layer, built on top of the measurements: SHA-256 certified PDF with QR code and a third-party verification link, so a client, auditor or compliance officer can check a document without access to the workspace. The current PDF is a prototype report. Planned evidence products: conformity reports, audit evidence, SLA evidence and insurance-oriented evidence.",
+    "complementary": true
+  },
+  {
+    "id": "sundial",
+    "name": "Sundial",
+    "url": "https://www.sundial.ai",
+    "category": "Data & Analytics",
+    "description": "Agentic AI analytics platform that turns business questions into evidence-backed answers without manual SQL or dashboards. Used by OpenAI, Gamma, and Character.",
+    "pricing": "Custom pricing",
+    "targetUser": "B2B product, growth, and executive teams",
+    "keyFeature": "AI agents run on expert-built analytical playbooks, so every answer ships with its source evidence",
+    "hasAffiliate": null
+  },
+  {
     "id": "jasper",
     "name": "Jasper",
     "url": "https://jasper.ai",
@@ -396,6 +439,17 @@
     "hasAffiliate": true
   },
   {
+    "id": "opencli",
+    "name": "OpenCLI",
+    "url": "https://github.com/jackwener/opencli",
+    "category": "Automation & Workflows",
+    "description": "Open-source tool that turns any website into a command-line interface for AI agents — agents operate sites through your logged-in browser session, no API or credential storage required.",
+    "pricing": "Free (open source, Apache-2.0)",
+    "targetUser": "AI agent operators, developers, automation builders",
+    "keyFeature": "Pre-built adapters for 100+ sites plus an AGENT.md standard so agents like Claude Code and Cursor can discover and run site commands",
+    "hasAffiliate": null
+  },
+  {
     "id": "zapier",
     "name": "Zapier",
     "url": "https://zapier.com",
@@ -477,11 +531,13 @@
     "name": "Semrush",
     "url": "https://semrush.com",
     "category": "Marketing & SEO",
-    "description": "All-in-one digital marketing platform with AI tools for SEO, PPC, content marketing, and competitive research.",
-    "pricing": "Free limited — $139.95/mo Pro — $249.95/mo Guru",
-    "targetUser": "Digital marketers, SEO agencies, enterprises",
-    "keyFeature": "Most comprehensive competitive intelligence with keyword, backlink, and ad data in one platform",
-    "hasAffiliate": true
+    "description": "The largest all-in-one marketing platform: keyword research, rank tracking, site audits, backlink analysis, PPC research, content tools, and AI-search visibility. The plan lineup was restructured around AI search, so an SEO-only tier now sits below the combined plans.",
+    "pricing": "Free plan, and a seven-day trial on paid tiers. SEO $139/month, or $117.33 billed annually: 5 sites, 500 keywords tracked daily. Starter $199/month adds AI-search tracking with 50 prompts daily. Pro+ $299/month: 15 sites, 1,500 keywords, 100 prompts. Advanced $549/month: 40 sites, 5,000 keywords, 200 prompts. Checked 24 Aug 2026",
+    "targetUser": "Agencies and marketing teams that need the deepest keyword and backlink data available and have the budget to match",
+    "keyFeature": "Database size. Nothing else in the category matches its keyword and backlink coverage, which is what you are actually paying the premium for.",
+    "hasAffiliate": true,
+    "caveat": "The published price is the floor, not the bill. Local SEO, agency reporting and several other modules are paid add-ons per user, and a working agency setup routinely lands well above the headline tier. Seat limits are strict.",
+    "positioning": "The default enterprise choice. If the depth of the database is not what decides your work, SE Ranking covers most of the same ground for roughly half the money."
   },
   {
     "id": "jasper-marketing",
@@ -719,11 +775,12 @@
     "name": "Vectorizer.AI",
     "url": "https://vectorizer.ai",
     "category": "Image & Design",
-    "description": "Converts bitmap images to clean vector SVG files using AI",
-    "pricing": "Freemium ($9.99/mo)",
-    "targetUser": "Graphic designers, logo creators",
-    "keyFeature": "High-fidelity raster-to-vector conversion preserving colors and detail",
-    "hasAffiliate": null
+    "description": "Converts bitmap images to clean vector SVG. It traces the artwork rather than approximating it, which is why the output usually needs no redrawing: logos recovered from a JPEG, scanned line art, and low-resolution marks come back as editable curves. Also available as an API.",
+    "pricing": "Free to preview results and free to test the API. Web app €8.99/month for unlimited web images. API from €8.99/month for 50 credits (€0.180 each) down to €0.045 per credit at 100,000 credits (€4,499/month); unused credits roll over up to 5× the monthly allowance. Checked 24 Aug 2026",
+    "targetUser": "Designers and print shops recovering usable logos from whatever file the client actually sent, and developers automating the same job at volume",
+    "keyFeature": "Preview before paying: you see the traced result on your own file before any subscription, which makes the quality claim checkable in about a minute",
+    "hasAffiliate": null,
+    "caveat": "It vectorises what is in the image. Photographs and heavily compressed artwork produce technically correct vectors that no designer wants; the tool is for line art, logos and flat graphics, not for turning a photo into an illustration."
   },
   {
     "id": "befunky",
@@ -972,11 +1029,13 @@
     "name": "SE Ranking",
     "url": "https://seranking.com",
     "category": "Marketing & SEO",
-    "description": "All-in-one SEO platform with AI content tools, rank tracking, and competitive analysis",
-    "pricing": "From $55/mo",
-    "targetUser": "SEO professionals, digital agencies",
-    "keyFeature": "AI-powered content editor integrated with full SEO toolkit and rank tracking",
-    "hasAffiliate": null
+    "description": "An all-in-one SEO platform: daily rank tracking across search engines, keyword and competitor research, backlink analysis, site audits, and AI-search visibility tracking that reports how often a domain appears in generated answers. Sits in the same bracket as Semrush and Ahrefs at roughly half the price, which is the main reason teams pick it.",
+    "pricing": "14-day free trial, no card. Core €109/month, or €87.20/month billed annually: 10 projects, 2,000 keywords tracked daily, 100 AI prompts. Growth €235/month, or €188 annually: 30 projects, 5,000 keywords, 250 prompts. Enterprise on request. Checked 24 Aug 2026",
+    "targetUser": "Small agencies and in-house marketers who need the full SEO toolkit but cannot justify Semrush or Ahrefs at full price",
+    "keyFeature": "The price-to-coverage ratio: rank tracking, audits, research and AI-answer visibility in one subscription, at a tier where competitors charge for each separately",
+    "hasAffiliate": null,
+    "caveat": "Keyword and prompt limits are the real constraint, not features: the entry plan tracks 2,000 keywords daily, which a single large e-commerce site can exhaust on its own. Backlink and keyword databases are smaller than Ahrefs and Semrush, which matters for competitive research and matters much less for tracking your own rankings.",
+    "positioning": "The value option in the SEO suite category. Against Semrush it trades database depth for price; against a dedicated rank tracker it adds audits and research you would otherwise buy separately."
   },
   {
     "id": "jasper-art",
@@ -1372,6 +1431,17 @@
     "pricing": "Custom pricing",
     "targetUser": "FP&A teams, finance leaders",
     "keyFeature": "AI-driven variance analysis and forecasting with natural language explanations",
+    "hasAffiliate": null
+  },
+  {
+    "id": "ai-interviews",
+    "name": "AI Interviews",
+    "url": "https://www.aiinterviews.io",
+    "category": "HR & Recruitment",
+    "description": "AI-led interview automation that generates job-specific questions, runs conversational candidate interviews 24/7, and returns transcript-backed scoring with fraud detection.",
+    "pricing": "Pay-as-you-go from $3/interview",
+    "targetUser": "Hiring teams, recruiters, talent acquisition",
+    "keyFeature": "Adaptive AI interviews with transcript-based scoring for skills, communication, job fit, and integrity",
     "hasAffiliate": null
   },
   {
@@ -2424,11 +2494,12 @@
     "name": "Retool",
     "url": "https://retool.com",
     "category": "No-Code & Low-Code",
-    "description": "Low-code platform for building internal tools with AI-powered component generation",
-    "pricing": "Freemium ($10/mo per user)",
-    "targetUser": "Developers, operations teams, IT",
-    "keyFeature": "AI app generator that builds internal tools from natural language descriptions",
-    "hasAffiliate": null
+    "description": "A low-code platform for internal tools: drag components onto a canvas, wire them to your database or API, and ship the admin panel, support console or approval queue that would otherwise sit in the engineering backlog for a quarter. AI generates components and queries, and agents can run scheduled work.",
+    "pricing": "Free: unlimited apps, up to 5 users, 500 workflow runs/month, 5GB storage, 250 AI credits. Team €9 per builder and €5 per internal user per month, 1,000 AI credits. Business €46 per builder and €14 per internal user, 3,000 credits. Enterprise on request. Agent runtime up to 20 hours/month on all plans, billed separately. Checked 24 Aug 2026",
+    "targetUser": "Engineering and operations teams building the internal tools nobody wants to spend a sprint on",
+    "keyFeature": "The free tier is genuinely usable for a small team, so the first internal tool costs nothing but an afternoon",
+    "hasAffiliate": null,
+    "caveat": "Two meters run at once: seats (split between builders and viewers) and AI credits, which renew monthly and do not roll over. Agent hours are billed on top and vary by model."
   },
   {
     "id": "flutterflow",
@@ -2505,17 +2576,6 @@
     "pricing": "From $19/mo",
     "targetUser": "Bloggers, SEO writers",
     "keyFeature": "Readability improver that rewrites content to match target reading levels",
-    "hasAffiliate": null
-  },
-  {
-    "id": "tribescaler",
-    "name": "TribeScaler",
-    "url": "https://tribescaler.com",
-    "category": "Social Media",
-    "description": "AI tool that generates viral hooks for Twitter/X posts and threads",
-    "pricing": "Freemium ($14/mo)",
-    "targetUser": "Twitter/X creators, personal brand builders",
-    "keyFeature": "Hook generator trained on viral tweet patterns to maximize engagement",
     "hasAffiliate": null
   },
   {
@@ -3205,11 +3265,12 @@
     "name": "Hex",
     "url": "https://hex.tech",
     "category": "Data & Analytics",
-    "description": "AI-powered data workspace combining SQL, Python, and no-code tools with an AI assistant for analytics and data science.",
-    "pricing": "Free / From $28/mo",
-    "targetUser": "Data analysts and data scientists",
-    "keyFeature": "Magic AI that writes SQL, Python, and creates visualizations from natural language",
-    "hasAffiliate": null
+    "description": "A collaborative data workspace where SQL, Python and no-code blocks live in the same notebook and any notebook can be published as an interactive app for people who will never open a query. Its AI agent writes and explains queries against your connected warehouse.",
+    "pricing": "Community free: connect any data source, small compute, agent trial. Professional $36 per editor/month: full agent, up to 5 published apps, 30-day version history. Team $75 per editor/month with a 14-day trial: unlimited published apps, scheduled runs and alerts, shared components. Enterprise on request. Checked 24 Aug 2026",
+    "targetUser": "Data teams whose real problem is distribution: the analysis exists, and the people who need it cannot read a notebook",
+    "keyFeature": "One artefact serves both audiences: the analyst keeps the notebook, the stakeholder gets an app, and nobody rebuilds the work in a BI tool afterwards",
+    "hasAffiliate": null,
+    "caveat": "Priced per editor, so the cost tracks the number of people writing analysis, not the number reading it. Compute sits on top of the seat price at every tier."
   },
   {
     "id": "pecan-ai",
@@ -3271,11 +3332,12 @@
     "name": "Captions",
     "url": "https://www.captions.ai",
     "category": "Video & Audio",
-    "description": "AI-powered video creation app that adds animated captions, corrects eye contact, and edits videos using AI.",
-    "pricing": "Free / From $9.99/mo",
-    "targetUser": "Content creators and social media influencers",
-    "keyFeature": "AI eye contact correction that makes you appear to look at the camera naturally",
-    "hasAffiliate": null
+    "description": "An AI video app for short-form content: animated captions, eye-contact correction, chat-based editing, clip extraction from long recordings, and fully generated presenters. Built for people publishing to TikTok, Reels and Shorts on a daily cadence rather than for film editors.",
+    "pricing": "Free tier with basic editing. Max $24.99/month for 500 credits. Scale 1x $69.99 for 1,400 credits, Scale 2x $139.99 for 2,800, Scale 4x $279.99 for 5,600. Enterprise on request. Checked 24 Aug 2026",
+    "targetUser": "Creators and social teams shipping several short videos a week, where editing time is the bottleneck rather than ideas",
+    "keyFeature": "Everything runs in one app, so a phone recording becomes a captioned, cut, publishable clip without a desktop editor in the middle",
+    "hasAffiliate": null,
+    "caveat": "Everything is metered in credits, and generated video consumes them far faster than captioning does. Work out your monthly output first, because the jump from $24.99 to $69.99 arrives sooner than most people expect."
   },
   {
     "id": "podcastle",
@@ -3577,13 +3639,14 @@
   {
     "id": "coframe",
     "name": "Coframe",
-    "url": "https://coframe.ai",
+    "url": "https://www.coframe.com",
     "category": "Marketing & SEO",
-    "description": "AI platform that continuously A/B tests and optimizes website copy and visuals to improve conversion rates.",
-    "pricing": "Free / From $50/mo",
+    "description": "Generates and tests website variations automatically: headlines, calls to action, UI components and on-brand images, segmented by audience, with conversion lift tracked per variant. Variants are approved by a person before they go live.",
+    "pricing": "No prices published. The site offers a free start and a demo, with figures quoted on scope. Checked 24 Aug 2026",
     "targetUser": "Growth marketers and CRO teams",
     "keyFeature": "AI that autonomously generates, tests, and deploys winning website variations",
-    "hasAffiliate": null
+    "hasAffiliate": null,
+    "caveat": "The company now operates at coframe.com; the older coframe.ai address redirects. Because no pricing is published, the cost of running it at your traffic volume can only be established in a sales conversation."
   },
   {
     "id": "docugami",
@@ -3832,11 +3895,12 @@
     "name": "Zep",
     "url": "https://www.getzep.com",
     "category": "Coding",
-    "description": "Long-term memory for AI assistants that stores, retrieves, and enriches conversation history and user context.",
-    "pricing": "Free (open source) / From $99/mo cloud",
-    "targetUser": "Developers building AI chatbots and agents",
-    "keyFeature": "Perpetual memory layer that gives AI assistants context from past conversations",
-    "hasAffiliate": null
+    "description": "Long-term memory for AI agents and assistants. It stores conversation history and user facts, builds a knowledge graph across sessions, and returns the relevant context at request time, so an assistant remembers a customer between conversations instead of starting cold every time.",
+    "pricing": "Free tier: 10,000 credits/month, 2 projects, no rollover. Flex $1,250/year, about $104/month, for 50,000 credits/month and 5 projects. Flex Plus $3,750/year, about $312/month, for 200,000 credits and 10 projects. Episodes up to 350 bytes cost one credit. Storage and retrieval are not charged separately. Enterprise on request. Checked 24 Aug 2026",
+    "targetUser": "Teams shipping assistants that hold a relationship over weeks rather than answering one question and forgetting the customer",
+    "keyFeature": "Credits are consumed by what you write into memory, not by reading it back, so a product that retrieves context constantly does not get punished for it",
+    "hasAffiliate": null,
+    "caveat": "Memory is not grounding. Zep makes an assistant remember what it was told; whether what it was told is true, and whether the assistant is allowed to act on it, remain your problem."
   },
   {
     "id": "modal",

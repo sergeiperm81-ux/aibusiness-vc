@@ -186,7 +186,14 @@ export default async function NotePage({ params }: Props) {
             headline: note.title,
             description: note.description,
             datePublished: note.date,
-            author: { "@type": "Person", name: note.author, url: "https://aibusiness.vc/sergei-ponomarev" },
+            author: {
+              "@type": "Person",
+              ...(note.author === "Sergei Ponomarev"
+                ? { "@id": "https://aibusiness.vc/sergei-ponomarev#person" }
+                : {}),
+              name: note.author,
+              url: "https://aibusiness.vc/sergei-ponomarev",
+            },
             mainEntityOfPage: `https://aibusiness.vc/notes/${note.slug}`,
           }),
         }}

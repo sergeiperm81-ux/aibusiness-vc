@@ -18,6 +18,30 @@ export interface Guide {
 
 export const GUIDES: Guide[] = [
   {
+    slug: "ai-agent-test-purchase-light",
+    title: "AI Agent Test Purchase Light",
+    kicker: "The method behind every Light check, published",
+    audience: "For AI agent owners and builders",
+    tagline:
+      "A consumer-side check of a public AI agent against the organisation's own public commitments. No agreed requirements, one demanding visitor, one session, one report.",
+    cardBlurb:
+      "The short, open method we use to check public AI agents the way a demanding visitor would: one continuous session, questions drawn from what the organisation itself published, and every answer compared with that. Five fixed layers, four states, four severity classes, strict rules of conduct and a list of what is never done. The reference is the site, not our opinion. If the organisation has an AI policy, passport or receipt, they extend the reference; if not, the site alone is enough to start.",
+    description:
+      "An organisation puts an AI agent on its website, in a messenger or on a phone line. Inside, the agent was checked by its developer, the party paid to make it work. Outside, nobody checked it. AI Agent Test Purchase Light closes that gap. One demanding visitor goes through the agent in one continuous session and compares what the agent said with what the organisation publicly promised on its own site. The principle is simple: one black swan is enough to disprove that all swans are white. The method does not assess the agent's quality as a whole and does not monitor it; it looks for errors that matter to a consumer, and if it finds one, others are possible. This document sets out the whole method in the open: what counts as the reference and why the organisation's own site is enough; the five layers every check covers (who am I talking to, how to reach them, organisation and service, core function, boundaries and data); the rules of conduct, including the single permitted objection and the language test; what is never done, from emergency scenarios to extracting system instructions; the four states an item can receive and the four severity classes that decide what goes first in the report; what the organisation gets back; and the limits of the method, stated plainly. The questions themselves are selected for each organisation and are not published. Three pages.",
+    includes: [
+      "What the method is and what it is not: a photograph of one day, not an assessment of a system",
+      "The reference: the organisation's own public commitments, extended by its AI documents where they exist",
+      "Five fixed layers of the check, from disclosure to data handling",
+      "Rules of conduct: one session, verbatim questions, one objection, one foreign-language question",
+      "What is prohibited: emergencies, provocations, operator summoning, credential extraction, real personal data",
+      "Four states and four severity classes, and why there is no total score",
+      "What the organisation receives, and the limits of the method",
+    ],
+    pdf: "/library/ai-agent-test-purchase-light.pdf",
+    pages: 3,
+    year: "2026",
+  },
+  {
     slug: "two-companies-one-agent-one-error",
     title: "Two Companies, One Agent, One Error",
     kicker: "Case 14/30 · A thought experiment",
@@ -98,11 +122,11 @@ export const GUIDES: Guide[] = [
     kicker: "The method, published in full",
     audience: "For anyone checking an AI agent",
     tagline:
-      "A method for evaluating AI services through the customer's eyes — carried over from seven years of test purchases in public services.",
+      "A method for evaluating AI services through the customer's eyes, carried over from seven years of test purchases in public services.",
     cardBlurb:
       "The author's method of Sergei Ponomarev, PhD, in full. Companies put AI agents in front of customers, and those agents quote prices, place orders and promise call-backs. The logs show what the bot said, never what it was supposed to say. This is the full method for closing that gap: the standard, the forms of a check, scoring, ethics, limits, and the open reference pilot run with a Swiss metrology company.",
     description:
-      "This is the author's method of Sergei Ponomarev, PhD, set out in full. A test purchase is an old discipline: write down what a service is supposed to do, then go through it as an ordinary customer and record every gap between the promise and the practice. This guide carries that method over to AI agents, where the human shopper becomes an AI shopper, the clerk becomes the company's agent, and the analysis becomes a reconciliation between what the agent said and what the system actually recorded. It sets out the six steps of a check — standard, script, run, reconciliation, report, fix and re-test — and the three documents that serve as the norm: a public AI Policy, an AI Service Passport per service, and an AI Receipt per interaction. It covers the five axes along which a check is designed (external or internal, manual or automated, partial or full, comprehensive or targeted, standard or specialised), how evidence is captured so the results can be believed, and how findings are scored. It is equally clear about the boundaries: one run documents a failure but never establishes how often it happens, an external check answers what the customer got rather than why, and the analyst is an AI too and can be wrong. The method is carried over from seven years of the author's own work on service quality: nationwide monitoring of public services, hundreds of independent assessments and test purchases. The reference pilot, run jointly with the Swiss AI metrology company NeoMundi, is published in full as open source, code, prompts, transcripts and defects included.",
+      "This is the author's method of Sergei Ponomarev, PhD, set out in full. A test purchase is an old discipline: write down what a service is supposed to do, then go through it as an ordinary customer and record every gap between the promise and the practice. This guide carries that method over to AI agents, where the human shopper becomes an AI shopper, the clerk becomes the company's agent, and the analysis becomes a reconciliation between what the agent said and what the system actually recorded. It sets out the six steps of a check (standard, script, run, reconciliation, report, fix and re-test) and the three documents that serve as the norm: a public AI Policy, an AI Service Passport per service, and an AI Receipt per interaction. It covers the five axes along which a check is designed (external or internal, manual or automated, partial or full, comprehensive or targeted, standard or specialised), how evidence is captured so the results can be believed, and how findings are scored. It is equally clear about the boundaries: one run documents a failure but never establishes how often it happens, an external check answers what the customer got rather than why, and the analyst is an AI too and can be wrong. The method is carried over from seven years of the author's own work on service quality: nationwide monitoring of public services, hundreds of independent assessments and test purchases. The reference pilot, run jointly with the Swiss AI metrology company NeoMundi, is published in full as open source, code, prompts, transcripts and defects included.",
     includes: [
       "Why reading chat logs proves almost nothing, and what does prove a bot broke a promise",
       "The three-document standard: a public AI Policy, an AI Service Passport, and an AI Receipt",
@@ -124,17 +148,17 @@ export const GUIDES: Guide[] = [
     kicker: "For business owners adopting AI",
     audience: "For entrepreneurs",
     tagline:
-      "Five requests from your most demanding customer — a full guide to adopting AI so that the people who pay you actually accept it.",
+      "Five requests from your most demanding customer, a full guide to adopting AI so that the people who pay you actually accept it.",
     cardBlurb:
-      "MIT found 95% of generative-AI pilots produce zero results — and it's rarely the AI that fails. It's the customers who don't accept it. This guide is written in the voice of your most demanding customer: five requests, a sample AI Service Passport, and a final checklist.",
+      "MIT found 95% of generative-AI pilots produce zero results, and it's rarely the AI that fails. It's the customers who don't accept it. This guide is written in the voice of your most demanding customer: five requests, a sample AI Service Passport, and a final checklist.",
     description:
-      "Most companies adopt AI by choosing a model, hiring a vendor, and counting the savings — and never ask the one question that decides everything: what will the customer think? This guide flips the perspective. It is written in the voice of your most demanding customer — the collective, maximally difficult one, the person Jeff Bezos kept an empty chair for at Amazon's meetings. Chapter by chapter, that customer walks you through five requests: ask me what I need first; prove your AI benefits me (the three-number test and the \"AI guillotine\"); agree on the rules with me — a full system of three documents: public AI Rules, the AI Service Passport, and the AI Receipt that explains what your AI actually did, with worked samples of all three; talk to me like a human being; and check yourselves through my eyes — evaluation systems, mystery shopping, living rules. With the EU AI Act transparency requirements arriving on 2 August 2026 and similar US state laws already in force, most of these requests will soon stop being polite suggestions. Better to meet them before your competitors do — and with a smile.",
+      "Most companies adopt AI by choosing a model, hiring a vendor, and counting the savings, and never ask the one question that decides everything: what will the customer think? This guide flips the perspective. It is written in the voice of your most demanding customer, the collective, maximally difficult one, the person Jeff Bezos kept an empty chair for at Amazon's meetings. Chapter by chapter, that customer walks you through five requests: ask me what I need first; prove your AI benefits me (the three-number test and the \"AI guillotine\"); agree on the rules with me, a full system of three documents: public AI Rules, the AI Service Passport, and the AI Receipt that explains what your AI actually did, with worked samples of all three; talk to me like a human being; and check yourselves through my eyes, evaluation systems, mystery shopping, living rules. With the EU AI Act transparency requirements arriving on 2 August 2026 and similar US state laws already in force, most of these requests will soon stop being polite suggestions. Better to meet them before your competitors do, and with a smile.",
     includes: [
-      "The five requests of the demanding customer — the full customer-side view of AI adoption",
+      "The five requests of the demanding customer, the full customer-side view of AI adoption",
       "Levels of collaboration: from \"respondent\" to \"co-author\", and how to ask so customers don't lie",
-      "The three-number test and the \"AI guillotine\" — how customers actually judge your AI's value",
-      "The three-document system: public AI Rules, the AI Service Passport, and the AI Receipt — with complete worked samples of each",
-      "How to talk about AI plainly and use it as an occasion to care — not a cost-cutting excuse",
+      "The three-number test and the \"AI guillotine\", how customers actually judge your AI's value",
+      "The three-document system: public AI Rules, the AI Service Passport, and the AI Receipt, with complete worked samples of each",
+      "How to talk about AI plainly and use it as an occasion to care, not a cost-cutting excuse",
       "An evaluation system with mystery shopping, plus the Demanding Customer's Final Checklist",
     ],
     pdf: "/library/ai-through-the-customers-eyes.pdf",
@@ -152,17 +176,17 @@ export const GUIDES: Guide[] = [
     kicker: "For customers dealing with company AI",
     audience: "For consumers",
     tagline:
-      "How to get value — not headaches — from the AI that companies now put between you and what you pay for. The consumer's companion to \"Through the Customer's Eyes.\"",
+      "How to get value, not headaches, from the AI that companies now put between you and what you pay for. The consumer's companion to \"Through the Customer's Eyes.\"",
     cardBlurb:
-      "Companies are wiring AI into sales, pricing, and support faster than any rulebook can keep up. This guide hands you, the consumer, three concrete demands that put you back in control — the AI Receipt, the AI Service Passport, and Public AI Rules — with a ready-to-send message at the end of every chapter.",
+      "Companies are wiring AI into sales, pricing, and support faster than any rulebook can keep up. This guide hands you, the consumer, three concrete demands that put you back in control, the AI Receipt, the AI Service Passport, and Public AI Rules, with a ready-to-send message at the end of every chapter.",
     description:
-      "The rules for how AI treats customers are being written right now — and if consumers stay silent, they will be written entirely by companies. This guide is the consumer's side of the same three-document system covered in \"Your Company's AI Through the Customer's Eyes,\" turned into demands you can actually make. It teaches you to tell useful AI from harmful AI with a simple three-part check, to insist on plain human language, and then to ask for three things by name: the AI Receipt — a keepable record of what a company's AI actually did, said, and promised (the consumer's gateway to justice when something goes wrong); the AI Service Passport — the yardstick that tells you what the AI can do, what it cannot, and when a human steps in; and Public AI Rules — the standards a company commits to openly. Every chapter ends with a ready-made message you can send to a company almost as-is, inserting the service name and your own case. Short, practical, and written so one person can start changing the system today.",
+      "The rules for how AI treats customers are being written right now, and if consumers stay silent, they will be written entirely by companies. This guide is the consumer's side of the same three-document system covered in \"Your Company's AI Through the Customer's Eyes,\" turned into demands you can actually make. It teaches you to tell useful AI from harmful AI with a simple three-part check, to insist on plain human language, and then to ask for three things by name: the AI Receipt, a keepable record of what a company's AI actually did, said, and promised (the consumer's gateway to justice when something goes wrong); the AI Service Passport, the yardstick that tells you what the AI can do, what it cannot, and when a human steps in; and Public AI Rules, the standards a company commits to openly. Every chapter ends with a ready-made message you can send to a company almost as-is, inserting the service name and your own case. Short, practical, and written so one person can start changing the system today.",
     includes: [
       "The three-part check for telling genuinely useful AI from the harmful kind",
-      "How to demand plain, human language — and confirmation you can keep",
+      "How to demand plain, human language, and confirmation you can keep",
       "The AI Receipt: what it must contain, and why it's your gateway to justice",
-      "The AI Service Passport and Public AI Rules — explained from the consumer's side",
-      "A ready-to-send message at the end of every chapter — just add your case",
+      "The AI Service Passport and Public AI Rules, explained from the consumer's side",
+      "A ready-to-send message at the end of every chapter, just add your case",
       "How to move from one-off feedback to genuine co-authorship of the rules",
     ],
     pdf: "/library/demand-the-ai-receipt.pdf",
@@ -174,16 +198,16 @@ export const GUIDES: Guide[] = [
     title: "Start with Your Services",
     kicker: "AI Service Governance",
     tagline:
-      "A leader's 7-step playbook for adopting AI — in business, nonprofits, and public institutions.",
+      "A leader's 7-step playbook for adopting AI, in business, nonprofits, and public institutions.",
     cardBlurb:
-      "You can't digitize chaos. A practical 7-step method for putting your services in order first, then putting AI safely inside them — built around a ready-to-use AI Service Passport.",
+      "You can't digitize chaos. A practical 7-step method for putting your services in order first, then putting AI safely inside them, built around a ready-to-use AI Service Passport.",
     description:
-      "Most leaders bring AI into their internal functions first, because it feels like the easy win. This playbook argues the opposite: start with the services your customers actually pay for, describe each one properly, and only then hand it to an AI agent. It's my own system for standardizing AI services, grown out of years of moving government services online during administrative reform — and it fits business, non-profits, and public institutions alike. You get a clear sequence: answer the ten questions every leader should be able to answer before AI faces a customer, pick a safe first pilot, set how far the agent may act on its own, and write an AI Service Passport that doubles as manifesto, storefront, and system prompt. Treat it not as dogma but as a working template — a place to start as you find your footing with AI.",
+      "Most leaders bring AI into their internal functions first, because it feels like the easy win. This playbook argues the opposite: start with the services your customers actually pay for, describe each one properly, and only then hand it to an AI agent. It's my own system for standardizing AI services, grown out of years of moving government services online during administrative reform, and it fits business, non-profits, and public institutions alike. You get a clear sequence: answer the ten questions every leader should be able to answer before AI faces a customer, pick a safe first pilot, set how far the agent may act on its own, and write an AI Service Passport that doubles as manifesto, storefront, and system prompt. Treat it not as dogma but as a working template, a place to start as you find your footing with AI.",
     includes: [
       "The 10 questions to answer before you put AI in front of customers",
-      "Why to start with services, not internal functions — and how to pick a safe first pilot",
+      "Why to start with services, not internal functions, and how to pick a safe first pilot",
       "A 5-level matrix for setting how far an AI agent may act on its own (up to agent-to-agent)",
-      "The AI Service Passport — a three-part tool (manifesto, storefront, prompt) you build per service",
+      "The AI Service Passport, a three-part tool (manifesto, storefront, prompt) you build per service",
       "Rules for AI services at scale + how to monitor quality (mystery shopping, audits, feedback)",
       "EU AI Act disclosure (mandatory from August 2026) built in from the start",
     ],
@@ -196,11 +220,11 @@ export const GUIDES: Guide[] = [
     title: "AI Transparency Kit",
     kicker: "EU AI Act · Customer Disclosure",
     tagline:
-      "Turn AI disclosure from a compliance checkbox into a customer care moment — free, editable templates for every touchpoint.",
+      "Turn AI disclosure from a compliance checkbox into a customer care moment, free, editable templates for every touchpoint.",
     cardBlurb:
-      "From 2 August 2026, the EU AI Act requires businesses to tell customers when they're talking to AI. This kit gives you ready-to-use templates — badges, emails, FAQs, rights cards, and 'AI Works Here' badges — to make that message feel like care, not a legal notice.",
+      "From 2 August 2026, the EU AI Act requires businesses to tell customers when they're talking to AI. This kit gives you ready-to-use templates, badges, emails, FAQs, rights cards, and 'AI Works Here' badges, to make that message feel like care, not a legal notice.",
     description:
-      "On 2 August 2026, EU AI Act transparency requirements start to apply. And similar rules are already appearing in California, Utah, Maine, Colorado, and other US states. Many businesses will treat this as another compliance task — a dry notice buried in small print. That would be a mistake. Telling your customers that you use AI is a chance to show you care. Not with legal language, but with a clear, human message: we value you, we are improving our service, and here is exactly how AI helps you and when a real person steps in. This kit gives you everything you need to make that message land — ready-to-use templates covering every customer touchpoint, all editable in PowerPoint so you can adapt them to your brand and your voice. Use it not just to comply with the rules, but to show care, collect feedback, remind customers about your service, and make your company better.",
+      "On 2 August 2026, EU AI Act transparency requirements start to apply. And similar rules are already appearing in California, Utah, Maine, Colorado, and other US states. Many businesses will treat this as another compliance task, a dry notice buried in small print. That would be a mistake. Telling your customers that you use AI is a chance to show you care. Not with legal language, but with a clear, human message: we value you, we are improving our service, and here is exactly how AI helps you and when a real person steps in. This kit gives you everything you need to make that message land, ready-to-use templates covering every customer touchpoint, all editable in PowerPoint so you can adapt them to your brand and your voice. Use it not just to comply with the rules, but to show care, collect feedback, remind customers about your service, and make your company better.",
     includes: [
       "Social media post and customer email announcing your AI adoption",
       "One-page website notice and FAQ for customers",
@@ -220,16 +244,16 @@ export const GUIDES: Guide[] = [
     title: "Consumer Control of AI",
     kicker: "Governance from the consumer side",
     tagline:
-      "How ordinary people can judge the quality of AI services — and help make them better.",
+      "How ordinary people can judge the quality of AI services, and help make them better.",
     cardBlurb:
-      "A practical method — plus a ready-to-use assessment card — for judging any AI service from the customer's side of the counter.",
+      "A practical method, plus a ready-to-use assessment card, for judging any AI service from the customer's side of the counter.",
     description:
-      "Companies are building internal control over their AI — they call it AI governance. But that control serves the company. The other side of the counter, the consumer's side, stands almost empty. This guide hands you that side: a simple, proven method for judging the quality of any AI service from your own experience, gathering evidence, and pushing to have problems fixed. It is adapted from seven years of standards, independent quality assessment, and mystery shopping in public services — now pointed at AI. At its heart is a ready-to-use Assessment Card you can apply to any AI bot today.",
+      "Companies are building internal control over their AI, they call it AI governance. But that control serves the company. The other side of the counter, the consumer's side, stands almost empty. This guide hands you that side: a simple, proven method for judging the quality of any AI service from your own experience, gathering evidence, and pushing to have problems fixed. It is adapted from seven years of standards, independent quality assessment, and mystery shopping in public services, now pointed at AI. At its heart is a ready-to-use Assessment Card you can apply to any AI bot today.",
     includes: [
-      "What consumer control is — and how it differs from corporate AI governance",
+      "What consumer control is, and how it differs from corporate AI governance",
       "The four-step method: observe, gather evidence, assess, demand action",
       "A ready-to-use Assessment Card to evaluate any AI service",
-      "Your rights under the EU AI Act and GDPR — and where to turn",
+      "Your rights under the EU AI Act and GDPR, and where to turn",
     ],
     pdf: "/library/consumer-control-of-ai.pdf",
     pages: 10,

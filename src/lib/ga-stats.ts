@@ -6,7 +6,7 @@ export type Stats = typeof snapshot;
 
 const PROPERTY_ID = process.env.GA_PROPERTY_ID || "532602792";
 const ALL_TIME_SINCE = "2026-01-01";
-const TTL_MS = 1000 * 60 * 60 * 12; // 12 hours — stats don't need fresher; cuts GA calls + CPU
+const TTL_MS = 1000 * 60 * 60 * 12; // 12 hours; stats don't need fresher and this cuts GA calls + CPU.
 
 let cache: { at: number; data: Stats } | null = null;
 
@@ -17,7 +17,6 @@ function b64url(input: Buffer | string): string {
 function getPrivateKey(): string {
   const b64 = process.env.GA_SA_PRIVATE_KEY_B64;
   if (b64) return Buffer.from(b64, "base64").toString("utf8");
-  // Allow a raw key with escaped newlines as an alternative
   const raw = process.env.GA_SA_PRIVATE_KEY;
   if (raw) return raw.replace(/\\n/g, "\n");
   throw new Error("GA service-account private key not configured");
@@ -65,67 +64,88 @@ interface GaReport {
   rows?: GaRow[];
 }
 
-async function batchRunReports(token: string): Promise<GaReport[]> {
-  const allTime = { startDate: ALL_TIME_SINCE, endDate: "yesterday" };
-  const body = {
-    requests: [
-      {
-        dateRanges: [
-          { startDate: "7daysAgo", endDate: "yesterday" },
-          { startDate: "30daysAgo", endDate: "yesterday" },
-          allTime,
-        ],
-        dimensions: [{ name: "deviceCategory" }],
-        metrics: [{ name: "activeUsers" }, { name: "sessions" }, { name: "screenPageViews" }],
-      },
-      {
-        dateRanges: [allTime],
-        dimensions: [{ name: "country" }],
-        metrics: [{ name: "activeUsers" }],
-        orderBys: [{ metric: { metricName: "activeUsers" }, desc: true }],
-        limit: 8,
-      },
-      {
-        dateRanges: [allTime],
-        dimensions: [{ name: "pagePath" }],
-        metrics: [{ name: "screenPageViews" }, { name: "bounceRate" }],
-        orderBys: [{ metric: { metricName: "screenPageViews" }, desc: true }],
-        limit: 5,
-      },
-      {
-        dateRanges: [allTime],
-        dimensions: [{ name: "pagePath" }],
-        metrics: [{ name: "screenPageViews" }, { name: "bounceRate" }],
-        metricFilter: {
-          filter: {
-            fieldName: "screenPageViews",
-            numericFilter: { operation: "GREATER_THAN_OR_EQUAL", value: { int64Value: "15" } },
-          },
-        },
-        orderBys: [{ metric: { metricName: "bounceRate" }, desc: true }],
-        limit: 5,
-      },
-      {
-        dateRanges: [{ startDate: "7daysAgo", endDate: "today" }],
-        dimensions: [{ name: "date" }],
-        metrics: [{ name: "activeUsers" }, { name: "sessions" }, { name: "screenPageViews" }],
-        orderBys: [{ dimension: { dimensionName: "date" } }],
-      },
-    ],
-  };
-
+async function runBatch(token: string, requests: unknown[]): Promise<GaReport[]> {
+  // GA4 batchRunReports accepts at most 5 reports per call.
   const res = await fetch(
     `https://analyticsdata.googleapis.com/v1beta/properties/${PROPERTY_ID}:batchRunReports`,
     {
       method: "POST",
       headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
-      body: JSON.stringify(body),
+      body: JSON.stringify({ requests }),
     }
   );
   if (!res.ok) throw new Error(`runReport failed: ${res.status}`);
   const json = (await res.json()) as { reports?: GaReport[] };
-  if (!json.reports || json.reports.length < 5) throw new Error("unexpected GA response");
+  if (!json.reports) throw new Error("unexpected GA response");
   return json.reports;
+}
+
+async function batchRunReports(token: string): Promise<GaReport[]> {
+  const allTime = { startDate: ALL_TIME_SINCE, endDate: "yesterday" };
+  const requests = [
+    {
+      dateRanges: [
+        { startDate: "7daysAgo", endDate: "yesterday" },
+        { startDate: "30daysAgo", endDate: "yesterday" },
+        allTime,
+      ],
+      dimensions: [{ name: "deviceCategory" }],
+      metrics: [{ name: "activeUsers" }, { name: "sessions" }, { name: "screenPageViews" }],
+    },
+    {
+      dateRanges: [allTime],
+      dimensions: [{ name: "country" }],
+      metrics: [{ name: "activeUsers" }],
+      orderBys: [{ metric: { metricName: "activeUsers" }, desc: true }],
+      limit: 8,
+    },
+    {
+      dateRanges: [allTime],
+      dimensions: [{ name: "pagePath" }],
+      metrics: [{ name: "screenPageViews" }, { name: "bounceRate" }],
+      orderBys: [{ metric: { metricName: "screenPageViews" }, desc: true }],
+      limit: 5,
+    },
+    {
+      dateRanges: [allTime],
+      dimensions: [{ name: "pagePath" }],
+      metrics: [{ name: "screenPageViews" }, { name: "bounceRate" }],
+      metricFilter: {
+        filter: {
+          fieldName: "screenPageViews",
+          numericFilter: { operation: "GREATER_THAN_OR_EQUAL", value: { int64Value: "15" } },
+        },
+      },
+      orderBys: [{ metric: { metricName: "bounceRate" }, desc: true }],
+      limit: 5,
+    },
+    {
+      dateRanges: [{ startDate: "7daysAgo", endDate: "today" }],
+      dimensions: [{ name: "date" }],
+      metrics: [{ name: "activeUsers" }, { name: "sessions" }, { name: "screenPageViews" }],
+      orderBys: [{ dimension: { dimensionName: "date" } }],
+    },
+    {
+      dateRanges: [allTime],
+      dimensions: [{ name: "fileName" }],
+      metrics: [{ name: "eventCount" }],
+      dimensionFilter: {
+        filter: {
+          fieldName: "eventName",
+          stringFilter: { matchType: "EXACT", value: "file_download" },
+        },
+      },
+      orderBys: [{ metric: { metricName: "eventCount" }, desc: true }],
+      limit: 25,
+    },
+  ];
+
+  const reports = [
+    ...(await runBatch(token, requests.slice(0, 5))),
+    ...(await runBatch(token, requests.slice(5))),
+  ];
+  if (reports.length < 6) throw new Error("unexpected GA response");
+  return reports;
 }
 
 function num(v?: string): number {
@@ -137,7 +157,6 @@ function todayIso(): string {
 }
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-// GA returns the `date` dimension as "YYYYMMDD" — format it as "Jun 12".
 function fmtGaDate(d: string): string {
   if (d.length !== 8) return d;
   const month = MONTHS[Number(d.slice(4, 6)) - 1] ?? d.slice(4, 6);
@@ -146,9 +165,8 @@ function fmtGaDate(d: string): string {
 
 async function fetchLiveStats(): Promise<Stats> {
   const token = await getAccessToken();
-  const [overview, countriesR, topR, worstR, dailyR] = await batchRunReports(token);
+  const [overview, countriesR, topR, worstR, dailyR, downloadsR] = await batchRunReports(token);
 
-  // Overview: rows = device x dateRange (date_range_0=7d, _1=30d, _2=all-time)
   const totals = [
     { users: 0, sessions: 0, pageviews: 0 },
     { users: 0, sessions: 0, pageviews: 0 },
@@ -184,7 +202,7 @@ async function fetchLiveStats(): Promise<Stats> {
     (r.rows ?? []).map((row) => ({
       path: row.dimensionValues?.[0]?.value ?? "",
       views: num(row.metricValues?.[0]?.value),
-      bounce: Math.round((Number(row.metricValues?.[1]?.value ?? 0)) * 100),
+      bounce: Math.round(Number(row.metricValues?.[1]?.value ?? 0) * 100),
     }));
 
   const daily = (dailyR.rows ?? []).map((row) => ({
@@ -192,6 +210,11 @@ async function fetchLiveStats(): Promise<Stats> {
     users: num(row.metricValues?.[0]?.value),
     sessions: num(row.metricValues?.[1]?.value),
     pageviews: num(row.metricValues?.[2]?.value),
+  }));
+
+  const downloads = (downloadsR.rows ?? []).map((row) => ({
+    file: row.dimensionValues?.[0]?.value ?? "",
+    count: num(row.metricValues?.[0]?.value),
   }));
 
   return {
@@ -208,13 +231,10 @@ async function fetchLiveStats(): Promise<Stats> {
     devices,
     topPages: mapPages(topR),
     worstPages: mapPages(worstR),
+    downloads,
   };
 }
 
-/**
- * Returns live GA stats (cached 30 min). Falls back to the baked-in snapshot
- * if credentials are missing or the GA request fails — the page never breaks.
- */
 export async function getStats(): Promise<{ data: Stats; live: boolean }> {
   if (cache && Date.now() - cache.at < TTL_MS) {
     return { data: cache.data, live: true };
@@ -223,7 +243,8 @@ export async function getStats(): Promise<{ data: Stats; live: boolean }> {
     const data = await fetchLiveStats();
     cache = { at: Date.now(), data };
     return { data, live: true };
-  } catch {
+  } catch (error) {
+    console.warn("[stats] Falling back to saved snapshot:", error);
     return { data: snapshot, live: false };
   }
 }
