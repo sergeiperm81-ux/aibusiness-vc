@@ -15,6 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!r) return { title: "Not Found" };
   return {
     title: `AI Regulation in ${r.country} (2026) — ${r.keyLegislation}`,
+    alternates: { canonical: `/regulation/${country}` },
     description: `${r.country} AI regulation: ${r.keyLegislation}. Status: ${r.status}. ${r.description.slice(0, 100)}...`,
   };
 }

@@ -152,14 +152,14 @@ export const GUIDES: Guide[] = [
     cardBlurb:
       "MIT found 95% of generative-AI pilots produce zero results, and it's rarely the AI that fails. It's the customers who don't accept it. This guide is written in the voice of your most demanding customer: five requests, a sample AI Service Passport, and a final checklist.",
     description:
-      "Most companies adopt AI by choosing a model, hiring a vendor, and counting the savings, and never ask the one question that decides everything: what will the customer think? This guide flips the perspective. It is written in the voice of your most demanding customer, the collective, maximally difficult one, the person Jeff Bezos kept an empty chair for at Amazon's meetings. Chapter by chapter, that customer walks you through five requests: ask me what I need first; prove your AI benefits me (the three-number test and the \"AI guillotine\"); agree on the rules with me, a full system of three documents: public AI Rules, the AI Service Passport, and the AI Receipt that explains what your AI actually did, with worked samples of all three; talk to me like a human being; and check yourselves through my eyes, evaluation systems, mystery shopping, living rules. With the EU AI Act transparency requirements arriving on 2 August 2026 and similar US state laws already in force, most of these requests will soon stop being polite suggestions. Better to meet them before your competitors do, and with a smile.",
+      "Most companies adopt AI by choosing a model, hiring a vendor, and counting the savings, and never ask the one question that decides everything: what will the customer think? This guide flips the perspective. It is written in the voice of your most demanding customer, the collective, maximally difficult one, the person Jeff Bezos kept an empty chair for at Amazon's meetings. Chapter by chapter, that customer walks you through five requests: ask me what I need first; prove your AI benefits me (the three-number test and the \"AI guillotine\"); agree on the rules with me, a full system of three documents: public AI Rules, the AI Service Passport, and the AI Receipt that explains what your AI actually did, with worked samples of all three; talk to me like a human being; and check yourselves through my eyes, evaluation systems, test purchases, living rules. With the EU AI Act transparency requirements arriving on 2 August 2026 and similar US state laws already in force, most of these requests will soon stop being polite suggestions. Better to meet them before your competitors do, and with a smile.",
     includes: [
       "The five requests of the demanding customer, the full customer-side view of AI adoption",
       "Levels of collaboration: from \"respondent\" to \"co-author\", and how to ask so customers don't lie",
       "The three-number test and the \"AI guillotine\", how customers actually judge your AI's value",
       "The three-document system: public AI Rules, the AI Service Passport, and the AI Receipt, with complete worked samples of each",
       "How to talk about AI plainly and use it as an occasion to care, not a cost-cutting excuse",
-      "An evaluation system with mystery shopping, plus the Demanding Customer's Final Checklist",
+      "An evaluation system with test purchases, plus the Demanding Customer's Final Checklist",
     ],
     pdf: "/library/ai-through-the-customers-eyes.pdf",
     pages: 42,
@@ -208,7 +208,7 @@ export const GUIDES: Guide[] = [
       "Why to start with services, not internal functions, and how to pick a safe first pilot",
       "A 5-level matrix for setting how far an AI agent may act on its own (up to agent-to-agent)",
       "The AI Service Passport, a three-part tool (manifesto, storefront, prompt) you build per service",
-      "Rules for AI services at scale + how to monitor quality (mystery shopping, audits, feedback)",
+      "Rules for AI services at scale + how to monitor quality (test purchases, audits, feedback)",
       "EU AI Act disclosure (mandatory from August 2026) built in from the start",
     ],
     pdf: "/library/start-with-your-services.pdf",
@@ -248,7 +248,7 @@ export const GUIDES: Guide[] = [
     cardBlurb:
       "A practical method, plus a ready-to-use assessment card, for judging any AI service from the customer's side of the counter.",
     description:
-      "Companies are building internal control over their AI, they call it AI governance. But that control serves the company. The other side of the counter, the consumer's side, stands almost empty. This guide hands you that side: a simple, proven method for judging the quality of any AI service from your own experience, gathering evidence, and pushing to have problems fixed. It is adapted from seven years of standards, independent quality assessment, and mystery shopping in public services, now pointed at AI. At its heart is a ready-to-use Assessment Card you can apply to any AI bot today.",
+      "Companies are building internal control over their AI, they call it AI governance. But that control serves the company. The other side of the counter, the consumer's side, stands almost empty. This guide hands you that side: a simple, proven method for judging the quality of any AI service from your own experience, gathering evidence, and pushing to have problems fixed. It is adapted from seven years of standards, independent quality assessment, and test purchases in public services, now pointed at AI. At its heart is a ready-to-use Assessment Card you can apply to any AI bot today.",
     includes: [
       "What consumer control is, and how it differs from corporate AI governance",
       "The four-step method: observe, gather evidence, assess, demand action",

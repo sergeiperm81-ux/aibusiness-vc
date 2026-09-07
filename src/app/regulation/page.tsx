@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { regulations } from "@/data/regulations";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/regulation" },
   title: "AI Regulation Tracker — Global AI Laws & Policies (2026)",
   description:
     "Track AI regulations worldwide. EU AI Act, US executive orders, China's AI rules, and more. Status, requirements, and penalties for every major country.",

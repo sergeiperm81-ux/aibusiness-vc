@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { getAllComparisons } from "@/data/comparisons";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/compare" },
   title: "AI Model Comparisons — Head-to-Head LLM Battles (2026)",
   description:
     "Compare AI models side-by-side. GPT-4 vs Claude, Gemini vs DeepSeek, and more. Benchmarks, pricing, and which model is best for your use case.",

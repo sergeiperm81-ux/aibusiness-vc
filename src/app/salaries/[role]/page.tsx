@@ -15,6 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!s) return { title: "Role Not Found" };
   return {
     title: `${s.role} Salary 2026 — ${s.avgSalary} Average (${s.salaryRange})`,
+    alternates: { canonical: `/salaries/${role}` },
     description: `${s.role} salary: ${s.avgSalary} average, range ${s.salaryRange}. Demand growth: ${s.demandGrowth}. Skills: ${s.skills.slice(0, 3).join(", ")}. ${s.description}`,
   };
 }

@@ -3,6 +3,7 @@ import { getArticlesBySection } from "@/lib/articles";
 import SectionArticleExplorer from "@/components/SectionArticleExplorer";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/vc" },
   title: "VC — Venture Capital & AI Investment (2026)",
   description:
     "AI venture capital: funds, accelerators, impact investing, funding rounds. Who invests in AI and how much they earn.",

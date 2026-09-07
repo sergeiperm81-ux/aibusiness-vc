@@ -3,6 +3,7 @@ import { getArticlesBySection } from "@/lib/articles";
 import SectionArticleExplorer from "@/components/SectionArticleExplorer";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/society" },
   title: "AI & Society — How AI Is Reshaping the World",
   description:
     "Thoughtful analysis of AI's impact on jobs, education, creativity, trust, and daily life. Beyond the hype — what actually changes.",

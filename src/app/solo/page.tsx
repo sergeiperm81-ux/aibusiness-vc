@@ -3,6 +3,7 @@ import { getArticlesBySection } from "@/lib/articles";
 import SectionArticleExplorer from "@/components/SectionArticleExplorer";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/solo" },
   title: "Solo — Make Money with AI as an Individual (2026)",
   description:
     "How individuals earn money with AI. Freelancing, digital products, content creation, side hustles. Real income data and step-by-step guides.",

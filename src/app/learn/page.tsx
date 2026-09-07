@@ -3,6 +3,7 @@ import { getArticlesBySection } from "@/lib/articles";
 import SectionArticleExplorer from "@/components/SectionArticleExplorer";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/learn" },
   title: "Learn AI — Best Courses, Books & Resources (2026)",
   description:
     "Curated collection of the best AI learning resources. Courses, certifications, books, and tutorials.",

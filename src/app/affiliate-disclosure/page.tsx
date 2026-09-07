@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/affiliate-disclosure" },
   title: "Affiliate Disclosure — How AI Business Earns Revenue",
   description:
     "Full transparency on how aibusiness.vc earns money through affiliate partnerships. Which tools we promote, how commissions work, and our editorial policy.",

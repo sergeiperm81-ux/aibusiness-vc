@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { salaries } from "@/data/salaries";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/salaries" },
   title: "AI Salaries 2026 — What Every AI Role Pays",
   description:
     "Complete AI salary guide for 2026. From data annotators ($35K) to Chief AI Officers ($643K). Salary ranges, demand growth, top companies, and skills needed.",
