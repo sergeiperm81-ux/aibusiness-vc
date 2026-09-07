@@ -96,9 +96,38 @@ const SYMPTOMS = [
 ];
 
 const LAYERS = [
-  "What your company promised.",
-  "What the agent said.",
-  "What your systems actually recorded.",
+  {
+    n: "01",
+    text: "What your company promised.",
+    note: "Scattered across your site, your terms and your sales pages. Nowhere in your logs.",
+    outside: true,
+  },
+  {
+    n: "02",
+    text: "What the agent said.",
+    note: "In your transcripts.",
+    outside: false,
+  },
+  {
+    n: "03",
+    text: "What your systems actually recorded.",
+    note: "In your operations log.",
+    outside: false,
+  },
+];
+
+/** The contrast that does the arguing in section three. */
+const STARTS = [
+  {
+    title: "Where your own testing starts",
+    body: "The cases you imagined the agent might meet. Your evals and prompt reviews are good at those, and nothing here replaces them.",
+    lead: false,
+  },
+  {
+    title: "Where a test purchase starts",
+    body: "What your company promised, in public and in writing. Then backwards, to whether the agent honours it for a stranger.",
+    lead: true,
+  },
 ];
 
 const GAINS = [
@@ -319,131 +348,204 @@ export default function ServiceCheckPage() {
         </div>
       </section>
 
-      {/* 2. Recognition, lightest symptom first */}
-      <section className="border-y border-black/5 bg-white">
+      {/* 2. Recognition. Cards, with the heaviest symptom set apart. */}
+      <section className="bg-[#ebebed]">
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
           <h2 className="mb-8 text-2xl font-bold tracking-tight text-black sm:text-3xl">
             Any of this sound familiar?
           </h2>
-          <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            {SYMPTOMS.map((s) => (
-              <li key={s} className="flex gap-3 text-base leading-relaxed text-black/75">
-                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            {SYMPTOMS.slice(0, 4).map((s) => (
+              <div
+                key={s}
+                className="rounded-2xl border border-black/10 bg-white p-6 text-base leading-relaxed text-black/75"
+              >
                 {s}
-              </li>
+              </div>
             ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* 3. Send the false cause away before offering anything */}
-      <section className="bg-background">
-        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-          <h2 className="mb-6 text-2xl font-bold tracking-tight text-white sm:text-3xl">
-            You already test it. Here is what that cannot reach.
-          </h2>
-          <div className="space-y-4 text-lg leading-relaxed text-white/70">
-            <p>
-              Your own tests, your evals and your prompt reviews all start in the same
-              place: the cases you imagined the agent might meet. They are good at that,
-              and they should keep being good at it. Nothing here replaces them.
-            </p>
-            <p className="text-white/90">
-              A test purchase starts somewhere else. It starts from what your company
-              promised, in public and in writing, and works backwards to whether the agent
-              honours it. The findings that hurt were never in the scenarios you wrote.
-              They are in the ones nobody thought to write.
+          </div>
+          <div className="mt-4 rounded-2xl bg-black p-7">
+            <p className="text-lg font-bold leading-snug text-white sm:text-xl">
+              {SYMPTOMS[4]}
             </p>
           </div>
         </div>
       </section>
 
-      {/* 4. The real gap, in three lines and a pause */}
+      {/* 3. The false cause, argued as a contrast rather than a paragraph */}
+      <section className="bg-background">
+        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+          <h2 className="mb-8 text-2xl font-bold tracking-tight text-white sm:text-3xl">
+            You already test it. Here is what that cannot reach.
+          </h2>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            {STARTS.map((s) => (
+              <div
+                key={s.title}
+                className={
+                  s.lead
+                    ? "rounded-2xl border-2 border-accent bg-card-bg p-7"
+                    : "rounded-2xl border border-card-border bg-card-bg/60 p-7"
+                }
+              >
+                <h3
+                  className={
+                    s.lead
+                      ? "text-lg font-bold text-accent"
+                      : "text-lg font-bold text-white/60"
+                  }
+                >
+                  {s.title}
+                </h3>
+                <p className="mt-3 text-base leading-relaxed text-white/75">{s.body}</p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-6 rounded-2xl border border-card-border bg-card-bg p-7 text-lg leading-relaxed text-white/90">
+            The findings that hurt were never in the scenarios you wrote. They are in the
+            ones nobody thought to write.
+          </p>
+        </div>
+      </section>
+
+      {/* 4. The real gap, as three cards and a verdict */}
       <section className="bg-accent">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold tracking-tight text-black sm:text-3xl">
             Three layers, and you hold two of them.
           </h2>
-          <ol className="mt-8 space-y-3">
-            {LAYERS.map((l, i) => (
-              <li
-                key={l}
-                className="flex items-baseline gap-4 text-xl font-bold leading-snug text-black sm:text-2xl"
+          <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3">
+            {LAYERS.map((l) => (
+              <div
+                key={l.n}
+                className={
+                  l.outside
+                    ? "rounded-2xl bg-black p-6"
+                    : "rounded-2xl border border-black/15 bg-white p-6"
+                }
               >
-                <span className="font-mono text-base text-black/40">{i + 1}</span>
-                {l}
-              </li>
+                <span
+                  className={
+                    l.outside
+                      ? "font-mono text-xs font-bold text-accent"
+                      : "font-mono text-xs font-bold text-black/40"
+                  }
+                >
+                  {l.n}
+                </span>
+                <p
+                  className={
+                    l.outside
+                      ? "mt-3 text-xl font-bold leading-snug text-white"
+                      : "mt-3 text-xl font-bold leading-snug text-black"
+                  }
+                >
+                  {l.text}
+                </p>
+                <p
+                  className={
+                    l.outside
+                      ? "mt-3 text-sm leading-relaxed text-white/60"
+                      : "mt-3 text-sm leading-relaxed text-black/55"
+                  }
+                >
+                  {l.note}
+                </p>
+              </div>
             ))}
-          </ol>
-          <p className="mt-8 text-lg leading-relaxed text-black/80">
-            Your logs hold the second and the third, and comparing them is engineering you
-            can do yourself. The gap that costs money is between the first and the second,
-            and nobody inside the company is placed to see it. You wrote the promise. You
-            cannot also be the stranger who tests it.
-          </p>
-        </div>
-      </section>
-
-      {/* 5. The moment of understanding, not the conclusion */}
-      <section className="bg-background">
-        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-          <p className="mb-3 font-mono text-xs font-semibold uppercase tracking-[0.18em] text-accent">
-            From the reference pilot
-          </p>
-          <h2 className="mb-6 text-2xl font-bold tracking-tight text-white sm:text-3xl">
-            What that gap looks like when you find it
-          </h2>
-          <div className="space-y-4 text-lg leading-relaxed text-white/70">
-            <p>
-              The method was run end to end with{" "}
-              <a
-                href="https://neomundi.io"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-semibold text-accent hover:underline"
-              >
-                NeoMundi
-              </a>
-              , a Swiss company working in AI metrology, in a controlled environment built
-              for the purpose: an estate agency with a booking service, one model playing
-              the seller and another the customer, real bookings with real identifiers and
-              a log protected against backdating.
-            </p>
-            <p className="text-white/90">
-              The agent completed the journey cleanly. In its closing receipt it gave the
-              customer the email address of an employee who exists in no document of that
-              company. The transcript showed nothing wrong. Reconciliation against the log
-              found it in a second.
-            </p>
-            <p>
-              Everything from that pilot is public:{" "}
-              <a
-                href={REPO}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-semibold text-accent hover:underline"
-              >
-                code, prompts, runs and defects
-              </a>
-              .
+          </div>
+          <div className="mt-6 rounded-2xl border-2 border-black bg-white p-7">
+            <p className="text-lg leading-relaxed text-black/80">
+              Comparing the second and the third is engineering you can do yourself. The
+              gap that costs money is between the first and the second, and nobody inside
+              the company is placed to see it. You wrote the promise. You cannot also be
+              the stranger who tests it.
             </p>
           </div>
         </div>
       </section>
 
-      {/* 6. Take the blame off the reader */}
-      <section className="border-y border-black/5 bg-white">
+      {/* 5. The moment of understanding, with the finding pulled out */}
+      <section className="bg-background">
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-          <h2 className="mb-6 text-2xl font-bold tracking-tight text-black sm:text-3xl">
+          <p className="mb-3 font-mono text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+            From the reference pilot
+          </p>
+          <h2 className="mb-8 text-2xl font-bold tracking-tight text-white sm:text-3xl">
+            What that gap looks like when you find it
+          </h2>
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_1.1fr]">
+            <div className="rounded-2xl border border-card-border bg-card-bg p-7">
+              <h3 className="text-lg font-bold text-white">The setup</h3>
+              <p className="mt-3 text-base leading-relaxed text-white/70">
+                The method was run end to end with{" "}
+                <a
+                  href="https://neomundi.io"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-accent hover:underline"
+                >
+                  NeoMundi
+                </a>
+                , a Swiss company working in AI metrology, in a controlled environment
+                built for the purpose: an estate agency with a booking service, one model
+                playing the seller and another the customer, real bookings with real
+                identifiers and a log protected against backdating.
+              </p>
+              <a
+                href={REPO}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-5 inline-block rounded-lg bg-accent px-5 py-2.5 text-sm font-bold text-black transition hover:brightness-95"
+              >
+                Code, prompts, runs and defects &rarr;
+              </a>
+            </div>
+            <div className="rounded-2xl border-l-4 border-accent bg-card-bg p-7">
+              <h3 className="text-lg font-bold text-accent">What it found</h3>
+              <p className="mt-3 text-lg leading-relaxed text-white/90">
+                The agent completed the journey cleanly. In its closing receipt it gave
+                the customer the email address of an employee who exists in no document of
+                that company.
+              </p>
+              <p className="mt-4 text-base leading-relaxed text-white/70">
+                The transcript showed nothing wrong. Reconciliation against the log found
+                it in a second.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. Blame off the reader, shown rather than argued */}
+      <section className="bg-[#ebebed]">
+        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+          <h2 className="mb-3 text-2xl font-bold tracking-tight text-black sm:text-3xl">
             This is not carelessness on your side.
           </h2>
-          <div className="space-y-4 text-lg leading-relaxed text-black/75">
-            <p>
-              In the same pilot we tested the test. Two identical purchases: one with a
-              genuine receipt, one with the record deliberately deleted. Both scored
-              identically on the measurement platform.
-            </p>
-            <p className="text-black">
+          <p className="mb-8 text-base leading-relaxed text-black/65">
+            In the same pilot we tested the test. Two identical purchases went through the
+            measurement platform.
+          </p>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <div className="rounded-2xl border border-black/10 bg-white p-6">
+              <p className="font-mono text-xs font-bold uppercase tracking-wider text-black/40">
+                Purchase A
+              </p>
+              <p className="mt-2 text-lg font-bold text-black">A genuine receipt</p>
+            </div>
+            <div className="rounded-2xl border border-black/10 bg-white p-6">
+              <p className="font-mono text-xs font-bold uppercase tracking-wider text-black/40">
+                Purchase B
+              </p>
+              <p className="mt-2 text-lg font-bold text-black">
+                The record deliberately deleted
+              </p>
+            </div>
+          </div>
+          <div className="mt-4 rounded-2xl bg-black p-7">
+            <p className="text-xl font-bold text-accent sm:text-2xl">Identical scores.</p>
+            <p className="mt-3 text-base leading-relaxed text-white/75">
               If an instrument built for this cannot tell those two apart from behaviour
               alone, no amount of diligence inside your company will either. That is the
               line between measuring what a system does and checking what it promised, and
@@ -471,7 +573,7 @@ export default function ServiceCheckPage() {
             ))}
           </div>
 
-          <div className="mt-8 rounded-2xl border border-card-border bg-card-bg p-7">
+          <div className="mt-6 rounded-2xl border-2 border-accent/60 bg-card-bg p-7">
             <p className="font-mono text-xs font-bold uppercase tracking-wider text-accent">
               In the pack
             </p>
@@ -483,7 +585,7 @@ export default function ServiceCheckPage() {
                 </p>
               ))}
             </div>
-            <p className="mt-5 text-sm leading-relaxed text-white/50">
+            <p className="mt-5 border-t border-card-border pt-4 text-sm leading-relaxed text-white/50">
               The registry records that your service is checked and when. The findings
               themselves stay between us:{" "}
               <Link href="/tested" className="font-semibold text-accent hover:underline">
@@ -496,7 +598,7 @@ export default function ServiceCheckPage() {
       </section>
 
       {/* 8. How it works */}
-      <section className="border-y border-black/5 bg-white">
+      <section className="bg-white">
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
           <h2 className="mb-3 text-2xl font-bold tracking-tight text-black sm:text-3xl">
             How it works
@@ -507,7 +609,10 @@ export default function ServiceCheckPage() {
           </p>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
             {PROCESS.map((s) => (
-              <div key={s.n} className="rounded-2xl border border-black/10 p-6">
+              <div
+                key={s.n}
+                className="rounded-2xl border border-black/10 bg-[#f6f6f7] p-6"
+              >
                 <span className="font-mono text-xs font-bold text-amber-600">{s.n}</span>
                 <h3 className="mt-3 text-lg font-bold text-black">{s.title}</h3>
                 <p className="mt-2 text-base leading-relaxed text-black/70">{s.body}</p>
@@ -517,16 +622,19 @@ export default function ServiceCheckPage() {
         </div>
       </section>
 
-      {/* 9. Objections, said out loud */}
+      {/* 9. Objections, each in its own card */}
       <section className="bg-background">
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
           <h2 className="mb-8 text-2xl font-bold tracking-tight text-white sm:text-3xl">
             Said out loud
           </h2>
-          <div className="grid grid-cols-1 gap-7 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             {FAQS.map((f) => (
-              <div key={f.q}>
-                <h3 className="text-lg font-bold text-white">{f.q}</h3>
+              <div
+                key={f.q}
+                className="rounded-2xl border border-card-border bg-card-bg p-6"
+              >
+                <h3 className="text-lg font-bold text-accent">{f.q}</h3>
                 <p className="mt-2 text-base leading-relaxed text-white/70">{f.a}</p>
               </div>
             ))}
@@ -535,53 +643,60 @@ export default function ServiceCheckPage() {
       </section>
 
       {/* 10. Who should not buy this */}
-      <section className="border-y border-black/5 bg-white">
+      <section className="bg-[#ebebed]">
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
           <h2 className="mb-8 text-2xl font-bold tracking-tight text-black sm:text-3xl">
             Who this is not for
           </h2>
-          <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            {NOT_FOR.map((n) => (
-              <li key={n} className="flex gap-3 text-base leading-relaxed text-black/75">
-                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-black/25" />
-                {n}
-              </li>
-            ))}
-          </ul>
+          <div className="rounded-2xl border border-black/10 bg-white p-7 sm:p-8">
+            <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              {NOT_FOR.map((n) => (
+                <li key={n} className="flex gap-3 text-base leading-relaxed text-black/75">
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-black/25" />
+                  {n}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 
-      {/* 11. The offer: a free first step instead of a price */}
+      {/* 11. The offer, in the card the price block used to occupy */}
       <section className="bg-accent">
-        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold tracking-tight text-black sm:text-4xl">
-            Step one is free.
-          </h2>
-          <div className="mt-6 space-y-4 text-lg leading-relaxed text-black/80">
-            <p className="text-black">
-              Send a link. Within a few working days you get one of two answers: here is
-              what I would check and what it would involve, or this service cannot be
-              checked this way and here is why.
+        <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+          <div className="rounded-2xl border-2 border-black bg-white p-8 sm:p-10">
+            <p className="font-mono text-xs font-bold uppercase tracking-wider text-black/50">
+              Express test purchase
             </p>
-            <p>
-              The price is set after that, for your service. A booking widget with four
-              scripted answers and a bank&apos;s support agent with a hundred rules are
-              not the same job, and pricing them the same would mean one of you is
-              overpaying. Repeat checks and ongoing monitoring are quoted the same way,
-              against requirements that already exist by then.
-            </p>
+            <h2 className="mt-3 text-4xl font-bold tracking-tight text-black sm:text-5xl">
+              Step one is free.
+            </h2>
+            <div className="mt-6 space-y-4 text-lg leading-relaxed text-black/75">
+              <p className="text-black">
+                Send a link. Within a few working days you get one of two answers: here is
+                what I would check and what it would involve, or this service cannot be
+                checked this way and here is why.
+              </p>
+              <p>
+                The price is set after that, for your service. A booking widget with four
+                scripted answers and a bank&apos;s support agent with a hundred rules are
+                not the same job, and pricing them the same would mean one of you is
+                overpaying. Repeat checks and ongoing monitoring are quoted the same way,
+                against requirements that already exist by then.
+              </p>
+            </div>
+            <a
+              href="#apply"
+              className="mt-8 inline-block rounded-lg bg-black px-7 py-3.5 text-base font-bold text-white transition hover:bg-black/85"
+            >
+              Start with a free screening
+            </a>
           </div>
-          <a
-            href="#apply"
-            className="mt-8 inline-block rounded-lg bg-black px-7 py-3.5 text-base font-bold text-white transition hover:bg-black/85"
-          >
-            Start with a free screening
-          </a>
         </div>
       </section>
 
       {/* 12. The one form */}
-      <section id="apply" className="border-b border-black/5 bg-white">
+      <section id="apply" className="bg-white">
         <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold tracking-tight text-black sm:text-3xl">
             Send your application
@@ -590,7 +705,9 @@ export default function ServiceCheckPage() {
             Three fields, and an honest answer within a few working days: either your
             service can be checked and we start, or I tell you why it cannot.
           </p>
-          <TestPurchaseForm />
+          <div className="rounded-2xl border border-black/10 bg-[#f6f6f7] p-7 sm:p-8">
+            <TestPurchaseForm />
+          </div>
         </div>
       </section>
 
@@ -646,7 +763,7 @@ export default function ServiceCheckPage() {
       </section>
 
       {/* 14. If there is no reference standard to measure against */}
-      <section id="documents" className="bg-[#ebebed]">
+      <section id="documents" className="bg-white">
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
           <h2 className="mb-3 text-2xl font-bold tracking-tight text-black sm:text-3xl">
             No reference standard? We can build yours.
@@ -668,42 +785,53 @@ export default function ServiceCheckPage() {
       {/* 15. A different reader entirely, kept short and kept late */}
       <section className="bg-background">
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
-            Funding the company rather than running it?
-          </h2>
-          <p className="mt-3 text-base leading-relaxed text-white/70">
-            A test purchase needs nobody&apos;s permission. I approach the service the way
-            any customer would, using only what is available to anyone, and check it
-            against what the company publishes. For an investor, an accelerator or a fund,
-            that answers a question no pitch deck can: does the product do what the
-            founders say it does, today, for a stranger with no special access and no demo
-            script. The result goes to you alone. Nothing is published, and the company
-            gets no registry record and no badge. This is diligence, not a mark of
-            approval.
-          </p>
-          <p className="mt-4 text-sm font-semibold text-white/60">
-            By arrangement. Write to{" "}
-            <ContactEmail className="font-bold text-accent hover:underline" /> with the
-            service you want looked at.
-          </p>
+          <div className="grid grid-cols-1 gap-6 rounded-2xl border border-card-border bg-card-bg p-7 sm:p-8 lg:grid-cols-[1.4fr_1fr]">
+            <div>
+              <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+                Funding the company rather than running it?
+              </h2>
+              <p className="mt-3 text-base leading-relaxed text-white/70">
+                A test purchase needs nobody&apos;s permission. I approach the service the
+                way any customer would, using only what is available to anyone, and check
+                it against what the company publishes. For an investor, an accelerator or
+                a fund, that answers a question no pitch deck can: does the product do
+                what the founders say it does, today, for a stranger with no special
+                access and no demo script.
+              </p>
+            </div>
+            <div className="rounded-2xl bg-background p-6">
+              <p className="text-base leading-relaxed text-white/80">
+                The result goes to you alone. Nothing is published, and the company gets
+                no registry record and no badge. This is diligence, not a mark of
+                approval.
+              </p>
+              <p className="mt-4 text-sm font-semibold text-white/60">
+                By arrangement. Write to{" "}
+                <ContactEmail className="font-bold text-accent hover:underline" /> with
+                the service you want looked at.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* 16. Limits, then the last door */}
-      <section className="bg-white">
+      <section className="bg-[#ebebed]">
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
           <h2 className="mb-8 text-2xl font-bold tracking-tight text-black sm:text-3xl">
             What this does not do
           </h2>
-          <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            {LIMITS.map((l) => (
-              <li key={l} className="flex gap-3 text-base leading-relaxed text-black/70">
-                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-black/25" />
-                {l}
-              </li>
-            ))}
-          </ul>
-          <div className="mt-10 flex flex-col items-start gap-4 rounded-2xl bg-black p-7 sm:flex-row sm:items-center sm:justify-between">
+          <div className="rounded-2xl border border-black/10 bg-white p-7 sm:p-8">
+            <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              {LIMITS.map((l) => (
+                <li key={l} className="flex gap-3 text-base leading-relaxed text-black/70">
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-black/25" />
+                  {l}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="mt-6 flex flex-col items-start gap-4 rounded-2xl bg-black p-7 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-lg font-bold text-white sm:text-xl">
               One link, and you will know whether this can be checked at all.
             </p>
