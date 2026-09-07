@@ -3,6 +3,7 @@ import { getArticlesBySection } from "@/lib/articles";
 import SectionArticleExplorer from "@/components/SectionArticleExplorer";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/startups" },
   title: "AI Startups — Funding, Launches, and Innovations (2026)",
   description:
     "AI startup news, funding rounds, product launches, and the companies shaping the future of AI.",

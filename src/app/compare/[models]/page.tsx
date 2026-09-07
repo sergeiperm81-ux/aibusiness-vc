@@ -17,6 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!comp) return { title: "Comparison Not Found" };
   return {
     title: `${comp.modelA.name} vs ${comp.modelB.name} — Which AI Model Is Better? (2026)`,
+    alternates: { canonical: `/compare/${slug}` },
     description: `Compare ${comp.modelA.name} vs ${comp.modelB.name}: ELO scores, benchmarks, pricing, context windows, and which one to choose. Updated for 2026.`,
   };
 }

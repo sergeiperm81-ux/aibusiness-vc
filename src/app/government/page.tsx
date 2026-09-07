@@ -3,6 +3,7 @@ import { getArticlesBySection } from "@/lib/articles";
 import SectionArticleExplorer from "@/components/SectionArticleExplorer";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/government" },
   title: "AI Governance — Regulation, Policy & Government AI Initiatives",
   description:
     "EU AI Act, national AI strategies, executive orders, regulatory frameworks, government procurement, and the political economy of AI oversight.",

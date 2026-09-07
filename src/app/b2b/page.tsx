@@ -3,6 +3,7 @@ import { getArticlesBySection } from "@/lib/articles";
 import SectionArticleExplorer from "@/components/SectionArticleExplorer";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/b2b" },
   title: "B2B - AI Implementation for Businesses (2026)",
   description:
     "How businesses implement AI. Case studies, ROI analysis, implementation guides, and lessons from real AI deployments.",
