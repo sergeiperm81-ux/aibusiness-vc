@@ -8,7 +8,7 @@ import { ContactEmail } from "@/components/ContactEmail";
 export const metadata: Metadata = {
   title: "AI Agent Test Purchase: Independent Check",
   description:
-    "An independent test purchase of your AI service: up to twenty agreed requirements for your agent, checked by an outsider, with a verification your customers can scan.",
+    "Your logs show what the agent said. They do not show whether it matched what your company promised. An independent test purchase checks that gap, against requirements agreed with you in advance. Free screening first.",
   alternates: { canonical: "/service-check" },
   // Without these the page inherited the site-wide card, so every shared link
   // showed the homepage headline instead of the service.
@@ -16,15 +16,15 @@ export const metadata: Metadata = {
     type: "article",
     url: "https://aibusiness.vc/service-check",
     siteName: "AI Business",
-    title: "Prove Your AI Does What It Promises",
+    title: "Your Transcripts Look Fine. That Is the Problem.",
     description:
-      "Anyone can claim their AI is accurate and safe. An independent test purchase proves it, and gives you a verification customers can check for themselves.",
+      "The answers that cost you money are the ones that read perfectly. An independent test purchase puts what your agent said next to what your company promised and what your systems recorded.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Prove Your AI Does What It Promises",
+    title: "Your Transcripts Look Fine. That Is the Problem.",
     description:
-      "Anyone can claim their AI is accurate and safe. An independent test purchase proves it.",
+      "An independent test purchase puts what your agent said next to what your company promised.",
   },
 };
 
@@ -33,8 +33,8 @@ const SITE = "https://aibusiness.vc";
 
 /**
  * Structured data for search and AI answer engines. Mirrors visible text and
- * carries no prices: the offer changes, and a figure frozen in a crawler's
- * cache is worse than none.
+ * carries no prices: the price is quoted per service after a free screening,
+ * and a figure frozen in a crawler's cache would be wrong for everyone.
  */
 function structuredData(faqs: readonly { q: string; a: string }[]) {
   return [
@@ -58,13 +58,14 @@ function structuredData(faqs: readonly { q: string; a: string }[]) {
         },
       },
       description:
-        "An independent check of whether a company's AI service does what the company requires of it. The requirements, up to twenty of them, are agreed with the company in advance and frozen, then checked by an outsider working through the service as an ordinary customer. They may come from what the company publishes, or from rules that were never published but matter to the business. The company receives a report with evidence. The public registry records that the service is checked and when, and the company receives a numbered verification with a badge customers can scan.",
+        "An independent check of whether a company's AI service does what the company requires of it. The requirements, up to twenty of them, are agreed with the company in advance and frozen, then checked by an outsider working through the service as an ordinary customer. The company receives a report with evidence. The public registry records that the service is checked and when, and the company receives a numbered verification with a badge customers can scan. Screening is free and the price is quoted per service.",
       hasOfferCatalog: {
         "@type": "OfferCatalog",
         name: "Test purchase services",
         itemListElement: [
+          "Free screening: send a link and find out whether your service can be checked this way, and what checking it would involve",
           "Express test purchase: up to twenty agreed requirements checked, a private report with evidence, and a numbered verification recorded in the public registry",
-          "AI Monitoring: a subscription of two checks a month against the agreed requirements, keeping the public record and the badge current",
+          "Ongoing monitoring: the same agreed requirements re-run on a schedule, keeping the public record and the badge current",
           "Documents for your AI: AI Policy, Service Passport, AI Receipt template and operating rules, written for the service and delivered as a project",
           "Diligence test purchase for investors, accelerators and funds: an independent consumer-side check of a company you are funding, reported privately and never published",
         ].map((name) => ({
@@ -85,26 +86,50 @@ function structuredData(faqs: readonly { q: string; a: string }[]) {
   ];
 }
 
+/** Symptoms, lightest first. The reader should recognise himself without defending himself. */
+const SYMPTOMS = [
+  "You have never read a full week of your agent's conversations. Only the ones a customer complained about.",
+  "Nobody in the company can write down, on a single page, what the agent is not allowed to do.",
+  "Your agent explains your refund rules from memory, and nobody has put its answer next to the policy you actually publish.",
+  "A corporate buyer asked how you prove the agent will not misinform their customers, and the honest answer was a paragraph of adjectives.",
+  "If the agent gave a bad answer last night, you would hear about it from the customer, not from your own monitoring.",
+];
+
+const LAYERS = [
+  "What your company promised.",
+  "What the agent said.",
+  "What your systems actually recorded.",
+];
+
 const GAINS = [
   {
+    title: "You find out first",
+    body: "What your agent promises on your behalf, item by item, with the evidence behind each one. Before a customer finds it, and before it is public.",
+  },
+  {
+    title: "A record instead of a call",
+    body: "“How do you prove your agent will not misinform our customers?” is now a standard question in security reviews. Answer it with a link.",
+  },
+  {
     title: "Proof instead of adjectives",
-    body: "Every competitor calls their AI accurate, safe and reliable. You will be the one who can show an outsider checked, and hand over the record.",
+    body: "Every competitor calls their AI accurate, safe and reliable. You are the one who can show that somebody outside the company checked, and hand over the record.",
   },
-  {
-    title: "Shorter procurement",
-    body: "“How do you prove your agent will not misinform our customers?” is now a standard question in security reviews. Answer it with a link instead of a call.",
-  },
-  {
-    title: "Sleep at night",
-    body: "You stop wondering what the bot says at two in the morning. Somebody has walked the whole journey and written down what happened.",
-  },
+];
+
+const PACK = [
+  "Up to twenty agreed requirements for your agent, checked by an outsider",
+  "A report with the evidence and recommendations, yours either way",
+  "A numbered verification recorded in the public registry",
+  "A badge with a QR code for your site, so customers can check it themselves",
+  "A certificate you can show to buyers, partners and investors",
+  "Repeat checks reuse the requirements agreed the first time, so a second check costs less than the first",
 ];
 
 const PROCESS = [
   {
     n: "01",
     title: "Send your link",
-    body: "I look at your service and tell you within two working days whether it can be checked this way. Free, and no obligation.",
+    body: "Within a few working days you get one of two answers: here is what I would check and what it would involve, or this service cannot be checked this way and here is why. Free, and no obligation.",
   },
   {
     n: "02",
@@ -170,16 +195,20 @@ const ARTIFACTS: readonly Artifact[] = [
   },
 ];
 
-const LIMITS = [
-  "A test purchase sees your service through a customer's eyes, not through your internals.",
-  "One check proves a problem exists, not how often. Frequency needs a series.",
-  "A full score means the agreed requirements held on the day, not that nothing will ever go wrong.",
-  "Scores of different companies are not comparable: the requirements are different every time.",
-  "This is a private, independent check. It is not an accredited conformity assessment.",
-  "Not everything can be checked this way: enterprise rollouts, sales-call-only access and outbound voice campaigns are out of scope.",
-];
-
+/** Said in the reader's own words, and harder than he would put it himself. */
 const FAQS = [
+  {
+    q: "Who are you, and why would your record mean anything?",
+    a: "It is not an accreditation and it does not pretend to be one. It means one thing: the method is published in full, the reference pilot sits in an open repository with its code, prompts and runs, and the person who walked your service does not work for you. You can check me in ten minutes. Nobody outside your company can check your internal testing at all.",
+  },
+  {
+    q: "We already test our own bot.",
+    a: "Then you will recognise most of the report. It is the part you do not recognise that you are paying for. Your tests start from the cases you imagined; this one starts from what your company promised in public and works back to whether the agent honours it.",
+  },
+  {
+    q: "Why will you not name a price?",
+    a: "Because one number for everyone has to be set high enough to cover the hard cases, and then the simple ones pay for that margin. A booking widget with four scripted answers and a bank's support agent with a hundred rules are not the same job. The screening is free, and the number comes before you owe anything.",
+  },
   {
     q: "What if the result is bad?",
     a: "Then you are the only one who sees it. The findings go to you and nowhere else: I do not publish what a check found. The registry records that your service is checked and when, not how it scored on any given item.",
@@ -201,13 +230,26 @@ const FAQS = [
     a: "No. Red teaming attacks the model to find what it can be made to do. A test purchase checks whether your agent meets the requirements you set for it, as an ordinary customer would experience them.",
   },
   {
-    q: "We don't have a bot yet.",
-    a: "Then there is nothing to test-purchase, but there is a cheaper moment to fix things: before it is built. The service standard (a policy, a service passport and a receipt template) can be written first and handed to your developers as requirements.",
-  },
-  {
     q: "What do you need from us?",
     a: "A link. That is all for an express check. Where paid access is needed, anything up to €50 is on me; more than that we agree in advance. I never use a test account you provide: that would tell you exactly who is checking.",
   },
+];
+
+/** This block earns more trust than any testimonial, so it stays. */
+const NOT_FOR = [
+  "Companies with no customer-facing agent yet. There is nothing to walk through, and the documents are the cheaper thing to do first.",
+  "Enterprise rollouts behind a login that no member of the public can reach.",
+  "Products where the only way in is a sales call. A demo script is not a service.",
+  "Outbound voice campaigns. Different craft, different consent rules.",
+  "Anyone who wants a mark of approval rather than a finding. If your agent does not hold, the report says so, and you paid for it.",
+];
+
+const LIMITS = [
+  "A test purchase sees your service through a customer's eyes, not through your internals.",
+  "One check proves a problem exists, not how often. Frequency needs a series.",
+  "A full score means the agreed requirements held on the day, not that nothing will ever go wrong.",
+  "Scores of different companies are not comparable: the requirements are different every time.",
+  "This is a private, independent check. It is not an accredited conformity assessment.",
 ];
 
 /** The Swiss flag, drawn rather than fetched. */
@@ -234,35 +276,36 @@ export default function ServiceCheckPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData(FAQS)) }}
       />
 
-      {/* 1. The problem, in the customer's words */}
+      {/* 1. Deny what the reader thought the problem was */}
       <section className="bg-background">
         <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 py-14 sm:px-6 sm:py-20 lg:grid-cols-[1.5fr_auto] lg:px-8">
           <div>
-          <p className="mb-4 font-mono text-xs font-semibold uppercase tracking-[0.18em] text-accent">
-            Tested by AI Business
-          </p>
-          <h1 className="mb-6 max-w-4xl text-3xl font-bold leading-[1.05] tracking-tight text-white sm:text-4xl lg:text-5xl">
-            Prove your AI does what it promises.
-          </h1>
-          <div className="max-w-3xl space-y-4 text-lg leading-relaxed text-white/70">
-            <p className="text-white/90">
-              An independent test purchase: we agree the requirements for your agent, then
-              I walk through your service as an ordinary customer and give you evidence
-              your customers and buyers can check for themselves.
+            <p className="mb-4 font-mono text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+              Tested by AI Business
             </p>
-            <p>
-              Trust is the hardest thing to earn for an AI product. A claim earns none of
-              it. A verification with a date, a method and a public record does.
-            </p>
-          </div>
-          <div className="mt-8 flex flex-wrap items-center gap-4">
-            <a
-              href="#order"
-              className="inline-block rounded-lg bg-accent px-7 py-3.5 text-base font-bold text-black transition hover:brightness-95"
-            >
-              Order a test purchase
-            </a>
-          </div>
+            <h1 className="mb-6 text-3xl font-bold leading-[1.05] tracking-tight text-white sm:text-4xl lg:text-5xl">
+              Your transcripts look fine. That is the problem.
+            </h1>
+            <div className="space-y-4 text-lg leading-relaxed text-white/70">
+              <p className="text-white/90">
+                The answers that cost you money are the ones that read perfectly. They
+                only surface when somebody puts what your agent said next to what your
+                company promised, and next to what your systems actually recorded.
+              </p>
+              <p>
+                That is what an independent test purchase does. We agree the requirements
+                for your agent in advance, then I walk through your service as an ordinary
+                customer and hand you the evidence.
+              </p>
+            </div>
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <a
+                href="#apply"
+                className="inline-block rounded-lg bg-accent px-7 py-3.5 text-base font-bold text-black transition hover:brightness-95"
+              >
+                Start with a free screening
+              </a>
+            </div>
           </div>
 
           <Image
@@ -276,188 +319,209 @@ export default function ServiceCheckPage() {
         </div>
       </section>
 
-      {/* 2. What you get out of it */}
+      {/* 2. Recognition, lightest symptom first */}
       <section className="border-y border-black/5 bg-white">
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
           <h2 className="mb-8 text-2xl font-bold tracking-tight text-black sm:text-3xl">
-            What it buys you
+            Any of this sound familiar?
+          </h2>
+          <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            {SYMPTOMS.map((s) => (
+              <li key={s} className="flex gap-3 text-base leading-relaxed text-black/75">
+                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                {s}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* 3. Send the false cause away before offering anything */}
+      <section className="bg-background">
+        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+          <h2 className="mb-6 text-2xl font-bold tracking-tight text-white sm:text-3xl">
+            You already test it. Here is what that cannot reach.
+          </h2>
+          <div className="space-y-4 text-lg leading-relaxed text-white/70">
+            <p>
+              Your own tests, your evals and your prompt reviews all start in the same
+              place: the cases you imagined the agent might meet. They are good at that,
+              and they should keep being good at it. Nothing here replaces them.
+            </p>
+            <p className="text-white/90">
+              A test purchase starts somewhere else. It starts from what your company
+              promised, in public and in writing, and works backwards to whether the agent
+              honours it. The findings that hurt were never in the scenarios you wrote.
+              They are in the ones nobody thought to write.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. The real gap, in three lines and a pause */}
+      <section className="bg-accent">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold tracking-tight text-black sm:text-3xl">
+            Three layers, and you hold two of them.
+          </h2>
+          <ol className="mt-8 space-y-3">
+            {LAYERS.map((l, i) => (
+              <li
+                key={l}
+                className="flex items-baseline gap-4 text-xl font-bold leading-snug text-black sm:text-2xl"
+              >
+                <span className="font-mono text-base text-black/40">{i + 1}</span>
+                {l}
+              </li>
+            ))}
+          </ol>
+          <p className="mt-8 text-lg leading-relaxed text-black/80">
+            Your logs hold the second and the third, and comparing them is engineering you
+            can do yourself. The gap that costs money is between the first and the second,
+            and nobody inside the company is placed to see it. You wrote the promise. You
+            cannot also be the stranger who tests it.
+          </p>
+        </div>
+      </section>
+
+      {/* 5. The moment of understanding, not the conclusion */}
+      <section className="bg-background">
+        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+          <p className="mb-3 font-mono text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+            From the reference pilot
+          </p>
+          <h2 className="mb-6 text-2xl font-bold tracking-tight text-white sm:text-3xl">
+            What that gap looks like when you find it
+          </h2>
+          <div className="space-y-4 text-lg leading-relaxed text-white/70">
+            <p>
+              The method was run end to end with{" "}
+              <a
+                href="https://neomundi.io"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-accent hover:underline"
+              >
+                NeoMundi
+              </a>
+              , a Swiss company working in AI metrology, in a controlled environment built
+              for the purpose: an estate agency with a booking service, one model playing
+              the seller and another the customer, real bookings with real identifiers and
+              a log protected against backdating.
+            </p>
+            <p className="text-white/90">
+              The agent completed the journey cleanly. In its closing receipt it gave the
+              customer the email address of an employee who exists in no document of that
+              company. The transcript showed nothing wrong. Reconciliation against the log
+              found it in a second.
+            </p>
+            <p>
+              Everything from that pilot is public:{" "}
+              <a
+                href={REPO}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-accent hover:underline"
+              >
+                code, prompts, runs and defects
+              </a>
+              .
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. Take the blame off the reader */}
+      <section className="border-y border-black/5 bg-white">
+        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+          <h2 className="mb-6 text-2xl font-bold tracking-tight text-black sm:text-3xl">
+            This is not carelessness on your side.
+          </h2>
+          <div className="space-y-4 text-lg leading-relaxed text-black/75">
+            <p>
+              In the same pilot we tested the test. Two identical purchases: one with a
+              genuine receipt, one with the record deliberately deleted. Both scored
+              identically on the measurement platform.
+            </p>
+            <p className="text-black">
+              If an instrument built for this cannot tell those two apart from behaviour
+              alone, no amount of diligence inside your company will either. That is the
+              line between measuring what a system does and checking what it promised, and
+              it is a property of the setup rather than a comment on your team.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 7. What the reader walks away with */}
+      <section className="bg-background">
+        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+          <h2 className="mb-8 text-2xl font-bold tracking-tight text-white sm:text-3xl">
+            What you walk away with
           </h2>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             {GAINS.map((g) => (
-              <div key={g.title} className="rounded-2xl border border-black/10 p-6">
-                <h3 className="text-lg font-bold text-black">{g.title}</h3>
-                <p className="mt-2 text-base leading-relaxed text-black/70">{g.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 4. How it works */}
-      <section className="border-b border-card-border bg-background">
-        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-          <h2 className="mb-3 text-2xl font-bold tracking-tight text-white sm:text-3xl">
-            How it works
-          </h2>
-          <p className="mb-8 max-w-3xl text-base leading-relaxed text-white/60">
-            About a week from start to finish, and you are in control of the only decision
-            that matters.
-          </p>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {PROCESS.map((s) => (
               <div
-                key={s.n}
+                key={g.title}
                 className="rounded-2xl border border-card-border bg-card-bg p-6"
               >
-                <span className="font-mono text-xs font-bold text-accent">{s.n}</span>
-                <h3 className="mt-3 text-lg font-bold text-white">{s.title}</h3>
-                <p className="mt-2 text-base leading-relaxed text-white/70">{s.body}</p>
+                <h3 className="text-lg font-bold text-white">{g.title}</h3>
+                <p className="mt-2 text-base leading-relaxed text-white/70">{g.body}</p>
               </div>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* For the people funding it, not running it */}
-      <section className="bg-accent">
-        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1.3fr_1fr] lg:items-center">
-            <div>
-              <h2 className="text-2xl font-bold tracking-tight text-black sm:text-3xl">
-                Funding the company rather than running it?
-              </h2>
-              <p className="mt-3 text-base leading-relaxed text-black/80">
-                A test purchase needs nobody&apos;s permission. I approach the service the
-                way any customer would, using only what is available to anyone, and check
-                it against what the company publishes. For an investor, an accelerator or
-                a fund, that answers a question no pitch deck can: does the product do
-                what the founders say it does, today, for a stranger with no special
-                access and no demo script.
-              </p>
-            </div>
-            <div className="rounded-2xl bg-background p-6">
-              <p className="text-base leading-relaxed text-white/80">
-                The result goes to you alone. Nothing is published, and the company gets
-                no registry record or badge. This is diligence, not a mark of approval.
-              </p>
-              <p className="mt-4 text-sm font-semibold text-white/60">
-                By arrangement. Write to{" "}
-                <ContactEmail className="font-bold text-accent hover:underline" /> with
-                the service you want looked at.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Prices */}
-      <section id="order" className="border-b border-black/10 bg-[#ebebed]">
-        <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
-          <div className="rounded-2xl border-2 border-black bg-white p-8 sm:p-10">
-            <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
-              <div>
-                <p className="font-mono text-xs font-bold uppercase tracking-wider text-black/50">
-                  Express test purchase
-                </p>
-                <div className="mt-3 flex items-end gap-4">
-                  <p className="text-6xl font-bold text-black">&euro;199</p>
-                  <p className="pb-2 text-3xl font-bold text-black/30 line-through">
-                    &euro;399
-                  </p>
-                </div>
-                <p className="mt-2 text-sm font-semibold text-black/55">
-                  Introductory price for the first companies in the registry.
-                </p>
-              </div>
-              <a
-                href="#apply"
-                className="shrink-0 rounded-lg bg-accent px-7 py-3.5 text-base font-bold text-black transition hover:brightness-95"
-              >
-                Order a test purchase
-              </a>
-            </div>
-
-            <div className="mt-8 grid grid-cols-1 gap-x-8 gap-y-3 border-t border-black/10 pt-6 sm:grid-cols-2">
-              {[
-                "Up to twenty agreed requirements for your agent, checked by an outsider",
-                "A report with evidence and recommendations, yours either way",
-                "A numbered verification recorded in the public registry",
-                "A badge with a QR code for your site, so customers can check it",
-                "A certificate you can show to buyers, partners and investors",
-                "50% off your next check, valid three months",
-              ].map((item) => (
-                <p key={item} className="flex gap-3 text-base leading-relaxed text-black/80">
+          <div className="mt-8 rounded-2xl border border-card-border bg-card-bg p-7">
+            <p className="font-mono text-xs font-bold uppercase tracking-wider text-accent">
+              In the pack
+            </p>
+            <div className="mt-5 grid grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2">
+              {PACK.map((item) => (
+                <p key={item} className="flex gap-3 text-base leading-relaxed text-white/80">
                   <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
                   {item}
                 </p>
               ))}
             </div>
-            <p className="mt-5 text-sm text-black/50">
+            <p className="mt-5 text-sm leading-relaxed text-white/50">
               The registry records that your service is checked and when. The findings
               themselves stay between us:{" "}
-              <Link href="/tested" className="font-semibold text-amber-600 hover:underline">
+              <Link href="/tested" className="font-semibold text-accent hover:underline">
                 see the registry
               </Link>
               .
             </p>
           </div>
+        </div>
+      </section>
 
-          <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
-            <div className="rounded-2xl border-2 border-accent/70 bg-white p-6">
-              <h3 className="text-lg font-bold text-black">AI Monitoring</h3>
-              <p className="mt-2 text-base leading-relaxed text-black/70">
-                One check proves a service worked that day. Two checks a month keep it
-                proven: the same agreed requirements, re-run twice monthly, with the
-                registry record and the date on your badge updating themselves. You hear
-                about any deviation before anyone else does.
-              </p>
-              <p className="mt-3 text-sm font-semibold text-black/60">
-                <span className="text-xl font-bold text-black">&euro;49</span> / month,
-                after a first test purchase.
-              </p>
-            </div>
-            <div className="rounded-2xl border border-black/15 bg-white p-6">
-              <h3 className="text-lg font-bold text-black">Documents for your AI</h3>
-              <p className="mt-2 text-base leading-relaxed text-black/70">
-                The full package, written for your service and yours to keep: an AI
-                Policy, a Service Passport, an AI Receipt template and the operating
-                rules, with the acceptance checks that verify them later. A project
-                rather than a purchase.
-              </p>
-              <p className="mt-3 text-sm font-semibold text-black/60">
-                By arrangement.{" "}
-                <a href="#documents" className="font-bold text-amber-600 hover:underline">
-                  What is in the package &rarr;
-                </a>
-              </p>
-              <p className="mt-2 text-sm leading-relaxed text-black/55">
-                No form for this one: write to <ContactEmail className="font-semibold text-amber-600 hover:underline" /> and
-                tell me about your service.
-              </p>
-            </div>
+      {/* 8. How it works */}
+      <section className="border-y border-black/5 bg-white">
+        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+          <h2 className="mb-3 text-2xl font-bold tracking-tight text-black sm:text-3xl">
+            How it works
+          </h2>
+          <p className="mb-8 text-base leading-relaxed text-black/60">
+            About a week from start to finish, and you are in control of the only decision
+            that matters.
+          </p>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {PROCESS.map((s) => (
+              <div key={s.n} className="rounded-2xl border border-black/10 p-6">
+                <span className="font-mono text-xs font-bold text-amber-600">{s.n}</span>
+                <h3 className="mt-3 text-lg font-bold text-black">{s.title}</h3>
+                <p className="mt-2 text-base leading-relaxed text-black/70">{s.body}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Application */}
-      <section id="apply" className="border-b border-black/5 bg-white">
-        <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold tracking-tight text-black sm:text-3xl">
-            Send your application
-          </h2>
-          <p className="mt-2 mb-8 text-base leading-relaxed text-black/60">
-            Three fields, two working days, an honest answer: either your service can be
-            checked and we start, or I tell you why it cannot.
-          </p>
-          <TestPurchaseForm />
-        </div>
-      </section>
-
-      {/* 7. FAQ */}
-      <section className="border-b border-card-border bg-background">
+      {/* 9. Objections, said out loud */}
+      <section className="bg-background">
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
           <h2 className="mb-8 text-2xl font-bold tracking-tight text-white sm:text-3xl">
-            Common questions
+            Said out loud
           </h2>
           <div className="grid grid-cols-1 gap-7 md:grid-cols-2">
             {FAQS.map((f) => (
@@ -470,8 +534,68 @@ export default function ServiceCheckPage() {
         </div>
       </section>
 
-      {/* 8. Who runs this, and on what method */}
-      <section className="border-b border-card-border bg-card-bg/30">
+      {/* 10. Who should not buy this */}
+      <section className="border-y border-black/5 bg-white">
+        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+          <h2 className="mb-8 text-2xl font-bold tracking-tight text-black sm:text-3xl">
+            Who this is not for
+          </h2>
+          <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            {NOT_FOR.map((n) => (
+              <li key={n} className="flex gap-3 text-base leading-relaxed text-black/75">
+                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-black/25" />
+                {n}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* 11. The offer: a free first step instead of a price */}
+      <section className="bg-accent">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold tracking-tight text-black sm:text-4xl">
+            Step one is free.
+          </h2>
+          <div className="mt-6 space-y-4 text-lg leading-relaxed text-black/80">
+            <p className="text-black">
+              Send a link. Within a few working days you get one of two answers: here is
+              what I would check and what it would involve, or this service cannot be
+              checked this way and here is why.
+            </p>
+            <p>
+              The price is set after that, for your service. A booking widget with four
+              scripted answers and a bank&apos;s support agent with a hundred rules are
+              not the same job, and pricing them the same would mean one of you is
+              overpaying. Repeat checks and ongoing monitoring are quoted the same way,
+              against requirements that already exist by then.
+            </p>
+          </div>
+          <a
+            href="#apply"
+            className="mt-8 inline-block rounded-lg bg-black px-7 py-3.5 text-base font-bold text-white transition hover:bg-black/85"
+          >
+            Start with a free screening
+          </a>
+        </div>
+      </section>
+
+      {/* 12. The one form */}
+      <section id="apply" className="border-b border-black/5 bg-white">
+        <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold tracking-tight text-black sm:text-3xl">
+            Send your application
+          </h2>
+          <p className="mt-2 mb-8 text-base leading-relaxed text-black/60">
+            Three fields, and an honest answer within a few working days: either your
+            service can be checked and we start, or I tell you why it cannot.
+          </p>
+          <TestPurchaseForm />
+        </div>
+      </section>
+
+      {/* 13. For the ones who read this far: the method and who runs it */}
+      <section className="bg-background">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <p className="mb-3 font-mono text-xs font-semibold uppercase tracking-[0.18em] text-accent">
             The method is published. The reference pilot is open.
@@ -481,116 +605,91 @@ export default function ServiceCheckPage() {
             <SwissFlag />
           </h2>
 
-          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1.15fr_1fr]">
-            <div>
-              <h3 className="text-xl font-bold text-white">The reference pilot</h3>
-              <p className="mt-3 text-base leading-relaxed text-white/70">
-                The method is not theory. It was run end to end in partnership with{" "}
-                <a
-                  href="https://neomundi.io"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-semibold text-accent hover:underline"
-                >
-                  NeoMundi
-                </a>
-                , a Swiss company working in AI metrology, in a controlled environment
-                built for the purpose: an estate agency with a booking service, one model
-                playing the seller and another the customer, real bookings with real
-                identifiers and a log protected against backdating.
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+            <div className="rounded-2xl border border-card-border bg-card-bg p-6">
+              <h3 className="text-lg font-bold text-white">The method is published</h3>
+              <p className="mt-2 text-base leading-relaxed text-white/70">
+                The full method behind this service is written up as a 35 page guide: the
+                standard, the forms of a check, how results are scored, the ethics, and
+                the limits. Free to read, no registration. Scheduled monitoring on
+                NeoMundi&apos;s measurement infrastructure, and anything else beyond a
+                standard check, is a conversation rather than a package.
               </p>
-              <p className="mt-3 text-base leading-relaxed text-white/70">
-                The agent completed the journey cleanly and, in its closing receipt, gave
-                the customer the email address of an employee who exists in no document.
-                The transcript showed nothing. Reconciliation against the log found it in a
-                second.
-              </p>
-              <p className="mt-3 text-base leading-relaxed text-white/90">
-                Then we tested the test: two identical purchases, one with a genuine
-                receipt and one with a record deliberately deleted. Both scored identically
-                on the measurement platform. That is the boundary between measuring
-                behaviour and checking a promise, established experimentally rather than
-                asserted.
-              </p>
-              <p className="mt-3 text-base leading-relaxed text-white/70">
-                Scheduled monitoring on their measurement infrastructure, and anything else
-                beyond a standard check, is a conversation rather than a package.
-              </p>
-              <a
-                href={REPO}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-6 inline-block rounded-lg bg-accent px-6 py-3 text-sm font-bold text-black transition hover:brightness-95"
+              <Link
+                href="/library/ai-agent-test-purchase"
+                className="mt-4 inline-block rounded-lg bg-accent px-5 py-2.5 text-sm font-bold text-black transition hover:brightness-95"
               >
-                Open the repository: code, prompts, runs, defects
-              </a>
+                Read the method in the library &rarr;
+              </Link>
             </div>
-
-            <div className="space-y-6">
-              <div className="rounded-2xl border border-card-border bg-card-bg p-6">
-                <h3 className="text-lg font-bold text-white">The method is published</h3>
+            <div className="flex gap-5 rounded-2xl border border-card-border bg-card-bg p-6">
+              <Image
+                src="/images/sergei-desk.png"
+                alt="Sergei Ponomarev"
+                width={96}
+                height={96}
+                className="h-24 w-24 shrink-0 rounded-xl object-cover"
+              />
+              <div>
+                <h3 className="text-lg font-bold text-white">Who runs them</h3>
                 <p className="mt-2 text-base leading-relaxed text-white/70">
-                  The full method behind this service is written up as a 35 page guide: the
-                  standard, the forms of a check, how results are scored, the ethics, and
-                  the limits. Free to read, no registration.
+                  Sergei Ponomarev, PhD in political science. Before AI: hundreds of
+                  independent quality assessments and test purchases of public services, a
+                  monitoring programme run for seven years, and a standard of information
+                  openness written for public authorities. The method is carried over, not
+                  invented.
                 </p>
-                <Link
-                  href="/library/ai-agent-test-purchase"
-                  className="mt-4 inline-block rounded-lg bg-accent px-5 py-2.5 text-sm font-bold text-black transition hover:brightness-95"
-                >
-                  Read the method in the library &rarr;
-                </Link>
-              </div>
-              <div className="flex gap-5 rounded-2xl border border-card-border bg-card-bg p-6">
-                <Image
-                  src="/images/sergei-desk.png"
-                  alt="Sergei Ponomarev"
-                  width={96}
-                  height={96}
-                  className="h-24 w-24 shrink-0 rounded-xl object-cover"
-                />
-                <div>
-                  <h3 className="text-lg font-bold text-white">Who runs them</h3>
-                  <p className="mt-2 text-base leading-relaxed text-white/70">
-                    Sergei Ponomarev, PhD in political science. Before AI: hundreds of
-                    independent quality assessments and test purchases of public services,
-                    a monitoring programme run for seven years, and a standard of
-                    information openness written for public authorities. The method is
-                    carried over, not invented.
-                  </p>
-                  <Link
-                    href="/sergei-ponomarev"
-                    className="mt-4 inline-block rounded-lg bg-accent px-5 py-2.5 text-sm font-bold text-black transition hover:brightness-95"
-                  >
-                    More about me &rarr;
-                  </Link>
-                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 9. Going deeper: the three documents */}
-      <section id="documents" className="border-b border-card-border bg-background">
+      {/* 14. If there is no reference standard to measure against */}
+      <section id="documents" className="bg-[#ebebed]">
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-          <h2 className="mb-3 text-2xl font-bold tracking-tight text-white sm:text-3xl">
+          <h2 className="mb-3 text-2xl font-bold tracking-tight text-black sm:text-3xl">
             No reference standard? We can build yours.
           </h2>
-          <p className="mb-8 max-w-3xl text-base leading-relaxed text-white/60">
+          <p className="mb-8 text-base leading-relaxed text-black/65">
             By default the express check measures your service against a composite: the
             requirements we agree together, drawn from what you publish, what you tell me
             the agent must and must never do, and what regulators and customers reasonably
-            expect.
-            That works, but it is stitched together from the outside. A company that wants
-            a real reference standard of its own gets these three documents, written for
-            it and kept. Arranged separately.
+            expect. That works, but it is stitched together from the outside. A company
+            that wants a reference standard of its own gets these three documents, written
+            for it and kept. Arranged separately: write to{" "}
+            <ContactEmail className="font-semibold text-amber-600 hover:underline" /> and
+            tell me about your service.
           </p>
           <ArtifactTabs artifacts={ARTIFACTS} />
         </div>
       </section>
 
-      {/* 10. Limits */}
+      {/* 15. A different reader entirely, kept short and kept late */}
+      <section className="bg-background">
+        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+            Funding the company rather than running it?
+          </h2>
+          <p className="mt-3 text-base leading-relaxed text-white/70">
+            A test purchase needs nobody&apos;s permission. I approach the service the way
+            any customer would, using only what is available to anyone, and check it
+            against what the company publishes. For an investor, an accelerator or a fund,
+            that answers a question no pitch deck can: does the product do what the
+            founders say it does, today, for a stranger with no special access and no demo
+            script. The result goes to you alone. Nothing is published, and the company
+            gets no registry record and no badge. This is diligence, not a mark of
+            approval.
+          </p>
+          <p className="mt-4 text-sm font-semibold text-white/60">
+            By arrangement. Write to{" "}
+            <ContactEmail className="font-bold text-accent hover:underline" /> with the
+            service you want looked at.
+          </p>
+        </div>
+      </section>
+
+      {/* 16. Limits, then the last door */}
       <section className="bg-white">
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
           <h2 className="mb-8 text-2xl font-bold tracking-tight text-black sm:text-3xl">
@@ -606,13 +705,13 @@ export default function ServiceCheckPage() {
           </ul>
           <div className="mt-10 flex flex-col items-start gap-4 rounded-2xl bg-black p-7 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-lg font-bold text-white sm:text-xl">
-              Ready to find out what your agent actually says?
+              One link, and you will know whether this can be checked at all.
             </p>
             <a
               href="#apply"
               className="shrink-0 rounded-lg bg-accent px-6 py-3 text-sm font-bold text-black transition hover:brightness-95"
             >
-              Order a test purchase
+              Start with a free screening
             </a>
           </div>
         </div>
