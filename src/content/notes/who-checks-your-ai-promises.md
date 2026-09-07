@@ -15,7 +15,7 @@ But they watch it from the server room. Almost nobody walks up to it as a custom
 
 That is where things quietly break. The bot invents a discount. Refuses to fetch a human. Promises Tuesday, delivers never. Nobody notices, until a customer does. And angry customers do not file tickets. They leave.
 
-Offline, we fixed this a hundred years ago with a boring little tool: the test purchase. I spent 20 years doing exactly that, at scale.
+Offline, we fixed this a hundred years ago with a boring little tool: the test purchase. I spent seven years doing exactly that, at scale.
 
 Same trick works on AI. Four pieces, and they click together:
 

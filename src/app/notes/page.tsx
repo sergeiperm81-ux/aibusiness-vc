@@ -19,7 +19,7 @@ export default function NotesPage() {
 
   return (
     <section className="bg-white">
-      {/* Amber banner — the author layer is deliberately the brightest thing on the site */}
+      {/* Amber banner, the author layer is deliberately the brightest thing on the site */}
       <div className="bg-accent">
         <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-8 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[1fr_auto] lg:gap-12 lg:px-8">
           <div>
@@ -33,7 +33,7 @@ export default function NotesPage() {
               Personal observations by{" "}
               <span className="font-semibold text-gray-950">Sergei Ponomarev</span> on AI
               business, service quality, automation, and where the money is moving. Not news,
-              not SEO — just what I actually think, one note at a time.
+              not SEO, just what I actually think, one note at a time.
             </p>
             <div className="mt-6 h-1 w-16 rounded-full bg-black/30" />
           </div>
@@ -79,7 +79,7 @@ export default function NotesPage() {
           />
           <div>
             <p className="text-base leading-relaxed text-gray-700">
-              <span className="font-semibold text-gray-900">Sergei Ponomarev</span> — founder of
+              <span className="font-semibold text-gray-900">Sergei Ponomarev</span>, founder of
               AI Business. Seven years in service quality, standards, and independent assessment,
               now applied to AI.{" "}
               <Link href="/sergei-ponomarev" className="font-semibold text-amber-600 hover:underline">

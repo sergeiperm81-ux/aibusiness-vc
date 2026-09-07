@@ -13,7 +13,7 @@ In 2024 a tribunal in British Columbia ruled that Air Canada was answerable for 
 
 That is the strength of the method: a single documented case establishes that a failure is possible. It is also the limit. One clean run tells you nothing about the next thousand.
 
-I spent 20 years running test purchases in public services. Write the standard first, then walk in as an ordinary citizen and record every gap between promise and practice. The largest project covered over 100 services across 64 regions. Nothing in that discipline breaks when the clerk becomes a bot.
+I spent seven years running test purchases in public services. Write the standard first, then walk in as an ordinary citizen and record every gap between promise and practice. The largest project covered over 100 services across 64 regions. Nothing in that discipline breaks when the clerk becomes a bot.
 
 What does break is the comfortable idea that reading the logs is enough. Logs show what the bot said. They never show what it was supposed to say, and they never show whether the booking it confirmed was actually created.
 

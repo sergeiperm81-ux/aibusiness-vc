@@ -8,9 +8,9 @@ import { ContactEmail } from "@/components/ContactEmail";
 const LINKEDIN_URL = "https://www.linkedin.com/in/sergei-ponomarev/";
 
 export const metadata: Metadata = {
-  title: "An Author's Library — Methods & Tools for an AI That Serves People",
+  title: "An Author's Library: Methods and Tools for an AI That Serves People",
   description:
-    "Original methods and ready-to-use tools for governing AI from the human side — by Sergei Ponomarev, founder of aibusiness.vc. Free guides you can use today.",
+    "Original methods and ready-to-use tools for governing AI from the human side, by Sergei Ponomarev, founder of aibusiness.vc. Free guides you can use today.",
   alternates: { canonical: "/library" },
 };
 
@@ -43,8 +43,8 @@ export default function LibraryPage() {
             <p className="max-w-3xl text-base leading-relaxed text-gray-700">
               This is a personal library: the methods here are my own work, collected and
               published as I develop them. Where a guide draws on someone else&apos;s work, I
-              say so — everything else is mine. Each one takes a single piece of the problem —
-              how to judge an AI service, how to describe one, how to keep it accountable — and
+              say so, everything else is mine. Each one takes a single piece of the problem ,
+              how to judge an AI service, how to describe one, how to keep it accountable, and
               turns it into something you can use today. Built from long practice in standards,
               quality assessment, and civic control, now applied to AI. New methods added
               regularly.
@@ -89,11 +89,11 @@ export default function LibraryPage() {
                 <div>
                   <h2 className="text-lg font-bold text-gray-900">About the author</h2>
                   <p className="mt-3 text-sm leading-relaxed text-gray-700">
-                    <span className="font-semibold text-gray-900">Sergei Ponomarev, PhD</span> —
+                    <span className="font-semibold text-gray-900">Sergei Ponomarev, PhD</span> ,
                     founder of aibusiness.vc and a specialist in assessing service quality from
                     the consumer&apos;s side. A PhD on e-government and seven years leading nationwide
                     quality monitoring, independent assessment and test purchases of public
-                    services — now applied to AI.
+                    services, now applied to AI.
                   </p>
                   <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm">
                     <Link

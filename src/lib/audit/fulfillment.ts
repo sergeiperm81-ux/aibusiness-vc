@@ -1,3 +1,14 @@
+import { createZip, type ZipEntry } from "@/lib/zip";
+import { getLiveQuickAudit } from "@/lib/audit/live";
+import { getBrandKnowledge, type BrandKnowledge } from "@/lib/audit/brand-knowledge";
+import { encodeDomainAsId, type QuickAudit } from "@/lib/audit/mock";
+import { buildAuditReportPdf } from "@/lib/audit/report-pdf";
+import {
+  buildAgentCardJsonLd,
+  buildAgentCardMarkdown,
+  extractAgentCardFacts,
+} from "@/lib/audit/agent-card";
+import { fixFor } from "@/lib/audit/fixes";
 import { promises as fs } from "node:fs";
 import path from "node:path";
 
@@ -28,218 +39,507 @@ function toSlug(value: string): string {
   return value.replace(/[^a-z0-9.-]/g, "").replace(/\./g, "-");
 }
 
-function buildReadme(domain: string, dateStamp: string): string {
+function buildReadme(
+  domain: string,
+  dateStamp: string,
+  hasMeasuredReport: boolean,
+  hasAgentCard: boolean
+): string {
+  const slug = toSlug(domain);
+  const reportLine = hasMeasuredReport
+    ? `1. \`measured-report-${slug}-${dateStamp}.md\`
+The same measurements as your PDF report, in plain text. Feed this file to an AI coding assistant (Claude Code, Cursor, ChatGPT) so it works from your real numbers.`
+    : `1. \`measured-report-${slug}-${dateStamp}.md\`
+Your site could not be scanned automatically (this usually means a login wall or a firewall). Reply to the delivery email and we will run the measurement manually and send it within one business day.`;
+
   return `# AI Visibility Package
 
-Domain: \`${domain}\`  
-Generated: \`${dateStamp}\`  
-Language: \`English only\`
+Domain: \`${domain}\`
+Generated: \`${dateStamp}\`
 
-## What is included
+## Where to start
 
-### Human-facing files
-1. \`Executive-Brief.pdf\`  
-Leadership summary with priorities and expected outcomes.
+Your personal report is the PDF attached next to this archive in the delivery
+email. It contains your score, every measured signal, and the fixes in
+priority order. Read it first.
 
-2. \`Manual-Implementation-Guide.docx\`  
-Step-by-step fallback for manual execution without AI-assisted coding.
+## What is in this archive
 
-### AI/ops files
-1. \`standard-report-${toSlug(domain)}-${dateStamp}.md\`
-2. \`execution-playbook-${toSlug(domain)}.md\`
-3. \`ai-builder-pack-prompts-${toSlug(domain)}.md\`
-4. \`qa-checklist-${toSlug(domain)}.md\`
-5. \`implementation-backlog-${toSlug(domain)}.csv\`
-6. \`schema-patches-${toSlug(domain)}.json\`
-7. \`llms-${toSlug(domain)}.txt.draft\`
+### For people
+1. \`Manual-Implementation-Guide.docx\`
+Step by step instructions for doing every fix by hand, without AI tools:
+what to change, where, and how to verify it worked.
+
+### For AI assistants and ops
+${reportLine}
+2. \`execution-playbook-${slug}.md\`: the work split into three sessions.
+3. \`ai-builder-pack-prompts-${slug}.md\`: ready prompts for AI coding tools.
+4. \`qa-checklist-${slug}.md\`: what to verify after implementation.
+5. \`implementation-backlog-${slug}.csv\`: the tasks as a spreadsheet.
+6. \`schema-patches-${slug}.json\`: JSON-LD blocks to adapt and paste.
+7. \`llms-${slug}-draft.txt\`: a draft llms.txt to adapt and publish.${
+    hasAgentCard
+      ? `
+
+### Ready to publish
+8. \`agent-card-${slug}.md\`: your Agent Card, drafted from your own homepage. Review it, fill any FILL IN gaps, upload to your site as /agent-card.md.
+9. \`agent-card-jsonld-${slug}.json\`: the matching JSON-LD for your homepage.`
+      : ""
+  }
 
 ## How to use
-1. Read the Executive Brief.
+1. Read the PDF report from the email.
 2. Choose implementation mode:
-   - Manual team: use the DOCX guide.
-   - AI-assisted team: use markdown + JSON/CSV/TXT files.
-3. Run QA checklist after implementation.
-4. Re-scan and compare score deltas.
+   - Manual team: follow the DOCX guide.
+   - AI-assisted team: hand the markdown, JSON and CSV files to your assistant.
+3. Run the QA checklist after implementation.
+4. Re-scan free at https://aibusiness.vc/audit and compare scores.
+
+Questions: info@aibusiness.vc
 `;
 }
 
-function buildStandardReport(domain: string, dateStamp: string): string {
-  return `# AI Visibility Report (Standard)
+function severityWord(severity: string): string {
+  switch (severity) {
+    case "critical":
+      return "CRITICAL";
+    case "warning":
+      return "NEEDS WORK";
+    case "ok":
+      return "ACCEPTABLE";
+    default:
+      return "GOOD";
+  }
+}
 
-Domain: \`${domain}\`  
-Date: \`${dateStamp}\`  
-Plan: \`Standard (EUR 149)\`  
-Language: \`English only\`
+/**
+ * The machine-readable twin of the PDF report, built from the same scan.
+ *
+ * It exists so a buyer can hand their real measurements to an AI coding
+ * assistant instead of retyping them. Before this the archive carried a
+ * template with invented "expected impact" numbers and a wrong price — a paid
+ * product must not contain figures that were never measured.
+ */
+function buildMeasuredReport(
+  domain: string,
+  dateStamp: string,
+  audit: QuickAudit | null,
+  brand: BrandKnowledge | null
+): string {
+  const header = `# AI Visibility Report (measured)
 
-## Executive summary
-This report package is focused on implementation quality: stronger schema coverage, better citation formatting, and clearer entity linking.
+Domain: \`${domain}\`
+Date: \`${dateStamp}\`
 
-## Primary priorities
-- Roll out template-level schema blocks.
-- Improve citation-ready sections on high-intent pages.
-- Strengthen internal links between hubs and spokes.
-- Normalize metadata and run post-change QA.
+`;
 
-## Expected impact range
-- Schema quality: +15 to +25 points
-- Citation readiness: +6 to +12 points
-- Overall visibility: measurable uplift after deployment and re-scan
+  if (!audit) {
+    return `${header}## Scan unavailable
+
+The automated scan could not read this site. The usual causes are a login
+wall, a firewall that challenges unknown visitors, or a server that only
+responds to browsers.
+
+Nothing is wrong with your order. Reply to the delivery email and we will run
+the measurement manually and send this file filled in, normally within one
+business day.
+
+The rest of the package (guide, playbook, prompts, checklist, schema patches,
+llms.txt draft) does not depend on the scan and is ready to use.
+`;
+  }
+
+  const metricLines = audit.metrics
+    .map(
+      (m) =>
+        `| ${m.label} | ${m.score}/100 | ${severityWord(m.severity)} | ${m.shortHuman} |`
+    )
+    .join("\n");
+
+  const toFix = [...audit.metrics]
+    .filter((m) => m.severity !== "good")
+    .sort((a, b) => a.score - b.score);
+
+  const fixSections = toFix
+    .map(
+      (m, i) => `### ${i + 1}. ${m.label} (${m.score}/100)
+
+${fixFor(m)}
+`
+    )
+    .join("\n");
+
+  const brandSection =
+    brand && (brand.status === "recognised" || brand.status === "unrecognised")
+      ? `## What ChatGPT says about this brand
+
+Asked from model memory, no web search (${brand.model}, ${brand.checkedAt.slice(0, 10)}):
+
+> ${brand.answer.replace(/\n+/g, " ").trim()}
+
+`
+      : "";
+
+  return `${header}Overall score: **${audit.overallScore}/100**
+Scanned: ${audit.scannedAt.slice(0, 10)}, live measurement of \`${audit.url}\`
+
+This file carries the same measurements as the PDF report, formatted for AI
+coding assistants. Paste it into Claude Code, Cursor or ChatGPT together with
+the prompts file and the assistant will work from your real numbers.
+
+## Measured signals
+
+| Signal | Score | Status | Finding |
+|---|---|---|---|
+${metricLines}
+
+${brandSection}## Fixes in priority order
+
+${fixSections.length > 0 ? fixSections : "All measured signals are in good shape. Focus on content freshness and internal linking.\n"}
+## After implementation
+
+Re-scan free at https://aibusiness.vc/audit and compare this file against the
+new result. Technical signals update within days; content signals move after
+the next AI crawl, typically within a few weeks.
 `;
 }
 
-function buildExecutionPlaybook(domain: string): string {
-  return `# Execution Playbook
+/** Looks up a measured metric by key; null when the scan is unavailable. */
+function metricByKey(audit: QuickAudit | null, key: string): AuditMetricLike | null {
+  if (!audit) return null;
+  return audit.metrics.find((m) => m.key === key) ?? null;
+}
 
-Domain: \`${domain}\`  
-Language: \`English only\`
+interface AuditMetricLike {
+  readonly key: string;
+  readonly label: string;
+  readonly score: number;
+  readonly severity: string;
+  readonly shortHuman: string;
+}
 
+/**
+ * One line of measured context under a task: the real score and finding, or a
+ * skip note when the signal is already healthy. Personalises every kit file
+ * without inventing anything: if there was no scan, there is no line.
+ */
+function measuredLine(audit: QuickAudit | null, key: string): string {
+  const m = metricByKey(audit, key);
+  if (!m) return "";
+  if (m.severity === "good") {
+    return `Measured ${m.score}/100 on ${audit!.domain}: already healthy. Skip unless something regresses.`;
+  }
+  return `Measured ${m.score}/100 on ${audit!.domain} (${severityWord(m.severity)}): ${m.shortHuman}`;
+}
+
+function buildExecutionPlaybook(domain: string, audit: QuickAudit | null): string {
+  const note = (key: string) => {
+    const line = measuredLine(audit, key);
+    return line ? `  ${line}\n` : "";
+  };
+
+  const header = `# Execution Playbook
+
+Domain: \`${domain}\`
+${audit ? `Overall score at purchase: \`${audit.overallScore}/100\` (scanned ${audit.scannedAt.slice(0, 10)})` : "Scan unavailable at purchase; see measured-report for details."}
+
+Work through the sessions in order. Where a signal is marked healthy, skip it
+and spend the time on the ones that are not.
+`;
+
+  return `${header}
 ## Session 1 (technical foundation)
-- Apply schema patches by template.
-- Update llms.txt draft to production values.
-- Validate JSON-LD syntax on priority pages.
-
+- Allow AI crawlers in robots.txt.
+${note("ai-crawlers")}- Adapt and publish the llms.txt draft.
+${note("llms-txt")}- Apply schema patches by template and validate JSON-LD syntax.
+${note("schema")}- Confirm HTTPS and baseline security headers.
+${note("https")}
 ## Session 2 (citation formatting)
-- Add FAQ and comparison blocks to high-intent pages.
-- Add summary sections under key H2s.
-- Confirm factual consistency.
-
+- Add FAQ and comparison blocks to high intent pages.
+${note("citability")}- Give each page one H1, clear sections and a summary under the title.
+${note("structure")}
 ## Session 3 (quality lock)
-- Add contextual hub-spoke links.
-- Normalize metadata descriptions.
-- Run final QA checklist.
+- Check server side rendering: key text must be visible without JavaScript.
+${note("javascript-dependency")}- Check response speed and Core Web Vitals.
+${note("page-speed")}- Add contextual hub and spoke links, normalize metadata.
+- Run the final QA checklist, then re-scan at https://aibusiness.vc/audit.
 `;
 }
 
-function buildAiPrompts(domain: string): string {
+function buildAiPrompts(domain: string, audit: QuickAudit | null): string {
+  const ctx = (key: string) => {
+    const line = measuredLine(audit, key);
+    return line ? `Context: ${line}\n` : "";
+  };
+
   return `# AI Builder Pack Prompts
 
-Domain: \`${domain}\`  
-Language policy: \`All generated outputs must be in English only.\`
+Domain: \`${domain}\`
 
-## Prompt 1 - Schema rollout
+How to use: open Claude Code, Cursor or ChatGPT inside your website project.
+First paste the whole measured-report file from this package, then run the
+prompts below one at a time. Each prompt carries the measured context for
+${domain}, so the assistant works from your real numbers, not from guesses.
+
+## Prompt 0: load the measurements
 \`\`\`text
+Here is a measured AI visibility report for ${domain} (attached below).
+Read it, list the failing signals in priority order, and wait for my go
+before changing anything.
+\`\`\`
+Paste the contents of the measured-report file after this prompt.
+
+## Prompt 1: schema rollout
+${ctx("schema")}\`\`\`text
 Implement template-level JSON-LD for ${domain}:
 - Home: Organization + WebSite
 - Articles: Article + BreadcrumbList
 - FAQ blocks: FAQPage
 - Category pages: BreadcrumbList
 
-Return file-by-file diffs only.
+Use the blocks in schema-patches-${toSlug(domain)}.json as the starting
+point and fill in the real company details. Return file-by-file diffs only.
 \`\`\`
 
-## Prompt 2 - FAQ expansion
-\`\`\`text
-On high-intent pages, add 4-6 concise FAQs each.
+## Prompt 2: AI crawler access
+${ctx("ai-crawlers")}\`\`\`text
+Update robots.txt for ${domain} so GPTBot, OAI-SearchBot, ClaudeBot,
+PerplexityBot and Google-Extended are explicitly allowed, while keeping
+existing rules for admin and private paths.
+\`\`\`
+
+## Prompt 3: llms.txt
+${ctx("llms-txt")}\`\`\`text
+Take the draft in llms-${toSlug(domain)}-draft.txt, replace the placeholder
+paths with the real top pages of ${domain}, one line description each, and
+output the final llms.txt ready to publish at the domain root.
+\`\`\`
+
+## Prompt 4: FAQ expansion
+${ctx("citability")}\`\`\`text
+On high-intent pages of ${domain}, add 4-6 concise FAQs each.
 Add matching FAQPage JSON-LD.
 Keep each answer under 90 words.
 Do not invent unsupported claims.
 \`\`\`
 
-## Prompt 3 - Comparison standard
-\`\`\`text
-Insert a decision table after H2 #2:
-Option | Best for | Strength | Limitation | Price band
+## Prompt 5: page structure
+${ctx("structure")}\`\`\`text
+For each key page of ${domain}: one clear H1, logical H2/H3 sections, a one
+or two sentence summary directly under the title, short paragraphs.
+Return diffs only.
 \`\`\`
 
-## Prompt 4 - Internal linking graph
+## Prompt 6: internal linking graph
 \`\`\`text
-Build hub-and-spoke links across priority clusters.
+Build hub-and-spoke links across priority clusters of ${domain}.
 Each spoke links to its hub.
 Each hub links to at least 5 relevant spokes.
 \`\`\`
 
-## Prompt 5 - QA pass
+## Prompt 7: QA pass
 \`\`\`text
-Run QA checks:
+Run QA checks on ${domain}:
 - valid JSON-LD
 - no duplicate H1
 - no broken links
 - no contradictory claims
+Compare against qa-checklist-${toSlug(domain)}.md and report every failure.
 \`\`\`
 `;
 }
 
-function buildQaChecklist(domain: string): string {
+function buildQaChecklist(domain: string, audit: QuickAudit | null): string {
+  const targets = audit
+    ? audit.metrics
+        .filter((m) => m.severity !== "good")
+        .sort((a, b) => a.score - b.score)
+        .map(
+          (m) =>
+            `- [ ] ${m.label}: was ${m.score}/100 at purchase. Done when a re-scan shows 85 or higher.`
+        )
+        .join("\n")
+    : "";
+
+  const targetBlock = targets
+    ? `## Measured targets for ${domain}
+
+${targets}
+
+`
+    : "";
+
   return `# QA Checklist
 
-Domain: \`${domain}\`  
-Language: \`English only\`
+Domain: \`${domain}\`
+
+${targetBlock}## General checks
 
 - [ ] JSON-LD validates on all updated pages.
+- [ ] robots.txt allows GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot, Google-Extended.
+- [ ] llms.txt is live at the domain root and every listed URL opens.
 - [ ] No duplicate H1 on updated templates.
 - [ ] All new internal links resolve.
 - [ ] FAQ answers match source content.
 - [ ] Comparison tables add non-duplicative value.
 - [ ] Meta descriptions are 130-160 characters and intent-specific.
 - [ ] No placeholder text remains.
+- [ ] Re-scan at https://aibusiness.vc/audit and compare against measured-report.
 `;
 }
 
-function buildBacklogCsv(domain: string): string {
-  const slug = toSlug(domain);
-  const rows = [
-    ["priority", "task", "owner", "effort_hours", "impact", "acceptance_criteria"],
-    [
-      "P1",
-      "Deploy schema templates",
-      "developer",
-      "2.5",
-      "high",
-      "JSON-LD valid on home/article/faq/category templates",
-    ],
-    [
-      "P1",
-      "Refresh llms.txt",
-      "content_ops",
-      "1.0",
-      "high",
-      `llms-${slug}.txt.draft adapted and published as /llms.txt`,
-    ],
-    [
-      "P1",
-      "Add FAQ and comparison blocks",
-      "editor",
-      "2.0",
-      "high",
-      "Priority pages contain concise FAQ + decision tables",
-    ],
-    [
+interface BacklogTemplate {
+  readonly task: string;
+  readonly owner: string;
+  readonly effortHours: string;
+  readonly acceptance: string;
+}
+
+/** How each measured signal translates into a backlog task. */
+const BACKLOG_BY_METRIC: Record<string, BacklogTemplate> = {
+  "ai-crawlers": {
+    task: "Allow AI crawlers in robots.txt",
+    owner: "developer",
+    effortHours: "0.5",
+    acceptance: "GPTBot OAI-SearchBot ClaudeBot PerplexityBot Google-Extended explicitly allowed",
+  },
+  "llms-txt": {
+    task: "Adapt and publish llms.txt",
+    owner: "content_ops",
+    effortHours: "1.5",
+    acceptance: "Draft adapted with real URLs and live at /llms.txt",
+  },
+  schema: {
+    task: "Deploy JSON-LD schema templates",
+    owner: "developer",
+    effortHours: "3.0",
+    acceptance: "JSON-LD valid on home/article/faq/category templates",
+  },
+  https: {
+    task: "Harden HTTPS and security headers",
+    owner: "developer",
+    effortHours: "1.0",
+    acceptance: "HSTS X-Content-Type-Options X-Frame-Options CSP present",
+  },
+  citability: {
+    task: "Add FAQ and comparison blocks to high intent pages",
+    owner: "editor",
+    effortHours: "2.5",
+    acceptance: "Priority pages contain concise FAQ and decision tables",
+  },
+  structure: {
+    task: "Fix heading hierarchy and add summaries",
+    owner: "editor",
+    effortHours: "2.0",
+    acceptance: "One H1 per page with summary under the title and clear sections",
+  },
+  "javascript-dependency": {
+    task: "Server side render key content",
+    owner: "developer",
+    effortHours: "4.0",
+    acceptance: "Main text visible in raw HTML with JavaScript disabled",
+  },
+  "page-speed": {
+    task: "Improve response speed and Core Web Vitals",
+    owner: "developer",
+    effortHours: "3.0",
+    acceptance: "LCP under 2.5s on priority pages",
+  },
+};
+
+const BACKLOG_ALWAYS: readonly (readonly string[])[] = [
+  [
+    "P3",
+    "Improve internal linking graph",
+    "seo_ops",
+    "1.5",
+    "medium",
+    "Each spoke links to hub and hubs link to key spokes",
+  ],
+  [
+    "P3",
+    "Normalize metadata",
+    "editor",
+    "1.0",
+    "medium",
+    "All target descriptions follow intent + value format",
+  ],
+];
+
+function backlogPriority(severity: string): { priority: string; impact: string } {
+  if (severity === "critical") return { priority: "P1", impact: "high" };
+  if (severity === "warning") return { priority: "P2", impact: "high" };
+  return { priority: "P3", impact: "medium" };
+}
+
+/**
+ * When the scan succeeded the backlog contains one row per signal that
+ * actually needs work on this domain, priority derived from the measured
+ * severity. The generic five row backlog remains only as the no-scan fallback.
+ */
+function buildBacklogCsv(domain: string, audit: QuickAudit | null): string {
+  const header = ["priority", "task", "owner", "effort_hours", "impact", "acceptance_criteria"];
+
+  if (!audit) {
+    const fallback = Object.entries(BACKLOG_BY_METRIC).map(([, t]) => [
       "P2",
-      "Improve internal linking graph",
-      "seo_ops",
-      "1.5",
-      "medium",
-      "Each spoke links to hub and hubs link to key spokes",
-    ],
-    [
-      "P2",
-      "Normalize metadata",
-      "editor",
-      "1.0",
-      "medium",
-      "All target descriptions follow intent + value format",
-    ],
-  ];
-  return rows.map((row) => row.join(",")).join("\n");
+      t.task,
+      t.owner,
+      t.effortHours,
+      "high",
+      t.acceptance,
+    ]);
+    return [header, ...fallback, ...BACKLOG_ALWAYS].map((row) => row.join(",")).join("\n");
+  }
+
+  const measured = [...audit.metrics]
+    .filter((m) => m.severity !== "good" && BACKLOG_BY_METRIC[m.key])
+    .sort((a, b) => a.score - b.score)
+    .map((m) => {
+      const t = BACKLOG_BY_METRIC[m.key];
+      const { priority, impact } = backlogPriority(m.severity);
+      return [
+        priority,
+        `${t.task} (measured ${m.score}/100)`,
+        t.owner,
+        t.effortHours,
+        impact,
+        t.acceptance,
+      ];
+    });
+
+  return [header, ...measured, ...BACKLOG_ALWAYS].map((row) => row.join(",")).join("\n");
 }
 
 function buildSchemaPatchesJson(domain: string): string {
   return JSON.stringify(
     {
+      _readme: [
+        "These are templates, not finished markup. Anything in ALL CAPS between",
+        "<< >> must be replaced with your real details before publishing.",
+        "Paste each block into a <script type=\"application/ld+json\"> tag on the",
+        "matching page, then validate at validator.schema.org.",
+        "Delete this _readme key from anything you publish.",
+      ],
       domain,
       language: "en",
       schema: {
         organization: {
           "@context": "https://schema.org",
           "@type": "Organization",
-          name: domain,
+          name: "<<YOUR COMPANY LEGAL OR TRADING NAME>>",
           url: `https://${domain}`,
+          logo: `https://${domain}/<<PATH-TO-YOUR-LOGO>>.png`,
+          sameAs: [
+            "<<FULL URL OF YOUR LINKEDIN PAGE>>",
+            "<<FULL URL OF ANY OTHER OFFICIAL PROFILE, OR DELETE THIS LINE>>",
+          ],
         },
         website: {
           "@context": "https://schema.org",
           "@type": "WebSite",
           url: `https://${domain}`,
-          name: domain,
+          name: "<<YOUR SITE NAME AS SHOWN IN THE BROWSER TAB>>",
         },
         faqTemplate: {
           "@context": "https://schema.org",
@@ -247,10 +547,10 @@ function buildSchemaPatchesJson(domain: string): string {
           mainEntity: [
             {
               "@type": "Question",
-              name: "Sample question",
+              name: "<<A REAL QUESTION YOUR CUSTOMERS ASK>>",
               acceptedAnswer: {
                 "@type": "Answer",
-                text: "Sample answer based on on-page content.",
+                text: "<<THE ANSWER, WORD FOR WORD AS IT APPEARS ON THE PAGE>>",
               },
             },
           ],
@@ -262,8 +562,13 @@ function buildSchemaPatchesJson(domain: string): string {
   );
 }
 
-function buildLlmsDraft(domain: string): string {
-  return `# ${domain}
+function buildLlmsDraft(domain: string, audit: QuickAudit | null): string {
+  const status = metricByKey(audit, "llms-txt");
+  const statusNote = status
+    ? `# Status at purchase: ${status.score}/100. ${status.shortHuman}\n# The paths below are placeholders. Replace them with your real top pages.\n`
+    : `# The paths below are placeholders. Replace them with your real top pages.\n`;
+
+  return `${statusNote}# ${domain}
 > AI visibility map for key commercial and informational pages.
 
 ## Priority pages
@@ -284,26 +589,104 @@ function buildLlmsDraft(domain: string): string {
 `;
 }
 
-async function readTemplateAttachment(
-  relativePath: string,
-  outputName: string,
-  type: string
-): Promise<AuditPackageAttachment> {
-  const absolutePath = path.join(process.cwd(), relativePath);
-  const binary = await fs.readFile(absolutePath);
+/**
+ * Static literal path, so Next's file tracer can see exactly which file the
+ * function needs. A path assembled from arguments made the tracer give up and
+ * bundle the whole project into the serverless function.
+ */
+const GUIDE_TEMPLATE_PATH = path.join(
+  process.cwd(),
+  "public",
+  "audit-kit",
+  "Manual-Implementation-Guide-Template.docx"
+);
+
+async function readGuideAttachment(): Promise<AuditPackageAttachment> {
+  const binary = await fs.readFile(GUIDE_TEMPLATE_PATH);
   return {
-    name: outputName,
+    name: "Manual-Implementation-Guide.docx",
     content: binary.toString("base64"),
-    type,
+    type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
   };
+}
+
+/**
+ * Extensions the transactional mail provider will actually deliver.
+ *
+ * Brevo rejects the whole message with "Unsupported file format" if a single
+ * attachment has an extension outside its allowlist — so a package containing
+ * one .md file meant the buyer received nothing at all. Everything unsupported
+ * is renamed to .txt; the content is unchanged and the README explains it.
+ */
+const MAIL_SAFE_EXTENSIONS = new Set([
+  "pdf", "docx", "doc", "xlsx", "xls", "csv", "txt", "xml", "html", "htm", "zip", "rtf", "odt",
+]);
+
+function toMailSafeName(name: string): string {
+  const lastDot = name.lastIndexOf(".");
+  const ext = lastDot >= 0 ? name.slice(lastDot + 1).toLowerCase() : "";
+  if (ext && MAIL_SAFE_EXTENSIONS.has(ext)) return name;
+
+  // Keep the original extension visible so the recipient knows what it is:
+  // schema-patches-x.json becomes schema-patches-x.json.txt
+  return `${name}.txt`;
 }
 
 function asTextAttachment(name: string, body: string, type: string): AuditPackageAttachment {
   return {
-    name,
+    name: toMailSafeName(name),
     content: Buffer.from(body, "utf8").toString("base64"),
     type,
   };
+}
+
+
+interface LiveScanResult {
+  readonly audit: QuickAudit | null;
+  readonly brand: BrandKnowledge | null;
+}
+
+/**
+ * Runs the live scan once; the result feeds both the PDF and the markdown
+ * report so the buyer can never receive two documents that disagree.
+ *
+ * Returns nulls rather than throwing if the scan fails: a site behind a login
+ * or a firewall should still get the rest of the package plus a human
+ * follow-up, not a failed delivery and not somebody else's placeholder figures.
+ */
+async function runLiveScan(domain: string): Promise<LiveScanResult> {
+  try {
+    const audit = await getLiveQuickAudit(encodeDomainAsId(domain));
+    if (audit.failure) {
+      console.error(`[fulfillment] scan failed for ${domain}: ${audit.failure}`);
+      return { audit: null, brand: null };
+    }
+    const brand = await getBrandKnowledge(audit.domain, "fulfillment");
+    return { audit, brand };
+  } catch (error) {
+    console.error(`[fulfillment] scan failed for ${domain}:`, error);
+    return { audit: null, brand: null };
+  }
+}
+
+async function buildReportPdfAttachment(
+  scan: LiveScanResult
+): Promise<AuditPackageAttachment | null> {
+  if (!scan.audit) return null;
+  try {
+    const { filename, bytes } = await buildAuditReportPdf({
+      audit: scan.audit,
+      brand: scan.brand ?? undefined,
+    });
+    return {
+      name: filename,
+      content: Buffer.from(bytes).toString("base64"),
+      type: "application/pdf",
+    };
+  } catch (error) {
+    console.error(`[fulfillment] PDF generation failed:`, error);
+    return null;
+  }
 }
 
 export async function buildAuditPackageAttachments(
@@ -313,50 +696,83 @@ export async function buildAuditPackageAttachments(
   const slug = toSlug(domain);
   const dateStamp = new Date().toISOString().slice(0, 10);
 
-  const binaryAttachments = await Promise.all([
-    readTemplateAttachment(
-      path.join("public", "audit-kit", "Executive-Brief-Template.pdf"),
-      "Executive-Brief.pdf",
-      "application/pdf"
-    ),
-    readTemplateAttachment(
-      path.join("public", "audit-kit", "Manual-Implementation-Guide-Template.docx"),
-      "Manual-Implementation-Guide.docx",
-      "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-    ),
-  ]);
+  // The buyer must receive a report measured on their own domain, not the
+  // template. A generic PDF is what we replaced, and what we told our payment
+  // provider customers no longer get.
+  const scan = await runLiveScan(domain);
+  const reportAttachment = await buildReportPdfAttachment(scan);
 
-  const textAttachments: AuditPackageAttachment[] = [
-    asTextAttachment("README.md", buildReadme(domain, dateStamp), "text/markdown"),
-    asTextAttachment(
-      `standard-report-${slug}-${dateStamp}.md`,
-      buildStandardReport(domain, dateStamp),
-      "text/markdown"
-    ),
-    asTextAttachment(
-      `execution-playbook-${slug}.md`,
-      buildExecutionPlaybook(domain),
-      "text/markdown"
-    ),
-    asTextAttachment(
-      `ai-builder-pack-prompts-${slug}.md`,
-      buildAiPrompts(domain),
-      "text/markdown"
-    ),
-    asTextAttachment(`qa-checklist-${slug}.md`, buildQaChecklist(domain), "text/markdown"),
-    asTextAttachment(
-      `implementation-backlog-${slug}.csv`,
-      buildBacklogCsv(domain),
-      "text/csv"
-    ),
-    asTextAttachment(
-      `schema-patches-${slug}.json`,
-      buildSchemaPatchesJson(domain),
-      "application/json"
-    ),
-    asTextAttachment(`llms-${slug}.txt.draft`, buildLlmsDraft(domain), "text/plain"),
+  const guide = await readGuideAttachment();
+
+  // The Agent Card: drafted from the buyer's own homepage, so every stated
+  // fact traces back to their site. Null (unreachable site, missing key)
+  // means the package ships without it, same policy as the report.
+  const cardFacts = scan.audit ? await extractAgentCardFacts(domain) : null;
+  const cardFiles: ZipEntry[] = cardFacts
+    ? [
+        {
+          name: `agent-card-${slug}.md`,
+          data: Buffer.from(buildAgentCardMarkdown(domain, cardFacts, dateStamp), "utf8"),
+        },
+        {
+          name: `agent-card-jsonld-${slug}.json`,
+          data: Buffer.from(buildAgentCardJsonLd(domain, cardFacts), "utf8"),
+        },
+      ]
+    : [];
+
+
+  // Everything except the report goes into one archive. Ten separate
+  // attachments read as clutter; inside a ZIP the files also keep their real
+  // .md and .json names, because the mail provider only inspects the container.
+  const packedFiles: ZipEntry[] = [
+    {
+      name: "README.md",
+      data: Buffer.from(
+        buildReadme(domain, dateStamp, scan.audit != null, cardFacts != null),
+        "utf8"
+      ),
+    },
+    {
+      name: `measured-report-${slug}-${dateStamp}.md`,
+      data: Buffer.from(buildMeasuredReport(domain, dateStamp, scan.audit, scan.brand), "utf8"),
+    },
+    {
+      name: `execution-playbook-${slug}.md`,
+      data: Buffer.from(buildExecutionPlaybook(domain, scan.audit), "utf8"),
+    },
+    {
+      name: `ai-builder-pack-prompts-${slug}.md`,
+      data: Buffer.from(buildAiPrompts(domain, scan.audit), "utf8"),
+    },
+    {
+      name: `qa-checklist-${slug}.md`,
+      data: Buffer.from(buildQaChecklist(domain, scan.audit), "utf8"),
+    },
+    {
+      name: `implementation-backlog-${slug}.csv`,
+      data: Buffer.from(buildBacklogCsv(domain, scan.audit), "utf8"),
+    },
+    {
+      name: `schema-patches-${slug}.json`,
+      data: Buffer.from(buildSchemaPatchesJson(domain), "utf8"),
+    },
+    {
+      name: `llms-${slug}-draft.txt`,
+      data: Buffer.from(buildLlmsDraft(domain, scan.audit), "utf8"),
+    },
+    ...cardFiles,
+    { name: guide.name, data: Buffer.from(guide.content, "base64") },
   ];
 
-  return [...binaryAttachments, ...textAttachments];
+  const archive: AuditPackageAttachment = {
+    name: `AI-Visibility-Implementation-Kit-${slug}-${dateStamp}.zip`,
+    content: createZip(packedFiles, new Date()).toString("base64"),
+    type: "application/zip",
+  };
+
+  // The report stays loose: it is the thing the buyer wants to open first, and
+  // burying it inside an archive adds a step for no reason.
+  return reportAttachment ? [reportAttachment, archive] : [archive];
 }
 

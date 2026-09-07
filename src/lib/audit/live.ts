@@ -1,3 +1,4 @@
+import { safeFetchText } from "./safe-fetch";
 import {
   getMockQuickAudit,
   scoreToSeverity,
@@ -43,12 +44,18 @@ function clampScore(value: number): number {
 }
 
 function normalizeDomain(domain: string): string {
+  // Order matters: strip the scheme, then anything before "@" (credentials),
+  // then the path, then the port. Leaving any of these in lets a caller point
+  // the scanner somewhere other than the domain they appear to have typed.
   return domain
     .trim()
     .toLowerCase()
     .replace(/^https?:\/\//, "")
+    .replace(/^[^/@]*@/, "")
+    .replace(/[/?#].*$/, "")
+    .replace(/:\d+$/, "")
     .replace(/^www\./, "")
-    .replace(/\/.*/, "");
+    .replace(/\.$/, "");
 }
 
 function shortReasonFromError(error: unknown): string {
@@ -62,7 +69,7 @@ function toBaseUrl(domain: string): string {
   return `https://${domain}`;
 }
 
-function extractTextContent(html: string): string {
+export function extractTextContent(html: string): string {
   return html
     .replace(/<script[\s\S]*?<\/script>/gi, " ")
     .replace(/<style[\s\S]*?<\/style>/gi, " ")
@@ -76,50 +83,26 @@ function countMatches(input: string, pattern: RegExp): number {
   return matched ? matched.length : 0;
 }
 
-async function fetchWithTimeout(
-  url: string,
-  timeoutMs: number,
-  init?: RequestInit
-): Promise<Response> {
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), timeoutMs);
-  try {
-    const headers = new Headers(init?.headers);
-    headers.set(
-      "user-agent",
-      "AIBusinessAuditBot/1.0 (+https://aibusiness.vc/audit)"
-    );
-
-    return await fetch(url, {
-      ...init,
-      signal: controller.signal,
-      redirect: "follow",
-      cache: "no-store",
-      headers,
-    });
-  } finally {
-    clearTimeout(timeout);
-  }
-}
-
 async function fetchHomepage(domain: string): Promise<FetchSnapshot> {
-  const started = Date.now();
-  const response = await fetchWithTimeout(toBaseUrl(domain), 9000);
-  const html = await response.text();
+  const response = await safeFetchText(toBaseUrl(domain), {
+    timeoutMs: 9000,
+    maxBytes: 2 * 1024 * 1024,
+  });
   return {
-    url: response.url || toBaseUrl(domain),
-    html,
+    url: response.url,
+    html: response.text,
     headers: response.headers,
-    durationMs: Date.now() - started,
+    durationMs: response.durationMs,
     ok: response.ok,
   };
 }
 
 async function fetchTextOrEmpty(url: string): Promise<{ ok: boolean; text: string }> {
   try {
-    const response = await fetchWithTimeout(url, 6000);
+    // Side files are small by nature; a large one is a sign of something else.
+    const response = await safeFetchText(url, { timeoutMs: 6000, maxBytes: 256 * 1024 });
     if (!response.ok) return { ok: false, text: "" };
-    return { ok: true, text: await response.text() };
+    return { ok: true, text: response.text };
   } catch {
     return { ok: false, text: "" };
   }
@@ -223,6 +206,40 @@ function scoreLlmsTxt(present: boolean, body: string): LlmsTxtScoreResult {
   };
 }
 
+/**
+ * Counts JSON-LD blocks that actually parse and declare a type.
+ *
+ * Counting the script tags alone rewards markup that assistants silently
+ * discard — a block with a trailing comma is worth nothing, and telling an
+ * owner it counts is a false pass.
+ */
+function countValidSchemaBlocks(html: string): { valid: number; broken: number } {
+  const blocks =
+    html.match(
+      /<script[^>]+type=["']application\/ld\+json["'][^>]*>[\s\S]*?<\/script>/gi
+    ) ?? [];
+
+  let valid = 0;
+  let broken = 0;
+
+  for (const block of blocks) {
+    const body = block.replace(/^<script[^>]*>/i, "").replace(/<\/script>$/i, "");
+    try {
+      const parsed: unknown = JSON.parse(body);
+      const entries = Array.isArray(parsed) ? parsed : [parsed];
+      const typed = entries.some(
+        (entry) => typeof entry === "object" && entry !== null && "@type" in entry
+      );
+      if (typed) valid += 1;
+      else broken += 1;
+    } catch {
+      broken += 1;
+    }
+  }
+
+  return { valid, broken };
+}
+
 function scoreSchemaBlocks(schemaBlocks: number): number {
   if (schemaBlocks >= 3) return 92;
   if (schemaBlocks === 2) return 80;
@@ -230,11 +247,52 @@ function scoreSchemaBlocks(schemaBlocks: number): number {
   return 30;
 }
 
+/**
+ * Reads robots.txt the way a crawler does: a named user-agent only counts as
+ * allowed if its own group does not then block the site. Listing GPTBot and
+ * following it with `Disallow: /` is a block, not an invitation — scoring it as
+ * a win told owners the opposite of the truth.
+ */
+function parseRobotsGroups(robots: string): Map<string, string[]> {
+  const groups = new Map<string, string[]>();
+  let current: string[] = [];
+
+  for (const rawLine of robots.split(/\r?\n/)) {
+    const line = rawLine.replace(/#.*$/, "").trim();
+    if (!line) continue;
+
+    const match = /^(user-agent|disallow|allow)\s*:\s*(.*)$/i.exec(line);
+    if (!match) continue;
+
+    const field = match[1].toLowerCase();
+    const value = match[2].trim();
+
+    if (field === "user-agent") {
+      const agent = value.toLowerCase();
+      if (!groups.has(agent)) groups.set(agent, []);
+      current = groups.get(agent) as string[];
+      continue;
+    }
+
+    current.push(`${field}:${value}`);
+  }
+
+  return groups;
+}
+
+/** True when the group blocks the site root outright. */
+function groupBlocksRoot(rules: string[]): boolean {
+  const disallowAll = rules.some((rule) => rule === "disallow:/");
+  const allowRoot = rules.some((rule) => rule === "allow:/");
+  return disallowAll && !allowRoot;
+}
+
 function scoreAiCrawlerAccess(robots: string): { score: number; summary: string } {
   if (!robots.trim()) {
     return {
-      score: 35,
-      summary: "robots.txt missing or unavailable; crawler policy is unclear.",
+      score: 55,
+      summary:
+        "No robots.txt found. Nothing is blocked, but nothing is explicitly welcomed either.",
     };
   }
 
@@ -246,22 +304,49 @@ function scoreAiCrawlerAccess(robots: string): { score: number; summary: string 
     "Google-Extended",
   ];
 
-  const normalized = robots.toLowerCase();
-  const listed = majorCrawlers.filter((crawler) =>
-    normalized.includes(`user-agent: ${crawler.toLowerCase()}`)
-  );
+  const groups = parseRobotsGroups(robots);
+  const wildcardBlocked = groupBlocksRoot(groups.get("*") ?? []);
 
-  const score = clampScore(35 + listed.length * 13);
-  if (listed.length === 0) {
+  const allowed: string[] = [];
+  const blocked: string[] = [];
+
+  for (const crawler of majorCrawlers) {
+    const rules = groups.get(crawler.toLowerCase());
+    if (rules) {
+      if (groupBlocksRoot(rules)) blocked.push(crawler);
+      else allowed.push(crawler);
+      continue;
+    }
+    // No group of its own: the crawler falls back to the wildcard group.
+    if (wildcardBlocked) blocked.push(crawler);
+  }
+
+  if (blocked.length === majorCrawlers.length) {
     return {
-      score,
-      summary: "No AI crawler directives found in robots.txt.",
+      score: 5,
+      summary:
+        "Every major AI crawler is blocked by robots.txt. Assistants are told to stay out of your site entirely.",
+    };
+  }
+
+  if (blocked.length > 0) {
+    return {
+      score: clampScore(50 - blocked.length * 8),
+      summary: `robots.txt blocks ${blocked.join(", ")}. Those assistants will not read your pages.`,
+    };
+  }
+
+  if (allowed.length === 0) {
+    return {
+      score: 60,
+      summary:
+        "robots.txt exists but names no AI crawlers. They are not blocked; they are simply not addressed.",
     };
   }
 
   return {
-    score,
-    summary: `${listed.length}/${majorCrawlers.length} major AI crawlers are explicitly listed.`,
+    score: clampScore(60 + allowed.length * 8),
+    summary: `${allowed.length}/${majorCrawlers.length} major AI crawlers are explicitly allowed.`,
   };
 }
 
@@ -466,30 +551,30 @@ function scoreJavaScriptDependency(
   // Heuristic: text-to-HTML ratio (words per KB of HTML).
   const textToHtmlRatio = htmlBytes > 0 ? wordCount / (htmlBytes / 1024) : 0;
 
+  // Every verdict quotes the measured figure. This check is the one most often
+  // used to frighten site owners with a guess, so it states what was counted.
+  const seen = `An assistant reading your page without a browser sees ${wordCount.toLocaleString(
+    "en-US"
+  )} word${wordCount === 1 ? "" : "s"} of text.`;
+
   let score = 90;
-  let summary =
-    "Server-rendered HTML detected. AI crawlers (GPTBot, ClaudeBot, PerplexityBot) ingest your content directly.";
+  let summary = `${seen} Your content is in the HTML itself, so GPTBot, ClaudeBot and PerplexityBot read it directly.`;
 
   if (emptyRoot) {
     score = 12;
-    summary =
-      "Empty SPA mount point detected. AI crawlers likely see a blank page — they do not execute JavaScript.";
+    summary = `${seen} The page is an empty shell that only fills in once a browser runs it — and assistants do not run browsers. To them this page is blank.`;
   } else if (wordCount < 100 && hasFrameworkSignal) {
     score = 25;
-    summary =
-      "Almost no server-rendered text on a JS-heavy page. AI crawlers see a near-empty document.";
+    summary = `${seen} That is almost nothing: the page builds itself in the visitor's browser, so an assistant gets a near-empty document.`;
   } else if (wordCount < 250 && hasFrameworkSignal && textToHtmlRatio < 4) {
     score = 50;
-    summary =
-      "Mixed rendering. JS-heavy page with thin server-rendered content; AI crawlers likely miss critical sections.";
+    summary = `${seen} Some of the page arrives as text and some is assembled in the browser, so assistants are likely missing whole sections.`;
   } else if (hasFrameworkSignal && textToHtmlRatio < 6) {
     score = 70;
-    summary =
-      "Framework-driven page with reasonable server-rendered content. Verify hero and pricing sections render in raw HTML.";
+    summary = `${seen} Enough to work with. Check that your prices and main offer are among those words, not added later in the browser.`;
   } else if (wordCount >= 600 && textToHtmlRatio >= 8) {
     score = 96;
-    summary =
-      "Strong server-side content; AI crawlers ingest your full page directly.";
+    summary = `${seen} That is a full page. Assistants read your content exactly as a reader would.`;
   }
 
   return { score: clampScore(score), summary };
@@ -592,13 +677,47 @@ function scoreContentStructure(
   };
 }
 
+/**
+ * Not every signal is worth the same.
+ *
+ * What a non-browser bot actually sees on the page outweighs everything else:
+ * if the text is not in the raw HTML, no side file rescues it. robots.txt and
+ * schema follow, because they are fetched on every visit.
+ *
+ * llms.txt is deliberately the lightest. Published server logs across live
+ * business sites show assistants fetching it a handful of times in a quarter
+ * while hitting robots.txt thousands of times. It is worth having, and it is
+ * not worth a quarter of anyone's score.
+ */
+const METRIC_WEIGHTS: Record<string, number> = {
+  "javascript-dependency": 3,
+  citability: 2,
+  "ai-crawlers": 2,
+  schema: 2,
+  structure: 1.5,
+  https: 1,
+  "page-speed": 1,
+  "llms-txt": 0.5,
+};
+
+const DEFAULT_WEIGHT = 1;
+
 function buildQuickAudit(
   id: string,
   domain: string,
   metrics: AuditMetric[]
 ): QuickAudit {
-  const total = metrics.reduce((sum, metric) => sum + metric.score, 0);
-  const overallScore = clampScore(total / metrics.length);
+  const weighted = metrics.reduce(
+    (acc, metric) => {
+      const weight = METRIC_WEIGHTS[metric.key] ?? DEFAULT_WEIGHT;
+      return { sum: acc.sum + metric.score * weight, weight: acc.weight + weight };
+    },
+    { sum: 0, weight: 0 }
+  );
+
+  const overallScore = clampScore(
+    weighted.weight > 0 ? weighted.sum / weighted.weight : 0
+  );
 
   return {
     id,
@@ -632,10 +751,8 @@ async function runLiveAudit(id: string): Promise<QuickAudit> {
   ]);
 
   const textContent = extractTextContent(homepage.html);
-  const schemaCount = countMatches(
-    homepage.html,
-    /<script[^>]+type=["']application\/ld\+json["'][^>]*>[\s\S]*?<\/script>/gi
-  );
+  const schema = countValidSchemaBlocks(homepage.html);
+  const schemaCount = schema.valid;
 
   const llmsResult = scoreLlmsTxt(llms.ok, llms.text);
   const schemaScore = scoreSchemaBlocks(schemaCount);
@@ -656,8 +773,16 @@ async function runLiveAudit(id: string): Promise<QuickAudit> {
       "Schema markup",
       schemaScore,
       schemaCount > 0
-        ? `${schemaCount} JSON-LD block${schemaCount === 1 ? "" : "s"} detected.`
-        : "No JSON-LD schema found on homepage."
+        ? `${schemaCount} valid JSON-LD block${schemaCount === 1 ? "" : "s"} on the homepage${
+            schema.broken > 0
+              ? `, and ${schema.broken} that does not parse and will be ignored`
+              : ""
+          }.`
+        : schema.broken > 0
+          ? `${schema.broken} JSON-LD block${
+              schema.broken === 1 ? "" : "s"
+            } found, but none of them parse — assistants will discard them.`
+          : "No structured data on the homepage, so key facts are not machine-readable."
     ),
     buildMetric(
       "ai-crawlers",
@@ -674,7 +799,7 @@ async function runLiveAudit(id: string): Promise<QuickAudit> {
     buildMetric("page-speed", "Page speed", speed.score, speed.summary),
     buildMetric(
       "javascript-dependency",
-      "JavaScript rendering",
+      "What an AI actually sees",
       jsDependency.score,
       jsDependency.summary
     ),
@@ -706,30 +831,21 @@ export async function getLiveQuickAudit(id: string): Promise<QuickAudit> {
     });
     return data;
   } catch (error) {
-    const fallback = getMockQuickAudit(id);
-    const note = shortReasonFromError(error);
-    const downgraded = fallback.metrics.map((metric) =>
-      metric.key === "page-speed"
-        ? {
-            ...metric,
-            score: 30,
-            severity: scoreToSeverity(30),
-            shortHuman: `Live scan failed (${note}). Showing fallback estimate.`,
-          }
-        : metric
-    );
-    const withFallbackContext: QuickAudit = {
-      ...fallback,
+    // A failed scan reports the failure. It must never fall back to sample
+    // numbers: an invented score is worse than no score, and the whole point
+    // of this tool is that its figures are measured.
+    const failed: QuickAudit = {
+      id,
+      url: toBaseUrl(normalizeDomain(decodeDomainFromId(id))),
+      domain: normalizeDomain(decodeDomainFromId(id)),
       scannedAt: new Date().toISOString(),
-      metrics: downgraded,
-      overallScore: clampScore(
-        downgraded.reduce((sum, item) => sum + item.score, 0) / downgraded.length
-      ),
+      overallScore: 0,
+      industryAverage: 0,
+      metrics: [],
+      failure: shortReasonFromError(error),
     };
-    quickAuditCache.set(id, {
-      data: withFallbackContext,
-      expiresAt: now + 60_000,
-    });
-    return withFallbackContext;
+
+    quickAuditCache.set(id, { data: failed, expiresAt: now + 60_000 });
+    return failed;
   }
 }

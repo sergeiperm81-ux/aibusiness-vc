@@ -39,6 +39,6 @@ Three things worth knowing about your own bot before your customers find them ou
 
 A full mystery shopping test answers ten questions like these, with quotes and a score for every situation. It takes a couple of hours and it consistently finds things that no internal review does, for the simple reason that internal reviews are conducted by people who already know the right way to ask.
 
-That asymmetry has been my whole professional life. Twenty years ago I was doing exactly this with government offices, walking in as an ordinary citizen and writing down what actually happened, then comparing it with what the office believed about itself. The gap was always enormous. Replace the clerk with a chatbot and the gap survives intact. What disappeared is the accountability: a clerk who stonewalls a customer gets a manager called on them. A bot that stonewalls generates a ticket that averages out in the monthly report.
+That asymmetry has been my whole professional life. Long before AI I was doing exactly this with government offices, walking in as an ordinary citizen and writing down what actually happened, then comparing it with what the office believed about itself. The gap was always enormous. Replace the clerk with a chatbot and the gap survives intact. What disappeared is the accountability: a clerk who stonewalls a customer gets a manager called on them. A bot that stonewalls generates a ticket that averages out in the monthly report.
 
 The technology got better. The blind spot did not move an inch.

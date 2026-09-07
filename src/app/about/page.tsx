@@ -16,13 +16,13 @@ export const metadata: Metadata = {
 };
 
 const COVERS: Array<[string, string, string]> = [
-  ["Solo", "/solo", "AI for independent operators — services, productized offers, and lean systems."],
+  ["Solo", "/solo", "AI for independent operators, services, productized offers, and lean systems."],
   ["Startups", "/startups", "Funding, go-to-market, and the economics of building AI products."],
-  ["B2B", "/b2b", "Enterprise implementation — cost savings, ROI, and what actually works."],
+  ["B2B", "/b2b", "Enterprise implementation, cost savings, ROI, and what actually works."],
   ["VC", "/vc", "How capital moves in AI: funds, rounds, valuations, and returns."],
   ["Government", "/government", "Public spending, procurement, regulation, and sovereign AI."],
-  ["Robots", "/robots", "The economics of physical AI — costs, supply chains, and opportunities."],
-  ["Society", "/society", "How AI reshapes jobs, education, and daily life — beyond the hype."],
+  ["Robots", "/robots", "The economics of physical AI, costs, supply chains, and opportunities."],
+  ["Society", "/society", "How AI reshapes jobs, education, and daily life, beyond the hype."],
   ["Learn", "/learn", "AI skills, careers, and the certifications that map to real salaries."],
   ["Tools & Models", "/tools", "Model launches, real pricing and hand-written comparisons, plus an LLM model leaderboard."],
 ];
@@ -38,7 +38,7 @@ const LIBRARY_ITEMS: Array<[string, string, string, string]> = [
     "/library/demand-the-ai-receipt",
     "Demand the AI Receipt",
     "For consumers",
-    "the companion guide — what to demand from corporate AI, with a ready-to-send message per chapter.",
+    "the companion guide, what to demand from corporate AI, with a ready-to-send message per chapter.",
   ],
   [
     "/library/start-with-your-services",
@@ -50,7 +50,7 @@ const LIBRARY_ITEMS: Array<[string, string, string, string]> = [
     "/library/ai-transparency-kit",
     "AI Transparency Kit",
     "Templates",
-    "editable materials for telling customers about your AI — EU AI Act disclosure done the caring way.",
+    "editable materials for telling customers about your AI, EU AI Act disclosure done the caring way.",
   ],
   [
     "/library/consumer-control-of-ai",
@@ -93,12 +93,12 @@ export default function AboutPage() {
           <div className="max-w-3xl space-y-4 text-lg leading-relaxed text-white/75">
             <p>
               The goal is simple: cut through the hype and show how AI actually creates
-              value — for independent operators, founders, and investors — with real
+              value, for independent operators, founders, and investors, with real
               numbers and honest ROI.
             </p>
             <p className="text-base text-white/60">
               Most coverage of AI is either breathless hype or a directory of 28,000 tools
-              with no view on which ones earn their keep. We take the opposite approach —
+              with no view on which ones earn their keep. We take the opposite approach ,
               fewer, deeper answers built around a single question: does it work, and is it
               worth it? Every piece is anchored in concrete figures, named companies, and
               usable frameworks rather than speculation.
@@ -138,7 +138,7 @@ export default function AboutPage() {
           </h2>
           <p className="mb-8 max-w-3xl text-base leading-relaxed text-white/60">
             Alongside the articles, we publish an author&rsquo;s Library of original
-            methods for governing AI from the human side — free, with no email or
+            methods for governing AI from the human side, free, with no email or
             registration required. It currently holds {GUIDES.length} guides, built around
             a three-document system: a public AI Policy, an AI Service Passport, and an AI
             Receipt.
@@ -242,7 +242,7 @@ export default function AboutPage() {
                 Research and first drafts are produced with the help of AI; every article
                 is then edited and fact-checked personally by Sergei Ponomarev, who holds
                 editorial responsibility for everything published on this site. AI helps
-                gather material and draft — the judgment, the checking, and the final word
+                gather material and draft, the judgment, the checking, and the final word
                 are human.
               </p>
             </div>
@@ -337,14 +337,14 @@ function AboutSchema() {
         "Independent, outcome-first guide to the business of artificial intelligence.",
       founder: {
         "@type": "Person",
+        "@id": "https://aibusiness.vc/sergei-ponomarev#person",
         name: "Sergei Ponomarev",
-        jobTitle: "Founder & Editor",
         url: "https://aibusiness.vc/sergei-ponomarev",
         image: "https://aibusiness.vc/images/sergei-desk.png",
         description:
           "Founder of AI Business. PhD in Political Science specializing in e-government; a career across public-administration analytics, university teaching, and AI development.",
         alumniOf: [
-          { "@type": "CollegeOrUniversity", name: "Moscow State University" },
+          { "@type": "CollegeOrUniversity", name: "Lomonosov Moscow State University" },
           { "@type": "CollegeOrUniversity", name: "University of Manchester" },
           { "@type": "CollegeOrUniversity", name: "Perm State University" },
         ],

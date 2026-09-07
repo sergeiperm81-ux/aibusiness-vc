@@ -11,6 +11,26 @@ export interface NewsItem {
 
 export const newsData: NewsItem[] = [
   {
+    slug: "startup-funding-510b-h1-2026-ai",
+    title: "Startup Funding Hits Record $510B in H1 2026 — AI Took the Lion's Share",
+    excerpt: "Global venture funding smashed every record in the first half of 2026, and AI swallowed most of it — OpenAI and Anthropic alone pulled in $217B.",
+    body: `<p>Global startup investment reached a record <strong>$510 billion</strong> in the first half of 2026, according to Crunchbase — surpassing the $440 billion invested in <em>all</em> of 2025, and setting a new high for any half-year on record.</p><p>The engine is AI. In Q1 alone, roughly <strong>80% of all global venture funding</strong> — about $242 billion — went to AI companies. And the capital is brutally concentrated: <strong>OpenAI and Anthropic together took $217 billion</strong>, or 43% of all startup funding in H1. Nearly 88% of AI funding went to US-headquartered companies.</p><p><strong>Why it matters for your wallet:</strong> When half a trillion dollars floods into startups in six months, it cascades downstream — into salaries, contractor budgets, new tools, and thousands of companies that suddenly have money to spend on AI services. That demand is exactly where solo operators and small teams get paid.</p><p><strong>The flip side:</strong> Concentration this extreme means most of the money is chasing a handful of frontier labs. The opportunity for everyone else isn't competing with them — it's building on top of them.</p><p style="margin-top:16px;padding-top:12px;border-top:1px solid #e5e7eb;"><a href="https://news.crunchbase.com/venture/global-startup-exits-ipo-ma-soar-ai-q2-h1-2026/" target="_blank" rel="noopener noreferrer" style="color:#d97706;text-decoration:underline;font-weight:600;">Read the full data on Crunchbase News &rarr;</a></p>`,
+    category: "VC",
+    badgeColor: "bg-rose-500 text-white",
+    date: "July 7, 2026",
+    image: "/images/articles/charts-screen-1.jpg",
+  },
+  {
+    slug: "mgx-49-billion-ai-fund-2026",
+    title: "MGX Raises $49 Billion — One of the Biggest AI Funds Ever",
+    excerpt: "Abu Dhabi's MGX, just two years old, closed a $49B fund dedicated to AI deals — instantly one of the most consequential investors in the sector.",
+    body: `<p>Abu Dhabi's <strong>MGX</strong> has raised <strong>$49 billion</strong> for one of the largest funds ever dedicated to artificial intelligence — a staggering war chest for a firm that is only two years old.</p><p>The raise vaults MGX into the top tier of AI investors globally, alongside the biggest names in venture and sovereign capital. The fund is aimed squarely at AI infrastructure, compute, and the frontier-model companies burning through capital to train the next generation of systems.</p><p><strong>Why it matters for your wallet:</strong> When a single fund controls $49B earmarked for AI, it reshapes who gets funded and at what valuation. That capital flows into data centers, chips, and the startups building on top — creating downstream demand for talent, tools, and services that individuals and small companies can supply.</p><p><strong>The bigger picture:</strong> Q1 2026 already shattered venture records, with AI pushing global startup investment to roughly $300B. MGX's fund is the clearest signal yet that the money behind AI is still accelerating, not cooling.</p><p style="margin-top:16px;padding-top:12px;border-top:1px solid #e5e7eb;"><a href="https://news.bloomberglaw.com/mergers-and-acquisitions/mgx-raises-49-billion-for-one-of-the-biggest-ever-ai-funds" target="_blank" rel="noopener noreferrer" style="color:#d97706;text-decoration:underline;font-weight:600;">Read the full story on Bloomberg &rarr;</a></p>`,
+    category: "VC",
+    badgeColor: "bg-rose-500 text-white",
+    date: "July 6, 2026",
+    image: "/images/articles/money-cash-1.jpg",
+  },
+  {
     slug: "ai-agents-market-7b",
     title: "AI Agents Market Hits $7.6B — Individual Developers Are Building Custom Agents for $500-1,500 Each",
     excerpt: "The AI agents market reached $7.63 billion in 2025, projected to hit $183 billion by 2033. Solo builders are cashing in.",
