@@ -286,7 +286,7 @@ const MARIA: Expert = {
   location: "Thessaloniki, Greece",
   photo: "/images/experts/maria-kollia.jpg",
   role: "Co-Chair, Global Advisory Board",
-  organisation: "STANAIC, International Artificial Intelligence Committee",
+  organisation: "International Artificial Intelligence Committee (STANAIC)",
   practiceAreas: [
     "Governance operating models & AI policy",
     "Legal, regulatory & standards compliance",
