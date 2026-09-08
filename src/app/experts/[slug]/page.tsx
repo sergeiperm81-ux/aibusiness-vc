@@ -57,7 +57,10 @@ function ExpertSchema({ expert }: { expert: Expert }) {
   if (expert.location) {
     person.address = { "@type": "PostalAddress", addressLocality: expert.location };
   }
-  if (expert.email) person.email = `${expert.email.user}@${expert.email.host}`;
+  // The address is deliberately absent here. Structured data is plain text that
+  // any harvester can read, so putting it in would undo the obfuscation on the
+  // page itself. A published email stays a click away, never a string in the
+  // source.
   if (expert.phone) person.telephone = expert.phone;
   const sameAs = [expert.linkedin, expert.website].filter(Boolean);
   if (sameAs.length) person.sameAs = sameAs;
