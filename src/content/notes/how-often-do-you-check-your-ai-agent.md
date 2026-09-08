@@ -26,7 +26,7 @@ Inside:
 - designing and running a check
 - scoring the results
 - ethics and law
-- two real cases, including a pilot with the Swiss AI metrology company NeoMundi Recherche
+- two real cases, including a pilot with the French AI metrology company NeoMundi Recherche
 
 [Download the method free, 35 pages, no registration →](/library/ai-agent-test-purchase)
 

@@ -15,9 +15,9 @@
   {
     "id": "neomundi-controltower",
     "name": "NeoMundi",
-    "url": "https://neomundi.io",
+    "url": "https://neomundi.org",
     "category": "Legal & Compliance",
-    "description": "AI Runtime Measurement & Governance Infrastructure. Swiss layer that scores every LLM response in real time and returns an ALLOW or FLAG decision with reasons. Factual risk: flags outputs requiring stronger factual validation, alongside semantic coherence and safety checks. Two modes: OBS observes outputs that can still be corrected; GOV sits inside the execution path and can continue, regenerate, reroute, validate, limit, stop or escalate before the next step. Works across OpenAI, Anthropic, Mistral, Cohere, Perplexity, DeepSeek and other providers.",
+    "description": "AI Runtime Measurement & Governance Infrastructure. Runtime layer that scores every LLM response in real time and returns an ALLOW or FLAG decision with reasons. Factual risk: flags outputs requiring stronger factual validation, alongside semantic coherence and safety checks. Two modes: OBS observes outputs that can still be corrected; GOV sits inside the execution path and can continue, regenerate, reroute, validate, limit, stop or escalate before the next step. Works across OpenAI, Anthropic, Mistral, Cohere, Perplexity, DeepSeek and other providers.",
     "pricing": "Free trial (100 requests) · prepaid from 0.025 CHF/request (Tier 1) to 0.085 CHF (Tier 3)",
     "targetUser": "Compliance, risk and engineering teams running LLMs in production under EU AI Act traceability requirements",
     "keyFeature": "instrumentation of the execution itself: it turns the observable behavior of an AI system into measurements and signals that other infrastructures can consume. One fundamental measurement layer, multiple uses, across heterogeneous infrastructures, without replacing the systems that consume it",

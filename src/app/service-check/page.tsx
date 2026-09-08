@@ -54,7 +54,7 @@ function structuredData(faqs: readonly { q: string; a: string }[]) {
         affiliation: {
           "@type": "Organization",
           name: "NeoMundi",
-          url: "https://neomundi.io",
+          url: "https://neomundi.org",
         },
       },
       description:
@@ -281,21 +281,6 @@ const LIMITS = [
   "This is a private, independent check. It is not an accredited conformity assessment.",
 ];
 
-/** The Swiss flag, drawn rather than fetched. */
-function SwissFlag() {
-  return (
-    <svg
-      viewBox="0 0 32 32"
-      aria-label="Switzerland"
-      role="img"
-      className="inline-block h-7 w-7 shrink-0 rounded-[4px]"
-    >
-      <rect width="32" height="32" fill="#D52B1E" />
-      <rect x="13" y="6" width="6" height="20" fill="#fff" />
-      <rect x="6" y="13" width="20" height="6" fill="#fff" />
-    </svg>
-  );
-}
 
 export default function ServiceCheckPage() {
   return (
@@ -480,14 +465,14 @@ export default function ServiceCheckPage() {
               <p className="mt-3 text-base leading-relaxed text-white/70">
                 The method was run end to end with{" "}
                 <a
-                  href="https://neomundi.io"
+                  href="https://neomundi.org"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-semibold text-accent hover:underline"
                 >
                   NeoMundi
                 </a>
-                , a Swiss company working in AI metrology, in a controlled environment
+                , a French company working in AI metrology, in a controlled environment
                 built for the purpose: an estate agency with a booking service, one model
                 playing the seller and another the customer, real bookings with real
                 identifiers and a log protected against backdating.
@@ -717,9 +702,8 @@ export default function ServiceCheckPage() {
           <p className="mb-3 font-mono text-xs font-semibold uppercase tracking-[0.18em] text-accent">
             The method is published. The reference pilot is open.
           </p>
-          <h2 className="mb-10 flex flex-wrap items-center gap-3 text-2xl font-bold leading-tight tracking-tight text-white sm:text-4xl">
-            <span>Built and tested with a Swiss AI metrology company</span>
-            <SwissFlag />
+          <h2 className="mb-10 text-2xl font-bold leading-tight tracking-tight text-white sm:text-4xl">
+            Built and tested with a French AI metrology company
           </h2>
 
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
