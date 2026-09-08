@@ -384,7 +384,53 @@ const MISTY: Expert = {
   linkedin: "https://www.linkedin.com/in/resonancearchitect/",
 };
 
-export const EXPERTS: Expert[] = [SERGEI, AMANDA, SEBASTIEN, JOZSEF, MARIA, MISTY];
+const AISHA: Expert = {
+  slug: "aisha-stargill",
+  name: "Aisha Stargill",
+  headline:
+    "Independent forensic AI bias audits for hiring tools (NYC LL144, Colorado AI Act, EU AI Act)",
+  region: "North America",
+  location: "Winston-Salem, North Carolina, USA",
+  photo: "/images/experts/aisha-stargill.jpg",
+  role: "Founder & Principal Consultant",
+  organisation: "ALS Consulting",
+  practiceAreas: [
+    "Legal, regulatory & standards compliance",
+    "AI risk & impact assessment",
+    "Assurance, audit & conformity assessment",
+    "Evaluation & testing",
+    "Human oversight, transparency & accountability",
+    "Ethics, human rights & fairness",
+    "Governance operating models & AI policy",
+    "Procurement & third-party risk",
+  ],
+  industries: ["Any industry"],
+  languages: ["English"],
+  workFormats: [
+    "Consulting",
+    "Advisory & board work",
+    "Research collaboration",
+    "Speaking",
+    "Media commentary",
+  ],
+  about:
+    "I run independent forensic bias audits of algorithmic hiring tools for employers and AEDT vendors. My work covers NYC Local Law 144, the Colorado AI Act, and the EU AI Act: disparate-impact testing, audit reporting, candidate-notice review, and the human-oversight controls that sit around an automated decision. I also build human-on-the-loop review infrastructure so a person can see, question, and document what a hiring system is doing before a rejection goes out. Independence is per-engagement: I audit a tool, or I help a vendor get ready for one, not both for the same client.",
+  services: [
+    "Independent bias audit for hiring tools (NYC Local Law 144)",
+    "Independent bias audit under the Colorado AI Act",
+    "EU AI Act conformity readiness for hiring systems",
+    "Disparate-impact and adverse-impact testing",
+    "Candidate-notice and audit-report review",
+    "Human-on-the-loop review infrastructure (build and licensing)",
+    "AEDT vendor US-market readiness assessment",
+  ],
+  linkedin: "https://www.linkedin.com/in/aisha-stargill-668075263/",
+  website: "https://alsconsulting.services",
+  email: { user: "aishas", host: "alsconsulting.services" },
+  phone: "+1 336 573 8426",
+};
+
+export const EXPERTS: Expert[] = [SERGEI, AMANDA, SEBASTIEN, JOZSEF, MARIA, MISTY, AISHA];
 
 export function getExpert(slug: string): Expert | undefined {
   return EXPERTS.find((e) => e.slug === slug);
