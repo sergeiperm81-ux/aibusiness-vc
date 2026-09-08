@@ -20,6 +20,35 @@ const LABEL = "mb-1 block text-sm font-semibold text-gray-900";
 const LEGEND =
   "mb-4 rounded-lg bg-accent px-4 py-1.5 text-base font-bold uppercase tracking-wide text-black";
 
+/**
+ * The longest we accept, mirroring the API.
+ *
+ * These used to sit in maxLength attributes, where the browser simply stops
+ * accepting characters. Someone pasting a prepared bio lost the end of it and
+ * was never told, so the profile arrived cut off mid-word. Counting out loud
+ * and refusing the send is the only honest way to enforce a limit.
+ */
+const FIELD_LIMITS = { headline: 120, about: 1200, services: 1500 } as const;
+
+function Counter({ length, limit }: { length: number; limit: number }) {
+  const over = length > limit;
+  const close = !over && length > limit * 0.9;
+  return (
+    <p
+      className={
+        over
+          ? "mt-1 text-xs font-bold text-red-600"
+          : close
+            ? "mt-1 text-xs font-semibold text-amber-700"
+            : "mt-1 text-xs text-gray-500"
+      }
+    >
+      {length}/{limit}
+      {over ? ` · ${length - limit} too many, trim before sending` : ""}
+    </p>
+  );
+}
+
 export function ApplyForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
@@ -27,6 +56,8 @@ export function ApplyForm() {
   const [industries, setIndustries] = useState<string[]>([]);
   const [workFormats, setWorkFormats] = useState<string[]>([]);
   const [other, setOther] = useState("");
+  const [about, setAbout] = useState("");
+  const [services, setServices] = useState("");
   const [photo, setPhoto] = useState<PickedPhoto | null>(null);
   // Kept in state so the person can watch their card take shape while filling this in.
   const [name, setName] = useState("");
@@ -50,6 +81,21 @@ export function ApplyForm() {
     if (!photo) {
       setStatus("error");
       setMessage("Add a photo. It is the first thing anyone sees.");
+      return;
+    }
+    const tooLong = (
+      [
+        ["headline", headline, FIELD_LIMITS.headline],
+        ["about", about, FIELD_LIMITS.about],
+        ["services", services, FIELD_LIMITS.services],
+      ] as const
+    ).find(([, value, limit]) => value.length > limit);
+    if (tooLong) {
+      const [field, value, limit] = tooLong;
+      setStatus("error");
+      setMessage(
+        `Your ${field} is ${value.length - limit} characters over the ${limit} limit. Nothing is cut for you: shorten it and send again.`
+      );
       return;
     }
     if (practiceAreas.length === 0 && !other.trim()) {
@@ -162,13 +208,12 @@ export function ApplyForm() {
               id="headline"
               name="headline"
               required
-              maxLength={120}
               value={headline}
               onChange={(e) => setHeadline(e.target.value)}
               className={FIELD}
               placeholder="EU AI Act compliance lead for regulated industries"
             />
-            <p className="mt-1 text-xs text-gray-500">{headline.length}/120</p>
+            <Counter length={headline.length} limit={FIELD_LIMITS.headline} />
           </div>
         </div>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -365,10 +410,12 @@ export function ApplyForm() {
               name="about"
               required
               rows={4}
-              maxLength={900}
+              value={about}
+              onChange={(e) => setAbout(e.target.value)}
               className={FIELD}
               placeholder="What you work on, who you help and what you are known for."
             />
+            <Counter length={about.length} limit={FIELD_LIMITS.about} />
           </div>
           <div>
             <label className={LABEL} htmlFor="services">
@@ -379,9 +426,12 @@ export function ApplyForm() {
               name="services"
               required
               rows={3}
+              value={services}
+              onChange={(e) => setServices(e.target.value)}
               className={FIELD}
               placeholder="One per line, for example: EU AI Act gap assessment"
             />
+            <Counter length={services.length} limit={FIELD_LIMITS.services} />
           </div>
         </div>
       </fieldset>
