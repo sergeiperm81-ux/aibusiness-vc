@@ -1,0 +1,11 @@
+rank,company,arr_usd_billions_low,arr_usd_billions_high,arr_basis,arr_source_url,arr_source_date,arr_confidence,valuation_usd_billions,valuation_source_url,valuation_confidence,headcount,headcount_as_of,headcount_source_url,revenue_per_employee_usd_millions,profitability_status,profit_source_url,profit_confidence,verified_on
+1,Anthropic,47,47,Gross basis — includes end-customer spend via cloud resellers,https://www.anthropic.com/news/series-h,2026,high,965,https://www.anthropic.com/news/series-h,high,,,,,First operating profit projected Q2 2026 (~$559M) — projection only; Q2 closed without public confirmation,,low,2026-08-07
+2,OpenAI,24,33,"Confirmed ~$2B monthly (~$24B annualised); earlier gross-leaning reports cited ~$33B",,,medium,852,,medium,,,,,Not disclosed; widely reported lossmaking while scaling,,low,2026-08-07
+3,Databricks,5.4,5.4,Disclosed run rate,,,medium,134,,medium,,,,,Not disclosed,,low,2026-08-07
+4,Cursor (Anysphere),2,2,Reported annualised run rate,https://techcrunch.com/2026/03/02/cursor-has-reportedly-surpassed-2b-in-annualized-revenue/,2026-03-02,medium,50,,low,300,2025-11,Company statement reported Nov 2025,6.7,Not disclosed,,low,2026-08-07
+5,xAI,1,1,Estimate — no primary source traced,,,low,50,,low,,,,,Not disclosed,,low,2026-08-07
+6,Scale AI,1,1,Estimate — no primary source traced,,,low,14,,low,,,,,Not disclosed,,low,2026-08-07
+7,GitHub Copilot (Microsoft),0.9,1.1,"Analyst estimate derived from 4.7M disclosed paid seats and tier mix; corrected from widely-quoted $2B",,,medium,,,,,,,,Not separable — reported inside Microsoft,,low,2026-08-07
+8,Mistral AI,0.6,0.6,Estimate — no primary source traced,,,low,10,,low,,,,,Not disclosed,,low,2026-08-07
+9,Midjourney,0.3,0.5,"Forbes reports ~$300M for 2024; ~$500M widely quoted since",https://www.forbes.com/companies/midjourney/,2024,low,5,,low,,,"Estimates range ~40-163; none reliably dated — omitted",,"Reported profitable by Forbes; private financials unavailable",https://www.forbes.com/companies/midjourney/,medium,2026-08-07
+10,ElevenLabs,0.5,0.5,Estimate — no primary source traced,,,low,3.3,,low,,,,,Not disclosed,,low,2026-08-07

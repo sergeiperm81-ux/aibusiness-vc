@@ -208,7 +208,7 @@ function profileSchema() {
         { "@type": "CollegeOrUniversity", name: "Perm State University" },
       ],
       worksFor: { "@type": "Organization", name: "AI Business", url: SITE },
-      affiliation: { "@type": "Organization", name: "NeoMundi", url: "https://neomundi.io" },
+      affiliation: { "@type": "Organization", name: "NeoMundi", url: "https://neomundi.org" },
       sameAs: [LINKEDIN, `${SITE}/notes`, REPO],
       workExample: {
         "@type": "CreativeWork",
@@ -269,14 +269,14 @@ export default function SergeiPonomarevPage() {
               <p className="mt-5 text-base leading-relaxed text-white/80">
                 Partner for methodology and development in Central and Eastern Europe at{" "}
                 <a
-                  href="https://neomundi.io"
+                  href="https://neomundi.org"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-semibold text-accent hover:underline"
                 >
                   NeoMundi
                 </a>
-                , a Swiss AI metrology company.
+                , a French AI metrology company.
               </p>
               <p className="mt-4 text-sm text-white/45">
                 Sveti Vlas, Bulgaria &middot; remote, any time zone &middot; Russian and
