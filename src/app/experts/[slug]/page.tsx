@@ -170,7 +170,13 @@ export default async function ExpertPage({ params }: Props) {
             </div>
 
             <h3 className="mt-10 text-lg font-bold text-gray-900">About</h3>
-            <p className="mt-3 text-base leading-relaxed text-gray-800">{expert.about}</p>
+            {/* Applicants write several paragraphs; collapsing them into one wall of
+                text loses the shape of what they said. */}
+            <div className="mt-3 space-y-4 text-base leading-relaxed text-gray-800">
+              {expert.about.split("\n").map((para) => para.trim()).filter(Boolean).map((para) => (
+                <p key={para}>{para}</p>
+              ))}
+            </div>
 
             {expert.services && expert.services.length > 0 && (
               <>

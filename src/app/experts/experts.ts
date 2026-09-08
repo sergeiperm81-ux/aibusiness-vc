@@ -239,7 +239,45 @@ const SEBASTIEN: Expert = {
   website: "https://neomundi.org",
 };
 
-export const EXPERTS: Expert[] = [SERGEI, AMANDA, SEBASTIEN];
+const JOZSEF: Expert = {
+  slug: "jozsef-fodor",
+  name: "Jozsef Fodor",
+  headline:
+    "Runtime AI governance, evidence of control, human oversight and reconstructability under the EU AI Act",
+  region: "Europe",
+  location: "Dublin, Ireland",
+  role: "Independent Researcher, Runtime AI Governance",
+  organisation: "NextOne",
+  practiceAreas: [
+    "Governance operating models & AI policy",
+    "Legal, regulatory & standards compliance",
+    "AI risk & impact assessment",
+    "Data governance, privacy & documentation",
+    "Human oversight, transparency & accountability",
+    "AI research & public policy",
+  ],
+  industries: ["Technology & software", "Public sector"],
+  languages: ["English", "Hungarian"],
+  workFormats: [
+    "Consulting",
+    "Research collaboration",
+    "Speaking",
+    "Media commentary",
+    "Employment",
+  ],
+  about:
+    "I work on runtime AI governance: how organisations can demonstrate that AI systems operated under valid authority, effective human oversight and reconstructable conditions when their outputs influenced real-world consequences.\nMy work focuses on the gap between governance as policy and governance as operational evidence. I am particularly interested in evidence of control, authority continuity, human intervention capability, operational validity and the ability to reconstruct the conditions under which an AI-assisted action or decision occurred.\nI am the author of “Article 26 as Runtime Governance: Evidence of Control, Human Oversight and Deployer Responsibility under the EU AI Act”, which examines deployer responsibility from the perspective of runtime evidence and reconstructability.",
+  services: [
+    "I help organisations examine whether their AI governance can be demonstrated in operation, not only documented on paper.",
+    "This can include reviewing human oversight and deployer-control arrangements, identifying gaps in runtime evidence, designing evidence and reconstructability models, and examining how operational evidence can support EU AI Act deployer responsibilities.",
+    "I also explore how governance states can be connected to technical monitoring and execution records so that organisations can later demonstrate the conditions under which AI-assisted actions or decisions took place.",
+    "I am open to research collaborations around runtime AI governance, evidence of control, human oversight, operational evidence and deployer responsibility.",
+  ],
+  linkedin: "https://www.linkedin.com/in/jozsef-fodor-a1a1ab203/",
+  website: "https://nextone.ie",
+};
+
+export const EXPERTS: Expert[] = [SERGEI, AMANDA, SEBASTIEN, JOZSEF];
 
 export function getExpert(slug: string): Expert | undefined {
   return EXPERTS.find((e) => e.slug === slug);
