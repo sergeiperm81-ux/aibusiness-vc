@@ -337,7 +337,54 @@ const MARIA: Expert = {
   email: { user: "karnw79", host: "gmail.com" },
 };
 
-export const EXPERTS: Expert[] = [SERGEI, AMANDA, SEBASTIEN, JOZSEF, MARIA];
+const MISTY: Expert = {
+  slug: "misty-michele-richards",
+  name: "Misty Michele Richards",
+  headline: "Runtime AI governance, multi-agent infrastructure and continuity engineering",
+  region: "North America",
+  location: "Pennsylvania",
+  photo: "/images/experts/misty-michele-richards.jpg",
+  role: "AI Systems Architect & Independent Researcher",
+  organisation: "Unified Resonance Research Program (URRP)",
+  practiceAreas: [
+    "AI engineering & development",
+    "AI agents & automation",
+    "Governance operating models & AI policy",
+    "AI risk & impact assessment",
+    "Evaluation & testing",
+    "Human oversight, transparency & accountability",
+    "Ethics, human rights & fairness",
+    "AI research & public policy",
+  ],
+  industries: ["Technology & software"],
+  languages: ["English"],
+  workFormats: [
+    "Consulting",
+    "Advisory & board work",
+    "Research collaboration",
+    "Speaking",
+    "Employment",
+  ],
+  about:
+    "I am an AI Systems Architect and independent researcher focused on runtime AI governance, multi-agent systems, continuity engineering, and behavioral stability.\nI founded the Unified Resonance Research Program (URRP), an independent research program spanning reasoning architecture, runtime governance, perturbation and continuity evaluation, nonlinear simulation, and human-AI systems.\nMy work includes the Resonance Logic Model (RLM), a multi-agent reasoning architecture with explicit friction detection, escalation, governance gates, and auditable knowledge extraction; the Continuity Harness, which evaluates behavioral and structural continuity under controlled perturbation; and a substrate-general Governance Stack for runtime metrics, gate logic, and observer-independent intervention.\nMy research asks how autonomous and multi-agent systems can preserve coherence, authority boundaries, and meaningful human oversight as behavior unfolds over time.",
+  services: [
+    "Runtime AI governance architecture",
+    "Multi-agent system architecture and evaluation",
+    "AI agent behavioral stability assessment",
+    "Continuity and trajectory analysis under perturbation",
+    "AI governance framework design",
+    "Runtime metrics, gates and intervention architecture",
+    "Multi-agent reasoning architecture",
+    "AI system failure-mode analysis",
+    "Agentic AI evaluation and testing",
+    "Human oversight and accountability architecture",
+    "Research collaboration on AI governance and autonomous systems",
+    "Technical advisory on runtime governance and multi-agent systems",
+  ],
+  linkedin: "https://www.linkedin.com/in/resonancearchitect/",
+};
+
+export const EXPERTS: Expert[] = [SERGEI, AMANDA, SEBASTIEN, JOZSEF, MARIA, MISTY];
 
 export function getExpert(slug: string): Expert | undefined {
   return EXPERTS.find((e) => e.slug === slug);
