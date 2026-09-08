@@ -246,6 +246,7 @@ const JOZSEF: Expert = {
     "Runtime AI governance, evidence of control, human oversight and reconstructability under the EU AI Act",
   region: "Europe",
   location: "Dublin, Ireland",
+  photo: "/images/experts/jozsef-fodor.jpg",
   role: "Independent Researcher, Runtime AI Governance",
   organisation: "NextOne",
   practiceAreas: [
