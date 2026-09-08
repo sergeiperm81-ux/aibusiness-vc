@@ -209,7 +209,37 @@ const AMANDA: Expert = {
   email: { user: "amanda", host: "savvypixel.co.uk" },
 };
 
-export const EXPERTS: Expert[] = [SERGEI, AMANDA];
+const SEBASTIEN: Expert = {
+  slug: "sebastien-favre-lecca",
+  name: "Sébastien Favre-Lecca",
+  headline: "Runtime measurement and behavioral stability for AI",
+  region: "Europe",
+  location: "France",
+  photo: "/images/experts/sebastien-favre-lecca.jpg",
+  role: "Founder & Research Lead",
+  organisation: "NeoMundi",
+  practiceAreas: [
+    "Data engineering & infrastructure",
+    "AI product management",
+    "Evaluation & testing",
+    "AI risk & impact assessment",
+    "AI research & public policy",
+  ],
+  languages: ["English", "French"],
+  about:
+    "Founder of NeoMundi, developing an independent runtime measurement layer for AI systems. My work focuses on behavioral stability, variation and drift at execution time, producing measurable context that organizations can use for evaluation, governance and evidence without replacing their existing infrastructure.",
+  services: [
+    "Runtime AI measurement strategy",
+    "Behavioral stability evaluation",
+    "Measurement-layer integration and pilot design",
+    "AI reliability research collaboration",
+    "Executive briefings and speaking",
+  ],
+  linkedin: "https://www.linkedin.com/in/sebastien-favre-b4611127/",
+  website: "https://neomundi.org",
+};
+
+export const EXPERTS: Expert[] = [SERGEI, AMANDA, SEBASTIEN];
 
 export function getExpert(slug: string): Expert | undefined {
   return EXPERTS.find((e) => e.slug === slug);
