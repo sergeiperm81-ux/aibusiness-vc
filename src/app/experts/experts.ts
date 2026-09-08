@@ -278,7 +278,66 @@ const JOZSEF: Expert = {
   website: "https://nextone.ie",
 };
 
-export const EXPERTS: Expert[] = [SERGEI, AMANDA, SEBASTIEN, JOZSEF];
+const MARIA: Expert = {
+  slug: "maria-kollia",
+  name: "Maria Kollia",
+  headline: "AI governance and compliance, enterprise AI assurance, agentic AI",
+  region: "Europe",
+  location: "Thessaloniki, Greece",
+  photo: "/images/experts/maria-kollia.jpg",
+  role: "Co-Chair, Global Advisory Board",
+  organisation: "STANAIC, International Artificial Intelligence Committee",
+  practiceAreas: [
+    "Governance operating models & AI policy",
+    "Legal, regulatory & standards compliance",
+    "AI risk & impact assessment",
+    "Assurance, audit & conformity assessment",
+    "Evaluation & testing",
+    "Data governance, privacy & documentation",
+    "Human oversight, transparency & accountability",
+    "Ethics, human rights & fairness",
+    "AI research & public policy",
+    "Governed AI adoption & process redesign",
+    "AI literacy & training",
+    "AI engineering & development",
+    "AI agents & automation",
+  ],
+  industries: [
+    "Technology & software",
+    "Public sector",
+    "Manufacturing & industry",
+    "Energy & utilities",
+  ],
+  languages: ["Greek", "English"],
+  workFormats: [
+    "Consulting",
+    "Advisory & board work",
+    "Research collaboration",
+    "Training",
+    "Employment",
+  ],
+  about:
+    "AI governance and compliance researcher focused on turning governance principles into operational controls for real-world AI systems. My work covers enterprise AI assurance, human authority and oversight, agentic AI governance, runtime controls, evidence and traceability, revalidation, risk assessment, and governance before execution. I also serve as Co-Chair of the STANAIC Global Advisory Board and contribute to research, governance design, and enterprise AI compliance initiatives.",
+  services: [
+    "AI governance and compliance assessment",
+    "Enterprise AI assurance and audit",
+    "AI risk and impact assessment",
+    "Human oversight and accountability design",
+    "Agentic AI governance",
+    "Runtime governance and execution controls",
+    "Evidence and traceability design",
+    "AI governance operating models",
+    "Revalidation and remediation frameworks",
+    "Governance policy and control mapping",
+    "AI research and advisory",
+    "AI governance training",
+  ],
+  linkedin: "https://www.linkedin.com/in/maria-kollia-64520a245/",
+  website: "https://stanaic.org",
+  email: { user: "karnw79", host: "gmail.com" },
+};
+
+export const EXPERTS: Expert[] = [SERGEI, AMANDA, SEBASTIEN, JOZSEF, MARIA];
 
 export function getExpert(slug: string): Expert | undefined {
   return EXPERTS.find((e) => e.slug === slug);
