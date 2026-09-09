@@ -473,7 +473,60 @@ const JAVIER: Expert = {
   linkedin: "https://www.linkedin.com/in/javiervb",
 };
 
-export const EXPERTS: Expert[] = [SERGEI, AMANDA, SEBASTIEN, JOZSEF, MARIA, MISTY, AISHA, JAVIER];
+const ELENA: Expert = {
+  slug: "elena-uzunova",
+  name: "Elena Uzunova",
+  headline:
+    "Proportionate AI governance: EU AI Act, ISO 42001, NIST AI RMF, procurement and due diligence readiness",
+  region: "Europe",
+  location: "Oxford, United Kingdom",
+  photo: "/images/experts/elena-uzunova.jpg",
+  role: "AI Governance and Compliance Lead",
+  organisation: "CyberLex, AI Compliance Layer",
+  practiceAreas: [
+    "AI strategy & transformation",
+    "Governed AI adoption & process redesign",
+    "Procurement & third-party risk",
+    "AI literacy & training",
+    "Change management",
+    "Governance operating models & AI policy",
+    "Legal, regulatory & standards compliance",
+    "AI risk & impact assessment",
+    "Assurance, audit & conformity assessment",
+    "Data governance, privacy & documentation",
+    "Human oversight, transparency & accountability",
+    "Ethics, human rights & fairness",
+    "AI research & public policy",
+    "AI safety, security & incident response",
+  ],
+  industries: ["Financial services", "Technology & software", "Legal services"],
+  languages: ["English", "Bulgarian"],
+  workFormats: ["Consulting", "Research collaboration", "Training", "Employment"],
+  about:
+    "I help organisations adopt AI in a controlled, defensible and proportionate way.\nMy work sits at the intersection of AI governance, compliance, legal risk, procurement readiness and operational documentation. I focus on helping teams move from broad AI policy statements to practical governance evidence: inventories, risk assessments, human oversight workflows, procurement questions, documentation, accountability structures and internal controls.\nI am especially interested in EU AI Act readiness, ISO-style AI governance, responsible AI adoption, human rights, transparency and the governance of AI systems in regulated or scrutiny-sensitive environments.\nI am known for translating complex legal, regulatory and governance requirements into clear, usable compliance infrastructure for founders, SaaS companies, legal teams and organisations adopting AI responsibly.",
+  services: [
+    "EU AI Act readiness",
+    "AI governance documentation",
+    "AI risk and impact assessment",
+    "AI policy and governance operating models",
+    "AI procurement and third-party risk support",
+    "AI vendor due diligence questions",
+    "Human oversight workflow design",
+    "AI transparency and accountability documentation",
+    "AI compliance checklists and templates",
+    "Governed AI adoption support",
+    "AI literacy and internal training",
+    "Responsible AI implementation support",
+    "AI governance evidence mapping",
+    "Data governance, privacy and documentation support",
+    "Human rights and fairness review for AI use cases",
+  ],
+  linkedin: "https://www.linkedin.com/in/uzunova",
+  website: "https://www.uzunova.eu",
+  email: { user: "elena", host: "uzunova.eu" },
+};
+
+export const EXPERTS: Expert[] = [SERGEI, AMANDA, SEBASTIEN, JOZSEF, MARIA, MISTY, AISHA, JAVIER, ELENA];
 
 export function getExpert(slug: string): Expert | undefined {
   return EXPERTS.find((e) => e.slug === slug);
