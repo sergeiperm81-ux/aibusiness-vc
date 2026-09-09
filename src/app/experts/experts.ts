@@ -430,7 +430,50 @@ const AISHA: Expert = {
   phone: "+1 336 573 8426",
 };
 
-export const EXPERTS: Expert[] = [SERGEI, AMANDA, SEBASTIEN, JOZSEF, MARIA, MISTY, AISHA];
+const JAVIER: Expert = {
+  slug: "javier-villarrubia",
+  name: "Javier Villarrubia",
+  headline: "Strategy, AI, knowledge and transformation",
+  region: "Europe",
+  location: "Spain",
+  photo: "/images/experts/javier-villarrubia.jpg",
+  role: "Independent Consultant",
+  practiceAreas: [
+    "AI strategy & transformation",
+    "Governed AI adoption & process redesign",
+    "AI literacy & training",
+    "Change management",
+    "Governance operating models & AI policy",
+    "Data governance, privacy & documentation",
+    "Human oversight, transparency & accountability",
+    "Ethics, human rights & fairness",
+    "AI research & public policy",
+    "AI design & user experience",
+    "AI product management",
+  ],
+  industries: [
+    "Financial services",
+    "Technology & software",
+    "Education",
+    "Media",
+    "Retail & consumer",
+  ],
+  languages: ["Spanish", "English"],
+  workFormats: [
+    "Consulting",
+    "Advisory & board work",
+    "Research collaboration",
+    "Speaking",
+    "Training",
+    "Media commentary",
+    "Employment",
+  ],
+  about:
+    "I work at the intersection of strategy, people, knowledge and emerging technologies.\nMy career has combined consulting, university teaching, entrepreneurship and executive learning, helping organizations navigate change, improve performance and prepare for future challenges.\nToday, I focus especially on how Artificial Intelligence can create real business value when combined with human capability, sound strategy and effective organizational design.\nKey areas of interest include:\n• Business transformation\n• AI adoption and human-AI collaboration\n• Knowledge management and learning systems\n• Talent, leadership and organizational development\n• Innovation and growth strategy\nI believe technology alone is never the answer. Sustainable advantage comes from aligning strategy, people and intelligence.",
+  linkedin: "https://www.linkedin.com/in/javiervb",
+};
+
+export const EXPERTS: Expert[] = [SERGEI, AMANDA, SEBASTIEN, JOZSEF, MARIA, MISTY, AISHA, JAVIER];
 
 export function getExpert(slug: string): Expert | undefined {
   return EXPERTS.find((e) => e.slug === slug);
