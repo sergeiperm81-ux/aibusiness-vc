@@ -538,6 +538,7 @@ const MAHER: Expert = {
   practiceAreas: [
     "AI strategy & transformation",
     "Governed AI adoption & process redesign",
+    "Change management",
     "Governance operating models & AI policy",
     "AI risk & impact assessment",
     "Human oversight, transparency & accountability",
