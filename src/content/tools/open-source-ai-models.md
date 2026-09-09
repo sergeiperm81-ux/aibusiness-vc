@@ -40,7 +40,7 @@ You do not have to write checks to OpenAI or Anthropic for frontier-level AI any
 ### Mistral Large 2: Best European Model
 **Parameters:** 123B
 **License:** Apache 2.0
-**Why it matters:** Strong multilingual performance, especially for European languages. French-founded Mistral represents Europe's answer to US and Chinese AI dominance.
+**Why it matters:** Strong multilingual performance, especially for European languages. French-founded Mistral represents Europe's answer to US and Chinese AI dominance, a position investors valued at [over €21 billion in September 2026](/vc/mistral-3-billion-samsung-sovereign-ai-business-model-2026).
 **Best for:** Multilingual applications, European compliance requirements.
 
 ### Qwen 2.5 72B: Best from China

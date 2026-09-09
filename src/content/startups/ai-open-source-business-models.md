@@ -12,7 +12,7 @@ keywords: ["open source AI business model", "Hugging Face business model", "mone
 
 How do you make money giving away your product for free? It sounds like a trick question, but DeepSeek, Llama, Mistral, and Hugging Face all answered it, and got rich doing it. Let me show you the playbook, because once you see the logic underneath, you'll never look at "free" software the same way again.
 
-Here's the strange thing that probably brought you here: some of the most valuable companies in AI charge nothing for their core product. Hugging Face is worth around $4.5 billion. Mistral AI raised at a $6 billion valuation. Meta's Llama has been downloaded millions of times. DeepSeek released models that rivaled GPT-4 and charged zero for access. If you've ever wondered how that's even possible, or whether you could use the same trick, this is for you.
+Here's the strange thing that probably brought you here: some of the most valuable companies in AI charge nothing for their core product. Hugging Face is worth around $4.5 billion. Mistral AI has since raised at a valuation above €21 billion. Meta's Llama has been downloaded millions of times. DeepSeek released models that rivaled GPT-4 and charged zero for access. If you've ever wondered how that's even possible, or whether you could use the same trick, this is for you.
 
 And yet these companies are not charities. They are not burning cash with no plan. They have real revenue, real margins, and in some cases, real profit. The business models are just structured in ways that look backwards until you understand the logic underneath.
 
@@ -46,9 +46,9 @@ Third, compute services. GPU infrastructure for training and fine-tuning models.
 
 Hugging Face is estimated to be doing $70 to $100 million in annual recurring revenue in 2025, and growing fast. The important thing to understand is why it works so well. Hugging Face became the place where AI models live. That is a platform effect. Every new model uploaded increases the platform's gravitational pull. Every new user who downloads a model creates a potential future customer. Every integration with a company's workflow makes Hugging Face harder to replace. The free models are not a cost. They are the most efficient customer acquisition mechanism in the AI industry.
 
-## Mistral: the open core play that turned a Paris startup into a $6 billion company
+## Mistral: the open core play that turned a Paris startup into a [€21 billion company](/vc/mistral-3-billion-samsung-sovereign-ai-business-model-2026)
 
-Mistral's business model is what the industry calls "open core," and it is executed with surgical precision.
+Mistral's business model is what the industry calls "open core," and it is executed with surgical precision. It has since raised €3 billion at more than €21 billion, the largest equity round in European tech history, on the strength of exactly this playbook plus a European jurisdiction that enterprise buyers pay a premium for.
 
 The free part: Mistral 7B and Mixtral, open-source models that anyone can download and use commercially. These models are genuinely good. Not watered-down teasers, not crippled versions of the real product. They are competitive with models that cost real money from other providers. That is intentional.
 
