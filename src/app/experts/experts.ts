@@ -526,7 +526,49 @@ const ELENA: Expert = {
   email: { user: "elena", host: "uzunova.eu" },
 };
 
-export const EXPERTS: Expert[] = [SERGEI, AMANDA, SEBASTIEN, JOZSEF, MARIA, MISTY, AISHA, JAVIER, ELENA];
+const MAHER: Expert = {
+  slug: "maher-hassan-moftah",
+  name: "Maher Hassan Moftah",
+  headline:
+    "Political economy, sustainable development, governance and AI decision systems",
+  region: "Middle East & Africa",
+  location: "Egypt",
+  photo: "/images/experts/maher-hassan-moftah.jpg",
+  role: "Independent Strategic Thinker",
+  practiceAreas: [
+    "AI strategy & transformation",
+    "Governed AI adoption & process redesign",
+    "Governance operating models & AI policy",
+    "AI risk & impact assessment",
+    "Human oversight, transparency & accountability",
+    "AI agents & automation",
+    "AI product management",
+  ],
+  industries: [
+    "Financial services",
+    "Technology & software",
+    "Public sector",
+    "Education",
+    "Energy & utilities",
+    "Health & life sciences",
+  ],
+  languages: ["English", "Arabic"],
+  workFormats: ["Consulting", "Advisory & board work", "Research collaboration", "Speaking"],
+  about:
+    "Independent strategic development thinker and AI governance analyst working at the intersection of political economy, sustainable development, governance, and the engineering of decision systems. My work explores how human judgment, institutional authority, and intelligent systems can be structured to support accountable, legitimate, and sustainable decision-making.",
+  services: [
+    "AI governance and strategic analysis",
+    "Decision-system design",
+    "Human-in-the-loop governance",
+    "AI risk and impact assessment",
+    "Institutional accountability and oversight",
+    "Political economy and sustainable development analysis",
+    "Strategic advisory and thought leadership",
+  ],
+  linkedin: "https://www.linkedin.com/in/maher-moftah-28614b38b",
+};
+
+export const EXPERTS: Expert[] = [SERGEI, AMANDA, SEBASTIEN, JOZSEF, MARIA, MISTY, AISHA, JAVIER, ELENA, MAHER];
 
 export function getExpert(slug: string): Expert | undefined {
   return EXPERTS.find((e) => e.slug === slug);
