@@ -82,6 +82,32 @@ function ExpertSchema({ expert }: { expert: Expert }) {
   );
 }
 
+type AboutBlock =
+  | { kind: "paragraph"; text: string }
+  | { kind: "list"; items: string[] };
+
+/**
+ * People paste their bio straight out of a CV or a LinkedIn summary, bullet
+ * lists included. Rendering every line as its own paragraph turns a tight list
+ * into a column of orphaned dashes, so runs of bullet lines become one list and
+ * everything else stays a paragraph.
+ */
+function aboutBlocks(about: string): AboutBlock[] {
+  return about
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .reduce<AboutBlock[]>((blocks, line) => {
+      const bullet = line.match(/^[•·*-]\s+(.+)$/);
+      if (!bullet) return [...blocks, { kind: "paragraph", text: line }];
+      const last = blocks[blocks.length - 1];
+      if (last?.kind === "list") {
+        return [...blocks.slice(0, -1), { kind: "list", items: [...last.items, bullet[1]] }];
+      }
+      return [...blocks, { kind: "list", items: [bullet[1]] }];
+    }, []);
+}
+
 function Tags({ title, items, dark }: { title: string; items: string[]; dark?: boolean }) {
   if (items.length === 0) return null;
   return (
@@ -173,12 +199,24 @@ export default async function ExpertPage({ params }: Props) {
             </div>
 
             <h3 className="mt-10 text-lg font-bold text-gray-900">About</h3>
-            {/* Applicants write several paragraphs; collapsing them into one wall of
-                text loses the shape of what they said. */}
             <div className="mt-3 space-y-4 text-base leading-relaxed text-gray-800">
-              {expert.about.split("\n").map((para) => para.trim()).filter(Boolean).map((para) => (
-                <p key={para}>{para}</p>
-              ))}
+              {aboutBlocks(expert.about).map((block, index) =>
+                block.kind === "paragraph" ? (
+                  <p key={`p-${index}`}>{block.text}</p>
+                ) : (
+                  <ul key={`ul-${index}`} className="space-y-1.5">
+                    {block.items.map((item) => (
+                      <li key={item} className="flex gap-3">
+                        <span
+                          aria-hidden
+                          className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500"
+                        />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )
+              )}
             </div>
 
             {expert.services && expert.services.length > 0 && (
