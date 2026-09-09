@@ -112,12 +112,30 @@ function OrgSchemaOrg() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "Organization",
+    // A stable identifier, an address and outbound links are what stop an
+    // assistant merging this with the unrelated aibusiness.com. Asked where we
+    // are based, one answered "Greater London", which is that publisher's
+    // address, not ours. Counts are rounded down on purpose: an exact number
+    // goes stale the week after it is written.
+    "@id": "https://aibusiness.vc/#organization",
     name: "AI Business",
+    alternateName: "aibusiness.vc",
     url: "https://aibusiness.vc",
     logo: "https://aibusiness.vc/og-image.jpg",
     description:
-      "How to make money with AI. 290+ articles and 71 LLM model profiles. Income methods, startup data, tool economics, and enterprise case studies.",
-    sameAs: [],
+      "How to make money with AI. 300+ articles and 70+ LLM model profiles, plus independent test purchases of AI agents. Income methods, startup data, tool economics and enterprise case studies.",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Sveti Vlas",
+      addressCountry: "BG",
+    },
+    founder: { "@id": "https://aibusiness.vc/sergei-ponomarev#person" },
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "editorial and business enquiries",
+      url: "https://www.linkedin.com/in/sergei-ponomarev/",
+    },
+    sameAs: ["https://www.linkedin.com/in/sergei-ponomarev/"],
     foundingDate: "2026",
     knowsAbout: [
       "Artificial Intelligence",

@@ -15,7 +15,7 @@ import { ContactEmail } from "@/components/ContactEmail";
 export const metadata: Metadata = {
   title: "AI Business - How to Make Money with AI in 2026",
   description:
-    "How to make money with AI: 50+ income methods with $500-$300K/month verified numbers, 146 case studies, and independent test purchases of AI agents. Updated daily.",
+    "How to make money with AI: 50+ income methods with $500-$300K/month verified numbers, independent test purchases of AI agents, and 300+ articles that each connect AI to money. Updated daily.",
   alternates: {
     canonical: "/",
   },
@@ -41,7 +41,7 @@ export const revalidate = 3600;
 const HOME_FAQ = [
   {
     q: "Is AI actually profitable for businesses in 2026?",
-    a: "Yes — and we track the evidence. 146 case studies with verified results, from lean solo operators to enterprises cutting costs 40-60%. The clearest returns come from AI freelancing, automation services, and content systems built on Claude or ChatGPT. See the Solo and B2B sections for step-by-step playbooks.",
+    a: "Yes, and we track the evidence. Case studies with verified results, from lean solo operators to enterprises cutting costs 40-60%. The clearest returns come from AI freelancing, automation services, and content systems built on Claude or ChatGPT. See the Solo and B2B sections for step-by-step playbooks.",
   },
   {
     q: "How much does it cost to start an AI side hustle?",
@@ -61,7 +61,7 @@ const HOME_FAQ = [
   },
   {
     q: "How is AI Business different from other AI directories?",
-    a: "Outcome-first, not catalog-first. Most AI directories list 28,000+ tools without saying which earn money. We focus on 50+ income methods, 146 real case studies with revenue data, and independent test purchases that check whether an AI service does what its owner promised.",
+    a: "Outcome-first, not catalog-first. Most AI directories list 28,000+ tools without saying which earn money. We focus on 50+ income methods, case studies with real revenue data, and independent test purchases that check whether an AI service does what its owner promised.",
   },
 ];
 
@@ -192,7 +192,7 @@ function HomeWebsiteSchema() {
     url: "https://aibusiness.vc",
     inLanguage: "en",
     description:
-      "How to make money with AI: 146 articles, 360+ tool reviews, 54 LLM model profiles, daily news, real income case studies.",
+      "How to make money with AI: 300+ articles, 70+ LLM model profiles, daily news, and independent test purchases of AI agents.",
     publisher: {
       "@type": "Organization",
       name: "AI Business",
