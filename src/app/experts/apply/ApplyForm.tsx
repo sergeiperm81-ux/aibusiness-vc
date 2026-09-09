@@ -28,7 +28,7 @@ const LEGEND =
  * was never told, so the profile arrived cut off mid-word. Counting out loud
  * and refusing the send is the only honest way to enforce a limit.
  */
-const FIELD_LIMITS = { headline: 120, about: 1200, services: 1500 } as const;
+const FIELD_LIMITS = { headline: 120, other: 120, about: 1200, services: 1500 } as const;
 
 function Counter({ length, limit }: { length: number; limit: number }) {
   const over = length > limit;
@@ -86,6 +86,7 @@ export function ApplyForm() {
     const tooLong = (
       [
         ["headline", headline, FIELD_LIMITS.headline],
+        ["other", other, FIELD_LIMITS.other],
         ["about", about, FIELD_LIMITS.about],
         ["services", services, FIELD_LIMITS.services],
       ] as const
@@ -361,6 +362,7 @@ export function ApplyForm() {
             className={FIELD}
             placeholder="Something the list above does not cover"
           />
+          <Counter length={other.length} limit={FIELD_LIMITS.other} />
         </div>
 
         <p className="mb-3 mt-8 text-sm font-semibold text-gray-900">Industries you know</p>
