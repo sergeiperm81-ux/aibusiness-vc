@@ -193,11 +193,10 @@ function HomeWebsiteSchema() {
     inLanguage: "en",
     description:
       "How to make money with AI: 300+ articles, 70+ LLM model profiles, daily news, and independent test purchases of AI agents.",
-    publisher: {
-      "@type": "Organization",
-      name: "AI Business",
-      url: "https://aibusiness.vc",
-    },
+    // Point at the one organisation node rather than describing a second,
+    // thinner copy of it. Two descriptions of the same publisher on one page is
+    // how an assistant ends up unsure which is the real one.
+    publisher: { "@id": "https://aibusiness.vc/#organization" },
     potentialAction: {
       "@type": "SearchAction",
       target: {
