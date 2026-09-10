@@ -27,6 +27,23 @@ const SECURITY_HEADERS = [
   },
 ];
 
+/**
+ * Paid deliverables that happen to live under `public/`.
+ *
+ * The implementation guide is read from disk by the fulfilment code and shipped
+ * unchanged inside the paid kit, so it cannot simply be moved: on Vercel a file
+ * outside `public/` is not guaranteed to reach the serverless bundle, and a
+ * silent break in fulfilment is worse than the leak. Blocking it at the HTTP
+ * layer instead leaves `fs.readFile` untouched while the URL stops resolving.
+ *
+ * The sample report is deliberately absent from this list: it is linked from
+ * the audit page as a public example of what a buyer receives.
+ */
+const NOT_PUBLICLY_SERVED = [
+  "/audit-kit/Manual-Implementation-Guide-Template.docx",
+  "/audit-kit/Executive-Brief-Template.pdf",
+];
+
 const nextConfig: NextConfig = {
   async headers() {
     return [
@@ -35,6 +52,18 @@ const nextConfig: NextConfig = {
         headers: SECURITY_HEADERS,
       },
     ];
+  },
+  async rewrites() {
+    return {
+      // `beforeFiles` runs ahead of the static file handler. An ordinary rewrite
+      // would lose to the file on disk and serve it anyway.
+      beforeFiles: NOT_PUBLICLY_SERVED.map((source) => ({
+        source,
+        destination: "/audit-kit/not-publicly-served",
+      })),
+      afterFiles: [],
+      fallback: [],
+    };
   },
 };
 
