@@ -569,7 +569,37 @@ const MAHER: Expert = {
   linkedin: "https://www.linkedin.com/in/maher-moftah-28614b38b",
 };
 
-export const EXPERTS: Expert[] = [SERGEI, AMANDA, SEBASTIEN, JOZSEF, MARIA, MISTY, AISHA, JAVIER, ELENA, MAHER];
+const SEBASTIAN_S: Expert = {
+  slug: "sebastian-saviano",
+  name: "Sebastian Saviano",
+  headline:
+    "Institutional responsibility, agency attribution and justified reliance in AI governance",
+  region: "North America",
+  location: "United States",
+  photo: "/images/experts/sebastian-saviano.jpg",
+  role: "Author & Independent Researcher in AI Governance",
+  practiceAreas: [
+    "Governance operating models & AI policy",
+    "Human oversight, transparency & accountability",
+    "AI research & public policy",
+    "Ethics, human rights & fairness",
+  ],
+  industries: ["Technology & software", "Public sector", "Media", "Education"],
+  languages: ["English"],
+  workFormats: ["Advisory & board work", "Research collaboration", "Speaking", "Media commentary"],
+  about:
+    "Sebastian Saviano is an author and independent researcher working at the intersection of AI governance, institutional responsibility, agency, and trust. His research examines how institutions should assign responsibility when AI systems influence consequential decisions, how AI-generated outputs move across organizational and technical handoffs, and what makes institutional reliance on those outputs justified over time.\nHis current research program includes work on the “agency error” in AI governance, handoff zones as a unit of accountability, and justified institutional reliance. Across this work, he distinguishes AI capability and execution from human and institutional authority, judgment, and responsibility.\nHe is also the author of I, System: AI Describes Its Power, Its Limits, and the Civilization That Built It, which examines AI power and influence without attributing consciousness or independent agency to artificial systems.",
+  services: [
+    "Research collaboration, advisory conversations, speaking, panels, interviews and media commentary on AI governance and institutional responsibility.",
+    "How organizations should govern reliance on AI-generated outputs, and the distinction between AI capability, execution, agency and institutional authority.",
+    "Meaningful human oversight, and accountability when AI outputs move between people, systems and organizations, including how institutions preserve the ability to reconsider or withdraw reliance as evidence changes.",
+    "Conceptual review and research perspectives for governance frameworks, policy initiatives, academic projects and responsible-AI programs, particularly where authority, accountability, provenance, contestability or human judgment are involved.",
+  ],
+  linkedin: "https://www.linkedin.com/in/sebastian-saviano/",
+  website: "https://sebastiansaviano.com",
+};
+
+export const EXPERTS: Expert[] = [SERGEI, AMANDA, SEBASTIEN, JOZSEF, MARIA, MISTY, AISHA, JAVIER, ELENA, MAHER, SEBASTIAN_S];
 
 export function getExpert(slug: string): Expert | undefined {
   return EXPERTS.find((e) => e.slug === slug);
