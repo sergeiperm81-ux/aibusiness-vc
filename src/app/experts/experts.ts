@@ -644,7 +644,40 @@ const ANDRZEJ: Expert = {
   website: "https://orcid.org/0009-0007-7058-8646",
 };
 
-export const EXPERTS: Expert[] = [SERGEI, AMANDA, SEBASTIEN, JOZSEF, MARIA, MISTY, AISHA, JAVIER, ELENA, MAHER, SEBASTIAN_S, ANDRZEJ];
+const CSILLA: Expert = {
+  slug: "csilla-palinkas",
+  name: "Csilla Pálinkás dr.",
+  headline:
+    "AI governance frameworks, EU AI Act compliance and GDPR/DPO services for organisations deploying AI",
+  region: "Europe",
+  location: "Budapest, Hungary",
+  photo: "/images/experts/csilla-palinkas.jpg",
+  role: "Attorney at Law",
+  organisation: "Dr. Pálinkás Law Firm",
+  practiceAreas: [
+    "Governance operating models & AI policy",
+    "Legal, regulatory & standards compliance",
+    "AI risk & impact assessment",
+    "Data governance, privacy & documentation",
+    "Human oversight, transparency & accountability",
+    "AI strategy & transformation",
+    "AI literacy & training",
+  ],
+  industries: ["Any industry"],
+  languages: ["English", "Hungarian"],
+  workFormats: ["Consulting", "Advisory & board work", "Training", "Media commentary"],
+  about:
+    "My practice combines AI governance, EU AI Act compliance and data protection law. In practice this means building AI policies and governance frameworks, running legal audits and risk classifications, mapping and controlling Shadow AI use, and setting up the documentation and internal processes that hold up under regulatory scrutiny.\nAlongside this, I provide GDPR audits and ongoing Data Protection Officer services, and help teams fold AI governance into the compliance structures they already have: data protection, information security, corporate governance.",
+  services: [
+    "Making an organisation's use of AI compliant, controlled and proportionate to the actual risk involved",
+    "AI legal audits and AI Act compliance assessments",
+    "AI risk classification and use case inventory in line with the EU AI Act",
+  ],
+  linkedin: "https://www.linkedin.com/in/csilla-palinkas/",
+  website: "https://palinkaslaw.eu/en",
+};
+
+export const EXPERTS: Expert[] = [SERGEI, AMANDA, SEBASTIEN, JOZSEF, MARIA, MISTY, AISHA, JAVIER, ELENA, MAHER, SEBASTIAN_S, ANDRZEJ, CSILLA];
 
 export function getExpert(slug: string): Expert | undefined {
   return EXPERTS.find((e) => e.slug === slug);
