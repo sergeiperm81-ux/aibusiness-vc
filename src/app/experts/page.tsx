@@ -53,9 +53,10 @@ export default function ExpertsPage() {
           <div>
             <h2 className="text-base font-bold text-gray-900">Who belongs here</h2>
             <p className="mt-2 text-sm leading-relaxed text-gray-700">
-              Anyone who works with AI professionally: engineers and data scientists, the people
-              who adopt it inside a business, and the people who govern, test, audit and secure
-              it. One profile per person.
+              Anyone doing real work with AI: engineers and data scientists, the people who adopt
+              it inside a business, the people who govern, test, audit and secure it, and
+              independent researchers building methods and frameworks of their own. What counts is
+              work someone can point to, not how long you have been at it. One profile per person.
             </p>
           </div>
           <div>
