@@ -599,7 +599,52 @@ const SEBASTIAN_S: Expert = {
   website: "https://sebastiansaviano.com",
 };
 
-export const EXPERTS: Expert[] = [SERGEI, AMANDA, SEBASTIEN, JOZSEF, MARIA, MISTY, AISHA, JAVIER, ELENA, MAHER, SEBASTIAN_S];
+const ANDRZEJ: Expert = {
+  slug: "andrzej-ekhmenin",
+  name: "Andrzej Ekhmenin",
+  headline: "Independent bounded assessment of AI, digital and governance systems",
+  region: "Europe",
+  location: "Poland",
+  photo: "/images/experts/andrzej-ekhmenin.jpg",
+  role: "Founder",
+  organisation: "ANDEKS™",
+  practiceAreas: [
+    "Governance operating models & AI policy",
+    "Assurance, audit & conformity assessment",
+    "Evaluation & testing",
+    "Human oversight, transparency & accountability",
+    "AI research & public policy",
+  ],
+  industries: [
+    "Technology & software",
+    "Financial services",
+    "Public sector",
+    "Legal services",
+    "Manufacturing & industry",
+  ],
+  languages: ["Russian", "English"],
+  workFormats: [
+    "Consulting",
+    "Advisory & board work",
+    "Research collaboration",
+    "Speaking",
+    "Media commentary",
+  ],
+  about:
+    "I am the founder of ANDEKS™, an independent bounded assessment approach for complex AI, digital and governance systems.\nMy work focuses on a specific question: what can legitimately be treated as established on the available evidence, and where does the permissible conclusion stop?\nAn ANDEKS assessment fixes the object being assessed, the proposition being tested and the evidence boundary before determining what the evidence is sufficient to support. Missing evidence, undefined criteria or assumptions are not filled in on behalf of the assessed party.\nMy current research covers evidence sufficiency, claim boundaries, temporal validity, reassessment, governance standing and the distinction between observed facts and conclusions that can legitimately be drawn from them.\nI work independently from implementation and system-building roles. ANDEKS is not a certification, legal opinion or substitute for technical verification. Its purpose is to make the basis and limits of a conclusion explicit and independently challengeable.",
+  services: [
+    "Independent assessment of a specific claim about an AI, digital or governance system: fixing what is assessed, what claim is tested, which evidence may be used and what is out of scope, then a bounded finding that states both the conclusion and its limits",
+    "Assessment of claims about an AI or governance system",
+    "Assessment of public or internal evidence packages",
+    "Assessment of governance architectures and control models",
+    "Assessment of system capabilities and declared properties",
+    "Assessment of decision or approval records",
+    "Assessment of evidence supporting continued reliance after conditions change",
+  ],
+  website: "https://orcid.org/0009-0007-7058-8646",
+};
+
+export const EXPERTS: Expert[] = [SERGEI, AMANDA, SEBASTIEN, JOZSEF, MARIA, MISTY, AISHA, JAVIER, ELENA, MAHER, SEBASTIAN_S, ANDRZEJ];
 
 export function getExpert(slug: string): Expert | undefined {
   return EXPERTS.find((e) => e.slug === slug);
