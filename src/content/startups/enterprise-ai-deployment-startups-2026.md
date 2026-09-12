@@ -58,6 +58,8 @@ One phrase keeps coming back in the current enterprise AI conversation: forward-
 
 Palantir made the model famous. Instead of selling software and waiting for customers to configure it, forward-deployed teams sit close to the client, learn the operational environment, and build the bridge between product and outcome. In classic SaaS, that model could look expensive. In AI, it increasingly looks necessary.
 
+By late 2026 the frontier labs had agreed in the most expensive way available to them, [building their own implementation companies](/b2b/ai-labs-became-consulting-firms-implementation-gap-2026): OpenAI Deployment Co at a $10-14 billion valuation, Anthropic and Blackstone's $1.5 billion Ode, and a 1,000-engineer Accenture unit for Gemini.
+
 The reason is that AI adoption fails less often at the demo stage than at the workflow stage. A model can summarize a policy, draft a response, classify a document, or answer a question in isolation. But once it touches production systems, the hard questions arrive. Which data can it access? Which output should trigger action? What happens when confidence is low? Who reviews exceptions? How are errors logged? How does the system improve without quietly creating new risk?
 
 Those are not purely product questions. They are operating questions. A forward-deployed team can answer them faster because it works inside the customer context.

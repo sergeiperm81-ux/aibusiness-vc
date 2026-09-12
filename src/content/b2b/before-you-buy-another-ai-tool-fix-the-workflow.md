@@ -48,6 +48,10 @@ Customer support is a good example. An AI system can categorize incoming message
 
 So before adding AI to any process, I want to know: What starts the work? What information does the system need? Which decisions can the AI make? When must a person step in? Who owns the final outcome? How will the business know whether the change worked? If a team cannot answer those questions, it probably is not ready to automate that process. It is the same instinct behind starting [with your services, not your internal functions](/b2b/start-ai-with-services-not-functions-2026), describe the work before you hand it to a machine.
 
+## The vendors now agree
+
+This used to be a contrarian position. It is not any more. In 2026 the model providers themselves [put over five billion dollars into implementation businesses](/b2b/ai-labs-became-consulting-firms-implementation-gap-2026), staffing them with engineers who sit inside client offices and redesign processes. Their own diagnosis is that model selection is not where the work is. If the people selling the models say the workflow is the hard part, that is about as strong a confirmation as this argument is ever going to get.
+
 ## Start with one boring workflow
 
 Founders do not need a complete AI stack to see a return. They need one frequent, expensive, measurable problem, support-ticket triage, lead qualification, weekly reporting, meeting follow-ups, content repurposing. Watch how the work is done for a week or two. Record how long it takes, where the delays happen, and how often someone has to fix a mistake.

@@ -42,7 +42,7 @@ Read that one more time, because it flips the whole story you've been hearing al
 
 That $725 billion line is the one that makes the whole thing surreal. Meta, Amazon, Microsoft, and Alphabet together cranked their AI infrastructure spending up 75% in a single year, building the data centers, buying the chips, and locking down the [power infrastructure behind deals like the $67B NextEra-Dominion merger](/government/nextera-dominion-67-billion-ai-power-merger-2026). That is real money, deployed at a scale we've never seen, on the supply side.
 
-Now look at the other side. The companies actually buying and deploying all that AI are cutting staff and not seeing the payoff. Money is pouring into AI infrastructure faster than productivity is coming out the other end. If you feel that tension in your own organization, you're not imagining it, it's the defining business story of the year.
+Now look at the other side. The companies actually buying and deploying all that AI are cutting staff and not seeing the payoff. Money is pouring into AI infrastructure faster than productivity is coming out the other end. If you feel that tension in your own organization, you're not imagining it, it's the defining business story of the year. The AI vendors have since reached the same conclusion and put money behind it: in 2026 they [spent billions building consulting arms](/b2b/ai-labs-became-consulting-firms-implementation-gap-2026) on the theory that the missing return is an implementation problem, not a model problem.
 
 ## So why do CEOs keep doing it?
 
