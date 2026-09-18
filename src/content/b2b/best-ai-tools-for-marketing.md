@@ -54,6 +54,8 @@ keywords: ["AI marketing tools", "best AI tools for marketing", "AI for digital 
 
 ## Advertising
 
+One new channel worth knowing about before the tools: ChatGPT itself now sells ads, with self-serve buying, Shopify and HubSpot integrations, and a test of conversational Sponsored Agents. I worked through [who sees ChatGPT ads, what a click costs and the break-even math](/tools/chatgpt-ads-sponsored-agents-1-billion-what-advertisers-pay-2026).
+
 ### AdCreative.ai: Best for Ad Creative
 **Price:** $29/mo, $149/mo
 **Best for:** Performance marketing teams running paid ads.
