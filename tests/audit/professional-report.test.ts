@@ -7,7 +7,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import type { AnswerCheck } from "../../src/lib/audit/answer-check";
 import { isGoogleRedirect, stripTracking } from "../../src/lib/audit/citation-cleanup";
-import { buildPersonReportPdf, groupSources, plainAnswer, rolesNamedByOneModel } from "../../src/lib/audit/person-report-pdf";
+import { buildPersonReportPdf, groupSources, plainAnswer, promotesLoneRole, rolesNamedByOneModel } from "../../src/lib/audit/person-report-pdf";
 import { answersBlock, parseSynthesis, type PersonSynthesis } from "../../src/lib/audit/person-synthesis";
 
 const LABELS = ["OpenAI", "Anthropic", "Gemini"];
@@ -288,4 +288,11 @@ test("advice to publish dated news is dropped when the assistants already quote 
   );
   assert.ok(parsed);
   assert.deepEqual(parsed.recommendations.map((r) => r.title), ["Do 1", "Do 2", "Do 3"]);
+});
+
+test("a step that promotes a role only one model names is left out; a step that checks it stays", () => {
+  const lone = [{ value: "Founder at Mylo.family (AI-powered legacy planning platform)" }];
+  assert.equal(promotesLoneRole("Ensure all current roles such as NeoMundi partnership and Mylo.family founder are clearly listed.", lone), true);
+  assert.equal(promotesLoneRole("Check whether the Mylo.family role is current; remove it where it still appears if not.", lone), false);
+  assert.equal(promotesLoneRole("Use one headline on every network.", lone), false);
 });

@@ -104,6 +104,20 @@ export function rolesNamedByOneModel(synthesis: PersonSynthesis, check: AnswerCh
   return answeredDoes >= 3 ? synthesis.professional.roles.filter((role) => role.saidBy.length === 1) : [];
 }
 
+/**
+ * True when a step would have the person list or promote a role or company only one model
+ * names. That role is an unconfirmed claim in the same report; the summary is told not to give
+ * such a step and sometimes does, so it is left out here.
+ */
+export function promotesLoneRole(step: string, loneRoles: readonly { readonly value: string }[]): boolean {
+  const lower = step.toLowerCase();
+  if (/\b(check|verify|confirm whether|remove|correct|if (it|this) is not)\b/.test(lower)) return false;
+  return loneRoles.some((role) => {
+    const where = role.value.split(/\s+at\s+/i)[1]?.split(/[(,]/)[0]?.trim().toLowerCase();
+    return where !== undefined && where.length >= 3 && lower.includes(where);
+  });
+}
+
 /** What Claude said before searching, glued to its answer in answers stored before that was cut: "...questions.Based on". */
 const PRE_SEARCH = /^(?:I'll|I will|Let me) search[^.]*\.(?=[A-Z])/;
 
@@ -228,9 +242,11 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
       `We asked ${total} of them the three questions people ask, each with live web search on. This is what they said about ${name}.`,
     { gapAfter: 6 }
   );
-  pdf.muted(
-    `The report is the pages before the appendices. The appendices are the record: which model found the ${w.subject}, and every answer that could be tied to ${w.tie}, word for word.`
-  );
+  if (!input.sample) {
+    pdf.muted(
+      `The report is the pages before the appendices. The appendices are the record: which model found the ${w.subject}, and every answer that could be tied to ${w.tie}, word for word.`
+    );
+  }
 
   /* ------------------------------------------------------------ question 1 */
   numbered(questions.who(name));
@@ -268,7 +284,7 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
   if (ownFlags.length === 0 && ambiguous) {
     pdf.banner(
       "Identity ambiguous: no reputation conclusion",
-      `${company ? "Other organisations share" : "Other people share"} this name, or not every answer could be tied to ${w.tie} (see Appendix A). This scan draws no conclusion about ${company ? "the organisation's" : "the person's"} reputation.${heldNote}`,
+      `${company ? "Other organisations share" : "Other people share"} this name, or not every answer could be tied to ${w.tie}${input.sample ? "" : " (see Appendix A)"}. This scan draws no conclusion about ${company ? "the organisation's" : "the person's"} reputation.${heldNote}`,
       AMBER,
       AMBER_TINT
     );
@@ -362,7 +378,7 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
   usefulRecommendations(synthesis.recommendations, synthesis.professional.activity).forEach((item, index) => {
     pdf.text(`${index + 1}. ${item.title}`, { bold: true, size: 11.5, gapAfter: 1 });
     pdf.text(item.why, { color: MUTED, size: 10, gapAfter: 1 });
-    for (const step of item.steps) pdf.bullet(step, { gapAfter: 2 });
+    for (const step of item.steps.filter((s) => !promotesLoneRole(s, loneRoles))) pdf.bullet(step, { gapAfter: 2 });
     pdf.gap(8);
   });
 
