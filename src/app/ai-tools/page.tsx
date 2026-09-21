@@ -31,20 +31,20 @@ interface Tool {
 
 const TOOLS: readonly Tool[] = [
   {
-    name: "AI Company Scan",
-    what: "Who runs a company, what it sells, and any red flags, before you sign.",
-    input: "Enter a website",
-    price: "Preview free · Report €14.97",
-    href: "/company-scan",
-    cta: "Check a company",
-  },
-  {
     name: "AI Person Scan",
     what: "Who a person is, what they do, and any red flags, before you meet.",
     input: "Paste a social profile link",
     price: "Preview free · Report €14.97",
     href: "/professional-scan",
     cta: "Check a person",
+  },
+  {
+    name: "AI Company Scan",
+    what: "Who runs a company, what it sells, and any red flags, before you sign.",
+    input: "Enter a website",
+    price: "Preview free · Report €14.97",
+    href: "/company-scan",
+    cta: "Check a company",
   },
   {
     name: "AI Website Visibility",
@@ -58,36 +58,44 @@ const TOOLS: readonly Tool[] = [
 
 export default function AiToolsPage() {
   return (
-    <section className="bg-background">
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <p className="mb-3 text-base font-bold uppercase tracking-wider text-accent">AI Tools</p>
-        <h1 className="max-w-4xl text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl">
-          What does AI tell people about <span className="text-accent">a company, a person or a website?</span>
-        </h1>
-        <p className="mt-4 max-w-3xl text-lg leading-relaxed text-white/75">
-          Five AI models answer with live web search. You see a free preview first, and every report shows what each model
-          said, with its sources.
-        </p>
+    <>
+      {/* The title on a black band, like the scan pages. */}
+      <section className="bg-background">
+        <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+          <p className="mb-3 text-base font-bold uppercase tracking-wider text-accent">AI Tools</p>
+          <h1 className="max-w-4xl text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl">
+            What does AI tell people about <span className="text-accent">a person, a company or a website?</span>
+          </h1>
+          <p className="mt-4 max-w-3xl text-lg leading-relaxed text-white/75">
+            Five AI models answer with live web search. You see a free preview first, and every report shows what each model
+            said, with its sources.
+          </p>
+        </div>
+      </section>
 
-        <ul className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-3">
-          {TOOLS.map((tool) => (
-            <li key={tool.name} className="flex flex-col rounded-2xl bg-white p-6">
-              <p className="text-2xl font-bold tracking-tight text-black">{tool.name}</p>
-              <p className="mt-2 text-lg leading-snug text-black/75">{tool.what}</p>
-              <p className="mt-4 text-base font-semibold text-black/60">{tool.input}</p>
-              <p className="mt-1 text-lg font-bold text-black">{tool.price}</p>
-              <div className="mt-auto pt-5">
-                <Link
-                  href={tool.href}
-                  className="flex items-center justify-center rounded-xl bg-accent px-5 py-3 text-lg font-bold text-black transition hover:bg-accent-hover"
-                >
-                  {tool.cta} &rarr;
-                </Link>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
+      {/* The three tools on white: black cards, one yellow button each. */}
+      <section className="bg-white">
+        <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+          <ul className="grid grid-cols-1 gap-5 md:grid-cols-3">
+            {TOOLS.map((tool) => (
+              <li key={tool.name} className="flex flex-col rounded-2xl bg-black p-6">
+                <p className="text-2xl font-bold tracking-tight text-accent">{tool.name}</p>
+                <p className="mt-2 text-lg leading-snug text-white/85">{tool.what}</p>
+                <p className="mt-4 text-base font-semibold text-white/60">{tool.input}</p>
+                <p className="mt-1 text-lg font-bold text-white">{tool.price}</p>
+                <div className="mt-auto pt-5">
+                  <Link
+                    href={tool.href}
+                    className="flex items-center justify-center rounded-xl bg-accent px-5 py-3 text-lg font-bold text-black transition hover:bg-accent-hover"
+                  >
+                    {tool.cta} &rarr;
+                  </Link>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    </>
   );
 }
