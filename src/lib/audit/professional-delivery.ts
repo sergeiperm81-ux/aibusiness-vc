@@ -164,7 +164,7 @@ export async function sendReportEmail(email: ReportEmail, config: MailConfig): P
   await sendBrevo(config, {
     to: email.order.email,
     ...content,
-    attachment: [{ name: `AI-Professional-Scan-${slug}.pdf`, content: Buffer.from(pdf).toString("base64") }],
+    attachment: [{ name: `AI-Person-Scan-${slug}.pdf`, content: Buffer.from(pdf).toString("base64") }],
     bccOwner: true,
   });
 }
