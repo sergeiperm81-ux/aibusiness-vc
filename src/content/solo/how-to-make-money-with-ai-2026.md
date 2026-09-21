@@ -26,7 +26,7 @@ Read the fine print, though, because Upwork itself is blunt about it: the premiu
 |---|---|
 | $20/month | ChatGPT Plus or Claude Pro, enough for methods 1, 5, 6, 7, 9 |
 | $0 | n8n self-hosted, open models, free tiers, enough to prototype methods 3 and 4 |
-| $3 / $15 per million tokens | Claude Sonnet 5 standard API rate, the running cost behind methods 2, 4, 8 |
+| $2 / $10 per million tokens | Claude Sonnet 5 API rate, the running cost behind methods 2, 4, 8 |
 | $100-$200/month | Max-tier subscriptions if you run coding agents all day |
 
 Against a first client paying $1,000 to $5,000, every line of that table is a rounding error. The cost of getting started has never been the barrier. The barrier is choosing.
@@ -77,7 +77,7 @@ What I like about this method is that it does not require you to be a strong cod
 
 Methods 1 to 3 sell time. They pay well and scale badly. Method 4 is the first one that builds an asset, because you deploy something once and charge for it every month.
 
-A purpose-built agent, one that qualifies real estate leads and books showings, or triages support tickets and drafts replies, or reviews incoming contracts and flags the risky clauses, costs $3,000-$10,000 to build and $500-$2,000 a month to keep running. At Claude Sonnet 5's standard $3 input and $15 output per million tokens, an agent handling a thousand interactions a day costs you tens of dollars a day in API fees against a $1,500 monthly invoice. Margins north of 90%, and clients that stay because the switching cost is high.
+A purpose-built agent, one that qualifies real estate leads and books showings, or triages support tickets and drafts replies, or reviews incoming contracts and flags the risky clauses, costs $3,000-$10,000 to build and $500-$2,000 a month to keep running. At Claude Sonnet 5's $2 input and $10 output per million tokens, an agent handling a thousand interactions a day costs you tens of dollars a day in API fees against a $1,500 monthly invoice. Margins north of 90%, and clients that stay because the switching cost is high.
 
 Before you price one, separate the subscription you pay for your own work from the API bill your customers generate; the [Claude API cost guide](/solo/claude-api-cost-side-business) does that arithmetic with concrete examples. The complete playbook, from what to build first to how to sell it, is [How to Make Money with AI Agents](/solo/how-to-make-money-with-ai-agents). If you want to see where a one-person agent business hits its limits, read [the one-person company piece](/solo/one-person-company-ai-agents-limits-2026) before you promise a client the moon.
 
@@ -158,7 +158,7 @@ No. Methods 1, 3, 5, 6, 7, and 9 need no code. Automation tools like n8n are vis
 The one your chosen method needs. ChatGPT and Claude are interchangeable for most writing and consulting work; Claude Code and Cursor lead for software; n8n for automation; Midjourney and the video models for creative. Compare them on price in the [LLM leaderboard](/models) and pick the cheapest that does the job.
 
 **How much does it cost to start?**
-$0 to $20 a month for almost everything on this list. API costs for agents run tens of dollars a month per client at Claude Sonnet 5's $3/$15 per million tokens. The only method with real upfront cost is building a product, and that cost is mostly your time.
+$0 to $20 a month for almost everything on this list. API costs for agents run tens of dollars a month per client at Claude Sonnet 5's $2/$10 per million tokens. The only method with real upfront cost is building a product, and that cost is mostly your time.
 
 **Is it too late to start making money with AI?**
 No, but the easy premium is compressing. Freelancers doing AI work still earn 34% more per hour in 2026, and demand for AI skills more than doubled in a year. The advantage in two years will belong to whoever built clients and case studies now, not to whoever discovers the tools later.

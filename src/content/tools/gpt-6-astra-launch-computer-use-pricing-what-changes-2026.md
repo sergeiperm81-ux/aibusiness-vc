@@ -47,8 +47,8 @@ Astra is the most expensive mainstream model on the board. Per OpenAI's model do
 |---|---|---|---|
 | **GPT-6 Astra** | **$10** | **$1** | **$50** |
 | **GPT-6 Astra (Fast)** | **$20** | **$2** | **$100** |
-| Claude Opus 4.8 | $5 | n/a | $25 |
-| Claude Sonnet 5 (standard) | $3 | n/a | $15 |
+| Claude Opus 4.8 | $5 | $0.50 | $25 |
+| Claude Sonnet 5 | $2 | $0.20 | $10 |
 
 That cached-input rate is the detail worth planning around: at **$1 versus $10**, re-reading the same context costs a tenth of sending it fresh. Writing to the cache is billed separately at **$12.50 per million**, 1.25x the uncached input rate, so caching pays off when context is reused, not on a single pass.
 
