@@ -79,6 +79,14 @@ export default function CompanyScanPage() {
           <p className="mt-3 max-w-2xl text-base text-white/60">
             We scan the organisation represented by this website, not legal ownership or company registration.
           </p>
+          <a
+            href="/samples/ai-company-scan-sample-report.pdf"
+            target="_blank"
+            rel="noopener"
+            className="mt-3 inline-block text-lg font-bold text-white underline decoration-accent decoration-4 underline-offset-4 hover:text-accent"
+          >
+            See a sample report (PDF)
+          </a>
         </div>
         <div className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
           <p className="mb-5 text-2xl font-bold text-white">

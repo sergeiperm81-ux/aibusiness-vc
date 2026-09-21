@@ -234,6 +234,14 @@ export default function ProfessionalScanPage() {
             <p className="mt-6 text-lg font-bold text-white">
               Preview <span className="text-accent">free</span> · Full report <span className="text-accent">&euro;14.97</span> once
             </p>
+            <a
+              href="/samples/ai-person-scan-sample-report.pdf"
+              target="_blank"
+              rel="noopener"
+              className="mt-3 inline-block text-lg font-bold text-white underline decoration-accent decoration-4 underline-offset-4 hover:text-accent"
+            >
+              See a sample report (PDF)
+            </a>
           </div>
           <ReportMockup />
         </div>
