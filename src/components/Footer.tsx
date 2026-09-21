@@ -4,7 +4,7 @@ import { CookieSettingsLink } from "@/components/CookieSettingsLink";
 import { ContactEmail } from "@/components/ContactEmail";
 import { ScrollToTop } from "@/components/ScrollToTop";
 
-/** The author's own side of the site, mirroring the Author's desk on the home page. */
+/** The founder's own side of the site, mirroring the Founder's desk on the home page. */
 const AUTHOR_DESK = [
   { name: "AI Tools", href: "/ai-tools" },
   { name: "AI Test Purchase", href: "/service-check" },
@@ -31,7 +31,7 @@ export function Footer() {
               How AI creates real value for people, and by what rules it works.
             </p>
             <p className="mb-3 font-mono text-xs uppercase tracking-wider text-accent">
-              Author&apos;s desk
+              Founder&apos;s desk
             </p>
             <div className="grid grid-cols-2 gap-x-6 gap-y-2">
               {AUTHOR_DESK.map((item) => (

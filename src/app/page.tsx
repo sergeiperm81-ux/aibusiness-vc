@@ -395,12 +395,12 @@ export default async function HomePage() {
               </div>
             </div>
 
-            {/* Author's desk — sticky side panel */}
+            {/* Founder's desk — sticky side panel */}
             <aside className="lg:col-span-1">
               <div className="h-full">
                 <div className="flex h-full flex-col rounded-2xl bg-accent p-5">
                   <p className="mb-4 font-mono text-base font-bold uppercase tracking-[0.2em] text-black">
-                    Author&apos;s desk
+                    Founder&apos;s desk
                   </p>
                   <Link href="/sergei-ponomarev" className="group block">
                     <Image
