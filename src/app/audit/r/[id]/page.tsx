@@ -189,7 +189,7 @@ export default async function AuditResultPage({ params }: { params: Promise<{ id
                   Get the AI Fix Kit, &euro;49
                   <Arrow />
                 </a>
-                <p className="text-xl font-semibold text-black/75">By email within minutes · one payment · 14-day refund</p>
+                <p className="text-xl font-semibold text-black/75">By email within minutes · one payment · 14-day refund, no questions asked</p>
               </div>
             ) : (
               <p className="text-xl text-black/75">
