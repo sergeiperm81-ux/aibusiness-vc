@@ -32,6 +32,19 @@ function decoded(address: string): string {
   }
 }
 
+const TROUBLE = /\b(fraud|scam|lawsuit|sued|court|criminal|arrest|convict|sanction|allegation|alleged|non-payment|bribe|investigat|prosecut|charged|terror|embezzl|money laundering|warning about)/i;
+const SOMEONE_ELSE = /\b(different|another|unrelated|similar names?|same name|namesake|other (people|individuals|persons)|not (the same|related|connected))\b/i;
+
+/**
+ * True when an answer tells of trouble (fraud, a court case, sanctions) and
+ * places it on someone else with the name. Such an answer is withheld whole,
+ * from the summary and from the report: hiding its links is not enough, the
+ * words themselves pin another person's trouble next to this name.
+ */
+export function mentionsOthersTrouble(text: string): boolean {
+  return TROUBLE.test(text) && SOMEONE_ELSE.test(text);
+}
+
 /** "questionId/providerId" of the answers the report may print: the model tied them to this profile. */
 export function answersAboutProfile(
   check: AnswerCheck,
@@ -42,6 +55,7 @@ export function answersAboutProfile(
     row.answers
       .filter((answer) => answer.ok)
       .filter((answer) => !notFoundKeys.has(`${row.fact.id}/${answer.providerId}`))
+      .filter((answer) => !mentionsOthersTrouble(answer.text))
       .filter(
         (answer) =>
           synthesis.coverage.find((c) => c.questionId === row.fact.id && c.provider === answer.providerLabel)?.status ===

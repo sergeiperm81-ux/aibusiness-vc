@@ -17,6 +17,7 @@
 import { randomUUID } from "node:crypto";
 import type { AnswerCheck } from "./answer-check";
 import { computeAnswerSignals } from "./answer-check-report";
+import { mentionsOthersTrouble } from "./person-report-safety";
 import { postJson } from "./paid-http";
 import {
   failureMeasurement,
@@ -313,11 +314,15 @@ export function parseSynthesis(
 
 /** "questionId/providerId" of answers whose model said it could not find the person: fixed rules, no model. */
 export function answersNotAboutPerson(check: AnswerCheck): ReadonlySet<string> {
-  return new Set(
-    computeAnswerSignals(check)
-      .filter((signal) => signal.nonAnswer.notFound)
-      .map((signal) => `${signal.factId}/${signal.providerId}`)
+  const troubled = check.results.flatMap((row) =>
+    row.answers.filter((a) => a.ok && mentionsOthersTrouble(a.text)).map((a) => `${row.fact.id}/${a.providerId}`)
   );
+  return new Set([
+    ...computeAnswerSignals(check)
+      .filter((signal) => signal.nonAnswer.notFound)
+      .map((signal) => `${signal.factId}/${signal.providerId}`),
+    ...troubled,
+  ]);
 }
 
 /**
@@ -334,7 +339,7 @@ export function answersBlock(check: AnswerCheck, heldBack: ReadonlySet<string> =
           const body = !a.ok
             ? `(no answer: ${a.error ?? "failed"})`
             : held
-              ? "(held back: this assistant said it could not find or identify the person)"
+              ? "(held back: this answer could not be tied to the person, or it tells of trouble about other people with the name)"
               : a.text.slice(0, MAX_ANSWER_CHARS);
           const sources =
             a.citations.length > 0 && !held ? `\nSources it cited: ${a.citations.slice(0, 8).join(" , ")}` : "";

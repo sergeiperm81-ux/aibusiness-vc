@@ -18,6 +18,7 @@ import {
   answersAboutProfile,
   identityAmbiguous,
   isSocialAddress,
+  mentionsOthersTrouble,
   sourceLabel,
   verifiedSources,
 } from "./person-report-safety";
@@ -77,13 +78,7 @@ export interface AnswerBlock {
   readonly heading: boolean;
 }
 
-/**
- * An answer as plain paragraphs. Models write Markdown; printed as it comes it
- * is a wall of asterisks and bracketed links. The words are kept, the marks
- * are dropped, and inline links lose their address because the same address
- * is in the source list under the answer.
- */
-/** Roles a single model names while at least three models answered what the person does: a quiet contradiction. */
+/** Roles a single model names while at least three models answered what the person does: unconfirmed, not a contradiction. */
 export function rolesNamedByOneModel(synthesis: PersonSynthesis, check: AnswerCheck): PersonSynthesis["professional"]["roles"] {
   const answeredDoes = check.results.find((r) => r.fact.id === "does")?.answers.filter((a) => a.ok).length ?? 0;
   return answeredDoes >= 3 ? synthesis.professional.roles.filter((role) => role.saidBy.length === 1) : [];
@@ -92,6 +87,12 @@ export function rolesNamedByOneModel(synthesis: PersonSynthesis, check: AnswerCh
 /** What Claude said before searching, glued to its answer in answers stored before that was cut: "...questions.Based on". */
 const PRE_SEARCH = /^(?:I'll|I will|Let me) search[^.]*\.(?=[A-Z])/;
 
+/**
+ * An answer as plain paragraphs. Models write Markdown; printed as it comes it
+ * is a wall of asterisks and bracketed links. The words are kept, the marks
+ * are dropped, and inline links lose their address because the same address
+ * is in the source list under the answer.
+ */
 export function plainAnswer(text: string): readonly AnswerBlock[] {
   const clean = (line: string): string =>
     line
@@ -144,6 +145,7 @@ function coverageWord(input: PersonReportInput, questionId: string, providerId: 
     .find((r) => r.fact.id === questionId)
     ?.answers.find((a) => a.providerId === providerId);
   if (!answer || !answer.ok) return "No answer";
+  if (mentionsOthersTrouble(answer.text)) return "Withheld";
   // The fixed rule wins: it quotes the assistant's own "I could not find" words.
   if (input.notFoundKeys?.has(`${questionId}/${providerId}`)) return STATUS_WORD.not_found;
   const status = input.synthesis.coverage.find((c) => c.questionId === questionId && c.provider === providerLabel)?.status;
@@ -254,7 +256,10 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
     pdf.text("We repeat what the models said. We do not claim any of it is true.", { size: 9, color: MUTED, gapAfter: 6 });
   }
 
-  if (synthesis.redFlags.clear.length > 0) {
+  if (ambiguous && ownFlags.length === 0) {
+    // Listing "no disputes found" under an ambiguous identity would be a verdict after all.
+    pdf.text("The search covered disputes, complaints, reviews and warnings; no result was attributed to the supplied profile.", { gapAfter: 6 });
+  } else if (synthesis.redFlags.clear.length > 0) {
     pdf.text("What the models looked for and did not find", { bold: true, gapAfter: 3 });
     for (const line of synthesis.redFlags.clear) pdf.bullet(line, { color: GREEN });
     pdf.gap(4);
@@ -275,7 +280,7 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
 
   /* -------------------------------------------------------- contradictions */
   const loneRoles = rolesNamedByOneModel(synthesis, check);
-  if (synthesis.disagreements.length > 0 || loneRoles.length > 0) {
+  if (synthesis.disagreements.length > 0) {
     pdf.rule();
     pdf.kicker("Contradictions");
     pdf.heading("Where the answers contradict each other");
@@ -284,14 +289,16 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
       for (const version of item.versions) pdf.bullet(`${version.saidBy}: ${version.says}`);
       pdf.gap(5);
     }
-    if (loneRoles.length > 0) {
-      pdf.text("Roles only one model names", { bold: true, gapAfter: 3 });
-      for (const role of loneRoles) pdf.bullet(`${role.saidBy[0]}: ${role.value}`);
-      pdf.text(
-        "The other models describe the person without these. Each may be out of date, a past role told as current, or not about this person at all. Only the person can say which.",
-        { size: 9.5, color: MUTED, gapAfter: 5 }
-      );
-    }
+  }
+  if (loneRoles.length > 0) {
+    pdf.rule();
+    pdf.kicker("Unconfirmed claims");
+    pdf.heading("Roles only one model names");
+    for (const role of loneRoles) pdf.bullet(`${role.saidBy[0]}: ${role.value}`);
+    pdf.text(
+      "The other models describe the person without these. Each is unconfirmed: it may be out of date, a past role told as current, or not about this person at all. Only the person can say which.",
+      { size: 9.5, color: MUTED, gapAfter: 5 }
+    );
   }
   if (synthesis.mixups.length > 0) {
     pdf.rule();
@@ -376,18 +383,10 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
       }
       if (!shown.has(`${row.fact.id}/${answer.providerId}`)) {
         pdf.text(
-          "Not printed: this model could not tie its answer to the profile given, so the answer may describe another person.",
+          "Not printed: this answer could not be tied to the profile given, or it tells of trouble about other people with the name.",
           { color: MUTED, indent: 10, gapAfter: 12 }
         );
         continue;
-      }
-      if (row.fact.id === "reputation" && synthesis.mixups.some((m) => m.saidBy.includes(answer.providerLabel))) {
-        pdf.text(`This answer also mentions other people with this name. Those parts are about them, not about ${name}.`, {
-          size: 9,
-          color: MUTED,
-          indent: 10,
-          gapAfter: 4,
-        });
       }
       for (const block of plainAnswer(answer.text)) {
         if (block.bullet) pdf.bullet(block.text, { size: 9.5, indent: 10 });

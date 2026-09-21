@@ -7,7 +7,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import type { AnswerCheck } from "../../src/lib/audit/answer-check";
 import { anthropicAnswerText } from "../../src/lib/audit/answer-providers";
-import { answersAboutProfile, identityAmbiguous, sourceLabel, verifiedSources } from "../../src/lib/audit/person-report-safety";
+import { answersAboutProfile, identityAmbiguous, mentionsOthersTrouble, sourceLabel, verifiedSources } from "../../src/lib/audit/person-report-safety";
 import { anchorsFor, isTheProfile, keepSourcesAboutPerson, pageTiedToPerson } from "../../src/lib/audit/person-source-check";
 import { answersBlock, answersNotAboutPerson } from "../../src/lib/audit/person-synthesis";
 import type { PersonSynthesis } from "../../src/lib/audit/person-synthesis";
@@ -173,4 +173,41 @@ test("Claude's words before it searches are not part of the answer", () => {
     "Based on the results, he is an editor."
   );
   assert.equal(anthropicAnswerText([{ type: "text", text: "No search was needed." }]), "No search was needed.");
+});
+
+/** Grok's real answer from the 21.09 test order, the part about namesakes. */
+const GROK_NAMESAKES =
+  "No significant red flags were found about Sergei Ponomarev of AI Business. Targeted searches for terms like scam, fraud, " +
+  "controversy, review, complaint, or dispute primarily surfaced unrelated people sharing similar names (e.g., a 2017 BitcoinTalk " +
+  "warning about a different Sergei Ponomarev linked to the SONM crypto project and non-payment/fraud allegations involving others; " +
+  "Russian data-broker investigations involving a Ponomaryov; sanctioned missile-industry figures).";
+
+test("an answer that tells of other people's trouble is withheld whole, from the summary and from the report", () => {
+  const withGrok: AnswerCheck = {
+    ...CHECK,
+    results: [
+      {
+        fact: { id: "reputation", label: "reputation", blind: false, question: "Red flags?" },
+        answers: [
+          { ...CHECK.results[0].answers[0], text: "No red flags were found about Sergei Ponomarev of AI Business." },
+          { ...CHECK.results[0].answers[2], text: GROK_NAMESAKES },
+        ],
+      },
+    ],
+  };
+  const all = synthesis({
+    coverage: [
+      { provider: "OpenAI", questionId: "reputation", status: "found" },
+      { provider: "Grok", questionId: "reputation", status: "found" },
+    ],
+  });
+  const shown = answersAboutProfile(withGrok, all);
+  assert.deepEqual([...shown], ["reputation/openai"]);
+  assert.equal(identityAmbiguous(withGrok, all, shown), true, "a withheld answer means no reputation conclusion");
+  const block = answersBlock(withGrok, answersNotAboutPerson(withGrok));
+  for (const word of ["SONM", "fraud", "non-payment", "BitcoinTalk", "Ponomaryov", "missile"]) {
+    assert.doesNotMatch(block, new RegExp(word, "i"), `${word} must not reach the summary`);
+  }
+  // An answer that only says nothing was found is kept.
+  assert.equal(mentionsOthersTrouble("No disputes or scandals were found about her."), false);
 });
