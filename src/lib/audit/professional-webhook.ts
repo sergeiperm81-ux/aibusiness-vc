@@ -74,7 +74,13 @@ export async function handleProScanOrder(
       variantId: input.variantId,
       email: buyer,
       previewId,
-      subject: { name: preview.name, role: preview.role, company: preview.company, profileUrl: preview.profileUrl },
+      subject: {
+        name: preview.name,
+        role: preview.role,
+        company: preview.company,
+        location: preview.location,
+        profileUrl: preview.profileUrl,
+      },
       fullPrice: !(discountTotal > 0),
     });
     if (!result.created) return { status: 200, body: { ok: true, duplicate: true }, startWorker: true };

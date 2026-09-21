@@ -121,6 +121,8 @@ export interface ProviderAnswer {
   /** The assistant's own words, verbatim. Empty when ok is false. */
   readonly text: string;
   readonly citations: readonly string[];
+  /** Cited pages removed because nothing on them tied them to the person (person-source-check.ts). */
+  readonly heldCitations?: number;
   readonly error?: string;
   /** One entry per finished HTTP attempt, retries included. */
   readonly usage: readonly CallUsage[];

@@ -16,6 +16,7 @@
 
 import { randomUUID } from "node:crypto";
 import type { AnswerCheck } from "./answer-check";
+import { computeAnswerSignals } from "./answer-check-report";
 import { postJson } from "./paid-http";
 import {
   failureMeasurement,
@@ -310,20 +311,50 @@ export function parseSynthesis(
 
 /* --------------------------------------------------------------------- call */
 
-/** Every answer as the model sees it, and as the date check searches it. */
-export function answersBlock(check: AnswerCheck): string {
+/** "questionId/providerId" of answers whose model said it could not find the person: fixed rules, no model. */
+export function answersNotAboutPerson(check: AnswerCheck): ReadonlySet<string> {
+  return new Set(
+    computeAnswerSignals(check)
+      .filter((signal) => signal.nonAnswer.notFound)
+      .map((signal) => `${signal.factId}/${signal.providerId}`)
+  );
+}
+
+/**
+ * Every answer as the model sees it, and as the date check searches it. An
+ * answer whose model could not find the person is held back: whatever it says
+ * may be about someone else, and must not colour the summary.
+ */
+export function answersBlock(check: AnswerCheck, heldBack: ReadonlySet<string> = new Set()): string {
   return check.results
     .map((row) => {
       const answers = row.answers
         .map((a) => {
-          const body = a.ok ? a.text.slice(0, MAX_ANSWER_CHARS) : `(no answer: ${a.error ?? "failed"})`;
-          const sources = a.citations.length > 0 ? `\nSources it cited: ${a.citations.slice(0, 8).join(" , ")}` : "";
+          const held = heldBack.has(`${row.fact.id}/${a.providerId}`);
+          const body = !a.ok
+            ? `(no answer: ${a.error ?? "failed"})`
+            : held
+              ? "(held back: this assistant said it could not find or identify the person)"
+              : a.text.slice(0, MAX_ANSWER_CHARS);
+          const sources =
+            a.citations.length > 0 && !held ? `\nSources it cited: ${a.citations.slice(0, 8).join(" , ")}` : "";
           return `--- ${a.providerLabel}\n${body}${sources}`;
         })
         .join("\n\n");
       return `=== QUESTION id "${row.fact.id}": ${row.fact.question}\n\n${answers}`;
     })
     .join("\n\n\n");
+}
+
+/** Exactly what the summary model is sent after the instructions. */
+export function synthesisUserContent(check: AnswerCheck): string {
+  const labels = check.providers.map((p) => p.label);
+  return `ASSISTANTS ASKED (use these labels exactly): ${labels.join(", ")}\n\n${answersBlock(check, answersNotAboutPerson(check))}`;
+}
+
+/** The bounds of one summary call for this check, before it is sent. */
+export function synthesisBoundsForCheck(check: AnswerCheck, maxOutputTokens: number): AttemptBounds {
+  return { ...synthesisBoundsForChars(INSTRUCTIONS.length + synthesisUserContent(check).length), maxOutputTokens };
 }
 
 interface ChatResponse {
@@ -336,14 +367,17 @@ export async function synthesisePersonCheck(args: {
   readonly check: AnswerCheck;
   readonly apiKey: string;
   readonly onJournal?: JournalSink;
+  /** Lower than SYNTHESIS_MAX_OUTPUT_TOKENS when the call must fit a smaller ceiling. */
+  readonly maxOutputTokens?: number;
 }): Promise<SynthesisResult> {
   const labels = args.check.providers.map((p) => p.label);
   const questionIds = args.check.results.map((r) => r.fact.id);
-  const answers = answersBlock(args.check);
-  const userContent = `ASSISTANTS ASKED (use these labels exactly): ${labels.join(", ")}\n\n${answers}`;
+  const answers = answersBlock(args.check, answersNotAboutPerson(args.check));
+  const maxOutputTokens = Math.min(args.maxOutputTokens ?? SYNTHESIS_MAX_OUTPUT_TOKENS, SYNTHESIS_MAX_OUTPUT_TOKENS);
+  const userContent = synthesisUserContent(args.check);
 
   const clientRequestId = randomUUID();
-  const bounds = synthesisBoundsForChars(INSTRUCTIONS.length + userContent.length);
+  const bounds = { ...synthesisBoundsForChars(INSTRUCTIONS.length + userContent.length), maxOutputTokens };
   const startedAt = new Date().toISOString();
   const began = Date.now();
   const common = {
@@ -364,7 +398,7 @@ export async function synthesisePersonCheck(args: {
     {
       model: SYNTHESIS_MODEL,
       response_format: { type: "json_object" },
-      max_completion_tokens: SYNTHESIS_MAX_OUTPUT_TOKENS,
+      max_completion_tokens: maxOutputTokens,
       temperature: 0,
       messages: [
         { role: "system", content: INSTRUCTIONS },

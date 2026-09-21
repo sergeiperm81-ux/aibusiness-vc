@@ -16,6 +16,10 @@ import { SYNTHESIS_MODEL, synthesisBoundsForPlan } from "./person-synthesis";
 import { planCost } from "./usage";
 import type { AnswerCheck } from "./answer-check";
 import { cleanCitations } from "./citation-cleanup";
+import { htmlToText } from "../service-check/source-of-truth";
+import type { PersonSubject } from "./person-check";
+import { anchorsFor, keepSourcesAboutPerson } from "./person-source-check";
+import { safeFetchText } from "./safe-fetch";
 import { redisKv } from "./durable-kv";
 import { synthesisePersonCheck } from "./person-synthesis";
 import {
@@ -59,14 +63,26 @@ function codeSecret(): string {
   return secret;
 }
 
-async function withCleanCitations(check: AnswerCheck): Promise<AnswerCheck> {
+/** Per cited page. At most 80 pages, 8 at a time: under 90 seconds at worst, inside one worker run. */
+const PAGE_TIMEOUT_MS = 8_000;
+const PAGE_MAX_BYTES = 1_500_000;
+
+/** A cited page's visible text, or null when it cannot be read as a page. */
+async function readPage(address: string): Promise<string | null> {
+  const response = await safeFetchText(address, { timeoutMs: PAGE_TIMEOUT_MS, maxBytes: PAGE_MAX_BYTES });
+  const type = response.headers.get("content-type") ?? "";
+  if (!response.ok || !/text\/html|text\/plain|application\/xhtml/i.test(type)) return null;
+  return htmlToText(response.text);
+}
+
+async function withCleanCitations(check: AnswerCheck, subject: PersonSubject): Promise<AnswerCheck> {
   const results = await Promise.all(
     check.results.map(async (row) => ({
       ...row,
       answers: await Promise.all(row.answers.map(async (a) => ({ ...a, citations: await cleanCitations(a.citations) }))),
     }))
   );
-  return { ...check, results };
+  return keepSourcesAboutPerson({ ...check, results }, anchorsFor(subject), readPage);
 }
 
 export function productionDeps(): ScanDeps {

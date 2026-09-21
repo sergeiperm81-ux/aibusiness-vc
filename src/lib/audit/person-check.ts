@@ -20,6 +20,8 @@ export interface PersonSubject {
   readonly name: string;
   readonly role: string;
   readonly company: string;
+  /** The city or country the preview found, when it found one. Used to tie cited pages to the person. */
+  readonly location?: string;
   /** A personal social profile (see social-profile.ts). It says which person this is; it is never read with a login. */
   readonly profileUrl: string;
   /** One line in the person's own words, optional. Part of the reference. */

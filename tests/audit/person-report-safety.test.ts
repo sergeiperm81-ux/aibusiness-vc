@@ -7,14 +7,9 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import type { AnswerCheck } from "../../src/lib/audit/answer-check";
 import { anthropicAnswerText } from "../../src/lib/audit/answer-providers";
-import {
-  answersAboutProfile,
-  corroboratedHosts,
-  identityAmbiguous,
-  sourceLabel,
-  sourceTiedToProfile,
-  splitSources,
-} from "../../src/lib/audit/person-report-safety";
+import { answersAboutProfile, identityAmbiguous, sourceLabel, verifiedSources } from "../../src/lib/audit/person-report-safety";
+import { anchorsFor, isTheProfile, keepSourcesAboutPerson, pageTiedToPerson } from "../../src/lib/audit/person-source-check";
+import { answersBlock, answersNotAboutPerson } from "../../src/lib/audit/person-synthesis";
 import type { PersonSynthesis } from "../../src/lib/audit/person-synthesis";
 
 const answer = (providerId: string, providerLabel: string, citations: string[]) => ({
@@ -71,26 +66,81 @@ test("only answers the model tied to the profile are printed; the fixed not-foun
   assert.deepEqual([...answersAboutProfile(CHECK, synthesis(), new Set(["who/openai"]))], ["who/xai"]);
 });
 
-test("a site counts as this person's only when two models cited it in answers about them", () => {
-  const hosts = corroboratedHosts(CHECK, answersAboutProfile(CHECK, synthesis()));
-  assert.deepEqual([...hosts], ["aibusiness.vc"]);
+const ANCHORS = anchorsFor({
+  name: "Sergei Ponomarev",
+  profileUrl: "https://www.linkedin.com/in/sergei-ponomarev",
+  company: "AI Business",
+  role: "Founder and editor",
+  location: "Sveti Vlas, Bulgaria",
 });
 
-test("a page is listed only when its address ties it to the profile", () => {
-  const filter = { name: "Sergei Ponomarev", profileUrl: "https://www.linkedin.com/in/sergei-ponomarev", hosts: new Set(["aibusiness.vc"]) };
-  assert.equal(sourceTiedToProfile("https://aibusiness.vc/notes", filter), true);
-  assert.equal(sourceTiedToProfile("https://www.malt.com/profile/sergeiponomarev", filter), true);
-  assert.equal(sourceTiedToProfile("https://bg.linkedin.com/in/sergei-ponomarev", filter), true);
-  // A namesake's profile, a namesake's scandal, a forum thread: not listed.
-  assert.equal(sourceTiedToProfile("https://www.linkedin.com/in/sergey-ponomarev-6033a7219/", filter), false);
-  assert.equal(sourceTiedToProfile("https://rabble.ca/politics/ilya-ponomarev-opposing", filter), false);
-  assert.equal(sourceTiedToProfile("https://bitcointalk.org/index.php?topic=1898960.0", filter), false);
-  // A network is never trusted as a whole.
-  assert.equal(sourceTiedToProfile("https://www.linkedin.com/in/someone-else", { ...filter, hosts: new Set(["linkedin.com"]) }), false);
-  assert.deepEqual(splitSources(["https://aibusiness.vc/", "https://en.wikipedia.org/wiki/Sergei_Leonov"], filter), {
-    shown: ["https://aibusiness.vc/"],
-    held: 1,
-  });
+test("a page counts only when its text names the person in full next to a detail from the profile", () => {
+  assert.equal(pageTiedToPerson("Sergei Ponomarev is the founder and editor of AI Business.", ANCHORS), true);
+  assert.equal(pageTiedToPerson("Ponomarev, Sergei. Sveti Vlas, Bulgaria.", ANCHORS), true);
+  // The name alone, or the name with another company: not this person.
+  assert.equal(pageTiedToPerson("Sergei Ponomarev, kickboxer, won the final.", ANCHORS), false);
+  assert.equal(pageTiedToPerson("Sergei Ponomarev of SONM did not pay the contributors.", ANCHORS), false);
+  // The details without the full name: not enough either.
+  assert.equal(pageTiedToPerson("AI Business is a publication in Sveti Vlas, Bulgaria.", ANCHORS), false);
+});
+
+test("a one-word role is too generic to tie a page", () => {
+  const anchors = anchorsFor({ name: "Jane Doe", profileUrl: "https://x.com/jane", company: "", role: "Founder" });
+  assert.deepEqual(anchors.details, []);
+  assert.equal(pageTiedToPerson("Jane Doe, founder.", anchors), false);
+});
+
+test("the profile itself is trusted as given, whatever the country subdomain", () => {
+  assert.equal(isTheProfile("https://bg.linkedin.com/in/sergei-ponomarev/", ANCHORS.profileUrl), true);
+  assert.equal(isTheProfile("https://www.linkedin.com/in/sergei-ponomarev-phd-a629012a", ANCHORS.profileUrl), false);
+});
+
+test("sources are cut by what the pages say before anything else sees them, and the cut is counted", async () => {
+  const pages: Record<string, string | null> = {
+    "https://aibusiness.vc/about": "About. Sergei Ponomarev founded AI Business.",
+    "https://www.malt.com/profile/sergeiponomarev": null,
+    "https://en.wikipedia.org/wiki/Dmitry_Ponomarev_(businessman)": "Dmitry Ponomarev is a businessman.",
+    "https://aibusiness.vc/sergei-ponomarev": "Sergei Ponomarev, Sveti Vlas, Bulgaria.",
+    "https://bitcointalk.org/index.php?topic=1898960.0": "Sergei Ponomarev SONM scam warning.",
+  };
+  const read = async (address: string) => {
+    if (address.includes("bitcointalk")) throw new Error("timeout");
+    return pages[address] ?? null;
+  };
+  const checked = await keepSourcesAboutPerson(CHECK, ANCHORS, read);
+  const [openai, anthropic, grok] = checked.results[0].answers;
+  assert.deepEqual(openai.citations, ["https://aibusiness.vc/about"]);
+  assert.equal(openai.heldCitations, 1);
+  assert.deepEqual(anthropic.citations, []);
+  assert.equal(anthropic.heldCitations, 1);
+  assert.deepEqual(grok.citations, ["https://aibusiness.vc/sergei-ponomarev"]);
+  assert.equal(grok.heldCitations, 1);
+  assert.deepEqual([...verifiedSources(checked, new Set(["who/openai"]))], ["https://aibusiness.vc/about"]);
+});
+
+test("an answer whose model could not find the person never reaches the summary", () => {
+  const lost: AnswerCheck = {
+    ...CHECK,
+    results: [
+      {
+        ...CHECK.results[0],
+        answers: [
+          { ...CHECK.results[0].answers[0], text: "Sergei Ponomarev founded AI Business." },
+          {
+            ...CHECK.results[0].answers[1],
+            text: "I could not find any information about Sergei Ponomarev. A different Sergei Ponomarev was accused of fraud.",
+          },
+        ],
+      },
+    ],
+  };
+  const held = answersNotAboutPerson(lost);
+  assert.ok(held.has("who/anthropic"));
+  const block = answersBlock(lost, held);
+  assert.doesNotMatch(block, /accused of fraud/);
+  assert.doesNotMatch(block, /wikipedia/);
+  assert.match(block, /held back/);
+  assert.match(block, /founded AI Business/);
 });
 
 test("no reputation conclusion when a namesake came up or an answer could not be tied to the profile", () => {

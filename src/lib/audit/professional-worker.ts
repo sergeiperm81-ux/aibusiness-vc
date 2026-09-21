@@ -15,7 +15,7 @@ import type { AnswerCheck, FactQuestion } from "./answer-check";
 import type { AnswerProvider, ProviderAnswer } from "./answer-attempt";
 import type { DurableKv } from "./durable-kv";
 import type { CallUsage } from "./usage";
-import { buildPersonQuestions, toAnswerSubject } from "./person-check";
+import { buildPersonQuestions, toAnswerSubject, type PersonSubject } from "./person-check";
 import type { PersonSynthesis, SynthesisResult } from "./person-synthesis";
 import {
   ORDER_TTL_SECONDS,
@@ -118,7 +118,8 @@ export interface ScanDeps {
   /** Providers for the given ids that have a key. A missing key means a missing column. */
   readonly providers: (ids: readonly string[]) => readonly AnswerProvider[];
   readonly providerIds: readonly string[];
-  readonly cleanCitations: (check: AnswerCheck) => Promise<AnswerCheck>;
+  /** Cleans the cited addresses and keeps only pages about the person, before the summary sees them. */
+  readonly cleanCitations: (check: AnswerCheck, subject: PersonSubject) => Promise<AnswerCheck>;
   readonly synthesise: (check: AnswerCheck) => Promise<SynthesisResult>;
   /** Must succeed when a discount with this code already exists. */
   readonly createDiscount: (spec: DiscountSpec) => Promise<void>;
@@ -192,7 +193,7 @@ async function answerRound(deps: ScanDeps, order: ProfessionalOrder, questions: 
   return capped;
 }
 
-async function loadCheck(deps: ScanDeps, order: ProfessionalOrder, questions: readonly FactQuestion[]): Promise<AnswerCheck> {
+export async function loadCheck(deps: ScanDeps, order: ProfessionalOrder, questions: readonly FactQuestion[]): Promise<AnswerCheck> {
   const providers = deps.providers(deps.providerIds);
   const stored = await deps.kv.mget(
     questions.flatMap((q) => deps.providerIds.map((p) => answerKey(order.key, q.id, p)))
@@ -316,7 +317,7 @@ async function sendOnce(deps: ScanDeps, order: ProfessionalOrder, letter: string
 async function stepSynthesis(deps: ScanDeps, order: ProfessionalOrder): Promise<ProfessionalOrder> {
   const existing = await deps.kv.get(synthesisKey(order.key));
   if (existing) return saveOrder(deps.kv, order, { state: "synthesised" }, deps.now());
-  const check = await deps.cleanCitations(await loadCheck(deps, order, buildPersonQuestions(order.subject)));
+  const check = await deps.cleanCitations(await loadCheck(deps, order, buildPersonQuestions(order.subject)), order.subject);
   if (!(await reserve(deps, order, deps.synthesisCeilingUsd))) {
     throw new Error(`the $${ORDER_SPEND_CAP_USD} spend cap leaves no room for the summary`);
   }

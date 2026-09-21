@@ -16,12 +16,10 @@ import { AMBER, AMBER_TINT, GREEN, GREEN_TINT, MUTED, PdfWriter } from "./pdf-ki
 import type { CoverageStatus, PersonSynthesis } from "./person-synthesis";
 import {
   answersAboutProfile,
-  corroboratedHosts,
   identityAmbiguous,
   isSocialAddress,
   sourceLabel,
-  splitSources,
-  type SourceFilter,
+  verifiedSources,
 } from "./person-report-safety";
 
 /** The name on the cover and in the footer. One place, because it is still being decided. */
@@ -149,8 +147,8 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
   const asked = check.results.length * total;
   const shown = answersAboutProfile(check, synthesis, input.notFoundKeys);
   const ambiguous = identityAmbiguous(check, synthesis, shown);
-  const filter: SourceFilter = { name, profileUrl: input.profileUrl, hosts: corroboratedHosts(check, shown) };
-  const sourceTiedToThis = (address: string): boolean => splitSources([address], filter).held === 0;
+  const verified = verifiedSources(check, shown);
+  const sourceTiedToThis = (address: string): boolean => verified.has(address);
   const pdf = await PdfWriter.create(`${PRODUCT_NAME} - ${name}`, `What AI says about ${name}`, {
     left: "aibusiness.vc",
     right: `Questions about this report: ${CONTACT_EMAIL}`,
@@ -216,10 +214,9 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
       ? ` ${heldFlags} ${heldFlags === 1 ? "point the models tied" : "points the models tied"} to other people with this name ${heldFlags === 1 ? "is" : "are"} left out: this report is only about the profile given.`
       : "";
   if (ownFlags.length === 0 && ambiguous) {
-    pdf.text("No public red flags were identified for the profile given, in this scan.", { bold: true, gapAfter: 6 });
     pdf.banner(
-      "Identity ambiguity: no reputation conclusion",
-      `Other people share this name, or not every answer could be tied to this profile (see Appendix A). So this scan draws no conclusion about the reputation of ${name}, good or bad.${heldNote}`,
+      "Identity ambiguous: no reputation conclusion",
+      `Other people share this name, or not every answer could be tied to this profile (see Appendix A). No model reported a red flag about the profile given, but that is not a clean record: this scan draws no conclusion about the reputation of ${name}, good or bad.${heldNote}`,
       AMBER,
       AMBER_TINT
     );
@@ -342,8 +339,8 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
   pdf.heading("Every answer, with its sources");
   pdf.muted(
     "The words are the models' own. Only formatting marks were removed, and links inside an answer were moved to the list under it. " +
-      "An answer the model could not tie to this profile is not printed, and a cited page is listed only when its address ties it to this profile: " +
-      "the full name, the profile itself, or a site at least two models cited about this person."
+      "An answer the model could not tie to this profile is not printed. A cited page is listed only when the page itself names the person in full " +
+      "together with the company, the role or the city from the profile; the profile itself is listed as given. The summary was written from these pages only."
   );
   check.results.forEach((row, index) => {
     if (index > 0) pdf.newPage();
@@ -367,10 +364,10 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
         if (block.bullet) pdf.bullet(block.text, { size: 9.5, indent: 10 });
         else pdf.text(block.text, { size: 9.5, indent: 10, bold: block.heading, gapAfter: 4 });
       }
-      const split = splitSources(answer.citations, filter);
-      const sources = groupSources(split.shown);
+      const held = answer.heldCitations ?? 0;
+      const sources = groupSources(answer.citations);
       pdf.gap(2);
-      if (answer.citations.length === 0) {
+      if (answer.citations.length === 0 && held === 0) {
         pdf.text("Sources: the model cited none for this answer.", { size: 8.5, color: MUTED, indent: 10 });
       }
       if (sources.social.length > 0) {
@@ -381,9 +378,9 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
         pdf.text("Sources: websites", { size: 8.5, bold: true, color: MUTED, indent: 10 });
         for (const source of sources.web) pdf.link(sourceLabel(source), source, { size: 8, indent: 18 });
       }
-      if (split.held > 0) {
+      if (held > 0) {
         pdf.text(
-          `${split.held} other ${split.held === 1 ? "page" : "pages"} it cited ${split.held === 1 ? "is" : "are"} not listed: nothing in the address ties ${split.held === 1 ? "it" : "them"} to this profile.`,
+          `${held} other ${held === 1 ? "page" : "pages"} it cited ${held === 1 ? "is" : "are"} not listed: nothing on ${held === 1 ? "it" : "them"} ties ${held === 1 ? "it" : "them"} to this profile, or ${held === 1 ? "it" : "they"} could not be read.`,
           { size: 8.5, color: MUTED, indent: 10 }
         );
       }

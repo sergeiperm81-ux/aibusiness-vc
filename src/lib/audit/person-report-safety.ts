@@ -5,9 +5,8 @@
  * the same name, and a page about one of them printed in this report would
  * pin that person's record, contacts or troubles on the buyer's subject. So:
  * - an answer the model could not tie to the profile is not printed;
- * - a cited page is listed only when something in it ties it to the profile:
- *   the full name in its address, the profile's own address, or a site that at
- *   least two models cited in answers about this person;
+ * - cited pages were already cut, by what each page says, to the ones about
+ *   this person (person-source-check.ts), before the summary was written;
  * - when other people with the name came up, or a model could not tell who
  *   the profile is, the report draws no conclusion about reputation.
  */
@@ -25,30 +24,12 @@ export function isSocialAddress(address: string): boolean {
   }
 }
 
-function hostOf(address: string): string | null {
-  try {
-    return new URL(address).hostname.replace(/^www\./i, "").toLowerCase();
-  } catch {
-    return null;
-  }
-}
-
 function decoded(address: string): string {
   try {
     return decodeURI(address).toLowerCase();
   } catch {
     return address.toLowerCase();
   }
-}
-
-/** Latin letters and digits only, so "Sergei Ponomarev" matches "sergei-ponomarev" and "sergeiponomarev". */
-function nameTokens(name: string): readonly string[] {
-  return name
-    .toLowerCase()
-    .normalize("NFKD")
-    .replace(/[̀-ͯ]/g, "")
-    .split(/[^a-z0-9Ѐ-ӿ]+/)
-    .filter((token) => token.length >= 2);
 }
 
 /** "questionId/providerId" of the answers the report may print: the model tied them to this profile. */
@@ -71,46 +52,13 @@ export function answersAboutProfile(
   return new Set(keys);
 }
 
-/** Sites, not networks, that at least two models cited in answers about this person. */
-export function corroboratedHosts(check: AnswerCheck, shown: ReadonlySet<string>): ReadonlySet<string> {
-  const byHost = new Map<string, Set<string>>();
-  for (const row of check.results) {
-    for (const answer of row.answers) {
-      if (!shown.has(`${row.fact.id}/${answer.providerId}`)) continue;
-      for (const citation of answer.citations) {
-        const host = hostOf(citation);
-        if (!host || isSocialAddress(citation)) continue;
-        byHost.set(host, new Set([...(byHost.get(host) ?? []), answer.providerId]));
-      }
-    }
-  }
-  return new Set([...byHost].filter(([, providers]) => providers.size >= 2).map(([host]) => host));
-}
-
-export interface SourceFilter {
-  readonly name: string;
-  readonly profileUrl: string;
-  readonly hosts: ReadonlySet<string>;
-}
-
-/** True when something in the address ties the page to this profile. */
-export function sourceTiedToProfile(address: string, filter: SourceFilter): boolean {
-  const host = hostOf(address);
-  if (!host) return false;
-  const text = decoded(address);
-  const profile = decoded(filter.profileUrl).replace(/^https?:\/\/(www\.)?/, "").replace(/\/+$/, "");
-  if (profile && text.includes(profile)) return true;
-  const tokens = nameTokens(filter.name);
-  if (tokens.length > 0 && tokens.every((token) => text.includes(token))) return true;
-  return !isSocialAddress(address) && filter.hosts.has(host);
-}
-
-export function splitSources(
-  citations: readonly string[],
-  filter: SourceFilter
-): { readonly shown: readonly string[]; readonly held: number } {
-  const shown = citations.filter((c) => sourceTiedToProfile(c, filter));
-  return { shown, held: citations.length - shown.length };
+/** Every page still cited, after the check by content, in an answer the report prints. */
+export function verifiedSources(check: AnswerCheck, shown: ReadonlySet<string>): ReadonlySet<string> {
+  return new Set(
+    check.results.flatMap((row) =>
+      row.answers.filter((a) => shown.has(`${row.fact.id}/${a.providerId}`)).flatMap((a) => a.citations)
+    )
+  );
 }
 
 /**
