@@ -17,19 +17,27 @@ import { PDFDocument, PDFString, StandardFonts, rgb, type PDFFont, type PDFPage,
 
 export const PAGE_WIDTH = 595;
 export const PAGE_HEIGHT = 842;
-export const MARGIN = 56;
+/** 20 mm, as in the library's PDFs (build_light_pdf.py). */
+export const MARGIN = 57;
 export const CONTENT_WIDTH = PAGE_WIDTH - MARGIN * 2;
 
-export const INK = rgb(0.09, 0.09, 0.11);
-export const MUTED = rgb(0.42, 0.42, 0.47);
-export const ACCENT = rgb(0.85, 0.47, 0.02);
-export const HAIRLINE = rgb(0.88, 0.88, 0.9);
+/* The library's house colours: black headings, grey body, one yellow for rules and accents. */
+export const INK = rgb(0.067, 0.067, 0.067);
+export const GREY = rgb(0.294, 0.294, 0.294);
+export const MUTED = rgb(0.467, 0.467, 0.467);
+export const ACCENT = rgb(0.961, 0.62, 0.043);
+export const HAIRLINE = rgb(0.898, 0.898, 0.898);
 export const GREEN = rgb(0.02, 0.5, 0.31);
 export const GREEN_TINT = rgb(0.91, 0.97, 0.93);
 export const AMBER = rgb(0.72, 0.4, 0.02);
 export const AMBER_TINT = rgb(0.99, 0.95, 0.87);
 export const PANEL = rgb(0.95, 0.95, 0.965);
 export const LINK = rgb(0.1, 0.33, 0.7);
+
+/** Where the text starts under the running head, and where it stops above the foot. */
+const TOP = 66;
+const BOTTOM = 62;
+const FOOTER_CONTACT = "info@aibusiness.vc";
 
 /** Lives under public/ because on Vercel only files there are sure to reach the function. */
 const FONT_DIR = path.join(process.cwd(), "public", "fonts", "pdf");
@@ -128,7 +136,7 @@ export class PdfWriter {
     private readonly clean: (text: string) => string
   ) {
     this.page = this.doc.addPage([PAGE_WIDTH, PAGE_HEIGHT]);
-    this.y = PAGE_HEIGHT - MARGIN;
+    this.y = PAGE_HEIGHT - TOP;
   }
 
   static async create(
@@ -160,11 +168,11 @@ export class PdfWriter {
 
   newPage(): void {
     this.page = this.doc.addPage([PAGE_WIDTH, PAGE_HEIGHT]);
-    this.y = PAGE_HEIGHT - MARGIN;
+    this.y = PAGE_HEIGHT - TOP;
   }
 
   private ensure(space: number): void {
-    if (this.y - space < MARGIN + 20) this.newPage();
+    if (this.y - space < BOTTOM) this.newPage();
   }
 
   gap(amount: number): void {
@@ -209,14 +217,36 @@ export class PdfWriter {
     this.y -= options.gapAfter ?? 0;
   }
 
-  title(value: string): void {
-    this.text(value, { size: 24, bold: true, gapAfter: 4 });
+  /** A line set in the middle of the page, as on the library's covers. */
+  centered(value: string, options: TextOptions = {}): void {
+    const size = options.size ?? 10.5;
+    const font = options.bold ? this.bold : this.regular;
+    for (const line of wrap(this.clean(value), font, size, CONTENT_WIDTH)) {
+      this.ensure(size + 5);
+      const width = font.widthOfTextAtSize(line, size);
+      this.page.drawText(line, { x: MARGIN + (CONTENT_WIDTH - width) / 2, y: this.y - size, size, font, color: options.color ?? INK });
+      this.y -= size * 1.2 + 2;
+    }
+    this.y -= options.gapAfter ?? 0;
   }
 
+  title(value: string): void {
+    this.centered(value, { size: 24, bold: true, gapAfter: 6 });
+  }
+
+  /** A section heading with a thin yellow rule under it, like "1. The question we started from". */
   heading(value: string): void {
-    this.ensure(60);
-    this.gap(10);
-    this.text(value, { size: 15, bold: true, gapAfter: 4 });
+    // Room for the heading and a few lines under it, so it never sits alone at the foot of a page.
+    this.ensure(130);
+    this.gap(14);
+    this.text(value, { size: 14, bold: true, gapAfter: 0 });
+    this.page.drawLine({
+      start: { x: MARGIN, y: this.y - 1 },
+      end: { x: PAGE_WIDTH - MARGIN, y: this.y - 1 },
+      thickness: 0.6,
+      color: ACCENT,
+    });
+    this.y -= 10;
   }
 
   kicker(value: string): void {
@@ -231,7 +261,7 @@ export class PdfWriter {
   bullet(value: string, options: TextOptions = {}): void {
     const size = options.size ?? 10.5;
     this.ensure(size + 5);
-    this.page.drawText("-", { x: MARGIN + 2, y: this.y - size, size, font: this.regular, color: options.color ?? MUTED });
+    this.page.drawText(this.clean("•"), { x: MARGIN + 3, y: this.y - size, size, font: this.regular, color: ACCENT });
     this.text(value, { ...options, indent: 14, gapAfter: options.gapAfter ?? 2 });
   }
 
@@ -244,15 +274,16 @@ export class PdfWriter {
     this.gap(5);
   }
 
+  /** The heavier yellow rule under the cover block. */
   rule(): void {
     this.ensure(14);
     this.page.drawLine({
       start: { x: MARGIN, y: this.y - 6 },
       end: { x: PAGE_WIDTH - MARGIN, y: this.y - 6 },
-      thickness: 0.6,
-      color: HAIRLINE,
+      thickness: 1.2,
+      color: ACCENT,
     });
-    this.y -= 14;
+    this.y -= 16;
   }
 
   /** A full-width tinted strip with a bold label on the left and a muted note on the right: the top of a card. */
@@ -317,28 +348,28 @@ export class PdfWriter {
     this.y -= 8;
   }
 
+  /**
+   * The running lines of the library's PDFs: the title in bold capitals on the
+   * left and the author in yellow on the right, a yellow rule under them; at the
+   * foot a grey rule, the contact in yellow, the note in grey and the page.
+   */
   async bytes(): Promise<Uint8Array> {
     const pages = this.doc.getPages();
     pages.forEach((page, index) => {
-      const top = PAGE_HEIGHT - 32;
-      page.drawText(this.clean(this.header.left), { x: MARGIN, y: top, size: 8, font: this.bold, color: MUTED });
-      const contact = this.clean(this.header.right);
-      page.drawText(contact, {
-        x: PAGE_WIDTH - MARGIN - this.regular.widthOfTextAtSize(contact, 8),
-        y: top,
-        size: 8,
-        font: this.regular,
-        color: MUTED,
-      });
-      page.drawText(this.clean(this.footer), { x: MARGIN, y: 30, size: 8, font: this.regular, color: MUTED });
-      const label = `${index + 1} / ${pages.length}`;
-      page.drawText(label, {
-        x: PAGE_WIDTH - MARGIN - this.regular.widthOfTextAtSize(label, 8),
-        y: 30,
-        size: 8,
-        font: this.regular,
-        color: MUTED,
-      });
+      const top = PAGE_HEIGHT - 37;
+      const left = this.clean(this.header.left);
+      page.drawText(left, { x: MARGIN, y: top, size: 8, font: this.bold, color: INK });
+      const right = this.clean(this.header.right);
+      page.drawText(right, { x: PAGE_WIDTH - MARGIN - this.regular.widthOfTextAtSize(right, 8), y: top, size: 8, font: this.regular, color: ACCENT });
+      page.drawLine({ start: { x: MARGIN, y: top - 6 }, end: { x: PAGE_WIDTH - MARGIN, y: top - 6 }, thickness: 0.8, color: ACCENT });
+
+      const foot = 31;
+      page.drawLine({ start: { x: MARGIN, y: foot + 14 }, end: { x: PAGE_WIDTH - MARGIN, y: foot + 14 }, thickness: 0.5, color: HAIRLINE });
+      page.drawText(this.clean(FOOTER_CONTACT), { x: MARGIN, y: foot, size: 8, font: this.regular, color: ACCENT });
+      const note = this.clean(this.footer);
+      page.drawText(note, { x: (PAGE_WIDTH - this.regular.widthOfTextAtSize(note, 8)) / 2, y: foot, size: 8, font: this.regular, color: MUTED });
+      const label = `p. ${index + 1} of ${pages.length}`;
+      page.drawText(label, { x: PAGE_WIDTH - MARGIN - this.regular.widthOfTextAtSize(label, 8), y: foot, size: 8, font: this.regular, color: MUTED });
     });
     return this.doc.save();
   }

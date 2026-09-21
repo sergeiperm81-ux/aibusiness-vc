@@ -12,7 +12,7 @@
  */
 
 import type { AnswerCheck } from "./answer-check";
-import { AMBER, AMBER_TINT, GREEN, GREEN_TINT, MUTED, PdfWriter } from "./pdf-kit";
+import { ACCENT, AMBER, AMBER_TINT, GREEN, GREEN_TINT, GREY, MUTED, PdfWriter } from "./pdf-kit";
 import type { CoverageStatus, PersonSynthesis } from "./person-synthesis";
 import {
   answersAboutProfile,
@@ -185,45 +185,52 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
   const ambiguous = identityAmbiguous(check, synthesis, shown);
   const verified = verifiedSources(check, shown);
   const sourceTiedToThis = (address: string): boolean => verified.has(address);
-  const pdf = await PdfWriter.create(`${productName} - ${name}`, `What AI says about ${name}`, {
-    left: "aibusiness.vc",
-    right: `Questions about this report: ${CONTACT_EMAIL}`,
+  const pdf = await PdfWriter.create(`${productName} report for ${name}`, `What AI says about ${name}`, {
+    left: productName.toUpperCase(),
+    right: "SERGEI PONOMAREV · AI BUSINESS",
   });
+  let section = 0;
+  const numbered = (value: string): void => {
+    section += 1;
+    pdf.heading(`${section}. ${value}`);
+  };
 
   /* ---------------------------------------------------------------- cover */
-  pdf.kicker(productName);
+  pdf.gap(6);
   pdf.title(`What AI says about ${name}`);
-  pdf.muted(input.profileUrl);
-  pdf.muted(`Checked ${longDate(check.checkedAt)}. ${total} AI models, ${check.results.length} questions, ${answered} of ${asked} answers received.`);
+  pdf.centered(`${productName}: ${total} AI models, ${check.results.length} questions, ${answered} of ${asked} answers received`, {
+    size: 13,
+    bold: true,
+    color: GREY,
+    gapAfter: 4,
+  });
+  pdf.centered(`${input.profileUrl} · checked ${longDate(check.checkedAt)}`, { size: 10.5, color: ACCENT, gapAfter: 4 });
+  pdf.rule();
   const silent = check.providers.filter((p) =>
     check.results.every((row) => !row.answers.find((a) => a.providerId === p.id)?.ok)
   );
   if (silent.length > 0) {
     pdf.muted(`${silent.map((p) => p.label).join(", ")} did not answer when this report was made, so it covers ${total - silent.length} models, not ${total}.`);
   }
-  pdf.gap(10);
   pdf.text(
     (company
       ? "Before a purchase, a contract or a partnership, people now ask an AI assistant about the company they are about to deal with. "
       : "Before a meeting, a deal or an interview, people now ask an AI assistant about the person they are about to meet. ") +
-      `We asked ${total} of them the three questions people ask, each with live web search on. This is what they said about ${name}.`
+      `We asked ${total} of them the three questions people ask, each with live web search on. This is what they said about ${name}.`,
+    { gapAfter: 6 }
   );
   pdf.muted(
     `The report is the pages before the appendices. The appendices are the record: which model found the ${w.subject}, and every answer that could be tied to ${w.tie}, word for word.`
   );
-  pdf.rule();
 
   /* ------------------------------------------------------------ question 1 */
-  pdf.kicker("Question 1");
-  pdf.heading(questions.who(name));
+  numbered(questions.who(name));
   pdf.gap(2);
   pdf.text(synthesis.identity.summary, { gapAfter: 8 });
   for (const fact of synthesis.identity.facts) pdf.fact(fact.label, fact.value, saidByNote(fact.saidBy, total));
 
   /* ------------------------------------------------------------ question 2 */
-  pdf.rule();
-  pdf.kicker("Question 2");
-  pdf.heading(questions.does(name));
+  numbered(questions.does(name));
   pdf.gap(2);
   pdf.text(synthesis.professional.summary, { gapAfter: 8 });
   for (const role of synthesis.professional.roles) pdf.fact(w.offer, role.value, saidByNote(role.saidBy, total));
@@ -240,9 +247,7 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
   if (synthesis.professional.activityNote) pdf.text(synthesis.professional.activityNote, { gapAfter: 4 });
 
   /* ------------------------------------------------------------ question 3 */
-  pdf.rule();
-  pdf.kicker("Question 3");
-  pdf.heading(questions.reputation(name));
+  numbered(questions.reputation(name));
   pdf.gap(4);
 
   const ownFlags = synthesis.redFlags.flags.filter((f) => !f.possiblyAnotherPerson);
@@ -309,9 +314,7 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
   /* -------------------------------------------------------- contradictions */
   const loneRoles = rolesNamedByOneModel(synthesis, check);
   if (synthesis.disagreements.length > 0) {
-    pdf.rule();
-    pdf.kicker("Contradictions");
-    pdf.heading("Where the answers contradict each other");
+    numbered("Where the answers contradict each other");
     for (const item of synthesis.disagreements) {
       pdf.text(item.topic, { bold: true, gapAfter: 3 });
       for (const version of item.versions) pdf.bullet(`${version.saidBy}: ${version.says}`);
@@ -319,9 +322,7 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
     }
   }
   if (loneRoles.length > 0) {
-    pdf.rule();
-    pdf.kicker("Unconfirmed claims");
-    pdf.heading(w.offers);
+    numbered(`Unconfirmed claims: ${w.offers.toLowerCase()}`);
     for (const role of loneRoles) pdf.bullet(`${role.saidBy[0]}: ${role.value}`);
     pdf.text(
       `The other models describe the ${w.subject} without these. Each is unconfirmed: it may be out of date, a past one told as current, or not about this ${w.subject} at all.`,
@@ -329,9 +330,7 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
     );
   }
   if (synthesis.mixups.length > 0) {
-    pdf.rule();
-    pdf.kicker("Namesakes");
-    pdf.heading(company ? "Other companies with this name" : "Other people with this name");
+    numbered(company ? "Other organisations with this name" : "Other people with this name");
     pdf.text(
       `${synthesis.mixups.length === 1 ? w.other : `${synthesis.mixups.length} ${w.others}`} with this name appeared in the answers. ` +
         `Their pages, records and contacts are not listed: this report is only about ${w.given}. ` +
@@ -345,8 +344,7 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
 
   /* ------------------------------------------------------- recommendations */
   pdf.newPage();
-  pdf.kicker("Recommendations");
-  pdf.heading("What to strengthen");
+  numbered("Recommendations: what to strengthen");
   pdf.text(
     "Each point closes a gap visible in the answers above. None of them guarantees that a model changes its answer: " +
       "they give the models something correct to read.",
@@ -359,14 +357,12 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
     pdf.gap(8);
   });
 
-  pdf.rule();
-  pdf.heading(`How AI learns about a ${w.subject}`);
+  numbered(`How AI learns about a ${w.subject}`);
   for (const line of company ? HOW_AI_LEARNS_COMPANY : HOW_AI_LEARNS) pdf.bullet(line, { gapAfter: 5 });
 
   /* ------------------------------------------------------------ appendix A */
   pdf.newPage();
-  pdf.kicker("Appendix A");
-  pdf.heading(`Which model found the ${w.subject}, question by question`);
+  pdf.heading(`Appendix A. Which model found the ${w.subject}, question by question`);
   pdf.table(
     ["Question", ...check.providers.map((p) => p.label)],
     check.results.map((row) => [
@@ -393,8 +389,7 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
 
   /* ------------------------------------------------------------ appendix B */
   pdf.newPage();
-  pdf.kicker("Appendix B");
-  pdf.heading("Every answer, with its sources");
+  pdf.heading("Appendix B. Every answer, with its sources");
   pdf.muted(
     "The words are the models' own. Only formatting marks were removed, and links inside an answer were moved to the list under it. " +
       `An answer the model could not tie to ${w.tie} is not printed. A cited page is listed only when the page itself names the ${w.subject} in full ` +
