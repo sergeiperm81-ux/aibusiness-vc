@@ -82,12 +82,14 @@ const INSTRUCTIONS =
   "role (professional role today), company (company or project), field (their field in a few words), location (city or country). " +
   "Use empty strings for anything you cannot find. Never guess: if you are not sure it is this profile, set found to false.";
 
+// "Company" alone made the model refuse publications and one-person businesses (21.09 test on aibusiness.vc);
+// reading the site's own About and Contact pages is what finds the owner.
 const COMPANY_INSTRUCTIONS =
-  "You identify the company behind a website from its address. Search the web. " +
-  "Return JSON with: found (true only if you can tell which company runs this site), name (the company's name as it presents itself), " +
-  "role (what the company does, in a few words), company (its legal name if different, otherwise an empty string), " +
-  "field (its industry in a few words), location (city and country of its base). " +
-  "Use empty strings for anything you cannot find. Never guess: if you are not sure which company runs this site, set found to false.";
+  "You identify who is behind a website: a company, a publication, a studio or a one-person business. " +
+  "Search the web and read the site itself, its About and Contact pages. Return JSON with: found (true when the site or other pages say who runs it), " +
+  "name (the name it presents itself under), role (what it does, in a few words), company (its legal entity if a page names one, otherwise an empty string), " +
+  "field (its industry in a few words), location (city and country of its base, if stated). " +
+  "Use empty strings for anything you cannot find. Set found to false only if nothing says who runs the site.";
 
 const SCHEMA = {
   type: "object",
@@ -150,7 +152,7 @@ async function identify(profile: PreviewTarget, apiKey: string, kind: ScanKind):
         { role: "system", content: kind === "company" ? COMPANY_INSTRUCTIONS : INSTRUCTIONS },
         {
           role: "user",
-          content: kind === "company" ? `Which company runs the website ${profile.url} ?` : `Whose ${profile.networkLabel} profile is ${profile.url} ?`,
+          content: kind === "company" ? `Who runs the website ${profile.handle} (${profile.url})?` : `Whose ${profile.networkLabel} profile is ${profile.url} ?`,
         },
       ],
     },
