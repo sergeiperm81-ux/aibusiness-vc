@@ -398,21 +398,24 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
         : "together with the company, the role or the city from the profile; the profile itself is listed as given. The summary was written from these pages only.")
   );
   check.results.forEach((row, index) => {
-    if (index > 0) pdf.newPage();
-    pdf.gap(8);
+    // One flowing appendix: a question starts where the last one ended, not on a fresh page.
+    pdf.gap(index > 0 ? 14 : 8);
     pdf.text(`Question ${index + 1}. ${questions[row.fact.id]?.(name) ?? row.fact.label}`, { size: 13, bold: true, gapAfter: 2 });
     pdf.text(`Exact wording sent to every model: ${row.fact.question}`, { size: 8.5, color: MUTED, gapAfter: 10 });
+    // Answers held back for identity safety are named in one line, not given a card each.
+    const withheld = row.answers.filter((a) => a.ok && !shown.has(`${row.fact.id}/${a.providerId}`)).map((a) => a.providerLabel);
+    if (withheld.length > 0) {
+      pdf.text(
+        `${withheld.length} model ${withheld.length === 1 ? "response" : "responses"} withheld for identity safety (${withheld.join(", ")}): ` +
+          `not tied to ${w.given}, or telling of trouble about ${w.others} with the name.`,
+        { size: 9.5, color: MUTED, gapAfter: 8 }
+      );
+    }
     for (const answer of row.answers) {
+      if (answer.ok && !shown.has(`${row.fact.id}/${answer.providerId}`)) continue;
       pdf.strip(answer.providerLabel, answer.model);
       if (!answer.ok) {
         pdf.text(`No answer was received: ${answer.error ?? "the request failed"}.`, { color: MUTED, indent: 10, gapAfter: 12 });
-        continue;
-      }
-      if (!shown.has(`${row.fact.id}/${answer.providerId}`)) {
-        pdf.text(
-          `Not printed: this answer could not be tied to ${w.given}, or it tells of trouble about ${w.others} with the name.`,
-          { color: MUTED, indent: 10, gapAfter: 12 }
-        );
         continue;
       }
       for (const block of plainAnswer(answer.text)) {
