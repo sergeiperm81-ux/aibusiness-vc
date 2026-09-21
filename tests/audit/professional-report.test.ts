@@ -7,7 +7,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import type { AnswerCheck } from "../../src/lib/audit/answer-check";
 import { isGoogleRedirect, stripTracking } from "../../src/lib/audit/citation-cleanup";
-import { buildPersonReportPdf, groupSources, plainAnswer } from "../../src/lib/audit/person-report-pdf";
+import { buildPersonReportPdf, groupSources, plainAnswer, rolesNamedByOneModel } from "../../src/lib/audit/person-report-pdf";
 import { answersBlock, parseSynthesis, type PersonSynthesis } from "../../src/lib/audit/person-synthesis";
 
 const LABELS = ["OpenAI", "Anthropic", "Gemini"];
@@ -227,4 +227,27 @@ test("footnote links in an answer are dropped from the text, and encoded address
   // Kept as sent, so the link works; the label shown to the reader is decoded separately.
   assert.deepEqual(grouped.social, ["https://www.linkedin.com/in/%D0%B0%D0%BD%D0%B0"]);
   assert.deepEqual(grouped.web, ["https://a.example/%E0%A4%A"]);
+});
+
+test("Claude's pre-search sentence glued to a stored answer is dropped when printed", () => {
+  const blocks = plainAnswer("I'll search for information about him.Based on the results, he is an editor.");
+  assert.equal(blocks[0].text, "Based on the results, he is an editor.");
+  assert.equal(plainAnswer("I'll search again. Nothing found.")[0].text, "I'll search again. Nothing found.");
+});
+
+test("a role only one model names is shown as a contradiction once three models answered", () => {
+  const synthesis = parseSynthesis(raw(), LABELS, QUESTIONS, answersBlock(check()));
+  assert.ok(synthesis);
+  // In the fixture only OpenAI answers "does": too few to call a lone role a contradiction.
+  assert.deepEqual(rolesNamedByOneModel(synthesis, check()), []);
+  const full = check();
+  const many = {
+    ...full,
+    results: full.results.map((row) => ({ ...row, answers: row.answers.map((a) => ({ ...a, ok: true, text: a.text || "x" })) })),
+  };
+  const extra = {
+    ...synthesis,
+    professional: { ...synthesis.professional, roles: [...synthesis.professional.roles, { label: "Role", value: "Founder at X", saidBy: ["OpenAI", "Gemini"] }] },
+  };
+  assert.deepEqual(rolesNamedByOneModel(extra, many).map((r) => r.value), ["Analyst"]);
 });

@@ -83,6 +83,15 @@ export interface AnswerBlock {
  * are dropped, and inline links lose their address because the same address
  * is in the source list under the answer.
  */
+/** Roles a single model names while at least three models answered what the person does: a quiet contradiction. */
+export function rolesNamedByOneModel(synthesis: PersonSynthesis, check: AnswerCheck): PersonSynthesis["professional"]["roles"] {
+  const answeredDoes = check.results.find((r) => r.fact.id === "does")?.answers.filter((a) => a.ok).length ?? 0;
+  return answeredDoes >= 3 ? synthesis.professional.roles.filter((role) => role.saidBy.length === 1) : [];
+}
+
+/** What Claude said before searching, glued to its answer in answers stored before that was cut: "...questions.Based on". */
+const PRE_SEARCH = /^(?:I'll|I will|Let me) search[^.]*\.(?=[A-Z])/;
+
 export function plainAnswer(text: string): readonly AnswerBlock[] {
   const clean = (line: string): string =>
     line
@@ -100,6 +109,7 @@ export function plainAnswer(text: string): readonly AnswerBlock[] {
       .replace(/\s+([.,;:!?])/g, "$1")
       .trim();
   return text
+    .replace(PRE_SEARCH, "")
     .split(/\n+/)
     .map((line) => line.trim())
     .filter((line) => line.length > 0 && !/^[-*_]{3,}$/.test(line))
@@ -264,7 +274,8 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
   }
 
   /* -------------------------------------------------------- contradictions */
-  if (synthesis.mixups.length > 0 || synthesis.disagreements.length > 0) {
+  const loneRoles = rolesNamedByOneModel(synthesis, check);
+  if (synthesis.disagreements.length > 0 || loneRoles.length > 0) {
     pdf.rule();
     pdf.kicker("Contradictions");
     pdf.heading("Where the answers contradict each other");
@@ -273,16 +284,26 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
       for (const version of item.versions) pdf.bullet(`${version.saidBy}: ${version.says}`);
       pdf.gap(5);
     }
-    if (synthesis.mixups.length > 0) {
-      pdf.text("Other people with this name came up", { bold: true, gapAfter: 3 });
+    if (loneRoles.length > 0) {
+      pdf.text("Roles only one model names", { bold: true, gapAfter: 3 });
+      for (const role of loneRoles) pdf.bullet(`${role.saidBy[0]}: ${role.value}`);
       pdf.text(
-        `${synthesis.mixups.length === 1 ? "One other person" : `${synthesis.mixups.length} other people`} with this name appeared in the answers. ` +
-          "Their pages, records and contacts are not listed: this report is only about the profile given. " +
-          `Anyone who asks an AI assistant about ${name} can be shown them too. ` +
-          "What keeps namesakes apart is context: the same city, employer and field next to the name on every public page.",
-        { gapAfter: 4 }
+        "The other models describe the person without these. Each may be out of date, a past role told as current, or not about this person at all. Only the person can say which.",
+        { size: 9.5, color: MUTED, gapAfter: 5 }
       );
     }
+  }
+  if (synthesis.mixups.length > 0) {
+    pdf.rule();
+    pdf.kicker("Namesakes");
+    pdf.heading("Other people with this name");
+    pdf.text(
+      `${synthesis.mixups.length === 1 ? "One other person" : `${synthesis.mixups.length} other people`} with this name appeared in the answers. ` +
+        "Their pages, records and contacts are not listed: this report is only about the profile given. " +
+        `Anyone who asks an AI assistant about ${name} can be shown them too. ` +
+        "What keeps namesakes apart is context: the same city, employer and field next to the name on every public page.",
+      { gapAfter: 4 }
+    );
   }
 
   /* ------------------------------------------------------- recommendations */
@@ -359,6 +380,14 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
           { color: MUTED, indent: 10, gapAfter: 12 }
         );
         continue;
+      }
+      if (row.fact.id === "reputation" && synthesis.mixups.some((m) => m.saidBy.includes(answer.providerLabel))) {
+        pdf.text(`This answer also mentions other people with this name. Those parts are about them, not about ${name}.`, {
+          size: 9,
+          color: MUTED,
+          indent: 10,
+          gapAfter: 4,
+        });
       }
       for (const block of plainAnswer(answer.text)) {
         if (block.bullet) pdf.bullet(block.text, { size: 9.5, indent: 10 });
