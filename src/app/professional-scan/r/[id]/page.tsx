@@ -51,7 +51,7 @@ const GETS: readonly { title: string; body: string }[] = [
   },
   {
     title: "Recommendations",
-    body: "5 to 7 steps, each saying exactly what to write and where, so the next person who asks is told the right things.",
+    body: "3 to 5 steps, most important first, each saying exactly what to write and where, so the next person who asks is told the right things.",
   },
 ];
 

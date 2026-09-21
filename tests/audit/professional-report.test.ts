@@ -86,7 +86,7 @@ function raw(overrides: Record<string, unknown> = {}): string {
       { provider: "OpenAI", questionId: "does", status: "certainly" },
     ],
     recommendations: [
-      ...[1, 2, 3, 4].map((n) => ({ title: `Do ${n}`, why: "A gap.", steps: ["Write this there.", "Then publish that."] })),
+      ...[1, 2, 3, 4, 5, 6].map((n) => ({ title: `Do ${n}`, why: "A gap.", steps: ["Write this there.", "Then publish that."] })),
       { title: "Vague", why: "A gap.", steps: [] },
     ],
     ...overrides,
@@ -186,10 +186,11 @@ test("a link is kept only when it is literally in the answers: namesake pages an
   assert.equal(parsed.redFlags.reviews[1].link, null);
 });
 
-test("a recommendation with no concrete step is dropped", () => {
+test("a recommendation with no concrete step is dropped, and there are never more than five", () => {
   const parsed = parseSynthesis(raw(), LABELS, QUESTIONS, answersBlock(check()));
   assert.ok(parsed);
-  assert.deepEqual(parsed.recommendations.map((r) => r.title), ["Do 1", "Do 2", "Do 3", "Do 4"]);
+  // At most five, in the model's order: most important first.
+  assert.deepEqual(parsed.recommendations.map((r) => r.title), ["Do 1", "Do 2", "Do 3", "Do 4", "Do 5"]);
   assert.equal(parsed.recommendations[0].steps.length, 2);
 });
 
@@ -199,7 +200,7 @@ test("an answer is printed as plain paragraphs: marks dropped, words kept, inlin
   );
   assert.deepEqual(blocks, [
     { text: "Background", bullet: false, heading: true },
-    { text: "Anastasia works in Dubai .", bullet: false, heading: false },
+    { text: "Anastasia works in Dubai.", bullet: false, heading: false },
     { text: "First point with a page", bullet: true, heading: false },
     { text: "Second point", bullet: true, heading: false },
     { text: "What I did NOT find:", bullet: false, heading: true },
@@ -220,9 +221,10 @@ test("sources are split into social networks and websites", () => {
 });
 
 test("footnote links in an answer are dropped from the text, and encoded addresses are shown readable", () => {
-  const blocks = plainAnswer("She works in Dubai.[[1]](https://t.me/dubaiocenka)[2](https://vc.ru/id1) More.");
+  const blocks = plainAnswer("She works in Dubai.[[1]](https://t.me/dubaiocenka)[2](https://vc.ru/id1) More [1][3].");
   assert.equal(blocks[0].text, "She works in Dubai. More.");
   const grouped = groupSources(["https://www.linkedin.com/in/%D0%B0%D0%BD%D0%B0", "https://a.example/%E0%A4%A"]);
-  assert.deepEqual(grouped.social, ["https://www.linkedin.com/in/ана"]);
+  // Kept as sent, so the link works; the label shown to the reader is decoded separately.
+  assert.deepEqual(grouped.social, ["https://www.linkedin.com/in/%D0%B0%D0%BD%D0%B0"]);
   assert.deepEqual(grouped.web, ["https://a.example/%E0%A4%A"]);
 });

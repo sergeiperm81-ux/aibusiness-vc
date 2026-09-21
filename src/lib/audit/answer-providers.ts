@@ -181,6 +181,25 @@ export function anthropicProvider(apiKey: string, model: string, onJournal?: Jou
   };
 }
 
+/**
+ * The answer, without what Claude says before it searches ("I'll search for
+ * information about..."): only the text after the last search is the answer.
+ * Text arrives as many small blocks when citations are attached, so they are
+ * joined rather than taking the first one.
+ */
+export function anthropicAnswerText(parts: readonly { readonly type?: string; readonly text?: string }[]): string {
+  const lastSearch = parts.reduce(
+    (last, part, index) => (part.type === "server_tool_use" || part.type === "web_search_tool_result" ? index : last),
+    -1
+  );
+  return parts
+    .slice(lastSearch + 1)
+    .filter((part) => part.type === "text")
+    .map((part) => part.text ?? "")
+    .join("")
+    .trim();
+}
+
 async function askAnthropicOnce(apiKey: string, ctx: AttemptContext): Promise<ProviderAnswer> {
   const result = await postJson(
     "https://api.anthropic.com/v1/messages",
@@ -220,13 +239,7 @@ async function askAnthropicOnce(apiKey: string, ctx: AttemptContext): Promise<Pr
   ];
   const parts = payload.content ?? [];
 
-  // Text arrives as many small blocks when citations are attached, so they are
-  // joined rather than taking the first one.
-  const text = parts
-    .filter((part) => part.type === "text")
-    .map((part) => part.text ?? "")
-    .join("")
-    .trim();
+  const text = anthropicAnswerText(parts);
 
   const citations = unique([
     ...parts

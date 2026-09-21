@@ -68,7 +68,7 @@ const INCLUDED: readonly { icon: IconName; title: string; body: string }[] = [
   {
     icon: "steps",
     title: "Recommendations",
-    body: "5 to 7 recommendations, each with concrete steps: what to write, and where.",
+    body: "3 to 5 recommendations, most important first, each with concrete steps: what to write, and where.",
   },
   {
     icon: "link",

@@ -12,8 +12,17 @@
  */
 
 import type { AnswerCheck } from "./answer-check";
-import { AMBER, AMBER_TINT, GREEN, GREEN_TINT, LINK, MUTED, PdfWriter } from "./pdf-kit";
+import { AMBER, AMBER_TINT, GREEN, GREEN_TINT, MUTED, PdfWriter } from "./pdf-kit";
 import type { CoverageStatus, PersonSynthesis } from "./person-synthesis";
+import {
+  answersAboutProfile,
+  corroboratedHosts,
+  identityAmbiguous,
+  isSocialAddress,
+  sourceLabel,
+  splitSources,
+  type SourceFilter,
+} from "./person-report-safety";
 
 /** The name on the cover and in the footer. One place, because it is still being decided. */
 export const PRODUCT_NAME = "AI Person Scan";
@@ -45,21 +54,13 @@ const HOW_AI_LEARNS: readonly string[] = [
   "A public way to be reached. If no public page shows how to contact a person, the honest answer to 'how do I get in touch' is 'I could not find a way'.",
 ];
 
-const SOCIAL_HOSTS = /(^|\.)(linkedin\.com|x\.com|twitter\.com|instagram\.com|facebook\.com|t\.me|telegram\.me|youtube\.com|tiktok\.com|medium\.com|threads\.net)$/i;
 const MAX_SOURCES_PER_GROUP = 8;
 
 /** Splits cited pages into social networks and everything else, so a reader sees at a glance where a model looked. */
 export function groupSources(citations: readonly string[]): { readonly social: readonly string[]; readonly web: readonly string[] } {
-  const isSocial = (address: string): boolean => {
-    try {
-      return SOCIAL_HOSTS.test(new URL(address).hostname);
-    } catch {
-      return false;
-    }
-  };
   return {
-    social: citations.filter(isSocial).slice(0, MAX_SOURCES_PER_GROUP).map(readableAddress),
-    web: citations.filter((c) => !isSocial(c)).slice(0, MAX_SOURCES_PER_GROUP).map(readableAddress),
+    social: citations.filter(isSocialAddress).slice(0, MAX_SOURCES_PER_GROUP),
+    web: citations.filter((c) => !isSocialAddress(c)).slice(0, MAX_SOURCES_PER_GROUP),
   };
 }
 
@@ -92,10 +93,13 @@ export function plainAnswer(text: string): readonly AnswerBlock[] {
       .replace(/\[\d+\]\((https?:[^)\s]+)\)/g, "")
       .replace(/\(\[([^\]]+)\]\((https?:[^)\s]+)\)\)/g, "")
       .replace(/\[([^\]]+)\]\((https?:[^)\s]+)\)/g, "$1")
+      // Bare footnote marks with no address, "[1][3]" from Perplexity.
+      .replace(/\[\d+\]/g, "")
       .replace(/(\*\*|__)/g, "")
       .replace(/(^|\s)\*(\S[^*]*)\*/g, "$1$2")
       .replace(/`/g, "")
       .replace(/\s+/g, " ")
+      .replace(/\s+([.,;:!?])/g, "$1")
       .trim();
   return text
     .split(/\n+/)
@@ -143,6 +147,10 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
   const total = check.providers.length;
   const answered = check.results.flatMap((r) => r.answers).filter((a) => a.ok).length;
   const asked = check.results.length * total;
+  const shown = answersAboutProfile(check, synthesis, input.notFoundKeys);
+  const ambiguous = identityAmbiguous(check, synthesis, shown);
+  const filter: SourceFilter = { name, profileUrl: input.profileUrl, hosts: corroboratedHosts(check, shown) };
+  const sourceTiedToThis = (address: string): boolean => splitSources([address], filter).held === 0;
   const pdf = await PdfWriter.create(`${PRODUCT_NAME} - ${name}`, `What AI says about ${name}`, {
     left: "aibusiness.vc",
     right: `Questions about this report: ${CONTACT_EMAIL}`,
@@ -163,6 +171,9 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
   pdf.text(
     "Before a meeting, a deal or an interview, people now ask an AI assistant about the person they are about to meet. " +
       `We asked ${total} of them the three questions people ask, each with live web search on. This is what they said about ${name}.`
+  );
+  pdf.muted(
+    "The report is the pages before the appendices. The appendices are the record: which model found the person, and every answer that could be tied to this profile, word for word."
   );
   pdf.rule();
 
@@ -199,32 +210,39 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
   pdf.gap(4);
 
   const ownFlags = synthesis.redFlags.flags.filter((f) => !f.possiblyAnotherPerson);
-  const namesakeFlags = synthesis.redFlags.flags.filter((f) => f.possiblyAnotherPerson);
-  if (synthesis.redFlags.flags.length === 0) {
+  const heldFlags = synthesis.redFlags.flags.length - ownFlags.length;
+  const heldNote =
+    heldFlags > 0
+      ? ` ${heldFlags} ${heldFlags === 1 ? "point the models tied" : "points the models tied"} to other people with this name ${heldFlags === 1 ? "is" : "are"} left out: this report is only about the profile given.`
+      : "";
+  if (ownFlags.length === 0 && ambiguous) {
+    pdf.text("No public red flags were identified for the profile given, in this scan.", { bold: true, gapAfter: 6 });
     pdf.banner(
-      "No red flags found",
-      `None of the ${total} models reported a dispute, a complaint, a scandal or a warning sign about ${name}.`,
+      "Identity ambiguity: no reputation conclusion",
+      `Other people share this name, or not every answer could be tied to this profile (see Appendix A). So this scan draws no conclusion about the reputation of ${name}, good or bad.${heldNote}`,
+      AMBER,
+      AMBER_TINT
+    );
+  } else if (ownFlags.length === 0) {
+    pdf.banner(
+      "No public red flags identified",
+      `For the profile given, in this scan: none of the ${total} models reported a dispute, a complaint, a scandal or a warning sign about ${name}.${heldNote}`,
       GREEN,
       GREEN_TINT
     );
   } else {
-    const count = synthesis.redFlags.flags.length;
     pdf.banner(
-      `${count} ${count === 1 ? "point" : "points"} to look at`,
-      ownFlags.length === 0
-        ? "Every one of them may be about another person with the same name. See below."
-        : "This is what someone asking an AI assistant may be told. Each point names the model that said it.",
+      `${ownFlags.length} ${ownFlags.length === 1 ? "point" : "points"} to look at`,
+      `This is what someone asking an AI assistant may be told. Each point names the model that said it.${heldNote}`,
       AMBER,
       AMBER_TINT
     );
-    for (const flag of [...ownFlags, ...namesakeFlags]) {
+    for (const flag of ownFlags) {
       pdf.bullet(flag.flag, { bold: true });
-      const notes = [
-        saidByNote(flag.saidBy, total),
-        flag.source ? `Source named: ${flag.source}` : "",
-        flag.possiblyAnotherPerson ? `This may be about another person with the same name, not ${name}.` : "",
-      ].filter(Boolean);
-      pdf.text(notes.join(" "), { size: 8.5, color: MUTED, indent: 14, gapAfter: 4 });
+      pdf.text(saidByNote(flag.saidBy, total), { size: 8.5, color: MUTED, indent: 14, gapAfter: 4 });
+      if (flag.source && sourceTiedToThis(flag.source)) {
+        pdf.link(`Source: ${sourceLabel(flag.source)}`, flag.source, { size: 8.5, indent: 14, gapAfter: 4 });
+      }
     }
     pdf.text("We repeat what the models said. We do not claim any of it is true.", { size: 9, color: MUTED, gapAfter: 6 });
   }
@@ -240,7 +258,7 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
   }
   for (const review of synthesis.redFlags.reviews) {
     pdf.bullet(review.what);
-    if (review.link) pdf.text(review.link, { size: 8.5, color: LINK, indent: 14 });
+    if (review.link && sourceTiedToThis(review.link)) pdf.link(sourceLabel(review.link), review.link, { size: 8.5, indent: 14 });
     pdf.text(saidByNote(review.saidBy, total), { size: 8.5, color: MUTED, indent: 14, gapAfter: 4 });
   }
   if (synthesis.redFlags.caveats.length > 0) {
@@ -259,17 +277,13 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
       pdf.gap(5);
     }
     if (synthesis.mixups.length > 0) {
-      pdf.text("Other people with the same name that came up", { bold: true, gapAfter: 3 });
-      for (const mixup of synthesis.mixups) {
-        pdf.bullet(mixup.who);
-        for (const link of mixup.links) pdf.text(link, { size: 8.5, color: LINK, indent: 14 });
-        if (mixup.links.length === 0) pdf.text("The model gave no page for this person.", { size: 8.5, color: MUTED, indent: 14 });
-        pdf.text(saidByNote(mixup.saidBy, total), { size: 8.5, color: MUTED, indent: 14, gapAfter: 5 });
-      }
+      pdf.text("Other people with this name came up", { bold: true, gapAfter: 3 });
       pdf.text(
-        `This may be ${name}, or it may not. Either way, anyone who asks an AI assistant about ${name} can be shown these people too. ` +
+        `${synthesis.mixups.length === 1 ? "One other person" : `${synthesis.mixups.length} other people`} with this name appeared in the answers. ` +
+          "Their pages, records and contacts are not listed: this report is only about the profile given. " +
+          `Anyone who asks an AI assistant about ${name} can be shown them too. ` +
           "What keeps namesakes apart is context: the same city, employer and field next to the name on every public page.",
-        { size: 9.5, color: MUTED, gapAfter: 4 }
+        { gapAfter: 4 }
       );
     }
   }
@@ -327,7 +341,9 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
   pdf.kicker("Appendix B");
   pdf.heading("Every answer, with its sources");
   pdf.muted(
-    "The words are the models' own. Only formatting marks were removed, and links inside an answer were moved to the list under it."
+    "The words are the models' own. Only formatting marks were removed, and links inside an answer were moved to the list under it. " +
+      "An answer the model could not tie to this profile is not printed, and a cited page is listed only when its address ties it to this profile: " +
+      "the full name, the profile itself, or a site at least two models cited about this person."
   );
   check.results.forEach((row, index) => {
     if (index > 0) pdf.newPage();
@@ -340,22 +356,36 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
         pdf.text(`No answer was received: ${answer.error ?? "the request failed"}.`, { color: MUTED, indent: 10, gapAfter: 12 });
         continue;
       }
+      if (!shown.has(`${row.fact.id}/${answer.providerId}`)) {
+        pdf.text(
+          "Not printed: this model could not tie its answer to the profile given, so the answer may describe another person.",
+          { color: MUTED, indent: 10, gapAfter: 12 }
+        );
+        continue;
+      }
       for (const block of plainAnswer(answer.text)) {
         if (block.bullet) pdf.bullet(block.text, { size: 9.5, indent: 10 });
         else pdf.text(block.text, { size: 9.5, indent: 10, bold: block.heading, gapAfter: 4 });
       }
-      const sources = groupSources(answer.citations);
+      const split = splitSources(answer.citations, filter);
+      const sources = groupSources(split.shown);
       pdf.gap(2);
-      if (sources.social.length === 0 && sources.web.length === 0) {
+      if (answer.citations.length === 0) {
         pdf.text("Sources: the model cited none for this answer.", { size: 8.5, color: MUTED, indent: 10 });
       }
       if (sources.social.length > 0) {
         pdf.text("Sources: social networks", { size: 8.5, bold: true, color: MUTED, indent: 10 });
-        for (const source of sources.social) pdf.text(source, { size: 8, color: LINK, indent: 18 });
+        for (const source of sources.social) pdf.link(sourceLabel(source), source, { size: 8, indent: 18 });
       }
       if (sources.web.length > 0) {
         pdf.text("Sources: websites", { size: 8.5, bold: true, color: MUTED, indent: 10 });
-        for (const source of sources.web) pdf.text(source, { size: 8, color: LINK, indent: 18 });
+        for (const source of sources.web) pdf.link(sourceLabel(source), source, { size: 8, indent: 18 });
+      }
+      if (split.held > 0) {
+        pdf.text(
+          `${split.held} other ${split.held === 1 ? "page" : "pages"} it cited ${split.held === 1 ? "is" : "are"} not listed: nothing in the address ties ${split.held === 1 ? "it" : "them"} to this profile.`,
+          { size: 8.5, color: MUTED, indent: 10 }
+        );
       }
       pdf.gap(14);
     }

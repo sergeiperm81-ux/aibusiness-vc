@@ -13,7 +13,7 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import fontkit from "@pdf-lib/fontkit";
-import { PDFDocument, StandardFonts, rgb, type PDFFont, type PDFPage, type RGB } from "pdf-lib";
+import { PDFDocument, PDFString, StandardFonts, rgb, type PDFFont, type PDFPage, type RGB } from "pdf-lib";
 
 export const PAGE_WIDTH = 595;
 export const PAGE_HEIGHT = 842;
@@ -178,6 +178,32 @@ export class PdfWriter {
     for (const line of wrap(this.clean(value), font, size, CONTENT_WIDTH - indent)) {
       this.ensure(size + 5);
       this.page.drawText(line, { x: MARGIN + indent, y: this.y - size, size, font, color: options.color ?? INK });
+      this.y -= size + 4.5;
+    }
+    this.y -= options.gapAfter ?? 0;
+  }
+
+  /** A clickable line: the reader sees the label, a click opens the address. Only http(s) addresses are linked. */
+  link(label: string, address: string, options: TextOptions = {}): void {
+    const size = options.size ?? 10.5;
+    const indent = options.indent ?? 0;
+    const font = options.bold ? this.bold : this.regular;
+    const linkable = /^https?:\/\//i.test(address);
+    for (const line of wrap(this.clean(label), font, size, CONTENT_WIDTH - indent)) {
+      this.ensure(size + 5);
+      const x = MARGIN + indent;
+      const y = this.y - size;
+      this.page.drawText(line, { x, y, size, font, color: options.color ?? LINK });
+      if (linkable) {
+        const annotation = this.doc.context.obj({
+          Type: "Annot",
+          Subtype: "Link",
+          Rect: [x, y - 2, x + font.widthOfTextAtSize(line, size), y + size],
+          Border: [0, 0, 0],
+          A: { Type: "Action", S: "URI", URI: PDFString.of(address) },
+        });
+        this.page.node.addAnnot(this.doc.context.register(annotation));
+      }
       this.y -= size + 4.5;
     }
     this.y -= options.gapAfter ?? 0;
