@@ -52,7 +52,10 @@ export type PreviewResult =
   | { readonly ok: false; readonly reason: "rate_limited" | "unavailable" | "failed" };
 
 const previewKey = (id: string): string => `pscan:preview:${id}`;
-const cacheKey = (url: string): string => `pscan:preview-by-url:${createHash("sha256").update(url).digest("hex").slice(0, 32)}`;
+/** A company preview is cached apart from a person's, and under a new prefix whenever its instructions change. */
+const COMPANY_CACHE_VERSION = "c2";
+const cacheKey = (url: string, kind: ScanKind): string =>
+  `pscan:preview-by-url:${kind === "company" ? `${COMPANY_CACHE_VERSION}:` : ""}${createHash("sha256").update(url).digest("hex").slice(0, 32)}`;
 
 /**
  * Keeps a model's string safe to put into a question, a PDF and an email:
@@ -87,7 +90,8 @@ const INSTRUCTIONS =
 const COMPANY_INSTRUCTIONS =
   "You identify who is behind a website: a company, a publication, a studio or a one-person business. " +
   "Search the web and read the site itself, its About and Contact pages. Return JSON with: found (true when the site or other pages say who runs it), " +
-  "name (the name it presents itself under), role (what it does, in a few words), company (its legal entity if a page names one, otherwise an empty string), " +
+  "name (the business or brand name the site trades under, for example 'AI Business', never the owner's personal name unless the business trades under it), " +
+  "role (what the business does, in a few words), company (its legal entity if a page names one, otherwise an empty string), " +
   "field (its industry in a few words), location (city and country of its base, if stated). " +
   "Use empty strings for anything you cannot find. Set found to false only if nothing says who runs the site.";
 
@@ -182,7 +186,7 @@ export async function runPreview(
   owner = false
 ): Promise<PreviewResult> {
   try {
-    const cached = await kv.get(cacheKey(profile.url));
+    const cached = await kv.get(cacheKey(profile.url, kind));
     if (cached) {
       const preview = await loadPreview(kv, cached);
       if (preview) return { ok: true, preview };
@@ -198,7 +202,7 @@ export async function runPreview(
     const preview: Preview = { ...identity, id: randomBytes(12).toString("hex"), createdAt: now.toISOString() };
     await kv.set(previewKey(preview.id), JSON.stringify(preview), PREVIEW_TTL_SECONDS);
     // Only a found person is cached: a miss today may be a hit next week.
-    if (preview.found) await kv.set(cacheKey(profile.url), preview.id, PREVIEW_TTL_SECONDS);
+    if (preview.found) await kv.set(cacheKey(profile.url, kind), preview.id, PREVIEW_TTL_SECONDS);
     return { ok: true, preview };
   } catch (error) {
     console.error("[pscan/preview] storage unavailable", error);
