@@ -235,10 +235,10 @@ test("Claude's pre-search sentence glued to a stored answer is dropped when prin
   assert.equal(plainAnswer("I'll search again. Nothing found.")[0].text, "I'll search again. Nothing found.");
 });
 
-test("a role only one model names is shown as a contradiction once three models answered", () => {
+test("a role only one model names is an unconfirmed claim, never a contradiction, once three models answered", () => {
   const synthesis = parseSynthesis(raw(), LABELS, QUESTIONS, answersBlock(check()));
   assert.ok(synthesis);
-  // In the fixture only OpenAI answers "does": too few to call a lone role a contradiction.
+  // In the fixture only OpenAI answers "does": too few to call a lone role unconfirmed.
   assert.deepEqual(rolesNamedByOneModel(synthesis, check()), []);
   const full = check();
   const many = {
@@ -250,4 +250,25 @@ test("a role only one model names is shown as a contradiction once three models 
     professional: { ...synthesis.professional, roles: [...synthesis.professional.roles, { label: "Role", value: "Founder at X", saidBy: ["OpenAI", "Gemini"] }] },
   };
   assert.deepEqual(rolesNamedByOneModel(extra, many).map((r) => r.value), ["Analyst"]);
+});
+
+test("an absence is said as what the sources did not show, and a missing value is never one side of a contradiction", () => {
+  const parsed = parseSynthesis(
+    raw({
+      identity: {
+        summary: "Doe Ltd is a firm.",
+        facts: [{ label: "Legal name", value: "No formal legal company name disclosed", saidBy: ["OpenAI"] }],
+      },
+      disagreements: [
+        { topic: "Founding date", versions: [{ saidBy: "OpenAI", says: "Founded in March 2026" }, { saidBy: "Anthropic", says: "No exact founding date stated" }] },
+        { topic: "City", versions: [{ saidBy: "OpenAI", says: "Dubai" }, { saidBy: "Anthropic", says: "Riyadh" }] },
+      ],
+    }),
+    LABELS,
+    QUESTIONS,
+    answersBlock(check())
+  );
+  assert.ok(parsed);
+  assert.equal(parsed.identity.facts[0].value, "No legal name was identified in the sources reviewed.");
+  assert.deepEqual(parsed.disagreements.map((d) => d.topic), ["City"]);
 });

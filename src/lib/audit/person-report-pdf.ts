@@ -254,7 +254,7 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
   if (ownFlags.length === 0 && ambiguous) {
     pdf.banner(
       "Identity ambiguous: no reputation conclusion",
-      `${company ? "Other companies share" : "Other people share"} this name, or not every answer could be tied to ${w.tie} (see Appendix A). No model reported a red flag about ${w.given}, but that is not a clean record: this scan draws no conclusion about the reputation of ${name}, good or bad.${heldNote}`,
+      `${company ? "Other organisations share" : "Other people share"} this name, or not every answer could be tied to ${w.tie} (see Appendix A). This scan draws no conclusion about ${company ? "the organisation's" : "the person's"} reputation.${heldNote}`,
       AMBER,
       AMBER_TINT
     );

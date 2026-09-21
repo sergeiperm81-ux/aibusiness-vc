@@ -16,7 +16,7 @@ Use the company's name, then "it". Plain, short sentences. No em dashes. No mark
 
 Return JSON with these keys:
 
-"identity": {"summary": 2 to 4 sentences on who the assistants say is behind this company, "facts": [{"label": one of "Name", "Legal name", "Founded", "Based in", "Owners and leaders", "Registration", "Known for", "Contact", "value": string, "saidBy": [labels]}]}. Leave a fact out when no assistant states it.
+"identity": {"summary": 2 to 4 sentences on who the assistants say is behind this company, "facts": [{"label": one of "Name", "Legal name", "Founded", "Based in", "Owners and leaders", "Registration", "Known for", "Contact", "value": string, "saidBy": [labels]}]}. Leave a fact out when no assistant states it; never write that something does not exist, such as "no legal name", because the scan does not check registries.
 
 "professional": {"summary": 2 to 4 sentences on what the assistants say the company does and sells, "roles": [{"label": "Offer", "value": a product, service or line of business as stated, with its price when one is given, "saidBy": [labels]}] with one entry per distinct offer, including offers presented as current that may be old, "activity": [{"what": title or subject of an announcement, article, post or release, "where": the site or network, "when": the date exactly as the assistant gave it or null, "saidBy": [labels]}] newest first and at most 6, "activityNote": one sentence on whether the assistants see recent public activity from the company, and the most recent date any of them gave, or that none gave a date}.
 
@@ -24,7 +24,7 @@ Return JSON with these keys:
 
 "mixups": [{"who": another company with the same or a similar name that an assistant brought up, one entry per company, with what tells them apart (industry, country), "saidBy": [labels], "links": up to 3 page addresses about that other company, copied exactly from that assistant's answer or its cited sources, or an empty list}]. "who" starts with what that company is, for example "A logistics firm in Poland". Never put that other company's contacts, court or registry records, or allegations in "who".
 
-"disagreements": [{"topic": what they disagree on, "versions": [{"saidBy": one label, "says": that assistant's version}]}]. Compare the answers point by point and list every real conflict about the same fact, at most 4, most consequential first: two different owners or chief executives at the same time; two different founding years; two different head offices; two different prices for the same offer. Each version quotes what that assistant said, in a few words.
+"disagreements": [{"topic": what they disagree on, "versions": [{"saidBy": one label, "says": that assistant's version}]}]. Compare the answers point by point and list every real conflict about the same fact, at most 4, most consequential first: two different owners or chief executives at the same time; two different founding years; two different head offices; two different prices for the same offer. Each version quotes what that assistant said, in a few words. An assistant that gives no value for the fact is not a version: a disagreement needs at least two assistants giving different values.
 
 "coverage": one entry for every assistant and every question: {"provider": label, "questionId": id, "status": "found" when the answer is clearly about this company, "not_found" when the assistant says it cannot find or identify it, "mixed" when the answer blends in another company or says it cannot tell which company it found}.
 

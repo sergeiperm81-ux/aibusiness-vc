@@ -146,6 +146,9 @@ function instructionsFor(check: AnswerCheck): string {
   return check.subject.kind === "company" ? COMPANY_INSTRUCTIONS : INSTRUCTIONS;
 }
 
+/** A value that says something was not found, not what it is. */
+const ABSENCE = /^(no|none|not|unknown|n\/a)\b|\bnot (disclosed|found|identified|available|stated|publicly)\b/i;
+
 function tokensUpperBound(chars: number): number {
   return Math.ceil(chars / 3);
 }
@@ -206,12 +209,17 @@ export function parseSynthesis(
         .filter((label): label is string => label !== undefined)
     ),
   ];
-  // A statement no asked assistant stands behind is not shown.
+  // A statement no asked assistant stands behind is not shown. A fact stated as an absence
+  // ("No formal legal company name disclosed") reads as a finding about legal status, which
+  // this scan does not check: it is said as what the sources did not show.
   const facts = (value: unknown): readonly SaidFact[] =>
     list(value)
       .map((item) => {
         const r = record(item);
-        return { label: text(r.label, 40), value: text(r.value), saidBy: saidBy(r.saidBy) };
+        const said = text(r.value);
+        const label = text(r.label, 40);
+        const absent = ABSENCE.test(said) ? `No ${label.toLowerCase()} was identified in the sources reviewed.` : said;
+        return { label, value: absent, saidBy: saidBy(r.saidBy) };
       })
       .filter((fact) => fact.value.length > 0 && fact.saidBy.length > 0);
 
@@ -304,7 +312,8 @@ export function parseSynthesis(
             const version = record(v);
             const by = known.get(text(version.saidBy).toLowerCase());
             const says = text(version.says, 300);
-            return by && says ? { saidBy: by, says } : null;
+            // "No exact date stated" is not a version of the fact: a contradiction needs two claims.
+            return by && says && !ABSENCE.test(says) && !/not precisely|no exact/i.test(says) ? { saidBy: by, says } : null;
           })
           .filter((v): v is { saidBy: string; says: string } => v !== null);
         return { topic: text(r.topic, 160), versions };
