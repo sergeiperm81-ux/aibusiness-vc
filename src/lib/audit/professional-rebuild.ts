@@ -26,8 +26,8 @@ export type RebuildOutcome =
   | { readonly ok: false; readonly reason: string; readonly spentUsd: number };
 
 /** The largest answer length whose worst case stays within the ceiling, or 0 when none does. */
-export function outputTokensWithin(check: AnswerCheck, ceilingUsd: number): number {
-  for (let tokens = SYNTHESIS_MAX_OUTPUT_TOKENS; tokens >= MIN_REBUILD_OUTPUT_TOKENS; tokens -= STEP) {
+export function outputTokensWithin(check: AnswerCheck, ceilingUsd: number, cap: number = SYNTHESIS_MAX_OUTPUT_TOKENS): number {
+  for (let tokens = Math.min(cap, SYNTHESIS_MAX_OUTPUT_TOKENS); tokens >= MIN_REBUILD_OUTPUT_TOKENS; tokens -= STEP) {
     const plan = planCost([
       { provider: "openai", model: SYNTHESIS_MODEL, purpose: "writer", label: "rebuild", maxAttempts: 1, bounds: synthesisBoundsForCheck(check, tokens) },
     ]);
@@ -41,6 +41,8 @@ export async function rebuildReport(
   key: string,
   options: {
     readonly ceilingUsd: number;
+    /** The most output tokens the one call may use, whatever the ceiling would allow. */
+    readonly outputCap?: number;
     readonly subjectExtras?: Partial<PersonSubject>;
     readonly synthesise: (check: AnswerCheck, maxOutputTokens: number) => Promise<SynthesisResult>;
   }
@@ -56,7 +58,7 @@ export async function rebuildReport(
 
   const subject: PersonSubject = { ...order.subject, ...options.subjectExtras };
   const check = await deps.cleanCitations(await loadCheck(deps, order, buildScanQuestions(subject)), subject);
-  const maxOutputTokens = outputTokensWithin(check, options.ceilingUsd);
+  const maxOutputTokens = outputTokensWithin(check, options.ceilingUsd, options.outputCap);
   if (maxOutputTokens === 0) {
     return { ok: false, reason: `even a ${MIN_REBUILD_OUTPUT_TOKENS}-token summary could exceed $${options.ceilingUsd}`, spentUsd: 0 };
   }

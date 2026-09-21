@@ -12,6 +12,8 @@ export const maxDuration = 300;
 
 /** The most one rebuild may cost. One summary call, no search, no retry. */
 const REBUILD_CEILING_USD = 0.01;
+/** Agreed with the owner: never more than this many output tokens for a rebuild. */
+const REBUILD_OUTPUT_CAP = 2_500;
 
 /**
  * Rebuilds a delivered report once from its stored answers and emails it
@@ -33,6 +35,7 @@ export async function POST(request: Request) {
     const preview = order && !order.subject.location ? await loadPreview(redisKv, order.previewId) : null;
     const outcome = await rebuildReport(productionDeps(), key, {
       ceilingUsd: REBUILD_CEILING_USD,
+      outputCap: REBUILD_OUTPUT_CAP,
       subjectExtras: preview?.location ? { location: preview.location } : {},
       synthesise: (check, maxOutputTokens) => synthesisePersonCheck({ check, apiKey, maxOutputTokens }),
     });
