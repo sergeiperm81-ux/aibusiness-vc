@@ -275,8 +275,13 @@ export default async function HomePage() {
     },
     {
       href: "/library",
-      title: "Author's Library",
+      title: "Founder's Library",
       text: "Free methods, checklists and templates. No registration.",
+    },
+    {
+      href: "/notes",
+      title: "Founder's Notes",
+      text: "What the founder saw testing AI services this month, in his own words.",
     },
     {
       href: "/sergei-ponomarev",

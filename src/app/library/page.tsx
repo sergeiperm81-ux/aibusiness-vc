@@ -8,7 +8,7 @@ import { ContactEmail } from "@/components/ContactEmail";
 const LINKEDIN_URL = "https://www.linkedin.com/in/sergei-ponomarev/";
 
 export const metadata: Metadata = {
-  title: "An Author's Library: Methods and Tools for an AI That Serves People",
+  title: "Founder's Library: Methods and Tools for an AI That Serves People",
   description:
     "Original methods and ready-to-use tools for governing AI from the human side, by Sergei Ponomarev, founder of aibusiness.vc. Free guides you can use today.",
   alternates: { canonical: "/library" },
@@ -21,12 +21,12 @@ export default function LibraryPage() {
       <div className="bg-gray-950">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
           <p className="font-mono text-sm font-bold uppercase tracking-[0.2em] text-amber-400">
-            An author&apos;s library
+            Founder&apos;s library
           </p>
           <h1 className="mt-3 text-3xl font-bold leading-tight text-white sm:text-4xl">
             Methods &amp; tools for an AI that serves people
           </h1>
-          <p className="mt-3 text-lg font-semibold text-amber-400">by Sergei Ponomarev, PhD</p>
+          <p className="mt-3 text-lg font-semibold text-amber-400">by Sergei Ponomarev, PhD, founder of AI Business</p>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-gray-300">
             My own methods for governing AI from the human side, published here as I build
             them. Free, and made to be used today.

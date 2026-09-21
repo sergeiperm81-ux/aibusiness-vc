@@ -23,7 +23,7 @@ export const START_HERE_ITEMS = [
   },
   {
     href: "/library",
-    title: "Author's Library",
+    title: "Founder's Library",
     text: "Free frameworks, checklists and methods. No registration.",
   },
   {

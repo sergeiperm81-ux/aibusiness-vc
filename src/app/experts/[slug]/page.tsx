@@ -322,7 +322,7 @@ export default async function ExpertPage({ params }: Props) {
                   href="/library"
                   className="mt-3 inline-block text-sm font-bold text-accent hover:underline"
                 >
-                  Author&apos;s Library &rarr;
+                  Founder&apos;s Library &rarr;
                 </Link>
               </div>
             </div>
