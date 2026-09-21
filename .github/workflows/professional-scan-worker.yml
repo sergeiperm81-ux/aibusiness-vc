@@ -1,18 +1,13 @@
-# Wakes the AI Professional Scan worker every few minutes.
+# Runs the paid-order worker by hand, for the owner.
 #
-# Vercel's free plan runs its own cron once a day, and a function may not call
-# itself (Vercel blocks recursive fetches), so the next run of the paid-order
-# worker comes from here. The repository is public, so these runs cost nothing.
-# GitHub may start a scheduled run late or skip one, and disables a schedule
-# after 60 days without activity in the repository. The worker handles gaps,
-# and the daily Vercel cron (/api/cron/professional-scan-daily) is the backstop.
-# The secret here is PROFESSIONAL_SCAN_WORKER_SECRET, which opens this one
-# route and nothing else on the site.
+# The five-minute wake-up comes from Upstash QStash, which signs every call
+# (src/lib/audit/qstash-signature.ts). GitHub's schedule never fired for this
+# repository, so it was removed. This workflow stays for a manual run; it uses
+# PROFESSIONAL_SCAN_WORKER_SECRET, which opens the worker route and nothing
+# else. The daily Vercel cron (/api/cron/professional-scan-daily) is the backstop.
 name: professional-scan-worker
 
 on:
-  schedule:
-    - cron: "*/5 * * * *"
   workflow_dispatch:
 
 concurrency:
