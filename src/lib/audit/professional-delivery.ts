@@ -8,7 +8,7 @@
  */
 
 import { createHmac } from "node:crypto";
-import { buildPersonReportPdf, CONTACT_EMAIL, PRODUCT_NAME } from "./person-report-pdf";
+import { buildPersonReportPdf, COMPANY_PRODUCT_NAME, CONTACT_EMAIL, PRODUCT_NAME } from "./person-report-pdf";
 import type { ProfessionalOrder } from "./professional-order";
 import type { DiscountSpec, ReportEmail } from "./professional-worker";
 import { computeAnswerSignals } from "./answer-check-report";
@@ -41,9 +41,18 @@ export function codeFor(seed: string, secret: string): string {
   return `PRO${body}`;
 }
 
+/** The product the order is for, as the buyer saw it at checkout. */
+export function productNameFor(order: ProfessionalOrder): string {
+  return order.subject.kind === "company" ? COMPANY_PRODUCT_NAME : PRODUCT_NAME;
+}
+
 /* ------------------------------------------------------------ Lemon Squeezy */
 
-export async function createLemonDiscount(spec: DiscountSpec, config: { apiKey: string; storeId: string; variantId: string }): Promise<void> {
+/** The code works on every variant given: both scans, so a bonus from one can be spent on the other. */
+export async function createLemonDiscount(
+  spec: DiscountSpec,
+  config: { apiKey: string; storeId: string; variantIds: readonly string[] }
+): Promise<void> {
   const response = await fetch("https://api.lemonsqueezy.com/v1/discounts", {
     method: "POST",
     headers: {
@@ -66,7 +75,7 @@ export async function createLemonDiscount(spec: DiscountSpec, config: { apiKey: 
         },
         relationships: {
           store: { data: { type: "stores", id: config.storeId } },
-          variants: { data: [{ type: "variants", id: config.variantId }] },
+          variants: { data: config.variantIds.map((id) => ({ type: "variants", id })) },
         },
       },
     }),
@@ -114,12 +123,12 @@ export function reportEmailContent(order: ProfessionalOrder): { subject: string;
   const missing = order.missingProviders.length > 0;
   const lines: { html: string; text: string }[] = [
     {
-      html: `<p>Your AI Person Scan for <strong>${escapeHtml(name)}</strong> is attached as a PDF.</p>`,
-      text: `Your AI Person Scan for ${name} is attached as a PDF.`,
+      html: `<p>Your ${productNameFor(order)} for <strong>${escapeHtml(name)}</strong> is attached as a PDF.</p>`,
+      text: `Your ${productNameFor(order)} for ${name} is attached as a PDF.`,
     },
     {
-      html: "<p>Start with the first pages: who the AI models say this is, what they do, and whether any red flag came up. The recommendations follow, and every answer with its sources is in the appendix.</p>",
-      text: "Start with the first pages: who the AI models say this is, what they do, and whether any red flag came up. The recommendations follow, and every answer with its sources is in the appendix.",
+      html: "<p>Start with the first pages: who the AI models say is behind the name, what they do, and whether any red flag came up. The recommendations follow, and every answer with its sources is in the appendix.</p>",
+      text: "Start with the first pages: who the AI models say is behind the name, what they do, and whether any red flag came up. The recommendations follow, and every answer with its sources is in the appendix.",
     },
   ];
   if (missing) {
@@ -131,8 +140,8 @@ export function reportEmailContent(order: ProfessionalOrder): { subject: string;
   }
   if (order.discountCode) {
     lines.push({
-      html: `<p><strong>Your bonus: 7 checks at half price, yours to give away.</strong> ${CODE_PRICE} instead of ${FULL_PRICE}, for up to 7 more checks. Give the code to friends, family, colleagues and partners so they can see what AI says about them, or use it yourself before you work with someone new.<br><span style="font-size:18px;letter-spacing:1px"><strong>${escapeHtml(order.discountCode)}</strong></span><br><a href="https://aibusiness.vc/professional-scan">aibusiness.vc/professional-scan</a></p>`,
-      text: `Your bonus: 7 checks at half price, yours to give away. ${CODE_PRICE} instead of ${FULL_PRICE}, for up to 7 more checks. Give the code to friends, family, colleagues and partners so they can see what AI says about them, or use it yourself before you work with someone new.\nCode: ${order.discountCode}\nhttps://aibusiness.vc/professional-scan`,
+      html: `<p><strong>Your bonus: 7 checks at half price, yours to give away.</strong> ${CODE_PRICE} instead of ${FULL_PRICE}, for up to 7 more checks of people or companies. Give the code to friends, family, colleagues and partners so they can see what AI says about them, or use it yourself before you work with someone new.<br><span style="font-size:18px;letter-spacing:1px"><strong>${escapeHtml(order.discountCode)}</strong></span><br><a href="https://aibusiness.vc/ai-scan">aibusiness.vc/ai-scan</a></p>`,
+      text: `Your bonus: 7 checks at half price, yours to give away. ${CODE_PRICE} instead of ${FULL_PRICE}, for up to 7 more checks of people or companies. Give the code to friends, family, colleagues and partners so they can see what AI says about them, or use it yourself before you work with someone new.\nCode: ${order.discountCode}\nhttps://aibusiness.vc/ai-scan`,
     });
   }
   lines.push({
@@ -140,7 +149,7 @@ export function reportEmailContent(order: ProfessionalOrder): { subject: string;
     text: `This report shows what AI models say. It is not a background check and must not be used to decide on employment, tenancy, credit or insurance.\n\nQuestions, or a file that will not open: write to ${CONTACT_EMAIL} and I will answer personally.\n\nSergei Ponomarev\naibusiness.vc`,
   });
   return {
-    subject: `${PRODUCT_NAME}: ${name}`,
+    subject: `${productNameFor(order)}: ${name}`,
     html: `<h2>What AI says about ${escapeHtml(name)}</h2>${lines.map((l) => l.html).join("\n")}`,
     text: lines.map((l) => l.text).join("\n\n"),
   };
@@ -164,19 +173,19 @@ export async function sendReportEmail(email: ReportEmail, config: MailConfig): P
   await sendBrevo(config, {
     to: email.order.email,
     ...content,
-    attachment: [{ name: `AI-Person-Scan-${slug}.pdf`, content: Buffer.from(pdf).toString("base64") }],
+    attachment: [{ name: `${productNameFor(email.order).replace(/ /g, "-")}-${slug}.pdf`, content: Buffer.from(pdf).toString("base64") }],
     bccOwner: true,
   });
 }
 
 export async function sendDelayEmail(order: ProfessionalOrder, config: MailConfig): Promise<void> {
   const text =
-    `Your AI Person Scan for ${order.subject.name} is taking longer than usual: one of the AI models is not answering right now. ` +
+    `Your ${productNameFor(order)} for ${order.subject.name} is taking longer than usual: one of the AI models is not answering right now. ` +
     `We keep trying and will send it as soon as they answer. You do not need to do anything. ` +
     `If it cannot be made, you get your money back in full.\n\nSergei Ponomarev\naibusiness.vc`;
   await sendBrevo(config, {
     to: order.email,
-    subject: `${PRODUCT_NAME}: your report is on its way`,
+    subject: `${productNameFor(order)}: your report is on its way`,
     html: `<p>${escapeHtml(text).replace(/\n/g, "<br>")}</p>`,
     text,
   });
@@ -184,12 +193,12 @@ export async function sendDelayEmail(order: ProfessionalOrder, config: MailConfi
 
 export async function sendGiveUpEmail(order: ProfessionalOrder, config: MailConfig): Promise<void> {
   const text =
-    `We could not complete your AI Person Scan for ${order.subject.name}: the AI models it needs did not answer. ` +
+    `We could not complete your ${productNameFor(order)} for ${order.subject.name}: the AI models it needs did not answer. ` +
     `We are sorry. Your payment will be refunded in full to your original payment method.\n\n` +
     `Sergei Ponomarev\naibusiness.vc`;
   await sendBrevo(config, {
     to: order.email,
-    subject: `${PRODUCT_NAME}: we could not complete your report, full refund`,
+    subject: `${productNameFor(order)}: we could not complete your report, full refund`,
     html: `<p>${escapeHtml(text).replace(/\n/g, "<br>")}</p>`,
     text,
     bccOwner: true,

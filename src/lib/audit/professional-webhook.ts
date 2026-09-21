@@ -8,6 +8,8 @@
  */
 
 import type { DurableKv } from "./durable-kv";
+import type { ScanKind } from "./company-check";
+import { cleanDomain } from "./person-check";
 import { loadPreview } from "./professional-preview";
 import { createOrder } from "./professional-order";
 import { checkoutAvailability, countPaidRun } from "./provider-health";
@@ -34,7 +36,14 @@ function email(value: unknown): string | null {
 
 export async function handleProScanOrder(
   kv: DurableKv,
-  input: { readonly data: Json; readonly attributes: Json; readonly customData: Json; readonly variantId: string },
+  input: {
+    readonly data: Json;
+    readonly attributes: Json;
+    readonly customData: Json;
+    readonly variantId: string;
+    /** Which scan the paid variant is. The preview must be of the same kind. */
+    readonly kind?: ScanKind;
+  },
   gate: { readonly providerIds: readonly string[]; readonly configured: (id: string) => boolean } = {
     providerIds: [],
     configured: () => true,
@@ -58,6 +67,14 @@ export async function handleProScanOrder(
 
   try {
     const preview = await loadPreview(kv, previewId);
+    if (preview && preview.found && (preview.kind ?? "person") !== (input.kind ?? "person")) {
+      return {
+        status: 200,
+        body: { ok: false, error: "Preview is for the other scan" },
+        startWorker: false,
+        ownerAlert: `Order ${orderId} from ${buyer} paid for AI ${input.kind === "company" ? "Company" : "Person"} Scan with a preview for the other scan (${previewId}). Refund or fulfil it by hand.`,
+      };
+    }
     if (!preview || !preview.found) {
       // Paid, but we no longer know who the report is about. The owner must see this.
       console.error(`[pscan/webhook] order ${orderId}: preview ${previewId} is missing`);
@@ -75,6 +92,7 @@ export async function handleProScanOrder(
       email: buyer,
       previewId,
       subject: {
+        ...(preview.kind === "company" ? { kind: "company" as const, companyDomain: cleanDomain(preview.profileUrl) } : {}),
         name: preview.name,
         role: preview.role,
         company: preview.company,

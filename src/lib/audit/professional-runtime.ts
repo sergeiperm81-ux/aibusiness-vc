@@ -44,6 +44,15 @@ export function proScanVariantId(): string {
   return env("LEMONSQUEEZY_PRO_SCAN_VARIANT_ID");
 }
 
+export function companyScanVariantId(): string {
+  return env("LEMONSQUEEZY_COMPANY_SCAN_VARIANT_ID");
+}
+
+/** Both scans: the half-price code works on either. */
+export function scanVariantIds(): readonly string[] {
+  return [proScanVariantId(), companyScanVariantId()].filter(Boolean);
+}
+
 export function providerConfigured(id: string): boolean {
   return env(PROVIDER_ENV_KEYS[id as UsageProvider] ?? "").length > 0;
 }
@@ -99,9 +108,9 @@ export function productionDeps(): ScanDeps {
     createDiscount: async (spec) => {
       const apiKey = env("LEMONSQUEEZY_API_KEY");
       const storeId = env("LEMONSQUEEZY_STORE_ID");
-      const variantId = proScanVariantId();
-      if (!apiKey || !storeId || !variantId) throw new Error("Lemon Squeezy is not configured for discount codes");
-      await createLemonDiscount(spec, { apiKey, storeId, variantId });
+      const variantIds = scanVariantIds();
+      if (!apiKey || !storeId || variantIds.length === 0) throw new Error("Lemon Squeezy is not configured for discount codes");
+      await createLemonDiscount(spec, { apiKey, storeId, variantIds });
     },
     sendReport: (email) => sendReportEmail(email, mailConfig()),
     sendDelayNotice: (order) => sendDelayEmail(order, mailConfig()),

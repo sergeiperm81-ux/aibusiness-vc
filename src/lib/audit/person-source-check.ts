@@ -20,6 +20,8 @@ export interface ProfileAnchors {
   readonly profileUrl: string;
   /** Company, role, city: any one of them next to the full name ties a page to the person. */
   readonly details: readonly string[];
+  /** For a company scan: pages on the company's own site are its own words, trusted as given. */
+  readonly ownDomain?: string;
 }
 
 /** Reads a page's visible text, or null when it cannot be read. */
@@ -32,19 +34,29 @@ function normalise(text: string): string {
   return ` ${text
     .toLowerCase()
     .normalize("NFKD")
-    .replace(/[̀-ͯ]/g, "")
-    .replace(/[^a-z0-9Ѐ-ӿ]+/g, " ")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9\u0400-\u04ff]+/g, " ")
     .trim()} `;
 }
 
 /** The details worth matching: a role of one generic word ("Founder") ties nothing. */
 export function anchorsFor(subject: {
+  readonly kind?: "person" | "company";
   readonly name: string;
   readonly profileUrl: string;
   readonly company?: string;
   readonly role?: string;
   readonly location?: string;
+  readonly companyDomain?: string;
 }): ProfileAnchors {
+  if (subject.kind === "company") {
+    // A company is tied by its name next to its own domain, its legal name or its city.
+    const domain = (subject.companyDomain ?? "").toLowerCase();
+    const details = [domain, subject.company, subject.location]
+      .map((value) => (value ?? "").trim())
+      .filter((value) => normalise(value).trim().length >= 3);
+    return { name: subject.name, profileUrl: subject.profileUrl, details, ownDomain: domain || undefined };
+  }
   const candidates = [subject.company, subject.location, subject.role]
     .map((value) => (value ?? "").trim())
     .filter((value) => normalise(value).trim().length >= 3);
@@ -75,6 +87,15 @@ export function isTheProfile(address: string, profileUrl: string): boolean {
   return a !== null && a === key(profileUrl);
 }
 
+function onDomain(address: string, domain: string): boolean {
+  try {
+    const host = new URL(address).hostname.toLowerCase().replace(/^www\./, "");
+    return host === domain || host.endsWith(`.${domain}`);
+  } catch {
+    return false;
+  }
+}
+
 async function inBatches<T, R>(items: readonly T[], size: number, run: (item: T) => Promise<R>): Promise<readonly R[]> {
   const out: R[] = [];
   for (let i = 0; i < items.length; i += size) {
@@ -93,7 +114,9 @@ export async function keepSourcesAboutPerson(
   read: PageReader
 ): Promise<AnswerCheck> {
   const all = [...new Set(check.results.flatMap((row) => row.answers.flatMap((a) => a.citations)))];
-  const toRead = all.filter((address) => !isTheProfile(address, anchors.profileUrl)).slice(0, MAX_PAGES);
+  const trusted = (address: string): boolean =>
+    isTheProfile(address, anchors.profileUrl) || (anchors.ownDomain !== undefined && onDomain(address, anchors.ownDomain));
+  const toRead = all.filter((address) => !trusted(address)).slice(0, MAX_PAGES);
   const verdicts = await inBatches(toRead, CONCURRENCY, async (address) => {
     try {
       const text = await read(address);
@@ -103,7 +126,7 @@ export async function keepSourcesAboutPerson(
     }
   });
   const tied = new Set([
-    ...all.filter((address) => isTheProfile(address, anchors.profileUrl)),
+    ...all.filter(trusted),
     ...verdicts.filter(([, ok]) => ok).map(([address]) => address),
   ]);
   return {

@@ -51,7 +51,7 @@ export function Header() {
             <Link
               href="/ai-scan"
               className={`whitespace-nowrap px-3 py-1.5 text-[13px] font-bold rounded-md transition-colors ${
-                isActive("/ai-scan") || isActive("/audit") || isActive("/professional-scan")
+                isActive("/ai-scan") || isActive("/audit") || isActive("/professional-scan") || isActive("/company-scan")
                   ? "bg-accent-hover text-black"
                   : "bg-accent text-black hover:bg-accent-hover"
               }`}
@@ -150,6 +150,12 @@ export function Header() {
                 className="px-3 py-2 text-sm font-semibold rounded-md text-white hover:text-accent hover:bg-card-bg"
               >
                 AI Person Scan
+              </Link>
+              <Link
+                href="/company-scan"
+                className="px-3 py-2 text-sm font-semibold rounded-md text-white hover:text-accent hover:bg-card-bg"
+              >
+                AI Company Scan
               </Link>
 
             </div>

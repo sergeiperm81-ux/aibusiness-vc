@@ -9,8 +9,9 @@
  * sent. Each order can be rebuilt once.
  */
 
+import { buildScanQuestions } from "./company-check";
 import type { AnswerCheck } from "./answer-check";
-import { buildPersonQuestions, type PersonSubject } from "./person-check";
+import { type PersonSubject } from "./person-check";
 import { SYNTHESIS_MAX_OUTPUT_TOKENS, SYNTHESIS_MODEL, synthesisBoundsForCheck, type SynthesisResult } from "./person-synthesis";
 import { loadOrder, ORDER_TTL_SECONDS, spendKey, synthesisKey } from "./professional-order";
 import { loadCheck, type ScanDeps } from "./professional-worker";
@@ -54,7 +55,7 @@ export async function rebuildReport(
   if (!claimed) return { ok: false, reason: "this order was already rebuilt once", spentUsd: 0 };
 
   const subject: PersonSubject = { ...order.subject, ...options.subjectExtras };
-  const check = await deps.cleanCitations(await loadCheck(deps, order, buildPersonQuestions(subject)), subject);
+  const check = await deps.cleanCitations(await loadCheck(deps, order, buildScanQuestions(subject)), subject);
   const maxOutputTokens = outputTokensWithin(check, options.ceilingUsd);
   if (maxOutputTokens === 0) {
     return { ok: false, reason: `even a ${MIN_REBUILD_OUTPUT_TOKENS}-token summary could exceed $${options.ceilingUsd}`, spentUsd: 0 };

@@ -4,7 +4,7 @@ import { buildAuditPackageAttachments } from "@/lib/audit/fulfillment";
 import { decodeDomainFromId } from "@/lib/audit/mock";
 import { claimOnce, persistClaim, releaseClaim } from "@/lib/redis";
 import { redisKv } from "@/lib/audit/durable-kv";
-import { productionDeps, proScanVariantId, providerConfigured, WORKER_BUDGET_MS } from "@/lib/audit/professional-runtime";
+import { companyScanVariantId, productionDeps, proScanVariantId, providerConfigured, WORKER_BUDGET_MS } from "@/lib/audit/professional-runtime";
 import { PERSON_PROVIDER_IDS } from "@/lib/audit/answer-providers";
 import { handleProScanOrder } from "@/lib/audit/professional-webhook";
 import { drainQueue } from "@/lib/audit/professional-worker";
@@ -315,11 +315,13 @@ export async function POST(request: Request) {
 
   // AI Person Scan: store the order, queue it, answer. The report is made after the reply.
   const proVariant = proScanVariantId();
+  const companyVariant = companyScanVariantId();
   const eventVariant = orderVariantId(attributes);
-  if (proVariant && eventVariant === proVariant) {
+  const scanKind = proVariant && eventVariant === proVariant ? "person" : companyVariant && eventVariant === companyVariant ? "company" : null;
+  if (scanKind && eventVariant) {
     const outcome = await handleProScanOrder(
       redisKv,
-      { data, attributes, customData, variantId: proVariant },
+      { data, attributes, customData, variantId: eventVariant, kind: scanKind },
       { providerIds: PERSON_PROVIDER_IDS, configured: providerConfigured }
     );
     if (outcome.startWorker) {

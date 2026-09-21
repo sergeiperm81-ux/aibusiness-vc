@@ -5,8 +5,8 @@
  * state leaves: no email, no answer text.
  */
 
+import { buildScanQuestions } from "./company-check";
 import type { DurableKv } from "./durable-kv";
-import { buildPersonQuestions } from "./person-check";
 import { answerKey, loadOrder, spendKey, type OrderState } from "./professional-order";
 
 export type AnswerStatus = "answered" | "failed" | "not asked";
@@ -41,7 +41,7 @@ function statusOf(raw: string | null): AnswerStatus {
 export async function orderStatus(kv: DurableKv, key: string, providerIds: readonly string[]): Promise<OrderStatus | null> {
   const order = await loadOrder(kv, key);
   if (!order) return null;
-  const questions = buildPersonQuestions(order.subject).map((q) => q.id);
+  const questions = buildScanQuestions(order.subject).map((q) => q.id);
   const pairs = questions.flatMap((q) => providerIds.map((p) => ({ q, p })));
   const stored = await kv.mget(pairs.map(({ q, p }) => answerKey(key, q, p)));
   const answers = Object.fromEntries(

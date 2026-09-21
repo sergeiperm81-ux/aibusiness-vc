@@ -17,7 +17,7 @@ export const dynamic = "force-dynamic";
 export async function GET(request: Request) {
   const id = new URL(request.url).searchParams.get("preview") ?? "";
   const back = (reason: string) =>
-    NextResponse.redirect(new URL(`/professional-scan/r/${encodeURIComponent(id)}?unavailable=${reason}`, request.url), 303);
+    NextResponse.redirect(new URL(`/company-scan/r/${encodeURIComponent(id)}?unavailable=${reason}`, request.url), 303);
 
   let preview;
   try {
@@ -25,12 +25,12 @@ export async function GET(request: Request) {
   } catch {
     return back("storage_unavailable");
   }
-  if (!preview || !preview.found || preview.kind === "company") return NextResponse.redirect(new URL("/professional-scan", request.url), 303);
+  if (!preview || !preview.found || preview.kind !== "company") return NextResponse.redirect(new URL("/company-scan", request.url), 303);
 
   const gate = await checkoutAvailability(redisKv, PERSON_PROVIDER_IDS, providerConfigured);
   if (!gate.open) return back(gate.reason);
 
-  const base = process.env.LEMONSQUEEZY_PRO_SCAN_CHECKOUT_URL?.trim();
+  const base = process.env.LEMONSQUEEZY_COMPANY_SCAN_CHECKOUT_URL?.trim();
   if (!base) return back("not_configured");
   let url: URL;
   try {

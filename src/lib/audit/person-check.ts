@@ -17,6 +17,9 @@
 import type { AnswerCheckSubject, FactQuestion } from "./answer-check";
 
 export interface PersonSubject {
+  /** Absent for a person, the only kind before AI Company Scan. See company-check.ts. */
+  readonly kind?: "person" | "company";
+  /** The person's name, or the company's name. */
   readonly name: string;
   readonly role: string;
   readonly company: string;

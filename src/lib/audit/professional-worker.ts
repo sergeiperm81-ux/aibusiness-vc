@@ -13,9 +13,10 @@
 import { randomUUID } from "node:crypto";
 import type { AnswerCheck, FactQuestion } from "./answer-check";
 import type { AnswerProvider, ProviderAnswer } from "./answer-attempt";
+import { buildScanQuestions, toScanSubject } from "./company-check";
 import type { DurableKv } from "./durable-kv";
 import type { CallUsage } from "./usage";
-import { buildPersonQuestions, toAnswerSubject, type PersonSubject } from "./person-check";
+import type { PersonSubject } from "./person-check";
 import type { PersonSynthesis, SynthesisResult } from "./person-synthesis";
 import {
   ORDER_TTL_SECONDS,
@@ -219,7 +220,7 @@ export async function loadCheck(deps: ScanDeps, order: ProfessionalOrder, questi
     }),
   }));
   return {
-    subject: toAnswerSubject(order.subject),
+    subject: toScanSubject(order.subject),
     checkedAt: order.createdAt,
     providers: deps.providerIds.map((id) => {
       const provider = labels.get(id);
@@ -234,7 +235,7 @@ function providersMissingIn(jobs: readonly Job[]): readonly string[] {
 }
 
 async function stepAnswers(deps: ScanDeps, order: ProfessionalOrder, deadline: number): Promise<ProfessionalOrder> {
-  const questions = buildPersonQuestions(order.subject);
+  const questions = buildScanQuestions(order.subject);
   let current = await saveOrder(deps.kv, order, { state: "answering" }, deps.now());
   let roundsThisRun = 0;
   const roundsAllowedThisRun = current.answerRounds < FIRST_RUN_ROUNDS ? ROUNDS_PER_RUN : 1;
@@ -317,7 +318,7 @@ async function sendOnce(deps: ScanDeps, order: ProfessionalOrder, letter: string
 async function stepSynthesis(deps: ScanDeps, order: ProfessionalOrder): Promise<ProfessionalOrder> {
   const existing = await deps.kv.get(synthesisKey(order.key));
   if (existing) return saveOrder(deps.kv, order, { state: "synthesised" }, deps.now());
-  const check = await deps.cleanCitations(await loadCheck(deps, order, buildPersonQuestions(order.subject)), order.subject);
+  const check = await deps.cleanCitations(await loadCheck(deps, order, buildScanQuestions(order.subject)), order.subject);
   if (!(await reserve(deps, order, deps.synthesisCeilingUsd))) {
     throw new Error(`the $${ORDER_SPEND_CAP_USD} spend cap leaves no room for the summary`);
   }

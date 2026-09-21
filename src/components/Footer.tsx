@@ -10,6 +10,7 @@ const AUTHOR_DESK = [
   { name: "AI Scan", href: "/ai-scan" },
   { name: "AI Website Scan", href: "/audit" },
   { name: "AI Person Scan", href: "/professional-scan" },
+  { name: "AI Company Scan", href: "/company-scan" },
   { name: "Author's Library", href: "/library" },
   { name: "Founder's Notes", href: "/notes" },
   { name: "About the author", href: "/sergei-ponomarev" },

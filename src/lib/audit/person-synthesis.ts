@@ -17,6 +17,7 @@
 import { randomUUID } from "node:crypto";
 import type { AnswerCheck } from "./answer-check";
 import { computeAnswerSignals } from "./answer-check-report";
+import { COMPANY_INSTRUCTIONS } from "./company-synthesis-prompt";
 import { mentionsOthersTrouble } from "./person-report-safety";
 import { postJson } from "./paid-http";
 import {
@@ -140,6 +141,11 @@ Return JSON with these keys:
 
 "recommendations": 3 to 5 entries, ordered by effect, the one that changes most what a person asking an AI assistant is told first: {"title": an action in a few words, "why": the gap in these answers that it closes, in one sentence, "steps": 2 to 4 concrete steps, each a full sentence that says exactly what to write or publish and where}. Every recommendation must close a gap visible in these answers: assistants that could not find or could not identify the person, a namesake they are confused with, a disagreement listed under "disagreements", a role that is out of date, no dated recent activity, no independent mentions or reviews, more than one profile on the same network with the person's name among the sources. A step is never "improve" or "clarify" or "increase": it names the place and the text. Never recommend: publishing or uploading documents, certificates, diplomas, IDs, a home address, a phone number or any other personal data; changing the person's name or adding initials; something at least two assistants already found, such as a contact or a bio that they quote. Good steps look like: "Use one headline on every network: role, field, city, for example 'Investment analyst, Dubai real estate'."; "Close or merge the second LinkedIn profile, so every assistant finds one version."; "Publish one dated page that states name, role, employer and city in its first sentence."; "Ask two past clients for a LinkedIn recommendation this week." Never tell the person to list, confirm or promote a role or company that only one assistant names: it may be out of date or not theirs, so the most a step says is to check whether it is current and remove it where it still appears if it is not. Recommend more or better dated activity only when the most recent date any assistant gives is more than six months old. Never recommend resolving a disagreement unless it is listed under "disagreements". Write them as advice to the person the report is about, in the imperative ("Add...", "Publish..."). When a namesake came up, one recommendation must be about standing apart from that namesake: the same city, employer and field next to the name everywhere. Do not promise that any assistant will change its answer.`;
 
+/** The person or the company instructions, by what the check is about. */
+function instructionsFor(check: AnswerCheck): string {
+  return check.subject.kind === "company" ? COMPANY_INSTRUCTIONS : INSTRUCTIONS;
+}
+
 function tokensUpperBound(chars: number): number {
   return Math.ceil(chars / 3);
 }
@@ -150,7 +156,7 @@ export function synthesisBoundsForChars(chars: number): AttemptBounds {
 
 /** The most the call can consume, before any answer exists. */
 export function synthesisBoundsForPlan(questions: number, providers: number): AttemptBounds {
-  return synthesisBoundsForChars(INSTRUCTIONS.length + questions * providers * (MAX_ANSWER_CHARS + 200) + 1_000);
+  return synthesisBoundsForChars(Math.max(INSTRUCTIONS.length, COMPANY_INSTRUCTIONS.length) + questions * providers * (MAX_ANSWER_CHARS + 200) + 1_000);
 }
 
 /* ------------------------------------------------------------------ parsing */
@@ -359,7 +365,7 @@ export function synthesisUserContent(check: AnswerCheck): string {
 
 /** The bounds of one summary call for this check, before it is sent. */
 export function synthesisBoundsForCheck(check: AnswerCheck, maxOutputTokens: number): AttemptBounds {
-  return { ...synthesisBoundsForChars(INSTRUCTIONS.length + synthesisUserContent(check).length), maxOutputTokens };
+  return { ...synthesisBoundsForChars(instructionsFor(check).length + synthesisUserContent(check).length), maxOutputTokens };
 }
 
 interface ChatResponse {
@@ -382,7 +388,7 @@ export async function synthesisePersonCheck(args: {
   const userContent = synthesisUserContent(args.check);
 
   const clientRequestId = randomUUID();
-  const bounds = { ...synthesisBoundsForChars(INSTRUCTIONS.length + userContent.length), maxOutputTokens };
+  const bounds = { ...synthesisBoundsForChars(instructionsFor(args.check).length + userContent.length), maxOutputTokens };
   const startedAt = new Date().toISOString();
   const began = Date.now();
   const common = {
@@ -406,7 +412,7 @@ export async function synthesisePersonCheck(args: {
       max_completion_tokens: maxOutputTokens,
       temperature: 0,
       messages: [
-        { role: "system", content: INSTRUCTIONS },
+        { role: "system", content: instructionsFor(args.check) },
         { role: "user", content: userContent },
       ],
     },

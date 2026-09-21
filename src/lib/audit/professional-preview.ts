@@ -18,7 +18,11 @@
 import { createHash, randomBytes } from "node:crypto";
 import { postJson } from "./paid-http";
 import type { DurableKv } from "./durable-kv";
+import type { ScanKind } from "./company-check";
 import type { SocialProfile } from "./social-profile";
+
+/** What a preview is run on: a social profile, or a company's site. */
+export type PreviewTarget = Pick<SocialProfile, "url" | "networkLabel" | "handle">;
 
 export const PREVIEW_MODEL = "sonar";
 export const PREVIEW_TTL_SECONDS = 7 * 24 * 3600;
@@ -28,6 +32,8 @@ const TIMEOUT_MS = 60_000;
 
 export interface Preview {
   readonly id: string;
+  /** Absent on previews made before AI Company Scan: those are all people. */
+  readonly kind?: ScanKind;
   readonly profileUrl: string;
   readonly network: string;
   readonly found: boolean;
@@ -76,6 +82,13 @@ const INSTRUCTIONS =
   "role (professional role today), company (company or project), field (their field in a few words), location (city or country). " +
   "Use empty strings for anything you cannot find. Never guess: if you are not sure it is this profile, set found to false.";
 
+const COMPANY_INSTRUCTIONS =
+  "You identify the company behind a website from its address. Search the web. " +
+  "Return JSON with: found (true only if you can tell which company runs this site), name (the company's name as it presents itself), " +
+  "role (what the company does, in a few words), company (its legal name if different, otherwise an empty string), " +
+  "field (its industry in a few words), location (city and country of its base). " +
+  "Use empty strings for anything you cannot find. Never guess: if you are not sure which company runs this site, set found to false.";
+
 const SCHEMA = {
   type: "object",
   properties: {
@@ -95,7 +108,7 @@ interface SonarPayload {
   search_results?: { url?: string }[];
 }
 
-export function parseIdentity(json: unknown, profile: SocialProfile): Omit<Preview, "id" | "createdAt"> {
+export function parseIdentity(json: unknown, profile: PreviewTarget, kind: ScanKind = "person"): Omit<Preview, "id" | "createdAt"> {
   const payload = (json ?? {}) as SonarPayload;
   let raw: Record<string, unknown> = {};
   try {
@@ -103,13 +116,15 @@ export function parseIdentity(json: unknown, profile: SocialProfile): Omit<Previ
   } catch {
     raw = {};
   }
-  const name = cleanName(raw.name);
+  // A company name may carry digits and symbols ("3M", "AT&T"); a person's may not.
+  const name = kind === "company" ? cleanField(raw.name, 80).replace(/[^\p{L}\p{M}\p{N}\s.&'+-]/gu, "").trim() : cleanName(raw.name);
   const citations = [
     ...(Array.isArray(payload.citations) ? payload.citations : []),
     ...(Array.isArray(payload.search_results) ? payload.search_results.map((r) => r.url) : []),
   ].filter((c): c is string => typeof c === "string" && /^https:\/\//.test(c));
   const handle = profile.handle.toLowerCase();
   return {
+    ...(kind === "company" ? { kind } : {}),
     profileUrl: profile.url,
     network: profile.networkLabel,
     found: raw.found === true && name.length > 0,
@@ -122,7 +137,7 @@ export function parseIdentity(json: unknown, profile: SocialProfile): Omit<Previ
   };
 }
 
-async function identify(profile: SocialProfile, apiKey: string): Promise<Omit<Preview, "id" | "createdAt"> | null> {
+async function identify(profile: PreviewTarget, apiKey: string, kind: ScanKind): Promise<Omit<Preview, "id" | "createdAt"> | null> {
   const result = await postJson(
     "https://api.perplexity.ai/v1/sonar",
     { Authorization: `Bearer ${apiKey}` },
@@ -132,8 +147,11 @@ async function identify(profile: SocialProfile, apiKey: string): Promise<Omit<Pr
       web_search_options: { search_context_size: "low" },
       response_format: { type: "json_schema", json_schema: { name: "profile_owner", schema: SCHEMA } },
       messages: [
-        { role: "system", content: INSTRUCTIONS },
-        { role: "user", content: `Whose ${profile.networkLabel} profile is ${profile.url} ?` },
+        { role: "system", content: kind === "company" ? COMPANY_INSTRUCTIONS : INSTRUCTIONS },
+        {
+          role: "user",
+          content: kind === "company" ? `Which company runs the website ${profile.url} ?` : `Whose ${profile.networkLabel} profile is ${profile.url} ?`,
+        },
       ],
     },
     TIMEOUT_MS
@@ -142,7 +160,7 @@ async function identify(profile: SocialProfile, apiKey: string): Promise<Omit<Pr
     console.error(`[pscan/preview] sonar failed: ${result.error}`);
     return null;
   }
-  return parseIdentity(result.json, profile);
+  return parseIdentity(result.json, profile, kind);
 }
 
 export async function loadPreview(kv: DurableKv, id: string): Promise<Preview | null> {
@@ -153,10 +171,11 @@ export async function loadPreview(kv: DurableKv, id: string): Promise<Preview | 
 
 export async function runPreview(
   kv: DurableKv,
-  profile: SocialProfile,
+  profile: PreviewTarget,
   ip: string,
   apiKey: string | undefined,
-  now: Date = new Date()
+  now: Date = new Date(),
+  kind: ScanKind = "person"
 ): Promise<PreviewResult> {
   try {
     const cached = await kv.get(cacheKey(profile.url));
@@ -170,7 +189,7 @@ export async function runPreview(
     const total = await kv.incr(`pscan:preview-day:${day}`, 2 * 86400);
     if (perIp > PREVIEWS_PER_IP_PER_DAY || total > PREVIEWS_PER_DAY) return { ok: false, reason: "rate_limited" };
 
-    const identity = await identify(profile, apiKey);
+    const identity = await identify(profile, apiKey, kind);
     if (!identity) return { ok: false, reason: "failed" };
     const preview: Preview = { ...identity, id: randomBytes(12).toString("hex"), createdAt: now.toISOString() };
     await kv.set(previewKey(preview.id), JSON.stringify(preview), PREVIEW_TTL_SECONDS);

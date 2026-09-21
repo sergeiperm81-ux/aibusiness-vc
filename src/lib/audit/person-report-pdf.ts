@@ -44,6 +44,24 @@ const SHORT_QUESTIONS: Readonly<Record<string, (name: string) => string>> = {
   reputation: (name) => `Are there red flags about working with ${name}?`,
 };
 
+/** The company scan's names and lines. The person ones are the defaults above and below. */
+export const COMPANY_PRODUCT_NAME = "AI Company Scan";
+
+const COMPANY_QUESTIONS: Readonly<Record<string, (name: string) => string>> = {
+  who: (name) => `Who is behind ${name}?`,
+  does: (name) => `What does ${name} do and sell?`,
+  reputation: (name) => `Are there red flags about working with ${name}?`,
+};
+
+const HOW_AI_LEARNS_COMPANY: readonly string[] = [
+  "AI assistants with web search read what is public and readable without a login: the company's own site, registries, review platforms, news and mentions on other sites.",
+  "They look for the same facts in more than one place. A founding year or an owner stated only on the company's own site is a claim; the same fact in a registry and an article is a fact to them.",
+  "They prefer dated, recent pages. A site with no dated news in a year reads as a company that may have stopped.",
+  "A name shared with other companies is resolved by context: legal name, city, industry. The more pages put the name next to those three, the less often the company is mixed up with another.",
+  "Reviews are read where people leave them. Without reviews on a platform the assistants read, the honest answer to 'what do customers say' is 'I found nothing'.",
+  "A public way to be reached. If no public page shows an address and a contact, assistants cannot say how to reach the company.",
+];
+
 const HOW_AI_LEARNS: readonly string[] = [
   "AI assistants with web search read what is public and readable without a login. Most of a LinkedIn, Instagram or Facebook profile is not. Public posts, articles, talks, interviews and mentions on other sites are.",
   "They look for the same facts in more than one place. A role stated only on a personal profile is a claim; the same role on a company page, an event page and an article is a fact to them.",
@@ -154,6 +172,12 @@ function coverageWord(input: PersonReportInput, questionId: string, providerId: 
 
 export async function buildPersonReportPdf(input: PersonReportInput): Promise<Uint8Array> {
   const { check, synthesis, name } = input;
+  const company = check.subject.kind === "company";
+  const productName = company ? COMPANY_PRODUCT_NAME : PRODUCT_NAME;
+  const questions = company ? COMPANY_QUESTIONS : SHORT_QUESTIONS;
+  const w = company
+    ? { subject: "company", given: "the company given", tie: "this company", others: "other companies", other: "Another company", offer: "Offer", offers: "Offers only one model names" }
+    : { subject: "person", given: "the profile given", tie: "this profile", others: "other people", other: "One other person", offer: "Role", offers: "Roles only one model names" };
   const total = check.providers.length;
   const answered = check.results.flatMap((r) => r.answers).filter((a) => a.ok).length;
   const asked = check.results.length * total;
@@ -161,13 +185,13 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
   const ambiguous = identityAmbiguous(check, synthesis, shown);
   const verified = verifiedSources(check, shown);
   const sourceTiedToThis = (address: string): boolean => verified.has(address);
-  const pdf = await PdfWriter.create(`${PRODUCT_NAME} - ${name}`, `What AI says about ${name}`, {
+  const pdf = await PdfWriter.create(`${productName} - ${name}`, `What AI says about ${name}`, {
     left: "aibusiness.vc",
     right: `Questions about this report: ${CONTACT_EMAIL}`,
   });
 
   /* ---------------------------------------------------------------- cover */
-  pdf.kicker(PRODUCT_NAME);
+  pdf.kicker(productName);
   pdf.title(`What AI says about ${name}`);
   pdf.muted(input.profileUrl);
   pdf.muted(`Checked ${longDate(check.checkedAt)}. ${total} AI models, ${check.results.length} questions, ${answered} of ${asked} answers received.`);
@@ -179,17 +203,19 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
   }
   pdf.gap(10);
   pdf.text(
-    "Before a meeting, a deal or an interview, people now ask an AI assistant about the person they are about to meet. " +
+    (company
+      ? "Before a purchase, a contract or a partnership, people now ask an AI assistant about the company they are about to deal with. "
+      : "Before a meeting, a deal or an interview, people now ask an AI assistant about the person they are about to meet. ") +
       `We asked ${total} of them the three questions people ask, each with live web search on. This is what they said about ${name}.`
   );
   pdf.muted(
-    "The report is the pages before the appendices. The appendices are the record: which model found the person, and every answer that could be tied to this profile, word for word."
+    `The report is the pages before the appendices. The appendices are the record: which model found the ${w.subject}, and every answer that could be tied to ${w.tie}, word for word.`
   );
   pdf.rule();
 
   /* ------------------------------------------------------------ question 1 */
   pdf.kicker("Question 1");
-  pdf.heading(SHORT_QUESTIONS.who(name));
+  pdf.heading(questions.who(name));
   pdf.gap(2);
   pdf.text(synthesis.identity.summary, { gapAfter: 8 });
   for (const fact of synthesis.identity.facts) pdf.fact(fact.label, fact.value, saidByNote(fact.saidBy, total));
@@ -197,10 +223,10 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
   /* ------------------------------------------------------------ question 2 */
   pdf.rule();
   pdf.kicker("Question 2");
-  pdf.heading(SHORT_QUESTIONS.does(name));
+  pdf.heading(questions.does(name));
   pdf.gap(2);
   pdf.text(synthesis.professional.summary, { gapAfter: 8 });
-  for (const role of synthesis.professional.roles) pdf.fact("Role", role.value, saidByNote(role.saidBy, total));
+  for (const role of synthesis.professional.roles) pdf.fact(w.offer, role.value, saidByNote(role.saidBy, total));
 
   pdf.text("Recent public activity, as AI sees it", { bold: true, gapAfter: 3 });
   if (synthesis.professional.activity.length === 0) {
@@ -216,26 +242,26 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
   /* ------------------------------------------------------------ question 3 */
   pdf.rule();
   pdf.kicker("Question 3");
-  pdf.heading(SHORT_QUESTIONS.reputation(name));
+  pdf.heading(questions.reputation(name));
   pdf.gap(4);
 
   const ownFlags = synthesis.redFlags.flags.filter((f) => !f.possiblyAnotherPerson);
   const heldFlags = synthesis.redFlags.flags.length - ownFlags.length;
   const heldNote =
     heldFlags > 0
-      ? ` ${heldFlags} ${heldFlags === 1 ? "point the models tied" : "points the models tied"} to other people with this name ${heldFlags === 1 ? "is" : "are"} left out: this report is only about the profile given.`
+      ? ` ${heldFlags} ${heldFlags === 1 ? "point the models tied" : "points the models tied"} to ${w.others} with this name ${heldFlags === 1 ? "is" : "are"} left out: this report is only about ${w.given}.`
       : "";
   if (ownFlags.length === 0 && ambiguous) {
     pdf.banner(
       "Identity ambiguous: no reputation conclusion",
-      `Other people share this name, or not every answer could be tied to this profile (see Appendix A). No model reported a red flag about the profile given, but that is not a clean record: this scan draws no conclusion about the reputation of ${name}, good or bad.${heldNote}`,
+      `${company ? "Other companies share" : "Other people share"} this name, or not every answer could be tied to ${w.tie} (see Appendix A). No model reported a red flag about ${w.given}, but that is not a clean record: this scan draws no conclusion about the reputation of ${name}, good or bad.${heldNote}`,
       AMBER,
       AMBER_TINT
     );
   } else if (ownFlags.length === 0) {
     pdf.banner(
       "No public red flags identified",
-      `For the profile given, in this scan: none of the ${total} models reported a dispute, a complaint, a scandal or a warning sign about ${name}.${heldNote}`,
+      `For ${w.given}, in this scan: none of the ${total} models reported a dispute, a complaint, a scandal or a warning sign about ${name}.${heldNote}`,
       GREEN,
       GREEN_TINT
     );
@@ -266,7 +292,9 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
   }
   pdf.text("Reviews and public feedback", { bold: true, gapAfter: 3 });
   if (synthesis.redFlags.reviews.length === 0) {
-    pdf.text("No model found a review, a testimonial or a recommendation, good or bad. A person checking has nothing to go on but the profile itself.", { gapAfter: 6 });
+    pdf.text(company
+      ? "No model found a customer review or rating, good or bad. Someone checking has nothing to go on but the company's own words."
+      : "No model found a review, a testimonial or a recommendation, good or bad. A person checking has nothing to go on but the profile itself.", { gapAfter: 6 });
   }
   for (const review of synthesis.redFlags.reviews) {
     pdf.bullet(review.what);
@@ -293,22 +321,24 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
   if (loneRoles.length > 0) {
     pdf.rule();
     pdf.kicker("Unconfirmed claims");
-    pdf.heading("Roles only one model names");
+    pdf.heading(w.offers);
     for (const role of loneRoles) pdf.bullet(`${role.saidBy[0]}: ${role.value}`);
     pdf.text(
-      "The other models describe the person without these. Each is unconfirmed: it may be out of date, a past role told as current, or not about this person at all. Only the person can say which.",
+      `The other models describe the ${w.subject} without these. Each is unconfirmed: it may be out of date, a past one told as current, or not about this ${w.subject} at all.`,
       { size: 9.5, color: MUTED, gapAfter: 5 }
     );
   }
   if (synthesis.mixups.length > 0) {
     pdf.rule();
     pdf.kicker("Namesakes");
-    pdf.heading("Other people with this name");
+    pdf.heading(company ? "Other companies with this name" : "Other people with this name");
     pdf.text(
-      `${synthesis.mixups.length === 1 ? "One other person" : `${synthesis.mixups.length} other people`} with this name appeared in the answers. ` +
-        "Their pages, records and contacts are not listed: this report is only about the profile given. " +
+      `${synthesis.mixups.length === 1 ? w.other : `${synthesis.mixups.length} ${w.others}`} with this name appeared in the answers. ` +
+        `Their pages, records and contacts are not listed: this report is only about ${w.given}. ` +
         `Anyone who asks an AI assistant about ${name} can be shown them too. ` +
-        "What keeps namesakes apart is context: the same city, employer and field next to the name on every public page.",
+        (company
+          ? "What keeps them apart is context: the same legal name, city and industry next to the name on every public page."
+          : "What keeps namesakes apart is context: the same city, employer and field next to the name on every public page."),
       { gapAfter: 4 }
     );
   }
@@ -330,17 +360,17 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
   });
 
   pdf.rule();
-  pdf.heading("How AI learns about a person");
-  for (const line of HOW_AI_LEARNS) pdf.bullet(line, { gapAfter: 5 });
+  pdf.heading(`How AI learns about a ${w.subject}`);
+  for (const line of company ? HOW_AI_LEARNS_COMPANY : HOW_AI_LEARNS) pdf.bullet(line, { gapAfter: 5 });
 
   /* ------------------------------------------------------------ appendix A */
   pdf.newPage();
   pdf.kicker("Appendix A");
-  pdf.heading("Which model found the person, question by question");
+  pdf.heading(`Which model found the ${w.subject}, question by question`);
   pdf.table(
     ["Question", ...check.providers.map((p) => p.label)],
     check.results.map((row) => [
-      SHORT_QUESTIONS[row.fact.id]?.(name) ?? row.fact.label,
+      questions[row.fact.id]?.(name) ?? row.fact.label,
       ...check.providers.map((p) => coverageWord(input, row.fact.id, p.id, p.label)),
     ]),
     150
@@ -356,7 +386,7 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
     "The answers come from each provider's API with web search on, not from the consumer apps. The apps add their own instructions and remember their users, so what anyone sees in their own ChatGPT or Gemini may differ.",
     "The summaries in this report were written by a model from the answers in Appendix B and checked by fixed rules. Nothing was added from any other source. Where the summary and an answer differ, the answer is the record.",
     "We report what the models said. We do not verify it, and we do not claim it is true.",
-    "This report is not a background check and aibusiness.vc is not a consumer reporting agency. Do not use it to decide on employment, tenancy, credit, insurance or any other purpose covered by the US Fair Credit Reporting Act or similar laws. It shows what AI models say, which can be wrong or about a different person.",
+    "This report is not a background check and aibusiness.vc is not a consumer reporting agency. Do not use it to decide on employment, tenancy, credit, insurance or any other purpose covered by the US Fair Credit Reporting Act or similar laws. It shows what AI models say, which can be wrong or about someone else.",
   ]) {
     pdf.bullet(line, { size: 9.5, gapAfter: 4 });
   }
@@ -367,13 +397,15 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
   pdf.heading("Every answer, with its sources");
   pdf.muted(
     "The words are the models' own. Only formatting marks were removed, and links inside an answer were moved to the list under it. " +
-      "An answer the model could not tie to this profile is not printed. A cited page is listed only when the page itself names the person in full " +
-      "together with the company, the role or the city from the profile; the profile itself is listed as given. The summary was written from these pages only."
+      `An answer the model could not tie to ${w.tie} is not printed. A cited page is listed only when the page itself names the ${w.subject} in full ` +
+      (company
+        ? "together with its domain, its legal name or its city; pages on its own site are listed as given. The summary was written from these pages only."
+        : "together with the company, the role or the city from the profile; the profile itself is listed as given. The summary was written from these pages only.")
   );
   check.results.forEach((row, index) => {
     if (index > 0) pdf.newPage();
     pdf.gap(8);
-    pdf.text(`Question ${index + 1}. ${SHORT_QUESTIONS[row.fact.id]?.(name) ?? row.fact.label}`, { size: 13, bold: true, gapAfter: 2 });
+    pdf.text(`Question ${index + 1}. ${questions[row.fact.id]?.(name) ?? row.fact.label}`, { size: 13, bold: true, gapAfter: 2 });
     pdf.text(`Exact wording sent to every model: ${row.fact.question}`, { size: 8.5, color: MUTED, gapAfter: 10 });
     for (const answer of row.answers) {
       pdf.strip(answer.providerLabel, answer.model);
@@ -383,7 +415,7 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
       }
       if (!shown.has(`${row.fact.id}/${answer.providerId}`)) {
         pdf.text(
-          "Not printed: this answer could not be tied to the profile given, or it tells of trouble about other people with the name.",
+          `Not printed: this answer could not be tied to ${w.given}, or it tells of trouble about ${w.others} with the name.`,
           { color: MUTED, indent: 10, gapAfter: 12 }
         );
         continue;
@@ -408,7 +440,7 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
       }
       if (held > 0) {
         pdf.text(
-          `${held} other ${held === 1 ? "page" : "pages"} it cited ${held === 1 ? "is" : "are"} not listed: nothing on ${held === 1 ? "it" : "them"} ties ${held === 1 ? "it" : "them"} to this profile, or ${held === 1 ? "it" : "they"} could not be read.`,
+          `${held} other ${held === 1 ? "page" : "pages"} it cited ${held === 1 ? "is" : "are"} not listed: nothing on ${held === 1 ? "it" : "them"} ties ${held === 1 ? "it" : "them"} to ${w.tie}, or ${held === 1 ? "it" : "they"} could not be read.`,
           { size: 8.5, color: MUTED, indent: 10 }
         );
       }

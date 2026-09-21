@@ -3,14 +3,13 @@ import Link from "next/link";
 
 /**
  * The three scans on one page: a person, a company, a website. Each card says
- * what it checks, what it costs and where to start. AI Company Scan is not
- * open yet, so its card says so and collects nothing.
+ * what it checks, what it costs and where to start.
  */
 
 export const metadata: Metadata = {
   title: "AI Scan: What AI Tells People About a Person, a Company or a Website",
   description:
-    "Three scans that show what AI assistants say. AI Person Scan from a social profile, AI Website Scan from a domain, AI Company Scan soon. Free previews.",
+    "Three scans that show what AI assistants say. AI Person Scan from a social profile, AI Company Scan from a company's site, AI Website Scan from a domain. Free previews.",
   alternates: { canonical: "/ai-scan" },
   openGraph: {
     type: "website",
@@ -45,10 +44,10 @@ const SCANS: readonly Scan[] = [
     name: "AI Company Scan",
     what: "What AI says about a company before you sign with it: who runs it, what it does, and what people report.",
     input: "One company name and site",
-    gets: ["The same five AI models", "A PDF report by email", "Built for checking a new partner or supplier"],
-    price: "In development",
-    href: null,
-    cta: "Opening soon",
+    gets: ["The same five AI models, each searching the web live", "A PDF report by email in about five minutes", "Built for checking a new partner or supplier"],
+    price: "Preview free · Report €14.97",
+    href: "/company-scan",
+    cta: "Check a company",
   },
   {
     name: "AI Website Scan",
