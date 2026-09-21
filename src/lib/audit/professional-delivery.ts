@@ -155,19 +155,25 @@ export function reportEmailContent(order: ProfessionalOrder): { subject: string;
   };
 }
 
-export async function sendReportEmail(email: ReportEmail, config: MailConfig): Promise<void> {
+/** The report PDF for a stored order; `sample` makes the public, appendix-free version. */
+export async function reportPdfFor(email: ReportEmail, sample = false): Promise<Uint8Array> {
   const notFoundKeys = new Set(
     computeAnswerSignals(email.check)
       .filter((s) => s.nonAnswer.notFound)
       .map((s) => `${s.factId}/${s.providerId}`)
   );
-  const pdf = await buildPersonReportPdf({
+  return buildPersonReportPdf({
     name: email.order.subject.name,
     profileUrl: email.order.subject.profileUrl,
     check: email.check,
     synthesis: email.synthesis,
     notFoundKeys,
+    sample,
   });
+}
+
+export async function sendReportEmail(email: ReportEmail, config: MailConfig): Promise<void> {
+  const pdf = await reportPdfFor(email);
   const content = reportEmailContent(email.order);
   const slug = email.order.subject.name.normalize("NFKD").replace(/[^a-z0-9]+/gi, "-").replace(/^-|-$/g, "").toLowerCase() || "report";
   await sendBrevo(config, {

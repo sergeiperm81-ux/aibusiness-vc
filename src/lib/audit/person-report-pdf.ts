@@ -35,6 +35,8 @@ export interface PersonReportInput {
   readonly synthesis: PersonSynthesis;
   /** "questionId/providerId" for answers the fixed rules marked as not finding the person. */
   readonly notFoundKeys?: ReadonlySet<string>;
+  /** A public sample: marked as such on the cover, and without the appendices of raw answers. */
+  readonly sample?: boolean;
 }
 
 /** What each question is called on the page. The wording sent to the models is longer; see the appendix. */
@@ -185,10 +187,14 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
   const ambiguous = identityAmbiguous(check, synthesis, shown);
   const verified = verifiedSources(check, shown);
   const sourceTiedToThis = (address: string): boolean => verified.has(address);
-  const pdf = await PdfWriter.create(`${productName} report for ${name}`, `What AI says about ${name}`, {
+  const pdf = await PdfWriter.create(
+    input.sample ? `${productName} sample report` : `${productName} report for ${name}`,
+    input.sample ? `${productName} - Sample Report` : `What AI says about ${name}`,
+    {
     left: productName.toUpperCase(),
-    right: "SERGEI PONOMAREV · AI BUSINESS",
-  });
+      right: "SERGEI PONOMAREV · AI BUSINESS",
+    }
+  );
   let section = 0;
   const numbered = (value: string): void => {
     section += 1;
@@ -206,6 +212,9 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
   });
   pdf.centered(`${input.profileUrl} · checked ${longDate(check.checkedAt)}`, { size: 10.5, color: ACCENT, gapAfter: 4 });
   pdf.rule();
+  if (input.sample) {
+    pdf.centered("Sample report. The full customer report includes a source appendix.", { size: 10.5, color: GREY, gapAfter: 8 });
+  }
   const silent = check.providers.filter((p) =>
     check.results.every((row) => !row.answers.find((a) => a.providerId === p.id)?.ok)
   );
@@ -361,6 +370,8 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
   for (const line of company ? HOW_AI_LEARNS_COMPANY : HOW_AI_LEARNS) pdf.bullet(line, { gapAfter: 5 });
 
   /* ------------------------------------------------------------ appendix A */
+  // A sample ends with the report itself: the raw answers stay with the customer.
+  if (input.sample) return pdf.bytes();
   pdf.newPage();
   pdf.heading(`Appendix A. Which model found the ${w.subject}, question by question`);
   pdf.table(
