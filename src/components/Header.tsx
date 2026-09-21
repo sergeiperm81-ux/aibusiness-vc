@@ -49,8 +49,18 @@ export function Header() {
 
           <div className="hidden lg:flex items-center gap-2 ml-2 pl-2 border-l border-card-border">
             <Link
+              href="/ai-scan"
+              className={`whitespace-nowrap px-3 py-1.5 text-[13px] font-bold rounded-md transition-colors ${
+                isActive("/ai-scan") || isActive("/audit") || isActive("/professional-scan")
+                  ? "bg-accent-hover text-black"
+                  : "bg-accent text-black hover:bg-accent-hover"
+              }`}
+            >
+              AI Scan
+            </Link>
+            <Link
               href="/experts"
-              className={`px-3 py-1.5 text-[13px] font-bold rounded-md transition-colors ${
+              className={`whitespace-nowrap px-3 py-1.5 text-[13px] font-bold rounded-md transition-colors ${
                 isActive("/experts")
                   ? "bg-accent-hover text-black"
                   : "bg-accent text-black hover:bg-accent-hover"
@@ -60,7 +70,7 @@ export function Header() {
             </Link>
             <Link
               href="/submit-your-story"
-              className={`px-3 py-1.5 text-[13px] font-bold rounded-md transition-colors ${
+              className={`hidden xl:block whitespace-nowrap px-3 py-1.5 text-[13px] font-bold rounded-md transition-colors ${
                 isActive("/submit-your-story")
                   ? "bg-accent-hover text-black"
                   : "bg-accent text-black hover:bg-accent-hover"
@@ -71,6 +81,12 @@ export function Header() {
           </div>
 
           <div className="lg:hidden flex items-center gap-2">
+            <Link
+              href="/ai-scan"
+              className="px-2.5 py-1 text-[12px] font-bold bg-accent text-black rounded-md"
+            >
+              Scan
+            </Link>
             <Link
               href="/experts"
               className="px-2.5 py-1 text-[12px] font-bold bg-accent text-black rounded-md"
@@ -118,10 +134,22 @@ export function Header() {
                 AI Test Purchase
               </Link>
               <Link
+                href="/ai-scan"
+                className="px-3 py-2 text-sm font-semibold rounded-md text-white hover:text-accent hover:bg-card-bg"
+              >
+                AI Scan: all three
+              </Link>
+              <Link
                 href="/audit"
                 className="px-3 py-2 text-sm font-semibold rounded-md text-white hover:text-accent hover:bg-card-bg"
               >
-                AI Visibility Audit
+                AI Website Scan
+              </Link>
+              <Link
+                href="/professional-scan"
+                className="px-3 py-2 text-sm font-semibold rounded-md text-white hover:text-accent hover:bg-card-bg"
+              >
+                AI Person Scan
               </Link>
 
             </div>
