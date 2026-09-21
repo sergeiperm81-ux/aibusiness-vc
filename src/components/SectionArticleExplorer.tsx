@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import type { ArticleMeta } from "@/lib/articles";
 import { StoryBadge } from "@/components/StoryBadge";
+import { categoryLabel } from "@/lib/category-label";
 
 const catColors: Record<string, string> = {
   Solo: "bg-amber-500 text-black",
@@ -179,7 +180,7 @@ export default function SectionArticleExplorer({ articles, section, totalLabel }
                         <span
                           className={`text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider ${catColors[a.category] ?? "bg-amber-500 text-black"}`}
                         >
-                          {a.category === "Government" ? "AI Governance" : a.category}
+                          {categoryLabel(a.category)}
                         </span>
                         <StoryBadge story={a.story} />
                       </div>
@@ -210,7 +211,7 @@ export default function SectionArticleExplorer({ articles, section, totalLabel }
                         <span
                           className={`text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider ${catColors[a.category] ?? "bg-amber-500 text-black"}`}
                         >
-                          {a.category === "Government" ? "AI Governance" : a.category}
+                          {categoryLabel(a.category)}
                         </span>
                         <StoryBadge story={a.story} />
                       </div>

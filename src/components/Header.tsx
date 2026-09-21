@@ -36,7 +36,7 @@ export function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`px-2.5 py-1.5 text-[13px] font-semibold transition-colors rounded-md ${
+                className={`px-2 xl:px-2.5 py-1.5 text-[13px] font-semibold transition-colors rounded-md ${
                   isActive(item.href)
                     ? "text-accent"
                     : "text-white hover:text-accent hover:bg-card-bg"
@@ -49,14 +49,14 @@ export function Header() {
 
           <div className="hidden lg:flex items-center gap-2 ml-2 pl-2 border-l border-card-border">
             <Link
-              href="/ai-scan"
+              href="/ai-tools"
               className={`whitespace-nowrap px-3 py-1.5 text-[13px] font-bold rounded-md transition-colors ${
-                isActive("/ai-scan") || isActive("/audit") || isActive("/professional-scan") || isActive("/company-scan")
+                isActive("/ai-tools") || isActive("/audit") || isActive("/professional-scan") || isActive("/company-scan")
                   ? "bg-accent-hover text-black"
                   : "bg-accent text-black hover:bg-accent-hover"
               }`}
             >
-              AI Scan
+              AI Tools
             </Link>
             <Link
               href="/experts"
@@ -82,10 +82,10 @@ export function Header() {
 
           <div className="lg:hidden flex items-center gap-2">
             <Link
-              href="/ai-scan"
+              href="/ai-tools"
               className="px-2.5 py-1 text-[12px] font-bold bg-accent text-black rounded-md"
             >
-              Scan
+              Tools
             </Link>
             <Link
               href="/experts"
@@ -134,10 +134,10 @@ export function Header() {
                 AI Test Purchase
               </Link>
               <Link
-                href="/ai-scan"
+                href="/ai-tools"
                 className="px-3 py-2 text-sm font-semibold rounded-md text-white hover:text-accent hover:bg-card-bg"
               >
-                AI Scan: all three
+                AI Tools
               </Link>
               <Link
                 href="/audit"

@@ -28,6 +28,7 @@ const heroImages: Record<string, string> = {
 
 import { TestAgentsCallout } from "@/components/TestAgentsCallout";
 import { StoryVote } from "@/components/StoryVote";
+import { categoryLabel } from "@/lib/category-label";
 
 /**
  * Articles where a customer-facing agent is the subject, not a passing
@@ -44,7 +45,7 @@ function isAgentArticle(article: { title: string; description?: string; keywords
 // Cross-section discovery links
 const CROSS_LINKS = [
   { href: "/solo", label: "Solo Earners", section: "solo" },
-  { href: "/tools", label: "Tools & Technology", section: "tools" },
+  { href: "/tools", label: "Technology", section: "tools" },
   { href: "/startups", label: "AI Startups", section: "startups" },
   { href: "/b2b", label: "B2B / Enterprise", section: "b2b" },
   { href: "/vc", label: "VC & Funding", section: "vc" },
@@ -73,7 +74,7 @@ const SECTION_LINKS = [
   { href: "/solo", label: "Solo Earners" },
   { href: "/startups", label: "Startups" },
   { href: "/b2b", label: "B2B" },
-  { href: "/tools", label: "AI Tools" },
+  { href: "/tools", label: "Technology" },
   { href: "/news", label: "News" },
   { href: "/models", label: "Models" },
 ];
@@ -91,7 +92,7 @@ const SIDEBAR_SECTIONS = [
   { href: "/government", label: "Gov", description: "Policy & contracts", icon: "🏛", section: "government" },
   { href: "/learn", label: "Learn", description: "Courses & careers", icon: "🎓", section: "learn" },
   { href: "/society", label: "Society", description: "AI, jobs & daily life", icon: "🌐", section: "society" },
-  { href: "/tools", label: "Tools", description: "Model launches & real costs", icon: "🛠", section: "tools" },
+  { href: "/tools", label: "Technology", description: "Model launches & real costs", icon: "🛠", section: "tools" },
   { href: "/models", label: "Models", description: "71 models compared", icon: "🤖", section: "models" },
 ];
 
@@ -267,7 +268,7 @@ export function ArticlePageView({ article, relatedArticles = [] }: ArticlePagePr
                       <div className="flex-1 min-w-0">
                         <span className="flex flex-wrap items-center gap-1">
                           <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded uppercase ${catColors[a.category] ?? "bg-amber-500 text-black"}`}>
-                            {a.category === "Government" ? "AI Governance" : a.category}
+                            {categoryLabel(a.category)}
                           </span>
                           <StoryBadge story={a.story} size="xs" />
                         </span>
@@ -295,7 +296,7 @@ export function ArticlePageView({ article, relatedArticles = [] }: ArticlePagePr
                       className="block group"
                     >
                       <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded uppercase ${catColors[p.category] ?? "bg-amber-500 text-black"}`}>
-                        {p.category === "Government" ? "AI Governance" : p.category}
+                        {categoryLabel(p.category)}
                       </span>
                       <p className="text-sm font-semibold text-black group-hover:text-amber-600 transition-colors mt-1 leading-snug line-clamp-2">
                         {p.title}
@@ -371,7 +372,7 @@ export function ArticlePageView({ article, relatedArticles = [] }: ArticlePagePr
                   <div className="p-4">
                     <span className="flex flex-wrap items-center gap-1">
                       <span className={`text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider ${catColors[a.category] ?? "bg-amber-500 text-black"}`}>
-                        {a.category === "Government" ? "AI Governance" : a.category}
+                        {categoryLabel(a.category)}
                       </span>
                       <StoryBadge story={a.story} />
                     </span>
@@ -404,7 +405,7 @@ export function ArticlePageView({ article, relatedArticles = [] }: ArticlePagePr
                   className="group bg-card-bg rounded-xl p-4 hover:ring-2 hover:ring-accent/40 transition-all hover:-translate-y-1"
                 >
                   <span className={`text-[9px] font-bold px-2 py-0.5 rounded uppercase tracking-wider ${catColors[p.category] ?? "bg-amber-500 text-black"}`}>
-                    {p.category === "Government" ? "AI Governance" : p.category}
+                    {categoryLabel(p.category)}
                   </span>
                   <h3 className="font-semibold text-white text-sm mt-2 leading-snug group-hover:text-accent transition-colors line-clamp-2">
                     {p.title}
@@ -510,7 +511,7 @@ const SECTION_TO_ARTICLE_SECTION: Record<string, string> = {
   solo: "Solo Earners",
   startups: "Startups",
   b2b: "B2B / Enterprise",
-  tools: "AI Tools",
+  tools: "Technology",
   models: "LLM Models",
   news: "News",
   learn: "Learn",

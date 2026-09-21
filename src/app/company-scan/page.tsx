@@ -148,9 +148,9 @@ export default function CompanyScanPage() {
             <Link href="/professional-scan" className="font-bold text-black underline decoration-accent decoration-4 underline-offset-4">
               AI Person Scan
             </Link>
-            . All scans:{" "}
-            <Link href="/ai-scan" className="font-bold text-black underline decoration-accent decoration-4 underline-offset-4">
-              AI Scan
+            . All tools:{" "}
+            <Link href="/ai-tools" className="font-bold text-black underline decoration-accent decoration-4 underline-offset-4">
+              AI Tools
             </Link>
             .
           </p>

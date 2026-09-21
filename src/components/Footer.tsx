@@ -7,7 +7,7 @@ import { ScrollToTop } from "@/components/ScrollToTop";
 /** The author's own side of the site, mirroring the Author's desk on the home page. */
 const AUTHOR_DESK = [
   { name: "AI Test Purchase", href: "/service-check" },
-  { name: "AI Scan", href: "/ai-scan" },
+  { name: "AI Tools", href: "/ai-tools" },
   { name: "AI Website Scan", href: "/audit" },
   { name: "AI Person Scan", href: "/professional-scan" },
   { name: "AI Company Scan", href: "/company-scan" },

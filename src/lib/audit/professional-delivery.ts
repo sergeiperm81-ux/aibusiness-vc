@@ -140,8 +140,8 @@ export function reportEmailContent(order: ProfessionalOrder): { subject: string;
   }
   if (order.discountCode) {
     lines.push({
-      html: `<p><strong>Your bonus: 7 checks at half price, yours to give away.</strong> ${CODE_PRICE} instead of ${FULL_PRICE}, for up to 7 more checks of people or companies. Give the code to friends, family, colleagues and partners so they can see what AI says about them, or use it yourself before you work with someone new.<br><span style="font-size:18px;letter-spacing:1px"><strong>${escapeHtml(order.discountCode)}</strong></span><br><a href="https://aibusiness.vc/ai-scan">aibusiness.vc/ai-scan</a></p>`,
-      text: `Your bonus: 7 checks at half price, yours to give away. ${CODE_PRICE} instead of ${FULL_PRICE}, for up to 7 more checks of people or companies. Give the code to friends, family, colleagues and partners so they can see what AI says about them, or use it yourself before you work with someone new.\nCode: ${order.discountCode}\nhttps://aibusiness.vc/ai-scan`,
+      html: `<p><strong>Your bonus: 7 checks at half price, yours to give away.</strong> ${CODE_PRICE} instead of ${FULL_PRICE}, for up to 7 more checks of people or companies. Give the code to friends, family, colleagues and partners so they can see what AI says about them, or use it yourself before you work with someone new.<br><span style="font-size:18px;letter-spacing:1px"><strong>${escapeHtml(order.discountCode)}</strong></span><br><a href="https://aibusiness.vc/ai-tools">aibusiness.vc/ai-tools</a></p>`,
+      text: `Your bonus: 7 checks at half price, yours to give away. ${CODE_PRICE} instead of ${FULL_PRICE}, for up to 7 more checks of people or companies. Give the code to friends, family, colleagues and partners so they can see what AI says about them, or use it yourself before you work with someone new.\nCode: ${order.discountCode}\nhttps://aibusiness.vc/ai-tools`,
     });
   }
   lines.push({

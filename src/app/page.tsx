@@ -11,6 +11,7 @@ import { tools } from "@/data/tools";
 import { TrackedLink } from "@/components/analytics/TrackedLink";
 import { StoryBadge } from "@/components/StoryBadge";
 import { ContactEmail } from "@/components/ContactEmail";
+import { categoryLabel } from "@/lib/category-label";
 
 export const metadata: Metadata = {
   title: "AI Business - How to Make Money with AI in 2026",
@@ -274,8 +275,8 @@ export default async function HomePage() {
     },
     {
       href: "/audit",
-      title: "AI Visibility Audit",
-      text: "See how ChatGPT and AI search read your site.",
+      title: "AI Website Scan",
+      text: "Is your site blocked for AI? Free 30-second scan."
     },
     {
       href: "/library",
@@ -302,9 +303,9 @@ export default async function HomePage() {
     },
     {
       href: "/audit",
-      title: "AI Visibility Audit",
+      title: "AI Website Scan",
       description:
-        "See what ChatGPT knows about your business and how AI search reads your site. Free scan in 30 seconds.",
+        "Is your site blocked for AI? See what the OpenAI and Anthropic models say about your business and whether their crawlers can read your site. Free scan in 30 seconds; fixes in the AI Fix Kit, €49.",
     },
     {
       href: "/library",
@@ -372,7 +373,7 @@ export default async function HomePage() {
                   <span
                     className={`absolute left-3 top-3 rounded px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider ${catColors[item.category] ?? "bg-amber-500 text-black"}`}
                   >
-                    {item.category === "Government" ? "AI Governance" : item.category}
+                    {categoryLabel(item.category)}
                   </span>
                 </div>
                 <div className="px-4 py-3">
