@@ -149,6 +149,27 @@ function instructionsFor(check: AnswerCheck): string {
 /** A value that says something was not found, not what it is. */
 const ABSENCE = /^(no|none|not|unknown|n\/a)\b|\bnot (disclosed|found|identified|available|stated|publicly)\b/i;
 
+/**
+ * "Publish dated news" when the assistants already quote news from the last six months is advice
+ * the model is told not to give and sometimes gives anyway, so the rule is kept in code too, both
+ * when a summary is parsed and when a stored one is printed.
+ */
+export function usefulRecommendations<R extends { readonly title: string; readonly why: string }>(
+  recommendations: readonly R[],
+  activity: readonly { readonly when: string | null }[]
+): readonly R[] {
+  const recentActivity = activity.some((a) => {
+    const at = Date.parse(a.when ?? "");
+    return !Number.isNaN(at) && Date.now() - at < RECENT_ACTIVITY_MS;
+  });
+  const useful = recentActivity ? recommendations.filter((r) => !STALE_ADVICE.test(`${r.title} ${r.why}`)) : recommendations;
+  return useful.length >= 2 ? useful : recommendations;
+}
+
+/** Advice to publish more, or more dated, activity. */
+const STALE_ADVICE = /\b(dated|recent|regular(ly)?|fresh|last updated|keep publishing|continue publishing)\b[^.]*\b(activity|announcements?|content|posts?|news|articles?|updates?)\b|\bpublish\w*\b[^.]*\bregularly\b/i;
+const RECENT_ACTIVITY_MS = 183 * 24 * 3600 * 1000;
+
 function tokensUpperBound(chars: number): number {
   return Math.ceil(chars / 3);
 }
@@ -276,6 +297,7 @@ export function parseSynthesis(
     .filter((r) => r.title && r.why && r.steps.length > 0)
     .slice(0, 5);
   if (recommendations.length < 3) return null;
+  const kept = usefulRecommendations(recommendations, activity);
 
   return {
     identity: { summary: identitySummary, facts: facts(identity.facts) },
@@ -321,7 +343,7 @@ export function parseSynthesis(
       .filter((d) => d.topic && d.versions.length >= 2)
       .slice(0, 4),
     coverage,
-    recommendations,
+    recommendations: kept,
   };
 }
 

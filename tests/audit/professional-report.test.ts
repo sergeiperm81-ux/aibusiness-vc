@@ -272,3 +272,20 @@ test("an absence is said as what the sources did not show, and a missing value i
   assert.equal(parsed.identity.facts[0].value, "No legal name was identified in the sources reviewed.");
   assert.deepEqual(parsed.disagreements.map((d) => d.topic), ["City"]);
 });
+
+test("advice to publish dated news is dropped when the assistants already quote recent dated activity", () => {
+  const recent = new Date(Date.now() - 20 * 24 * 3600 * 1000).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+  const recs = [
+    { title: "Maintain and date recent public activity", why: "Dated announcements help.", steps: ["Continue publishing dated articles."] },
+    ...[1, 2, 3].map((n) => ({ title: `Do ${n}`, why: "A gap.", steps: ["Write this there."] })),
+  ];
+  const block = answersBlock(check()) + ` ${recent}`;
+  const parsed = parseSynthesis(
+    raw({ professional: { summary: "s", roles: [], activity: [{ what: "A post", where: "LinkedIn", when: recent, saidBy: ["OpenAI"] }], activityNote: "" }, recommendations: recs }),
+    LABELS,
+    QUESTIONS,
+    block
+  );
+  assert.ok(parsed);
+  assert.deepEqual(parsed.recommendations.map((r) => r.title), ["Do 1", "Do 2", "Do 3"]);
+});

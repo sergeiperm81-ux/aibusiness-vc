@@ -13,7 +13,7 @@
 
 import type { AnswerCheck } from "./answer-check";
 import { ACCENT, AMBER, AMBER_TINT, GREEN, GREEN_TINT, GREY, MUTED, PdfWriter } from "./pdf-kit";
-import type { CoverageStatus, PersonSynthesis } from "./person-synthesis";
+import { usefulRecommendations, type CoverageStatus, type PersonSynthesis } from "./person-synthesis";
 import {
   answersAboutProfile,
   identityAmbiguous,
@@ -176,7 +176,7 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
   const productName = company ? COMPANY_PRODUCT_NAME : PRODUCT_NAME;
   const questions = company ? COMPANY_QUESTIONS : SHORT_QUESTIONS;
   const w = company
-    ? { subject: "company", given: "the company given", tie: "this company", others: "other companies", other: "Another company", offer: "Offer", offers: "Offers only one model names" }
+    ? { subject: "company", given: "the company given", tie: "this company", others: "other organisations", other: "Another organisation", offer: "Offer", offers: "Offers only one model names" }
     : { subject: "person", given: "the profile given", tie: "this profile", others: "other people", other: "One other person", offer: "Role", offers: "Roles only one model names" };
   const total = check.providers.length;
   const answered = check.results.flatMap((r) => r.answers).filter((a) => a.ok).length;
@@ -235,7 +235,7 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
   pdf.text(synthesis.professional.summary, { gapAfter: 8 });
   for (const role of synthesis.professional.roles) pdf.fact(w.offer, role.value, saidByNote(role.saidBy, total));
 
-  pdf.text("Recent public activity, as AI sees it", { bold: true, gapAfter: 3 });
+  pdf.subheading("Recent public activity, as AI sees it");
   if (synthesis.professional.activity.length === 0) {
     pdf.text("No model named a specific post, article or talk.", { color: MUTED });
   }
@@ -291,11 +291,11 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
     // Listing "no disputes found" under an ambiguous identity would be a verdict after all.
     pdf.text(`The search covered disputes, complaints, reviews and warnings; no result was attributed to ${w.given}.`, { gapAfter: 6 });
   } else if (synthesis.redFlags.clear.length > 0) {
-    pdf.text("What the models looked for and did not find", { bold: true, gapAfter: 3 });
+    pdf.subheading("What the models looked for and did not find");
     for (const line of synthesis.redFlags.clear) pdf.bullet(line, { color: GREEN });
     pdf.gap(4);
   }
-  pdf.text("Reviews and public feedback", { bold: true, gapAfter: 3 });
+  pdf.subheading("Reviews and public feedback");
   if (synthesis.redFlags.reviews.length === 0) {
     pdf.text(company
       ? "No model found a customer review or rating, good or bad. Someone checking has nothing to go on but the company's own words."
@@ -307,7 +307,7 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
     pdf.text(saidByNote(review.saidBy, total), { size: 8.5, color: MUTED, indent: 14, gapAfter: 4 });
   }
   if (synthesis.redFlags.caveats.length > 0) {
-    pdf.text("What they added", { bold: true, gapAfter: 3 });
+    pdf.subheading("What they added");
     for (const line of synthesis.redFlags.caveats) pdf.bullet(line);
   }
 
@@ -350,7 +350,7 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
       "they give the models something correct to read.",
     { gapAfter: 8 }
   );
-  synthesis.recommendations.forEach((item, index) => {
+  usefulRecommendations(synthesis.recommendations, synthesis.professional.activity).forEach((item, index) => {
     pdf.text(`${index + 1}. ${item.title}`, { bold: true, size: 11.5, gapAfter: 1 });
     pdf.text(item.why, { color: MUTED, size: 10, gapAfter: 1 });
     for (const step of item.steps) pdf.bullet(step, { gapAfter: 2 });
@@ -372,7 +372,7 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
     150
   );
   pdf.gap(6);
-  pdf.text("The models asked", { bold: true, gapAfter: 3 });
+  pdf.subheading("The models asked");
   for (const provider of check.providers) pdf.bullet(`${provider.label}: ${provider.model}, through its API, web search on`, { size: 9.5 });
 
   pdf.gap(8);

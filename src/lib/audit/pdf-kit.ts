@@ -254,6 +254,12 @@ export class PdfWriter {
     this.text(value.toUpperCase(), { size: 8.5, bold: true, color: ACCENT, gapAfter: 2 });
   }
 
+  /** A bold line that introduces a block: kept on the same page as the lines under it. */
+  subheading(value: string): void {
+    this.ensure(60);
+    this.text(value, { bold: true, gapAfter: 3 });
+  }
+
   muted(value: string, size = 9.5): void {
     this.text(value, { size, color: MUTED });
   }
