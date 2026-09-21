@@ -285,7 +285,7 @@ export default async function HomePage() {
     },
     {
       href: "/sergei-ponomarev",
-      title: "About the author",
+      title: "About the founder",
       text: "Seven years of service standards, evaluation and test purchases.",
     },
   ];

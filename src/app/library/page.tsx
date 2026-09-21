@@ -76,7 +76,7 @@ export default function LibraryPage() {
               ))}
             </div>
 
-            {/* About the author */}
+            {/* About the founder */}
             <div className="mt-14 rounded-2xl border border-gray-200 bg-gray-50 p-6 sm:p-8">
               <div className="flex flex-col gap-6 sm:flex-row">
                 <Image
@@ -87,7 +87,7 @@ export default function LibraryPage() {
                   className="h-32 w-32 shrink-0 self-start rounded-xl border border-gray-200 object-cover object-[50%_22%]"
                 />
                 <div>
-                  <h2 className="text-lg font-bold text-gray-900">About the author</h2>
+                  <h2 className="text-lg font-bold text-gray-900">About the founder</h2>
                   <p className="mt-3 text-sm leading-relaxed text-gray-700">
                     <span className="font-semibold text-gray-900">Sergei Ponomarev, PhD</span> ,
                     founder of aibusiness.vc and a specialist in assessing service quality from

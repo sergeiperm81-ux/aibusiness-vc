@@ -12,7 +12,7 @@ const AUTHOR_DESK = [
   { name: "Founder's Library", href: "/library" },
   { name: "AI Company Scan", href: "/company-scan" },
   { name: "Founder's Notes", href: "/notes" },
-  { name: "About the author", href: "/sergei-ponomarev" },
+  { name: "About the founder", href: "/sergei-ponomarev" },
 ];
 
 export function Footer() {
