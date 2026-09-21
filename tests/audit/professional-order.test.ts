@@ -11,6 +11,7 @@ import { memoryKv, type DurableKv } from "../../src/lib/audit/durable-kv";
 import type { PersonSynthesis } from "../../src/lib/audit/person-synthesis";
 import { createOrder, loadOrder, orderKey, type ProfessionalOrder } from "../../src/lib/audit/professional-order";
 import { advanceOrder, drainQueue, runDueOrders, type DiscountSpec, type ReportEmail, type ScanDeps } from "../../src/lib/audit/professional-worker";
+import { MIN_REBUILD_OUTPUT_TOKENS, rebuildReport } from "../../src/lib/audit/professional-rebuild";
 import { checkoutAvailability, countPaidRun, DAILY_PAID_RUN_LIMIT, isAccountProblem, markProviderDown } from "../../src/lib/audit/provider-health";
 
 const IDS = ["openai", "anthropic", "google", "perplexity", "xai"] as const;
@@ -578,4 +579,42 @@ test("the worker route opens only for its own full secret", () => {
   assert.equal(workerAuthorised(null, secret), false);
   assert.equal(workerAuthorised("Bearer short", "short"), false, "a short secret opens nothing");
   assert.equal(workerAuthorised("Bearer x", undefined), false, "an unset secret opens nothing");
+});
+
+test("a delivered report is rebuilt once from its stored answers, within the ceiling, with no model asked again", async () => {
+  const h = harness(ALL_OK);
+  const key = await newOrder(h.kv);
+  await advanceOrder(h.deps, key, DEADLINE());
+  const asked = [...h.calls.values()].reduce((a, b) => a + b, 0);
+  const budgets: number[] = [];
+  const synthesise = async (_check: unknown, maxOutputTokens: number) => {
+    budgets.push(maxOutputTokens);
+    return { synthesis: SYNTHESIS, usage: null };
+  };
+
+  const first = await rebuildReport(h.deps, key, { ceilingUsd: 0.01, synthesise });
+  assert.equal(first.ok, true);
+  assert.equal(h.reports.length, 2, "the rebuilt report is emailed again");
+  assert.equal([...h.calls.values()].reduce((a, b) => a + b, 0), asked, "no model is asked again");
+  assert.ok(budgets[0] >= MIN_REBUILD_OUTPUT_TOKENS && budgets[0] <= 4_000);
+
+  const second = await rebuildReport(h.deps, key, { ceilingUsd: 0.01, synthesise });
+  assert.deepEqual(second, { ok: false, reason: "this order was already rebuilt once", spentUsd: 0 });
+  assert.equal(budgets.length, 1);
+});
+
+test("a rebuild whose worst case cannot fit the ceiling spends nothing", async () => {
+  const h = harness(ALL_OK);
+  const key = await newOrder(h.kv);
+  await advanceOrder(h.deps, key, DEADLINE());
+  let called = false;
+  const outcome = await rebuildReport(h.deps, key, {
+    ceilingUsd: 0.0001,
+    synthesise: async () => {
+      called = true;
+      return { synthesis: SYNTHESIS, usage: null };
+    },
+  });
+  assert.equal(outcome.ok, false);
+  assert.equal(called, false);
 });
