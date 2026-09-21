@@ -80,7 +80,7 @@ export function getMockQuickAudit(id: string): QuickAudit {
       },
       {
         key: "ai-crawlers",
-        label: "AI crawlers access",
+        label: "AI crawler permission in robots.txt",
         score: 65,
         severity: "ok",
         shortHuman: "GPTBot allowed. ClaudeBot and PerplexityBot not explicit.",

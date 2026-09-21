@@ -1,0 +1,37 @@
+# Wakes the AI Professional Scan worker every few minutes.
+#
+# Vercel's free plan runs its own cron once a day, and a function may not call
+# itself (Vercel blocks recursive fetches), so the next run of the paid-order
+# worker comes from here. The repository is public, so these runs cost nothing.
+# GitHub may start a scheduled run late or skip one, and disables a schedule
+# after 60 days without activity in the repository. The worker handles gaps,
+# and the daily Vercel cron (/api/cron/professional-scan-daily) is the backstop.
+# The secret here is PROFESSIONAL_SCAN_WORKER_SECRET, which opens this one
+# route and nothing else on the site.
+name: professional-scan-worker
+
+on:
+  schedule:
+    - cron: "2-57/5 * * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: professional-scan-worker
+  cancel-in-progress: false
+
+permissions: {}
+
+jobs:
+  wake:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - name: Run due orders
+        env:
+          WORKER_SECRET: ${{ secrets.PROFESSIONAL_SCAN_WORKER_SECRET }}
+        run: |
+          status=$(curl -sS -o /dev/null -w "%{http_code}" --max-time 310 \
+            -H "Authorization: Bearer ${WORKER_SECRET}" \
+            https://aibusiness.vc/api/cron/professional-scan)
+          echo "worker answered HTTP ${status}"
+          test "${status}" = "200"

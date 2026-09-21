@@ -1,5 +1,5 @@
 /**
- * Renders the AI Visibility report a paying customer receives.
+ * Renders the AI Fix Kit report a paying customer receives.
  *
  * Replaces a one-page template that carried no figures at all — it said
  * "calculated per audited domain" where the number should have been. A report
@@ -10,7 +10,7 @@
 import { PDFDocument, StandardFonts, rgb, type PDFFont, type PDFPage } from "pdf-lib";
 import type { AuditMetric, QuickAudit } from "@/lib/audit/mock";
 import { fixFor } from "@/lib/audit/fixes";
-import type { BrandKnowledge } from "@/lib/audit/brand-knowledge";
+import { hasAnswer, type BrandKnowledge } from "@/lib/audit/brand-knowledge";
 
 const PAGE_WIDTH = 595;
 const PAGE_HEIGHT = 842;
@@ -240,7 +240,7 @@ class Doc {
       font: this.fonts.regular,
       color: rgb(0.75, 0.75, 0.8),
     });
-    this.page.drawText(toWinAnsi("AI visibility score"), {
+    this.page.drawText(toWinAnsi("AI site readiness score"), {
       x: MARGIN + 20,
       y: this.y - 76,
       size: 9,
@@ -271,7 +271,7 @@ class Doc {
   async finish(): Promise<Uint8Array> {
     const pages = this.doc.getPages();
     pages.forEach((page, index) => {
-      page.drawText(toWinAnsi(`AI Business  ·  aibusiness.vc`), {
+      page.drawText("AI Business  |  aibusiness.vc", {
         x: MARGIN,
         y: 30,
         size: 8,
@@ -294,13 +294,13 @@ class Doc {
 
 export interface BuildAuditReportInput {
   readonly audit: QuickAudit;
-  readonly brand?: BrandKnowledge;
+  readonly brands?: readonly BrandKnowledge[];
 }
 
 export async function buildAuditReportPdf(
   input: BuildAuditReportInput
 ): Promise<{ filename: string; bytes: Uint8Array }> {
-  const { audit, brand } = input;
+  const { audit, brands = [] } = input;
 
   const pdf = await PDFDocument.create();
   const fonts: Fonts = {
@@ -308,45 +308,52 @@ export async function buildAuditReportPdf(
     bold: await pdf.embedFont(StandardFonts.HelveticaBold),
   };
 
-  pdf.setTitle(`AI Visibility Report — ${audit.domain}`);
+  pdf.setTitle(`AI Fix Kit report — ${audit.domain}`);
   pdf.setAuthor("AI Business");
-  pdf.setSubject("AI visibility audit");
+  pdf.setSubject("AI Website Scan and AI Fix Kit");
 
   const doc = new Doc(pdf, fonts);
   const scannedAt = new Date(audit.scannedAt).toISOString().slice(0, 10);
 
-  doc.kicker("AI Visibility Report");
+  doc.kicker("AI Fix Kit report");
   doc.scoreBadge(audit.overallScore, audit.domain, scannedAt);
 
   doc.paragraph(
-    "This report measures how well your website can be read, understood and quoted by AI assistants — ChatGPT, Claude, Perplexity and Google's AI answers. Every figure below was measured on your own domain on the date above. Nothing is estimated or averaged from other sites.",
+    "This report measures how well your website can be read, understood and quoted by AI assistants such as ChatGPT and Claude. The inputs were measured on your own domain on the date above; the scores apply documented rules and heuristics to those measurements and are not industry benchmarks.",
     { muted: true }
   );
   doc.gap(6);
 
-  if (brand && (brand.status === "recognised" || brand.status === "unrecognised")) {
-    doc.heading("What ChatGPT already knows about you");
+  const answered = brands.filter(hasAnswer);
+  if (answered.length > 0) {
+    doc.heading("What the assistants already know about you");
     doc.paragraph(
-      brand.status === "recognised"
-        ? "Asked about your domain from memory alone, with no web search, the model answered:"
-        : "Asked about your domain from memory alone, with no web search, the model answered:",
+      "Each model was asked about your domain from memory alone, with no web search.",
       { size: 9.5, muted: true }
     );
+    for (const brand of answered) {
+      doc.gap(4);
+      doc.paragraph(
+        `${brand.providerLabel} (${brand.model}): ${
+          brand.status === "recognised" ? "recognises you." : "has no memory of you."
+        }`,
+        { size: 9.5 }
+      );
+      doc.gap(2);
+      doc.quoteBlock(brand.answer);
+    }
     doc.gap(4);
-    doc.quoteBlock(brand.answer);
     doc.paragraph(
-      brand.status === "recognised"
-        ? "Read it as a customer would. Anything out of date or simply wrong here is what people are told when they ask about you."
-        : "This is a separate matter from the technical score: a site can be built perfectly and still be unknown to the model, because recall is built from what has been written about you elsewhere, over years.",
+      "Read it as a customer would. Anything out of date or simply wrong here is what people are told when they ask about you. It is a separate matter from the technical score: a site can be built perfectly and still be unknown to a model, because recall is built from what has been written about you elsewhere, over years.",
       { size: 9.5, muted: true }
     );
     doc.gap(10);
     doc.rule();
   }
 
-  doc.heading("Your scores");
+  doc.heading("Your site readiness scores");
   doc.paragraph(
-    "Eight signals, weighted so that what an assistant can actually read on the page counts for most.",
+    "Eight signals about the site itself, weighted so that what an assistant can actually read on the page counts for most. What the models remember about you (above) is a separate matter and is not part of this number.",
     { size: 9.5, muted: true }
   );
   doc.gap(8);
@@ -380,15 +387,7 @@ export async function buildAuditReportPdf(
     );
   }
 
-  doc.gap(6);
-  doc.rule();
-  doc.heading("About this report");
-  doc.paragraph(
-    "Produced by AI Business (aibusiness.vc), an independent publication and consultancy covering the business of AI. The scan is automated and reproducible: re-run it at any time on the same domain and compare. Questions about any finding go to info@aibusiness.vc.",
-    { size: 9.5, muted: true }
-  );
-
   const bytes = await doc.finish();
   const slug = audit.domain.replace(/[^a-z0-9]+/gi, "-").toLowerCase();
-  return { filename: `AI-Visibility-Report-${slug}-${scannedAt}.pdf`, bytes };
+  return { filename: `AI-Fix-Kit-Report-${slug}-${scannedAt}.pdf`, bytes };
 }

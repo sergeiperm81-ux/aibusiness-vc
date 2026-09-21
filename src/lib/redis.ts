@@ -139,3 +139,43 @@ export async function incrBy(key: string, by: number): Promise<number | null> {
 export async function deleteKey(key: string): Promise<void> {
   await redisCommand(["DEL", key]);
 }
+
+/* ------------------------------------------------------------ fail-closed */
+
+/**
+ * Thrown when Redis cannot answer a command that must not fail quietly.
+ *
+ * Paid orders live here. The graceful helpers above fall back to memory, which
+ * on serverless disappears with the function; an order stored that way would
+ * be paid for and then lost. Everything below throws instead, so the caller
+ * can refuse the webhook and let the payment provider retry.
+ */
+export class RedisUnavailableError extends Error {
+  constructor(command: string) {
+    super(`Redis is unavailable (${command})`);
+    this.name = "RedisUnavailableError";
+  }
+}
+
+/** Longer than the graceful deadline: an order write is worth waiting for. */
+const STRICT_TIMEOUT_MS = 5000;
+
+export async function redisStrict(command: readonly (string | number)[]): Promise<unknown> {
+  const config = redisConfig();
+  if (!config) throw new RedisUnavailableError(`${command[0]}: not configured`);
+  let response: Response;
+  try {
+    response = await fetch(config.url, {
+      method: "POST",
+      headers: { authorization: `Bearer ${config.token}`, "content-type": "application/json" },
+      body: JSON.stringify(command),
+      signal: AbortSignal.timeout(STRICT_TIMEOUT_MS),
+    });
+  } catch (error) {
+    throw new RedisUnavailableError(`${command[0]}: ${error instanceof Error ? error.message : String(error)}`);
+  }
+  if (!response.ok) throw new RedisUnavailableError(`${command[0]}: HTTP ${response.status}`);
+  const data = (await response.json()) as { result?: unknown; error?: string };
+  if (data.error) throw new RedisUnavailableError(`${command[0]}: ${data.error}`);
+  return data.result ?? null;
+}

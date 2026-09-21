@@ -97,6 +97,9 @@ function requestOnce(
     const transport = target.protocol === "http:" ? http : https;
 
     let settled = false;
+    // Assigned once, below, but read by finish() above that line, which can run first (an early
+    // error). As const it would be in its temporal dead zone there and throw, so it stays let.
+    // eslint-disable-next-line prefer-const
     let hardTimer: NodeJS.Timeout | undefined;
 
     const finish = (fn: () => void) => {

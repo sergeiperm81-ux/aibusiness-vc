@@ -11,7 +11,7 @@ export const FIXES: Record<string, string> = {
   schema:
     "Search and AI engines read your pages far better when the key facts are labelled in a machine-readable way. Add JSON-LD structured data (Schema.org) across the site — Organization on the homepage, Article on posts, FAQPage for any Q&A, and a 'speakable' block. Give it to a developer, or do it yourself by asking ChatGPT / Claude Code: 'Write JSON-LD structured data (Organization, Article, FAQPage, speakable) for this page and tell me exactly where to paste it.'",
   "ai-crawlers":
-    "AI answer engines can only quote you if their bots are allowed to read your site — and many sites block them by accident. Allow the AI crawlers in your robots.txt. It's a 5-minute change: ask your developer, or paste this to ChatGPT: 'Write a robots.txt that allows GPTBot, ClaudeBot, PerplexityBot, Google-Extended and OAI-SearchBot, while keeping my admin pages blocked.'",
+    "AI answer engines can only quote you if their bots are allowed to read your site — and many sites block them by accident. Allow the answer-engine bots in your robots.txt: OAI-SearchBot (ChatGPT search), Claude-SearchBot (Claude search) and PerplexityBot. GPTBot, ClaudeBot and Google-Extended are training crawlers; letting them in is a separate decision about your content, not a visibility fix. robots.txt is permission only: a firewall or CDN rule can still block a bot, and that is checked separately by your host. It's a 5-minute change: ask your developer, or paste this to ChatGPT: 'Write a robots.txt that allows OAI-SearchBot, Claude-SearchBot and PerplexityBot, while keeping my admin pages blocked.'",
   citability:
     "AI lifts clear, factual sentences and ignores vague marketing copy. Restructure your top pages into a question-and-answer format with concrete numbers, dates and named sources, and add a short FAQ at the bottom — give the AI a clean sentence it can quote and attribute to you. Brief your content team, or ask ChatGPT / Claude: 'Rewrite this page into a clear Q&A format with concrete facts and a short FAQ, optimised to be quoted by AI search.'",
   "page-speed":
@@ -25,5 +25,12 @@ export const FIXES: Record<string, string> = {
 };
 
 export function fixFor(metric: AuditMetric): string {
+  if (metric.key === "llms-txt" && metric.score > 0) {
+    return (
+      `Your llms.txt exists, but it still needs work: ${metric.shortHuman} ` +
+      "Expand the existing file with your priority pages and a one-line description of each. " +
+      "Treat llms.txt as an optional machine-readable guide, not a guarantee that an assistant will crawl, cite or recommend the site."
+    );
+  }
   return FIXES[metric.key] ?? `Improve "${metric.label}" — ${metric.shortHuman}`;
 }

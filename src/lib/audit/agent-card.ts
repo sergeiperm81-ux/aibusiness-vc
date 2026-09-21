@@ -198,8 +198,8 @@ ${contacts}
 
 ## Source
 
-Maintained by ${facts.companyName ?? domain}. Drafted with the AI Visibility
-Audit by aibusiness.vc on ${dateStamp}. Update this file whenever your
+Maintained by ${facts.companyName ?? domain}. Drafted with the AI Website Scan
+by aibusiness.vc on ${dateStamp}. Update this file whenever your
 services change: a stale card is worse than none.
 `;
 }

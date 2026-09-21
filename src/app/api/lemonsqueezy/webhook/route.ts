@@ -1,11 +1,17 @@
 import crypto from "node:crypto";
-import { NextResponse } from "next/server";
+import { NextResponse, after } from "next/server";
 import { buildAuditPackageAttachments } from "@/lib/audit/fulfillment";
 import { decodeDomainFromId } from "@/lib/audit/mock";
 import { claimOnce, persistClaim, releaseClaim } from "@/lib/redis";
+import { redisKv } from "@/lib/audit/durable-kv";
+import { productionDeps, proScanVariantId, providerConfigured, WORKER_BUDGET_MS } from "@/lib/audit/professional-runtime";
+import { PERSON_PROVIDER_IDS } from "@/lib/audit/answer-providers";
+import { handleProScanOrder } from "@/lib/audit/professional-webhook";
+import { drainQueue } from "@/lib/audit/professional-worker";
 
 export const runtime = "nodejs";
-export const maxDuration = 60;
+/** 300, not 60: an AI Person Scan order is worked on right after the reply, inside this function. */
+export const maxDuration = 300;
 
 type JsonObject = Record<string, unknown>;
 
@@ -43,7 +49,7 @@ function escapeHtml(value: string): string {
 }
 
 /**
- * Variants whose purchase should produce an AI Visibility Audit package,
+ * Variants whose purchase should produce an AI Fix Kit package,
  * from `LEMONSQUEEZY_AUDIT_VARIANT_IDS` (comma separated).
  *
  * One Lemon Squeezy account can hold several stores, and one webhook receives
@@ -160,8 +166,8 @@ async function sendPackageEmail(params: {
 
   const bcc = resolveAuditBcc();
   const subject = hasReport
-    ? `Your AI Visibility package is ready (${params.domain})`
-    : `Your AI Visibility kit, report to follow (${params.domain})`;
+    ? `Your AI Fix Kit is ready (${params.domain})`
+    : `Your AI Fix Kit, report to follow (${params.domain})`;
   const site = "https://aibusiness.vc";
 
   const attachmentsHtml = hasReport
@@ -179,7 +185,7 @@ async function sendPackageEmail(params: {
     <p><strong>About your personal report:</strong> our scanner could not read ${escapeHtml(params.domain)} automatically. That usually means a login wall, a firewall, or a server that only answers browsers. Nothing is wrong with your order: we will run the measurement by hand and send your report within one business day, no action needed from you.</p>`;
 
   const htmlContent = `
-    <h2>${hasReport ? "Your AI Visibility package is ready" : "Your AI Visibility kit is here, report to follow"}</h2>
+    <h2>${hasReport ? "Your AI Fix Kit is ready" : "Your AI Fix Kit is here, report to follow"}</h2>
 
     <p>Thank you for your trust, and for paying for an independent measurement rather than a marketing claim.</p>
 
@@ -221,8 +227,8 @@ ${attachmentsHtml}
 
   const textContent = [
     hasReport
-      ? "Your AI Visibility package is ready."
-      : "Your AI Visibility kit is here, report to follow.",
+      ? "Your AI Fix Kit is ready."
+      : "Your AI Fix Kit is here, report to follow.",
     "",
     "Thank you for your trust, and for paying for an independent measurement rather than a marketing claim.",
     "",
@@ -305,6 +311,36 @@ export async function POST(request: Request) {
 
   if (!isSupportedEvent(eventName)) {
     return NextResponse.json({ ok: true, ignored: true, event: eventName });
+  }
+
+  // AI Person Scan: store the order, queue it, answer. The report is made after the reply.
+  const proVariant = proScanVariantId();
+  const eventVariant = orderVariantId(attributes);
+  if (proVariant && eventVariant === proVariant) {
+    const outcome = await handleProScanOrder(
+      redisKv,
+      { data, attributes, customData, variantId: proVariant },
+      { providerIds: PERSON_PROVIDER_IDS, configured: providerConfigured }
+    );
+    if (outcome.startWorker) {
+      after(async () => {
+        try {
+          await drainQueue(productionDeps(), WORKER_BUDGET_MS);
+        } catch (error) {
+          // The order is stored and due: the next run picks it up.
+          console.error("[pscan/webhook] worker run failed", error);
+        }
+      });
+    }
+    const alert = outcome.ownerAlert;
+    if (alert) {
+      after(async () => {
+        // One letter per order, however many times the event arrives.
+        if ((await claimOnce(`pscan:alert:${pickString(data, "id") ?? "unknown"}`, 7 * 24 * 3600)) === "duplicate") return;
+        await productionDeps().notifyOwner("AI Person Scan: an order needs you", alert);
+      });
+    }
+    return NextResponse.json(outcome.body, { status: outcome.status });
   }
 
   const toEmail =

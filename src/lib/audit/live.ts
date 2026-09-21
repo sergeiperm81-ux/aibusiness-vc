@@ -97,11 +97,26 @@ async function fetchHomepage(domain: string): Promise<FetchSnapshot> {
   };
 }
 
+/**
+ * A site that answers every path with its homepage returns HTML for
+ * /robots.txt and /llms.txt with status 200. That is a missing file, not a
+ * found one; scoring the HTML as a side file told owners they had something
+ * they did not.
+ */
+export function isServedAsHtml(contentType: string | null, body: string): boolean {
+  if (contentType && /text\/html|application\/xhtml/i.test(contentType)) return true;
+  const head = body.trimStart().slice(0, 200).toLowerCase();
+  return head.startsWith("<!doctype") || head.startsWith("<html") || head.startsWith("<head") || head.startsWith("<body");
+}
+
 async function fetchTextOrEmpty(url: string): Promise<{ ok: boolean; text: string }> {
   try {
     // Side files are small by nature; a large one is a sign of something else.
     const response = await safeFetchText(url, { timeoutMs: 6000, maxBytes: 256 * 1024 });
     if (!response.ok) return { ok: false, text: "" };
+    if (isServedAsHtml(response.headers.get("content-type"), response.text)) {
+      return { ok: false, text: "" };
+    }
     return { ok: true, text: response.text };
   } catch {
     return { ok: false, text: "" };
@@ -253,9 +268,12 @@ function scoreSchemaBlocks(schemaBlocks: number): number {
  * following it with `Disallow: /` is a block, not an invitation — scoring it as
  * a win told owners the opposite of the truth.
  */
-function parseRobotsGroups(robots: string): Map<string, string[]> {
+export function parseRobotsGroups(robots: string): Map<string, string[]> {
   const groups = new Map<string, string[]>();
-  let current: string[] = [];
+  // Several User-agent lines in a row open one group: every rule that follows
+  // applies to all of them, per the robots.txt standard.
+  let current: string[][] = [];
+  let lastWasAgent = false;
 
   for (const rawLine of robots.split(/\r?\n/)) {
     const line = rawLine.replace(/#.*$/, "").trim();
@@ -270,11 +288,14 @@ function parseRobotsGroups(robots: string): Map<string, string[]> {
     if (field === "user-agent") {
       const agent = value.toLowerCase();
       if (!groups.has(agent)) groups.set(agent, []);
-      current = groups.get(agent) as string[];
+      const rules = groups.get(agent) as string[];
+      current = lastWasAgent ? [...current, rules] : [rules];
+      lastWasAgent = true;
       continue;
     }
 
-    current.push(`${field}:${value}`);
+    lastWasAgent = false;
+    for (const rules of current) rules.push(`${field}:${value}`);
   }
 
   return groups;
@@ -287,7 +308,7 @@ function groupBlocksRoot(rules: string[]): boolean {
   return disallowAll && !allowRoot;
 }
 
-function scoreAiCrawlerAccess(robots: string): { score: number; summary: string } {
+export function scoreAiCrawlerAccess(robots: string): { score: number; summary: string } {
   if (!robots.trim()) {
     return {
       score: 55,
@@ -296,13 +317,17 @@ function scoreAiCrawlerAccess(robots: string): { score: number; summary: string 
     };
   }
 
-  const majorCrawlers = [
-    "GPTBot",
-    "OAI-SearchBot",
-    "ClaudeBot",
-    "PerplexityBot",
-    "Google-Extended",
-  ];
+  // Answer-engine bots decide whether a site can appear in AI answers, and
+  // only they are scored. Per the vendors' own documentation: OpenAI's search
+  // index is OAI-SearchBot, Anthropic's is Claude-SearchBot, Perplexity's is
+  // PerplexityBot. GPTBot, ClaudeBot and Google-Extended collect data for
+  // possible training: the owner's own decision, reported but never scored.
+  // Claude-User fetches a page when a person asks Claude about it; reported
+  // on its own.
+  const answerBots = ["OAI-SearchBot", "Claude-SearchBot", "PerplexityBot"];
+  const trainingCrawlers = ["GPTBot", "ClaudeBot", "Google-Extended"];
+  const userFetchers = ["Claude-User"];
+  const majorCrawlers = [...answerBots, ...trainingCrawlers, ...userFetchers];
 
   const groups = parseRobotsGroups(robots);
   const wildcardBlocked = groupBlocksRoot(groups.get("*") ?? []);
@@ -321,32 +346,59 @@ function scoreAiCrawlerAccess(robots: string): { score: number; summary: string 
     if (wildcardBlocked) blocked.push(crawler);
   }
 
-  if (blocked.length === majorCrawlers.length) {
+  const blockedAnswerBots = blocked.filter((c) => answerBots.includes(c));
+  const allowedAnswerBots = allowed.filter((c) => answerBots.includes(c));
+  const blockedTraining = blocked.filter((c) => trainingCrawlers.includes(c));
+  const allowedTraining = allowed.filter((c) => trainingCrawlers.includes(c));
+  const blockedUserFetchers = blocked.filter((c) => userFetchers.includes(c));
+
+  const trainingNote =
+    blockedTraining.length > 0
+      ? ` Training crawlers ${blockedTraining.join(", ")} are blocked; that is your decision and does not affect this score.`
+      : allowedTraining.length > 0
+        ? ` Training crawlers ${allowedTraining.join(", ")} are allowed; that is your decision and does not affect this score.`
+        : "";
+  const userNote =
+    blockedUserFetchers.length > 0
+      ? ` ${blockedUserFetchers.join(", ")} is blocked too: a person asking Claude to read your page will get nothing.`
+      : "";
+
+  if (blockedAnswerBots.length === answerBots.length) {
     return {
       score: 5,
       summary:
-        "Every major AI crawler is blocked by robots.txt. Assistants are told to stay out of your site entirely.",
+        "Every answer-engine bot is blocked by robots.txt. Assistants are told to stay out of your site entirely." +
+        trainingNote +
+        userNote,
     };
   }
 
-  if (blocked.length > 0) {
+  if (blockedAnswerBots.length > 0) {
     return {
-      score: clampScore(50 - blocked.length * 8),
-      summary: `robots.txt blocks ${blocked.join(", ")}. Those assistants will not read your pages.`,
+      score: clampScore(50 - blockedAnswerBots.length * 12),
+      summary:
+        `robots.txt blocks ${blockedAnswerBots.join(", ")}. Those assistants will not read your pages.` +
+        trainingNote +
+        userNote,
     };
   }
 
-  if (allowed.length === 0) {
+  if (allowedAnswerBots.length === 0) {
     return {
       score: 60,
       summary:
-        "robots.txt exists but names no AI crawlers. They are not blocked; they are simply not addressed.",
+        "robots.txt exists but names no answer-engine bots. They are not blocked; they are simply not addressed." +
+        trainingNote +
+        userNote,
     };
   }
 
   return {
-    score: clampScore(60 + allowed.length * 8),
-    summary: `${allowed.length}/${majorCrawlers.length} major AI crawlers are explicitly allowed.`,
+    score: clampScore(60 + Math.round((allowedAnswerBots.length * 40) / answerBots.length)),
+    summary:
+      `${allowedAnswerBots.length}/${answerBots.length} answer-engine bots are explicitly allowed.` +
+      trainingNote +
+      userNote,
   };
 }
 
@@ -558,7 +610,7 @@ function scoreJavaScriptDependency(
   )} word${wordCount === 1 ? "" : "s"} of text.`;
 
   let score = 90;
-  let summary = `${seen} Your content is in the HTML itself, so GPTBot, ClaudeBot and PerplexityBot read it directly.`;
+  let summary = `${seen} Your content is in the HTML itself, so ChatGPT and Claude bots read it directly.`;
 
   if (emptyRoot) {
     score = 12;
@@ -786,7 +838,7 @@ async function runLiveAudit(id: string): Promise<QuickAudit> {
     ),
     buildMetric(
       "ai-crawlers",
-      "AI crawlers access",
+      "AI crawler permission in robots.txt",
       crawlerAccess.score,
       crawlerAccess.summary
     ),

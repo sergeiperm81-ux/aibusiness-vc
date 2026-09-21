@@ -1,6 +1,6 @@
 import { createZip, type ZipEntry } from "@/lib/zip";
 import { getLiveQuickAudit } from "@/lib/audit/live";
-import { getBrandKnowledge, type BrandKnowledge } from "@/lib/audit/brand-knowledge";
+import { getBrandKnowledge, hasAnswer, type BrandKnowledge } from "@/lib/audit/brand-knowledge";
 import { encodeDomainAsId, type QuickAudit } from "@/lib/audit/mock";
 import { buildAuditReportPdf } from "@/lib/audit/report-pdf";
 import {
@@ -52,7 +52,7 @@ The same measurements as your PDF report, in plain text. Feed this file to an AI
     : `1. \`measured-report-${slug}-${dateStamp}.md\`
 Your site could not be scanned automatically (this usually means a login wall or a firewall). Reply to the delivery email and we will run the measurement manually and send it within one business day.`;
 
-  return `# AI Visibility Package
+  return `# AI Fix Kit
 
 Domain: \`${domain}\`
 Generated: \`${dateStamp}\`
@@ -124,9 +124,9 @@ function buildMeasuredReport(
   domain: string,
   dateStamp: string,
   audit: QuickAudit | null,
-  brand: BrandKnowledge | null
+  brands: readonly BrandKnowledge[]
 ): string {
-  const header = `# AI Visibility Report (measured)
+  const header = `# AI Fix Kit: measured report
 
 Domain: \`${domain}\`
 Date: \`${dateStamp}\`
@@ -169,14 +169,21 @@ ${fixFor(m)}
     )
     .join("\n");
 
+  const answered = brands.filter(hasAnswer);
   const brandSection =
-    brand && (brand.status === "recognised" || brand.status === "unrecognised")
-      ? `## What ChatGPT says about this brand
+    answered.length > 0
+      ? `## What the assistants say about this brand
 
-Asked from model memory, no web search (${brand.model}, ${brand.checkedAt.slice(0, 10)}):
+Each model asked from memory, no web search.
 
-> ${brand.answer.replace(/\n+/g, " ").trim()}
+${answered
+  .map(
+    (b) => `**${b.providerLabel}** (${b.model}, ${b.checkedAt.slice(0, 10)}):
 
+> ${b.answer.replace(/\n+/g, " ").trim()}
+`
+  )
+  .join("\n")}
 `
       : "";
 
@@ -303,9 +310,12 @@ point and fill in the real company details. Return file-by-file diffs only.
 
 ## Prompt 2: AI crawler access
 ${ctx("ai-crawlers")}\`\`\`text
-Update robots.txt for ${domain} so GPTBot, OAI-SearchBot, ClaudeBot,
-PerplexityBot and Google-Extended are explicitly allowed, while keeping
-existing rules for admin and private paths.
+Update robots.txt for ${domain} so the answer-engine bots OAI-SearchBot,
+Claude-SearchBot and PerplexityBot are explicitly allowed, while keeping
+existing rules for admin and private paths. Leave GPTBot, ClaudeBot and
+Google-Extended (training crawlers) as the site owner decides; do not change
+them without a decision. Then check the firewall/CDN allows the same bots:
+robots.txt is permission, not access.
 \`\`\`
 
 ## Prompt 3: llms.txt
@@ -376,7 +386,7 @@ Domain: \`${domain}\`
 ${targetBlock}## General checks
 
 - [ ] JSON-LD validates on all updated pages.
-- [ ] robots.txt allows GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot, Google-Extended.
+- [ ] robots.txt allows OAI-SearchBot, Claude-SearchBot, PerplexityBot. GPTBot, ClaudeBot and Google-Extended set by an explicit decision. Firewall/CDN lets the same bots through.
 - [ ] llms.txt is live at the domain root and every listed URL opens.
 - [ ] No duplicate H1 on updated templates.
 - [ ] All new internal links resolve.
@@ -398,10 +408,10 @@ interface BacklogTemplate {
 /** How each measured signal translates into a backlog task. */
 const BACKLOG_BY_METRIC: Record<string, BacklogTemplate> = {
   "ai-crawlers": {
-    task: "Allow AI crawlers in robots.txt",
+    task: "Allow answer-engine bots in robots.txt",
     owner: "developer",
     effortHours: "0.5",
-    acceptance: "GPTBot OAI-SearchBot ClaudeBot PerplexityBot Google-Extended explicitly allowed",
+    acceptance: "OAI-SearchBot Claude-SearchBot PerplexityBot explicitly allowed; GPTBot, ClaudeBot and Google-Extended decided by the owner",
   },
   "llms-txt": {
     task: "Adapt and publish llms.txt",
@@ -610,40 +620,11 @@ async function readGuideAttachment(): Promise<AuditPackageAttachment> {
   };
 }
 
-/**
- * Extensions the transactional mail provider will actually deliver.
- *
- * Brevo rejects the whole message with "Unsupported file format" if a single
- * attachment has an extension outside its allowlist — so a package containing
- * one .md file meant the buyer received nothing at all. Everything unsupported
- * is renamed to .txt; the content is unchanged and the README explains it.
- */
-const MAIL_SAFE_EXTENSIONS = new Set([
-  "pdf", "docx", "doc", "xlsx", "xls", "csv", "txt", "xml", "html", "htm", "zip", "rtf", "odt",
-]);
-
-function toMailSafeName(name: string): string {
-  const lastDot = name.lastIndexOf(".");
-  const ext = lastDot >= 0 ? name.slice(lastDot + 1).toLowerCase() : "";
-  if (ext && MAIL_SAFE_EXTENSIONS.has(ext)) return name;
-
-  // Keep the original extension visible so the recipient knows what it is:
-  // schema-patches-x.json becomes schema-patches-x.json.txt
-  return `${name}.txt`;
-}
-
-function asTextAttachment(name: string, body: string, type: string): AuditPackageAttachment {
-  return {
-    name: toMailSafeName(name),
-    content: Buffer.from(body, "utf8").toString("base64"),
-    type,
-  };
-}
 
 
 interface LiveScanResult {
   readonly audit: QuickAudit | null;
-  readonly brand: BrandKnowledge | null;
+  readonly brands: readonly BrandKnowledge[];
 }
 
 /**
@@ -659,13 +640,13 @@ async function runLiveScan(domain: string): Promise<LiveScanResult> {
     const audit = await getLiveQuickAudit(encodeDomainAsId(domain));
     if (audit.failure) {
       console.error(`[fulfillment] scan failed for ${domain}: ${audit.failure}`);
-      return { audit: null, brand: null };
+      return { audit: null, brands: [] };
     }
-    const brand = await getBrandKnowledge(audit.domain, "fulfillment");
-    return { audit, brand };
+    const brands = await getBrandKnowledge(audit.domain, "fulfillment");
+    return { audit, brands };
   } catch (error) {
     console.error(`[fulfillment] scan failed for ${domain}:`, error);
-    return { audit: null, brand: null };
+    return { audit: null, brands: [] };
   }
 }
 
@@ -676,7 +657,7 @@ async function buildReportPdfAttachment(
   try {
     const { filename, bytes } = await buildAuditReportPdf({
       audit: scan.audit,
-      brand: scan.brand ?? undefined,
+      brands: scan.brands,
     });
     return {
       name: filename,
@@ -735,7 +716,7 @@ export async function buildAuditPackageAttachments(
     },
     {
       name: `measured-report-${slug}-${dateStamp}.md`,
-      data: Buffer.from(buildMeasuredReport(domain, dateStamp, scan.audit, scan.brand), "utf8"),
+      data: Buffer.from(buildMeasuredReport(domain, dateStamp, scan.audit, scan.brands), "utf8"),
     },
     {
       name: `execution-playbook-${slug}.md`,
@@ -766,7 +747,7 @@ export async function buildAuditPackageAttachments(
   ];
 
   const archive: AuditPackageAttachment = {
-    name: `AI-Visibility-Implementation-Kit-${slug}-${dateStamp}.zip`,
+    name: `AI-Fix-Kit-${slug}-${dateStamp}.zip`,
     content: createZip(packedFiles, new Date()).toString("base64"),
     type: "application/zip",
   };

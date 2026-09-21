@@ -1,8 +1,15 @@
 {
+  "git": {
+    "deploymentEnabled": false
+  },
   "crons": [
     {
       "path": "/api/cron/news",
       "schedule": "0 4 * * *"
+    },
+    {
+      "path": "/api/cron/professional-scan-daily",
+      "schedule": "30 6 * * *"
     }
   ]
 }
