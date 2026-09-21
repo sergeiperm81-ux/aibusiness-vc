@@ -297,10 +297,10 @@ export default async function HomePage() {
         "An independent check of your AI service against the requirements you set for it, with evidence and a verification in the public registry.",
     },
     {
-      href: "/audit",
-      title: "AI Website Scan",
+      href: "/ai-tools",
+      title: "AI Tools",
       description:
-        "Is your site blocked for AI? See what the OpenAI and Anthropic models say about your business and whether their crawlers can read your site. Free scan in 30 seconds; fixes in the AI Fix Kit, €49.",
+        "AI Person Scan and AI Company Scan: what five AI models tell people about a person or a company, with a free preview first.",
     },
     {
       href: "/library",

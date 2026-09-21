@@ -48,7 +48,7 @@ const FAQS: readonly { q: string; a: string }[] = [
   },
   {
     q: "Is this a background or credit check?",
-    a: "No. It shows what AI models say about the company, with their sources. It is not a registry extract, a credit report or legal advice, and it can be wrong.",
+    a: "No. It shows what AI models say about the company, with their sources. It is not a registry extract, a credit report or legal advice, and it can be wrong. We scan the organisation represented by the website, which may be a company, a publication, a product or a personal brand, not its legal ownership or company registration.",
   },
   {
     q: "What if another company has the same name?",
@@ -75,6 +75,9 @@ export default function CompanyScanPage() {
           <CompanySiteForm />
           <p className="mt-6 text-lg font-bold text-white">
             Preview <span className="text-accent">free</span> · Full report <span className="text-accent">&euro;14.97</span> once
+          </p>
+          <p className="mt-3 max-w-2xl text-base text-white/60">
+            We scan the organisation represented by this website, not legal ownership or company registration.
           </p>
         </div>
         <div className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">

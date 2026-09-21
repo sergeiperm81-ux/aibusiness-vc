@@ -140,12 +140,6 @@ export function Header() {
                 AI Tools
               </Link>
               <Link
-                href="/audit"
-                className="px-3 py-2 text-sm font-semibold rounded-md text-white hover:text-accent hover:bg-card-bg"
-              >
-                AI Website Scan
-              </Link>
-              <Link
                 href="/professional-scan"
                 className="px-3 py-2 text-sm font-semibold rounded-md text-white hover:text-accent hover:bg-card-bg"
               >

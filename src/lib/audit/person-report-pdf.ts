@@ -284,7 +284,7 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
 
   if (ambiguous && ownFlags.length === 0) {
     // Listing "no disputes found" under an ambiguous identity would be a verdict after all.
-    pdf.text("The search covered disputes, complaints, reviews and warnings; no result was attributed to the supplied profile.", { gapAfter: 6 });
+    pdf.text(`The search covered disputes, complaints, reviews and warnings; no result was attributed to ${w.given}.`, { gapAfter: 6 });
   } else if (synthesis.redFlags.clear.length > 0) {
     pdf.text("What the models looked for and did not find", { bold: true, gapAfter: 3 });
     for (const line of synthesis.redFlags.clear) pdf.bullet(line, { color: GREEN });

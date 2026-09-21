@@ -182,8 +182,9 @@ export default async function PreviewPage({
           </div>
 
           <p className="mt-10 text-sm leading-relaxed text-black/60">
-            AI Company Scan is not a registry extract, a credit report or legal advice. It shows what AI models say about the
-            company, which can be wrong or about a different company.
+            AI Company Scan is not a registry extract, a credit report or legal advice. We scan the organisation represented by
+            this website, not legal ownership or company registration. It shows what AI models say, which can be wrong or about
+            a different company.
           </p>
         </div>
       </section>

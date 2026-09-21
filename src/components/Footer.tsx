@@ -6,12 +6,11 @@ import { ScrollToTop } from "@/components/ScrollToTop";
 
 /** The author's own side of the site, mirroring the Author's desk on the home page. */
 const AUTHOR_DESK = [
-  { name: "AI Test Purchase", href: "/service-check" },
   { name: "AI Tools", href: "/ai-tools" },
-  { name: "AI Website Scan", href: "/audit" },
+  { name: "AI Test Purchase", href: "/service-check" },
   { name: "AI Person Scan", href: "/professional-scan" },
-  { name: "AI Company Scan", href: "/company-scan" },
   { name: "Author's Library", href: "/library" },
+  { name: "AI Company Scan", href: "/company-scan" },
   { name: "Founder's Notes", href: "/notes" },
   { name: "About the author", href: "/sergei-ponomarev" },
 ];
