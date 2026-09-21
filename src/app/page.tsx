@@ -274,11 +274,6 @@ export default async function HomePage() {
       text: "An independent check of whether your AI does what you promise.",
     },
     {
-      href: "/audit",
-      title: "AI Website Scan",
-      text: "Is your site blocked for AI? Free 30-second scan."
-    },
-    {
       href: "/library",
       title: "Author's Library",
       text: "Free methods, checklists and templates. No registration.",

@@ -26,7 +26,7 @@ export default function ToolsPage() {
       <section className="bg-background">
         <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
           <p className="mb-2 font-mono text-xs font-medium uppercase tracking-wider text-emerald-400">
-            Tools &amp; Technology
+            Technology
           </p>
           <h1 className="mb-2 text-2xl font-bold text-white sm:text-3xl">
             What the AI Tools <span className="text-accent">Actually Cost</span>
