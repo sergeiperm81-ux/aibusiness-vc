@@ -3,6 +3,7 @@ import { parseCompanySite } from "@/lib/audit/company-site";
 import { redisKv } from "@/lib/audit/durable-kv";
 import { kickWorker } from "@/lib/audit/professional-kick";
 import { runPreview } from "@/lib/audit/professional-preview";
+import { workerAuthorised } from "@/lib/audit/worker-auth";
 
 export const runtime = "nodejs";
 export const maxDuration = 90;
@@ -32,7 +33,8 @@ export async function POST(request: Request) {
     clientAddress(request.headers),
     process.env.PERPLEXITY_API_KEY?.trim(),
     new Date(),
-    "company"
+    "company",
+    workerAuthorised(request.headers.get("authorization"), process.env.PROFESSIONAL_SCAN_WORKER_SECRET)
   );
   after(kickWorker);
 

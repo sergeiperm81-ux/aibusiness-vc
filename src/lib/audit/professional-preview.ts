@@ -177,7 +177,9 @@ export async function runPreview(
   ip: string,
   apiKey: string | undefined,
   now: Date = new Date(),
-  kind: ScanKind = "person"
+  kind: ScanKind = "person",
+  /** The owner testing: the per-address limit is skipped, the daily total still counts. */
+  owner = false
 ): Promise<PreviewResult> {
   try {
     const cached = await kv.get(cacheKey(profile.url));
@@ -189,7 +191,7 @@ export async function runPreview(
     const day = now.toISOString().slice(0, 10);
     const perIp = await kv.incr(`pscan:preview-ip:${day}:${createHash("sha256").update(ip).digest("hex").slice(0, 24)}`, 2 * 86400);
     const total = await kv.incr(`pscan:preview-day:${day}`, 2 * 86400);
-    if (perIp > PREVIEWS_PER_IP_PER_DAY || total > PREVIEWS_PER_DAY) return { ok: false, reason: "rate_limited" };
+    if ((!owner && perIp > PREVIEWS_PER_IP_PER_DAY) || total > PREVIEWS_PER_DAY) return { ok: false, reason: "rate_limited" };
 
     const identity = await identify(profile, apiKey, kind);
     if (!identity) return { ok: false, reason: "failed" };
