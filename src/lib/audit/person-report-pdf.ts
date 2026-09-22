@@ -224,7 +224,8 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
     color: GREY,
     gapAfter: 4,
   });
-  pdf.centered(`${input.profileUrl} · checked ${longDate(check.checkedAt)}`, { size: 10.5, color: ACCENT, gapAfter: 4 });
+  pdf.centeredLink(input.profileUrl, input.profileUrl, { size: 10.5, color: ACCENT });
+  pdf.centered(`Checked ${longDate(check.checkedAt)}`, { size: 10.5, color: GREY, gapAfter: 4 });
   pdf.rule();
   if (input.sample) {
     pdf.centered("Sample report. The full customer report includes a source appendix.", { size: 10.5, color: GREY, gapAfter: 8 });

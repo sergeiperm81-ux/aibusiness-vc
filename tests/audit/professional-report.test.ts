@@ -296,3 +296,21 @@ test("a step that promotes a role only one model names is left out; a step that 
   assert.equal(promotesLoneRole("Check whether the Mylo.family role is current; remove it where it still appears if not.", lone), false);
   assert.equal(promotesLoneRole("Use one headline on every network.", lone), false);
 });
+
+test("the cover address is a clickable link, in the report and in the sample", async () => {
+  const { PDFDocument, PDFName, PDFArray, PDFDict } = await import("pdf-lib");
+  const synthesis = parseSynthesis(raw(), LABELS, QUESTIONS, answersBlock(check()));
+  assert.ok(synthesis);
+  for (const sample of [false, true]) {
+    const bytes = await buildPersonReportPdf({ name: "Jane Doe", profileUrl: "https://www.linkedin.com/in/jane-doe", check: check(), synthesis, sample });
+    const doc = await PDFDocument.load(bytes);
+    const annots = doc.getPage(0).node.lookup(PDFName.of("Annots"));
+    assert.ok(annots instanceof PDFArray, "the cover has annotations");
+    const uris = annots.asArray().map((ref) => {
+      const annot = doc.context.lookup(ref);
+      const action = annot instanceof PDFDict ? annot.lookup(PDFName.of("A")) : null;
+      return action instanceof PDFDict ? String(action.lookup(PDFName.of("URI"))) : "";
+    });
+    assert.ok(uris.some((u) => u.includes("linkedin.com/in/jane-doe")), `sample=${sample}: ${uris.join(" ")}`);
+  }
+});

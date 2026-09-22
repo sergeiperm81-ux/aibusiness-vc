@@ -4,6 +4,7 @@ import { redisKv } from "@/lib/audit/durable-kv";
 import { loadPreview } from "@/lib/audit/professional-preview";
 import { providerConfigured } from "@/lib/audit/professional-runtime";
 import { checkoutAvailability } from "@/lib/audit/provider-health";
+import { createScanCheckout } from "@/lib/audit/scan-checkout";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -30,14 +31,12 @@ export async function GET(request: Request) {
   const gate = await checkoutAvailability(redisKv, PERSON_PROVIDER_IDS, providerConfigured);
   if (!gate.open) return back(gate.reason);
 
-  const base = process.env.LEMONSQUEEZY_COMPANY_SCAN_CHECKOUT_URL?.trim();
-  if (!base) return back("not_configured");
-  let url: URL;
-  try {
-    url = new URL(base);
-  } catch {
-    return back("not_configured");
-  }
-  url.searchParams.set("checkout[custom][preview_id]", preview.id);
+  const buyLink = process.env.LEMONSQUEEZY_COMPANY_SCAN_CHECKOUT_URL?.trim();
+  const apiKey = process.env.LEMONSQUEEZY_API_KEY?.trim();
+  const storeId = process.env.LEMONSQUEEZY_STORE_ID?.trim();
+  const variantId = process.env.LEMONSQUEEZY_COMPANY_SCAN_VARIANT_ID?.trim();
+  if (!buyLink || !apiKey || !storeId || !variantId) return back("not_configured");
+  const url = await createScanCheckout({ apiKey, storeId, variantId, buyLink }, preview.id, "company");
+  if (!url) return back("not_configured");
   return NextResponse.redirect(url, 303);
 }

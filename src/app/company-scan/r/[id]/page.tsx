@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { after } from "next/server";
+import { CheckoutButton } from "@/components/professional/CheckoutButton";
 import { PERSON_PROVIDER_IDS } from "@/lib/audit/answer-providers";
 import { redisKv } from "@/lib/audit/durable-kv";
 import { kickWorker } from "@/lib/audit/professional-kick";
@@ -154,8 +155,8 @@ export default async function PreviewPage({
             <li className="flex flex-wrap items-center gap-4 rounded-2xl bg-black px-6 py-4 md:col-span-2 lg:col-span-3">
               <span className="rounded-full bg-accent px-4 py-1.5 text-base font-bold uppercase tracking-wider text-black">Bonus</span>
               <p className="text-lg font-bold text-white">
-                A promo code for 7 more checks of people or companies at <span className="text-accent">50% off</span>, yours to
-                give away to colleagues and partners.
+                With a full-price purchase: a code for <span className="text-accent">50% off</span> up to 7 additional AI Person
+                or AI Company Scans, yours to give away to colleagues and partners.
               </p>
             </li>
           </ul>
@@ -167,16 +168,19 @@ export default async function PreviewPage({
               </p>
             ) : (
               <div className="grid grid-cols-1 items-center gap-4 lg:grid-cols-2">
-                <a
-                  href={`/api/company-scan/checkout?preview=${encodeURIComponent(preview.id)}`}
-                  className="flex items-center justify-center gap-3 rounded-2xl bg-accent px-10 py-6 text-3xl font-bold text-black transition hover:bg-accent-hover"
-                >
+                <CheckoutButton href={`/api/company-scan/checkout?preview=${encodeURIComponent(preview.id)}`} kind="company">
                   Get the full report, &euro;14.97
-                  <svg viewBox="0 0 24 24" aria-hidden className="h-8 w-8" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M5 12h14M13 6l6 6-6 6" />
-                  </svg>
-                </a>
-                <p className="text-xl font-semibold text-black/75">PDF by email in about 5 minutes · refund if it does not arrive</p>
+                </CheckoutButton>
+                <p className="text-xl font-semibold text-black/75">Most reports arrive by email in about 5 minutes · refund if it does not arrive
+                  <br />
+                  <span className="text-base font-normal text-black/60">
+                    By paying you accept the{" "}
+                    <Link href="/terms" className="underline">
+                      Terms of Use
+                    </Link>
+                    .
+                  </span>
+                </p>
               </div>
             )}
           </div>

@@ -99,7 +99,12 @@ const STEP_NEEDS_MS: Readonly<Partial<Record<ProfessionalOrder["state"], number>
   synthesised: 30_000,
   discounted: 40_000,
   emailed: 5_000,
+  codes_pending: 30_000,
 };
+
+/** A code Lemon Squeezy refused is tried again this often, then hourly, and given up after this long. */
+export const CODES_RETRY_MS = 10 * 60 * 1000;
+export const CODES_GIVE_UP_MS = 7 * 24 * 3600 * 1000;
 
 export interface DiscountSpec {
   readonly code: string;
@@ -128,6 +133,8 @@ export interface ScanDeps {
   readonly sendDelayNotice: (order: ProfessionalOrder) => Promise<void>;
   /** Sent once when the report could not be made within GIVE_UP_AFTER_MS: the buyer is told a refund follows. */
   readonly sendGiveUpNotice: (order: ProfessionalOrder) => Promise<void>;
+  /** Sent once, after the report, when a code could not be created in time to go in the report's letter. */
+  readonly sendCodesNotice: (order: ProfessionalOrder) => Promise<void>;
   readonly notifyOwner: (subject: string, text: string) => Promise<void>;
   /** Derives a stable code from a seed, so a retry creates the same code. */
   readonly codeFor: (seed: string) => string;
@@ -329,28 +336,78 @@ async function stepSynthesis(deps: ScanDeps, order: ProfessionalOrder): Promise<
   return saveOrder(deps.kv, order, { state: "synthesised" }, deps.now());
 }
 
-async function stepDiscount(deps: ScanDeps, order: ProfessionalOrder): Promise<ProfessionalOrder> {
+/**
+ * Creates the codes the buyer is owed: the seven-check code after a full-price
+ * purchase, the free check when a model was missing. A code Lemon Squeezy
+ * refuses is not forgotten: the order remembers it is owed and the worker
+ * comes back for it.
+ */
+async function createOwedCodes(
+  deps: ScanDeps,
+  order: ProfessionalOrder
+): Promise<{ readonly discountCode: string | null; readonly apologyCode: string | null; readonly failure: string | null }> {
   let discountCode = order.discountCode;
   let apologyCode = order.apologyCode;
-  try {
-    if (order.fullPrice && !discountCode) {
+  let failure: string | null = null;
+  const attempt = async (make: () => Promise<void>): Promise<void> => {
+    try {
+      await make();
+    } catch (error) {
+      failure = error instanceof Error ? error.message : String(error);
+    }
+  };
+  if (order.fullPrice && !discountCode) {
+    await attempt(async () => {
       const code = deps.codeFor(`seven:${order.key}`);
-      await deps.createDiscount({ code, name: `Pro Scan x7 for order ${order.orderId}`, percent: 50, maxRedemptions: 7 });
+      await deps.createDiscount({ code, name: `Scan x7 for order ${order.orderId}`, percent: 50, maxRedemptions: 7 });
       discountCode = code;
-    }
-    if (order.missingProviders.length > 0 && !apologyCode) {
+    });
+  }
+  if (order.missingProviders.length > 0 && !apologyCode) {
+    await attempt(async () => {
       const code = deps.codeFor(`apology:${order.key}`);
-      await deps.createDiscount({ code, name: `Pro Scan free check, order ${order.orderId}`, percent: 100, maxRedemptions: 1 });
+      await deps.createDiscount({ code, name: `Scan free check, order ${order.orderId}`, percent: 100, maxRedemptions: 1 });
       apologyCode = code;
-    }
-  } catch (error) {
-    // The report matters more than the code: send without it and tell the owner.
+    });
+  }
+  return { discountCode, apologyCode, failure };
+}
+
+async function stepDiscount(deps: ScanDeps, order: ProfessionalOrder): Promise<ProfessionalOrder> {
+  const made = await createOwedCodes(deps, order);
+  if (made.failure !== null) {
+    // The report matters more than the code: it goes out now, the code follows in its own letter.
     await deps.notifyOwner(
       "AI Person Scan: discount code not created",
-      `Order ${order.key}: ${error instanceof Error ? error.message : String(error)}. The report goes out without the code; send one by hand.`
+      `Order ${order.key}: ${made.failure}. The report goes out without the code; the worker keeps trying and sends the code separately.`
     );
   }
-  return saveOrder(deps.kv, order, { state: "discounted", discountCode, apologyCode }, deps.now());
+  return saveOrder(
+    deps.kv,
+    order,
+    { state: "discounted", discountCode: made.discountCode, apologyCode: made.apologyCode, codesPending: made.failure !== null },
+    deps.now()
+  );
+}
+
+/** After the report: the owed code, tried again, and sent once in its own letter when it exists. */
+async function stepCodes(deps: ScanDeps, order: ProfessionalOrder): Promise<ProfessionalOrder> {
+  const made = await createOwedCodes(deps, order);
+  const current = await saveOrder(deps.kv, order, { discountCode: made.discountCode, apologyCode: made.apologyCode }, deps.now());
+  if (made.failure !== null) {
+    const age = deps.now().getTime() - Date.parse(current.createdAt);
+    if (age > CODES_GIVE_UP_MS) {
+      await deps.notifyOwner(
+        "AI Person Scan: code still not created after a week",
+        `Order ${current.key}: ${made.failure}. Send the buyer a code by hand.`
+      );
+      return saveOrder(deps.kv, current, { state: "done", codesPending: true }, deps.now());
+    }
+    await scheduleAt(deps.kv, current.key, new Date(deps.now().getTime() + (age > SLOW_RETRY_AFTER_MS ? SLOW_RETRY_MS : CODES_RETRY_MS)));
+    return current;
+  }
+  await sendOnce(deps, current, "codes", () => deps.sendCodesNotice(current));
+  return saveOrder(deps.kv, current, { state: "done", codesPending: false }, deps.now());
 }
 
 async function stepEmail(deps: ScanDeps, order: ProfessionalOrder): Promise<ProfessionalOrder> {
@@ -420,7 +477,11 @@ export async function advanceOrder(deps: ScanDeps, key: string, deadline: number
             order = await stepEmail(deps, order);
             break;
           case "emailed":
-            order = await saveOrder(deps.kv, order, { state: "done" }, deps.now());
+            order = await saveOrder(deps.kv, order, { state: order.codesPending ? "codes_pending" : "done" }, deps.now());
+            break;
+          case "codes_pending":
+            order = await stepCodes(deps, order);
+            if (order.state === "codes_pending") return order;
             break;
           case "done":
             await finish(deps.kv, key);

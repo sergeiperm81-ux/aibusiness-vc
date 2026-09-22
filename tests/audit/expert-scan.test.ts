@@ -236,5 +236,5 @@ test("a website, a channel, a company page or a post is refused with a sentence 
     if (!result.ok) assert.ok(result.error.length > 20);
   }
   const site = parseSocialProfile("https://aibusiness.vc");
-  assert.ok(!site.ok && /AI Website Scan/.test(site.error));
+  assert.ok(!site.ok && /AI Company Scan/.test(site.error));
 });

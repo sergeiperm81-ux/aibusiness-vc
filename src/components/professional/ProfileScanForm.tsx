@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { parseSocialProfile } from "@/lib/audit/social-profile";
+import { trackScan } from "@/lib/scan-analytics";
 
 /**
  * One field: the link to a personal profile. The same parser as the server
@@ -22,9 +23,11 @@ export function ProfileScanForm({ tone = "dark" }: { tone?: "dark" | "yellow" })
     const parsed = parseSocialProfile(value);
     if (!parsed.ok) {
       setError(parsed.error);
+      trackScan("preview_failed", "person", { reason: "invalid_link" });
       return;
     }
     setBusy(true);
+    trackScan("preview_started", "person");
     try {
       const response = await fetch("/api/professional-scan/preview", {
         method: "POST",
@@ -33,11 +36,14 @@ export function ProfileScanForm({ tone = "dark" }: { tone?: "dark" | "yellow" })
       });
       const data = (await response.json()) as { ok: boolean; previewId?: string; error?: string };
       if (data.ok && data.previewId) {
+        trackScan("preview_completed", "person");
         router.push(`/professional-scan/r/${data.previewId}`);
         return;
       }
+      trackScan("preview_failed", "person", { reason: response.status === 429 ? "rate_limited" : "unavailable" });
       setError(data.error ?? "The check did not work this time. Please try again.");
     } catch {
+      trackScan("preview_failed", "person", { reason: "network" });
       setError("The check did not work this time. Please try again.");
     }
     setBusy(false);

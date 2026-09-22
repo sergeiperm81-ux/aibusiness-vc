@@ -26,6 +26,7 @@ import {
   codeFor,
   createLemonDiscount,
   sendDelayEmail,
+  sendCodesEmail,
   sendGiveUpEmail,
   sendOwnerAlert,
   sendReportEmail,
@@ -115,6 +116,7 @@ export function productionDeps(): ScanDeps {
     sendReport: (email) => sendReportEmail(email, mailConfig()),
     sendDelayNotice: (order) => sendDelayEmail(order, mailConfig()),
     sendGiveUpNotice: (order) => sendGiveUpEmail(order, mailConfig()),
+    sendCodesNotice: (order) => sendCodesEmail(order, mailConfig()),
     notifyOwner: async (subject, text) => {
       try {
         await sendOwnerAlert(subject, text, mailConfig());

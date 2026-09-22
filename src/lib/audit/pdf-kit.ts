@@ -230,6 +230,29 @@ export class PdfWriter {
     this.y -= options.gapAfter ?? 0;
   }
 
+  /** A centred clickable line, for the address on a cover. */
+  centeredLink(label: string, address: string, options: TextOptions = {}): void {
+    const size = options.size ?? 10.5;
+    const font = options.bold ? this.bold : this.regular;
+    const line = this.clean(label);
+    const width = font.widthOfTextAtSize(line, size);
+    this.ensure(size + 5);
+    const x = MARGIN + Math.max(0, (CONTENT_WIDTH - width) / 2);
+    const y = this.y - size;
+    this.page.drawText(line, { x, y, size, font, color: options.color ?? ACCENT });
+    if (/^https?:\/\//i.test(address)) {
+      const annotation = this.doc.context.obj({
+        Type: "Annot",
+        Subtype: "Link",
+        Rect: [x, y - 2, x + width, y + size],
+        Border: [0, 0, 0],
+        A: { Type: "Action", S: "URI", URI: PDFString.of(address) },
+      });
+      this.page.node.addAnnot(this.doc.context.register(annotation));
+    }
+    this.y -= size * 1.2 + 2 + (options.gapAfter ?? 0);
+  }
+
   title(value: string): void {
     this.centered(value, { size: 24, bold: true, gapAfter: 6 });
   }

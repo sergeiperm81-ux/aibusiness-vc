@@ -129,7 +129,7 @@ const FAQS: readonly { q: string; a: string }[] = [
   },
   {
     q: "Which social networks work?",
-    a: "Personal profiles on LinkedIn, X, Instagram and Facebook. Not websites, company pages or YouTube channels. For a company website, use the AI Website Scan.",
+    a: "Personal profiles on LinkedIn, X, Instagram and Facebook. Not websites, company pages or YouTube channels. For a company, use the AI Company Scan.",
   },
   {
     q: "Can I check someone else?",
@@ -137,7 +137,7 @@ const FAQS: readonly { q: string; a: string }[] = [
   },
   {
     q: "How long does it take?",
-    a: "About five minutes after payment. If one of the five models is not answering, we keep trying, and tell you by email that the report will take longer.",
+    a: "Most reports arrive by email in about five minutes. Processing starts immediately after payment. If an AI provider is slow, we email you and retry automatically. You do not need to refresh.",
   },
   {
     q: "What if one of the five models is down?",
@@ -257,7 +257,7 @@ export default function ProfessionalScanPage() {
       <section className="bg-white">
         <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
           <h2 className="mb-3 text-4xl font-bold tracking-tight text-black sm:text-5xl">What&rsquo;s in the report</h2>
-          <p className="mb-10 max-w-2xl text-xl leading-relaxed text-black/65">One PDF by email, about five minutes after payment.</p>
+          <p className="mb-10 max-w-2xl text-xl leading-relaxed text-black/65">One PDF by email. Most reports arrive in about five minutes; processing starts immediately after payment.</p>
           <ul className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {INCLUDED.map((item) => (
               <li key={item.title} className="rounded-3xl bg-black p-7">
@@ -284,7 +284,7 @@ export default function ProfessionalScanPage() {
               Free, in about 20 seconds: the name, role and company an AI model finds from your link.
             </Step>
             <Step n="3" title="Get the full report">
-              &euro;14.97 once. The PDF arrives by email in about five minutes.
+              &euro;14.97 once. Most reports arrive by email in about five minutes; if a model is slow, we email you and retry.
             </Step>
           </ol>
         </div>
@@ -353,13 +353,14 @@ export default function ProfessionalScanPage() {
                 7 more checks at half price. <span className="text-accent">Yours to give away.</span>
               </h2>
               <p className="mt-5 max-w-2xl text-xl leading-relaxed text-white/80">
-                Every report comes with a personal code, good for 7 checks at half price. Use it yourself, or hand it to the
-                people you know: they get a check for half the price, and you are the one who got it for them.
+                Every full-price purchase includes a code for 50% off up to 7 additional AI Person or AI Company Scans. Use it
+                yourself, or hand it to the people you know: they get a check for half the price, and you are the one who got
+                it for them. An order paid with a code does not create a new code.
               </p>
             </div>
             <div className="rounded-3xl bg-accent px-10 py-8 text-center">
-              <p className="text-6xl font-bold tracking-tight text-black">&euro;7.47</p>
-              <p className="mt-2 text-lg font-bold text-black/70">instead of &euro;14.97</p>
+              <p className="text-6xl font-bold tracking-tight text-black">50% off</p>
+              <p className="mt-2 text-lg font-bold text-black/70">up to 7 more scans</p>
             </div>
           </div>
           <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2">
@@ -372,7 +373,8 @@ export default function ProfessionalScanPage() {
             <div className="rounded-3xl border-2 border-white/25 p-7">
               <p className="text-2xl font-bold text-white">Use it yourself</p>
               <p className="mt-3 text-lg leading-relaxed text-white/85">
-                Check a partner before you sign, or a supplier before you pay. Up to 7 checks, whoever uses the code.
+                Check a partner before you sign, or a supplier before you pay. Up to 7 scans of people or companies, whoever
+                uses the code.
               </p>
             </div>
           </div>
@@ -399,8 +401,8 @@ export default function ProfessionalScanPage() {
             <h2 className="text-3xl font-bold tracking-tight text-white">Who built this</h2>
             <p className="mt-4 max-w-2xl text-lg leading-relaxed text-white/80">
               <span className="font-bold text-white">Sergei Ponomarev</span> runs aibusiness.vc and tests AI agents the way a
-              mystery shopper tests a shop. The same engine checks what AI assistants can read on a company&rsquo;s site in the AI
-              Website Scan. This scan points it at people.
+              mystery shopper tests a shop. The same engine checks what AI assistants say about a company in the AI Company
+              Scan. This scan points it at people.
             </p>
             <ul className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
               <li className="rounded-2xl bg-accent p-5">
@@ -442,7 +444,7 @@ export default function ProfessionalScanPage() {
       <section className="bg-accent">
         <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
           <h2 className="mb-8 max-w-3xl text-4xl font-bold tracking-tight text-black sm:text-5xl">
-            In five minutes you will know what AI tells people about you.
+            See what AI tells people about you.
           </h2>
           <ProfileScanForm tone="yellow" />
           <p className="mt-6 text-lg font-bold text-black">Preview free · Full report &euro;14.97 once</p>

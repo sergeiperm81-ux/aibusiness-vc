@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { trackScan } from "@/lib/scan-analytics";
 
 /** One field: the company's website. The server checks it again and refuses social networks. */
 export function CompanySiteForm({ tone = "dark" }: { tone?: "dark" | "yellow" }) {
@@ -16,9 +17,11 @@ export function CompanySiteForm({ tone = "dark" }: { tone?: "dark" | "yellow" })
     setError(null);
     if (!value.trim()) {
       setError("Enter the company's website, for example acme.com.");
+      trackScan("preview_failed", "company", { reason: "invalid_link" });
       return;
     }
     setBusy(true);
+    trackScan("preview_started", "company");
     try {
       const response = await fetch("/api/company-scan/preview", {
         method: "POST",
@@ -27,11 +30,14 @@ export function CompanySiteForm({ tone = "dark" }: { tone?: "dark" | "yellow" })
       });
       const data = (await response.json()) as { ok: boolean; previewId?: string; error?: string };
       if (data.ok && data.previewId) {
+        trackScan("preview_completed", "company");
         router.push(`/company-scan/r/${data.previewId}`);
         return;
       }
+      trackScan("preview_failed", "company", { reason: response.status === 429 ? "rate_limited" : response.status === 422 ? "invalid_link" : "unavailable" });
       setError(data.error ?? "The check did not work this time. Please try again.");
     } catch {
+      trackScan("preview_failed", "company", { reason: "network" });
       setError("The check did not work this time. Please try again.");
     }
     setBusy(false);

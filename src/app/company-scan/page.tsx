@@ -55,6 +55,14 @@ const FAQS: readonly { q: string; a: string }[] = [
     a: "The report says so and keeps them apart. Pages and trouble that belong to another company are left out, and the report then draws no conclusion about reputation.",
   },
   {
+    q: "How long does it take?",
+    a: "Most reports arrive by email in about five minutes. Processing starts immediately after payment. If an AI provider is slow, we email you and retry automatically. You do not need to refresh.",
+  },
+  {
+    q: "What is the bonus?",
+    a: "Every full-price purchase includes a code for 50% off up to 7 additional AI Person or AI Company Scans. Use it yourself or give it away. An order paid with a code does not create a new code.",
+  },
+  {
     q: "What if the report does not arrive?",
     a: "If it does not reach you, or it is about a different company, write to us and you get a full refund. If a model is slow, we keep retrying for up to an hour.",
   },
@@ -75,6 +83,9 @@ export default function CompanyScanPage() {
           <CompanySiteForm />
           <p className="mt-6 text-lg font-bold text-white">
             Preview <span className="text-accent">free</span> · Full report <span className="text-accent">&euro;14.97</span> once
+          </p>
+          <p className="mt-2 text-lg font-bold text-white/85">
+            Bonus: <span className="text-accent">50% off</span> up to 7 more AI Person or AI Company Scans with every full-price purchase.
           </p>
           <p className="mt-3 max-w-2xl text-base text-white/60">
             We scan the organisation represented by this website, not legal ownership or company registration.
@@ -99,7 +110,7 @@ export default function CompanyScanPage() {
       <section className="bg-white">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
           <h2 className="mb-3 text-4xl font-bold tracking-tight text-black sm:text-5xl">What&rsquo;s in the report</h2>
-          <p className="mb-10 max-w-2xl text-xl leading-relaxed text-black/65">One PDF by email, about five minutes after payment.</p>
+          <p className="mb-10 max-w-2xl text-xl leading-relaxed text-black/65">One PDF by email. Most reports arrive in about five minutes; processing starts immediately after payment.</p>
           <ul className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {INCLUDED.map((item) => (
               <li key={item.title} className="rounded-3xl bg-black p-7">
@@ -118,7 +129,7 @@ export default function CompanyScanPage() {
             {[
               ["1", "Enter the website", "The company's own site. Nothing else to fill in."],
               ["2", "See which company AI finds", "Free, in about 20 seconds: the name, what it does and where it is based."],
-              ["3", "Get the full report", "€14.97 once. The PDF arrives by email in about five minutes."],
+              ["3", "Get the full report", "€14.97 once. Most reports arrive by email in about five minutes; if a model is slow, we email you and retry."],
             ].map(([n, title, body]) => (
               <li key={n} className="rounded-3xl bg-black p-7">
                 <p className="text-4xl font-bold text-accent">{n}</p>

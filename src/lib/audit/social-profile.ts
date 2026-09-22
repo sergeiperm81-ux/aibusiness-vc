@@ -34,7 +34,7 @@ const NOT_A_PERSON =
   "This looks like a company, group or post, not a personal profile. " + SOCIAL_PROFILE_HINT;
 const WRONG_SITE =
   "We only take a personal social profile here: LinkedIn, X, Instagram or Facebook. " +
-  "For a company website, use the AI Website Scan.";
+  "For a company, use the AI Company Scan.";
 
 const HOSTS: Readonly<Record<string, SocialNetwork>> = {
   "linkedin.com": "linkedin",

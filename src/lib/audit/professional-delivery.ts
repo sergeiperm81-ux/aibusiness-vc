@@ -14,7 +14,6 @@ import type { DiscountSpec, ReportEmail } from "./professional-worker";
 import { computeAnswerSignals } from "./answer-check-report";
 
 export const FULL_PRICE = "€14.97";
-export const CODE_PRICE = "€7.47";
 
 const PROVIDER_NAMES: Readonly<Record<string, string>> = {
   openai: "OpenAI",
@@ -118,6 +117,60 @@ async function sendBrevo(
   if (!response.ok) throw new Error(`Brevo ${response.status}: ${(await response.text()).slice(0, 300)}`);
 }
 
+const BONUS_LEAD = "Your bonus: a code for 50% off up to 7 additional AI Person or AI Company Scans, yours to give away.";
+const BONUS_BODY =
+  "Give the code to friends, family, colleagues and partners so they can see what AI says about them, or use it yourself before you work with someone new.";
+
+function bonusHtml(code: string): string {
+  return `<p><strong>${BONUS_LEAD}</strong> ${BONUS_BODY}<br><span style="font-size:18px;letter-spacing:1px"><strong>${escapeHtml(code)}</strong></span><br><a href="https://aibusiness.vc/ai-tools">aibusiness.vc/ai-tools</a></p>`;
+}
+
+function bonusText(code: string): string {
+  return `${BONUS_LEAD} ${BONUS_BODY}\nCode: ${code}\nhttps://aibusiness.vc/ai-tools`;
+}
+
+function apologyHtml(order: ProfessionalOrder): string {
+  const which = order.missingProviders.map((id) => PROVIDER_NAMES[id] ?? id).join(", ");
+  return `<p><strong>One model was missing.</strong> ${escapeHtml(which)} did not answer after several tries, so your report has four models instead of five. We are sorry. Here is a free check for you, or for anyone you choose: <strong>${escapeHtml(order.apologyCode ?? "")}</strong></p>`;
+}
+
+/** The disclaimer under every letter, for the scan the order is. */
+function disclaimer(order: ProfessionalOrder): { html: string; text: string } {
+  const line =
+    order.subject.kind === "company"
+      ? "This report shows what AI models say about the organisation represented by the website you gave. It is not a registry extract, a credit report, legal advice or full due diligence, and it must not be the sole basis for a contract, a payment or an investment."
+      : "This report shows what AI models say. It is not a background check and must not be used to decide on employment, tenancy, credit or insurance.";
+  return { html: `<p style="font-size:12px;color:#666">${line}</p>`, text: line };
+}
+
+/** The letter that brings a code the report's letter could not: sent once, only when a code was owed and is now made. */
+export function codesEmailContent(order: ProfessionalOrder): { subject: string; html: string; text: string } {
+  const parts: { html: string; text: string }[] = [
+    {
+      html: `<p>Your ${productNameFor(order)} report for <strong>${escapeHtml(order.subject.name)}</strong> went out earlier without its code. Here it is.</p>`,
+      text: `Your ${productNameFor(order)} report for ${order.subject.name} went out earlier without its code. Here it is.`,
+    },
+  ];
+  if (order.discountCode) parts.push({ html: bonusHtml(order.discountCode), text: bonusText(order.discountCode) });
+  if (order.apologyCode) {
+    const which = order.missingProviders.map((id) => PROVIDER_NAMES[id] ?? id).join(", ");
+    parts.push({ html: apologyHtml(order), text: `One model was missing. ${which} did not answer after several tries, so your report has four models instead of five. We are sorry. Here is a free check for you, or for anyone you choose: ${order.apologyCode}` });
+  }
+  parts.push({
+    html: `<p>Questions: write to <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a> and I will answer personally.</p><p>Sergei Ponomarev<br>aibusiness.vc</p>`,
+    text: `Questions: write to ${CONTACT_EMAIL} and I will answer personally.\n\nSergei Ponomarev\naibusiness.vc`,
+  });
+  return {
+    subject: `${productNameFor(order)}: your code`,
+    html: parts.map((p) => p.html).join("\n"),
+    text: parts.map((p) => p.text).join("\n\n"),
+  };
+}
+
+export async function sendCodesEmail(order: ProfessionalOrder, config: MailConfig): Promise<void> {
+  await sendBrevo(config, { to: order.email, ...codesEmailContent(order), bccOwner: true });
+}
+
 export function reportEmailContent(order: ProfessionalOrder): { subject: string; html: string; text: string } {
   const name = order.subject.name;
   const missing = order.missingProviders.length > 0;
@@ -134,19 +187,20 @@ export function reportEmailContent(order: ProfessionalOrder): { subject: string;
   if (missing) {
     const which = order.missingProviders.map((id) => PROVIDER_NAMES[id] ?? id).join(", ");
     lines.push({
-      html: `<p><strong>One model was missing.</strong> ${escapeHtml(which)} did not answer after several tries, so this report has four models instead of five. We are sorry. Here is a free check for you, or for anyone you choose: <strong>${escapeHtml(order.apologyCode ?? "we will send your code by hand")}</strong></p>`,
-      text: `One model was missing. ${which} did not answer after several tries, so this report has four models instead of five. We are sorry. Here is a free check for you, or for anyone you choose: ${order.apologyCode ?? "we will send your code by hand"}`,
+      html: `<p><strong>One model was missing.</strong> ${escapeHtml(which)} did not answer after several tries, so this report has four models instead of five. We are sorry. Here is a free check for you, or for anyone you choose: <strong>${escapeHtml(order.apologyCode ?? "it follows in a separate email")}</strong></p>`,
+      text: `One model was missing. ${which} did not answer after several tries, so this report has four models instead of five. We are sorry. Here is a free check for you, or for anyone you choose: ${order.apologyCode ?? "it follows in a separate email"}`,
     });
   }
   if (order.discountCode) {
     lines.push({
-      html: `<p><strong>Your bonus: 7 checks at half price, yours to give away.</strong> ${CODE_PRICE} instead of ${FULL_PRICE}, for up to 7 more checks of people or companies. Give the code to friends, family, colleagues and partners so they can see what AI says about them, or use it yourself before you work with someone new.<br><span style="font-size:18px;letter-spacing:1px"><strong>${escapeHtml(order.discountCode)}</strong></span><br><a href="https://aibusiness.vc/ai-tools">aibusiness.vc/ai-tools</a></p>`,
-      text: `Your bonus: 7 checks at half price, yours to give away. ${CODE_PRICE} instead of ${FULL_PRICE}, for up to 7 more checks of people or companies. Give the code to friends, family, colleagues and partners so they can see what AI says about them, or use it yourself before you work with someone new.\nCode: ${order.discountCode}\nhttps://aibusiness.vc/ai-tools`,
+      html: bonusHtml(order.discountCode),
+      text: bonusText(order.discountCode),
     });
   }
+  const note = disclaimer(order);
   lines.push({
-    html: `<p style="font-size:12px;color:#666">This report shows what AI models say. It is not a background check and must not be used to decide on employment, tenancy, credit or insurance.</p><p>Questions, or a file that will not open: write to <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a> and I will answer personally.</p><p>Sergei Ponomarev<br>aibusiness.vc</p>`,
-    text: `This report shows what AI models say. It is not a background check and must not be used to decide on employment, tenancy, credit or insurance.\n\nQuestions, or a file that will not open: write to ${CONTACT_EMAIL} and I will answer personally.\n\nSergei Ponomarev\naibusiness.vc`,
+    html: `${note.html}<p>Questions, or a file that will not open: write to <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a> and I will answer personally.</p><p>Sergei Ponomarev<br>aibusiness.vc</p>`,
+    text: `${note.text}\n\nQuestions, or a file that will not open: write to ${CONTACT_EMAIL} and I will answer personally.\n\nSergei Ponomarev\naibusiness.vc`,
   });
   return {
     subject: `${productNameFor(order)}: ${name}`,

@@ -92,6 +92,9 @@ function harness(behaviour: Behaviour, overrides: Partial<ScanDeps> = {}): Harne
     sendGiveUpNotice: async (order) => {
       owner.push(`give-up to ${order.email}`);
     },
+    sendCodesNotice: async (order) => {
+      owner.push(`codes to ${order.email}: ${order.discountCode ?? "-"}/${order.apologyCode ?? "-"}`);
+    },
     notifyOwner: async (subject) => {
       owner.push(subject);
     },
@@ -230,17 +233,73 @@ test("a refusal for money marks the provider down and alerts the owner once", as
   assert.deepEqual(gate, { open: false, reason: "provider_down" });
 });
 
-test("a failed discount does not hold the report back", async () => {
+test("a refused discount does not hold the report back: the code stays owed, is retried, and comes in one letter", async () => {
+  let refuse = true;
+  const h = harness(ALL_OK, {
+    createDiscount: async (spec) => {
+      if (refuse) throw new Error("Lemon Squeezy 500");
+      h.discounts.push(spec);
+    },
+  });
+  const key = await newOrder(h.kv);
+  const order = await advanceOrder(h.deps, key, DEADLINE());
+  assert.equal(order?.state, "codes_pending");
+  assert.equal(h.reports.length, 1, "the report went out");
+  assert.equal(h.reports[0].order.discountCode, null);
+  assert.ok(h.owner.some((s) => s.includes("discount code not created")));
+  assert.equal(h.owner.filter((s) => s.startsWith("codes to")).length, 0, "no code letter yet");
+
+  // Still refused on the next run: the order stays owed and is put back on the queue.
+  await advanceOrder(h.deps, key, DEADLINE());
+  assert.equal((await loadOrder(h.kv, key))?.state, "codes_pending");
+  assert.equal(h.discounts.length, 0);
+
+  // Lemon Squeezy is back: the code is made and sent, in exactly one letter.
+  refuse = false;
+  const done = await advanceOrder(h.deps, key, DEADLINE());
+  assert.equal(done?.state, "done");
+  assert.equal(done?.codesPending, false);
+  assert.equal(h.discounts.length, 1);
+  assert.equal(h.discounts[0].percent, 50);
+  assert.equal(h.discounts[0].maxRedemptions, 7);
+  const letters = h.owner.filter((s) => s.startsWith("codes to"));
+  assert.equal(letters.length, 1);
+  assert.match(letters[0], new RegExp(h.discounts[0].code));
+  assert.equal(h.reports.length, 1, "the report was not sent again");
+
+  // A run after that changes nothing.
+  await advanceOrder(h.deps, key, DEADLINE());
+  assert.equal(h.owner.filter((s) => s.startsWith("codes to")).length, 1);
+  assert.equal(h.discounts.length, 1);
+});
+
+test("a discounted order owes no code and never enters codes_pending, even when Lemon Squeezy is down", async () => {
+  const h = harness(ALL_OK, {
+    createDiscount: async () => {
+      throw new Error("Lemon Squeezy 500");
+    },
+  });
+  const key = await newOrder(h.kv, false);
+  const order = await advanceOrder(h.deps, key, DEADLINE());
+  assert.equal(order?.state, "done");
+  assert.equal(order?.codesPending, false);
+  assert.equal(h.owner.filter((s) => s.includes("discount code not created")).length, 0);
+});
+
+test("a code refused for a week is given up with a note to the owner, not retried forever", async () => {
   const h = harness(ALL_OK, {
     createDiscount: async () => {
       throw new Error("Lemon Squeezy 500");
     },
   });
   const key = await newOrder(h.kv);
-  const order = await advanceOrder(h.deps, key, DEADLINE());
-  assert.equal(order?.state, "done");
-  assert.equal(h.reports[0].order.discountCode, null);
-  assert.ok(h.owner.some((s) => s.includes("discount code not created")));
+  await advanceOrder(h.deps, key, DEADLINE());
+  await h.deps.sleep(8 * 24 * 3600 * 1000);
+  const late = await advanceOrder(h.deps, key, h.deps.now().getTime() + 280_000);
+  assert.equal(late?.state, "done");
+  assert.equal(late?.codesPending, true);
+  assert.ok(h.owner.some((s) => s.includes("still not created after a week")));
+  assert.equal(h.owner.filter((s) => s.startsWith("codes to")).length, 0);
 });
 
 test("a failed email is retried on a later run, and sent once", async () => {
@@ -447,7 +506,7 @@ test("the email escapes what came from a model, and states the code and the miss
   const content = reportEmailContent(order);
   assert.doesNotMatch(content.html, /<script>/);
   assert.match(content.html, /PROABCDEFGH/);
-  assert.match(content.text, /up to 7 more checks/);
+  assert.match(content.text, /50% off up to 7 additional/);
   assert.match(content.text, /four models instead of five/);
   assert.match(content.text, /Grok did not answer/);
   assert.match(content.text, /PROZZZZZZZZ/);

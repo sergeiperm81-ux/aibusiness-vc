@@ -37,7 +37,9 @@ export type OrderState =
   | "needs_attention"
   /** Could not be made: the buyer is told a refund follows, the owner is reminded until they confirm it. */
   | "refund_pending"
-  | "refunded";
+  | "refunded"
+  /** The report went out, but a code Lemon Squeezy refused is still owed: retried, then sent in its own letter. */
+  | "codes_pending";
 
 export interface ProfessionalOrder {
   /** `${orderId}:${variantId}`. */
@@ -64,6 +66,8 @@ export interface ProfessionalOrder {
   readonly attempts: number;
   /** Set once the order's spend cap or round cap is reached: no model is asked again for it. */
   readonly askingStopped: boolean;
+  /** True while a bonus or apology code the buyer is owed has not been created yet. Absent on old orders. */
+  readonly codesPending?: boolean;
 }
 
 /** Paid data is kept this long, then Redis deletes it on its own. */

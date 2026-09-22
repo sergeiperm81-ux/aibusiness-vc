@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { MAIN_NAV } from "@/lib/navigation";
@@ -8,11 +8,13 @@ import { MAIN_NAV } from "@/lib/navigation";
 export function Header() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  // Any navigation closes the panel — otherwise it stays open over the new page.
-  useEffect(() => {
+  // Any navigation closes the panel, otherwise it stays open over the new page:
+  // state adjusted during render, as React advises, instead of in an effect.
+  const [seenPath, setSeenPath] = useState(pathname);
+  if (seenPath !== pathname) {
+    setSeenPath(pathname);
     setMobileMenuOpen(false);
-  }, [pathname]);
+  }
 
   function isActive(href: string) {
     if (href === "/") return pathname === "/";
@@ -95,7 +97,7 @@ export function Header() {
             </Link>
             <Link
               href="/submit-your-story"
-              className="px-2.5 py-1 text-[12px] font-bold bg-accent text-black rounded-md"
+              className="hidden min-[400px]:block px-2.5 py-1 text-[12px] font-bold bg-accent text-black rounded-md"
             >
               Story
             </Link>
@@ -150,6 +152,12 @@ export function Header() {
                 className="px-3 py-2 text-sm font-semibold rounded-md text-white hover:text-accent hover:bg-card-bg"
               >
                 AI Company Scan
+              </Link>
+              <Link
+                href="/submit-your-story"
+                className="px-3 py-2 text-sm font-semibold rounded-md text-white hover:text-accent hover:bg-card-bg"
+              >
+                Submit Story
               </Link>
 
             </div>
