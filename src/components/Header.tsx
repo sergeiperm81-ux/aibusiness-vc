@@ -28,7 +28,7 @@ export function Header() {
               AI
             </span>
             <span className="font-semibold text-lg text-white">Business</span>
-            <span className="text-[10px] text-white/60 font-mono">.vc</span>
+            <span className="hidden sm:inline text-[10px] text-white/60 font-mono">.vc</span>
           </Link>
 
           <div className="hidden lg:flex items-center gap-0.5">
@@ -80,7 +80,7 @@ export function Header() {
             </Link>
           </div>
 
-          <div className="lg:hidden flex items-center gap-2">
+          <div className="lg:hidden flex items-center gap-1.5">
             <Link
               href="/ai-tools"
               className="px-2.5 py-1 text-[12px] font-bold bg-accent text-black rounded-md"
