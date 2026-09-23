@@ -511,14 +511,14 @@ function Cross({ className = "" }: { className?: string }) {
  */
 function ReportMockup() {
   const questions = [
-    "Who is Your Name?",
-    "What does Your Name do as a professional?",
-    "Are there red flags about working with Your Name?",
+    "Who is [Your Name]?",
+    "What does [Your Name] do as a professional?",
+    "Are there red flags about working with [Your Name]?",
   ];
   return (
     <div className="rounded-3xl bg-accent p-7 shadow-2xl shadow-black/60">
       <p className="text-sm font-bold uppercase tracking-wider text-black/70">AI Person Scan</p>
-      <p className="mt-1 text-3xl font-bold leading-tight text-black">What AI says about Your Name</p>
+      <p className="mt-1 text-3xl font-bold leading-tight text-black">What AI says about [Your Name]</p>
       <div className="mt-6 space-y-3">
         {questions.map((q, i) => (
           <div key={q} className="rounded-2xl bg-black px-5 py-4">
