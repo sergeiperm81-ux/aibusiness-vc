@@ -238,3 +238,16 @@ test("a website, a channel, a company page or a post is refused with a sentence 
   const site = parseSocialProfile("https://aibusiness.vc");
   assert.ok(!site.ok && /AI Company Scan/.test(site.error));
 });
+
+test("a LinkedIn internal member link is refused and asks for the public address", () => {
+  for (const value of [
+    "https://www.linkedin.com/in/ACoAAEkrrT8BxQn2v7wZlJkHn3pQ9fGdLmS0aYc",
+    "linkedin.com/in/ACwAAAbCdEfGhIjKlMnOpQrStUvWxYz0123456789/",
+  ]) {
+    const result = parseSocialProfile(value);
+    assert.equal(result.ok, false, `${value} must be refused`);
+    if (!result.ok) assert.match(result.error, /public/i);
+  }
+  // A real name that merely starts with the same letters is still a name.
+  assert.equal(url("https://www.linkedin.com/in/acosta-maria"), "https://www.linkedin.com/in/acosta-maria");
+});

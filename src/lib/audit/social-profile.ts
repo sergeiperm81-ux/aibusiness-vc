@@ -36,6 +36,17 @@ const WRONG_SITE =
   "We only take a personal social profile here: LinkedIn, X, Instagram or Facebook. " +
   "For a company, use the AI Company Scan.";
 
+/**
+ * LinkedIn's internal member id (ACoAA…, ACwAA…), which appears in links copied
+ * from messages, search and the app. It opens the profile for a logged-in
+ * member, but no search engine or AI model can tie it to a person.
+ */
+const LINKEDIN_MEMBER_ID = /^AC[a-z]AA[A-Za-z0-9_-]{15,}$/;
+const LINKEDIN_INTERNAL =
+  "This is LinkedIn's internal member link, which AI models cannot read. " +
+  "Paste the public profile address instead: open the profile, choose Contact info, " +
+  "and copy the link that looks like linkedin.com/in/your-name.";
+
 const HOSTS: Readonly<Record<string, SocialNetwork>> = {
   "linkedin.com": "linkedin",
   "x.com": "x",
@@ -111,6 +122,7 @@ export function parseSocialProfile(value: string): SocialProfileResult {
   if (network === "linkedin") {
     // /in/ is a person. /company/, /school/, /posts/ and /pub/ are not taken.
     if (segments[0] !== "in" || !segments[1] || !HANDLE.test(segments[1])) return fail(NOT_A_PERSON);
+    if (LINKEDIN_MEMBER_ID.test(segments[1])) return fail(LINKEDIN_INTERNAL);
     const handle = safeDecode(segments[1]).toLowerCase();
     return done(handle, `https://www.linkedin.com/in/${encodeURIComponent(handle)}`);
   }
