@@ -42,11 +42,13 @@ Astra did not arrive at a new price point invented from scratch. It is a clean m
 | **GPT-6 Astra** | **$10** | **$50** | **2.5x** |
 | GPT-5.6 Sol | $4 | $20 | baseline |
 | Claude Opus 4.8 | $5 | $25 | 1.25x |
-| Claude Sonnet 5 | $3 | $15 | 0.75x |
+| Claude Sonnet 5 | $2 | $10 | 0.5x |
 
 One note on the Claude rows, because it trips people up. This price table lists Opus 4.8, the generation with published per-token rates at the time of writing. The benchmark tables further down cite Claude Opus 5, the newer model, because that is what the benchmark runs report. Different generations, deliberately, so do not read the $5/$25 line as the price of the model scoring 70.2% on OSWorld.
 
 Sol itself got cheaper in late August, with input down about 20% and output down about 33%, and that promotional pricing runs at least into late November. So Astra launched at 2.5x a price that had just been cut, which widens the gap a buyer feels rather than narrowing it.
+
+Astra's price has not moved, but the board around it has. On 22 September OpenAI released GPT-6 Sol and Luna at half their predecessors' prices and published benchmark numbers showing Sol finishing more agent tasks per dollar than Astra, which I unpack in [the same-day price cuts from both labs](/tools/opus-5-5-gpt-6-sol-luna-price-war-22-september-2026).
 
 ## What the independent index found
 
