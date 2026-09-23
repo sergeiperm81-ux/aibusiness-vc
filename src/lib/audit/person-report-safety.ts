@@ -59,11 +59,11 @@ const SAME_PERSON_DOUBT = /\b(could|may|might|likely) be the same (person|indivi
  * the model wonders aloud whether it found the same person, or it quotes a
  * person's state register entry and names none of the places the preview
  * found. In the 23.09 pilot a model gave a Polish founder a Russian tax number
- * and Russian companies. The founder later said they were his, from before he
- * moved: the link was true, but nothing in the answer showed it. Whether such
- * a link is a namesake or the person's past, the scan cannot tell, and a tax
- * number printed about the wrong person does harm, so the answer is withheld
- * whole and the report says only that a link was made.
+ * and Russian companies. After disclosure the founder stated that the records
+ * were his; nothing in the answer let a reader check that. Whether such a link
+ * is a namesake or the person's past, the scan cannot tell, and a tax number
+ * printed about the wrong person does harm, so the answer is withheld whole
+ * and the report says only that an answer was held back.
  */
 export function mergesAnotherIdentity(text: string, location: string | undefined): boolean {
   if (SAME_PERSON_DOUBT.test(text)) return true;
@@ -82,7 +82,7 @@ export function mergesAnotherIdentity(text: string, location: string | undefined
  * True when an answer about a person gives a street address. People-search
  * records put an address next to a name, not next to a person: in the 23.09
  * pilot one model placed the founder at a 2015 home address in another
- * country (his own, as it turned out). Whoever it belongs to, a home address
+ * country; he later stated it was his. Whoever it belongs to, a home address
  * has no place in the report, and the scan cannot tell it from a namesake's.
  */
 export function quotesStreetAddress(text: string): boolean {
