@@ -48,6 +48,8 @@ One note on the Claude rows, because it trips people up. This price table lists 
 
 Sol itself got cheaper in late August, with input down about 20% and output down about 33%, and that promotional pricing runs at least into late November. So Astra launched at 2.5x a price that had just been cut, which widens the gap a buyer feels rather than narrowing it.
 
+Astra's price has not moved, but the board around it has. On 22 September OpenAI released GPT-6 Sol and Luna at half their predecessors' prices and published benchmark numbers showing Sol finishing more agent tasks per dollar than Astra, which I unpack in [the same-day price cuts from both labs](/tools/opus-5-5-gpt-6-sol-luna-price-war-22-september-2026).
+
 ## What the independent index found
 
 Artificial Analysis, which benchmarks models independently of the vendors, published its Astra results and they are blunt.

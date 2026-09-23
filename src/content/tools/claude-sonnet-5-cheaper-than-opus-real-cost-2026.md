@@ -92,6 +92,10 @@ Depending on how you use AI, here's the practical read.
 
 **If you're just choosing which Claude to use day to day** inside Pro or Max, the simple version: Sonnet 5 is your fast, capable default for almost everything, and you reach for Opus 4.8 when a task is genuinely hard or long and the quality gap shows. For the head-to-head across providers, [my ChatGPT vs Claude vs Gemini comparison](/tools/chatgpt-vs-claude-vs-gemini) still holds: Sonnet 5 just makes Claude's mid-tier a lot more competitive.
 
+## What changed since launch
+
+Two things, both in your favour. Anthropic made the $2/$10 permanent in August, and on 22 September it cut the Opus tier to $4/$20 with cache reads down 60%, while OpenAI launched GPT-6 Sol at exactly Sonnet 5's $2/$10. The routing question in this article did not go away, it got sharper, and I worked through the new board in [the 22 September price cuts](/tools/opus-5-5-gpt-6-sol-luna-price-war-22-september-2026).
+
 ## The honest take
 
 Claude Sonnet 5 is a genuinely impressive release, a mid-tier model that does agentic work which required a flagship not long ago, at a sticker price that undercuts one. That's real progress, and for a large share of everyday AI work it will lower your bill. I don't want the "catch" to read as cynicism, because the direction is unambiguously good: intelligence keeps getting cheaper, and Anthropic pricing Sonnet this aggressively, as it eyes the public markets I covered in [its march to a near-trillion valuation](/vc/anthropic-30b-raise-900b-valuation-2026), is the price war working in your favor.

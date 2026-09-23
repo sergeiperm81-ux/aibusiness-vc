@@ -50,6 +50,8 @@ Astra is the most expensive mainstream model on the board. Per OpenAI's model do
 | Claude Opus 4.8 | $5 | $0.50 | $25 |
 | Claude Sonnet 5 | $2 | $0.20 | $10 |
 
+Those Claude rows moved on 22 September: Opus 5.5 now lists at $4/$20, and OpenAI added GPT-6 Sol at $2/$10 and Luna at $0.10/$0.50. See [the 22 September price cuts](/tools/opus-5-5-gpt-6-sol-luna-price-war-22-september-2026) for the current board.
+
 That cached-input rate is the detail worth planning around: at **$1 versus $10**, re-reading the same context costs a tenth of sending it fresh. Writing to the cache is billed separately at **$12.50 per million**, 1.25x the uncached input rate, so caching pays off when context is reused, not on a single pass.
 
 **The million-token window is not served at those base rates, and this is the most important qualification in the whole price list.** OpenAI's documentation states that prompts with more than **272,000 input tokens** are priced at **2x input and cache rates and 1.5x output for the full request**. Not for the excess above the threshold, for the entire request. Cross that line and your effective rates become:
