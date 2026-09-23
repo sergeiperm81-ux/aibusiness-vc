@@ -135,6 +135,12 @@ export interface Expert {
   phone?: string;
   /** Square portrait, cropped by the applicant. */
   photo?: string;
+  /**
+   * Canonical schema.org identifier, for someone who already has a page of
+   * their own on this site. Without it the register would mint a second Person
+   * node for the same human.
+   */
+  personId?: string;
 }
 
 const SERGEI: Expert = {
@@ -167,6 +173,7 @@ const SERGEI: Expert = {
   ],
   linkedin: "https://www.linkedin.com/in/sergei-ponomarev/",
   email: { user: "info", host: "aibusiness.vc" },
+  personId: "https://aibusiness.vc/sergei-ponomarev#person",
 };
 
 const AMANDA: Expert = {
