@@ -14,6 +14,7 @@ import {
   plainAnswer,
   promotesLoneRole,
   rolesNamedByOneModel,
+  withoutLoneClaims,
 } from "../../src/lib/audit/person-report-pdf";
 import { SUMMARY_RULES } from "../../src/lib/audit/company-synthesis-prompt";
 import { answersBlock, parseSynthesis, type PersonSynthesis } from "../../src/lib/audit/person-synthesis";
@@ -360,4 +361,14 @@ test("what the question gave is not counted as found by the models", () => {
   );
   assert.match(attributionNote("Role", "Founder and steward of Acme™", four, 5, subject), /^Acme™ was named in the question\. Said by 4 of 5/);
   assert.match(attributionNote("Based in", "Szczecin, Poland", ["Gemini"], 5, subject), /^Said by 1 of 5: Gemini$/);
+});
+
+test("a sentence stating a role only one model names is cut from the summary", () => {
+  const lone = [{ value: "Post-Execution Legitimacy Lead at AI Execution Governance Forum (AEGF)" }];
+  assert.equal(
+    withoutLoneClaims("Ivan founded Acme. He is Post-Execution Legitimacy Lead at the forum. He lives in Szczecin.", lone),
+    "Ivan founded Acme. He lives in Szczecin."
+  );
+  assert.equal(withoutLoneClaims("He contributes to the AI Execution Governance Forum.", lone), "The assistants describe this differently; see who said what below.");
+  assert.equal(withoutLoneClaims("Ivan founded Acme.", []), "Ivan founded Acme.");
 });

@@ -50,7 +50,7 @@ export function mentionsOthersTrouble(text: string): boolean {
 /** Parts of a place name that say nothing on their own. */
 const PLACE_FILLER = /^(metropolitan|area|region|county|city|greater|district|province|voivodeship|state|oblast|krai)$/i;
 /** A number that names one person in a state register: a tax number, a passport, a social security number. */
-const PERSON_REGISTRY = /\b(INN|OGRN|OGRNIP|EGRUL|EGRIP|SSN|PESEL|social security|passport)\b|ИНН|ОГРН|ЕГРЮЛ|ЕГРИП/;
+const PERSON_REGISTRY = /\b(INN|OGRN|OGRNIP|EGRUL|EGRIP|SSN|ITIN|TIN|PESEL|social security|passport)\b|ИНН|ОГРН|ЕГРЮЛ|ЕГРИП/;
 /** The model itself says it may have found someone else. */
 const SAME_PERSON_DOUBT = /\b(could|may|might|likely) be the same (person|individual|man|woman)\b|\bpossibly the same (person|individual)\b/i;
 
@@ -68,7 +68,9 @@ export function mergesAnotherIdentity(text: string, location: string | undefined
     .split(/[\s,()/]+/)
     .map((word) => word.trim().toLowerCase())
     .filter((word) => word.length >= 4 && !PLACE_FILLER.test(word));
-  if (places.length === 0 || !PERSON_REGISTRY.test(text)) return false;
+  if (!PERSON_REGISTRY.test(text)) return false;
+  // With no place to compare, a person's register entry cannot be tied to this profile at all.
+  if (places.length === 0) return true;
   const lower = text.toLowerCase();
   return !places.some((place) => lower.includes(place));
 }
@@ -81,7 +83,7 @@ export function mergesAnotherIdentity(text: string, location: string | undefined
  * and the answer around it cannot be told apart from a namesake's record.
  */
 export function quotesStreetAddress(text: string): boolean {
-  return [STREET_FIRST, STREET_SUFFIX, NUMBER_FIRST].some((pattern) => new RegExp(pattern.source, "u").test(text));
+  return [STREET_FIRST, STREET_SUFFIX, NUMBER_SUFFIX, NUMBER_FIRST].some((pattern) => new RegExp(pattern.source, "u").test(text));
 }
 
 /** An answer the report never prints and the summary never sees. */
@@ -92,11 +94,12 @@ export function withheldAnswer(text: string, subject: Pick<AnswerCheckSubject, "
 }
 
 const REGISTRY_NUMBER =
-  /\b(INN|NIP|REGON|KRS|OGRN|OGRNIP|PESEL|SSN|VAT ID|VAT number|tax ID|tax number|passport number)(\s*(?:[:#№]|No\.?)?\s*)[A-Z]{0,2}\d[\d -]{5,}\d/g;
+  /\b(INN|NIP|REGON|KRS|OGRN|OGRNIP|PESEL|SSN|ITIN|TIN|EIN|VAT ID|VAT number|tax ID|tax number|passport number)(\s*(?:[:#№]|No\.?)?\s*)[A-Z]{0,2}\d[\d -]{5,}\d/g;
 const REGISTRY_NUMBER_RU = /(ИНН|ОГРН|ОГРНИП)(\s*:?\s*)\d{8,15}/g;
 const STREET_FIRST =
   /(?<!\p{L})(?:[Uu]l\.|[Uu]lica|[Pp]lac|[Pp]l\.|[Aa]l\.|[Aa]leja|Street|Avenue|Road|Boulevard|Prospekt|улица|ул\.|проспект)\s+(?:\p{Lu}[\p{L}'.-]*\s+){0,4}\d+[\p{L}\d/]*/gu;
 const STREET_SUFFIX = /(?<!\p{L})\p{Lu}[\p{L}-]*(?:katu|tie|gatan|vägen|straße|strasse|weg|gasse|straat|laan|utca|iela)\s+\d+[\p{L}\d/]*/gu;
+const NUMBER_SUFFIX = /(?<![\p{L}\d])\d+[A-Za-z]?\s+\p{Lu}[\p{L}-]*(?:katu|tie|gatan|vägen|straße|strasse|weg|gasse|straat|laan|utca|iela)(?!\p{L})/gu;
 const NUMBER_FIRST = /(?<!\p{L})\d+[A-Za-z]?\s+(?:\p{Lu}[\p{L}'.-]*\s+){1,3}(?:Street|Avenue|Road|Lane|Boulevard|Drive)(?!\p{L})/gu;
 const POSTAL_CODE = /(?<![\d-])\d{2}-\d{3}(?=\s+\p{Lu})\s*/gu;
 /** A chat model's offer to do more, at the end of an answer. */
@@ -119,6 +122,7 @@ export function cleanAnswerText(text: string): string {
     .replace(REGISTRY_NUMBER_RU, "$1 withheld")
     .replace(STREET_FIRST, "[address withheld]")
     .replace(STREET_SUFFIX, "[address withheld]")
+    .replace(NUMBER_SUFFIX, "[address withheld]")
     .replace(NUMBER_FIRST, "[address withheld]")
     .replace(POSTAL_CODE, "")
     .split("\n");

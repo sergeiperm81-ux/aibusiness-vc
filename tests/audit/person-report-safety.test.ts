@@ -238,7 +238,7 @@ test("an answer that merges the person with a namesake is withheld whole", () =>
   assert.equal(mergesAnotherIdentity(SPECULATES, where), true, "the model itself wonders whether it is the same person");
   assert.equal(mergesAnotherIdentity("Ivan Petrov is the founder of Acme, based in Szczecin, Poland.", where), false);
   assert.equal(mergesAnotherIdentity("Ivan Petrov (NIP 8510000000) runs Acme from Szczecin.", where), false, "his own registry, his own city");
-  assert.equal(mergesAnotherIdentity(MERGED, undefined), false, "no place to compare with: the model's coverage decides");
+  assert.equal(mergesAnotherIdentity(MERGED, undefined), true, "no place to compare with: a register entry cannot be tied to the profile");
 
   const check: AnswerCheck = {
     ...CHECK,
@@ -318,4 +318,11 @@ test("a company in liquidation or an offshore-leaks entry the model cannot tie t
     "whether it is directly tied to him.";
   assert.equal(mentionsOthersTrouble(text), true);
   assert.equal(mentionsOthersTrouble("Acme was founded in 2024 and is growing."), false);
+});
+
+test("US tax numbers and a number-first street in another language are cut too", () => {
+  const text = cleanAnswerText("His firm (EIN 12-3456789, TIN 987654321) was listed at 32 Isoympyrinkatu in Hamina.");
+  for (const gone of ["12-3456789", "987654321", "32 Isoympyrinkatu"]) assert.ok(!text.includes(gone), `${gone} must be cut`);
+  assert.equal(quotesStreetAddress("He lived at 32 Isoympyrinkatu."), true);
+  assert.equal(mergesAnotherIdentity("Ivan Petrov (TIN 987654321) runs a shop.", "Szczecin, Poland"), true);
 });

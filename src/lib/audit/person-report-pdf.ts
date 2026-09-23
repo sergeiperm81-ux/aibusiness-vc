@@ -105,6 +105,31 @@ export function rolesNamedByOneModel(synthesis: PersonSynthesis, check: AnswerCh
   return answeredDoes >= 3 ? synthesis.professional.roles.filter((role) => role.saidBy.length === 1) : [];
 }
 
+/** The words that pick out a lone role in a sentence: its organisation, and its title when that is more than one word. */
+function loneRoleMarks(role: { readonly value: string }): readonly string[] {
+  const [title, rest] = role.value.split(/\s+at\s+/i);
+  const where = rest?.split(/[(,]/)[0]?.trim().toLowerCase();
+  const name = title?.trim().toLowerCase();
+  return [where, name && name.split(/\s+/).length >= 2 ? name : undefined].filter(
+    (mark): mark is string => mark !== undefined && mark.length >= 3
+  );
+}
+
+/**
+ * A summary without the sentences that state a role only one model names. The
+ * summary model is told not to write them and sometimes does; a lone role is
+ * an unconfirmed claim, shown as one further down, never as part of who the
+ * person is.
+ */
+export function withoutLoneClaims(summary: string, loneRoles: readonly { readonly value: string }[]): string {
+  const marks = loneRoles.flatMap(loneRoleMarks);
+  if (marks.length === 0) return summary;
+  const kept = summary
+    .split(/(?<=[.!?])\s+/)
+    .filter((sentence) => !marks.some((mark) => sentence.toLowerCase().includes(mark)));
+  return kept.length > 0 ? kept.join(" ") : "The assistants describe this differently; see who said what below.";
+}
+
 /**
  * True when a step would have the person list or promote a role or company only one model
  * names. That role is an unconfirmed claim in the same report; the summary is told not to give
@@ -231,6 +256,7 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
   const answered = check.results.flatMap((r) => r.answers).filter((a) => a.ok).length;
   const asked = check.results.length * total;
   const shown = answersAboutProfile(check, synthesis, input.notFoundKeys);
+  const loneRoles = rolesNamedByOneModel(synthesis, check);
   const ambiguous = identityAmbiguous(check, synthesis, shown);
   const verified = verifiedSources(check, shown);
   const sourceTiedToThis = (address: string): boolean => verified.has(address);
@@ -285,7 +311,7 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
   /* ------------------------------------------------------------ question 1 */
   numbered(questions.who(name));
   pdf.gap(2);
-  pdf.text(synthesis.identity.summary, { gapAfter: 8 });
+  pdf.text(withoutLoneClaims(synthesis.identity.summary, loneRoles), { gapAfter: 8 });
   for (const fact of synthesis.identity.facts) {
     pdf.fact(fact.label, fact.value, attributionNote(fact.label, fact.value, fact.saidBy, total, check.subject));
   }
@@ -293,7 +319,7 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
   /* ------------------------------------------------------------ question 2 */
   numbered(questions.does(name));
   pdf.gap(2);
-  pdf.text(synthesis.professional.summary, { gapAfter: 8 });
+  pdf.text(withoutLoneClaims(synthesis.professional.summary, loneRoles), { gapAfter: 8 });
   for (const role of synthesis.professional.roles) {
     pdf.fact(w.offer, role.value, attributionNote(role.label, role.value, role.saidBy, total, check.subject));
   }
@@ -375,7 +401,6 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
   }
 
   /* -------------------------------------------------------- contradictions */
-  const loneRoles = rolesNamedByOneModel(synthesis, check);
   if (synthesis.disagreements.length > 0) {
     numbered("Where the answers contradict each other");
     for (const item of synthesis.disagreements) {
