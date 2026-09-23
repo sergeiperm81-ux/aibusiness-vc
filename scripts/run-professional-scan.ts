@@ -1,7 +1,7 @@
 /**
  * AI Professional Scan, end to end: five assistants, three questions, one PDF.
  *
- *   npx tsx scripts/run-professional-scan.ts --plan --profile=URL --name="…" [--role="…"] [--company="…"]
+ *   npx tsx scripts/run-professional-scan.ts --plan --profile=URL --name="…" [--role="…"] [--company="…"] [--location="City, Country"]
  *   … --approved-max-usd=1.40 --approval-id=… [--out-dir=../runs]
  *
  * The paid answers are written to disk the moment they arrive, before anything
@@ -29,6 +29,9 @@ import { cleanCitations } from "../src/lib/audit/citation-cleanup";
 import { newRunId, openJournal } from "../src/lib/audit/journal-file";
 import { buildPersonQuestions, toAnswerSubject, type PersonSubject } from "../src/lib/audit/person-check";
 import { buildPersonReportPdf } from "../src/lib/audit/person-report-pdf";
+import { anchorsFor, keepSourcesAboutPerson } from "../src/lib/audit/person-source-check";
+import { safeFetchText } from "../src/lib/audit/safe-fetch";
+import { htmlToText } from "../src/lib/service-check/source-of-truth";
 import {
   SYNTHESIS_MODEL,
   synthesisBoundsForPlan,
@@ -74,14 +77,23 @@ function readJson<T>(path: string): T {
   return JSON.parse(readFileSync(resolve(path), "utf8")) as T;
 }
 
-async function withCleanCitations(check: AnswerCheck): Promise<AnswerCheck> {
+/** A cited page's visible text, or null. The same reader as the paid service (professional-runtime.ts). */
+async function readPage(address: string): Promise<string | null> {
+  const response = await safeFetchText(address, { timeoutMs: 8_000, maxBytes: 1_500_000 });
+  const type = response.headers.get("content-type") ?? "";
+  if (!response.ok || !/text\/html|text\/plain|application\/xhtml/i.test(type)) return null;
+  return htmlToText(response.text);
+}
+
+/** Tracking cut, then only the pages that name the person next to a detail from the profile. As on the site. */
+async function withCleanCitations(check: AnswerCheck, person: PersonSubject): Promise<AnswerCheck> {
   const results = await Promise.all(
     check.results.map(async (row) => ({
       ...row,
       answers: await Promise.all(row.answers.map(async (a) => ({ ...a, citations: await cleanCitations(a.citations) }))),
     }))
   );
-  return { ...check, results };
+  return keepSourcesAboutPerson({ ...check, results }, anchorsFor(person), readPage);
 }
 
 async function main(): Promise<void> {
@@ -92,10 +104,12 @@ async function main(): Promise<void> {
     console.error(parsed.ok ? 'Pass --name="Full Name" as the free preview identified it.' : parsed.error);
     process.exit(1);
   }
+  const location = flag(args, "location")?.trim();
   const person: PersonSubject = {
     name,
     role: flag(args, "role") ?? "",
     company: flag(args, "company") ?? "",
+    ...(location ? { location } : {}),
     profileUrl: parsed.profile.url,
   };
   const fromAnswers = flag(args, "from-answers");
@@ -183,7 +197,8 @@ async function main(): Promise<void> {
     }
     check = asked;
   }
-  check = await withCleanCitations(check);
+  console.error("Reading the cited pages ...");
+  check = await withCleanCitations(check, person);
   writeFileSync(`${base}.answers.json`, JSON.stringify(check, null, 2), { encoding: "utf8", flag: "wx" });
 
   let synthesis: PersonSynthesis;
