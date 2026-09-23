@@ -13,7 +13,7 @@ import { getLatestNews } from "@/lib/supabase";
 export const START_HERE_ITEMS = [
   {
     href: "/service-check",
-    title: "AI Service Check",
+    title: "AI Test Purchase",
     text: "Test purchases of AI agents: what your bot actually tells customers.",
   },
   {

@@ -1,0 +1,1112 @@
+▲ Next.js 16.3.5 (webpack)
+✓ Running next.config.ts took 27ms
+
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead.
+
+  To migrate automatically, run:
+  npx @next/codemod@canary middleware-to-proxy .
+
+  Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+  Creating an optimized production build ...
+✓ Compiled successfully in 4.4s
+  Running TypeScript ...
+  Finished TypeScript in 1652ms ...
+  Collecting page data using 15 workers ...
+  Generating static pages using 15 workers (0/831) ...
+  Generating static pages using 15 workers (207/831) 
+Failed to fetch SiliconAngle: Error [TimeoutError]: The operation was aborted due to timeout
+    at async j (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:3280)
+    at async k (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:4223)
+    at async q (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:6:13567)
+    at async i (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\4207.js:1:27271) {
+  code: 23,
+  INDEX_SIZE_ERR: 1,
+  DOMSTRING_SIZE_ERR: 2,
+  HIERARCHY_REQUEST_ERR: 3,
+  WRONG_DOCUMENT_ERR: 4,
+  INVALID_CHARACTER_ERR: 5,
+  NO_DATA_ALLOWED_ERR: 6,
+  NO_MODIFICATION_ALLOWED_ERR: 7,
+  NOT_FOUND_ERR: 8,
+  NOT_SUPPORTED_ERR: 9,
+  INUSE_ATTRIBUTE_ERR: 10,
+  INVALID_STATE_ERR: 11,
+  SYNTAX_ERR: 12,
+  INVALID_MODIFICATION_ERR: 13,
+  NAMESPACE_ERR: 14,
+  INVALID_ACCESS_ERR: 15,
+  VALIDATION_ERR: 16,
+  TYPE_MISMATCH_ERR: 17,
+  SECURITY_ERR: 18,
+  NETWORK_ERR: 19,
+  ABORT_ERR: 20,
+  URL_MISMATCH_ERR: 21,
+  QUOTA_EXCEEDED_ERR: 22,
+  TIMEOUT_ERR: 23,
+  INVALID_NODE_TYPE_ERR: 24,
+  DATA_CLONE_ERR: 25
+}
+Failed to fetch SiliconAngle: Error [TimeoutError]: The operation was aborted due to timeout
+    at async j (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:3280)
+    at async k (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:4223)
+    at async q (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:6:13567)
+    at async i (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\4207.js:1:27271) {
+  code: 23,
+  INDEX_SIZE_ERR: 1,
+  DOMSTRING_SIZE_ERR: 2,
+  HIERARCHY_REQUEST_ERR: 3,
+  WRONG_DOCUMENT_ERR: 4,
+  INVALID_CHARACTER_ERR: 5,
+  NO_DATA_ALLOWED_ERR: 6,
+  NO_MODIFICATION_ALLOWED_ERR: 7,
+  NOT_FOUND_ERR: 8,
+  NOT_SUPPORTED_ERR: 9,
+  INUSE_ATTRIBUTE_ERR: 10,
+  INVALID_STATE_ERR: 11,
+  SYNTAX_ERR: 12,
+  INVALID_MODIFICATION_ERR: 13,
+  NAMESPACE_ERR: 14,
+  INVALID_ACCESS_ERR: 15,
+  VALIDATION_ERR: 16,
+  TYPE_MISMATCH_ERR: 17,
+  SECURITY_ERR: 18,
+  NETWORK_ERR: 19,
+  ABORT_ERR: 20,
+  URL_MISMATCH_ERR: 21,
+  QUOTA_EXCEEDED_ERR: 22,
+  TIMEOUT_ERR: 23,
+  INVALID_NODE_TYPE_ERR: 24,
+  DATA_CLONE_ERR: 25
+}
+Failed to fetch SiliconAngle: Error [TimeoutError]: The operation was aborted due to timeout
+    at async j (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:3280)
+    at async k (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:4223)
+    at async q (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:6:13567)
+    at async i (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\4207.js:1:27271) {
+  code: 23,
+  INDEX_SIZE_ERR: 1,
+  DOMSTRING_SIZE_ERR: 2,
+  HIERARCHY_REQUEST_ERR: 3,
+  WRONG_DOCUMENT_ERR: 4,
+  INVALID_CHARACTER_ERR: 5,
+  NO_DATA_ALLOWED_ERR: 6,
+  NO_MODIFICATION_ALLOWED_ERR: 7,
+  NOT_FOUND_ERR: 8,
+  NOT_SUPPORTED_ERR: 9,
+  INUSE_ATTRIBUTE_ERR: 10,
+  INVALID_STATE_ERR: 11,
+  SYNTAX_ERR: 12,
+  INVALID_MODIFICATION_ERR: 13,
+  NAMESPACE_ERR: 14,
+  INVALID_ACCESS_ERR: 15,
+  VALIDATION_ERR: 16,
+  TYPE_MISMATCH_ERR: 17,
+  SECURITY_ERR: 18,
+  NETWORK_ERR: 19,
+  ABORT_ERR: 20,
+  URL_MISMATCH_ERR: 21,
+  QUOTA_EXCEEDED_ERR: 22,
+  TIMEOUT_ERR: 23,
+  INVALID_NODE_TYPE_ERR: 24,
+  DATA_CLONE_ERR: 25
+}
+Failed to fetch SiliconAngle: Error [TimeoutError]: The operation was aborted due to timeout
+    at async j (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:3280)
+    at async k (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:4223)
+    at async q (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:6:13567)
+    at async i (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\4207.js:1:27271) {
+  code: 23,
+  INDEX_SIZE_ERR: 1,
+  DOMSTRING_SIZE_ERR: 2,
+  HIERARCHY_REQUEST_ERR: 3,
+  WRONG_DOCUMENT_ERR: 4,
+  INVALID_CHARACTER_ERR: 5,
+  NO_DATA_ALLOWED_ERR: 6,
+  NO_MODIFICATION_ALLOWED_ERR: 7,
+  NOT_FOUND_ERR: 8,
+  NOT_SUPPORTED_ERR: 9,
+  INUSE_ATTRIBUTE_ERR: 10,
+  INVALID_STATE_ERR: 11,
+  SYNTAX_ERR: 12,
+  INVALID_MODIFICATION_ERR: 13,
+  NAMESPACE_ERR: 14,
+  INVALID_ACCESS_ERR: 15,
+  VALIDATION_ERR: 16,
+  TYPE_MISMATCH_ERR: 17,
+  SECURITY_ERR: 18,
+  NETWORK_ERR: 19,
+  ABORT_ERR: 20,
+  URL_MISMATCH_ERR: 21,
+  QUOTA_EXCEEDED_ERR: 22,
+  TIMEOUT_ERR: 23,
+  INVALID_NODE_TYPE_ERR: 24,
+  DATA_CLONE_ERR: 25
+}
+Failed to fetch SiliconAngle: Error [TimeoutError]: The operation was aborted due to timeout
+    at async j (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:3280)
+    at async k (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:4223)
+    at async q (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:6:13567)
+    at async i (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\4207.js:1:27271) {
+  code: 23,
+  INDEX_SIZE_ERR: 1,
+  DOMSTRING_SIZE_ERR: 2,
+  HIERARCHY_REQUEST_ERR: 3,
+  WRONG_DOCUMENT_ERR: 4,
+  INVALID_CHARACTER_ERR: 5,
+  NO_DATA_ALLOWED_ERR: 6,
+  NO_MODIFICATION_ALLOWED_ERR: 7,
+  NOT_FOUND_ERR: 8,
+  NOT_SUPPORTED_ERR: 9,
+  INUSE_ATTRIBUTE_ERR: 10,
+  INVALID_STATE_ERR: 11,
+  SYNTAX_ERR: 12,
+  INVALID_MODIFICATION_ERR: 13,
+  NAMESPACE_ERR: 14,
+  INVALID_ACCESS_ERR: 15,
+  VALIDATION_ERR: 16,
+  TYPE_MISMATCH_ERR: 17,
+  SECURITY_ERR: 18,
+  NETWORK_ERR: 19,
+  ABORT_ERR: 20,
+  URL_MISMATCH_ERR: 21,
+  QUOTA_EXCEEDED_ERR: 22,
+  TIMEOUT_ERR: 23,
+  INVALID_NODE_TYPE_ERR: 24,
+  DATA_CLONE_ERR: 25
+}
+Failed to fetch SiliconAngle: Error [TimeoutError]: The operation was aborted due to timeout
+    at async j (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:3280)
+    at async k (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:4223)
+    at async q (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:6:13567)
+    at async i (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\4207.js:1:27271) {
+  code: 23,
+  INDEX_SIZE_ERR: 1,
+  DOMSTRING_SIZE_ERR: 2,
+  HIERARCHY_REQUEST_ERR: 3,
+  WRONG_DOCUMENT_ERR: 4,
+  INVALID_CHARACTER_ERR: 5,
+  NO_DATA_ALLOWED_ERR: 6,
+  NO_MODIFICATION_ALLOWED_ERR: 7,
+  NOT_FOUND_ERR: 8,
+  NOT_SUPPORTED_ERR: 9,
+  INUSE_ATTRIBUTE_ERR: 10,
+  INVALID_STATE_ERR: 11,
+  SYNTAX_ERR: 12,
+  INVALID_MODIFICATION_ERR: 13,
+  NAMESPACE_ERR: 14,
+  INVALID_ACCESS_ERR: 15,
+  VALIDATION_ERR: 16,
+  TYPE_MISMATCH_ERR: 17,
+  SECURITY_ERR: 18,
+  NETWORK_ERR: 19,
+  ABORT_ERR: 20,
+  URL_MISMATCH_ERR: 21,
+  QUOTA_EXCEEDED_ERR: 22,
+  TIMEOUT_ERR: 23,
+  INVALID_NODE_TYPE_ERR: 24,
+  DATA_CLONE_ERR: 25
+}
+Failed to fetch SiliconAngle: Error [TimeoutError]: The operation was aborted due to timeout
+    at ignore-listed frames {
+  code: 23,
+  INDEX_SIZE_ERR: 1,
+  DOMSTRING_SIZE_ERR: 2,
+  HIERARCHY_REQUEST_ERR: 3,
+  WRONG_DOCUMENT_ERR: 4,
+  INVALID_CHARACTER_ERR: 5,
+  NO_DATA_ALLOWED_ERR: 6,
+  NO_MODIFICATION_ALLOWED_ERR: 7,
+  NOT_FOUND_ERR: 8,
+  NOT_SUPPORTED_ERR: 9,
+  INUSE_ATTRIBUTE_ERR: 10,
+  INVALID_STATE_ERR: 11,
+  SYNTAX_ERR: 12,
+  INVALID_MODIFICATION_ERR: 13,
+  NAMESPACE_ERR: 14,
+  INVALID_ACCESS_ERR: 15,
+  VALIDATION_ERR: 16,
+  TYPE_MISMATCH_ERR: 17,
+  SECURITY_ERR: 18,
+  NETWORK_ERR: 19,
+  ABORT_ERR: 20,
+  URL_MISMATCH_ERR: 21,
+  QUOTA_EXCEEDED_ERR: 22,
+  TIMEOUT_ERR: 23,
+  INVALID_NODE_TYPE_ERR: 24,
+  DATA_CLONE_ERR: 25
+}
+Failed to fetch SiliconAngle: Error [TimeoutError]: The operation was aborted due to timeout
+    at ignore-listed frames {
+  code: 23,
+  INDEX_SIZE_ERR: 1,
+  DOMSTRING_SIZE_ERR: 2,
+  HIERARCHY_REQUEST_ERR: 3,
+  WRONG_DOCUMENT_ERR: 4,
+  INVALID_CHARACTER_ERR: 5,
+  NO_DATA_ALLOWED_ERR: 6,
+  NO_MODIFICATION_ALLOWED_ERR: 7,
+  NOT_FOUND_ERR: 8,
+  NOT_SUPPORTED_ERR: 9,
+  INUSE_ATTRIBUTE_ERR: 10,
+  INVALID_STATE_ERR: 11,
+  SYNTAX_ERR: 12,
+  INVALID_MODIFICATION_ERR: 13,
+  NAMESPACE_ERR: 14,
+  INVALID_ACCESS_ERR: 15,
+  VALIDATION_ERR: 16,
+  TYPE_MISMATCH_ERR: 17,
+  SECURITY_ERR: 18,
+  NETWORK_ERR: 19,
+  ABORT_ERR: 20,
+  URL_MISMATCH_ERR: 21,
+  QUOTA_EXCEEDED_ERR: 22,
+  TIMEOUT_ERR: 23,
+  INVALID_NODE_TYPE_ERR: 24,
+  DATA_CLONE_ERR: 25
+}
+Failed to fetch SiliconAngle: Error [TimeoutError]: The operation was aborted due to timeout
+    at async j (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:3280)
+    at async k (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:4223)
+    at async q (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:6:13567)
+    at async i (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\4207.js:1:27271) {
+  code: 23,
+  INDEX_SIZE_ERR: 1,
+  DOMSTRING_SIZE_ERR: 2,
+  HIERARCHY_REQUEST_ERR: 3,
+  WRONG_DOCUMENT_ERR: 4,
+  INVALID_CHARACTER_ERR: 5,
+  NO_DATA_ALLOWED_ERR: 6,
+  NO_MODIFICATION_ALLOWED_ERR: 7,
+  NOT_FOUND_ERR: 8,
+  NOT_SUPPORTED_ERR: 9,
+  INUSE_ATTRIBUTE_ERR: 10,
+  INVALID_STATE_ERR: 11,
+  SYNTAX_ERR: 12,
+  INVALID_MODIFICATION_ERR: 13,
+  NAMESPACE_ERR: 14,
+  INVALID_ACCESS_ERR: 15,
+  VALIDATION_ERR: 16,
+  TYPE_MISMATCH_ERR: 17,
+  SECURITY_ERR: 18,
+  NETWORK_ERR: 19,
+  ABORT_ERR: 20,
+  URL_MISMATCH_ERR: 21,
+  QUOTA_EXCEEDED_ERR: 22,
+  TIMEOUT_ERR: 23,
+  INVALID_NODE_TYPE_ERR: 24,
+  DATA_CLONE_ERR: 25
+}
+Failed to fetch SiliconAngle: Error [TimeoutError]: The operation was aborted due to timeout
+    at async j (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:3280)
+    at async k (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:4223)
+    at async q (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:6:13567)
+    at async i (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\4207.js:1:27271) {
+  code: 23,
+  INDEX_SIZE_ERR: 1,
+  DOMSTRING_SIZE_ERR: 2,
+  HIERARCHY_REQUEST_ERR: 3,
+  WRONG_DOCUMENT_ERR: 4,
+  INVALID_CHARACTER_ERR: 5,
+  NO_DATA_ALLOWED_ERR: 6,
+  NO_MODIFICATION_ALLOWED_ERR: 7,
+  NOT_FOUND_ERR: 8,
+  NOT_SUPPORTED_ERR: 9,
+  INUSE_ATTRIBUTE_ERR: 10,
+  INVALID_STATE_ERR: 11,
+  SYNTAX_ERR: 12,
+  INVALID_MODIFICATION_ERR: 13,
+  NAMESPACE_ERR: 14,
+  INVALID_ACCESS_ERR: 15,
+  VALIDATION_ERR: 16,
+  TYPE_MISMATCH_ERR: 17,
+  SECURITY_ERR: 18,
+  NETWORK_ERR: 19,
+  ABORT_ERR: 20,
+  URL_MISMATCH_ERR: 21,
+  QUOTA_EXCEEDED_ERR: 22,
+  TIMEOUT_ERR: 23,
+  INVALID_NODE_TYPE_ERR: 24,
+  DATA_CLONE_ERR: 25
+}
+Failed to fetch SiliconAngle: Error [TimeoutError]: The operation was aborted due to timeout
+    at async j (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:3280)
+    at async k (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:4223)
+    at async q (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:6:13567)
+    at async i (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\4207.js:1:27271) {
+  code: 23,
+  INDEX_SIZE_ERR: 1,
+  DOMSTRING_SIZE_ERR: 2,
+  HIERARCHY_REQUEST_ERR: 3,
+  WRONG_DOCUMENT_ERR: 4,
+  INVALID_CHARACTER_ERR: 5,
+  NO_DATA_ALLOWED_ERR: 6,
+  NO_MODIFICATION_ALLOWED_ERR: 7,
+  NOT_FOUND_ERR: 8,
+  NOT_SUPPORTED_ERR: 9,
+  INUSE_ATTRIBUTE_ERR: 10,
+  INVALID_STATE_ERR: 11,
+  SYNTAX_ERR: 12,
+  INVALID_MODIFICATION_ERR: 13,
+  NAMESPACE_ERR: 14,
+  INVALID_ACCESS_ERR: 15,
+  VALIDATION_ERR: 16,
+  TYPE_MISMATCH_ERR: 17,
+  SECURITY_ERR: 18,
+  NETWORK_ERR: 19,
+  ABORT_ERR: 20,
+  URL_MISMATCH_ERR: 21,
+  QUOTA_EXCEEDED_ERR: 22,
+  TIMEOUT_ERR: 23,
+  INVALID_NODE_TYPE_ERR: 24,
+  DATA_CLONE_ERR: 25
+}
+Failed to fetch SiliconAngle: Error [TimeoutError]: The operation was aborted due to timeout
+    at async j (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:3280)
+    at async k (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:4223)
+    at async q (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:6:13567)
+    at async i (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\4207.js:1:27271) {
+  code: 23,
+  INDEX_SIZE_ERR: 1,
+  DOMSTRING_SIZE_ERR: 2,
+  HIERARCHY_REQUEST_ERR: 3,
+  WRONG_DOCUMENT_ERR: 4,
+  INVALID_CHARACTER_ERR: 5,
+  NO_DATA_ALLOWED_ERR: 6,
+  NO_MODIFICATION_ALLOWED_ERR: 7,
+  NOT_FOUND_ERR: 8,
+  NOT_SUPPORTED_ERR: 9,
+  INUSE_ATTRIBUTE_ERR: 10,
+  INVALID_STATE_ERR: 11,
+  SYNTAX_ERR: 12,
+  INVALID_MODIFICATION_ERR: 13,
+  NAMESPACE_ERR: 14,
+  INVALID_ACCESS_ERR: 15,
+  VALIDATION_ERR: 16,
+  TYPE_MISMATCH_ERR: 17,
+  SECURITY_ERR: 18,
+  NETWORK_ERR: 19,
+  ABORT_ERR: 20,
+  URL_MISMATCH_ERR: 21,
+  QUOTA_EXCEEDED_ERR: 22,
+  TIMEOUT_ERR: 23,
+  INVALID_NODE_TYPE_ERR: 24,
+  DATA_CLONE_ERR: 25
+}
+Failed to fetch SiliconAngle: Error [TimeoutError]: The operation was aborted due to timeout
+    at async j (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:3280)
+    at async k (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:4223)
+    at async q (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:6:13567)
+    at async i (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\4207.js:1:27271) {
+  code: 23,
+  INDEX_SIZE_ERR: 1,
+  DOMSTRING_SIZE_ERR: 2,
+  HIERARCHY_REQUEST_ERR: 3,
+  WRONG_DOCUMENT_ERR: 4,
+  INVALID_CHARACTER_ERR: 5,
+  NO_DATA_ALLOWED_ERR: 6,
+  NO_MODIFICATION_ALLOWED_ERR: 7,
+  NOT_FOUND_ERR: 8,
+  NOT_SUPPORTED_ERR: 9,
+  INUSE_ATTRIBUTE_ERR: 10,
+  INVALID_STATE_ERR: 11,
+  SYNTAX_ERR: 12,
+  INVALID_MODIFICATION_ERR: 13,
+  NAMESPACE_ERR: 14,
+  INVALID_ACCESS_ERR: 15,
+  VALIDATION_ERR: 16,
+  TYPE_MISMATCH_ERR: 17,
+  SECURITY_ERR: 18,
+  NETWORK_ERR: 19,
+  ABORT_ERR: 20,
+  URL_MISMATCH_ERR: 21,
+  QUOTA_EXCEEDED_ERR: 22,
+  TIMEOUT_ERR: 23,
+  INVALID_NODE_TYPE_ERR: 24,
+  DATA_CLONE_ERR: 25
+}
+Failed to fetch SiliconAngle: Error [TimeoutError]: The operation was aborted due to timeout
+    at ignore-listed frames {
+  code: 23,
+  INDEX_SIZE_ERR: 1,
+  DOMSTRING_SIZE_ERR: 2,
+  HIERARCHY_REQUEST_ERR: 3,
+  WRONG_DOCUMENT_ERR: 4,
+  INVALID_CHARACTER_ERR: 5,
+  NO_DATA_ALLOWED_ERR: 6,
+  NO_MODIFICATION_ALLOWED_ERR: 7,
+  NOT_FOUND_ERR: 8,
+  NOT_SUPPORTED_ERR: 9,
+  INUSE_ATTRIBUTE_ERR: 10,
+  INVALID_STATE_ERR: 11,
+  SYNTAX_ERR: 12,
+  INVALID_MODIFICATION_ERR: 13,
+  NAMESPACE_ERR: 14,
+  INVALID_ACCESS_ERR: 15,
+  VALIDATION_ERR: 16,
+  TYPE_MISMATCH_ERR: 17,
+  SECURITY_ERR: 18,
+  NETWORK_ERR: 19,
+  ABORT_ERR: 20,
+  URL_MISMATCH_ERR: 21,
+  QUOTA_EXCEEDED_ERR: 22,
+  TIMEOUT_ERR: 23,
+  INVALID_NODE_TYPE_ERR: 24,
+  DATA_CLONE_ERR: 25
+}
+Failed to fetch SiliconAngle: Error [TimeoutError]: The operation was aborted due to timeout
+    at async j (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:3280)
+    at async k (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:4223)
+    at async q (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:6:13567)
+    at async i (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\4207.js:1:27271) {
+  code: 23,
+  INDEX_SIZE_ERR: 1,
+  DOMSTRING_SIZE_ERR: 2,
+  HIERARCHY_REQUEST_ERR: 3,
+  WRONG_DOCUMENT_ERR: 4,
+  INVALID_CHARACTER_ERR: 5,
+  NO_DATA_ALLOWED_ERR: 6,
+  NO_MODIFICATION_ALLOWED_ERR: 7,
+  NOT_FOUND_ERR: 8,
+  NOT_SUPPORTED_ERR: 9,
+  INUSE_ATTRIBUTE_ERR: 10,
+  INVALID_STATE_ERR: 11,
+  SYNTAX_ERR: 12,
+  INVALID_MODIFICATION_ERR: 13,
+  NAMESPACE_ERR: 14,
+  INVALID_ACCESS_ERR: 15,
+  VALIDATION_ERR: 16,
+  TYPE_MISMATCH_ERR: 17,
+  SECURITY_ERR: 18,
+  NETWORK_ERR: 19,
+  ABORT_ERR: 20,
+  URL_MISMATCH_ERR: 21,
+  QUOTA_EXCEEDED_ERR: 22,
+  TIMEOUT_ERR: 23,
+  INVALID_NODE_TYPE_ERR: 24,
+  DATA_CLONE_ERR: 25
+}
+Failed to fetch SiliconAngle: Error [TimeoutError]: The operation was aborted due to timeout
+    at async j (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:3280)
+    at async k (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:4223)
+    at async q (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:6:13567)
+    at async i (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\4207.js:1:27271) {
+  code: 23,
+  INDEX_SIZE_ERR: 1,
+  DOMSTRING_SIZE_ERR: 2,
+  HIERARCHY_REQUEST_ERR: 3,
+  WRONG_DOCUMENT_ERR: 4,
+  INVALID_CHARACTER_ERR: 5,
+  NO_DATA_ALLOWED_ERR: 6,
+  NO_MODIFICATION_ALLOWED_ERR: 7,
+  NOT_FOUND_ERR: 8,
+  NOT_SUPPORTED_ERR: 9,
+  INUSE_ATTRIBUTE_ERR: 10,
+  INVALID_STATE_ERR: 11,
+  SYNTAX_ERR: 12,
+  INVALID_MODIFICATION_ERR: 13,
+  NAMESPACE_ERR: 14,
+  INVALID_ACCESS_ERR: 15,
+  VALIDATION_ERR: 16,
+  TYPE_MISMATCH_ERR: 17,
+  SECURITY_ERR: 18,
+  NETWORK_ERR: 19,
+  ABORT_ERR: 20,
+  URL_MISMATCH_ERR: 21,
+  QUOTA_EXCEEDED_ERR: 22,
+  TIMEOUT_ERR: 23,
+  INVALID_NODE_TYPE_ERR: 24,
+  DATA_CLONE_ERR: 25
+}
+Failed to fetch SiliconAngle: Error [TimeoutError]: The operation was aborted due to timeout
+    at async j (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:3280)
+    at async k (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:4223)
+    at async q (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:6:13567)
+    at async i (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\4207.js:1:27271) {
+  code: 23,
+  INDEX_SIZE_ERR: 1,
+  DOMSTRING_SIZE_ERR: 2,
+  HIERARCHY_REQUEST_ERR: 3,
+  WRONG_DOCUMENT_ERR: 4,
+  INVALID_CHARACTER_ERR: 5,
+  NO_DATA_ALLOWED_ERR: 6,
+  NO_MODIFICATION_ALLOWED_ERR: 7,
+  NOT_FOUND_ERR: 8,
+  NOT_SUPPORTED_ERR: 9,
+  INUSE_ATTRIBUTE_ERR: 10,
+  INVALID_STATE_ERR: 11,
+  SYNTAX_ERR: 12,
+  INVALID_MODIFICATION_ERR: 13,
+  NAMESPACE_ERR: 14,
+  INVALID_ACCESS_ERR: 15,
+  VALIDATION_ERR: 16,
+  TYPE_MISMATCH_ERR: 17,
+  SECURITY_ERR: 18,
+  NETWORK_ERR: 19,
+  ABORT_ERR: 20,
+  URL_MISMATCH_ERR: 21,
+  QUOTA_EXCEEDED_ERR: 22,
+  TIMEOUT_ERR: 23,
+  INVALID_NODE_TYPE_ERR: 24,
+  DATA_CLONE_ERR: 25
+}
+Failed to fetch SiliconAngle: Error [TimeoutError]: The operation was aborted due to timeout
+    at async j (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:3280)
+    at async k (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:4223)
+    at async q (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:6:13567)
+    at async i (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\4207.js:1:27271) {
+  code: 23,
+  INDEX_SIZE_ERR: 1,
+  DOMSTRING_SIZE_ERR: 2,
+  HIERARCHY_REQUEST_ERR: 3,
+  WRONG_DOCUMENT_ERR: 4,
+  INVALID_CHARACTER_ERR: 5,
+  NO_DATA_ALLOWED_ERR: 6,
+  NO_MODIFICATION_ALLOWED_ERR: 7,
+  NOT_FOUND_ERR: 8,
+  NOT_SUPPORTED_ERR: 9,
+  INUSE_ATTRIBUTE_ERR: 10,
+  INVALID_STATE_ERR: 11,
+  SYNTAX_ERR: 12,
+  INVALID_MODIFICATION_ERR: 13,
+  NAMESPACE_ERR: 14,
+  INVALID_ACCESS_ERR: 15,
+  VALIDATION_ERR: 16,
+  TYPE_MISMATCH_ERR: 17,
+  SECURITY_ERR: 18,
+  NETWORK_ERR: 19,
+  ABORT_ERR: 20,
+  URL_MISMATCH_ERR: 21,
+  QUOTA_EXCEEDED_ERR: 22,
+  TIMEOUT_ERR: 23,
+  INVALID_NODE_TYPE_ERR: 24,
+  DATA_CLONE_ERR: 25
+}
+Failed to fetch SiliconAngle: Error [TimeoutError]: The operation was aborted due to timeout
+    at async j (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:3280)
+    at async k (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:4223)
+    at async q (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:6:13567)
+    at async i (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\4207.js:1:27271) {
+  code: 23,
+  INDEX_SIZE_ERR: 1,
+  DOMSTRING_SIZE_ERR: 2,
+  HIERARCHY_REQUEST_ERR: 3,
+  WRONG_DOCUMENT_ERR: 4,
+  INVALID_CHARACTER_ERR: 5,
+  NO_DATA_ALLOWED_ERR: 6,
+  NO_MODIFICATION_ALLOWED_ERR: 7,
+  NOT_FOUND_ERR: 8,
+  NOT_SUPPORTED_ERR: 9,
+  INUSE_ATTRIBUTE_ERR: 10,
+  INVALID_STATE_ERR: 11,
+  SYNTAX_ERR: 12,
+  INVALID_MODIFICATION_ERR: 13,
+  NAMESPACE_ERR: 14,
+  INVALID_ACCESS_ERR: 15,
+  VALIDATION_ERR: 16,
+  TYPE_MISMATCH_ERR: 17,
+  SECURITY_ERR: 18,
+  NETWORK_ERR: 19,
+  ABORT_ERR: 20,
+  URL_MISMATCH_ERR: 21,
+  QUOTA_EXCEEDED_ERR: 22,
+  TIMEOUT_ERR: 23,
+  INVALID_NODE_TYPE_ERR: 24,
+  DATA_CLONE_ERR: 25
+}
+Failed to fetch SiliconAngle: Error [TimeoutError]: The operation was aborted due to timeout
+    at async j (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:3280)
+    at async k (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:4223)
+    at async q (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:6:13567)
+    at async i (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\4207.js:1:27271) {
+  code: 23,
+  INDEX_SIZE_ERR: 1,
+  DOMSTRING_SIZE_ERR: 2,
+  HIERARCHY_REQUEST_ERR: 3,
+  WRONG_DOCUMENT_ERR: 4,
+  INVALID_CHARACTER_ERR: 5,
+  NO_DATA_ALLOWED_ERR: 6,
+  NO_MODIFICATION_ALLOWED_ERR: 7,
+  NOT_FOUND_ERR: 8,
+  NOT_SUPPORTED_ERR: 9,
+  INUSE_ATTRIBUTE_ERR: 10,
+  INVALID_STATE_ERR: 11,
+  SYNTAX_ERR: 12,
+  INVALID_MODIFICATION_ERR: 13,
+  NAMESPACE_ERR: 14,
+  INVALID_ACCESS_ERR: 15,
+  VALIDATION_ERR: 16,
+  TYPE_MISMATCH_ERR: 17,
+  SECURITY_ERR: 18,
+  NETWORK_ERR: 19,
+  ABORT_ERR: 20,
+  URL_MISMATCH_ERR: 21,
+  QUOTA_EXCEEDED_ERR: 22,
+  TIMEOUT_ERR: 23,
+  INVALID_NODE_TYPE_ERR: 24,
+  DATA_CLONE_ERR: 25
+}
+Failed to fetch SiliconAngle: Error [TimeoutError]: The operation was aborted due to timeout
+    at async j (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:3280)
+    at async k (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:4223)
+    at async q (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:6:13567)
+    at async i (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\4207.js:1:27271) {
+  code: 23,
+  INDEX_SIZE_ERR: 1,
+  DOMSTRING_SIZE_ERR: 2,
+  HIERARCHY_REQUEST_ERR: 3,
+  WRONG_DOCUMENT_ERR: 4,
+  INVALID_CHARACTER_ERR: 5,
+  NO_DATA_ALLOWED_ERR: 6,
+  NO_MODIFICATION_ALLOWED_ERR: 7,
+  NOT_FOUND_ERR: 8,
+  NOT_SUPPORTED_ERR: 9,
+  INUSE_ATTRIBUTE_ERR: 10,
+  INVALID_STATE_ERR: 11,
+  SYNTAX_ERR: 12,
+  INVALID_MODIFICATION_ERR: 13,
+  NAMESPACE_ERR: 14,
+  INVALID_ACCESS_ERR: 15,
+  VALIDATION_ERR: 16,
+  TYPE_MISMATCH_ERR: 17,
+  SECURITY_ERR: 18,
+  NETWORK_ERR: 19,
+  ABORT_ERR: 20,
+  URL_MISMATCH_ERR: 21,
+  QUOTA_EXCEEDED_ERR: 22,
+  TIMEOUT_ERR: 23,
+  INVALID_NODE_TYPE_ERR: 24,
+  DATA_CLONE_ERR: 25
+}
+Failed to fetch SiliconAngle: Error [TimeoutError]: The operation was aborted due to timeout
+    at async j (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:3280)
+    at async k (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:4223)
+    at async q (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:6:13567)
+    at async i (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\4207.js:1:27271) {
+  code: 23,
+  INDEX_SIZE_ERR: 1,
+  DOMSTRING_SIZE_ERR: 2,
+  HIERARCHY_REQUEST_ERR: 3,
+  WRONG_DOCUMENT_ERR: 4,
+  INVALID_CHARACTER_ERR: 5,
+  NO_DATA_ALLOWED_ERR: 6,
+  NO_MODIFICATION_ALLOWED_ERR: 7,
+  NOT_FOUND_ERR: 8,
+  NOT_SUPPORTED_ERR: 9,
+  INUSE_ATTRIBUTE_ERR: 10,
+  INVALID_STATE_ERR: 11,
+  SYNTAX_ERR: 12,
+  INVALID_MODIFICATION_ERR: 13,
+  NAMESPACE_ERR: 14,
+  INVALID_ACCESS_ERR: 15,
+  VALIDATION_ERR: 16,
+  TYPE_MISMATCH_ERR: 17,
+  SECURITY_ERR: 18,
+  NETWORK_ERR: 19,
+  ABORT_ERR: 20,
+  URL_MISMATCH_ERR: 21,
+  QUOTA_EXCEEDED_ERR: 22,
+  TIMEOUT_ERR: 23,
+  INVALID_NODE_TYPE_ERR: 24,
+  DATA_CLONE_ERR: 25
+}
+  Generating static pages using 15 workers (415/831) 
+Failed to fetch SiliconAngle: Error [TimeoutError]: The operation was aborted due to timeout
+    at async j (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:3280)
+    at async k (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:4223)
+    at async q (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:6:13567)
+    at async i (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\4207.js:1:27271) {
+  code: 23,
+  INDEX_SIZE_ERR: 1,
+  DOMSTRING_SIZE_ERR: 2,
+  HIERARCHY_REQUEST_ERR: 3,
+  WRONG_DOCUMENT_ERR: 4,
+  INVALID_CHARACTER_ERR: 5,
+  NO_DATA_ALLOWED_ERR: 6,
+  NO_MODIFICATION_ALLOWED_ERR: 7,
+  NOT_FOUND_ERR: 8,
+  NOT_SUPPORTED_ERR: 9,
+  INUSE_ATTRIBUTE_ERR: 10,
+  INVALID_STATE_ERR: 11,
+  SYNTAX_ERR: 12,
+  INVALID_MODIFICATION_ERR: 13,
+  NAMESPACE_ERR: 14,
+  INVALID_ACCESS_ERR: 15,
+  VALIDATION_ERR: 16,
+  TYPE_MISMATCH_ERR: 17,
+  SECURITY_ERR: 18,
+  NETWORK_ERR: 19,
+  ABORT_ERR: 20,
+  URL_MISMATCH_ERR: 21,
+  QUOTA_EXCEEDED_ERR: 22,
+  TIMEOUT_ERR: 23,
+  INVALID_NODE_TYPE_ERR: 24,
+  DATA_CLONE_ERR: 25
+}
+Failed to fetch SiliconAngle: Error [TimeoutError]: The operation was aborted due to timeout
+    at ignore-listed frames {
+  code: 23,
+  INDEX_SIZE_ERR: 1,
+  DOMSTRING_SIZE_ERR: 2,
+  HIERARCHY_REQUEST_ERR: 3,
+  WRONG_DOCUMENT_ERR: 4,
+  INVALID_CHARACTER_ERR: 5,
+  NO_DATA_ALLOWED_ERR: 6,
+  NO_MODIFICATION_ALLOWED_ERR: 7,
+  NOT_FOUND_ERR: 8,
+  NOT_SUPPORTED_ERR: 9,
+  INUSE_ATTRIBUTE_ERR: 10,
+  INVALID_STATE_ERR: 11,
+  SYNTAX_ERR: 12,
+  INVALID_MODIFICATION_ERR: 13,
+  NAMESPACE_ERR: 14,
+  INVALID_ACCESS_ERR: 15,
+  VALIDATION_ERR: 16,
+  TYPE_MISMATCH_ERR: 17,
+  SECURITY_ERR: 18,
+  NETWORK_ERR: 19,
+  ABORT_ERR: 20,
+  URL_MISMATCH_ERR: 21,
+  QUOTA_EXCEEDED_ERR: 22,
+  TIMEOUT_ERR: 23,
+  INVALID_NODE_TYPE_ERR: 24,
+  DATA_CLONE_ERR: 25
+}
+Failed to fetch SiliconAngle: Error [TimeoutError]: The operation was aborted due to timeout
+    at async j (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:3280)
+    at async k (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:4223)
+    at async q (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:6:13567)
+    at async i (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\4207.js:1:27271) {
+  code: 23,
+  INDEX_SIZE_ERR: 1,
+  DOMSTRING_SIZE_ERR: 2,
+  HIERARCHY_REQUEST_ERR: 3,
+  WRONG_DOCUMENT_ERR: 4,
+  INVALID_CHARACTER_ERR: 5,
+  NO_DATA_ALLOWED_ERR: 6,
+  NO_MODIFICATION_ALLOWED_ERR: 7,
+  NOT_FOUND_ERR: 8,
+  NOT_SUPPORTED_ERR: 9,
+  INUSE_ATTRIBUTE_ERR: 10,
+  INVALID_STATE_ERR: 11,
+  SYNTAX_ERR: 12,
+  INVALID_MODIFICATION_ERR: 13,
+  NAMESPACE_ERR: 14,
+  INVALID_ACCESS_ERR: 15,
+  VALIDATION_ERR: 16,
+  TYPE_MISMATCH_ERR: 17,
+  SECURITY_ERR: 18,
+  NETWORK_ERR: 19,
+  ABORT_ERR: 20,
+  URL_MISMATCH_ERR: 21,
+  QUOTA_EXCEEDED_ERR: 22,
+  TIMEOUT_ERR: 23,
+  INVALID_NODE_TYPE_ERR: 24,
+  DATA_CLONE_ERR: 25
+}
+Failed to fetch SiliconAngle: Error [TimeoutError]: The operation was aborted due to timeout
+    at async j (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:3280)
+    at async k (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:4223)
+    at async q (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:6:13567)
+    at async i (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\4207.js:1:27271) {
+  code: 23,
+  INDEX_SIZE_ERR: 1,
+  DOMSTRING_SIZE_ERR: 2,
+  HIERARCHY_REQUEST_ERR: 3,
+  WRONG_DOCUMENT_ERR: 4,
+  INVALID_CHARACTER_ERR: 5,
+  NO_DATA_ALLOWED_ERR: 6,
+  NO_MODIFICATION_ALLOWED_ERR: 7,
+  NOT_FOUND_ERR: 8,
+  NOT_SUPPORTED_ERR: 9,
+  INUSE_ATTRIBUTE_ERR: 10,
+  INVALID_STATE_ERR: 11,
+  SYNTAX_ERR: 12,
+  INVALID_MODIFICATION_ERR: 13,
+  NAMESPACE_ERR: 14,
+  INVALID_ACCESS_ERR: 15,
+  VALIDATION_ERR: 16,
+  TYPE_MISMATCH_ERR: 17,
+  SECURITY_ERR: 18,
+  NETWORK_ERR: 19,
+  ABORT_ERR: 20,
+  URL_MISMATCH_ERR: 21,
+  QUOTA_EXCEEDED_ERR: 22,
+  TIMEOUT_ERR: 23,
+  INVALID_NODE_TYPE_ERR: 24,
+  DATA_CLONE_ERR: 25
+}
+Failed to fetch SiliconAngle: Error [TimeoutError]: The operation was aborted due to timeout
+    at async j (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:3280)
+    at async k (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:4223)
+    at async q (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:6:13567)
+    at async i (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\4207.js:1:27271) {
+  code: 23,
+  INDEX_SIZE_ERR: 1,
+  DOMSTRING_SIZE_ERR: 2,
+  HIERARCHY_REQUEST_ERR: 3,
+  WRONG_DOCUMENT_ERR: 4,
+  INVALID_CHARACTER_ERR: 5,
+  NO_DATA_ALLOWED_ERR: 6,
+  NO_MODIFICATION_ALLOWED_ERR: 7,
+  NOT_FOUND_ERR: 8,
+  NOT_SUPPORTED_ERR: 9,
+  INUSE_ATTRIBUTE_ERR: 10,
+  INVALID_STATE_ERR: 11,
+  SYNTAX_ERR: 12,
+  INVALID_MODIFICATION_ERR: 13,
+  NAMESPACE_ERR: 14,
+  INVALID_ACCESS_ERR: 15,
+  VALIDATION_ERR: 16,
+  TYPE_MISMATCH_ERR: 17,
+  SECURITY_ERR: 18,
+  NETWORK_ERR: 19,
+  ABORT_ERR: 20,
+  URL_MISMATCH_ERR: 21,
+  QUOTA_EXCEEDED_ERR: 22,
+  TIMEOUT_ERR: 23,
+  INVALID_NODE_TYPE_ERR: 24,
+  DATA_CLONE_ERR: 25
+}
+  Generating static pages using 15 workers (623/831) 
+Failed to fetch SiliconAngle: Error [TimeoutError]: The operation was aborted due to timeout
+    at async j (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:3280)
+    at async k (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:4223)
+    at async q (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:6:13567)
+    at async i (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\4207.js:1:27271) {
+  code: 23,
+  INDEX_SIZE_ERR: 1,
+  DOMSTRING_SIZE_ERR: 2,
+  HIERARCHY_REQUEST_ERR: 3,
+  WRONG_DOCUMENT_ERR: 4,
+  INVALID_CHARACTER_ERR: 5,
+  NO_DATA_ALLOWED_ERR: 6,
+  NO_MODIFICATION_ALLOWED_ERR: 7,
+  NOT_FOUND_ERR: 8,
+  NOT_SUPPORTED_ERR: 9,
+  INUSE_ATTRIBUTE_ERR: 10,
+  INVALID_STATE_ERR: 11,
+  SYNTAX_ERR: 12,
+  INVALID_MODIFICATION_ERR: 13,
+  NAMESPACE_ERR: 14,
+  INVALID_ACCESS_ERR: 15,
+  VALIDATION_ERR: 16,
+  TYPE_MISMATCH_ERR: 17,
+  SECURITY_ERR: 18,
+  NETWORK_ERR: 19,
+  ABORT_ERR: 20,
+  URL_MISMATCH_ERR: 21,
+  QUOTA_EXCEEDED_ERR: 22,
+  TIMEOUT_ERR: 23,
+  INVALID_NODE_TYPE_ERR: 24,
+  DATA_CLONE_ERR: 25
+}
+Failed to fetch SiliconAngle: Error [TimeoutError]: The operation was aborted due to timeout
+    at async j (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:3280)
+    at async k (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:1:4223)
+    at async q (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\3340.js:6:13567)
+    at async i (C:\Users\Admin\AppData\Local\Temp\push-wt\.next\server\chunks\4207.js:1:27271) {
+  code: 23,
+  INDEX_SIZE_ERR: 1,
+  DOMSTRING_SIZE_ERR: 2,
+  HIERARCHY_REQUEST_ERR: 3,
+  WRONG_DOCUMENT_ERR: 4,
+  INVALID_CHARACTER_ERR: 5,
+  NO_DATA_ALLOWED_ERR: 6,
+  NO_MODIFICATION_ALLOWED_ERR: 7,
+  NOT_FOUND_ERR: 8,
+  NOT_SUPPORTED_ERR: 9,
+  INUSE_ATTRIBUTE_ERR: 10,
+  INVALID_STATE_ERR: 11,
+  SYNTAX_ERR: 12,
+  INVALID_MODIFICATION_ERR: 13,
+  NAMESPACE_ERR: 14,
+  INVALID_ACCESS_ERR: 15,
+  VALIDATION_ERR: 16,
+  TYPE_MISMATCH_ERR: 17,
+  SECURITY_ERR: 18,
+  NETWORK_ERR: 19,
+  ABORT_ERR: 20,
+  URL_MISMATCH_ERR: 21,
+  QUOTA_EXCEEDED_ERR: 22,
+  TIMEOUT_ERR: 23,
+  INVALID_NODE_TYPE_ERR: 24,
+  DATA_CLONE_ERR: 25
+}
+✓ Generating static pages using 15 workers (831/831) in 34.7s
+  Finalizing page optimization ...
+  Collecting build traces ...
+
+Route (app)                                                                        Revalidate  Expire
+┌ ○ /                                                                                      1h      1y
+├ ○ /_not-found
+├ ○ /about
+├ ○ /affiliate-disclosure
+├ ○ /agent-card
+├ ○ /ai-scan
+├ ○ /ai-tools
+├ ƒ /api/assurance
+├ ƒ /api/audit/report
+├ ƒ /api/company-scan/checkout
+├ ƒ /api/company-scan/preview
+├ ƒ /api/cron/news
+├ ƒ /api/cron/professional-scan
+├ ƒ /api/cron/professional-scan-daily
+├ ƒ /api/experts
+├ ƒ /api/leads
+├ ƒ /api/leads-auth/login
+├ ƒ /api/leads-auth/logout
+├ ƒ /api/lemonsqueezy/webhook
+├ ƒ /api/library
+├ ƒ /api/professional-scan/checkout
+├ ƒ /api/professional-scan/preview
+├ ƒ /api/professional-scan/rebuild
+├ ƒ /api/professional-scan/refund
+├ ƒ /api/professional-scan/resend
+├ ƒ /api/professional-scan/sample
+├ ƒ /api/professional-scan/status
+├ ƒ /api/resume-audit
+├ ƒ /api/resume-checkout
+├ ƒ /api/resume-extract
+├ ƒ /api/resume-payment-verify
+├ ƒ /api/resume-report
+├ ƒ /api/stats/login
+├ ƒ /api/stats/logout
+├ ƒ /api/vote
+├ ○ /audit
+├ ƒ /audit/r/[id]
+├ ○ /b2b
+├   /b2b/[slug]
+│ ├ ● /b2b/agentic-commerce-ai-agents-buy-for-you-who-gets-paid-2026
+│ ├ ● /b2b/ai-agents-explained
+│ ├ ● /b2b/ai-agents-hacking-companies-non-human-identity-security-boom-2026
+│ └ ● [+47 more paths]
+├ ○ /benchmarks
+├ ○ /company-scan
+├ ƒ /company-scan/r/[id]
+├ ○ /compare
+├   /compare/[models]
+│ ├ ● /compare/gpt-4o-vs-deepseek-v3
+│ ├ ● /compare/claude-opus-4-vs-gpt-4o
+│ ├ ● /compare/deepseek-r1-vs-o1
+│ └ ● [+4 more paths]
+├ ○ /experts
+├   /experts/[slug]
+│ ├ ● /experts/sergei-ponomarev
+│ ├ ● /experts/amanda-cunningham
+│ ├ ● /experts/sebastien-favre-lecca
+│ └ ● [+10 more paths]
+├ ○ /experts/apply
+├ ○ /government
+├   /government/[slug]
+│ ├ ● /government/ai-data-center-ratepayer-protection-2026
+│ ├ ● /government/ai-data-centers-global
+│ ├ ● /government/ai-governance-smes-practical-framework-no-compliance-team-2026
+│ └ ● [+25 more paths]
+├ ○ /labs/resume-audit
+├ ○ /labs/resume-audit/success
+├ ○ /learn
+├   /learn/[slug]
+│ ├ ● /learn/ai-certifications-high-salary
+│ ├ ● /learn/ai-certifications-worth-getting
+│ ├ ● /learn/ai-courses-honest-guide-2026
+│ └ ● [+12 more paths]
+├ ○ /library
+├   /library/[slug]
+│ ├ ● /library/ai-agent-test-purchase-light
+│ ├ ● /library/two-companies-one-agent-one-error
+│ ├ ● /library/silence-rather-than-error
+│ └ ● [+7 more paths]
+├ ○ /materials
+├   /materials/[slug]
+│ ├ ● /materials/chatgpt-ads-sponsored-agents-1-billion-what-advertisers-pay-2026
+│ ├ ● /materials/agility-digit-5-no-safety-cage-real-cost-humanoid-2026
+│ ├ ● /materials/ai-labs-became-consulting-firms-implementation-gap-2026
+│ └ ● [+304 more paths]
+├ ○ /materials/playbook-templates
+├ ○ /materials/roi-calculator
+├ ○ /materials/tool-selector
+├ ○ /models
+├   /models/[id]
+│ ├ ● /models/gpt-5-6-sol
+│ ├ ● /models/gpt-5-6-terra
+│ ├ ● /models/gpt-5-6-luna
+│ └ ● [+71 more paths]
+├ ○ /news                                                                                  1h      1y
+├ ƒ /news/[slug]
+├ ○ /notes
+├   /notes/[slug]
+│ ├ ● /notes/ai-capability-is-not-ai-authority
+│ ├ ● /notes/airline-chatbot-mystery-shopping
+│ ├ ● /notes/checkbox-or-occasion-eu-ai-act
+│ └ ● [+17 more paths]
+├ ○ /privacy
+├ ○ /professional-scan
+├ ƒ /professional-scan/r/[id]
+├ ○ /regulation
+├   /regulation/[country]
+│ ├ ● /regulation/eu
+│ ├ ● /regulation/us
+│ ├ ● /regulation/uk
+│ └ ● [+7 more paths]
+├ ○ /robots
+├ ○ /robots.txt
+├   /robots/[slug]
+│ ├ ● /robots/1x-neo-home-robot-499-month-worth-it-2026
+│ ├ ● /robots/agility-digit-5-no-safety-cage-real-cost-humanoid-2026
+│ ├ ● /robots/china-16k-robots-factory-floor
+│ └ ● [+11 more paths]
+├ ○ /salaries
+├   /salaries/[role]
+│ ├ ● /salaries/ai-research-scientist
+│ ├ ● /salaries/machine-learning-engineer
+│ ├ ● /salaries/ai-engineer
+│ └ ● [+8 more paths]
+├ ƒ /scan-order-received
+├ ○ /sergei-ponomarev
+├ ○ /sergei-ponomarev/opengraph-image
+├ ○ /service-check
+├ ○ /service-check/opengraph-image
+├ ○ /sitemap.xml
+├ ○ /society
+├   /society/[slug]
+│ ├ ● /society/ai-books-must-read
+│ ├ ● /society/ai-companion-economy-loneliness-business-2026
+│ ├ ● /society/ai-creativity-dead-or-reborn
+│ └ ● [+12 more paths]
+├ ○ /solo
+├   /solo/[slug]
+│ ├ ● /solo/50-ai-business-ideas-weekend
+│ ├ ● /solo/ai-agency-owner-100k
+│ ├ ● /solo/ai-agent-maintenance-retainer-model
+│ └ ● [+88 more paths]
+├ ○ /startups
+├   /startups/[slug]
+│ ├ ● /startups/ai-cybersecurity-companies
+│ ├ ● /startups/ai-defense-contracts
+│ ├ ● /startups/ai-education-companies
+│ └ ● [+47 more paths]
+├ ƒ /stats
+├ ○ /submit-your-story
+├ ○ /terms
+├ ○ /tested
+├ ● /tested/[number]
+├ ○ /tools
+├   /tools/[slug]
+│ ├ ● /tools/ai-subscription-tiers-20-vs-200-what-you-actually-get-2026
+│ ├ ● /tools/chatgpt-ads-sponsored-agents-1-billion-what-advertisers-pay-2026
+│ ├ ● /tools/chatgpt-vs-claude-vs-gemini
+│ └ ● [+18 more paths]
+├ ○ /vc
+└   /vc/[slug]
+  ├ ● /vc/ai-accelerators-ranked
+  ├ ● /vc/ai-angel-investing-guide
+  ├ ● /vc/ai-exits-acquisitions-2025
+  └ ● [+20 more paths]
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+
