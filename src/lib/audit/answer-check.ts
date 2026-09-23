@@ -91,6 +91,8 @@ export interface AnswerCheckSubject {
   readonly recommendAs?: string;
   /** A person's public profile address, used only to identify them in the questions. */
   readonly profileUrl?: string;
+  /** Where the preview placed the person. An answer that puts them somewhere else by a registry number is about someone else. */
+  readonly location?: string;
 }
 
 export interface AnswerCheck {

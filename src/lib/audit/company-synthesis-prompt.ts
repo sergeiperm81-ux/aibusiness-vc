@@ -29,3 +29,23 @@ Return JSON with these keys:
 "coverage": one entry for every assistant and every question: {"provider": label, "questionId": id, "status": "found" when the answer is clearly about this company, "not_found" when the assistant says it cannot find or identify it, "mixed" when the answer blends in another company or says it cannot tell which company it found}.
 
 "recommendations": 3 to 5 entries, ordered by effect, the one that changes most what someone asking an AI assistant about the company is told first: {"title": an action in a few words, "why": the gap in these answers that it closes, in one sentence, "steps": 2 to 4 concrete steps, each a full sentence that says exactly what to write or publish and where}. Every recommendation must close a gap visible in these answers: assistants that could not find or identify the company, another company it is confused with, a disagreement listed under "disagreements", an offer or leader that is out of date, no dated recent activity, no independent reviews. A step is never "improve" or "clarify" or "increase": it names the place and the text. Never recommend publishing private data about people, and never recommend something at least two assistants already found. Never tell the company to confirm or promote an offer or a leader that only one assistant names: the most a step says is to check whether it is current and correct it where it appears if it is not. Recommend more or better dated activity only when the most recent date any assistant gives is more than six months old. Good steps look like: "Put the legal name, the year founded and the city in the first sentence of the About page."; "Publish one dated page that names the owners and the chief executive."; "Ask three customers for a review on the platform the assistants already cite." Write them as advice to the company, in the imperative. When another company with the name came up, one recommendation must be about standing apart from it: the same legal name, city and industry next to the name everywhere. Do not promise that any assistant will change its answer.`;
+
+/**
+ * Rules both summaries follow, added after the 23.09 pilot with ANDEKS™, an
+ * independent assessor who reconstructed the same person by hand. The scan
+ * showed what an asker is really told, and fell short where the summary turned
+ * a self-description named by two models into a fact, counted the name and
+ * role the question itself gave as things the models found, and listed the
+ * person's own paper as a review.
+ */
+export const SUMMARY_RULES = `Weight. In "identity.summary" and "professional.summary", state as plain fact only what at least half of the assistants that found the subject say and no assistant contradicts. Anything fewer name, or another assistant describes differently, is left to the rows, where the reader sees who said it, or is written with its weight, for example "two assistants describe...". What the subject says about itself on its own profile is its claim, not a fact others confirm.
+
+Breadth. Put every distinct line of work, research, business or project the answers attach to the subject into the rows ("Role" or "Offer"), one entry each, so the reader sees who said each part; a line only one assistant names stays in the rows, where it is shown as unconfirmed. The summaries name only lines at least two assistants name, and when those are several, name them all rather than only the one named most often.
+
+Given, not found. The questions sent to the assistants already contained the subject's name, the role and organisation from the preview, and the profile address. An assistant that repeats them has not found them. Never present them as something the assistants established; what counts is what they add beyond the question.
+
+Reviews. A review is what someone else said about the subject's work: a testimonial, a client's rating, a complaint, press coverage that judges it. The subject's own publications, co-authored papers, registrations, directory listings and posts are never reviews.
+
+Disagreements. List only versions that cannot both be true. Two descriptions that fit together, such as "AI governance" and "risk and compliance", are not a disagreement. When an assistant dates its version to an earlier year, keep that year in "says".
+
+Recommendations. Never tell the subject to remove, close or hide a business, a company, a product or an activity. The most a step says is to state on one page how it relates to the main one.`;

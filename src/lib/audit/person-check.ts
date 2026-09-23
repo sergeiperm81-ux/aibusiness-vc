@@ -80,6 +80,7 @@ export function toAnswerSubject(person: PersonSubject): AnswerCheckSubject {
     market: person.market?.trim() || undefined,
     recommendAs: person.recommendAs?.trim() || "consultants or experts",
     profileUrl: cleanProfileUrl(person.profileUrl),
+    ...(person.location?.trim() ? { location: person.location.trim() } : {}),
   };
 }
 

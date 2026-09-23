@@ -7,7 +7,15 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import type { AnswerCheck } from "../../src/lib/audit/answer-check";
 import { isGoogleRedirect, stripTracking } from "../../src/lib/audit/citation-cleanup";
-import { buildPersonReportPdf, groupSources, plainAnswer, promotesLoneRole, rolesNamedByOneModel } from "../../src/lib/audit/person-report-pdf";
+import {
+  attributionNote,
+  buildPersonReportPdf,
+  groupSources,
+  plainAnswer,
+  promotesLoneRole,
+  rolesNamedByOneModel,
+} from "../../src/lib/audit/person-report-pdf";
+import { SUMMARY_RULES } from "../../src/lib/audit/company-synthesis-prompt";
 import { answersBlock, parseSynthesis, type PersonSynthesis } from "../../src/lib/audit/person-synthesis";
 
 const LABELS = ["OpenAI", "Anthropic", "Gemini"];
@@ -313,4 +321,43 @@ test("the cover address is a clickable link, in the report and in the sample", a
     });
     assert.ok(uris.some((u) => u.includes("linkedin.com/in/jane-doe")), `sample=${sample}: ${uris.join(" ")}`);
   }
+});
+
+test("the subject's own paper is not a review, and the summary rules reach the model", () => {
+  const parsed = parseSynthesis(
+    raw({
+      redFlags: {
+        flags: [],
+        clear: [],
+        caveats: [],
+        reviews: [
+          { what: "Co-authored a paper on AI support agents published on AI Business", link: null, saidBy: ["OpenAI"] },
+          { what: "A client praised a valuation.", link: "https://a.example/post", saidBy: ["OpenAI"] },
+        ],
+      },
+    }),
+    LABELS,
+    QUESTIONS,
+    answersBlock(check())
+  );
+  assert.ok(parsed);
+  assert.deepEqual(parsed.redFlags.reviews.map((r) => r.what), ["A client praised a valuation."]);
+  assert.match(SUMMARY_RULES, /never reviews/);
+  assert.match(SUMMARY_RULES, /Never tell the subject to remove, close or hide a business/);
+});
+
+test("what the question gave is not counted as found by the models", () => {
+  const subject = { brand: "Ivan Petrov", product: "Founder at Acme™", profileUrl: "https://www.linkedin.com/in/ivan-petrov" };
+  const four = ["OpenAI", "Gemini", "Perplexity", "Grok"];
+  assert.match(attributionNote("Name", "Ivan Petrov", four, 5, subject), /^Given in the question, repeated by 4 of 5/);
+  assert.match(
+    attributionNote("Contact", "LinkedIn profile at https://www.linkedin.com/in/ivan-petrov", four, 5, subject),
+    /^Given in the question/
+  );
+  assert.match(
+    attributionNote("Contact", "ivan@acme.com or https://www.linkedin.com/in/ivan-petrov", four, 5, subject),
+    /^Said by 4 of 5/
+  );
+  assert.match(attributionNote("Role", "Founder and steward of Acme™", four, 5, subject), /^Acme™ was named in the question\. Said by 4 of 5/);
+  assert.match(attributionNote("Based in", "Szczecin, Poland", ["Gemini"], 5, subject), /^Said by 1 of 5: Gemini$/);
 });

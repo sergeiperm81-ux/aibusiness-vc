@@ -17,8 +17,8 @@
 import { randomUUID } from "node:crypto";
 import type { AnswerCheck } from "./answer-check";
 import { computeAnswerSignals } from "./answer-check-report";
-import { COMPANY_INSTRUCTIONS } from "./company-synthesis-prompt";
-import { mentionsOthersTrouble } from "./person-report-safety";
+import { COMPANY_INSTRUCTIONS, SUMMARY_RULES } from "./company-synthesis-prompt";
+import { cleanAnswerText, withheldAnswer } from "./person-report-safety";
 import { postJson } from "./paid-http";
 import {
   failureMeasurement,
@@ -143,8 +143,12 @@ Return JSON with these keys:
 
 /** The person or the company instructions, by what the check is about. */
 function instructionsFor(check: AnswerCheck): string {
-  return check.subject.kind === "company" ? COMPANY_INSTRUCTIONS : INSTRUCTIONS;
+  const base = check.subject.kind === "company" ? COMPANY_INSTRUCTIONS : INSTRUCTIONS;
+  return [base, SUMMARY_RULES].join("\n\n");
 }
+
+/** A "review" that is the subject's own work, not what someone else said about it. */
+const OWN_WORK = /^(co-?authored|authored|wrote|published|registered|listed|posted|shared|launched)\b/i;
 
 /** A value that says something was not found, not what it is. */
 const ABSENCE = /^(no|none|not|unknown|n\/a)\b|\bnot (disclosed|found|identified|available|stated|publicly)\b/i;
@@ -180,7 +184,7 @@ export function synthesisBoundsForChars(chars: number): AttemptBounds {
 
 /** The most the call can consume, before any answer exists. */
 export function synthesisBoundsForPlan(questions: number, providers: number): AttemptBounds {
-  return synthesisBoundsForChars(Math.max(INSTRUCTIONS.length, COMPANY_INSTRUCTIONS.length) + questions * providers * (MAX_ANSWER_CHARS + 200) + 1_000);
+  return synthesisBoundsForChars(Math.max(INSTRUCTIONS.length, COMPANY_INSTRUCTIONS.length) + SUMMARY_RULES.length + questions * providers * (MAX_ANSWER_CHARS + 200) + 1_000);
 }
 
 /* ------------------------------------------------------------------ parsing */
@@ -316,7 +320,8 @@ export function parseSynthesis(
           const r = record(item);
           return { what: text(r.what), link: linksInAnswers([r.link], answersText)[0] ?? null, saidBy: saidBy(r.saidBy) };
         })
-        .filter((review) => review.what && review.saidBy.length > 0)
+        // The subject's own paper or registration, listed as a review, reads as someone vouching for them.
+        .filter((review) => review.what && review.saidBy.length > 0 && !OWN_WORK.test(review.what))
         .slice(0, 6),
     },
     mixups: list(raw.mixups)
@@ -335,7 +340,7 @@ export function parseSynthesis(
             const by = known.get(text(version.saidBy).toLowerCase());
             const says = text(version.says, 300);
             // "No exact date stated" is not a version of the fact: a contradiction needs two claims.
-            return by && says && !ABSENCE.test(says) && !/not precisely|no exact/i.test(says) ? { saidBy: by, says } : null;
+            return by && says && !ABSENCE.test(says) && !/\bnot precisely\b|\bno exact\b/i.test(says) ? { saidBy: by, says } : null;
           })
           .filter((v): v is { saidBy: string; says: string } => v !== null);
         return { topic: text(r.topic, 160), versions };
@@ -352,7 +357,9 @@ export function parseSynthesis(
 /** "questionId/providerId" of answers whose model said it could not find the person: fixed rules, no model. */
 export function answersNotAboutPerson(check: AnswerCheck): ReadonlySet<string> {
   const troubled = check.results.flatMap((row) =>
-    row.answers.filter((a) => a.ok && mentionsOthersTrouble(a.text)).map((a) => `${row.fact.id}/${a.providerId}`)
+    row.answers
+      .filter((a) => a.ok && withheldAnswer(a.text, check.subject))
+      .map((a) => `${row.fact.id}/${a.providerId}`)
   );
   return new Set([
     ...computeAnswerSignals(check)
@@ -376,8 +383,8 @@ export function answersBlock(check: AnswerCheck, heldBack: ReadonlySet<string> =
           const body = !a.ok
             ? `(no answer: ${a.error ?? "failed"})`
             : held
-              ? "(held back: this answer could not be tied to the person, or it tells of trouble about other people with the name)"
-              : a.text.slice(0, MAX_ANSWER_CHARS);
+              ? "(held back: this answer could not be tied to the person, mixes them up with someone else, or tells of trouble about other people with the name)"
+              : cleanAnswerText(a.text).slice(0, MAX_ANSWER_CHARS);
           const sources =
             a.citations.length > 0 && !held ? `\nSources it cited: ${a.citations.slice(0, 8).join(" , ")}` : "";
           return `--- ${a.providerLabel}\n${body}${sources}`;

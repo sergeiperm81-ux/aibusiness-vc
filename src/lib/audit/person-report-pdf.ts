@@ -16,11 +16,12 @@ import { ACCENT, AMBER, AMBER_TINT, GREEN, GREEN_TINT, GREY, MUTED, PdfWriter } 
 import { usefulRecommendations, type CoverageStatus, type PersonSynthesis } from "./person-synthesis";
 import {
   answersAboutProfile,
+  cleanAnswerText,
   identityAmbiguous,
   isSocialAddress,
-  mentionsOthersTrouble,
   sourceLabel,
   verifiedSources,
+  withheldAnswer,
 } from "./person-report-safety";
 
 /** The name on the cover and in the footer. One place, because it is still being decided. */
@@ -143,7 +144,7 @@ export function plainAnswer(text: string): readonly AnswerBlock[] {
       .replace(/\s+/g, " ")
       .replace(/\s+([.,;:!?])/g, "$1")
       .trim();
-  return text
+  return cleanAnswerText(text)
     .replace(PRE_SEARCH, "")
     .split(/\n+/)
     .map((line) => line.trim())
@@ -159,6 +160,38 @@ export function plainAnswer(text: string): readonly AnswerBlock[] {
 
 function saidByNote(saidBy: readonly string[], total: number): string {
   return `Said by ${saidBy.length} of ${total}: ${saidBy.join(", ")}`;
+}
+
+function squash(value: string): string {
+  return value.toLowerCase().replace(/^https?:\/\/(www\.)?/, "").replace(/[\s™®.,:;()'"-]+/g, "");
+}
+
+/**
+ * The attribution line for a row. The questions already named the subject, the
+ * role and organisation from the preview, and the profile address, so a model
+ * that repeats them has found nothing: "said by 4 of 5" would read as
+ * confirmation. Such a row says the question gave it.
+ */
+export function attributionNote(
+  label: string,
+  value: string,
+  saidBy: readonly string[],
+  total: number,
+  subject: Pick<AnswerCheck["subject"], "brand" | "product" | "profileUrl">
+): string {
+  const said = `repeated by ${saidBy.length} of ${total}: ${saidBy.join(", ")}`;
+  const v = squash(value);
+  const profile = subject.profileUrl ? squash(subject.profileUrl) : "";
+  if (label === "Name" && v.includes(squash(subject.brand))) return `Given in the question, ${said}`;
+  if (label === "Contact" && profile && v.includes(profile)) {
+    const rest = value.replace(/https?:\/\/\S+/g, "").replace(/(linkedin|profile|at|via|on|the|his|her|their)/gi, "");
+    if (!/[@\d]|\.\w{2,}/.test(rest)) return `Given in the question, ${said}`;
+  }
+  const organisation = subject.product.split(/\s+at\s+/i)[1]?.trim();
+  if (label !== "Name" && label !== "Contact" && organisation && v.includes(squash(organisation))) {
+    return `${organisation} was named in the question. Said by ${saidBy.length} of ${total}: ${saidBy.join(", ")}`;
+  }
+  return saidByNote(saidBy, total);
 }
 
 function longDate(iso: string): string {
@@ -179,7 +212,7 @@ function coverageWord(input: PersonReportInput, questionId: string, providerId: 
     .find((r) => r.fact.id === questionId)
     ?.answers.find((a) => a.providerId === providerId);
   if (!answer || !answer.ok) return "No answer";
-  if (mentionsOthersTrouble(answer.text)) return "Withheld";
+  if (withheldAnswer(answer.text, input.check.subject)) return "Withheld";
   // The fixed rule wins: it quotes the assistant's own "I could not find" words.
   if (input.notFoundKeys?.has(`${questionId}/${providerId}`)) return STATUS_WORD.not_found;
   const status = input.synthesis.coverage.find((c) => c.questionId === questionId && c.provider === providerLabel)?.status;
@@ -253,13 +286,17 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
   numbered(questions.who(name));
   pdf.gap(2);
   pdf.text(synthesis.identity.summary, { gapAfter: 8 });
-  for (const fact of synthesis.identity.facts) pdf.fact(fact.label, fact.value, saidByNote(fact.saidBy, total));
+  for (const fact of synthesis.identity.facts) {
+    pdf.fact(fact.label, fact.value, attributionNote(fact.label, fact.value, fact.saidBy, total, check.subject));
+  }
 
   /* ------------------------------------------------------------ question 2 */
   numbered(questions.does(name));
   pdf.gap(2);
   pdf.text(synthesis.professional.summary, { gapAfter: 8 });
-  for (const role of synthesis.professional.roles) pdf.fact(w.offer, role.value, saidByNote(role.saidBy, total));
+  for (const role of synthesis.professional.roles) {
+    pdf.fact(w.offer, role.value, attributionNote(role.label, role.value, role.saidBy, total, check.subject));
+  }
 
   pdf.subheading("Recent public activity, as AI sees it");
   if (synthesis.professional.activity.length === 0) {
@@ -435,7 +472,7 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
     if (withheld.length > 0) {
       pdf.text(
         `${withheld.length} model ${withheld.length === 1 ? "response" : "responses"} withheld for identity safety (${withheld.join(", ")}): ` +
-          `not tied to ${w.given}, or telling of trouble about ${w.others} with the name.`,
+          `not tied to ${w.given}, mixing it up with ${w.others} of the same name, or telling of their trouble.`,
         { size: 9.5, color: MUTED, gapAfter: 8 }
       );
     }
