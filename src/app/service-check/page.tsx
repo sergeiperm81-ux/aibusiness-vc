@@ -58,7 +58,7 @@ function structuredData(faqs: readonly { q: string; a: string }[]) {
         },
       },
       description:
-        "An independent check of whether a company's AI service does what the company requires of it. The requirements, up to twenty of them, are agreed with the company in advance and frozen, then checked by an outsider working through the service as an ordinary customer. The company receives a report with evidence. The public registry records that the service is checked and when, and the company receives a numbered verification with a badge customers can scan. Screening is free and the price is quoted per service.",
+        "An independent check of whether a company's AI service does what the company requires of it. The requirements, up to twenty of them, are agreed with the company in advance and frozen, then checked by an outsider working through the service as an ordinary customer. The company receives a report with evidence. The public registry records that the service is checked and when, and the company receives a numbered verification with a badge customers can scan. Screening is free. There is no price list and no published rate: the price is agreed individually with each client, against the volume of work.",
       hasOfferCatalog: {
         "@type": "OfferCatalog",
         name: "Test purchase services",
@@ -236,7 +236,7 @@ const FAQS = [
   },
   {
     q: "Why will you not name a price?",
-    a: "Because one number for everyone has to be set high enough to cover the hard cases, and then the simple ones pay for that margin. A booking widget with four scripted answers and a bank's support agent with a hundred rules are not the same job. The screening is free, and the number comes before you owe anything.",
+    a: "There is no price list for this service and no published rate: the price is agreed individually with each client, against the volume of work. One number for everyone has to be set high enough to cover the hard cases, and then the simple ones pay for that margin. A booking widget with four scripted answers and a bank's support agent with a hundred rules are not the same job. The screening is free, and the number comes before you owe anything.",
   },
   {
     q: "What if the result is bad?",
@@ -663,11 +663,13 @@ export default function ServiceCheckPage() {
                 checked this way and here is why.
               </p>
               <p>
-                The price is set after that, for your service. A booking widget with four
-                scripted answers and a bank&apos;s support agent with a hundred rules are
-                not the same job, and pricing them the same would mean one of you is
-                overpaying. Repeat checks and ongoing monitoring are quoted the same way,
-                against requirements that already exist by then.
+                There is no price list, and no published rate. The price is agreed
+                individually after the screening, against the volume of work your service
+                actually needs. A booking widget with four scripted answers and a
+                bank&apos;s support agent with a hundred rules are not the same job, and
+                pricing them the same would mean one of you is overpaying. Repeat checks
+                and ongoing monitoring are quoted the same way, against requirements that
+                already exist by then.
               </p>
             </div>
             <a

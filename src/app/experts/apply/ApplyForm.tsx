@@ -28,7 +28,7 @@ const LEGEND =
  * was never told, so the profile arrived cut off mid-word. Counting out loud
  * and refusing the send is the only honest way to enforce a limit.
  */
-const FIELD_LIMITS = { headline: 120, other: 120, about: 1200, services: 1500 } as const;
+const FIELD_LIMITS = { headline: 200, other: 300, about: 3000, services: 3000 } as const;
 
 function Counter({ length, limit }: { length: number; limit: number }) {
   const over = length > limit;
