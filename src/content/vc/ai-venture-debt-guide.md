@@ -58,7 +58,7 @@ Total cost, interest plus warrants, usually works out to 15-20% of the loan over
 
 **HSBC Innovation Banking**: Former SVB UK, now under HSBC. Active with AI companies in the $10-100M ARR range across US, UK, and Europe. $5-50M.
 
-**Stifel Venture Banking**: Division of Stifel Bank (Member FDIC), 500+ high-growth startup clients and $12B+ in loan commitments. Stands out on hardware: equipment financing and revolving credit for deep tech companies at early commercialization, and HaaS term loans where the borrower keeps full ownership of the hardware, at rates around Prime + 0.5-1%. Facilities up to $60M.
+**Stifel Venture Banking**: Division of Stifel Bank (Member FDIC), launched 2018, with 125+ client-facing professionals, 500+ high-growth startup clients and $12B+ in loan commitments. Stands out on hardware: equipment financing and revolving credit for deep tech companies at early commercialization, and HaaS term loans where the borrower keeps full ownership of the hardware, with pricing across venture bank HaaS facilities typically running around WSJ prime plus 0.5 to 1.0%. Stifel prices each facility individually. Facilities up to $60M. Two examples from their own published material: a robotics company at early commercialization putting a $10M HaaS facility in place and drawing against it for bill-of-materials costs, repaid over three years from customer subscription payments; and a semiconductor company securing a $20M revolving line at a 50% advance rate on purchase orders and 80% on receivables.
 
 ### Tier 3: Revenue-Based and Alternative Lenders
 
