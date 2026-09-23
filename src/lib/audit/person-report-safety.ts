@@ -55,12 +55,15 @@ const PERSON_REGISTRY = /\b(INN|OGRN|OGRNIP|EGRUL|EGRIP|SSN|ITIN|TIN|PESEL|socia
 const SAME_PERSON_DOUBT = /\b(could|may|might|likely) be the same (person|individual|man|woman)\b|\bpossibly the same (person|individual)\b/i;
 
 /**
- * True when an answer merges the person with a namesake: the model wonders
- * aloud whether it found the same person, or it quotes a person's state
- * register entry and names none of the places the preview found. Seen in the
- * 23.09 pilot: a model gave a Polish founder a Russian tax number and a list
- * of Russian companies that belong to someone with the same name. Such an
- * answer is withheld whole, like one that tells of other people's trouble.
+ * True when an answer ties the profile to a record the scan cannot tie to it:
+ * the model wonders aloud whether it found the same person, or it quotes a
+ * person's state register entry and names none of the places the preview
+ * found. In the 23.09 pilot a model gave a Polish founder a Russian tax number
+ * and Russian companies. The founder later said they were his, from before he
+ * moved: the link was true, but nothing in the answer showed it. Whether such
+ * a link is a namesake or the person's past, the scan cannot tell, and a tax
+ * number printed about the wrong person does harm, so the answer is withheld
+ * whole and the report says only that a link was made.
  */
 export function mergesAnotherIdentity(text: string, location: string | undefined): boolean {
   if (SAME_PERSON_DOUBT.test(text)) return true;
@@ -79,8 +82,8 @@ export function mergesAnotherIdentity(text: string, location: string | undefined
  * True when an answer about a person gives a street address. People-search
  * records put an address next to a name, not next to a person: in the 23.09
  * pilot one model placed the founder at a 2015 home address in another
- * country. Whoever it belongs to, a home address has no place in the report,
- * and the answer around it cannot be told apart from a namesake's record.
+ * country (his own, as it turned out). Whoever it belongs to, a home address
+ * has no place in the report, and the scan cannot tell it from a namesake's.
  */
 export function quotesStreetAddress(text: string): boolean {
   return [STREET_FIRST, STREET_SUFFIX, NUMBER_SUFFIX, NUMBER_FIRST].some((pattern) => new RegExp(pattern.source, "u").test(text));

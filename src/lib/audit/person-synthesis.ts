@@ -383,7 +383,7 @@ export function answersBlock(check: AnswerCheck, heldBack: ReadonlySet<string> =
           const body = !a.ok
             ? `(no answer: ${a.error ?? "failed"})`
             : held
-              ? "(held back: this answer could not be tied to the person, mixes them up with someone else, or tells of trouble about other people with the name)"
+              ? "(held back: this answer links the name to records, addresses or people the scan cannot tie to this profile, or tells of trouble about other people with the name)"
               : cleanAnswerText(a.text).slice(0, MAX_ANSWER_CHARS);
           const sources =
             a.citations.length > 0 && !held ? `\nSources it cited: ${a.citations.slice(0, 8).join(" , ")}` : "";

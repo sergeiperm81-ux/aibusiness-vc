@@ -497,7 +497,9 @@ export async function buildPersonReportPdf(input: PersonReportInput): Promise<Ui
     if (withheld.length > 0) {
       pdf.text(
         `${withheld.length} model ${withheld.length === 1 ? "response" : "responses"} withheld for identity safety (${withheld.join(", ")}): ` +
-          `not tied to ${w.given}, mixing it up with ${w.others} of the same name, or telling of their trouble.`,
+          `the scan could not tie ${withheld.length === 1 ? "it" : "them"} to ${w.given}. ` +
+          `A withheld answer may be about ${w.others} with the name, or about the ${w.subject}'s own past under another spelling ` +
+          `or in another country; the scan cannot tell which, so it prints neither.`,
         { size: 9.5, color: MUTED, gapAfter: 8 }
       );
     }
