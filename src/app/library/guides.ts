@@ -18,6 +18,30 @@ export interface Guide {
 
 export const GUIDES: Guide[] = [
   {
+    slug: "right-but-unproven",
+    title: "Right, but Unproven",
+    kicker: "Joint paper with Andrey Ekhmenin, ANDEKS",
+    audience: "For anyone who asks an AI about a person",
+    tagline:
+      "What five AI models said about one person, and what an evidence-bounded assessment could establish: an AI model can be factually right about a person and still give you no reliable reason to believe it.",
+    cardBlurb:
+      "A joint research paper by Sergei Ponomarev and Andrey Ekhmenin, founder of ANDEKS. Five AI models were given the same name, role, company and profile link. One found nothing it could tie to the person. Another linked him to historical records in a different country, which the subject later confirmed as his own, but nothing in the answer showed it. The paper compares what the models said with what an evidence-bounded assessment could establish, and reports what the scan got wrong and what changed in it the same day.",
+    description:
+      "Before a meeting, a deal or an interview, people ask an AI assistant about the person they are about to meet. On 23 September 2026 Sergei Ponomarev and Andrey Ekhmenin ran the same experiment on Andrey himself. Sergei ran the retail AI Person Scan: three questions to five AI models with live web search, answers recorded word for word with their sources. Andrey ran an ANDEKS assessment of what the public evidence could establish about the same person. Each result was frozen with a checksum before either side saw the other's, and the comparison was agreed by both sides afterwards. The models were given the person's name, role, company and profile link. One model could not identify him at all. Another linked him to older business records in a different country and a different script, which he later confirmed as his own; the answer itself contained nothing a reader could check, and the assessor working from the same public evidence could not establish the link. The paper separates what the models were given from what they found and from what could be established, shows how a true historical record was printed as a contradiction about the present, and how one model turned the absence of adverse findings into a positive reputation. It reports plainly that the scan's appendix printed a register number and an address the product had no way to tie to the person, and describes the rules that were changed the same day and the price of that change: a scan that cannot tell a person's past from a stranger's record now prints neither. Five pages, with the agreed Joint Comparison Record linked as the methodological appendix.",
+    includes: [
+      "The finding first: same input, five models, from 'not identifiable' to a reconstruction the subject later confirmed",
+      "How both results were frozen with checksums before exchange, and why the subject's confirmation is attested, not established",
+      "Given in the question, found by the models, evidentially established: three layers that are not the same thing",
+      "Where the results diverged: not found, found but unproven, then not now, narrowed, positive from nothing, search noise",
+      "What the product got wrong, what changed the same day, and why safety reduces completeness",
+      "Five practical rules for anyone who asks an AI about a person",
+      "What the experiment does not establish, including that the subject and the assessor are the same person",
+    ],
+    pdf: "/library/right-but-unproven.pdf",
+    pages: 5,
+    year: "2026",
+  },
+  {
     slug: "ai-agent-test-purchase-light",
     title: "AI Agent Test Purchase Light",
     kicker: "The method behind every Light check, published",
