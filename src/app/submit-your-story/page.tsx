@@ -56,12 +56,15 @@ We'll shape your answers into a published interview, so just reply naturally —
 
 8. How did you hear about us? (optional, not published) — Who recommended that you submit a story, or where did you come across AI Business? If a founder we have featured sent you here, give us their name: we credit them on your story page with a link to theirs.
 
+BEFORE YOU WRITE: WE ONLY FEATURE LIVE PRODUCTS
+- Your email must include a link to your product. Submissions without a link are not considered.
+- The product has to exist and work: at minimum a working MVP, ideally a product people already use. Ideas, concepts and pre-launch projects are not considered.
+- Your site must make clear who is behind it, what you sell, how it works, what the customer gets, and what it costs.
+- Show early activity: first users or customers, and ideally one or two testimonials or reviews.
+
 RULES
 - Write in English, ~600–1,000 words (about 2–3 pages).
-- AI must be at the centre of your story — product, implementation, or research.
-- Your project link must publicly show the AI you describe. If your site doesn't mention the AI features you're telling us about, send us a page, screenshot, or demo that does — we can't point readers to a link where they'll find no AI.
-- Be specific about the technology: which models, services, or approach do the actual work. One concrete paragraph beats a page of "AI-powered".
-- One link to your project (no more).
+- AI at the centre: AI has to be the heart of the product, not a mention. Say exactly what it does and which models or services do the work, and make sure your site shows it.
 - One photo, attached to the email (not huge — about 1200px wide is plenty). Tell us who to credit for it (photographer or source).
 - Tell us the founder's or author's full name and role, so we credit you correctly.
 
@@ -90,24 +93,26 @@ const QUESTIONS = [
 const STEPS = [
   ["1", "Answer in your own words", "Copy the questions below and reply first person, like a written interview. Just connected text — no form to fill in."],
   ["2", "Email it to us", `Send your answers with one photo attached to ${SUBMIT_EMAIL}.`],
-  ["3", "We shape and check it", "We turn your answers into a clean interview and may come back with a couple of follow-ups to confirm details."],
+  ["3", "We check your product, then shape it", "We open your link and check the product first. If it passes, we turn your answers into a clean interview and may come back with a couple of follow-ups."],
   ["4", "We publish it", "As a Partner Story interview — crediting you and linking to your project. That's it."],
 ];
 
 const RULES = [
+  ["A link to your live product", "Required in your email. Without it we do not consider the submission."],
   ["English, ~600–1,000 words", "About two to three pages. Long enough to say something, short enough to be read."],
-  ["AI at the centre", "Product, implementation, or research — but AI has to be the heart of it, not a mention."],
   [
-    "Your link must show the AI",
-    "If your site doesn't mention the AI features you describe, send a page, screenshot, or demo that does. We can't point readers to a link where they'll find no AI.",
+    "AI at the centre",
+    "AI has to be the heart of the product, not a mention. Say exactly what it does and which models or services do the work, and make sure your site shows it.",
   ],
-  [
-    "Be specific about the tech",
-    "Which models, services, or approach do the actual work. One concrete paragraph beats a page of “AI-powered”.",
-  ],
-  ["One project link", "No more. It goes in the piece for readers' convenience."],
   ["One photo", "Attached to the email, ~1200px wide is plenty. Tell us who to credit — photographer or source."],
   ["Your full name and role", "So we credit the founder or author correctly."],
+];
+
+const READY_CHECK = [
+  ["A link to your product", "Included in your email. We do not consider submissions without one."],
+  ["A product that works", "At minimum a working MVP, ideally a product people already use. Ideas and pre-launch projects are not considered."],
+  ["A site that explains itself", "Who is behind it, what you sell, how it works, what the customer gets, and what it costs."],
+  ["Signs of early activity", "First users or customers, and ideally one or two testimonials or reviews."],
 ];
 
 const NOT_FOR = [
@@ -117,6 +122,8 @@ const NOT_FOR = [
   "Weapons.",
   "Crypto token schemes, pump-and-dump, or “guaranteed returns” offers.",
   "Thinly disguised ads with no real substance.",
+  "Ideas, concepts, or pre-launch projects with nothing live to show.",
+  "Submissions without a link to the product.",
 ];
 
 export default function SubmitYourStoryPage() {
@@ -125,7 +132,7 @@ export default function SubmitYourStoryPage() {
     <>
       {/* Black header */}
       <section className="bg-background">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
           <p className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-accent">
             Submit Your Story
           </p>
@@ -133,12 +140,12 @@ export default function SubmitYourStoryPage() {
             Building or implementing AI?{" "}
             <span className="text-accent">Get featured — free.</span>
           </h1>
-          <p className="mt-4 max-w-3xl text-base leading-relaxed text-white/75">
+          <p className="mt-4 text-base leading-relaxed text-white/75">
             AI Business publishes the stories of companies, startups, research labs, and media doing
             real work with AI. The format is a written interview: you answer a few questions in your
             own words, send them to us, and we shape your answers into a polished interview and
-            publish it — at no cost, with a link to your project. The only hard rule: AI has to be at
-            the heart of what you do.
+            publish it — at no cost, with a link to your project. Two hard rules: AI has to be at the
+            heart of what you do, and your product has to be live, with a link we can check.
           </p>
           <div className="mt-6 h-1 w-16 rounded-full bg-accent" />
 
@@ -175,9 +182,37 @@ export default function SubmitYourStoryPage() {
 
       {/* White body */}
       <section className="bg-white">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+          {/* Hard gate: only live products */}
+          <div className="rounded-2xl border-2 border-accent bg-amber-50 p-6 sm:p-8">
+            <p className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-amber-700">
+              Before you write
+            </p>
+            <h2 className="mt-2 text-2xl font-bold text-gray-900">
+              We only feature products that are live
+            </h2>
+            <p className="mt-3 text-base leading-relaxed text-gray-700">
+              Every Partner Story sends readers to your product. If they arrive and find an idea, a
+              waiting list or an empty page, the story has let them down, so we check the product
+              before we write a word. A link is necessary but not enough: the product behind it has
+              to work.
+            </p>
+            <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {READY_CHECK.map(([h, d]) => (
+                <div key={h} className="rounded-xl border border-amber-200 bg-white p-4">
+                  <h3 className="text-base font-bold text-gray-900">{h}</h3>
+                  <p className="mt-1 text-sm leading-relaxed text-gray-600">{d}</p>
+                </div>
+              ))}
+            </div>
+            <p className="mt-5 text-sm font-semibold text-gray-800">
+              No link, or nothing live behind it, means we do not consider the submission. Come back
+              when you have something people can use.
+            </p>
+          </div>
+
           {/* How it works */}
-          <h2 className="text-2xl font-bold text-gray-900">How it works</h2>
+          <h2 className="mt-14 text-2xl font-bold text-gray-900">How it works</h2>
           <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {STEPS.map(([n, t, d]) => (
               <div key={n} className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
@@ -198,12 +233,12 @@ export default function SubmitYourStoryPage() {
             <h2 className="mt-3 text-2xl font-bold leading-snug text-white sm:text-3xl">
               You build AI. We make sure AI notices you.
             </h2>
-            <p className="mt-4 max-w-3xl text-base leading-relaxed text-white/75">
+            <p className="mt-4 text-base leading-relaxed text-white/75">
               Buyers increasingly ask ChatGPT and Perplexity what to use instead of searching.
               Those answers come from pages AI systems can read, parse and trust. Every story we
               publish ships with a citation layer most websites do not have:
             </p>
-            <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2">
+            <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
               <div className="rounded-xl border border-white/10 bg-white/5 p-5">
                 <h3 className="text-base font-bold text-accent">Your company as an entity</h3>
                 <p className="mt-1.5 text-sm leading-relaxed text-white/70">
@@ -241,11 +276,11 @@ export default function SubmitYourStoryPage() {
           <h2 className="mt-14 text-2xl font-bold text-gray-900">
             The 7 questions we&rsquo;ll turn into your interview
           </h2>
-          <p className="mt-2 max-w-3xl text-base text-gray-500">
+          <p className="mt-2 text-base text-gray-500">
             Answer in your own voice, first person. We shape your answers into a published interview
             — no need to polish the writing yourself.
           </p>
-          <div className="mt-6 grid grid-cols-1 gap-5 md:grid-cols-2">
+          <div className="mt-6 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
             {QUESTIONS.map(([n, t, d]) => (
               <div key={n} className="flex gap-4 rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
                 <span className="font-mono text-base font-bold text-amber-500">{n}</span>
@@ -255,21 +290,20 @@ export default function SubmitYourStoryPage() {
                 </div>
               </div>
             ))}
-          </div>
-
-          {/* Question 8: optional, never published */}
-          <div className="mt-5 flex gap-4 rounded-xl border border-dashed border-amber-300 bg-amber-50/60 p-5">
-            <span className="font-mono text-base font-bold text-amber-500">08</span>
-            <div>
-              <h3 className="text-lg font-bold text-gray-900">
-                How did you hear about us?{" "}
-                <span className="text-sm font-semibold text-gray-500">(optional, not published)</span>
-              </h3>
-              <p className="mt-1.5 text-base leading-relaxed text-gray-600">
-                Who recommended that you submit a story, or where did you come across AI Business?
-                If a founder we have featured sent you here, give us their name: we credit them on
-                your story page with a link to theirs.
-              </p>
+            {/* Question 8: optional, never published */}
+            <div className="flex gap-4 rounded-xl border-2 border-dashed border-amber-400 bg-amber-50 p-5 md:col-span-2">
+              <span className="font-mono text-base font-bold text-amber-500">08</span>
+              <div>
+                <h3 className="text-lg font-bold text-gray-900">
+                  How did you hear about us?{" "}
+                  <span className="text-sm font-semibold text-gray-600">(optional, not published)</span>
+                </h3>
+                <p className="mt-1.5 text-base leading-relaxed text-gray-700">
+                  Who recommended that you submit a story, or where did you come across AI Business?
+                  If a founder we have featured sent you here, give us their name: we credit them on
+                  your story page with a link to theirs.
+                </p>
+              </div>
             </div>
           </div>
 
@@ -281,39 +315,54 @@ export default function SubmitYourStoryPage() {
           </div>
 
           {/* Rules */}
-          <h2 className="mt-14 text-2xl font-bold text-gray-900">The rules, in short</h2>
-          <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {RULES.map(([t, d]) => (
-              <div key={t} className="rounded-xl bg-gray-50 p-5">
-                <h3 className="text-base font-bold text-gray-900">{t}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-gray-600">{d}</p>
-              </div>
-            ))}
+          <div className="mt-14 rounded-2xl bg-gray-950 p-6 sm:p-10">
+            <p className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-accent">
+              The rules
+            </p>
+            <h2 className="mt-2 text-2xl font-bold text-white sm:text-3xl">The rules, in short</h2>
+            <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-5">
+              {RULES.map(([t, d], i) => (
+                <div key={t} className="rounded-xl border border-white/15 bg-white/5 p-5">
+                  <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent text-sm font-bold text-black">
+                    {i + 1}
+                  </span>
+                  <h3 className="mt-3 text-lg font-bold text-white">{t}</h3>
+                  <p className="mt-1.5 text-base leading-relaxed text-white/85">{d}</p>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* What we don't feature */}
-          <h2 className="mt-14 text-2xl font-bold text-gray-900">What we don&rsquo;t feature</h2>
-          <div className="mt-6 grid grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2">
+          <h2 className="mt-14 text-2xl font-bold text-gray-950 sm:text-3xl">
+            What we don&rsquo;t feature
+          </h2>
+          <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {NOT_FOR.map((r) => (
-              <div key={r} className="flex items-start gap-2.5 text-base text-gray-700">
-                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-red-400" />
-                {r}
+              <div
+                key={r}
+                className="flex items-start gap-3 rounded-xl border-2 border-gray-950 bg-white p-4"
+              >
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-red-600 text-sm font-bold text-white">
+                  &times;
+                </span>
+                <span className="text-base font-semibold leading-snug text-gray-950">{r}</span>
               </div>
             ))}
           </div>
-          <p className="mt-4 text-sm text-gray-500">
+          <p className="mt-4 text-base font-medium text-gray-900">
             We reserve the right to decline any submission at our editorial discretion.
           </p>
 
           {/* Disclaimer */}
-          <div className="mt-10 rounded-2xl border border-gray-200 bg-gray-50 p-6">
-            <h2 className="text-lg font-bold text-gray-900">How Partner Stories are labelled</h2>
-            <p className="mt-2 text-base leading-relaxed text-gray-600">
+          <div className="mt-12 rounded-2xl bg-accent p-6 sm:p-8">
+            <h2 className="text-xl font-bold text-black sm:text-2xl">How Partner Stories are labelled</h2>
+            <p className="mt-3 text-base leading-relaxed text-black">
               Every submission is published as a <strong>Partner Story</strong>, clearly marked. The
               views, claims, and figures belong to the featured company or contributor; AI Business
               does not independently verify them and does not endorse the company. No payment is
               exchanged. The link to the project is provided for readers&rsquo; convenience.{" "}
-              <Link href="/about" className="font-semibold text-amber-600 hover:underline">
+              <Link href="/about" className="font-bold text-black underline underline-offset-2 hover:no-underline">
                 Our editorial standards &rarr;
               </Link>
             </p>
@@ -325,10 +374,10 @@ export default function SubmitYourStoryPage() {
               <h2 className="text-2xl font-bold text-gray-950">
                 Recently published
               </h2>
-              <p className="mt-2 max-w-2xl text-base leading-relaxed text-black/70">
+              <p className="mt-2 text-base leading-relaxed text-black/70">
                 This is what a Partner Story looks like once it is written up. All
-                published free of charge, all read before publication by the company
-                itself.
+                published free of charge, as written interviews with the people behind
+                the product.
               </p>
               <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-3">
                 {stories.map((story) => (
@@ -365,7 +414,7 @@ export default function SubmitYourStoryPage() {
           {/* Pass it on: a ready message for a founder the reader knows */}
           <div className="mt-14">
             <h2 className="text-2xl font-bold text-gray-900">Know a founder who should be here?</h2>
-            <p className="mt-2 max-w-3xl text-base leading-relaxed text-gray-600">
+            <p className="mt-2 text-base leading-relaxed text-gray-600">
               Not your story to tell, but you know someone building with AI who deserves a feature?
               Copy the message below, put in their name, and send it. Thirty seconds. If they mention
               you when they submit, we credit you on their story page.
@@ -378,7 +427,7 @@ export default function SubmitYourStoryPage() {
           {/* CTA */}
           <div className="mt-12 rounded-2xl bg-accent p-8 text-center">
             <h2 className="text-2xl font-bold text-gray-950">Ready?</h2>
-            <p className="mx-auto mt-2 max-w-xl text-base leading-relaxed text-black/75">
+            <p className="mx-auto mt-2 text-base leading-relaxed text-black/75">
               Send your story — or just a quick hello with a question — to our editor. Every
               submission gets read.
             </p>

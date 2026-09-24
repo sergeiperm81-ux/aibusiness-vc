@@ -29,21 +29,28 @@ interface ExpertApplication {
   photo?: { name?: string; type?: string; data?: string };
 }
 
-/** Longest value we accept per field. Anything past this is a paste, not a profile. */
+/**
+ * Longest value we accept per field.
+ *
+ * These are a backstop against a pasted document or a hand-made request, not an
+ * editorial rule. The people filling this in are professionals describing their
+ * own work, so the numbers are set well above what any of them has needed. A
+ * submission is refused with a message, never quietly cut.
+ */
 const LIMITS: Record<string, number> = {
-  name: 120,
-  email: 200,
-  headline: 120,
-  region: 40,
-  location: 120,
-  linkedin: 300,
-  website: 300,
-  organisation: 160,
-  role: 160,
-  about: 1200,
-  services: 1500,
-  phone: 40,
-  languages: 160,
+  name: 200,
+  email: 300,
+  headline: 200,
+  region: 60,
+  location: 200,
+  linkedin: 500,
+  website: 500,
+  organisation: 300,
+  role: 300,
+  about: 3000,
+  services: 3000,
+  phone: 60,
+  languages: 300,
 };
 
 const REQUIRED = [
@@ -60,6 +67,18 @@ const MAX_PHOTO_BASE64 = 2_800_000;
 const ALLOWED_IMAGE_TYPES = ["image/jpeg", "image/png", "image/webp"];
 const MAX_TAGS = 30;
 
+/**
+ * Hard ceiling for one tag, as a defence against a hand-made request, not as
+ * the rule a person is held to. The form enforces the real limit and refuses to
+ * send anything longer, so nothing a member actually typed reaches this line.
+ *
+ * It has to clear the longest legitimate tag with room to spare. A free-text
+ * practice area arrives as `Other: ` plus the whole free-text field, and a cap
+ * set to the bare field length quietly bit the end off the first one that used
+ * it in full.
+ */
+const MAX_TAG_LENGTH = 400;
+
 /** Only real web links: no javascript:, data: or mailto: smuggled into a profile. */
 function isHttpUrl(value: string): boolean {
   try {
@@ -74,7 +93,7 @@ function cleanTags(value: unknown, limit = MAX_TAGS): string[] {
   if (!Array.isArray(value)) return [];
   return value
     .filter((v): v is string => typeof v === "string")
-    .map((v) => v.trim().slice(0, 120))
+    .map((v) => v.trim().slice(0, MAX_TAG_LENGTH))
     .filter(Boolean)
     .slice(0, limit);
 }

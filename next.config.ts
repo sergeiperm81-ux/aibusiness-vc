@@ -44,6 +44,35 @@ const NOT_PUBLICLY_SERVED = [
   "/audit-kit/Executive-Brief-Template.pdf",
 ];
 
+/**
+ * Profile URLs that changed after publication.
+ *
+ * A member asked for the spelling of their own name, and so their address, to be
+ * corrected. The old URL had already been published and shared, so it keeps
+ * working and points at the new one instead of returning a 404. Permanent, so a
+ * search engine transfers the page rather than indexing both.
+ */
+const MOVED_PROFILES: Array<{ from: string; to: string }> = [
+  { from: "/experts/andrzej-ekhmenin", to: "/experts/andrey-ekhmenin" },
+];
+
+/**
+ * Articles that changed section after publication.
+ *
+ * The SlideMaker piece ran under Startups, and its subject pointed out that his
+ * project is not a company at all: no revenue, no paid plans, nothing to be a
+ * startup of. He asked for Society, which fits what the piece is actually about.
+ * The published URL had already been shared, so it keeps working and points at
+ * the new one. Permanent, so a search engine moves the page rather than holding
+ * two copies of it.
+ */
+const MOVED_ARTICLES: Array<{ from: string; to: string }> = [
+  {
+    from: "/startups/slidemaker-gourav-singla-observability",
+    to: "/society/slidemaker-gourav-singla-observability",
+  },
+];
+
 const nextConfig: NextConfig = {
   async headers() {
     return [
@@ -52,6 +81,13 @@ const nextConfig: NextConfig = {
         headers: SECURITY_HEADERS,
       },
     ];
+  },
+  async redirects() {
+    return [...MOVED_PROFILES, ...MOVED_ARTICLES].map(({ from, to }) => ({
+      source: from,
+      destination: to,
+      permanent: true,
+    }));
   },
   async rewrites() {
     return {

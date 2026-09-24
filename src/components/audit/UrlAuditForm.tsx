@@ -75,21 +75,18 @@ export function UrlAuditForm({ variant = "hero" }: UrlAuditFormProps) {
         <button
           type="submit"
           disabled={submitting}
-          className="px-6 py-3 bg-accent text-black text-sm font-bold rounded-lg hover:bg-accent-hover transition-colors shadow-lg shadow-amber-500/25 disabled:opacity-60 whitespace-nowrap"
+          className="px-6 py-3 bg-accent text-black text-base font-bold rounded-lg hover:bg-accent-hover transition-colors disabled:opacity-60 whitespace-nowrap"
         >
-          {submitting ? "Scanning..." : "Run AI audit"}
+          {submitting ? "Scanning..." : "Check my site free"}
         </button>
       </div>
 
       {error && (
-        <p className="mt-3 text-sm text-red-400" role="alert">
+        <p className="mt-3 text-base text-red-400" role="alert">
           {error}
         </p>
       )}
 
-      <p className="mt-3 text-xs text-white/50">
-        Takes about 30 seconds.
-      </p>
     </form>
   );
 }

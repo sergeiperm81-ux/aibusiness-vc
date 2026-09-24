@@ -1,0 +1,76 @@
+# Deploys the site after the daily writer pushes an article.
+#
+# NOT ARMED ON PURPOSE. It runs only from the "Run workflow" button while the
+# repository is out of sync with production: the working tree on the owner's
+# machine holds ~160 files that have never been committed, and a deploy from a
+# clean checkout would roll production back and 404 the article images.
+#
+# See docs/AUTO_ARTICLE_DEPLOY.md. Once the repository is in sync, replace the
+# `on:` block with:
+#
+#   on:
+#     push:
+#       branches: [main]
+#       paths: ["src/content/**"]
+#     workflow_dispatch:
+#
+# GitHub's `schedule` trigger has never fired for this repository, which is why
+# the daily schedule lives in the writing agent and GitHub only reacts to a push.
+
+name: auto-article
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: auto-article
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Guard against an empty configuration
+        run: |
+          test -n "${{ secrets.VERCEL_TOKEN }}" || { echo "VERCEL_TOKEN is not set"; exit 1; }
+          test -n "$VERCEL_ORG_ID" || { echo "VERCEL_ORG_ID is not set"; exit 1; }
+          test -n "$VERCEL_PROJECT_ID" || { echo "VERCEL_PROJECT_ID is not set"; exit 1; }
+
+      - name: Deploy to production
+        id: deploy
+        run: |
+          url=$(npx --yes vercel@latest deploy --prod --yes --token="${{ secrets.VERCEL_TOKEN }}")
+          echo "url=${url}" >> "$GITHUB_OUTPUT"
+          echo "deployed ${url}"
+
+      - name: Check the site answers
+        run: |
+          for i in 1 2 3 4 5; do
+            code=$(curl -sS -o /dev/null -w "%{http_code}" https://aibusiness.vc/ || true)
+            echo "attempt ${i}: HTTP ${code}"
+            case "$code" in
+              200|429) exit 0 ;;
+            esac
+            sleep 15
+          done
+          echo "site did not answer with 200 after the deploy"
+          exit 1
+
+      - name: Tell Telegram
+        if: always() && secrets.TELEGRAM_BOT_TOKEN != ''
+        run: |
+          status="${{ job.status }}"
+          text="aibusiness.vc deploy ${status}: ${{ steps.deploy.outputs.url }}"
+          curl -sS -X POST \
+            "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" \
+            -d chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" \
+            --data-urlencode text="${text}" > /dev/null

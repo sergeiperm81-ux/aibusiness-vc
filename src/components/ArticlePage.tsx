@@ -50,7 +50,7 @@ const CROSS_LINKS = [
   { href: "/b2b", label: "B2B / Enterprise", section: "b2b" },
   { href: "/vc", label: "VC & Funding", section: "vc" },
   { href: "/government", label: "Government AI", section: "government" },
-  { href: "/models", label: "LLM Models (71)", section: "models" },
+  { href: "/models", label: "LLM Models (78)", section: "models" },
   { href: "/news", label: "Daily News", section: "news" },
   { href: "/learn", label: "Learn AI", section: "learn" },
   { href: "/society", label: "AI & Society", section: "society" },
@@ -93,7 +93,7 @@ const SIDEBAR_SECTIONS = [
   { href: "/learn", label: "Learn", description: "Courses & careers", icon: "🎓", section: "learn" },
   { href: "/society", label: "Society", description: "AI, jobs & daily life", icon: "🌐", section: "society" },
   { href: "/tools", label: "Technology", description: "Model launches & real costs", icon: "🛠", section: "tools" },
-  { href: "/models", label: "Models", description: "71 models compared", icon: "🤖", section: "models" },
+  { href: "/models", label: "Models", description: "78 models compared", icon: "🤖", section: "models" },
 ];
 
 interface ArticlePageProps {
