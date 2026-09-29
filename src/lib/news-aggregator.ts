@@ -158,48 +158,128 @@ function extractImage(item: Record<string, unknown>): string | null {
 
 // ─── Fallback Images (local, by category) ───────────────────────────
 
+/**
+ * Most feeds send no picture, so most news cards wear one of these. Twelve to
+ * eighteen per category, chosen by a hash of the slug: an article keeps its
+ * picture between regenerations, and neighbours on the page rarely share one.
+ * Every file is a stock photo already in public/images/articles.
+ */
 const FALLBACK_IMAGES: Record<string, string[]> = {
   Solo: [
     "/images/articles/remote-work-1.jpg",
     "/images/articles/desk-laptop-1.jpg",
     "/images/articles/coffee-meeting-1.jpg",
     "/images/articles/creative-desk-1.jpg",
+    "/images/articles/entrepreneur-cafe-1.jpg",
+    "/images/articles/entrepreneur-1.jpg",
+    "/images/articles/home-office-1.jpg",
+    "/images/articles/laptop-work-1.jpg",
+    "/images/articles/man-laptop-1.jpg",
+    "/images/articles/woman-office-1.jpg",
+    "/images/articles/workspace-minimal-1.jpg",
+    "/images/articles/writing-coffee-1.jpg",
+    "/images/articles/minimal-desk-1.jpg",
+    "/images/articles/typing-keyboard-1.jpg",
+    "/images/articles/phone-app-1.jpg",
+    "/images/articles/coworking-1.jpg",
   ],
   Startups: [
     "/images/articles/startup-funding-1.jpg",
     "/images/articles/startup-whiteboard-1.jpg",
     "/images/articles/startup-garage-1.jpg",
     "/images/articles/brainstorm-1.jpg",
+    "/images/articles/funding-round-1.jpg",
+    "/images/articles/lightbulb-idea-1.jpg",
+    "/images/articles/team-planning-1.jpg",
+    "/images/articles/team-laptop-1.jpg",
+    "/images/articles/whiteboard-1.jpg",
+    "/images/articles/growth-chart-1.jpg",
+    "/images/articles/office-modern-1.jpg",
+    "/images/articles/team-collaboration-1.jpg",
+    "/images/articles/saas-dashboard-1.jpg",
+    "/images/articles/mobile-app-1.jpg",
   ],
   B2B: [
     "/images/articles/boardroom-1.jpg",
     "/images/articles/business-handshake-1.jpg",
     "/images/articles/dashboards-1.jpg",
     "/images/articles/conference-1.jpg",
+    "/images/articles/consulting-meeting-1.jpg",
+    "/images/articles/meeting-business-1.jpg",
+    "/images/articles/office-building-1.jpg",
+    "/images/articles/handshake-deal-1.jpg",
+    "/images/articles/presentation-1.jpg",
+    "/images/articles/team-office-1.jpg",
+    "/images/articles/team-screens-1.jpg",
+    "/images/articles/warehouse-1.jpg",
+    "/images/articles/logistics-shipping-1.jpg",
+    "/images/articles/factory-auto-1.jpg",
+    "/images/articles/dashboard-analytics-1.jpg",
+    "/images/articles/video-call-1.jpg",
   ],
   Tools: [
     "/images/articles/code-screen-1.jpg",
     "/images/articles/code-colorful-1.jpg",
     "/images/articles/chip-hardware-1.jpg",
     "/images/articles/ai-brain-1.jpg",
+    "/images/articles/nvidia-chip-1.jpg",
+    "/images/articles/gpu-render-1.jpg",
+    "/images/articles/server-room-1.jpg",
+    "/images/articles/circuit-board-1.jpg",
+    "/images/articles/laptop-coding-1.jpg",
+    "/images/articles/developer-screen-1.jpg",
+    "/images/articles/macbook-code-1.jpg",
+    "/images/articles/programming-1.jpg",
+    "/images/articles/software-dev-1.jpg",
+    "/images/articles/chatbot-phone-1.jpg",
+    "/images/articles/ai-voice-1.jpg",
+    "/images/articles/hologram-1.jpg",
+    "/images/articles/multiple-screens-1.jpg",
+    "/images/articles/opensource-code-1.jpg",
   ],
   VC: [
     "/images/articles/money-cash-1.jpg",
     "/images/articles/charts-screen-1.jpg",
     "/images/articles/analytics-chart-1.jpg",
     "/images/articles/business-suit-1.jpg",
+    "/images/articles/investing-chart-1.jpg",
+    "/images/articles/wall-street-1.jpg",
+    "/images/articles/trading-stocks-1.jpg",
+    "/images/articles/stocks-trading-1.jpg",
+    "/images/articles/money-gold-1.jpg",
+    "/images/articles/finance-accounting-1.jpg",
+    "/images/articles/fintech-card-1.jpg",
+    "/images/articles/city-skyline-1.jpg",
+    "/images/articles/data-chart-1.jpg",
+    "/images/articles/calculator-1.jpg",
   ],
   Government: [
     "/images/articles/neon-city-1.jpg",
     "/images/articles/ai-network-1.jpg",
     "/images/articles/cybersecurity-1.jpg",
     "/images/articles/big-data-1.jpg",
+    "/images/articles/security-lock-1.jpg",
+    "/images/articles/padlock-cyber-1.jpg",
+    "/images/articles/legal-scales-1.jpg",
+    "/images/articles/globe-tech-1.jpg",
+    "/images/articles/documents-papers-1.jpg",
+    "/images/articles/network-cables-1.jpg",
+    "/images/articles/event-crowd-1.jpg",
+    "/images/articles/medical-tech-1.jpg",
+    "/images/articles/ai-abstract-1.jpg",
   ],
 };
 
-function getFallbackImage(category: string, index: number): string {
+/** A small stable hash, so the same slug always lands on the same picture. */
+function hashSlug(slug: string): number {
+  let hash = 5381;
+  for (const char of slug) hash = ((hash << 5) + hash + char.charCodeAt(0)) >>> 0;
+  return hash;
+}
+
+function getFallbackImage(category: string, slug: string): string {
   const images = FALLBACK_IMAGES[category] ?? FALLBACK_IMAGES.B2B;
-  return images[index % images.length];
+  return images[hashSlug(slug) % images.length];
 }
 
 // ─── RSS Feed Parser ────────────────────────────────────────────────
@@ -323,21 +403,22 @@ export async function aggregateNews(maxItems = 10): Promise<AggregatedNewsItem[]
   const top = relevant.slice(0, maxItems);
 
   // Transform to news items
-  return top.map((article, index) => {
+  return top.map((article) => {
     const category = classifyCategory(article.title, article.description);
+    const slug = slugify(article.title);
     const excerpt = truncate(article.description, 200);
 
     const body = generateNewsBody(article, category);
 
     return {
-      slug: slugify(article.title),
+      slug,
       title: article.title,
       excerpt,
       body,
       category,
       badge_color: badgeColorForCategory(category),
       date: formatDate(article.pubDate),
-      image: article.image || getFallbackImage(category, index),
+      image: article.image || getFallbackImage(category, slug),
       source_url: article.link,
       source_name: article.sourceName,
       published_at: article.pubDate

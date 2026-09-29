@@ -160,6 +160,8 @@ The solo developer who picks the right niche, ships fast, and iterates on real c
 
 ---
 
+Whichever idea you ship, the landing page has a second reader now: the AI assistant a buyer asks about it. [AI Website Visibility](/audit) checks for free whether AI crawlers can read the page, and the paid report shows what five AI models find when they look the product up.
+
 ## Keep Reading
 
 These go deeper into the economics of building solo AI businesses:
@@ -168,3 +170,4 @@ These go deeper into the economics of building solo AI businesses:
 - [How to Make Money with Claude AI](/solo/make-money-with-claude-ai) -- Practical revenue strategies using the Claude API and Claude Code
 - [AI Startup Ideas Worth Building in 2026](/startups/ai-startup-ideas-2026) -- Bigger-scale ideas if you're ready to think beyond solo
 - [Highest-Paying AI Jobs in 2026](/learn/highest-paying-ai-jobs-2026) -- The skills that command premium salaries if you'd rather get hired than build
+- [AI Website Visibility](/audit) -- A free check of whether AI can read your landing page, before you spend on traffic

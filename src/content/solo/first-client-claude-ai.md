@@ -38,6 +38,8 @@ Thirty names is plenty. You're not running a campaign, you're looking for your f
 
 Generic outreach gets ignored. Use a personalization-first prompt (the [cold outreach writer](/solo/claude-prompts-make-money) is built for exactly this) and send your spec piece as the hook. "I made this for you, want the full version?" outperforms any pitch. Send 10 a day. Reply rates on personalized, value-first outreach run several times higher than templated spam.
 
+Between Day 5 and Day 6, most prospects do one thing you never see: they ask ChatGPT who you are. Run [AI Person Scan](/professional-scan) on yourself before the outreach goes out. The preview is free, and if the answer is thin or about a namesake, fix that first.
+
 ## Day 6: Offer a small, paid pilot
 
 Don't sell a giant retainer to a stranger. Sell a small, defined, paid first step, a one-week project, a single deliverable, a paid trial. Low risk for them, foot in the door for you. And here's the rule that matters: **charge real money.** A $500 pilot for work worth $2,000 makes you look amateur and traps you in the lowest tier. Anchor your number with the [AI freelancer rate card](/solo/ai-freelancer-rate-card) and [what to charge for AI services](/solo/how-to-charge-ai-automation-services).

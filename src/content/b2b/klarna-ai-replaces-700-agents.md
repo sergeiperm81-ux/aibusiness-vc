@@ -107,6 +107,8 @@ But here's the nuance that separates companies who succeed with AI customer serv
 
 Klarna understood this from the beginning, and it's the single most important lesson from their experience. The second most important lesson is measurement. They tracked AI performance against human performance from day one, resolution time, satisfaction scores, accuracy rates, and used that data to decide where to expand the AI's role and where to keep humans. They didn't make assumptions about what AI could or couldn't handle. They tested everything and let the numbers decide.
 
+One thing Klarna's customers do that Klarna's 2024 press release did not mention: before they call, they ask ChatGPT about the company. What it tells them is now part of your customer service, whether you run it or not. [AI Company Scan](/company-scan) shows what five AI models say about a company from its website, with a free preview first.
+
 ## A Perspective on What Comes Next
 
 Klarna's $40 million story is the clearest, most concrete, most publicly documented case of AI workforce transformation in 2025. But it's also, in a sense, the easy case. Customer service, with its high volume, repetitive patterns, and measurable outcomes, is the lowest-hanging fruit for AI automation. The harder question, and the more interesting one, is what happens when this same pattern spreads to less obvious domains: legal research, financial analysis, software testing, medical diagnosis, content creation.

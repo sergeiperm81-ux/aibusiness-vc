@@ -94,6 +94,8 @@ The real play is upselling existing clients. Start them with a chatbot. Add work
 4. **Neglecting sales.** This one kills more agencies than anything else. The second you stop selling, growth flatlines. Never let delivery eat 100% of your time.
 5. **No SOPs.** If only you know how to do something, you cannot scale. Write down every process, even the ones that seem obvious.
 
+One mistake that is not on the list because it is invisible from the inside: a $1,500-a-month prospect asks ChatGPT about the agency founder before the call. If the answer is thin or about somebody else, the retainer goes to the person whose answer is not. [AI Person Scan](/professional-scan) shows what five AI models say about you, with a free preview.
+
 ## The Honest Take
 
 $100K/month in agency revenue with $60K+ in net margin is real and achievable. Solo to $10K in months 1-4, first hire to $30K in months 5-8, team to $100K in months 9-18. The AI automation market is growing at 49.6% CAGR, and client demand still far exceeds supply. But that window narrows every month as more competitors show up. If this model interests you, start selling this week, not next month.

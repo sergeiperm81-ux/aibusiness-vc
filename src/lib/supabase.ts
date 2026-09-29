@@ -74,41 +74,48 @@ function rssToRow(item: AggregatedNewsItem, i: number): NewsRow {
   };
 }
 
-/** Fetch latest news: RSS feeds + seed data, deduplicated by slug */
-export async function getLatestNews(limit = 50): Promise<NewsRow[]> {
-  try {
-    // Fetch fresh RSS news
-    const rssItems = await aggregateNews(30);
-    const rssRows = rssItems.map(rssToRow);
-    const seedRows = seedToRows();
+/** How many feed items make the feed trustworthy on its own. Under this, the seed fills the gaps. */
+const ENOUGH_FRESH_ITEMS = 10;
+/** Nothing older than this appears in the list. A July item under a September one reads as a broken site. */
+const MAX_AGE_DAYS = 45;
 
-    // Merge: RSS first (newer), then seed, deduplicate by slug
+/** Every item we have, freshest first: feed items, then the seed, deduplicated by slug. */
+async function allNews(): Promise<{ rows: NewsRow[]; fresh: number }> {
+  try {
+    const rssRows = (await aggregateNews(60)).map(rssToRow);
     const seen = new Set<string>();
     const merged: NewsRow[] = [];
-
-    for (const row of [...rssRows, ...seedRows]) {
+    for (const row of [...rssRows, ...seedToRows()]) {
       if (!seen.has(row.slug)) {
         seen.add(row.slug);
         merged.push(row);
       }
     }
-
-    // Newest first, so hand-picked dated items and fresh RSS lead the feed
-    merged.sort(
-      (a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime()
-    );
-
-    return merged.slice(0, limit);
+    merged.sort((a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime());
+    return { rows: merged, fresh: rssRows.length };
   } catch (err) {
     console.error("Failed to fetch RSS news, falling back to seed:", err);
-    return seedToRows()
-      .sort((a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime())
-      .slice(0, limit);
+    return {
+      rows: seedToRows().sort((a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime()),
+      fresh: 0,
+    };
   }
+}
+
+/**
+ * The news list: fresh feed items only, newest first. The hand-written seed
+ * items are months old by now; they show only when the feeds fail, so the
+ * page is never empty.
+ */
+export async function getLatestNews(limit = 50): Promise<NewsRow[]> {
+  const { rows, fresh } = await allNews();
+  if (fresh < ENOUGH_FRESH_ITEMS) return rows.slice(0, limit);
+  const cutoff = Date.now() - MAX_AGE_DAYS * 24 * 60 * 60 * 1000;
+  return rows.filter((row) => new Date(row.published_at).getTime() >= cutoff).slice(0, limit);
 }
 
 /** Fetch single news by slug */
 export async function getNewsBySlug(slug: string): Promise<NewsRow | null> {
-  const all = await getLatestNews(100);
-  return all.find((n) => n.slug === slug) ?? null;
+  const { rows } = await allNews();
+  return rows.find((n) => n.slug === slug) ?? null;
 }

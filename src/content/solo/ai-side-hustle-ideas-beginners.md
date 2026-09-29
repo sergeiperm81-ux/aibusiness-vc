@@ -231,6 +231,8 @@ The web development services market is worth $89 billion globally. AI coding ass
 | Data Analysis | $2K-$8K/mo | 7/10 | 30-45 days | ~$20 |
 | Web Development | $3K-$15K/mo | 8/10 | 30-60 days | ~$20 |
 
+A door-opener that works for hustles 6, 12 and 17: run the prospect's site through [AI Website Visibility](/audit). The check is free and takes under a minute, and it shows whether ChatGPT and Claude can read the site at all. Most small businesses have never seen that, and it turns a cold message into a conversation about something they can fix.
+
 ## How to Choose Your AI Side Hustle
 
 Start by asking three questions:

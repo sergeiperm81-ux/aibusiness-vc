@@ -129,6 +129,8 @@ The routing conclusion will probably resemble the one that already applies acros
 
 **If you are a ChatGPT subscriber**, expect access over the coming days on Plus, Pro, Business and Enterprise. Free-tier availability was not announced.
 
+Whichever model wins this round, it answers with what it can read. Most business sites have never been checked from that side. [AI Website Visibility](/audit) runs a free check of whether AI crawlers can read your homepage, and in the paid report five AI models look the site up live and show whether they cite your pages or somebody else's.
+
 ## The honest take
 
 Two separate things were released on September 3: a product and a narrative. The product is a model that operates software across multi-step workflows, priced at a clear premium, deliberately restricted on its most dangerous capabilities, and validated so far only by its maker's own benchmarks. The narrative is that this may be the arrival of AGI. The first is verifiable and worth planning around; the second is a claim made by an interested party with no agreed test to settle it.

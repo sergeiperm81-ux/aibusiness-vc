@@ -119,6 +119,7 @@ export const LLMS_AFTER_MEMBERS = `
 
 ### AI Tools — What AI Says, and Whether AI Can Read Your Site
 - [AI Tools](https://aibusiness.vc/ai-tools): the site's own tools on one page
+- [Before You Sign, Ask the AI](https://aibusiness.vc/tools/check-a-company-a-person-or-a-website-with-five-ai-models-2026): why people now check a company, a person or a site with an AI assistant before they reply, what the three checks cost against a wrong vendor, and their limits
 - [AI Person Scan](https://aibusiness.vc/professional-scan): what five AI models (OpenAI, Anthropic, Gemini, Perplexity, Grok) say about a person, from a social profile link; free preview, full PDF report paid once
 - [AI Company Scan](https://aibusiness.vc/company-scan): the same five models on a company, from its website: who runs it, what it sells, any red flags; free preview, full PDF report paid once
 - [AI Website Visibility](https://aibusiness.vc/audit): for site owners and developers, not a scan of reputation. A free check of the homepage (AI crawler permission in robots.txt, what a bot sees without JavaScript, llms.txt, schema, citation readiness, structure, speed, HTTPS), plus the paid AI Fix Kit: five AI assistants (OpenAI, Anthropic, Gemini, Perplexity, Grok) look up the site with live search and the report shows whether they cite its own pages, then the fixes in order, with prompts and templates for the developer. Fixing readability is a first step, not a promise of being recommended

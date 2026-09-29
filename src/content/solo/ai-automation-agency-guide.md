@@ -84,6 +84,8 @@ When you get a meeting, do not try to close a $10,000 deal. Offer a $500 to $1,0
 
 Over-deliver on the pilot. Then show them a roadmap of three to five more automations at full pricing. Use real numbers from the pilot: hours saved, leads generated, errors eliminated. The upsell conversation is easy when you have proof that is specific to their business, their numbers, their results.
 
+The cheapest first-client opener we know: check the prospect's site with [AI Website Visibility](/audit) before you write to them. It is free, it takes under a minute, and it gives you one concrete thing to say: "ChatGPT cannot read your homepage, here is why." That is a different message from "we build automations."
+
 ## Pricing with confidence
 
 Most people starting an AI automation agency underprice dramatically, and it costs them in ways they do not expect. A 2025 Bain & Company survey found that companies expect to pay $3,000 to $10,000 per month for AI automation services. When you charge $500 a month, you do not come across as affordable. You come across as amateur. The business owner's internal calculus works like this: "If this person is charging so little, either they are not very good or they will not be around in six months."

@@ -102,6 +102,8 @@ The revenue -- whichever estimate you take -- is not the story. The story is the
 
 ---
 
+A side note for anyone who ships software: the product site is the one page an AI assistant reads when a buyer asks "what is this tool?" A surprising number of them cannot be read at all, because the text loads through JavaScript. [AI Website Visibility](/audit) checks yours for free, and the paid report shows what five AI models find when they look it up.
+
 ## Keep Reading
 
 If this got you thinking about how AI tools are reshaping the economics of building software, these go deeper:
@@ -111,3 +113,4 @@ If this got you thinking about how AI tools are reshaping the economics of build
 - [How Klarna's AI Replaced 700 Customer Service Agents](/b2b/klarna-ai-replaces-700-agents) -- The same "AI productivity math" playing out in customer support, not just engineering
 - [AI Startup Ideas Worth Building in 2026](/startups/ai-startup-ideas-2026) -- If the cost of building software just dropped 55%, what becomes possible?
 - [The AI Implementation Playbook for Small Business](/b2b/how-to-implement-ai-in-small-business) -- How to bring this productivity math into a company with no CTO and no IT department
+- [AI Website Visibility](/audit) -- A free check of whether AI crawlers can read your product site, and what five AI models find when they look it up

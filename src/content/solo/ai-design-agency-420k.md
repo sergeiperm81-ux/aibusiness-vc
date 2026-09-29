@@ -94,9 +94,12 @@ $420K a year. $63 a month in tools. 25 hours a week. No employees. No investors.
 
 ---
 
+A detail that costs designers clients without anyone noticing: portfolio sites are often built so that the text only appears once scripts run, and most AI crawlers do not run scripts. To ChatGPT the site is empty. [AI Website Visibility](/audit) checks yours for free in under a minute.
+
 ## Keep Reading
 
 - [Make Money with ChatGPT](/solo/make-money-with-chatgpt), more ways creative professionals are monetizing AI tools
 - [AI Automation Agency Guide](/solo/ai-automation-agency-guide), scaling from solo to agency with AI at the center
 - [Highest-Paying AI Jobs in 2026](/learn/highest-paying-ai-jobs-2026), where AI design skills rank in the job market
 - [How AI Kills Middle-Class Jobs](/society/ai-kills-middle-class-jobs), the flip side of AI productivity gains
+- [AI Website Visibility](/audit), a free check of whether AI can read your portfolio site at all

@@ -247,6 +247,8 @@ The top earners in AI freelancing stopped selling hours a long time ago. They pr
 
 ---
 
+Rates hold when the client has already decided you are real before the call. Increasingly they decide by asking an AI assistant. [AI Person Scan](/professional-scan) shows what five AI models say about you and where they get it; a thin answer at the $200-an-hour tier is a negotiation you lose before it starts.
+
 ## Pricing Red Flags: When to Walk Away
 
 Some clients will waste your time no matter what you charge. Walk away when you see these signals:

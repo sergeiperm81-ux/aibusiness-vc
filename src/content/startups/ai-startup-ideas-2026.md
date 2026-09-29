@@ -100,6 +100,8 @@ Third, they build data moats. If anyone can rebuild your product with a GPT-4 AP
 
 Fourth, and this one is the hardest to assess honestly: they can reach $10,000 in monthly recurring revenue within six months. If the market signal is that weak after six months of focused effort, something fundamental is wrong, either the problem isn't painful enough, the willingness to pay isn't there, or the market timing is off.
 
+Before you commit six months to a vertical, ask what the assistants already say about the incumbents in it. [AI Company Scan](/company-scan) shows what five AI models tell people about a company from its website, including complaints and warnings they surface. It is a cheap way to see where a market's reputation is soft.
+
 ## The Uncomfortable Truth
 
 Here's what I think most people working in AI don't want to hear: the golden age of easy AI startups is over. The period from 2023 to early 2025, when you could wrap an API in a nice interface and call it a company, is finished. What's left is harder and more interesting.

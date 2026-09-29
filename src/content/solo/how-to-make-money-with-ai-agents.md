@@ -54,6 +54,8 @@ The lesson? Pick one industry. Talk to ten people in that industry. Find the pai
 
 A 2025 HubSpot report found that 89% of B2B buyers research solutions online before contacting a vendor. Your demo video does the selling while you sleep.
 
+Two things that shorten the client hunt. Run the prospect's site through [AI Website Visibility](/audit), free, and open with what it found. And run yourself through [AI Person Scan](/professional-scan), because the prospect will ask ChatGPT who you are before they reply, and it is better to know the answer before they do.
+
 ## Your Actual Tech Stack (It's Simpler Than You Think)
 
 You do not need a computer science degree. You really don't. The modern AI agent stack has matured to the point where someone with solid prompting skills and basic programming knowledge can ship production-quality agents within weeks.
@@ -108,3 +110,4 @@ Your call.
 - [AI Automation Agency Guide](/solo/ai-automation-agency-guide), how to turn agent building into a full-service agency
 - [AI Startup Ideas for 2026](/startups/ai-startup-ideas-2026), where the next wave of AI companies will come from
 - [ChatGPT vs Claude vs Gemini](/tools/chatgpt-vs-claude-vs-gemini), which AI model to build your agents on
+- [AI Person Scan](/professional-scan), what five AI models tell a prospect who asks about you before replying

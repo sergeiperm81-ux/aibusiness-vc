@@ -66,6 +66,8 @@ Why it earns: this is the on-ramp to product income. Developers ride exactly thi
 
 Prompts are leverage, not magic. The money is in the workflow you wrap around them: a niche you understand, a client who pays, and a repeatable way to deliver. Treat these six as the skeleton of a service, not a substitute for one. If you don't yet have the service, start with the [7 proven ways to make money with Claude AI](/solo/make-money-with-claude-ai) and build the prompt around the method, never the other way around. The freelancers who win aren't the ones with the cleverest prompts. They're the ones who shipped.
 
+One more prompt you did not write: the one your prospect types into ChatGPT after reading your email. "Who is this person?" Before you send the outreach, see what five AI models answer about you. [AI Person Scan](/professional-scan) shows it, with a free preview first.
+
 ## FAQ
 
 **What makes a Claude prompt a "money-making" prompt?**

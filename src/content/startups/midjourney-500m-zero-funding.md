@@ -84,9 +84,12 @@ And one more, learned the hard way on this page: be suspicious of the numbers th
 
 ---
 
+Midjourney is also a lesson in what happens when a company publishes almost nothing: the assistants fill the gap with estimates and other people's numbers, and that is what anyone asking about it is told. Run [AI Company Scan](/company-scan) on your own company and see what five AI models say about it today, free preview first.
+
 ## Keep Reading
 
 - [AI Revenue Leaderboard 2026](/startups/ai-revenue-leaderboard), every major AI company by run rate, valuation and disclosed profitability, with sources and confidence levels.
 - [OpenAI's revenue machine](/startups/openai-13b-arr), the opposite end of the spectrum: the most-funded AI company and how its money works.
 - [Cursor's valuation run](/startups/cursor-9b-valuation), another AI startup with unusual capital efficiency and explosive growth.
 - [How to Make Money with Claude AI](/solo/make-money-with-claude-ai), practical ways to build income with AI tools.
+- [AI Company Scan](/company-scan), what five AI models tell people who ask about a company before they buy, sign or invest.

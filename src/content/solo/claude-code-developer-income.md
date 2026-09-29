@@ -158,6 +158,8 @@ The developers who will build the most successful businesses on this model are n
 
 If you're a developer reading this and wondering whether the moment is real, it is. If you're wondering whether it's too late, it isn't, but it's later than it was six months ago, and six months from now it will be later still. The window for establishing yourself in this new economics of software development is open, but it's not a door that stays propped open indefinitely. The developers who act while the opportunity is fresh will define the landscape. The rest will compete in it
 
+Two checks worth running before the first pitch. [AI Website Visibility](/audit) tells you, for free, whether a prospect's site can be read by AI crawlers at all; the ones that cannot are the easiest first projects to sell. And [AI Person Scan](/professional-scan) shows what five AI models say about you, because a client who is about to pay $35,000 asks ChatGPT who you are first.
+
 ## Related Reads
 
 For related build-and-sell paths, continue with [Cursor AI Freelancer Guide](/solo/cursor-ai-freelancer-guide), [Vibe Coding Income Guide](/solo/vibe-coding-income-guide), and [MCP Servers Business Opportunity](/startups/mcp-servers-business-opportunity).

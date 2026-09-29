@@ -69,6 +69,8 @@ Start by automating your worst time-sinks first, the repetitive execution work t
 
 And invest in your own skill at directing these systems, because that's the real moat. The person who can orchestrate AI agents, not just use one chatbot, but architect a whole working stack, has leverage that's only getting more valuable. I broke down exactly which capabilities matter in [the AI operator skill stack for 2026](/learn/ai-operator-skill-stack-2026). If you want the agency version of this model, where you grow past solo into a small high-leverage team, the [AI automation agency guide](/solo/ai-automation-agency-guide) maps the path.
 
+When the company is one person, what AI says about you is what AI says about the company. Customers, partners and the occasional investor ask before they write. [AI Person Scan](/professional-scan) shows what five AI models answer, with a free preview first.
+
 ## The honest take
 
 The one-person company stopped being a fantasy and became a real, fundable, profitable way to work, and the $300-to-$100,000 cost ratio is the most exciting thing to happen to small business in your lifetime. You genuinely can run something real, alone, right now. I'd encourage you to try.
