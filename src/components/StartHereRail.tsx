@@ -13,17 +13,17 @@ import { getLatestNews } from "@/lib/supabase";
 export const START_HERE_ITEMS = [
   {
     href: "/service-check",
-    title: "AI Service Check",
+    title: "AI Test Purchase",
     text: "Test purchases of AI agents: what your bot actually tells customers.",
   },
   {
-    href: "/audit",
-    title: "AI Visibility Audit",
-    text: "See how ChatGPT and AI search understand your website.",
+    href: "/ai-tools",
+    title: "AI Tools",
+    text: "AI Person Scan and AI Company Scan: what AI tells people, with a free preview.",
   },
   {
     href: "/library",
-    title: "Author's Library",
+    title: "Founder's Library",
     text: "Free frameworks, checklists and methods. No registration.",
   },
   {

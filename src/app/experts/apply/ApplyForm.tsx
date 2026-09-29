@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   INDUSTRIES,
   PRACTICE_GROUPS,
@@ -8,6 +8,7 @@ import {
   WORK_FORMATS,
 } from "../experts";
 import { PhotoPicker, type PickedPhoto } from "./PhotoPicker";
+import { clearDraft, loadDraft, readFields, saveDraft, writeFields } from "./draft";
 
 type Status = "idle" | "sending" | "done" | "error";
 
@@ -28,7 +29,7 @@ const LEGEND =
  * was never told, so the profile arrived cut off mid-word. Counting out loud
  * and refusing the send is the only honest way to enforce a limit.
  */
-const FIELD_LIMITS = { headline: 120, other: 120, about: 1200, services: 1500 } as const;
+const FIELD_LIMITS = { headline: 200, other: 300, about: 3000, services: 3000 } as const;
 
 function Counter({ length, limit }: { length: number; limit: number }) {
   const over = length > limit;
@@ -63,6 +64,84 @@ export function ApplyForm() {
   const [name, setName] = useState("");
   const [headline, setHeadline] = useState("");
   const [location, setLocation] = useState("");
+  const [restored, setRestored] = useState(false);
+  const formRef = useRef<HTMLFormElement | null>(null);
+  // Nothing is saved until the draft, if any, has been put back: saving earlier
+  // would overwrite a good draft with the empty form that loads first.
+  const readyRef = useRef(false);
+
+  /**
+   * Bring the form's own state in line with what the page actually shows.
+   *
+   * A reloaded tab can come back with text in the fields and an empty state
+   * behind them, so the counters read zero and the preview stays blank. Reading
+   * the fields back into state makes what the person sees and what the form
+   * holds the same thing again.
+   */
+  const syncFromPage = useCallback(() => {
+    const form = formRef.current;
+    if (!form) return;
+    const { fields } = readFields(form);
+    if (fields.name) setName(fields.name);
+    if (fields.headline) setHeadline(fields.headline);
+    if (fields.location) setLocation(fields.location);
+    if (fields.about) setAbout(fields.about);
+    if (fields.services) setServices(fields.services);
+    if (fields.other) setOther(fields.other);
+  }, []);
+
+  // On load: restore a saved draft, or else pick up whatever the browser put back.
+  useEffect(() => {
+    const form = formRef.current;
+    if (!form) return;
+    const draft = loadDraft();
+    if (draft) {
+      writeFields(form, draft);
+      setName(draft.fields.name ?? "");
+      setHeadline(draft.fields.headline ?? "");
+      setLocation(draft.fields.location ?? "");
+      setAbout(draft.fields.about ?? "");
+      setServices(draft.fields.services ?? "");
+      setOther(draft.other ?? draft.fields.other ?? "");
+      setPracticeAreas(draft.practiceAreas);
+      setIndustries(draft.industries);
+      setWorkFormats(draft.workFormats);
+      setRestored(true);
+    } else {
+      syncFromPage();
+    }
+    readyRef.current = true;
+
+    // A page restored from the back-forward cache skips the effect above.
+    const onPageShow = (event: PageTransitionEvent) => {
+      if (event.persisted) syncFromPage();
+    };
+    window.addEventListener("pageshow", onPageShow);
+    return () => window.removeEventListener("pageshow", onPageShow);
+  }, [syncFromPage]);
+
+  const persist = useCallback(() => {
+    const form = formRef.current;
+    if (!form || !readyRef.current) return;
+    saveDraft({
+      ...readFields(form),
+      practiceAreas,
+      industries,
+      workFormats,
+      other,
+      savedAt: Date.now(),
+    });
+  }, [practiceAreas, industries, workFormats, other]);
+
+  // The chips are buttons, not fields, so typing does not cover them.
+  useEffect(() => {
+    persist();
+  }, [persist]);
+
+  function startOver() {
+    clearDraft();
+    window.location.reload();
+  }
 
   function toggle(
     value: string,
@@ -76,19 +155,20 @@ export function ApplyForm() {
     if (status === "sending") return;
 
     const form = new FormData(event.currentTarget);
+    // Everything is read from the page, never from state alone. After a reload
+    // the two can disagree, and what the person sees is what they meant to send.
     const text = (key: string) => String(form.get(key) ?? "").trim();
+    const otherText = text("other") || other.trim();
 
-    if (!photo) {
-      setStatus("error");
-      setMessage("Add a photo. It is the first thing anyone sees.");
-      return;
-    }
+    // No photo check here. A photo that will not upload on someone's phone must
+    // not cost us the whole application: it can follow by email, and a profile
+    // without one shows initials until it arrives.
     const tooLong = (
       [
-        ["headline", headline, FIELD_LIMITS.headline],
-        ["other", other, FIELD_LIMITS.other],
-        ["about", about, FIELD_LIMITS.about],
-        ["services", services, FIELD_LIMITS.services],
+        ["headline", text("headline"), FIELD_LIMITS.headline],
+        ["other", otherText, FIELD_LIMITS.other],
+        ["about", text("about"), FIELD_LIMITS.about],
+        ["services", text("services"), FIELD_LIMITS.services],
       ] as const
     ).find(([, value, limit]) => value.length > limit);
     if (tooLong) {
@@ -99,20 +179,20 @@ export function ApplyForm() {
       );
       return;
     }
-    if (practiceAreas.length === 0 && !other.trim()) {
+    if (practiceAreas.length === 0 && !otherText) {
       setStatus("error");
       setMessage("Pick at least one practice area.");
       return;
     }
 
     const payload = {
-      name: name.trim(),
+      name: text("name"),
       email: text("email"),
-      headline: headline.trim(),
+      headline: text("headline"),
       role: text("role"),
       organisation: text("organisation"),
       region: text("region"),
-      location: location.trim(),
+      location: text("location"),
       about: text("about"),
       services: text("services"),
       linkedin: text("linkedin"),
@@ -122,7 +202,7 @@ export function ApplyForm() {
       showPhone: form.get("showPhone") === "on",
       showLinkedin: form.get("showLinkedin") === "on",
       showWebsite: form.get("showWebsite") === "on",
-      practiceAreas: other.trim() ? [...practiceAreas, `Other: ${other.trim()}`] : practiceAreas,
+      practiceAreas: otherText ? [...practiceAreas, `Other: ${otherText}`] : practiceAreas,
       industries,
       workFormats,
       languages: text("languages"),
@@ -141,6 +221,7 @@ export function ApplyForm() {
       });
       const data = (await res.json()) as { ok?: boolean; error?: string };
       if (res.ok && data.ok) {
+        clearDraft();
         setStatus("done");
       } else {
         setStatus("error");
@@ -172,14 +253,38 @@ export function ApplyForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-10">
+    <form
+      ref={formRef}
+      onSubmit={handleSubmit}
+      onInput={persist}
+      onChange={persist}
+      className="space-y-10"
+    >
+      {restored && (
+        <div className="rounded-2xl border-2 border-amber-300 bg-amber-50 px-5 py-4 text-sm leading-relaxed text-gray-800">
+          We brought back what you typed earlier on this device, so nothing is lost if the page
+          reloaded. Check it and send.{" "}
+          <button
+            type="button"
+            onClick={startOver}
+            className="font-semibold text-gray-600 underline hover:text-gray-900"
+          >
+            Start over
+          </button>
+        </div>
+      )}
+
       <fieldset className="rounded-2xl border-2 border-gray-200 p-6">
-        <legend className="sr-only">Your photo *</legend>
-        <div className={LEGEND}>Your photo *</div>
+        <legend className="sr-only">Your photo</legend>
+        <div className={LEGEND}>Your photo</div>
         <p className="mb-4 text-sm text-gray-600">
           Position your face inside the circle. That square is exactly what gets published.
         </p>
         <PhotoPicker onChange={setPhoto} />
+        <p className="mt-4 text-sm leading-relaxed text-gray-600">
+          If the photo will not upload on your device, send the form without it and email the
+          photo to info [at] aibusiness.vc. We will add it to your profile.
+        </p>
       </fieldset>
 
       <fieldset className="space-y-4 rounded-2xl border-2 border-gray-200 p-6">
@@ -357,6 +462,7 @@ export function ApplyForm() {
           </label>
           <input
             id="other"
+            name="other"
             value={other}
             onChange={(e) => setOther(e.target.value)}
             className={FIELD}

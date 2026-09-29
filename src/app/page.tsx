@@ -11,6 +11,7 @@ import { tools } from "@/data/tools";
 import { TrackedLink } from "@/components/analytics/TrackedLink";
 import { StoryBadge } from "@/components/StoryBadge";
 import { ContactEmail } from "@/components/ContactEmail";
+import { categoryLabel } from "@/lib/category-label";
 
 export const metadata: Metadata = {
   title: "AI Business - How to Make Money with AI in 2026",
@@ -38,30 +39,50 @@ const catColors: Record<string, string> = {
 export const dynamic = "force-static";
 export const revalidate = 3600;
 
-const HOME_FAQ = [
+interface HomeFaqItem {
+  q: string;
+  a: string;
+  href: string;
+  linkLabel: string;
+}
+
+// Every answer must stay true without a date on it and point to a page that exists.
+const HOME_FAQ: readonly HomeFaqItem[] = [
   {
     q: "Is AI actually profitable for businesses in 2026?",
-    a: "Yes, and we track the evidence. Case studies with verified results, from lean solo operators to enterprises cutting costs 40-60%. The clearest returns come from AI freelancing, automation services, and content systems built on Claude or ChatGPT. See the Solo and B2B sections for step-by-step playbooks.",
+    a: "For some businesses clearly, for many not yet. The returns that hold up come from narrow jobs done at volume: support, documents, research, code. The B2B section tracks cases with the numbers each company reports, including the ones that went wrong.",
+    href: "/b2b",
+    linkLabel: "B2B case studies",
   },
   {
     q: "How much does it cost to start an AI side hustle?",
-    a: "Most solo earners spend $30-$100/month on AI tools to start. ChatGPT Plus or Claude Pro at $20/month plus one specialized tool (Make.com, Synthesia, or Notion AI) covers 80% of use cases. The Solo Tool Stack page lists $97/month bundles that replace a $200K team.",
+    a: "Usually $20 to $100 a month. One paid assistant plan at about $20 covers most early work; plans from $100 to $300 buy higher usage limits, not a different business. Our breakdown compares what each tier actually buys.",
+    href: "/tools/ai-subscription-tiers-20-vs-200-what-you-actually-get-2026",
+    linkLabel: "What AI subscriptions buy",
   },
   {
-    q: "What is the highest-paying AI career in 2026?",
-    a: "ML engineers earn $180K-$350K, AI research scientists earn up to $893K total comp at frontier labs, and prompt engineering roles start at $100K. The Learn section maps salaries against the certifications and skills required to qualify.",
+    q: "Do AI skills actually raise your pay?",
+    a: "On average, yes. PwC's 2025 Global AI Jobs Barometer found a 56% wage premium for jobs that ask for AI skills, up from 25% a year earlier. The premium goes to people who use AI in their work, not only to engineers.",
+    href: "/learn/ai-job-split-2026-skills-premium-how-to-land-on-the-right-side",
+    linkLabel: "The AI job split",
   },
   {
     q: "Which AI tool gives the best ROI for small businesses?",
-    a: "It depends on the bottleneck. For customer service, Klarna replaced 700 agents with AI and cut costs 40-60%. For content, Make.com plus ChatGPT replaces a writing team at $50/month. The Tool Selector matches your goal, budget, and team to a verified stack.",
+    a: "The one aimed at your biggest bottleneck, and it is rarely the most expensive. Before paying for another tool, write down the workflow it is meant to fix: who does what, where time is lost, what a good result looks like.",
+    href: "/b2b/before-you-buy-another-ai-tool-fix-the-workflow",
+    linkLabel: "Fix the workflow first",
   },
   {
     q: "Is AI replacing jobs or creating them?",
-    a: "Both. Klarna AI replaced 700 customer service agents while AI engineering jobs grew 200% year over year. The B2B section tracks the cost-cutting case studies; the Learn section tracks the new roles, certifications, and salaries.",
+    a: "Both, sometimes in the same company. In 2024 Klarna said its AI assistant was doing the work of about 700 support agents. In 2025 its CEO said cost had weighed too heavily, quality had suffered, and Klarna began hiring people for customer service again.",
+    href: "/learn",
+    linkLabel: "AI skills and careers",
   },
   {
     q: "How is AI Business different from other AI directories?",
-    a: "Outcome-first, not catalog-first. Most AI directories list 28,000+ tools without saying which earn money. We focus on 50+ income methods, case studies with real revenue data, and independent test purchases that check whether an AI service does what its owner promised.",
+    a: "Outcome-first, not catalog-first. Directories list thousands of tools without saying which earn money. We write about where the money is, publish founders' own accounts of their products, and run independent test purchases that check whether an AI service does what its owner promised.",
+    href: "/service-check",
+    linkLabel: "AI Test Purchase",
   },
 ];
 
@@ -181,7 +202,7 @@ interface HomeNewsItemListProps {
 }
 
 interface HomeFaqSchemaProps {
-  items: { q: string; a: string }[];
+  items: readonly { q: string; a: string }[];
 }
 
 function HomeWebsiteSchema() {
@@ -266,6 +287,7 @@ export default async function HomePage() {
   const allArticles = getAllArticles();
   const newsData = await getLatestNews(6);
   const latestNotes = getAllNotes().slice(0, 3);
+  const partnerStoryCount = allArticles.filter((article) => article.story === "partner").length;
   const startHere = [
     {
       href: "/service-check",
@@ -273,18 +295,18 @@ export default async function HomePage() {
       text: "An independent check of whether your AI does what you promise.",
     },
     {
-      href: "/audit",
-      title: "AI Visibility Audit",
-      text: "See how ChatGPT and AI search read your site.",
-    },
-    {
       href: "/library",
-      title: "Author's Library",
+      title: "Founder's Library",
       text: "Free methods, checklists and templates. No registration.",
     },
     {
+      href: "/notes",
+      title: "Founder's Notes",
+      text: "What the founder saw testing AI services this month, in his own words.",
+    },
+    {
       href: "/sergei-ponomarev",
-      title: "About the author",
+      title: "About the founder",
       text: "Seven years of service standards, evaluation and test purchases.",
     },
   ];
@@ -301,10 +323,10 @@ export default async function HomePage() {
         "An independent check of your AI service against the requirements you set for it, with evidence and a verification in the public registry.",
     },
     {
-      href: "/audit",
-      title: "AI Visibility Audit",
+      href: "/ai-tools",
+      title: "AI Tools",
       description:
-        "See what ChatGPT knows about your business and how AI search reads your site. Free scan in 30 seconds.",
+        "AI Person Scan and AI Company Scan: what five AI models tell people about a person or a company, with a free preview first.",
     },
     {
       href: "/library",
@@ -372,7 +394,7 @@ export default async function HomePage() {
                   <span
                     className={`absolute left-3 top-3 rounded px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider ${catColors[item.category] ?? "bg-amber-500 text-black"}`}
                   >
-                    {item.category === "Government" ? "AI Governance" : item.category}
+                    {categoryLabel(item.category)}
                   </span>
                 </div>
                 <div className="px-4 py-3">
@@ -394,12 +416,12 @@ export default async function HomePage() {
               </div>
             </div>
 
-            {/* Author's desk — sticky side panel */}
+            {/* Founder's desk — sticky side panel */}
             <aside className="lg:col-span-1">
               <div className="h-full">
                 <div className="flex h-full flex-col rounded-2xl bg-accent p-5">
                   <p className="mb-4 font-mono text-base font-bold uppercase tracking-[0.2em] text-black">
-                    Author&apos;s desk
+                    Founder&apos;s desk
                   </p>
                   <Link href="/sergei-ponomarev" className="group block">
                     <Image
@@ -508,7 +530,7 @@ export default async function HomePage() {
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
             <FactCard label="Test purchases of AI agents" value="3 layers" sub="What you promised · what the bot said · what the system recorded" />
             <FactCard label="Free methods in the library" value={String(GUIDES.length)} sub="Including the full 35-page test purchase method" />
-            <FactCard label="Partner Stories published" value="14" sub="Written interviews with AI founders, free" />
+            <FactCard label="Partner Stories published" value={String(partnerStoryCount)} sub="Written interviews with AI founders, free" />
             <FactCard label="LLM models profiled" value={String(models.length)} sub="Price per million tokens, context window, public ELO" />
           </div>
         </div>
@@ -613,6 +635,12 @@ export default async function HomePage() {
               <div key={item.q}>
                 <h3 className="mb-2 text-base font-bold text-black">{item.q}</h3>
                 <p className="text-sm leading-relaxed text-black/70">{item.a}</p>
+                <Link
+                  href={item.href}
+                  className="mt-2 inline-block text-sm font-semibold text-black underline underline-offset-2 transition-colors hover:text-accent-hover"
+                >
+                  {item.linkLabel} &rarr;
+                </Link>
               </div>
             ))}
           </div>

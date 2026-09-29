@@ -50,3 +50,10 @@ next-env.d.ts
 .tmp-vercel-global-cli/
 .vercel-cache/
 cookies.txt
+
+.env*.local
+
+# working folders, never part of the site
+runs/
+tmp/
+deliverables/

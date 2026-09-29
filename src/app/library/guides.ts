@@ -18,6 +18,54 @@ export interface Guide {
 
 export const GUIDES: Guide[] = [
   {
+    slug: "us-dmv-chatbots-real-id",
+    title: "US DMV Chatbots and REAL ID",
+    kicker: "AI Test Purchase · Pilot on 12 state government chatbots",
+    audience: "For public-sector AI owners and researchers",
+    tagline:
+      "Twelve US state DMV chatbots, the same ten questions, every answer checked against the agency's own website. Scores ranged from 100 to 6.",
+    cardBlurb:
+      "The first comparative trial of the AI Test Purchase method in the public sector. On 24 September 2026 twelve state DMV chatbots received the same ten ordinary questions about REAL ID: documents, forms, fees, timing, name changes, an expired passport, reaching a person, a false premise and a request to check an application by licence number. The only answer key was each agency's own website. One bot asked for the driver's licence number despite its own privacy warning, one offered a boat registration form, one sent people to the airport with a document the TSA does not accept. The best one answered every scored question correctly.",
+    description:
+      "A single test of one chatbot is easy to dismiss as a bad day. A comparison is not. This report applies the logic of mystery shopping, long used to check shops and public counters, to AI assistants on government websites. Twelve US state DMV chatbots that could be tested comparably from Europe, without an account, personal data or a live operator, each received the same ten questions about REAL ID in one conversation on 24 September 2026. Answers were graded only against the same agency's public website, with no legal interpretation: if a bot contradicts its own agency, that is the finding. The core reference pages were saved before the conversations and fingerprinted with SHA-256; every answer, screenshot and source is kept, and a script computes the scores so that anyone rerunning it gets the same ranking. Scores ranged from 100 to 6. Eight of twelve systems had one substantive factual error or risk, from a wrong phone number and a wrong timeline to vehicle and boat forms offered as the REAL ID application. Three more failures do not fit a factual-error count: a developer placeholder shown to a visitor, a login demand where no login exists, and a dialogue that answered 'Sorry, I didn't get that' eight times. No bot agreed with a planted false premise, but only five corrected it plainly. The report is a descriptive pilot, one conversation per system on one day, and not a verdict on any agency. Twenty-one pages with the full answers, sources and checksums in the appendices.",
+    includes: [
+      "A descriptive combined ranking of 12 state DMV chatbots, from 100 to 6",
+      "Eight substantive errors, each set against the agency's own published wording",
+      "Service failures a factual-error count misses: a leaked placeholder, a phantom login, a dialogue that never started",
+      "How the bots handled a false premise and a request for personal data",
+      "Which questions separated strong bots from weak ones",
+      "The method: one scenario, the agency's site as the only answer key, SHA-256 evidence, reproducible scoring",
+      "Every answer and its source for all twelve states, and the limits of the pilot stated plainly",
+    ],
+    pdf: "/library/us-dmv-chatbots-real-id.pdf",
+    pages: 21,
+    year: "2026",
+  },
+  {
+    slug: "right-but-unproven",
+    title: "Right, but Unproven",
+    kicker: "Joint paper with Andrey Ekhmenin, ANDEKS",
+    audience: "For anyone who asks an AI about a person",
+    tagline:
+      "What five AI models said about one person, and what an evidence-bounded assessment could establish: an AI model can be factually right about a person and still give you no reliable reason to believe it.",
+    cardBlurb:
+      "A joint research paper by Sergei Ponomarev and Andrey Ekhmenin, founder of ANDEKS. Five AI models were given the same name, role, company and profile link. One found nothing it could tie to the person. Another linked him to historical records in a different country, which the subject later confirmed as his own, but nothing in the answer showed it. The paper compares what the models said with what an evidence-bounded assessment could establish, and reports what the scan got wrong and what changed in it the same day.",
+    description:
+      "Before a meeting, a deal or an interview, people ask an AI assistant about the person they are about to meet. On 23 September 2026 Sergei Ponomarev and Andrey Ekhmenin ran the same experiment on Andrey himself. Sergei ran the retail AI Person Scan: three questions to five AI models with live web search, answers recorded word for word with their sources. Andrey ran an ANDEKS assessment of what the public evidence could establish about the same person. Each result was frozen with a checksum before either side saw the other's, and the comparison was agreed by both sides afterwards. The models were given the person's name, role, company and profile link. One model could not identify him at all. Another linked him to older business records in a different country and a different script, which he later confirmed as his own; the answer itself contained nothing a reader could check, and the assessor working from the same public evidence could not establish the link. The paper separates what the models were given from what they found and from what could be established, shows how a true historical record was printed as a contradiction about the present, and how one model turned the absence of adverse findings into a positive reputation. It reports plainly that the scan's appendix printed a register number and an address the product had no way to tie to the person, and describes the rules that were changed the same day and the price of that change: a scan that cannot tell a person's past from a stranger's record now prints neither. Five pages, with the agreed Joint Comparison Record linked as the methodological appendix.",
+    includes: [
+      "The finding first: same input, five models, from 'not identifiable' to a reconstruction the subject later confirmed",
+      "How both results were frozen with checksums before exchange, and why the subject's confirmation is attested, not established",
+      "Given in the question, found by the models, evidentially established: three layers that are not the same thing",
+      "Where the results diverged: not found, found but unproven, then not now, narrowed, positive from nothing, search noise",
+      "What the product got wrong, what changed the same day, and why safety reduces completeness",
+      "Five practical rules for anyone who asks an AI about a person",
+      "What the experiment does not establish, including that the subject and the assessor are the same person",
+    ],
+    pdf: "/library/right-but-unproven.pdf",
+    pages: 5,
+    year: "2026",
+  },
+  {
     slug: "ai-agent-test-purchase-light",
     title: "AI Agent Test Purchase Light",
     kicker: "The method behind every Light check, published",

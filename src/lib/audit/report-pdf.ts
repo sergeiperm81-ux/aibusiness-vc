@@ -1,33 +1,23 @@
 /**
- * Renders the AI Visibility report a paying customer receives.
+ * The AI Fix Kit report a paying customer receives, in the library's house
+ * style (pdf-kit.ts): a centred cover, numbered sections with a yellow rule,
+ * the running head and foot of every library PDF.
  *
- * Replaces a one-page template that carried no figures at all — it said
- * "calculated per audited domain" where the number should have been. A report
- * that shows the buyer someone else's placeholder is worse than no report, so
- * every value here comes from the scan of their own domain.
+ * Read top to bottom: what five AI models found when they looked the site up,
+ * then the technical signs measured on the homepage, then the fixes in order.
+ * Every number comes from the check of the buyer's own domain; nothing here
+ * is a template figure.
  */
 
-import { PDFDocument, StandardFonts, rgb, type PDFFont, type PDFPage } from "pdf-lib";
 import type { AuditMetric, QuickAudit } from "@/lib/audit/mock";
 import { fixFor } from "@/lib/audit/fixes";
-import type { BrandKnowledge } from "@/lib/audit/brand-knowledge";
+import { hasAnswer, type BrandKnowledge } from "@/lib/audit/brand-knowledge";
+import { REACH_WORDS, type ProviderVisibility, type SiteVisibility } from "@/lib/audit/site-visibility";
+import { ACCENT, GREEN, GREY, MUTED, PdfWriter } from "@/lib/audit/pdf-kit";
+import { plainAnswer } from "@/lib/audit/person-report-pdf";
+import { sourceLabel } from "@/lib/audit/person-report-safety";
 
-const PAGE_WIDTH = 595;
-const PAGE_HEIGHT = 842;
-const MARGIN = 52;
-const CONTENT_WIDTH = PAGE_WIDTH - MARGIN * 2;
-
-const INK = rgb(0.09, 0.09, 0.11);
-const MUTED = rgb(0.42, 0.42, 0.47);
-const ACCENT = rgb(0.85, 0.47, 0.02);
-const HAIRLINE = rgb(0.88, 0.88, 0.9);
-
-const SEVERITY_COLOUR: Record<AuditMetric["severity"], ReturnType<typeof rgb>> = {
-  critical: rgb(0.86, 0.15, 0.15),
-  warning: rgb(0.85, 0.47, 0.02),
-  ok: rgb(0.72, 0.62, 0.05),
-  good: rgb(0.02, 0.55, 0.34),
-};
+export const PRODUCT_NAME = "AI Website Visibility";
 
 const SEVERITY_WORD: Record<AuditMetric["severity"], string> = {
   critical: "Critical",
@@ -36,359 +26,221 @@ const SEVERITY_WORD: Record<AuditMetric["severity"], string> = {
   good: "Healthy",
 };
 
-interface Fonts {
-  readonly regular: PDFFont;
-  readonly bold: PDFFont;
-}
-
-/** Wraps to the measured width of the actual font rather than a character count. */
-function wrap(text: string, font: PDFFont, size: number, maxWidth: number): string[] {
-  const words = text.split(/\s+/).filter(Boolean);
-  const lines: string[] = [];
-  let line = "";
-
-  for (const word of words) {
-    const candidate = line ? `${line} ${word}` : word;
-    if (font.widthOfTextAtSize(candidate, size) > maxWidth && line) {
-      lines.push(line);
-      line = word;
-    } else {
-      line = candidate;
-    }
-  }
-  if (line) lines.push(line);
-  return lines;
-}
-
-/**
- * pdf-lib's standard fonts are WinAnsi-encoded and throw on characters outside
- * it — model output is full of typographic dashes and curly quotes.
- */
-function toWinAnsi(text: string): string {
-  return text
-    .replace(/[‘’‛]/g, "'")
-    .replace(/[“”]/g, '"')
-    .replace(/[–—]/g, "-")
-    .replace(/…/g, "...")
-    .replace(/ /g, " ")
-    .replace(/[^\x20-\x7E¡-ÿ]/g, "");
-}
-
-class Doc {
-  private page: PDFPage;
-  private y: number;
-
-  constructor(
-    private readonly doc: PDFDocument,
-    private readonly fonts: Fonts
-  ) {
-    this.page = this.newPage();
-    this.y = PAGE_HEIGHT - MARGIN;
-  }
-
-  private newPage(): PDFPage {
-    return this.doc.addPage([PAGE_WIDTH, PAGE_HEIGHT]);
-  }
-
-  private ensure(space: number): void {
-    if (this.y - space < MARGIN + 24) {
-      this.page = this.newPage();
-      this.y = PAGE_HEIGHT - MARGIN;
-    }
-  }
-
-  gap(amount: number): void {
-    this.y -= amount;
-  }
-
-  heading(text: string, size = 15): void {
-    this.ensure(size + 14);
-    this.page.drawText(toWinAnsi(text), {
-      x: MARGIN,
-      y: this.y - size,
-      size,
-      font: this.fonts.bold,
-      color: INK,
-    });
-    this.y -= size + 10;
-  }
-
-  kicker(text: string): void {
-    this.ensure(18);
-    this.page.drawText(toWinAnsi(text.toUpperCase()), {
-      x: MARGIN,
-      y: this.y - 9,
-      size: 8.5,
-      font: this.fonts.bold,
-      color: ACCENT,
-    });
-    this.y -= 20;
-  }
-
-  paragraph(text: string, options: { size?: number; muted?: boolean; indent?: number } = {}): void {
-    const size = options.size ?? 10;
-    const indent = options.indent ?? 0;
-    const lines = wrap(toWinAnsi(text), this.fonts.regular, size, CONTENT_WIDTH - indent);
-
-    for (const line of lines) {
-      this.ensure(size + 5);
-      this.page.drawText(line, {
-        x: MARGIN + indent,
-        y: this.y - size,
-        size,
-        font: this.fonts.regular,
-        color: options.muted ? MUTED : INK,
-      });
-      this.y -= size + 4.5;
-    }
-  }
-
-  rule(): void {
-    this.ensure(12);
-    this.page.drawLine({
-      start: { x: MARGIN, y: this.y - 6 },
-      end: { x: PAGE_WIDTH - MARGIN, y: this.y - 6 },
-      thickness: 0.7,
-      color: HAIRLINE,
-    });
-    this.y -= 16;
-  }
-
-  metricRow(metric: AuditMetric): void {
-    this.ensure(46);
-    const colour = SEVERITY_COLOUR[metric.severity];
-
-    this.page.drawText(toWinAnsi(metric.label), {
-      x: MARGIN,
-      y: this.y - 11,
-      size: 11,
-      font: this.fonts.bold,
-      color: INK,
-    });
-
-    const scoreText = `${metric.score}/100`;
-    const scoreWidth = this.fonts.bold.widthOfTextAtSize(scoreText, 11);
-    this.page.drawText(scoreText, {
-      x: PAGE_WIDTH - MARGIN - scoreWidth,
-      y: this.y - 11,
-      size: 11,
-      font: this.fonts.bold,
-      color: colour,
-    });
-
-    const word = SEVERITY_WORD[metric.severity];
-    const wordWidth = this.fonts.regular.widthOfTextAtSize(word, 8.5);
-    this.page.drawText(word, {
-      x: PAGE_WIDTH - MARGIN - scoreWidth - wordWidth - 10,
-      y: this.y - 11,
-      size: 8.5,
-      font: this.fonts.regular,
-      color: MUTED,
-    });
-
-    this.y -= 17;
-    this.paragraph(metric.shortHuman, { size: 9.5, muted: true });
-    this.gap(5);
-  }
-
-  quoteBlock(text: string): void {
-    const lines = wrap(toWinAnsi(text), this.fonts.regular, 10, CONTENT_WIDTH - 18);
-    this.ensure(lines.length * 15 + 14);
-    const top = this.y;
-
-    for (const line of lines) {
-      this.ensure(15);
-      this.page.drawText(line, {
-        x: MARGIN + 14,
-        y: this.y - 10,
-        size: 10,
-        font: this.fonts.regular,
-        color: INK,
-      });
-      this.y -= 14.5;
-    }
-
-    this.page.drawLine({
-      start: { x: MARGIN + 2, y: top - 2 },
-      end: { x: MARGIN + 2, y: this.y + 8 },
-      thickness: 2.5,
-      color: ACCENT,
-    });
-    this.gap(6);
-  }
-
-  scoreBadge(score: number, domain: string, scannedAt: string): void {
-    this.page.drawRectangle({
-      x: MARGIN,
-      y: this.y - 92,
-      width: CONTENT_WIDTH,
-      height: 92,
-      color: rgb(0.06, 0.06, 0.08),
-    });
-
-    this.page.drawText(toWinAnsi(domain), {
-      x: MARGIN + 20,
-      y: this.y - 36,
-      size: 17,
-      font: this.fonts.bold,
-      color: rgb(1, 1, 1),
-    });
-    this.page.drawText(toWinAnsi(`Scanned ${scannedAt}`), {
-      x: MARGIN + 20,
-      y: this.y - 56,
-      size: 9,
-      font: this.fonts.regular,
-      color: rgb(0.75, 0.75, 0.8),
-    });
-    this.page.drawText(toWinAnsi("AI visibility score"), {
-      x: MARGIN + 20,
-      y: this.y - 76,
-      size: 9,
-      font: this.fonts.regular,
-      color: rgb(0.75, 0.75, 0.8),
-    });
-
-    const big = `${score}`;
-    const bigWidth = this.fonts.bold.widthOfTextAtSize(big, 44);
-    this.page.drawText(big, {
-      x: PAGE_WIDTH - MARGIN - 20 - bigWidth - 34,
-      y: this.y - 66,
-      size: 44,
-      font: this.fonts.bold,
-      color: rgb(0.96, 0.62, 0.04),
-    });
-    this.page.drawText("/100", {
-      x: PAGE_WIDTH - MARGIN - 20 - 32,
-      y: this.y - 52,
-      size: 13,
-      font: this.fonts.regular,
-      color: rgb(0.75, 0.75, 0.8),
-    });
-
-    this.y -= 108;
-  }
-
-  async finish(): Promise<Uint8Array> {
-    const pages = this.doc.getPages();
-    pages.forEach((page, index) => {
-      page.drawText(toWinAnsi(`AI Business  ·  aibusiness.vc`), {
-        x: MARGIN,
-        y: 30,
-        size: 8,
-        font: this.fonts.regular,
-        color: MUTED,
-      });
-      const label = `${index + 1} / ${pages.length}`;
-      const width = this.fonts.regular.widthOfTextAtSize(label, 8);
-      page.drawText(label, {
-        x: PAGE_WIDTH - MARGIN - width,
-        y: 30,
-        size: 8,
-        font: this.fonts.regular,
-        color: MUTED,
-      });
-    });
-    return this.doc.save();
-  }
-}
-
 export interface BuildAuditReportInput {
   readonly audit: QuickAudit;
-  readonly brand?: BrandKnowledge;
+  readonly brands?: readonly BrandKnowledge[];
+  /** The five assistants with live search. When present it replaces the memory-only answers. */
+  readonly visibility?: SiteVisibility | null;
 }
 
-export async function buildAuditReportPdf(
-  input: BuildAuditReportInput
-): Promise<{ filename: string; bytes: Uint8Array }> {
-  const { audit, brand } = input;
+/** Long answers are cut in the PDF; the measured report in the archive carries them in full. */
+const PDF_ANSWER_CHARS = 900;
+const MAX_SOURCES_LISTED = 8;
 
-  const pdf = await PDFDocument.create();
-  const fonts: Fonts = {
-    regular: await pdf.embedFont(StandardFonts.Helvetica),
-    bold: await pdf.embedFont(StandardFonts.HelveticaBold),
+function longDate(iso: string): string {
+  const date = new Date(iso);
+  return Number.isNaN(date.getTime())
+    ? iso
+    : date.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
+}
+
+function plural(count: number, one: string, many: string): string {
+  return `${count} ${count === 1 ? one : many}`;
+}
+
+/** The answer as paragraphs, cut once it runs past the budget. */
+function answerBlocks(text: string): { readonly blocks: ReturnType<typeof plainAnswer>; readonly cut: boolean } {
+  const blocks = plainAnswer(text);
+  let used = 0;
+  const kept: (typeof blocks)[number][] = [];
+  for (const block of blocks) {
+    if (used + block.text.length > PDF_ANSWER_CHARS && kept.length > 0) return { blocks: kept, cut: true };
+    kept.push(block);
+    used += block.text.length;
+  }
+  return { blocks: kept, cut: false };
+}
+
+/** One entry per readable label: two addresses that differ only in a query string read as one. */
+function uniqueByLabel(addresses: readonly string[]): readonly string[] {
+  const seen = new Set<string>();
+  return addresses.filter((address) => {
+    const label = sourceLabel(address);
+    if (seen.has(label)) return false;
+    seen.add(label);
+    return true;
+  });
+}
+
+function reachLine(row: ProviderVisibility): string {
+  if (row.reach === "no_answer") return "did not answer";
+  return `${REACH_WORDS[row.reach]}: ${plural(row.ownPages.length, "page", "pages")} of the site, ${plural(row.otherSources.length, "other source", "other sources")}`;
+}
+
+function writeVisibility(pdf: PdfWriter, visibility: SiteVisibility, domain: string): void {
+  pdf.text(
+    `On ${longDate(visibility.checkedAt)} each model was asked two questions about ${domain} with live web search on: what the site is, and which of its pages it can find. ` +
+      "The sources each one cited are split into pages of the site itself and pages elsewhere. A model that cites the site's own pages could reach and use them this time. " +
+      "One that answers from other sites only, or cites nothing, did not use the site in this run. This is one run: answers vary between runs, users and days.",
+    { gapAfter: 8 }
+  );
+  pdf.table(
+    ["Model", "Result", "Pages of the site", "Other sources"],
+    visibility.providers.map((row) => [
+      `${row.providerLabel} (${row.model})`,
+      row.reach === "no_answer" ? "Did not answer" : REACH_WORDS[row.reach],
+      String(row.ownPages.length),
+      String(row.otherSources.length),
+    ]),
+    190
+  );
+
+  for (const row of visibility.providers) {
+    pdf.gap(6);
+    pdf.subheading(`${row.providerLabel}: ${reachLine(row)}`);
+    for (const answer of row.answers) {
+      pdf.text(answer.questionId === "site" ? "What the site is" : "Which pages it can find", { size: 9, bold: true, color: MUTED, gapAfter: 2 });
+      if (!answer.ok) {
+        pdf.text(answer.missing ?? "The model did not answer.", { color: MUTED, indent: 10, gapAfter: 6 });
+        continue;
+      }
+      const { blocks, cut } = answerBlocks(answer.text);
+      for (const block of blocks) {
+        if (block.bullet) pdf.bullet(block.text, { size: 9.5, indent: 10 });
+        else pdf.text(block.text, { size: 9.5, indent: 10, bold: block.heading, gapAfter: 4 });
+      }
+      if (cut) pdf.text("Shortened here. The full answer is in the measured report inside the archive.", { size: 8.5, color: MUTED, indent: 10 });
+      pdf.gap(4);
+    }
+    if (row.ownPages.length > 0) {
+      pdf.text("Pages of the site it cited", { size: 8.5, bold: true, color: MUTED, indent: 10 });
+      const listed = uniqueByLabel(row.ownPages);
+      for (const page of listed.slice(0, MAX_SOURCES_LISTED)) pdf.link(sourceLabel(page), page, { size: 8, indent: 18 });
+      if (listed.length > MAX_SOURCES_LISTED) pdf.text(`and ${listed.length - MAX_SOURCES_LISTED} more`, { size: 8, color: MUTED, indent: 18 });
+    }
+    if (row.otherSources.length > 0) {
+      pdf.text("Other sources it cited", { size: 8.5, bold: true, color: MUTED, indent: 10 });
+      const listed = uniqueByLabel(row.otherSources);
+      for (const page of listed.slice(0, MAX_SOURCES_LISTED)) pdf.link(sourceLabel(page), page, { size: 8, indent: 18 });
+      if (listed.length > MAX_SOURCES_LISTED) pdf.text(`and ${listed.length - MAX_SOURCES_LISTED} more`, { size: 8, color: MUTED, indent: 18 });
+    }
+    if (row.ownPages.length === 0 && row.otherSources.length === 0 && row.reach !== "no_answer") {
+      pdf.text("The model cited no source for its answers.", { size: 8.5, color: MUTED, indent: 10 });
+    }
+    pdf.gap(6);
+  }
+}
+
+function writeMemory(pdf: PdfWriter, brands: readonly BrandKnowledge[]): void {
+  pdf.text("Each model was asked about the domain from memory alone, with no web search. This is recall from training. It says nothing certain about what a model with search would answer today.", { gapAfter: 8 });
+  for (const brand of brands) {
+    pdf.subheading(`${brand.providerLabel} (${brand.model}): ${brand.status === "recognised" ? "recognises the site" : "has no memory of it"}`);
+    for (const block of plainAnswer(brand.answer)) {
+      if (block.bullet) pdf.bullet(block.text, { size: 9.5, indent: 10 });
+      else pdf.text(block.text, { size: 9.5, indent: 10, gapAfter: 4 });
+    }
+    pdf.gap(6);
+  }
+}
+
+export async function buildAuditReportPdf(input: BuildAuditReportInput): Promise<{ filename: string; bytes: Uint8Array }> {
+  const { audit, brands = [] } = input;
+  const visibility = input.visibility && input.visibility.providers.length > 0 ? input.visibility : null;
+  const remembered = brands.filter(hasAnswer);
+  const checkedAt = new Date(audit.scannedAt).toISOString().slice(0, 10);
+  const scored = audit.metrics.filter((m) => m.key !== "llms-txt");
+  const optionalLast = (m: AuditMetric): number => (m.key === "llms-txt" ? 1 : 0);
+  const ordered = [...audit.metrics].sort((a, b) => optionalLast(a) - optionalLast(b) || a.score - b.score);
+  const toFix = ordered.filter((m) => m.severity !== "good").slice(0, 5);
+
+  const pdf = await PdfWriter.create(`AI Fix Kit report for ${audit.domain}`, `Can AI read ${audit.domain}?`, {
+    left: PRODUCT_NAME.toUpperCase(),
+    right: "SERGEI PONOMAREV · AI BUSINESS",
+  });
+  let section = 0;
+  const numbered = (value: string): void => {
+    section += 1;
+    pdf.heading(`${section}. ${value}`);
   };
 
-  pdf.setTitle(`AI Visibility Report — ${audit.domain}`);
-  pdf.setAuthor("AI Business");
-  pdf.setSubject("AI visibility audit");
-
-  const doc = new Doc(pdf, fonts);
-  const scannedAt = new Date(audit.scannedAt).toISOString().slice(0, 10);
-
-  doc.kicker("AI Visibility Report");
-  doc.scoreBadge(audit.overallScore, audit.domain, scannedAt);
-
-  doc.paragraph(
-    "This report measures how well your website can be read, understood and quoted by AI assistants — ChatGPT, Claude, Perplexity and Google's AI answers. Every figure below was measured on your own domain on the date above. Nothing is estimated or averaged from other sites.",
-    { muted: true }
+  /* ---------------------------------------------------------------- cover */
+  const answered = visibility ? visibility.providers.flatMap((p) => p.answers).filter((a) => a.ok).length : 0;
+  const asked = visibility ? visibility.providers.length * 2 : 0;
+  pdf.gap(6);
+  pdf.title(`Can AI read ${audit.domain}?`);
+  pdf.centered(
+    visibility
+      ? `${PRODUCT_NAME}: ${visibility.providers.length} AI models, 2 questions, ${answered} of ${asked} answers received, ${scored.length} technical signs measured`
+      : `${PRODUCT_NAME}: ${scored.length} technical signs measured on the homepage`,
+    { size: 13, bold: true, color: GREY, gapAfter: 4 }
   );
-  doc.gap(6);
+  pdf.centeredLink(audit.url, audit.url, { size: 10.5, color: ACCENT });
+  pdf.centered(`Checked ${longDate(audit.scannedAt)}`, { size: 10.5, color: GREY, gapAfter: 4 });
+  pdf.rule();
+  pdf.centered(`AI site readiness score: ${audit.overallScore} / 100`, { size: 16, bold: true, gapAfter: 8 });
+  pdf.text(
+    "ChatGPT, Claude, Gemini, Perplexity and Grok answer with what they can read. This report has two parts. " +
+      (visibility
+        ? "First, what the five models found when they looked the site up with live web search. Second, "
+        : "First, what two models remember about the site without search. Second, ") +
+      "the technical signs of whether AI crawlers can read the homepage, with the fixes in order. " +
+      "The score applies documented rules to what was measured on the domain on the date above. It is not an industry benchmark and not a forecast of whether the site will appear in AI answers.",
+    { gapAfter: 4 }
+  );
 
-  if (brand && (brand.status === "recognised" || brand.status === "unrecognised")) {
-    doc.heading("What ChatGPT already knows about you");
-    doc.paragraph(
-      brand.status === "recognised"
-        ? "Asked about your domain from memory alone, with no web search, the model answered:"
-        : "Asked about your domain from memory alone, with no web search, the model answered:",
-      { size: 9.5, muted: true }
-    );
-    doc.gap(4);
-    doc.quoteBlock(brand.answer);
-    doc.paragraph(
-      brand.status === "recognised"
-        ? "Read it as a customer would. Anything out of date or simply wrong here is what people are told when they ask about you."
-        : "This is a separate matter from the technical score: a site can be built perfectly and still be unknown to the model, because recall is built from what has been written about you elsewhere, over years.",
-      { size: 9.5, muted: true }
-    );
-    doc.gap(10);
-    doc.rule();
+  /* -------------------------------------------------------------- section 1 */
+  if (visibility) {
+    numbered("What five AI models find when they look the site up");
+    writeVisibility(pdf, visibility, audit.domain);
+  } else if (remembered.length > 0) {
+    numbered("What the models remember about the site");
+    writeMemory(pdf, remembered);
   }
 
-  doc.heading("Your scores");
-  doc.paragraph(
-    "Eight signals, weighted so that what an assistant can actually read on the page counts for most.",
-    { size: 9.5, muted: true }
+  /* -------------------------------------------------------------- section 2 */
+  numbered("The technical signs, measured on the homepage");
+  pdf.text(
+    "Weighted so that what a crawler can actually read on the page counts for most. llms.txt is shown but not scored: it is optional. What the models answered above is not part of this number.",
+    { gapAfter: 8 }
   );
-  doc.gap(8);
-
-  const ordered = [...audit.metrics].sort((a, b) => a.score - b.score);
-  for (const metric of ordered) doc.metricRow(metric);
-
-  doc.gap(6);
-  doc.rule();
-
-  doc.heading("What to fix, in order");
-  doc.paragraph(
-    "Ranked by what costs you visibility first. Each item can be handed to a developer as-is, or pasted into an AI coding assistant.",
-    { size: 9.5, muted: true }
-  );
-  doc.gap(8);
-
-  // Only signals that actually need work. A 99/100 llms.txt does not need the
-  // "create an llms.txt" lecture — advising fixes for healthy signals reads as
-  // template filler and undermines trust in the measured ones.
-  const weakest = ordered.filter((m) => m.severity !== "good").slice(0, 5);
-  weakest.forEach((metric, index) => {
-    doc.heading(`${index + 1}. ${metric.label} — ${metric.score}/100`, 11.5);
-    doc.paragraph(fixFor(metric));
-    doc.gap(8);
-  });
-
-  if (weakest.length === 0) {
-    doc.paragraph(
-      "Every measured signal on this domain is in good health. There is nothing structural to fix. To keep it that way: refresh key pages when facts change, keep llms.txt in step with new sections, and re-scan after any redesign or platform migration."
-    );
+  for (const metric of ordered) {
+    const note = metric.key === "llms-txt" ? `${metric.shortHuman} Not part of the score.` : metric.shortHuman;
+    pdf.fact(metric.label, `${metric.score} / 100, ${SEVERITY_WORD[metric.severity].toLowerCase()}`, note);
   }
 
-  doc.gap(6);
-  doc.rule();
-  doc.heading("About this report");
-  doc.paragraph(
-    "Produced by AI Business (aibusiness.vc), an independent publication and consultancy covering the business of AI. The scan is automated and reproducible: re-run it at any time on the same domain and compare. Questions about any finding go to info@aibusiness.vc.",
-    { size: 9.5, muted: true }
-  );
+  /* -------------------------------------------------------------- section 3 */
+  numbered("What to fix, in order");
+  if (toFix.length === 0) {
+    pdf.text(
+      "Every measured sign on this homepage is in good health. There is nothing structural to fix. To keep it that way: refresh key pages when facts change, and re-check after any redesign or platform migration.",
+      { gapAfter: 6 }
+    );
+  } else {
+    pdf.text("Ranked by what costs visibility first. Each item can be handed to a developer as it is, or pasted into an AI coding assistant with the prompts file from the kit.", { gapAfter: 8 });
+    toFix.forEach((metric, index) => {
+      pdf.text(`${index + 1}. ${metric.label}, ${metric.score} / 100`, { bold: true, size: 11.5, gapAfter: 2 });
+      pdf.text(fixFor(metric), { gapAfter: 8 });
+    });
+  }
+  const healthy = ordered.filter((m) => m.severity === "good" && m.key !== "llms-txt");
+  if (healthy.length > 0 && toFix.length > 0) {
+    pdf.subheading("Already in good shape");
+    for (const metric of healthy) pdf.bullet(`${metric.label}: ${metric.score} / 100`, { color: GREEN, size: 9.5, gapAfter: 2 });
+  }
 
-  const bytes = await doc.finish();
+  /* ------------------------------------------------------------------ about */
+  pdf.gap(8);
+  pdf.heading("About this report");
+  for (const line of [
+    "The models' words are their own. Only formatting marks were removed; links inside an answer were moved to the source list under it. The measured report inside the archive carries every answer in full.",
+    "The answers come from each provider's API with web search on, not from the consumer apps. The apps add their own instructions and remember their users, so what anyone sees in their own ChatGPT or Gemini may differ.",
+    "These are generative models. Ask the same question twice and the wording, and sometimes the sources, will differ. This report is a snapshot taken on the date above.",
+    "The technical signs are read from the homepage, robots.txt and llms.txt on a live request, the way a crawler starting from the domain does. Deep pages are not crawled.",
+    "Fixing what stops machines from reading a site is a first step. It is not a promise that any assistant will cite or recommend the site.",
+  ]) {
+    pdf.bullet(line, { size: 9.5, gapAfter: 4 });
+  }
+
   const slug = audit.domain.replace(/[^a-z0-9]+/gi, "-").toLowerCase();
-  return { filename: `AI-Visibility-Report-${slug}-${scannedAt}.pdf`, bytes };
+  return { filename: `AI-Fix-Kit-Report-${slug}-${checkedAt}.pdf`, bytes: await pdf.bytes() };
 }

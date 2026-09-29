@@ -1,8 +1,14 @@
 import { createZip, type ZipEntry } from "@/lib/zip";
 import { getLiveQuickAudit } from "@/lib/audit/live";
-import { getBrandKnowledge, type BrandKnowledge } from "@/lib/audit/brand-knowledge";
+import { getBrandKnowledge, hasAnswer, type BrandKnowledge } from "@/lib/audit/brand-knowledge";
 import { encodeDomainAsId, type QuickAudit } from "@/lib/audit/mock";
 import { buildAuditReportPdf } from "@/lib/audit/report-pdf";
+import {
+  productionVisibilityDeps,
+  REACH_WORDS,
+  runSiteVisibility,
+  type SiteVisibility,
+} from "@/lib/audit/site-visibility";
 import {
   buildAgentCardJsonLd,
   buildAgentCardMarkdown,
@@ -23,6 +29,8 @@ export interface BuildAuditPackageInput {
   auditId?: string;
   orderId?: string;
   plan?: "standard" | "deep";
+  /** A visibility run already made for this order, so the assistants are not paid for twice. */
+  visibility?: SiteVisibility | null;
 }
 
 function sanitizeDomain(value?: string): string {
@@ -50,9 +58,9 @@ function buildReadme(
     ? `1. \`measured-report-${slug}-${dateStamp}.md\`
 The same measurements as your PDF report, in plain text. Feed this file to an AI coding assistant (Claude Code, Cursor, ChatGPT) so it works from your real numbers.`
     : `1. \`measured-report-${slug}-${dateStamp}.md\`
-Your site could not be scanned automatically (this usually means a login wall or a firewall). Reply to the delivery email and we will run the measurement manually and send it within one business day.`;
+Your site could not be checked automatically (this usually means a login wall or a firewall). Reply to the delivery email and we will run the measurement manually and send it within one business day.`;
 
-  return `# AI Visibility Package
+  return `# AI Fix Kit
 
 Domain: \`${domain}\`
 Generated: \`${dateStamp}\`
@@ -93,7 +101,7 @@ ${reportLine}
    - Manual team: follow the DOCX guide.
    - AI-assisted team: hand the markdown, JSON and CSV files to your assistant.
 3. Run the QA checklist after implementation.
-4. Re-scan free at https://aibusiness.vc/audit and compare scores.
+4. Re-check free at https://aibusiness.vc/audit and compare scores.
 
 Questions: info@aibusiness.vc
 `;
@@ -112,6 +120,39 @@ function severityWord(severity: string): string {
   }
 }
 
+/** Every answer in full, with every source, split into the site's own pages and the rest. */
+function buildVisibilitySection(visibility: SiteVisibility | null): string {
+  if (!visibility || visibility.providers.length === 0) return "";
+  const rows = visibility.providers
+    .map((p) => `| ${p.providerLabel} (${p.model}) | ${REACH_WORDS[p.reach]} | ${p.ownPages.length} | ${p.otherSources.length} |`)
+    .join("\n");
+  const details = visibility.providers
+    .map((p) => {
+      const answers = p.answers
+        .map((a) => {
+          const label = a.questionId === "site" ? "What the site is" : "Which pages it can find";
+          const body = a.ok ? `> ${a.text.replace(/\n+/g, " ").trim()}` : `_${a.missing ?? "The model did not answer."}_`;
+          return `**${label}**\n\n${body}\n`;
+        })
+        .join("\n");
+      const own = p.ownPages.length > 0 ? p.ownPages.map((u) => `- ${u}`).join("\n") : "- none";
+      const other = p.otherSources.length > 0 ? p.otherSources.map((u) => `- ${u}`).join("\n") : "- none";
+      return `### ${p.providerLabel}\n\n${answers}\nPages of your site it cited:\n${own}\n\nOther sources it cited:\n${other}\n`;
+    })
+    .join("\n");
+  return `## What five AI assistants find when they look up your site
+
+Checked ${visibility.checkedAt.slice(0, 10)} with live web search on. Each assistant was asked what the site
+is and which of its pages it can find. One run: answers vary between runs, users and days.
+
+| Assistant | Result | Pages of your site cited | Other sources cited |
+|---|---|---|---|
+${rows}
+
+${details}
+`;
+}
+
 /**
  * The machine-readable twin of the PDF report, built from the same scan.
  *
@@ -124,19 +165,22 @@ function buildMeasuredReport(
   domain: string,
   dateStamp: string,
   audit: QuickAudit | null,
-  brand: BrandKnowledge | null
+  brands: readonly BrandKnowledge[],
+  visibility: SiteVisibility | null = null
 ): string {
-  const header = `# AI Visibility Report (measured)
+  const header = `# AI Fix Kit: measured report
 
 Domain: \`${domain}\`
 Date: \`${dateStamp}\`
 
 `;
 
-  if (!audit) {
-    return `${header}## Scan unavailable
+  const visibilitySection = buildVisibilitySection(visibility);
 
-The automated scan could not read this site. The usual causes are a login
+  if (!audit) {
+    return `${header}${visibilitySection}## Check unavailable
+
+The automated check could not read this site. The usual causes are a login
 wall, a firewall that challenges unknown visitors, or a server that only
 responds to browsers.
 
@@ -145,7 +189,7 @@ the measurement manually and send this file filled in, normally within one
 business day.
 
 The rest of the package (guide, playbook, prompts, checklist, schema patches,
-llms.txt draft) does not depend on the scan and is ready to use.
+llms.txt draft) does not depend on the check and is ready to use.
 `;
   }
 
@@ -169,25 +213,32 @@ ${fixFor(m)}
     )
     .join("\n");
 
+  const answered = brands.filter(hasAnswer);
   const brandSection =
-    brand && (brand.status === "recognised" || brand.status === "unrecognised")
-      ? `## What ChatGPT says about this brand
+    answered.length > 0
+      ? `## What the assistants say about this brand
 
-Asked from model memory, no web search (${brand.model}, ${brand.checkedAt.slice(0, 10)}):
+Each model asked from memory, no web search.
 
-> ${brand.answer.replace(/\n+/g, " ").trim()}
+${answered
+  .map(
+    (b) => `**${b.providerLabel}** (${b.model}, ${b.checkedAt.slice(0, 10)}):
 
+> ${b.answer.replace(/\n+/g, " ").trim()}
+`
+  )
+  .join("\n")}
 `
       : "";
 
   return `${header}Overall score: **${audit.overallScore}/100**
-Scanned: ${audit.scannedAt.slice(0, 10)}, live measurement of \`${audit.url}\`
+Checked: ${audit.scannedAt.slice(0, 10)}, live measurement of \`${audit.url}\`
 
 This file carries the same measurements as the PDF report, formatted for AI
 coding assistants. Paste it into Claude Code, Cursor or ChatGPT together with
 the prompts file and the assistant will work from your real numbers.
 
-## Measured signals
+${visibilitySection}## Measured signals
 
 | Signal | Score | Status | Finding |
 |---|---|---|---|
@@ -198,7 +249,7 @@ ${brandSection}## Fixes in priority order
 ${fixSections.length > 0 ? fixSections : "All measured signals are in good shape. Focus on content freshness and internal linking.\n"}
 ## After implementation
 
-Re-scan free at https://aibusiness.vc/audit and compare this file against the
+Re-check free at https://aibusiness.vc/audit and compare this file against the
 new result. Technical signals update within days; content signals move after
 the next AI crawl, typically within a few weeks.
 `;
@@ -241,7 +292,7 @@ function buildExecutionPlaybook(domain: string, audit: QuickAudit | null): strin
   const header = `# Execution Playbook
 
 Domain: \`${domain}\`
-${audit ? `Overall score at purchase: \`${audit.overallScore}/100\` (scanned ${audit.scannedAt.slice(0, 10)})` : "Scan unavailable at purchase; see measured-report for details."}
+${audit ? `Overall score at purchase: \`${audit.overallScore}/100\` (checked ${audit.scannedAt.slice(0, 10)})` : "Check unavailable at purchase; see measured-report for details."}
 
 Work through the sessions in order. Where a signal is marked healthy, skip it
 and spend the time on the ones that are not.
@@ -262,7 +313,7 @@ ${note("structure")}
 - Check server side rendering: key text must be visible without JavaScript.
 ${note("javascript-dependency")}- Check response speed and Core Web Vitals.
 ${note("page-speed")}- Add contextual hub and spoke links, normalize metadata.
-- Run the final QA checklist, then re-scan at https://aibusiness.vc/audit.
+- Run the final QA checklist, then re-check at https://aibusiness.vc/audit.
 `;
 }
 
@@ -303,9 +354,12 @@ point and fill in the real company details. Return file-by-file diffs only.
 
 ## Prompt 2: AI crawler access
 ${ctx("ai-crawlers")}\`\`\`text
-Update robots.txt for ${domain} so GPTBot, OAI-SearchBot, ClaudeBot,
-PerplexityBot and Google-Extended are explicitly allowed, while keeping
-existing rules for admin and private paths.
+Update robots.txt for ${domain} so the answer-engine bots OAI-SearchBot,
+Claude-SearchBot and PerplexityBot are explicitly allowed, while keeping
+existing rules for admin and private paths. Leave GPTBot, ClaudeBot and
+Google-Extended (training crawlers) as the site owner decides; do not change
+them without a decision. Then check the firewall/CDN allows the same bots:
+robots.txt is permission, not access.
 \`\`\`
 
 ## Prompt 3: llms.txt
@@ -356,7 +410,7 @@ function buildQaChecklist(domain: string, audit: QuickAudit | null): string {
         .sort((a, b) => a.score - b.score)
         .map(
           (m) =>
-            `- [ ] ${m.label}: was ${m.score}/100 at purchase. Done when a re-scan shows 85 or higher.`
+            `- [ ] ${m.label}: was ${m.score}/100 at purchase. Done when a re-check shows 85 or higher.`
         )
         .join("\n")
     : "";
@@ -376,7 +430,7 @@ Domain: \`${domain}\`
 ${targetBlock}## General checks
 
 - [ ] JSON-LD validates on all updated pages.
-- [ ] robots.txt allows GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot, Google-Extended.
+- [ ] robots.txt allows OAI-SearchBot, Claude-SearchBot, PerplexityBot. GPTBot, ClaudeBot and Google-Extended set by an explicit decision. Firewall/CDN lets the same bots through.
 - [ ] llms.txt is live at the domain root and every listed URL opens.
 - [ ] No duplicate H1 on updated templates.
 - [ ] All new internal links resolve.
@@ -384,7 +438,7 @@ ${targetBlock}## General checks
 - [ ] Comparison tables add non-duplicative value.
 - [ ] Meta descriptions are 130-160 characters and intent-specific.
 - [ ] No placeholder text remains.
-- [ ] Re-scan at https://aibusiness.vc/audit and compare against measured-report.
+- [ ] Re-check at https://aibusiness.vc/audit and compare against measured-report.
 `;
 }
 
@@ -398,10 +452,10 @@ interface BacklogTemplate {
 /** How each measured signal translates into a backlog task. */
 const BACKLOG_BY_METRIC: Record<string, BacklogTemplate> = {
   "ai-crawlers": {
-    task: "Allow AI crawlers in robots.txt",
+    task: "Allow answer-engine bots in robots.txt",
     owner: "developer",
     effortHours: "0.5",
-    acceptance: "GPTBot OAI-SearchBot ClaudeBot PerplexityBot Google-Extended explicitly allowed",
+    acceptance: "OAI-SearchBot Claude-SearchBot PerplexityBot explicitly allowed; GPTBot, ClaudeBot and Google-Extended decided by the owner",
   },
   "llms-txt": {
     task: "Adapt and publish llms.txt",
@@ -610,40 +664,24 @@ async function readGuideAttachment(): Promise<AuditPackageAttachment> {
   };
 }
 
-/**
- * Extensions the transactional mail provider will actually deliver.
- *
- * Brevo rejects the whole message with "Unsupported file format" if a single
- * attachment has an extension outside its allowlist — so a package containing
- * one .md file meant the buyer received nothing at all. Everything unsupported
- * is renamed to .txt; the content is unchanged and the README explains it.
- */
-const MAIL_SAFE_EXTENSIONS = new Set([
-  "pdf", "docx", "doc", "xlsx", "xls", "csv", "txt", "xml", "html", "htm", "zip", "rtf", "odt",
-]);
-
-function toMailSafeName(name: string): string {
-  const lastDot = name.lastIndexOf(".");
-  const ext = lastDot >= 0 ? name.slice(lastDot + 1).toLowerCase() : "";
-  if (ext && MAIL_SAFE_EXTENSIONS.has(ext)) return name;
-
-  // Keep the original extension visible so the recipient knows what it is:
-  // schema-patches-x.json becomes schema-patches-x.json.txt
-  return `${name}.txt`;
-}
-
-function asTextAttachment(name: string, body: string, type: string): AuditPackageAttachment {
-  return {
-    name: toMailSafeName(name),
-    content: Buffer.from(body, "utf8").toString("base64"),
-    type,
-  };
-}
 
 
 interface LiveScanResult {
   readonly audit: QuickAudit | null;
-  readonly brand: BrandKnowledge | null;
+  readonly brands: readonly BrandKnowledge[];
+  readonly visibility: SiteVisibility | null;
+}
+
+/** The five assistants for a paid order. Never throws; a run that cannot start is logged and left out. */
+async function runVisibility(domain: string): Promise<SiteVisibility | null> {
+  try {
+    const visibility = await runSiteVisibility(domain, productionVisibilityDeps());
+    console.info(`[fulfillment] visibility ${domain}: ${visibility.providers.length} models, ~$${visibility.usd.toFixed(3)}`);
+    return visibility;
+  } catch (error) {
+    console.error(`[fulfillment] visibility failed for ${domain}:`, error);
+    return null;
+  }
 }
 
 /**
@@ -654,19 +692,28 @@ interface LiveScanResult {
  * or a firewall should still get the rest of the package plus a human
  * follow-up, not a failed delivery and not somebody else's placeholder figures.
  */
-async function runLiveScan(domain: string): Promise<LiveScanResult> {
+async function runSiteCheck(domain: string): Promise<QuickAudit | null> {
   try {
     const audit = await getLiveQuickAudit(encodeDomainAsId(domain));
     if (audit.failure) {
-      console.error(`[fulfillment] scan failed for ${domain}: ${audit.failure}`);
-      return { audit: null, brand: null };
+      console.error(`[fulfillment] check failed for ${domain}: ${audit.failure}`);
+      return null;
     }
-    const brand = await getBrandKnowledge(audit.domain, "fulfillment");
-    return { audit, brand };
+    return audit;
   } catch (error) {
-    console.error(`[fulfillment] scan failed for ${domain}:`, error);
-    return { audit: null, brand: null };
+    console.error(`[fulfillment] check failed for ${domain}:`, error);
+    return null;
   }
+}
+
+async function runLiveScan(domain: string, known?: SiteVisibility | null): Promise<LiveScanResult> {
+  const [audit, visibility] = await Promise.all([runSiteCheck(domain), known === undefined ? runVisibility(domain) : known]);
+  // The memory-only answers are asked only when the five assistants could not run at all.
+  const brands =
+    audit && (!visibility || visibility.providers.length === 0)
+      ? await getBrandKnowledge(audit.domain, "fulfillment").catch(() => [])
+      : [];
+  return { audit, brands, visibility };
 }
 
 async function buildReportPdfAttachment(
@@ -676,7 +723,8 @@ async function buildReportPdfAttachment(
   try {
     const { filename, bytes } = await buildAuditReportPdf({
       audit: scan.audit,
-      brand: scan.brand ?? undefined,
+      brands: scan.brands,
+      visibility: scan.visibility,
     });
     return {
       name: filename,
@@ -699,7 +747,7 @@ export async function buildAuditPackageAttachments(
   // The buyer must receive a report measured on their own domain, not the
   // template. A generic PDF is what we replaced, and what we told our payment
   // provider customers no longer get.
-  const scan = await runLiveScan(domain);
+  const scan = await runLiveScan(domain, input.visibility);
   const reportAttachment = await buildReportPdfAttachment(scan);
 
   const guide = await readGuideAttachment();
@@ -735,7 +783,7 @@ export async function buildAuditPackageAttachments(
     },
     {
       name: `measured-report-${slug}-${dateStamp}.md`,
-      data: Buffer.from(buildMeasuredReport(domain, dateStamp, scan.audit, scan.brand), "utf8"),
+      data: Buffer.from(buildMeasuredReport(domain, dateStamp, scan.audit, scan.brands, scan.visibility), "utf8"),
     },
     {
       name: `execution-playbook-${slug}.md`,
@@ -766,7 +814,7 @@ export async function buildAuditPackageAttachments(
   ];
 
   const archive: AuditPackageAttachment = {
-    name: `AI-Visibility-Implementation-Kit-${slug}-${dateStamp}.zip`,
+    name: `AI-Fix-Kit-${slug}-${dateStamp}.zip`,
     content: createZip(packedFiles, new Date()).toString("base64"),
     type: "application/zip",
   };

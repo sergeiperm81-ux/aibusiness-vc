@@ -129,12 +129,46 @@ function OrgSchemaOrg() {
       addressLocality: "Sveti Vlas",
       addressCountry: "BG",
     },
-    founder: { "@id": "https://aibusiness.vc/sergei-ponomarev#person" },
+    // The name and url sit here beside the identifier on purpose. A bare @id
+    // points at a node that lives on another page, so a machine reading only
+    // this one got an identifier with nobody attached to it.
+    founder: {
+      "@type": "Person",
+      "@id": "https://aibusiness.vc/sergei-ponomarev#person",
+      name: "Sergei Ponomarev",
+      url: "https://aibusiness.vc/sergei-ponomarev",
+    },
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "editorial and business enquiries",
       url: "https://www.linkedin.com/in/sergei-ponomarev/",
     },
+    // Asked what this company sells, an assistant read the home page, found no
+    // offer of any kind in the markup and answered that it sells nothing. It
+    // is a publication that also sells services, and only the first half was
+    // machine-readable.
+    makesOffer: [
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Independent test purchase of an AI agent",
+          url: "https://aibusiness.vc/service-check",
+          description:
+            "An outsider works through a company's AI service as an ordinary customer and checks it against requirements agreed in advance. Screening is free; there is no price list and the price is agreed individually against the volume of work.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "What AI says about your company",
+          url: "https://aibusiness.vc/what-ai-says",
+          description:
+            "The questions customers ask about a company, put to leading AI assistants, with every answer recorded word for word, compared against the company's own website, and returned with a prioritised list of corrections.",
+        },
+      },
+    ],
     sameAs: ["https://www.linkedin.com/in/sergei-ponomarev/"],
     foundingDate: "2026",
     knowsAbout: [

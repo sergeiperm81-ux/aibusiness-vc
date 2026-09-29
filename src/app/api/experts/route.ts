@@ -29,21 +29,28 @@ interface ExpertApplication {
   photo?: { name?: string; type?: string; data?: string };
 }
 
-/** Longest value we accept per field. Anything past this is a paste, not a profile. */
+/**
+ * Longest value we accept per field.
+ *
+ * These are a backstop against a pasted document or a hand-made request, not an
+ * editorial rule. The people filling this in are professionals describing their
+ * own work, so the numbers are set well above what any of them has needed. A
+ * submission is refused with a message, never quietly cut.
+ */
 const LIMITS: Record<string, number> = {
-  name: 120,
-  email: 200,
-  headline: 120,
-  region: 40,
-  location: 120,
-  linkedin: 300,
-  website: 300,
-  organisation: 160,
-  role: 160,
-  about: 1200,
-  services: 1500,
-  phone: 40,
-  languages: 160,
+  name: 200,
+  email: 300,
+  headline: 200,
+  region: 60,
+  location: 200,
+  linkedin: 500,
+  website: 500,
+  organisation: 300,
+  role: 300,
+  about: 3000,
+  services: 3000,
+  phone: 60,
+  languages: 300,
 };
 
 const REQUIRED = [
@@ -60,6 +67,18 @@ const MAX_PHOTO_BASE64 = 2_800_000;
 const ALLOWED_IMAGE_TYPES = ["image/jpeg", "image/png", "image/webp"];
 const MAX_TAGS = 30;
 
+/**
+ * Hard ceiling for one tag, as a defence against a hand-made request, not as
+ * the rule a person is held to. The form enforces the real limit and refuses to
+ * send anything longer, so nothing a member actually typed reaches this line.
+ *
+ * It has to clear the longest legitimate tag with room to spare. A free-text
+ * practice area arrives as `Other: ` plus the whole free-text field, and a cap
+ * set to the bare field length quietly bit the end off the first one that used
+ * it in full.
+ */
+const MAX_TAG_LENGTH = 400;
+
 /** Only real web links: no javascript:, data: or mailto: smuggled into a profile. */
 function isHttpUrl(value: string): boolean {
   try {
@@ -74,7 +93,7 @@ function cleanTags(value: unknown, limit = MAX_TAGS): string[] {
   if (!Array.isArray(value)) return [];
   return value
     .filter((v): v is string => typeof v === "string")
-    .map((v) => v.trim().slice(0, 120))
+    .map((v) => v.trim().slice(0, MAX_TAG_LENGTH))
     .filter(Boolean)
     .slice(0, limit);
 }
@@ -136,21 +155,25 @@ export async function POST(request: Request) {
     const industries = cleanTags(body.industries);
     const workFormats = cleanTags(body.workFormats);
 
+    // The photo is optional: on some phones the picker cannot produce one, and a
+    // missing photo must not cost the whole application. When one is sent, it is
+    // still checked in full.
     const photo = body.photo;
+    const hasPhoto = Boolean(photo && typeof photo.data === "string" && photo.data.length > 0);
     const photoOk =
-      photo &&
+      hasPhoto &&
+      photo !== undefined &&
       typeof photo.data === "string" &&
-      photo.data.length > 0 &&
       photo.data.length <= MAX_PHOTO_BASE64 &&
       typeof photo.type === "string" &&
       ALLOWED_IMAGE_TYPES.includes(photo.type);
-    if (!photoOk) {
+    if (hasPhoto && !photoOk) {
       return NextResponse.json(
-        { ok: false, error: "Please add a JPEG, PNG or WebP photo under 2 MB." },
+        { ok: false, error: "Please add a JPEG, PNG or WebP photo under 2 MB, or send the form without one." },
         { status: 400 }
       );
     }
-    const ext = (photo.type ?? "image/jpeg").split("/")[1]?.replace("jpeg", "jpg") ?? "jpg";
+    const ext = (photo?.type ?? "image/jpeg").split("/")[1]?.replace("jpeg", "jpg") ?? "jpg";
     const safeName =
       String(body.name ?? "expert")
         .toLowerCase()
@@ -239,13 +262,17 @@ export async function POST(request: Request) {
         row("Publish phone?", body.phone ? (body.showPhone ? "yes" : "no") : ""),
         row("Publish LinkedIn?", body.showLinkedin ? "yes" : "no"),
         row("Publish website?", website ? (body.showWebsite ? "yes" : "no") : ""),
-        `<p style="margin:0 0 8px"><strong>Photo:</strong> attached as ${escapeHtml(
-          `${safeName}.${ext}`
-        )}</p>`,
+        hasPhoto
+          ? `<p style="margin:0 0 8px"><strong>Photo:</strong> attached as ${escapeHtml(
+              `${safeName}.${ext}`
+            )}</p>`
+          : `<p style="margin:0 0 8px"><strong>Photo:</strong> NONE. Check the inbox for a photo sent separately, or ask for one.</p>`,
         `<p style="margin-top:12px;color:#666">Submitted ${escapeHtml(timestamp)}</p>`,
       ].join(""),
-      text: `New expert application\n${body.name} <${email}>\n${body.headline}\n${body.region} / ${body.location}\nLinkedIn: ${linkedin}`,
-      attachments: [{ name: `${safeName}.${ext}`, content: photo.data as string }],
+      text: `New expert application\n${body.name} <${email}>\n${body.headline}\n${body.region} / ${body.location}\nLinkedIn: ${linkedin}${hasPhoto ? "" : "\nPhoto: none"}`,
+      ...(hasPhoto && photo?.data
+        ? { attachments: [{ name: `${safeName}.${ext}`, content: photo.data }] }
+        : {}),
     });
 
     if (!sent.ok) {

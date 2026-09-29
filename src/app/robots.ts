@@ -2,39 +2,55 @@ import type { MetadataRoute } from "next";
 
 const BASE_URL = "https://aibusiness.vc";
 
+/** Internal routes no crawler should fetch: endpoints, logins, owner pages. */
+const PRIVATE_PATHS = ["/materials/leads", "/materials/leads/login", "/api/", "/stats"];
+
+/**
+ * AI crawlers and assistants we want reading the site. They drive traffic and
+ * decide what assistants say about us.
+ *
+ * Each gets its own group, and a named group replaces the `*` group for that
+ * bot rather than adding to it. A group with only `allow: "/"` would therefore
+ * quietly permit these bots into /api/ as well. The private paths are repeated
+ * in every group so the exclusion survives the override.
+ */
+const AI_AGENTS = [
+  "GPTBot",
+  "ChatGPT-User",
+  "OAI-SearchBot",
+  "ClaudeBot",
+  "Claude-User",
+  "Claude-SearchBot",
+  "Claude-Web",
+  "anthropic-ai",
+  "PerplexityBot",
+  "Perplexity-User",
+  "Google-Extended",
+  "Applebot-Extended",
+];
+
+/** Aggressive SEO crawlers: thousands of requests a day, no traffic in return. */
+const BLOCKED_AGENTS = [
+  "AhrefsBot",
+  "SemrushBot",
+  "MJ12bot",
+  "DotBot",
+  "BLEXBot",
+  "DataForSeoBot",
+  "serpstatbot",
+  "Bytespider",
+  "PetalBot",
+  "ZoominfoBot",
+  "Sogou",
+  "YandexBot",
+];
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      // Default: allow all, block internal routes
-      {
-        userAgent: "*",
-        allow: "/",
-        disallow: ["/materials/leads", "/materials/leads/login", "/api/", "/stats"],
-      },
-      // AI search engines — explicitly allowed (these drive traffic)
-      { userAgent: "GPTBot", allow: "/" },
-      { userAgent: "ChatGPT-User", allow: "/" },
-      { userAgent: "OAI-SearchBot", allow: "/" },
-      { userAgent: "ClaudeBot", allow: "/" },
-      { userAgent: "Claude-Web", allow: "/" },
-      { userAgent: "anthropic-ai", allow: "/" },
-      { userAgent: "PerplexityBot", allow: "/" },
-      { userAgent: "Google-Extended", allow: "/" },
-      { userAgent: "Applebot-Extended", allow: "/" },
-      // Block aggressive SEO crawlers that waste server resources
-      // These generate thousands of requests/day but don't send traffic
-      { userAgent: "AhrefsBot", disallow: "/" },
-      { userAgent: "SemrushBot", disallow: "/" },
-      { userAgent: "MJ12bot", disallow: "/" },
-      { userAgent: "DotBot", disallow: "/" },
-      { userAgent: "BLEXBot", disallow: "/" },
-      { userAgent: "DataForSeoBot", disallow: "/" },
-      { userAgent: "serpstatbot", disallow: "/" },
-      { userAgent: "Bytespider", disallow: "/" },
-      { userAgent: "PetalBot", disallow: "/" },
-      { userAgent: "ZoominfoBot", disallow: "/" },
-      { userAgent: "Sogou", disallow: "/" },
-      { userAgent: "YandexBot", disallow: "/" },
+      { userAgent: "*", allow: "/", disallow: PRIVATE_PATHS },
+      ...AI_AGENTS.map((userAgent) => ({ userAgent, allow: "/", disallow: PRIVATE_PATHS })),
+      ...BLOCKED_AGENTS.map((userAgent) => ({ userAgent, disallow: "/" })),
     ],
     sitemap: [`${BASE_URL}/sitemap.xml`],
   };

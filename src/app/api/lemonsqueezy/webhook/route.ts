@@ -1,11 +1,18 @@
 import crypto from "node:crypto";
-import { NextResponse } from "next/server";
+import { NextResponse, after } from "next/server";
 import { buildAuditPackageAttachments } from "@/lib/audit/fulfillment";
 import { decodeDomainFromId } from "@/lib/audit/mock";
 import { claimOnce, persistClaim, releaseClaim } from "@/lib/redis";
+import { redisKv } from "@/lib/audit/durable-kv";
+import { companyScanVariantId, productionDeps, proScanVariantId, providerConfigured, WORKER_BUDGET_MS } from "@/lib/audit/professional-runtime";
+import { PERSON_PROVIDER_IDS } from "@/lib/audit/answer-providers";
+import { codeFor, createLemonDiscount } from "@/lib/audit/professional-delivery";
+import { handleProScanOrder } from "@/lib/audit/professional-webhook";
+import { drainQueue } from "@/lib/audit/professional-worker";
 
 export const runtime = "nodejs";
-export const maxDuration = 60;
+/** 300, not 60: an AI Person Scan order is worked on right after the reply, inside this function. */
+export const maxDuration = 300;
 
 type JsonObject = Record<string, unknown>;
 
@@ -43,7 +50,7 @@ function escapeHtml(value: string): string {
 }
 
 /**
- * Variants whose purchase should produce an AI Visibility Audit package,
+ * Variants whose purchase should produce an AI Fix Kit package,
  * from `LEMONSQUEEZY_AUDIT_VARIANT_IDS` (comma separated).
  *
  * One Lemon Squeezy account can hold several stores, and one webhook receives
@@ -133,12 +140,41 @@ function resolveAuditBcc(): string | null {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(bcc) ? bcc : null;
 }
 
+const BONUS_USES = 7;
+const BONUS_PERCENT = 50;
+
+/**
+ * A code for 50% off up to seven more checks: AI Person Scan, AI Company Scan
+ * or another AI Fix Kit. Only a full-price order earns one, and an order paid
+ * with a code does not create a new code. Null when the store is not set up
+ * for it or the API refuses: the kit still ships, the email just has no code.
+ */
+async function createBonusCode(orderId: string): Promise<string | null> {
+  const apiKey = process.env.LEMONSQUEEZY_API_KEY?.trim();
+  const storeId = process.env.LEMONSQUEEZY_STORE_ID?.trim();
+  const secret = process.env.LEMONSQUEEZY_WEBHOOK_SECRET?.trim();
+  const variantIds = [proScanVariantId(), companyScanVariantId(), ...allowedAuditVariantIds()].filter(Boolean);
+  if (!apiKey || !storeId || !secret || variantIds.length === 0) return null;
+  const code = codeFor(`audit:${orderId}`, secret);
+  try {
+    await createLemonDiscount(
+      { code, name: `Fix Kit bonus, order ${orderId}`.slice(0, 120), percent: BONUS_PERCENT, maxRedemptions: BONUS_USES },
+      { apiKey, storeId, variantIds }
+    );
+    return code;
+  } catch (error) {
+    console.error(`[fulfillment] bonus code for order ${orderId} not created:`, error);
+    return null;
+  }
+}
+
 async function sendPackageEmail(params: {
   toEmail: string;
   domain: string;
   orderId: string;
   auditId?: string;
   plan?: "standard" | "deep";
+  fullPrice: boolean;
 }): Promise<void> {
   const apiKey = process.env.BREVO_API_KEY?.trim();
   const fromEmail = resolveAuditSender();
@@ -158,18 +194,20 @@ async function sendPackageEmail(params: {
   // two attachments and deliver one — the owner follows up manually.
   const hasReport = attachments.some((file) => file.type === "application/pdf");
 
+  const bonusCode = params.fullPrice ? await createBonusCode(params.orderId) : null;
+
   const bcc = resolveAuditBcc();
   const subject = hasReport
-    ? `Your AI Visibility package is ready (${params.domain})`
-    : `Your AI Visibility kit, report to follow (${params.domain})`;
+    ? `Your AI Fix Kit is ready (${params.domain})`
+    : `Your AI Fix Kit, report to follow (${params.domain})`;
   const site = "https://aibusiness.vc";
 
   const attachmentsHtml = hasReport
     ? `
     <p><strong>Two attachments:</strong></p>
     <ul>
-      <li><strong>The report (PDF).</strong> Start here. Your score, every signal explained in plain language, and the fixes in priority order. Measured on your domain today.</li>
-      <li><strong>The implementation kit (ZIP).</strong> Everything your developer needs: the step by step guide, a prioritised backlog, ready schema patches, an llms.txt draft, prompts and a QA checklist. Plus your <strong>Agent Card</strong>: a machine readable company card drafted from your own site, ready to upload.</li>
+      <li><strong>The report (PDF).</strong> Start here. What five AI models (ChatGPT, Claude, Gemini, Perplexity, Grok) found when they looked your site up with live search, and whether each cited your pages. Then every technical sign measured on your homepage today, and the fixes in order.</li>
+      <li><strong>The implementation kit (ZIP).</strong> Open <strong>README.md</strong> first: it says which file is for whom. Doing the work by hand: the Word guide, step by step. Using Claude Code, Cursor or ChatGPT: the measured report and the prompts file, which carry your real numbers. Then the task spreadsheet, the schema templates, the QA checklist and an optional llms.txt draft. Plus your <strong>Agent Card</strong>: your company on one machine-readable page, drafted from your own site.</li>
     </ul>`
     : `
     <p><strong>One attachment for now:</strong></p>
@@ -178,8 +216,16 @@ async function sendPackageEmail(params: {
     </ul>
     <p><strong>About your personal report:</strong> our scanner could not read ${escapeHtml(params.domain)} automatically. That usually means a login wall, a firewall, or a server that only answers browsers. Nothing is wrong with your order: we will run the measurement by hand and send your report within one business day, no action needed from you.</p>`;
 
+  const bonusHtml = bonusCode
+    ? `
+    <p><strong>Your bonus:</strong> the code <strong>${escapeHtml(bonusCode)}</strong> gives ${BONUS_PERCENT}% off up to ${BONUS_USES} more checks: AI Person Scan, AI Company Scan, or another AI Fix Kit for another site. Use it yourself or give it away.</p>`
+    : "";
+  const bonusText = bonusCode
+    ? ["", `Your bonus: the code ${bonusCode} gives ${BONUS_PERCENT}% off up to ${BONUS_USES} more checks: AI Person Scan, AI Company Scan, or another AI Fix Kit for another site. Use it yourself or give it away.`]
+    : [];
+
   const htmlContent = `
-    <h2>${hasReport ? "Your AI Visibility package is ready" : "Your AI Visibility kit is here, report to follow"}</h2>
+    <h2>${hasReport ? "Your AI Fix Kit is ready" : "Your AI Fix Kit is here, report to follow"}</h2>
 
     <p>Thank you for your trust, and for paying for an independent measurement rather than a marketing claim.</p>
 
@@ -187,17 +233,12 @@ async function sendPackageEmail(params: {
     <strong>Order ID:</strong> ${escapeHtml(params.orderId)}</p>
 ${attachmentsHtml}
 
-    <h3 style="margin-top:28px">Three other things you might want</h3>
+    <h3 style="margin-top:28px">What AI says about you and your company</h3>
 
-    <p><strong>Check your competitors.</strong> Your report shows where you stand. The scan itself is free for any domain: run it on your closest competitor and see who an AI assistant understands better, and where you can overtake them first.<br>
-    <a href="${site}/audit">Scan a competitor &rarr;</a></p>
-
-    <p><strong>If you run an AI agent that talks to customers</strong>, a chatbot, an assistant, a booking or support bot, we test those too. It is a test purchase: ten real situations, and every finding checked against what your own website already promises, quoted word for word. Most owners have never seen what their bot actually tells people.<br>
-    <a href="${site}/service-check">See how the test purchase works &rarr;</a></p>
-
-    <p><strong>If you are building something with AI yourself</strong>, tell us about it. We publish founder stories in Submit Your Story. Free, no payment, no strings. If the story is real and specific, it gets read by the people looking for exactly what you are building.<br>
-    <a href="${site}/submit-your-story">Send your story &rarr;</a></p>
-
+    <p>This kit is about whether AI can read your site. The other question is what five AI models tell people who ask about you or your company before a meeting, a deal or a contract. Both checks start with a free preview.<br>
+    <a href="${site}/professional-scan">AI Person Scan &rarr;</a><br>
+    <a href="${site}/company-scan">AI Company Scan &rarr;</a></p>
+${bonusHtml}
     <p style="margin-top:28px">Anything at all: a file that will not open, a figure you want to question, a refund within 14 days. Write to <a href="mailto:info@aibusiness.vc">info@aibusiness.vc</a> and I will answer personally.</p>
 
     <p>Sergei Ponomarev<br>aibusiness.vc</p>
@@ -207,9 +248,9 @@ ${attachmentsHtml}
     ? [
         "TWO ATTACHMENTS",
         "",
-        "The report (PDF). Start here. Your score, every signal explained, and the fixes in priority order. Measured on your domain today.",
+        "The report (PDF). Start here. What five AI models (ChatGPT, Claude, Gemini, Perplexity, Grok) found when they looked your site up with live search, and whether each cited your pages. Then every technical sign measured on your homepage today, and the fixes in order.",
         "",
-        "The implementation kit (ZIP). Guide, backlog, schema patches, llms.txt draft, prompts, QA checklist. Plus your Agent Card: a machine readable company card drafted from your own site, ready to upload.",
+        "The implementation kit (ZIP). Open README.md first: it says which file is for whom. Doing the work by hand: the Word guide, step by step. Using Claude Code, Cursor or ChatGPT: the measured report and the prompts file, which carry your real numbers. Then the task spreadsheet, the schema templates, the QA checklist and an optional llms.txt draft. Plus your Agent Card: your company on one machine-readable page, drafted from your own site.",
       ]
     : [
         "ONE ATTACHMENT FOR NOW",
@@ -221,8 +262,8 @@ ${attachmentsHtml}
 
   const textContent = [
     hasReport
-      ? "Your AI Visibility package is ready."
-      : "Your AI Visibility kit is here, report to follow.",
+      ? "Your AI Fix Kit is ready."
+      : "Your AI Fix Kit is here, report to follow.",
     "",
     "Thank you for your trust, and for paying for an independent measurement rather than a marketing claim.",
     "",
@@ -231,16 +272,12 @@ ${attachmentsHtml}
     "",
     ...attachmentsText,
     "",
-    "THREE OTHER THINGS YOU MIGHT WANT",
+    "WHAT AI SAYS ABOUT YOU AND YOUR COMPANY",
     "",
-    "Check your competitors. Your report shows where you stand. The scan itself is free for any domain: run it on your closest competitor and see who an AI assistant understands better.",
-    site + "/audit",
-    "",
-    "If you run an AI agent that talks to customers, a chatbot, an assistant, a booking or support bot, we test those too. It is a test purchase: ten real situations, and every finding checked against what your own website already promises, quoted word for word.",
-    site + "/service-check",
-    "",
-    "If you are building something with AI yourself, tell us about it. We publish founder stories in Submit Your Story. Free, no payment, no strings.",
-    site + "/submit-your-story",
+    "This kit is about whether AI can read your site. The other question is what five AI models tell people who ask about you or your company before a meeting, a deal or a contract. Both checks start with a free preview.",
+    site + "/professional-scan",
+    site + "/company-scan",
+    ...bonusText,
     "",
     "Anything at all: a file that will not open, a figure you want to question, a refund within 14 days. Write to info@aibusiness.vc and I will answer personally.",
     "",
@@ -307,6 +344,38 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true, ignored: true, event: eventName });
   }
 
+  // AI Person Scan: store the order, queue it, answer. The report is made after the reply.
+  const proVariant = proScanVariantId();
+  const companyVariant = companyScanVariantId();
+  const eventVariant = orderVariantId(attributes);
+  const scanKind = proVariant && eventVariant === proVariant ? "person" : companyVariant && eventVariant === companyVariant ? "company" : null;
+  if (scanKind && eventVariant) {
+    const outcome = await handleProScanOrder(
+      redisKv,
+      { data, attributes, customData, variantId: eventVariant, kind: scanKind },
+      { providerIds: PERSON_PROVIDER_IDS, configured: providerConfigured }
+    );
+    if (outcome.startWorker) {
+      after(async () => {
+        try {
+          await drainQueue(productionDeps(), WORKER_BUDGET_MS);
+        } catch (error) {
+          // The order is stored and due: the next run picks it up.
+          console.error("[pscan/webhook] worker run failed", error);
+        }
+      });
+    }
+    const alert = outcome.ownerAlert;
+    if (alert) {
+      after(async () => {
+        // One letter per order, however many times the event arrives.
+        if ((await claimOnce(`pscan:alert:${pickString(data, "id") ?? "unknown"}`, 7 * 24 * 3600)) === "duplicate") return;
+        await productionDeps().notifyOwner("AI Person Scan: an order needs you", alert);
+      });
+    }
+    return NextResponse.json(outcome.body, { status: outcome.status });
+  }
+
   const toEmail =
     cleanEmail(attributes.user_email) ??
     cleanEmail(attributes.email) ??
@@ -349,6 +418,8 @@ export async function POST(request: Request) {
   const plan = planRaw === "deep" ? "deep" : "standard";
   const orderId =
     pickString(attributes, "order_number") ?? pickString(data, "id") ?? crypto.randomUUID();
+  // The same rule as the scans: a code is earned by a full-price order and never by an order paid with one.
+  const fullPrice = !(Number(attributes.discount_total ?? 0) > 0);
 
   // Claim the event in shared storage before the send. A Lemon Squeezy retry
   // landing on a different instance sees the claim and stops; before Redis
@@ -369,6 +440,7 @@ export async function POST(request: Request) {
       orderId,
       auditId,
       plan,
+      fullPrice,
     });
     processedEvents.add(eventId);
     // The send is confirmed: extend the claim to cover the full retry window.

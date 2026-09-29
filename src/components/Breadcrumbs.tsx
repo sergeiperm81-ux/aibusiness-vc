@@ -9,7 +9,7 @@ const sectionNames: Record<string, string> = {
   solo: "Solo",
   startups: "Startups",
   b2b: "B2B",
-  tools: "Tools",
+  tools: "Technology",
   models: "Models",
   news: "News",
   learn: "Learn",

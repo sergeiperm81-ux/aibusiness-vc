@@ -13,6 +13,6 @@ export const MAIN_NAV: NavItem[] = [
   { name: "Careers", href: "/learn" },
   { name: "Society", href: "/society" },
   { name: "Robots", href: "/robots" },
-  { name: "Tools", href: "/tools" },
+  { name: "Tech", href: "/tools" },
   { name: "Models", href: "/models" },
 ];

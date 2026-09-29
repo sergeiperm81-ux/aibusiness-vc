@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { MAIN_NAV } from "@/lib/navigation";
@@ -8,11 +8,13 @@ import { MAIN_NAV } from "@/lib/navigation";
 export function Header() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  // Any navigation closes the panel — otherwise it stays open over the new page.
-  useEffect(() => {
+  // Any navigation closes the panel, otherwise it stays open over the new page:
+  // state adjusted during render, as React advises, instead of in an effect.
+  const [seenPath, setSeenPath] = useState(pathname);
+  if (seenPath !== pathname) {
+    setSeenPath(pathname);
     setMobileMenuOpen(false);
-  }, [pathname]);
+  }
 
   function isActive(href: string) {
     if (href === "/") return pathname === "/";
@@ -28,7 +30,7 @@ export function Header() {
               AI
             </span>
             <span className="font-semibold text-lg text-white">Business</span>
-            <span className="text-[10px] text-white/60 font-mono">.vc</span>
+            <span className="hidden sm:inline text-[10px] text-white/60 font-mono">.vc</span>
           </Link>
 
           <div className="hidden lg:flex items-center gap-0.5">
@@ -36,7 +38,7 @@ export function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`px-2.5 py-1.5 text-[13px] font-semibold transition-colors rounded-md ${
+                className={`px-2 xl:px-2.5 py-1.5 text-[13px] font-semibold transition-colors rounded-md ${
                   isActive(item.href)
                     ? "text-accent"
                     : "text-white hover:text-accent hover:bg-card-bg"
@@ -49,8 +51,18 @@ export function Header() {
 
           <div className="hidden lg:flex items-center gap-2 ml-2 pl-2 border-l border-card-border">
             <Link
+              href="/ai-tools"
+              className={`whitespace-nowrap px-3 py-1.5 text-[13px] font-bold rounded-md transition-colors ${
+                isActive("/ai-tools") || isActive("/audit") || isActive("/professional-scan") || isActive("/company-scan")
+                  ? "bg-accent-hover text-black"
+                  : "bg-accent text-black hover:bg-accent-hover"
+              }`}
+            >
+              AI Tools
+            </Link>
+            <Link
               href="/experts"
-              className={`px-3 py-1.5 text-[13px] font-bold rounded-md transition-colors ${
+              className={`whitespace-nowrap px-3 py-1.5 text-[13px] font-bold rounded-md transition-colors ${
                 isActive("/experts")
                   ? "bg-accent-hover text-black"
                   : "bg-accent text-black hover:bg-accent-hover"
@@ -60,7 +72,7 @@ export function Header() {
             </Link>
             <Link
               href="/submit-your-story"
-              className={`px-3 py-1.5 text-[13px] font-bold rounded-md transition-colors ${
+              className={`hidden xl:block whitespace-nowrap px-3 py-1.5 text-[13px] font-bold rounded-md transition-colors ${
                 isActive("/submit-your-story")
                   ? "bg-accent-hover text-black"
                   : "bg-accent text-black hover:bg-accent-hover"
@@ -70,7 +82,13 @@ export function Header() {
             </Link>
           </div>
 
-          <div className="lg:hidden flex items-center gap-2">
+          <div className="lg:hidden flex items-center gap-1.5">
+            <Link
+              href="/ai-tools"
+              className="px-2.5 py-1 text-[12px] font-bold bg-accent text-black rounded-md"
+            >
+              Tools
+            </Link>
             <Link
               href="/experts"
               className="px-2.5 py-1 text-[12px] font-bold bg-accent text-black rounded-md"
@@ -79,7 +97,7 @@ export function Header() {
             </Link>
             <Link
               href="/submit-your-story"
-              className="px-2.5 py-1 text-[12px] font-bold bg-accent text-black rounded-md"
+              className="hidden min-[400px]:block px-2.5 py-1 text-[12px] font-bold bg-accent text-black rounded-md"
             >
               Story
             </Link>
@@ -118,10 +136,34 @@ export function Header() {
                 AI Test Purchase
               </Link>
               <Link
+                href="/ai-tools"
+                className="px-3 py-2 text-sm font-semibold rounded-md text-white hover:text-accent hover:bg-card-bg"
+              >
+                AI Tools
+              </Link>
+              <Link
+                href="/professional-scan"
+                className="px-3 py-2 text-sm font-semibold rounded-md text-white hover:text-accent hover:bg-card-bg"
+              >
+                AI Person Scan
+              </Link>
+              <Link
+                href="/company-scan"
+                className="px-3 py-2 text-sm font-semibold rounded-md text-white hover:text-accent hover:bg-card-bg"
+              >
+                AI Company Scan
+              </Link>
+              <Link
                 href="/audit"
                 className="px-3 py-2 text-sm font-semibold rounded-md text-white hover:text-accent hover:bg-card-bg"
               >
-                AI Visibility Audit
+                AI Website Visibility
+              </Link>
+              <Link
+                href="/submit-your-story"
+                className="px-3 py-2 text-sm font-semibold rounded-md text-white hover:text-accent hover:bg-card-bg"
+              >
+                Submit Story
               </Link>
 
             </div>

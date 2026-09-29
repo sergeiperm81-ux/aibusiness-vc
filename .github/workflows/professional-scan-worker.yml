@@ -1,0 +1,32 @@
+# Runs the paid-order worker by hand, for the owner.
+#
+# The five-minute wake-up comes from Upstash QStash, which signs every call
+# (src/lib/audit/qstash-signature.ts). GitHub's schedule never fired for this
+# repository, so it was removed. This workflow stays for a manual run; it uses
+# PROFESSIONAL_SCAN_WORKER_SECRET, which opens the worker route and nothing
+# else. The daily Vercel cron (/api/cron/professional-scan-daily) is the backstop.
+name: professional-scan-worker
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: professional-scan-worker
+  cancel-in-progress: false
+
+permissions: {}
+
+jobs:
+  wake:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - name: Run due orders
+        env:
+          WORKER_SECRET: ${{ secrets.PROFESSIONAL_SCAN_WORKER_SECRET }}
+        run: |
+          status=$(curl -sS -o /dev/null -w "%{http_code}" --max-time 310 \
+            -H "Authorization: Bearer ${WORKER_SECRET}" \
+            https://aibusiness.vc/api/cron/professional-scan)
+          echo "worker answered HTTP ${status}"
+          test "${status}" = "200"

@@ -1,108 +1,156 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
 import { UrlAuditForm } from "@/components/audit/UrlAuditForm";
-import { TestAgentsCallout } from "@/components/TestAgentsCallout";
+import { ModelLogos } from "@/components/professional/ModelLogos";
+
+/**
+ * The AI Website Visibility landing page.
+ *
+ * One belief to shift: "my site ranks in Google, so AI can read it too".
+ * It cannot always. The page says so in one line, shows what the check does,
+ * counts what the kit contains, and asks for one action. Short on purpose:
+ * every paragraph runs the full width of the page and nothing is longer
+ * than a buyer would read standing up. Same black, white and yellow as the
+ * two scans.
+ */
+
+const TITLE = "Is your site blocked for AI?";
 
 export const metadata: Metadata = {
-  title: "AI Visibility Audit - GEO Check: How AI Search Sees Your Site",
+  title: "AI Website Visibility: Can AI Read Your Site? Free Check, AI Fix Kit €49",
   description:
-    "AI search visibility scan (GEO audit): see what ChatGPT knows, what AI crawlers can read, and 8 measured signals from llms.txt to schema markup.",
+    "Free check: can AI crawlers read a homepage. AI Fix Kit €49: what five AI models find when they look up the site with live search, and the fixes in order.",
   alternates: { canonical: "/audit" },
   openGraph: {
     type: "website",
     url: "https://aibusiness.vc/audit",
     siteName: "AI Business",
-    title: "AI Visibility Audit: How AI Search Sees Your Site",
-    description:
-      "Enter your domain and see what ChatGPT already knows about your business, and what its crawlers can actually read. Eight measured GEO signals in about 30 seconds.",
+    title: TITLE,
+    description: "Five AI models look up a site live. A site they cannot read loses in their answers. Free check, AI Fix Kit €49.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI Visibility Audit",
-    description:
-      "Your customers now ask AI first. See what it knows about you, free, in 30 seconds.",
+    title: TITLE,
+    description: "Five AI models look up a site live. A site they cannot read loses in their answers.",
   },
 };
 
-/** Each signal with a one-line account of how it is actually measured. */
-const SCAN_METRICS: readonly { name: string; how: string }[] = [
+/** What the €49 kit contains, counted. Nine items, so the grid is three full rows. Mirrors src/lib/audit/fulfillment.ts. */
+const INCLUDED: readonly { count: string; title: string; body: string }[] = [
+  { count: "5", title: "AI models, live search", body: "ChatGPT, Claude, Gemini, Perplexity and Grok look up the site. What each found, and whether it cited your pages or other sites." },
+  { count: "1", title: "PDF report", body: "Every technical sign measured on the homepage, with the number we found." },
+  { count: "1", title: "task spreadsheet", body: "The fixes in order: one row per problem, with priority, owner and hours." },
+  { count: "8", title: "ready prompts", body: "For Claude Code, Cursor or ChatGPT, each carrying your measured numbers." },
+  { count: "3", title: "schema templates", body: "Organization, WebSite and FAQ markup, ready to fill in and paste." },
+  { count: "1", title: "Agent Card", body: "Your company on one machine-readable page, drafted from your homepage." },
+  { count: "1", title: "implementation guide", body: "Step by step, in Word, split into three sittings, for whoever does the work." },
+  { count: "10", title: "QA checks", body: "A target for every weak sign, so you know when it is fixed." },
+  { count: "1", title: "llms.txt draft", body: "Optional. Written for your domain, ready to try." },
+];
+
+/** The eight technical signs of the free check. Names only: the number is what the check shows. */
+const SIGNALS: readonly string[] = [
+  "AI crawler permission in robots.txt",
+  "What an AI sees without JavaScript",
+  "Schema markup",
+  "Citation readiness",
+  "Content structure",
+  "Initial response",
+  "HTTPS and security",
+  "llms.txt (shown, not scored)",
+];
+
+const WHO_FOR: readonly string[] = [
+  "You asked ChatGPT about your company and got nothing, or someone else",
+  "Your site ranks in Google and you assumed AI reads it too",
+  "A client or your boss asked “how do we show up in ChatGPT?”",
+  "You are a developer handed the task with no spec",
+];
+
+/** Cheapest first. Subscription prices are the published entry tiers in September 2026 (Peec AI $95, Profound $99, Semrush AI Toolkit $99). */
+const COMPARISON: readonly { option: string; cost: string; verdict: string; us?: boolean }[] = [
   {
-    name: "llms.txt presence",
-    how: "We request yourdomain.com/llms.txt and inspect its title, sections, and described link entries.",
+    option: "Free SEO tools, or asking ChatGPT yourself",
+    cost: "€0, your time",
+    verdict: "Google’s view of the site, or one answer with no reason. Nothing measured, nothing written down to fix.",
   },
   {
-    name: "Schema markup",
-    how: "We parse every JSON-LD block on your homepage and count blocks that declare a schema type.",
+    option: "AI Website Visibility + AI Fix Kit",
+    cost: "€49 once",
+    verdict: "Five AI models look the site up live, the homepage is measured, and the fixes are written for your developer. By email within minutes.",
+    us: true,
   },
   {
-    name: "AI crawler access",
-    how: "We read your robots.txt and check whether GPTBot, ClaudeBot, PerplexityBot and other AI crawlers are allowed, blocked, or unaddressed.",
-  },
-  {
-    name: "Citation readiness",
-    how: "We look for what generative engines quote: direct answers under headings, concrete facts, Q&A blocks.",
-  },
-  {
-    name: "Page speed snapshot",
-    how: "We time the server response the way a crawler experiences it.",
-  },
-  {
-    name: "What an AI actually sees",
-    how: "We read your page without running JavaScript, exactly as most AI crawlers do, and count the words that survive.",
-  },
-  {
-    name: "HTTPS and security headers",
-    how: "We check the certificate and the standard security headers on a live request.",
-  },
-  {
-    name: "Content structure",
-    how: "We map your heading hierarchy and section sizes against what AI extraction handles well.",
+    option: "AI visibility subscriptions",
+    cost: "$95–$99 a month",
+    verdict: "Peec AI, Profound, Semrush and the like track how often assistants mention you. Monthly, and the fixing is still on you.",
   },
 ];
 
-const FULL_REPORT_INCLUDES = [
-  "Full score breakdown across all 8 signals",
-  "Your fixes in priority order, measured on your domain",
-  "A step by step implementation guide for your team",
-  "Ready prompts for AI coding assistants",
-  "Schema patches and an llms.txt draft to adapt",
-  "Your Agent Card: a machine readable company card drafted from your own site",
-  "A QA checklist and a simple re-scan plan",
+/** Real checks, run with the owners’ agreement. Every number is the score the check produced that day. */
+const PROVEN_ON: readonly { domain: string; logo?: string; who: string; checked: string; score: number; found: readonly string[] }[] = [
+  {
+    domain: "super.tennis",
+    logo: "/images/audit/super-tennis.png",
+    who: "A partner’s site",
+    checked: "29 September 2026, with the five models",
+    score: 92,
+    found: [
+      "4 of 5 AI models cited its own pages. Gemini described the Italian TV channel supertennis.tv instead.",
+      "Claude also mixed in Nintendo’s Super Tennis game from Wikipedia.",
+      "robots.txt misses Claude-SearchBot (87/100). This is the sample report above.",
+    ],
+  },
+  {
+    domain: "mylo.family",
+    logo: "/images/audit/mylo-family.png",
+    who: "A partner’s project",
+    checked: "16 September 2026",
+    score: 83,
+    found: ["Heading hierarchy and section sizes need work (59/100).", "robots.txt names 2 of the 3 answer-engine bots (87/100).", "Neither model had any memory of the brand."],
+  },
+  {
+    domain: "vntblack.com",
+    logo: "/images/audit/vntblack.png",
+    who: "A partner’s site",
+    checked: "16 September 2026",
+    score: 66,
+    found: ["No structured data on the homepage (30/100).", "No robots.txt: the address answers with the homepage.", "Neither model had any memory of the brand."],
+  },
 ];
 
-const FAQS = [
+/** The objections, said out loud, answered in two or three lines. */
+const FAQS: readonly { q: string; a: string }[] = [
   {
-    q: "What do I get from the scan?",
-    a: "Your overall AI visibility score, what ChatGPT says about your business from memory, and your two weakest signals explained in plain language.",
+    q: "My site ranks in Google. Why would AI be blocked?",
+    a: "Google and AI crawlers read sites differently. A robots.txt rule from years ago can turn OAI-SearchBot and Claude-SearchBot away while Googlebot walks in, and text that loads through JavaScript reaches Google but not most AI crawlers. You cannot see either by opening your own site. The check can.",
   },
   {
-    q: "Do I need to sign up?",
-    a: "No. Enter a domain and the scan runs. No account, no email required to see your result.",
+    q: "Will this get me recommended by ChatGPT?",
+    a: "No one can promise that, and we don’t. The check shows what stops AI from reading the site at all. Fixing that is the first step, not a guarantee of anything after it.",
   },
   {
-    q: "What is GEO and how is it different from SEO?",
-    a: "GEO (Generative Engine Optimization) is making your site readable, quotable and citable for AI answer engines such as ChatGPT, Perplexity and Google's AI Overviews. Classic SEO optimises for ranked links; GEO optimises for being the source an AI quotes. This audit measures the GEO side: crawler access, llms.txt, schema markup and citation-ready structure.",
+    q: "What do I get for free?",
+    a: "A readiness score, what two AI models remember about the site without search, your two weakest signs explained, and how many need work. The five live models are in the paid report.",
   },
   {
-    q: "What's in the full report?",
-    a: "Your complete score breakdown across all 8 signals, prioritized fixes measured on your domain, an implementation guide, AI coding prompts, llms.txt and schema materials, plus an Agent Card drafted from your own site.",
+    q: "Do I need a developer?",
+    a: "For most fixes, yes, and the kit is written for them: tasks with hours, prompts to paste into Claude Code or Cursor, templates to fill in. Hand it over and the work starts the same day.",
   },
   {
-    q: "What is an Agent Card?",
-    a: "It is a compact, machine-readable description of your company: what you offer, who it is for, pricing signals and how to reach a human. You receive a Markdown file and matching JSON-LD drafted only from facts found on your site, with missing information clearly marked for review.",
+    q: "Can I check a client’s or a competitor’s site?",
+    a: "Yes. Any public domain. The check reads only what any visitor or crawler can already see. Nothing is installed, no login is asked for.",
   },
   {
-    q: "Are the recommendations personalised?",
-    a: "Yes, and verifiably: every score in the report is measured live on your domain at purchase time, each fix carries your measured number next to it, and the task backlog is built only from the signals that actually failed on your site. If our scanner cannot reach your site, we say so and run the measurement by hand instead of sending template numbers.",
-  },
-  {
-    q: "Who is this for?",
-    a: "Teams and operators who want their site to be cited and understood by AI answer engines, not just classic search.",
+    q: "Is it a subscription? What if it tells me nothing new?",
+    a: "No subscription. The check is free, the kit is €49 once, by email within minutes. If it tells you nothing new, use the 14-day refund, no questions asked. Every full-price kit comes with a code for 50% off up to 7 more checks: AI Person Scan, AI Company Scan or another site.",
   },
 ];
 
 const SITE_URL = "https://aibusiness.vc";
 
-/** FAQPage + Service structured data, mirroring only content visible on this page. */
+/** FAQPage + Service structured data, mirroring only content present on this page. */
 const STRUCTURED_DATA = [
   {
     "@context": "https://schema.org",
@@ -116,16 +164,13 @@ const STRUCTURED_DATA = [
   {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "AI Visibility Audit (GEO Audit)",
+    name: "AI Website Visibility: is your site blocked for AI?",
     serviceType: "Generative Engine Optimization audit",
     url: `${SITE_URL}/audit`,
-    provider: {
-      "@type": "Organization",
-      name: "AI Business",
-      url: SITE_URL,
-    },
+    provider: { "@type": "Organization", name: "AI Business", url: SITE_URL },
     description:
-      "AI search visibility scan measuring 8 signals live on your domain: llms.txt, schema markup, AI crawler access, citation readiness, page speed, JavaScript dependency, HTTPS and content structure, plus an AI brand recall test.",
+      "Free check of whether AI crawlers can read a website, with a paid report in which five AI models look the site up with live search and the fixes are listed in order.",
+    offers: { "@type": "Offer", price: "49", priceCurrency: "EUR" },
     areaServed: "Worldwide",
   },
 ];
@@ -137,368 +182,204 @@ export default function AuditLandingPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(STRUCTURED_DATA) }}
       />
+
+      {/* Name, the belief to shift in two lines, one field, the price, the sample. */}
       <section className="bg-background">
-        <div
-          className="border-b border-white/5"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 76% 42%, rgba(245, 158, 11, 0.12), transparent 28%), radial-gradient(circle at 18% 0%, rgba(255,255,255,0.035), transparent 24%)",
-          }}
-        >
-          <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[0.92fr_1.08fr] lg:gap-16 lg:px-8 lg:py-20">
-            <div>
-              <p className="mb-4 font-mono text-xs font-semibold uppercase tracking-[0.18em] text-accent">
-                AI Visibility Audit / 30-second scan
-              </p>
-              <h1 className="mb-5 max-w-xl text-4xl font-bold leading-[0.98] tracking-[-0.04em] text-white sm:text-5xl lg:text-6xl">
-                Can AI understand your business?
-              </h1>
-              <p className="mb-7 max-w-lg text-base leading-relaxed text-white/65 sm:text-lg">
-                See what ChatGPT knows, what AI crawlers can read, and the gaps
-                keeping your site out of AI answers.
-              </p>
-
-              <UrlAuditForm />
-
-              <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-white/50">
-                <span className="flex items-center gap-1.5">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                  8 live checks
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                  No signup
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                  Any public domain
-                </span>
-              </div>
-            </div>
-
-            <ScorePreview />
-          </div>
-        </div>
-      </section>
-
-      <section className="border-t border-black/5 bg-white">
-        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-          <p className="mb-2 font-mono text-xs font-bold uppercase tracking-[0.16em] text-amber-600">
-            From scan to action
+        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
+          <p className="mb-4 text-base font-bold uppercase tracking-wider text-accent">AI Website Visibility</p>
+          <h1 className="mb-6 text-5xl font-bold leading-[0.95] tracking-[-0.045em] text-white sm:text-6xl lg:text-7xl">
+            {TITLE}
+          </h1>
+          <p className="mb-3 text-2xl font-bold leading-snug text-white">
+            ChatGPT, Claude, Gemini, Perplexity and Grok answer with what they can read.{" "}
+            <span className="text-accent">A site they cannot read loses in their answers.</span>
           </p>
-          <h2 className="mb-8 max-w-2xl text-3xl font-bold tracking-tight text-black">
-            One scan. Three useful outputs.
-          </h2>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            <div className="rounded-2xl border border-black/10 bg-[#fafafa] p-6">
-              <div className="mb-5 flex h-9 w-9 items-center justify-center rounded-full bg-black font-mono text-xs font-bold text-white">
-                01
-              </div>
-              <h3 className="mb-2 text-xl font-bold text-black">Visibility score</h3>
-              <p className="text-sm leading-relaxed text-black/70">
-                See what an AI can read, whether crawlers are allowed, and the two
-                signals costing you the most visibility.
-              </p>
-            </div>
-            <div className="rounded-2xl border border-black/10 bg-[#fafafa] p-6">
-              <div className="mb-5 flex h-9 w-9 items-center justify-center rounded-full bg-black font-mono text-xs font-bold text-white">
-                02
-              </div>
-              <h3 className="mb-2 text-xl font-bold text-black">Fix package</h3>
-              <p className="text-sm leading-relaxed text-black/70">
-                Get the personal PDF, implementation backlog, schema and llms.txt
-                drafts, plus prompts your team can execute.
-              </p>
-            </div>
-            <div className="rounded-2xl border border-amber-300 bg-amber-50 p-6 shadow-[0_16px_50px_rgba(245,158,11,0.12)]">
-              <div className="mb-5 flex h-9 w-9 items-center justify-center rounded-full bg-amber-500 font-mono text-xs font-bold text-black">
-                03
-              </div>
-              <h3 className="mb-2 text-xl font-bold text-black">Agent Card</h3>
-              <p className="text-sm leading-relaxed text-black/70">
-                Give AI agents one clean, machine-readable source for what your
-                company does, sells and supports.
-              </p>
-            </div>
-          </div>
+          <p className="mb-8 text-xl leading-relaxed text-white/80">
+            Free: whether AI crawlers can read the homepage. €49: what five AI models find when they look the site up live, and the fixes in order.
+          </p>
+          <UrlAuditForm />
+          <p className="mt-6 text-lg font-bold text-white">
+            Check <span className="text-accent">free</span> · AI Fix Kit <span className="text-accent">&euro;49</span> once ·{" "}
+            <span className="text-accent">14-day</span> refund, no questions asked
+          </p>
+          <p className="mt-2 text-lg font-bold text-white/85">
+            Bonus: <span className="text-accent">50% off</span> up to 7 more checks, AI Person Scan, AI Company Scan or another site, with every full-price kit.
+          </p>
+          <a
+            href="/audit-kit/Sample-AI-Website-Visibility-Report.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-3 inline-block text-lg font-bold text-white underline decoration-accent decoration-4 underline-offset-4 hover:text-accent"
+          >
+            See a sample report (PDF)
+          </a>
+        </div>
+        <div className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
+          <p className="mb-5 text-2xl font-bold text-white">
+            Five AI models look the site up, <span className="text-accent">each searching the web live</span>
+          </p>
+          <ModelLogos />
+          <p className="mb-5 mt-12 text-2xl font-bold text-white">
+            The free check measures <span className="text-accent">8 technical signs</span> on the homepage
+          </p>
+          <ul className="flex flex-wrap gap-3">
+            {SIGNALS.map((signal) => (
+              <li key={signal} className="rounded-full border-2 border-white/20 px-4 py-2 text-base font-semibold text-white/85">
+                {signal}
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
-      <section className="border-t border-black/10 bg-[#f4ead8]">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 lg:px-8">
-          <div>
-            <p className="mb-3 font-mono text-xs font-bold uppercase tracking-[0.16em] text-amber-700">
-              Included / Agent Card
-            </p>
-            <h2 className="mb-4 max-w-xl text-3xl font-bold leading-tight tracking-tight text-black sm:text-4xl">
-              Give AI agents the facts, not a puzzle.
-            </h2>
-            <p className="mb-6 max-w-xl text-base leading-relaxed text-black/65">
-              Company facts are usually scattered across five pages. Your Agent
-              Card turns them into one compact source that an assistant can read,
-              quote and hand to a customer.
-            </p>
-            <ul className="grid max-w-xl grid-cols-1 gap-3 text-sm text-black/75 sm:grid-cols-2">
-              {[
-                "What you offer",
-                "Who it is for",
-                "Pricing signals",
-                "Human contact routes",
-                "Markdown + JSON-LD",
-                "Missing facts clearly marked",
-              ].map((item) => (
-                <li key={item} className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-amber-600" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <p className="mt-6 max-w-xl text-xs leading-relaxed text-black/50">
-              Drafted only from facts already published on your site. Nothing is
-              invented; anything missing is flagged for your review.
-            </p>
-          </div>
-
-          <AgentCardPreview />
+      {/* Everything inside the kit, counted. Nine items, three full rows. */}
+      <section className="bg-white">
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+          <h2 className="mb-3 text-4xl font-bold tracking-tight text-black sm:text-5xl">What&rsquo;s in the AI Fix Kit</h2>
+          <p className="mb-10 text-xl leading-relaxed text-black/65">
+            Measured on your own domain and sent by email within minutes of payment. Built so your developer can start on the most damaging problem the day it arrives.
+          </p>
+          <ul className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {INCLUDED.map((item) => (
+              <li key={item.title} className="rounded-3xl bg-black p-7">
+                <p className="text-xl font-bold text-accent">
+                  {item.count} {item.title}
+                </p>
+                <p className="mt-2 text-lg leading-relaxed text-white/80">{item.body}</p>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
-      <section className="border-t border-card-border bg-background">
-        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
-            <div>
-              <p className="mb-2 font-mono text-xs font-medium uppercase tracking-wider text-accent">
-                Methodology
-              </p>
-              <h2 className="mb-3 text-2xl font-bold text-white">
-                8 signals, each measured live
-              </h2>
-              <p className="mb-4 text-sm leading-relaxed text-white/60">
-                Nothing is estimated or averaged from other sites. Every number in your
-                result comes from requests made to your domain at scan time, the same
-                way AI crawlers read it.
-              </p>
-              <ul className="space-y-3">
-                {SCAN_METRICS.map((m) => (
-                  <li key={m.name} className="flex items-start gap-2 text-sm">
-                    <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent" />
-                    <span>
-                      <span className="font-semibold text-white/90">{m.name}.</span>{" "}
-                      <span className="text-white/60">{m.how}</span>
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <p className="mb-2 font-mono text-xs font-medium uppercase tracking-wider text-accent">
-                Full package
-              </p>
-              <h2 className="mb-3 text-2xl font-bold text-white">Ready to hand off</h2>
-              <p className="mb-5 max-w-lg text-sm leading-relaxed text-white/60">
-                Read the PDF yourself. Give the implementation files to your team,
-                developer or AI coding assistant.
-              </p>
-              <ul className="space-y-2.5 rounded-2xl border border-card-border bg-card-bg p-6">
-                {FULL_REPORT_INCLUDES.map((m) => (
-                  <li key={m} className="flex items-start gap-2 text-sm text-white/80">
-                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500" />
-                    {m}
-                  </li>
-                ))}
-              </ul>
-              <a
-                href="/audit-kit/Sample-AI-Visibility-Report.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-6 inline-block rounded-lg border border-card-border bg-card-bg px-4 py-2.5 text-sm font-semibold text-white transition hover:border-accent"
-              >
-                See a sample report (PDF) &rarr;
-              </a>
-              <p className="mt-2 text-xs text-white/40">
-                A real report generated by the same scanner, so you can judge the
-                depth before running anything.
-              </p>
-            </div>
-          </div>
+      <section className="bg-accent">
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+          <h2 className="mb-10 text-4xl font-bold tracking-tight text-black sm:text-5xl">How it works</h2>
+          <ol className="grid grid-cols-1 gap-5 md:grid-cols-3">
+            {[
+              ["1", "Enter a website address", "Free: the readiness score, what two AI models remember about the site, and its two weakest signs."],
+              ["2", "Get the AI Fix Kit", "€49 once. Five AI models look the site up with live search. The PDF and the kit arrive by email within minutes."],
+              ["3", "Hand it to your developer", "They take the tasks in order, paste the prompts, fill in the templates and tick the 10 checks."],
+            ].map(([n, title, body]) => (
+              <li key={n} className="rounded-3xl bg-black p-7">
+                <p className="text-4xl font-bold text-accent">{n}</p>
+                <p className="mt-3 text-xl font-bold text-white">{title}</p>
+                <p className="mt-2 text-lg leading-relaxed text-white/80">{body}</p>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
-      <section className="border-t border-black/5 bg-white">
-        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-          <h2 className="mb-8 text-2xl font-bold text-black">Common questions</h2>
-          <div className="grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-2">
-            {FAQS.map((f) => (
-              <div key={f.q}>
-                <h3 className="mb-2 text-base font-bold text-black">{f.q}</h3>
-                <p className="text-sm leading-relaxed text-black/70">{f.a}</p>
+      {/* "Sound familiar?": the reader finds themself in one line. Yellow on black so it reads. */}
+      <section className="bg-background">
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+          <h2 className="mb-6 text-3xl font-bold tracking-tight text-white sm:text-4xl">Sound familiar?</h2>
+          <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            {WHO_FOR.map((who) => (
+              <li key={who} className="rounded-2xl bg-accent px-6 py-5 text-xl font-bold leading-snug text-black">
+                {who}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-8 text-lg text-white/70">
+            No access to your site or CMS, nothing to install, no account, no call. The check reads the site from outside, the same way an AI crawler does.
+          </p>
+        </div>
+      </section>
+
+      {/* Real checks with the numbers they produced. */}
+      <section className="bg-white">
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+          <h2 className="mb-3 text-4xl font-bold tracking-tight text-black sm:text-5xl">Recently checked</h2>
+          <p className="mb-10 text-xl leading-relaxed text-black/65">
+            Three sites, what the check found, and the score before the fixes. Checked with the owners&rsquo; agreement.
+          </p>
+          <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
+            {PROVEN_ON.map((site) => (
+              <div key={site.domain} className="flex flex-col rounded-3xl bg-black p-7">
+                <div className="flex h-12 items-center">
+                  {site.logo ? (
+                    <Image src={site.logo} alt={site.domain} width={200} height={48} className="h-12 w-auto rounded-md" />
+                  ) : (
+                    <span className="text-2xl font-bold tracking-tight text-white">{site.domain}</span>
+                  )}
+                </div>
+                <p className="mt-3 text-base text-white/60">
+                  {site.domain} &middot; {site.who} &middot; {site.checked}
+                </p>
+                <div className="mt-5 flex items-baseline gap-2">
+                  <span className="text-5xl font-bold tracking-tight text-accent">{site.score}</span>
+                  <span className="text-lg text-white/50">/100 before fixes</span>
+                </div>
+                <ul className="mt-5 space-y-2.5">
+                  {site.found.map((line) => (
+                    <li key={line} className="flex items-start gap-2.5 text-lg leading-relaxed text-white/85">
+                      <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                      {line}
+                    </li>
+                  ))}
+                </ul>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="border-t border-black/5 bg-white">
-        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-          <TestAgentsCallout
-            heading="A different question: what does your bot tell customers?"
-            body="This audit measures how AI search reads your website. If you also run a chatbot or assistant that talks to customers, that is a separate matter and a separate check: a test purchase of the AI agent, measured against what your company publicly promises."
-            anchor="Testing AI agents and chatbots"
-          />
+      <section className="bg-white">
+        <div className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
+          <h2 className="mb-8 text-3xl font-bold tracking-tight text-black sm:text-4xl">Compared with the alternatives</h2>
+          <ul className="grid grid-cols-1 gap-5">
+            {COMPARISON.map((row) => (
+              <li
+                key={row.option}
+                className={`grid grid-cols-1 gap-2 rounded-2xl px-6 py-5 md:grid-cols-[300px_180px_1fr] md:gap-6 ${row.us ? "bg-accent" : "bg-black"}`}
+              >
+                <p className={`text-xl font-bold ${row.us ? "text-black" : "text-accent"}`}>{row.option}</p>
+                <p className={`text-lg font-bold ${row.us ? "text-black" : "text-white"}`}>{row.cost}</p>
+                <p className={`text-lg leading-relaxed ${row.us ? "font-semibold text-black" : "text-white/80"}`}>{row.verdict}</p>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
-      <section className="border-t border-card-border bg-background" id="top">
-        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-          <div className="max-w-2xl">
-            <h2 className="mb-3 text-2xl font-bold text-white">Run your AI audit</h2>
-            <p className="mb-6 text-sm text-white/60">
-              See what AI understands now, then decide what is worth fixing.
-            </p>
-            <UrlAuditForm />
-          </div>
+      {/* The objections, out loud, on white, full width. Plain text reads; a wall of black cards does not. */}
+      <section className="border-t border-black/10 bg-white">
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+          <h2 className="mb-10 text-3xl font-bold tracking-tight text-black sm:text-4xl">Questions</h2>
+          <dl className="divide-y divide-black/10">
+            {FAQS.map((item) => (
+              <div key={item.q} className="py-6">
+                <dt className="text-2xl font-bold text-black">{item.q}</dt>
+                <dd className="mt-3 text-xl leading-relaxed text-black/75">{item.a}</dd>
+              </div>
+            ))}
+          </dl>
+          <p className="mt-8 text-lg text-black/70">
+            Checking what AI says about a company or a person instead?{" "}
+            <Link href="/company-scan" className="font-bold text-black underline decoration-accent decoration-4 underline-offset-4">
+              AI Company Scan
+            </Link>
+            ,{" "}
+            <Link href="/professional-scan" className="font-bold text-black underline decoration-accent decoration-4 underline-offset-4">
+              AI Person Scan
+            </Link>
+            . All tools:{" "}
+            <Link href="/ai-tools" className="font-bold text-black underline decoration-accent decoration-4 underline-offset-4">
+              AI Tools
+            </Link>
+            .
+          </p>
+        </div>
+      </section>
+
+      <section className="bg-accent">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+          <h2 className="mb-6 text-3xl font-bold tracking-tight text-black sm:text-4xl">Check a site before AI answers for it</h2>
+          <UrlAuditForm variant="yellow" />
         </div>
       </section>
     </>
-  );
-}
-
-function ScorePreview() {
-  return (
-    <div className="relative mx-auto w-full max-w-xl">
-      <div className="absolute -inset-5 rounded-[2rem] bg-amber-500/10 blur-3xl" />
-      <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-[#121215] shadow-2xl shadow-black/40">
-        <div className="flex items-center justify-between border-b border-white/10 px-6 py-4">
-          <div>
-            <p className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-amber-400">
-              Example output
-            </p>
-            <p className="mt-1 text-sm font-semibold text-white">example.com</p>
-          </div>
-          <span className="rounded-full border border-emerald-500/25 bg-emerald-500/10 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-wider text-emerald-400">
-            Live scan
-          </span>
-        </div>
-
-        <div className="grid gap-6 p-6 sm:grid-cols-[130px_1fr] sm:p-7">
-          <div className="flex flex-col justify-center rounded-2xl border border-amber-500/20 bg-amber-500/5 p-5 text-center">
-            <p className="font-mono text-[10px] uppercase tracking-wider text-white/45">
-              AI visibility
-            </p>
-            <div className="mt-2 flex items-end justify-center gap-1">
-              <span className="text-5xl font-bold tracking-tight text-amber-400">61</span>
-              <span className="mb-1 text-sm text-white/35">/100</span>
-            </div>
-            <p className="mt-2 text-xs font-semibold text-amber-300">Needs work</p>
-          </div>
-
-          <div className="space-y-4">
-            <PreviewMetric label="AI-readable content" score={90} tone="good" />
-            <PreviewMetric label="Crawler access" score={55} tone="warn" />
-            <PreviewMetric label="Schema markup" score={30} tone="bad" />
-          </div>
-        </div>
-
-        <div className="border-t border-white/10 bg-white/[0.025] p-5 sm:px-7">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex items-start gap-3">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-amber-500 font-mono text-sm font-black text-black">
-                AI
-              </div>
-              <div>
-                <p className="text-sm font-bold text-white">Agent Card included</p>
-                <p className="mt-0.5 text-xs text-white/45">
-                  agent-card.md + matching JSON-LD
-                </p>
-              </div>
-            </div>
-            <div className="flex gap-2 text-[10px] font-semibold uppercase tracking-wider text-white/45">
-              <span className="rounded-md border border-white/10 px-2 py-1">PDF</span>
-              <span className="rounded-md border border-white/10 px-2 py-1">Fix kit</span>
-              <span className="rounded-md border border-amber-500/30 bg-amber-500/10 px-2 py-1 text-amber-300">
-                Agent-ready
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function PreviewMetric({
-  label,
-  score,
-  tone,
-}: {
-  label: string;
-  score: number;
-  tone: "good" | "warn" | "bad";
-}) {
-  const color =
-    tone === "good"
-      ? "bg-emerald-500"
-      : tone === "warn"
-        ? "bg-amber-500"
-        : "bg-red-500";
-  const text =
-    tone === "good"
-      ? "text-emerald-400"
-      : tone === "warn"
-        ? "text-amber-400"
-        : "text-red-400";
-
-  return (
-    <div>
-      <div className="mb-1.5 flex items-center justify-between gap-4 text-xs">
-        <span className="font-medium text-white/65">{label}</span>
-        <span className={`font-mono font-bold ${text}`}>{score}</span>
-      </div>
-      <div className="h-1.5 overflow-hidden rounded-full bg-white/10">
-        <div className={`h-full rounded-full ${color}`} style={{ width: `${score}%` }} />
-      </div>
-    </div>
-  );
-}
-
-function AgentCardPreview() {
-  return (
-    <div className="overflow-hidden rounded-3xl border border-black/15 bg-[#101012] shadow-2xl shadow-amber-900/15">
-      <div className="flex items-center justify-between border-b border-white/10 px-5 py-3">
-        <div className="flex items-center gap-2">
-          <span className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
-          <span className="h-2.5 w-2.5 rounded-full bg-amber-400/80" />
-          <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/80" />
-        </div>
-        <span className="font-mono text-[10px] text-white/35">/agent-card.md</span>
-      </div>
-      <div className="space-y-5 p-6 font-mono text-xs leading-relaxed sm:p-8">
-        <div>
-          <p className="text-amber-400"># Northstar Analytics - Agent Card</p>
-          <p className="mt-2 text-white/70">
-            &gt; Revenue intelligence for independent retail teams.
-          </p>
-        </div>
-        <div>
-          <p className="text-white/40">## What we offer</p>
-          <p className="mt-1 text-white/70">- Weekly revenue forecasts</p>
-          <p className="text-white/70">- Inventory risk alerts</p>
-        </div>
-        <div className="grid gap-5 sm:grid-cols-2">
-          <div>
-            <p className="text-white/40">## Who it is for</p>
-            <p className="mt-1 text-white/70">Retail operators with 2-20 stores</p>
-          </div>
-          <div>
-            <p className="text-white/40">## Human contact</p>
-            <p className="mt-1 text-white/70">sales@northstar.example</p>
-          </div>
-        </div>
-        <div className="rounded-xl border border-amber-500/20 bg-amber-500/10 px-4 py-3 text-amber-200/80">
-          Facts are drafted from your site. Missing information is marked for
-          review, never guessed.
-        </div>
-      </div>
-    </div>
   );
 }

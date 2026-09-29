@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { EXPERTS, getExpert, initials, type Expert } from "../experts";
+import { EXPERTS, getExpert, initials, personIdOf, type Expert } from "../experts";
 import { ExpertEmail } from "../ExpertEmail";
 
 const SITE = "https://aibusiness.vc";
@@ -14,16 +14,26 @@ export function generateStaticParams() {
   return EXPERTS.map((e) => ({ slug: e.slug }));
 }
 
+/**
+ * The page title is the first thing a machine reads about a person, and an
+ * assistant asked "who is this" will often quote it before anything else. A
+ * generic "AI expert" told it nothing; the member's own headline says what they
+ * actually do, so the title carries that instead.
+ */
+function profileTitle(expert: Expert): string {
+  return `${expert.name} — ${expert.headline}`;
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const expert = getExpert(slug);
   if (!expert) return { title: "Not found" };
   return {
-    title: `${expert.name} — AI expert`,
+    title: profileTitle(expert),
     description: expert.headline,
     alternates: { canonical: `/experts/${expert.slug}` },
     openGraph: {
-      title: `${expert.name} — AI expert`,
+      title: profileTitle(expert),
       description: expert.headline,
       url: `${SITE}/experts/${expert.slug}`,
       type: "profile",
@@ -41,7 +51,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 function ExpertSchema({ expert }: { expert: Expert }) {
   const person: Record<string, unknown> = {
     "@type": "Person",
-    "@id": `${SITE}/experts/${expert.slug}#person`,
+    // One human, one identifier. A member who also has a page of their own
+    // elsewhere on the site keeps that page's id here, so the two pages describe
+    // the same node instead of splitting into two people who happen to share a
+    // name. Splitting is what let an assistant merge us with a different
+    // publisher in the first place.
+    "@id": personIdOf(expert),
     name: expert.name,
     description: expert.about,
     jobTitle: expert.headline,
@@ -69,7 +84,7 @@ function ExpertSchema({ expert }: { expert: Expert }) {
     "@context": "https://schema.org",
     "@type": "ProfilePage",
     url: `${SITE}/experts/${expert.slug}`,
-    name: `${expert.name} — AI expert`,
+    name: profileTitle(expert),
     isPartOf: { "@type": "WebSite", name: "AI Business", url: SITE },
     about: person,
     mainEntity: person,
@@ -130,6 +145,34 @@ function Tags({ title, items, dark }: { title: string; items: string[]; dark?: b
     </div>
   );
 }
+
+/** The rail beside an expert's profile: the site's own tools, then the two doors for others. */
+const SIDEBAR_LINKS: readonly { kicker: string; text: string; href: string; label: string }[] = [
+  {
+    kicker: "AI Person Scan",
+    text: "What five AI models say about you, or about someone you are about to work with. Free preview first, PDF report by email.",
+    href: "/professional-scan",
+    label: "Check a person",
+  },
+  {
+    kicker: "AI Company Scan",
+    text: "Who is behind a company, what it sells and what people report, as five AI models tell it. Free preview first.",
+    href: "/company-scan",
+    label: "Check a company",
+  },
+  {
+    kicker: "Submit Your Story",
+    text: "A written interview for companies with a live AI product, published here with an editorial check. Free.",
+    href: "/submit-your-story",
+    label: "Submit a story",
+  },
+  {
+    kicker: "Founder's Library",
+    text: "Free methods for governing AI from the customer's side: policies, service passports, receipts and the full test purchase method.",
+    href: "/library",
+    label: "Open the library",
+  },
+];
 
 export default async function ExpertPage({ params }: Props) {
   const { slug } = await params;
@@ -310,21 +353,15 @@ export default async function ExpertPage({ params }: Props) {
                 </Link>
               </div>
 
-              <div className="mt-4 rounded-2xl bg-gray-950 p-6">
-                <p className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-accent">
-                  From AI Business
-                </p>
-                <p className="mt-2 text-sm leading-relaxed text-gray-300">
-                  Free methods for governing AI from the customer&apos;s side: policies, service
-                  passports, receipts and the full test purchase method.
-                </p>
-                <Link
-                  href="/library"
-                  className="mt-3 inline-block text-sm font-bold text-accent hover:underline"
-                >
-                  Author&apos;s Library &rarr;
-                </Link>
-              </div>
+              {SIDEBAR_LINKS.map((item) => (
+                <div key={item.href} className="mt-4 rounded-2xl bg-gray-950 p-6">
+                  <p className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-accent">{item.kicker}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-gray-300">{item.text}</p>
+                  <Link href={item.href} className="mt-3 inline-block text-sm font-bold text-accent hover:underline">
+                    {item.label} &rarr;
+                  </Link>
+                </div>
+              ))}
             </div>
           </aside>
         </div>

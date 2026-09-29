@@ -18,6 +18,92 @@ const FRAME = 260;
 const EXPORT = 480;
 
 /**
+ * Phone cameras produce 10 to 20 MB originals. The size of the original does not
+ * matter here, because it is scaled down before anything is sent, so the cap only
+ * guards the phone's memory and sits well above what a camera makes.
+ */
+const MAX_SOURCE_BYTES = 40 * 1024 * 1024;
+
+/** Longest edge of the working copy held in memory while the person crops. */
+const WORKING_EDGE = 1600;
+
+const IMAGE_NAME = /\.(jpe?g|png|webp|gif|heic|heif|avif|bmp|tiff?)$/i;
+
+const UNREADABLE =
+  "This browser cannot open that picture. Phones often save photos as HEIC, which some browsers cannot read. Take a screenshot of the photo and choose the screenshot instead, or email the photo to info [at] aibusiness.vc and we will add it.";
+
+const CANNOT_CROP =
+  "Your phone could not prepare the photo here. Send the form without it and email the photo to info [at] aibusiness.vc. We will add it to your profile.";
+
+/**
+ * Some Android galleries hand over photos with no MIME type at all, so an empty
+ * type is given the benefit of the doubt: decoding it is the real test.
+ */
+function looksLikeImage(file: File): boolean {
+  return file.type.startsWith("image/") || file.type === "" || IMAGE_NAME.test(file.name);
+}
+
+function loadViaImage(file: File): Promise<HTMLImageElement> {
+  return new Promise((resolve, reject) => {
+    const url = URL.createObjectURL(file);
+    const img = new Image();
+    img.onload = () => {
+      URL.revokeObjectURL(url);
+      resolve(img);
+    };
+    img.onerror = () => {
+      URL.revokeObjectURL(url);
+      reject(new Error("undecodable"));
+    };
+    img.src = url;
+  });
+}
+
+/**
+ * Decode the file and hand back a modest JPEG to crop from.
+ *
+ * Holding a 48-megapixel original in an <img> is what makes older phones drop the
+ * page, and a browser that cannot decode the format fails with no event at all if
+ * nothing listens for it. Decoding once, up front, turns both into a normal,
+ * explained error, and everything after this point works on a small picture.
+ */
+interface WorkingCopy {
+  url: string;
+  width: number;
+  height: number;
+}
+
+async function toWorkingCopy(file: File): Promise<WorkingCopy> {
+  let source: ImageBitmap | HTMLImageElement;
+  if (typeof createImageBitmap === "function") {
+    try {
+      source = await createImageBitmap(file);
+    } catch {
+      source = await loadViaImage(file);
+    }
+  } else {
+    source = await loadViaImage(file);
+  }
+
+  const width = "naturalWidth" in source ? source.naturalWidth : source.width;
+  const height = "naturalHeight" in source ? source.naturalHeight : source.height;
+  if (!width || !height) throw new Error("undecodable");
+
+  const k = Math.min(1, WORKING_EDGE / Math.max(width, height));
+  const canvas = document.createElement("canvas");
+  canvas.width = Math.round(width * k);
+  canvas.height = Math.round(height * k);
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("no-canvas");
+  // White under transparent PNGs, or they turn black as JPEG.
+  ctx.fillStyle = "#ffffff";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.drawImage(source, 0, 0, canvas.width, canvas.height);
+  if ("close" in source) source.close();
+  return { url: canvas.toDataURL("image/jpeg", 0.92), width: canvas.width, height: canvas.height };
+}
+
+/**
  * Photo picker with zoom and drag-to-position.
  *
  * A portrait is the first thing anyone sees on a profile, so it is worth more
@@ -31,67 +117,94 @@ export function PhotoPicker({ onChange }: Props) {
   const [zoom, setZoom] = useState(1);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   const [error, setError] = useState("");
+  const [busy, setBusy] = useState(false);
+  // Known the moment the working copy is made, so the preview never depends on
+  // an image load event or a parent re-render to learn its own size. Relying on
+  // those left the circle blank on some phones: nothing failed, nothing showed.
+  const [natural, setNatural] = useState({ width: 0, height: 0 });
+  const [inAppBrowser, setInAppBrowser] = useState(false);
   const imageRef = useRef<HTMLImageElement | null>(null);
+
+  // The link to this form mostly travels through LinkedIn, whose mobile app opens
+  // it in a built-in browser that often refuses to open the photo picker at all.
+  // Nothing on this page can fix that, so the person is told how to get out of it.
+  useEffect(() => {
+    setInAppBrowser(/LinkedInApp|FBAN|FBAV|Instagram|Line\//i.test(navigator.userAgent));
+  }, []);
   const dragRef = useRef<{ x: number; y: number; ox: number; oy: number } | null>(null);
 
   /** Scale at which the image just covers the frame. */
   const coverScale = useCallback(() => {
-    const img = imageRef.current;
-    if (!img || !img.naturalWidth) return 1;
-    return Math.max(FRAME / img.naturalWidth, FRAME / img.naturalHeight);
-  }, []);
+    if (!natural.width || !natural.height) return 1;
+    return Math.max(FRAME / natural.width, FRAME / natural.height);
+  }, [natural]);
 
   const emit = useCallback(() => {
     const img = imageRef.current;
-    if (!img || !img.naturalWidth) return;
+    if (!img || !img.complete || !natural.width) return;
     const scale = coverScale() * zoom;
-    const dispW = img.naturalWidth * scale;
-    const dispH = img.naturalHeight * scale;
+    const dispW = natural.width * scale;
+    const dispH = natural.height * scale;
     const left = (FRAME - dispW) / 2 + offset.x;
     const top = (FRAME - dispH) / 2 + offset.y;
 
     const canvas = document.createElement("canvas");
     canvas.width = EXPORT;
     canvas.height = EXPORT;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-    const k = EXPORT / FRAME;
-    ctx.fillStyle = "#ffffff";
-    ctx.fillRect(0, 0, EXPORT, EXPORT);
-    ctx.drawImage(img, left * k, top * k, dispW * k, dispH * k);
-    const dataUrl = canvas.toDataURL("image/jpeg", 0.88);
-    onChange({
-      name: fileName || "photo.jpg",
-      type: "image/jpeg",
-      data: dataUrl.split(",")[1] ?? "",
-    });
-  }, [coverScale, zoom, offset, fileName, onChange]);
+    try {
+      const ctx = canvas.getContext("2d");
+      if (!ctx) throw new Error("no-canvas");
+      const k = EXPORT / FRAME;
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(0, 0, EXPORT, EXPORT);
+      ctx.drawImage(img, left * k, top * k, dispW * k, dispH * k);
+      const dataUrl = canvas.toDataURL("image/jpeg", 0.88);
+      onChange({
+        name: fileName || "photo.jpg",
+        type: "image/jpeg",
+        data: dataUrl.split(",")[1] ?? "",
+      });
+    } catch {
+      // Low-memory phones can refuse a canvas. Say so instead of leaving the
+      // person with a photo on screen that silently never reaches the form.
+      onChange(null);
+      setError(CANNOT_CROP);
+    }
+  }, [coverScale, natural, zoom, offset, fileName, onChange]);
 
   // Re-crop whenever the person moves or zooms the picture.
   useEffect(() => {
     if (src) emit();
   }, [src, zoom, offset, emit]);
 
-  function handleFile(event: React.ChangeEvent<HTMLInputElement>) {
-    const file = event.target.files?.[0];
+  async function handleFile(event: React.ChangeEvent<HTMLInputElement>) {
+    const input = event.target;
+    const file = input.files?.[0];
+    // Cleared so that choosing the same file again after an error still fires.
+    input.value = "";
     setError("");
     if (!file) return;
-    if (!file.type.startsWith("image/")) {
-      setError("That is not an image file.");
+    if (!looksLikeImage(file)) {
+      setError("That is not an image file. Choose a photo.");
       return;
     }
-    if (file.size > 8 * 1024 * 1024) {
-      setError("The picture is over 8 MB. Try a smaller one.");
+    if (file.size > MAX_SOURCE_BYTES) {
+      setError("That picture is unusually large. Take a screenshot of it and choose the screenshot.");
       return;
     }
-    const reader = new FileReader();
-    reader.onload = () => {
-      setSrc(String(reader.result ?? ""));
-      setFileName(file.name);
+    setBusy(true);
+    try {
+      const working = await toWorkingCopy(file);
+      setNatural({ width: working.width, height: working.height });
+      setSrc(working.url);
+      setFileName(file.name.replace(/\.[^.]+$/, "") + ".jpg");
       setZoom(1);
       setOffset({ x: 0, y: 0 });
-    };
-    reader.readAsDataURL(file);
+    } catch {
+      setError(UNREADABLE);
+    } finally {
+      setBusy(false);
+    }
   }
 
   function onPointerDown(event: React.PointerEvent<HTMLDivElement>) {
@@ -115,16 +228,16 @@ export function PhotoPicker({ onChange }: Props) {
 
   function clear() {
     setSrc("");
+    setNatural({ width: 0, height: 0 });
     setFileName("");
     setZoom(1);
     setOffset({ x: 0, y: 0 });
     onChange(null);
   }
 
-  const img = imageRef.current;
-  const scale = (img?.naturalWidth ? coverScale() : 1) * zoom;
-  const dispW = (img?.naturalWidth ?? FRAME) * scale;
-  const dispH = (img?.naturalHeight ?? FRAME) * scale;
+  const scale = coverScale() * zoom;
+  const dispW = (natural.width || FRAME) * scale;
+  const dispH = (natural.height || FRAME) * scale;
 
   return (
     <div className="rounded-2xl border-2 border-amber-300 bg-amber-50 p-5">
@@ -145,6 +258,10 @@ export function PhotoPicker({ onChange }: Props) {
               alt="Your photo"
               draggable={false}
               onLoad={() => emit()}
+              onError={() => {
+                clear();
+                setError(UNREADABLE);
+              }}
               style={{
                 position: "absolute",
                 width: dispW,
@@ -163,8 +280,14 @@ export function PhotoPicker({ onChange }: Props) {
 
         <div className="flex-1 text-center sm:text-left">
           <label className="inline-block cursor-pointer rounded-lg bg-amber-500 px-5 py-3 text-sm font-bold text-gray-950 transition hover:bg-amber-400">
-            {src ? "Choose another photo" : "Choose a photo"}
-            <input type="file" accept="image/*" onChange={handleFile} className="hidden" />
+            {busy ? "Preparing your photo…" : src ? "Choose another photo" : "Choose a photo"}
+            <input
+              type="file"
+              accept="image/*,.heic,.heif"
+              onChange={handleFile}
+              disabled={busy}
+              className="sr-only"
+            />
           </label>
 
           {src && (
@@ -201,6 +324,13 @@ export function PhotoPicker({ onChange }: Props) {
             <p className="mt-3 max-w-sm text-sm leading-relaxed text-amber-900">
               A clear portrait, looking at the camera. This is the first thing anyone sees, so it
               is worth a good one.
+            </p>
+          )}
+
+          {inAppBrowser && !src && (
+            <p className="mt-3 max-w-sm rounded-lg bg-white px-3 py-2 text-sm leading-relaxed text-gray-800">
+              If the photo picker does not open, you are probably in an app&apos;s built-in
+              browser. Open this page in Chrome or Safari from the menu and it will work.
             </p>
           )}
 

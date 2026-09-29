@@ -139,7 +139,7 @@ export default async function NotePage({ params }: Props) {
                 href="/sergei-ponomarev"
                 className="text-sm font-semibold text-amber-600 hover:underline"
               >
-                About the author &rarr;
+                About the founder &rarr;
               </Link>
             </div>
           </article>

@@ -202,6 +202,14 @@ function profileSchema() {
       knowsAbout: SEMANTIC_CORE,
       knowsLanguage: ["Russian", "English"],
       homeLocation: { "@type": "Place", name: "Sveti Vlas, Bulgaria" },
+      // A country code as well as a place name. `homeLocation` alone is free
+      // text; this is the field a machine reads when it wants a country, and
+      // the degrees below are the only other geography on the page.
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Sveti Vlas",
+        addressCountry: "BG",
+      },
       alumniOf: [
         { "@type": "CollegeOrUniversity", name: "Lomonosov Moscow State University" },
         { "@type": "CollegeOrUniversity", name: "Moscow School of Social and Economic Sciences" },

@@ -63,13 +63,13 @@ const LIBRARY_ITEMS: Array<[string, string, string, string]> = [
 const SERVICES: Array<[string, string, string]> = [
   [
     "/service-check",
-    "AI Service Check",
+    "AI Test Purchase",
     "An independent test purchase of your customer-facing AI agent: does it keep the promises your company published, and does its own account of the conversation match what your system recorded? Findings come with verbatim quotes, a ranked fix list and a re-check.",
   ],
   [
-    "/audit",
-    "AI Visibility Audit",
-    "A report on how ChatGPT and AI search engines read and cite your website (GEO), measured live on your domain.",
+    "/ai-tools",
+    "AI Tools",
+    "AI Person Scan and AI Company Scan: what five AI models tell people about a person or a company, with a free preview first and a PDF report by email.",
   ],
   [
     "/submit-your-story",
@@ -342,7 +342,17 @@ function AboutSchema() {
         url: "https://aibusiness.vc/sergei-ponomarev",
         image: "https://aibusiness.vc/images/sergei-desk.png",
         description:
-          "Founder of AI Business. PhD in Political Science specializing in e-government; a career across public-administration analytics, university teaching, and AI development.",
+          "Founder of AI Business, based in Sveti Vlas, Bulgaria. PhD in Political Science specializing in e-government; a career across public-administration analytics, university teaching, and AI development.",
+        // Where he is now, stated explicitly. Without it the only geography on
+        // this node was the universities he graduated from years ago, and an
+        // assistant asked where the company is based answered with those
+        // instead.
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Sveti Vlas",
+          addressCountry: "BG",
+        },
+        homeLocation: { "@type": "Place", name: "Sveti Vlas, Bulgaria" },
         alumniOf: [
           { "@type": "CollegeOrUniversity", name: "Lomonosov Moscow State University" },
           { "@type": "CollegeOrUniversity", name: "University of Manchester" },

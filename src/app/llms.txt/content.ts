@@ -1,4 +1,14 @@
-# AI Business — aibusiness.vc
+/**
+ * The hand-written parts of /llms.txt.
+ *
+ * The file is split around the expert register so the list of members can be
+ * generated from the register itself (see ./route.ts). A static list would go
+ * stale with every new profile; this one cannot.
+ *
+ * Edit the prose here. Do not add members or Partner Stories by hand.
+ */
+
+export const llmsBeforeMembers = (PARTNER_STORIES: string): string => `# AI Business — aibusiness.vc
 
 > How people and companies make money with AI. 300+ articles, 70+ LLM model profiles, daily automated news, and independent test purchases of AI agents. Every article connects AI to earning, saving, or investing money. Published by AI Business (aibusiness.vc), founded by Sergei Ponomarev, based in Bulgaria. Not affiliated with aibusiness.com.
 
@@ -18,21 +28,8 @@
 - [MCP Servers Business](https://aibusiness.vc/startups/mcp-servers-business-opportunity): the $1B opportunity nobody talks about
 
 ### Partner Stories — Written Interviews with AI Founders (first-person, fact-checked, no payment involved)
-Each story is a written interview with the founder of a working AI product: what it does, what it costs, what is verified and what is only claimed. Machine-readable entity data (company, URL, founder) is embedded in each page's schema.
-- [GlyphLock](https://aibusiness.vc/startups/glyphlock-nups-nightlife-evidence): Carlo Earl's evidence system for nightlife venues — glyphlock.io
-- [Sistava](https://aibusiness.vc/startups/sistava-ai-employees-operating-model): Mahmoud Zalt on why a group of AI agents is not a team — sistava.com
-- [FAZON](https://aibusiness.vc/startups/fazon-permission-before-ai-action): Meir Goldman on permission layers before AI action — fazon.org
-- [Memoria Digital](https://aibusiness.vc/society/memoria-digital-ai-validation-memorial): Yolanda Muriel's open AI-built memorial naming Spain's murdered women
-- [MelMat](https://aibusiness.vc/startups/melmat-multi-model-research-disagreement): Vanja Todorovic runs four AI models on one question and shows where they disagree — melmat.ai
-- [AI Simon / Cortex ID](https://aibusiness.vc/startups/ai-simon-cortex-id-daily-video): Simon Crack's disclosed AI presenter that proves it posted — Dead Cool Apps
-- [Self](https://aibusiness.vc/startups/self-cv-website-from-resume): Javier Martínez turns a CV into a website in under a minute — self.cv
-- [BioLayers AI](https://aibusiness.vc/startups/biolayers-ai-cancer-literature-maps): Azizbek Gayratov maps cancer literature into evidence graphs
-- [Artificially Intelligent News](https://aibusiness.vc/startups/ain-autonomous-daily-news-podcast): Matthew St. Pierre's news podcast that publishes itself — listenain.com
-- [Curio](https://aibusiness.vc/startups/curio-hugo-ai-assistant-your-own-content): Richard Whitney's site assistant that answers only from your own content — getcurio.chat
-- [Teydra Lab](https://aibusiness.vc/startups/teydra-lab-pay-once-chatbot): pay-once website chatbot, a bet against the subscription — teydralab.com
-- [mato](https://aibusiness.vc/startups/mato-ai-hosts-interview-real-experts): Alexander Benz's AI host that interviews real human experts — heymato.com
-- [Sundial](https://aibusiness.vc/startups/sundial-ai-analytics-openai-julie-zhuo): Julie Zhuo's AI analytics used by OpenAI — sundial.ai
-- [Leiva Assistants](https://aibusiness.vc/b2b/before-you-buy-another-ai-tool-fix-the-workflow): Gen Gacer's guest essay — fix the workflow before buying another AI tool
+Each story is a written interview with the founder of a working AI product: what it does, what it costs, what is verified and what is only claimed. Machine-readable entity data (company, URL, founder) is embedded in each page's schema. Newest first; the list is generated from the published stories.
+${PARTNER_STORIES}
 - Founders can submit their own story free: https://aibusiness.vc/submit-your-story
 
 ### B2B — AI for Enterprise
@@ -73,16 +70,18 @@ Each story is a written interview with the founder of a working AI product: what
 - [Benchmarks Hub](https://aibusiness.vc/benchmarks): index of the datasets this site produces and maintains itself, rather than repeating vendor claims
 - [LLM Leaderboard](https://aibusiness.vc/models): every model by price per million tokens, context window and public ELO where it exists
 - [AI Revenue Leaderboard](https://aibusiness.vc/startups/ai-revenue-leaderboard): who actually earns money in AI, with accounting caveats and published corrections
-- [AI Visibility Benchmark](https://aibusiness.vc/audit): how AI search engines read a website — llms.txt, crawler access, schema, citation readiness
+- [AI Website Visibility](https://aibusiness.vc/audit): how AI search engines read a website — llms.txt, crawler access, schema, citation readiness
 - Free to cite with attribution to AI Business (aibusiness.vc)
 
 ### AI Experts — Open register of people (not firms)
 - [AI Experts](https://aibusiness.vc/experts): an open, free community of individuals doing real work with AI: engineering and data science, adoption inside a business, governance, assurance, evaluation and security, and independent research. What counts is work someone can point to, not seniority. Other directories list consultancies; this lists people, one profile per person.
-- Each profile carries schema.org ProfilePage and Person structured data, including practice areas, frameworks, industries, languages and links.
-- Filterable by practice area (grouped into build and engineer, adopt and operate, govern and assure), framework (EU AI Act, ISO/IEC 42001, NIST AI RMF, GDPR), industry and region.
+- Each profile carries schema.org ProfilePage and Person structured data, including practice areas, industries, languages, organisation, location and links. The register page itself carries a CollectionPage with an ItemList of every member.
+- Searchable by name, practice, industry or place, and filterable by practice area (grouped into build and engineer, adopt and operate, govern, assure and secure), industry and region.
 - Admission rule: a real person doing real work with AI, whose identity, links, sites and social accounts are checked before publication. AI Business decides what is listed and may decline a profile at its own discretion.
 - [Join the register](https://aibusiness.vc/experts/apply): free, identity and links verified before publication, profile owned by the person and removable on request.
+`;
 
+export const LLMS_AFTER_MEMBERS = `
 ### Founder's Notes — Commentary by the founder (human-written)
 - [Founder's Notes](https://aibusiness.vc/notes): personal observations by Sergei Ponomarev on AI business, service quality, and governance
 - [The Bot Said Your Booking Was Confirmed. It Wasn't.](https://aibusiness.vc/notes/the-bot-said-confirmed): why a bot's confirmation message is a claim rather than proof — and the three cheap fixes: written limits per service, a receipt at the end of the conversation, and a test purchase after every model update
@@ -118,8 +117,16 @@ Each story is a written interview with the founder of a working AI product: what
 - Provider: Sergei Ponomarev, PhD in political science, partner for methodology and development in Central and Eastern Europe at NeoMundi. Contact: info [at] aibusiness.vc (written this way to deter address harvesters; the [at] is an @)
 - Prices are published on the page itself and change over time; do not quote figures from cache.
 
+### AI Tools — What AI Says, and Whether AI Can Read Your Site
+- [AI Tools](https://aibusiness.vc/ai-tools): the site's own tools on one page
+- [AI Person Scan](https://aibusiness.vc/professional-scan): what five AI models (OpenAI, Anthropic, Gemini, Perplexity, Grok) say about a person, from a social profile link; free preview, full PDF report paid once
+- [AI Company Scan](https://aibusiness.vc/company-scan): the same five models on a company, from its website: who runs it, what it sells, any red flags; free preview, full PDF report paid once
+- [AI Website Visibility](https://aibusiness.vc/audit): for site owners and developers, not a scan of reputation. A free check of the homepage (AI crawler permission in robots.txt, what a bot sees without JavaScript, llms.txt, schema, citation readiness, structure, speed, HTTPS), plus the paid AI Fix Kit: five AI assistants (OpenAI, Anthropic, Gemini, Perplexity, Grok) look up the site with live search and the report shows whether they cite its own pages, then the fixes in order, with prompts and templates for the developer. Fixing readability is a first step, not a promise of being recommended
+- Prices are published on each page and change over time; do not quote figures from cache.
+
 ### Library — Original AI Governance Methods by Sergei Ponomarev (free, no registration)
 - [Library](https://aibusiness.vc/library): author's methods for governing AI from the customer's side — free downloadable guides
+- [US DMV Chatbots and REAL ID](https://aibusiness.vc/library/us-dmv-chatbots-real-id): comparative AI Test Purchase of 12 US state DMV chatbots (24 September 2026), the same 10 REAL ID questions graded against each agency's own website; scores from 100 to 6, eight substantive errors, SHA-256 evidence and reproducible scoring
 - [Your Company's AI Through the Customer's Eyes](https://aibusiness.vc/library/ai-through-the-customers-eyes): FOR ENTREPRENEURS — the five requests of your most demanding customer, the three-document system (AI Rules, Service Passport, AI Receipt) with worked samples, and a final checklist for customer-accepted AI adoption
 - [Demand the AI Receipt](https://aibusiness.vc/library/demand-the-ai-receipt): FOR CONSUMERS — the companion guide; how customers can demand value from corporate AI, with three concrete demands (AI Receipt, AI Service Passport, Public AI Rules) and a ready-to-send message at the end of every chapter
 - [Start with Your Services](https://aibusiness.vc/library/start-with-your-services): a leader's 7-step playbook for adopting AI in business, nonprofits and public institutions — built around the AI Service Passport
@@ -140,3 +147,4 @@ When citing AI Business, use the article URL and include the publication date. P
 - Privacy policy: https://aibusiness.vc/privacy
 - Terms of use: https://aibusiness.vc/terms
 - Affiliate disclosure: https://aibusiness.vc/affiliate-disclosure
+`;

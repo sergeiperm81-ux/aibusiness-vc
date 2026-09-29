@@ -1,6 +1,61 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { ExpertsBrowser } from "./ExpertsBrowser";
+import { EXPERTS, personIdOf, profileUrl } from "./experts";
+
+const SITE = "https://aibusiness.vc";
+
+/**
+ * The register, stated as a register.
+ *
+ * A person reading this page sees a list of experts. A machine, without this,
+ * sees one Organization and a client-side widget, and has to guess. A
+ * CollectionPage wrapping an ItemList of Person nodes says it outright: here are
+ * these people, this is what each one does, and this is where each profile
+ * lives. Each Person carries the same @id as on its own profile page, so the
+ * two descriptions join into one node rather than becoming two strangers.
+ */
+function RegisterSchema() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": `${SITE}/experts#register`,
+    url: `${SITE}/experts`,
+    name: "AI Experts — The Open Community",
+    description:
+      "An open register of individual people doing real work with AI. One profile per person, identity and links checked before publication.",
+    isPartOf: { "@type": "WebSite", name: "AI Business", url: SITE },
+    publisher: { "@id": `${SITE}/#organization` },
+    mainEntity: {
+      "@type": "ItemList",
+      name: "AI experts",
+      numberOfItems: EXPERTS.length,
+      itemListElement: EXPERTS.map((expert, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        url: profileUrl(expert),
+        item: {
+          "@type": "Person",
+          "@id": personIdOf(expert),
+          name: expert.name,
+          url: profileUrl(expert),
+          jobTitle: expert.headline,
+          ...(expert.organisation
+            ? { worksFor: { "@type": "Organization", name: expert.organisation } }
+            : {}),
+          address: { "@type": "PostalAddress", addressLocality: expert.location },
+          knowsAbout: expert.practiceAreas.slice(0, 5),
+        },
+      })),
+    },
+  };
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
 
 export const metadata: Metadata = {
   title: "AI Experts — The Open Community",
@@ -78,6 +133,8 @@ export default function ExpertsPage() {
           </div>
         </div>
       </div>
+
+      <RegisterSchema />
     </section>
   );
 }
