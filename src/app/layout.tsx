@@ -4,6 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
+import { MetaPixel } from "@/components/analytics/MetaPixel";
 import "./globals.css";
 
 const GA_ID = "G-1REBWZYEET";
@@ -102,6 +103,7 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
         <Footer />
         <CookieConsent />
+        <MetaPixel />
         <OrgSchemaOrg />
       </body>
     </html>

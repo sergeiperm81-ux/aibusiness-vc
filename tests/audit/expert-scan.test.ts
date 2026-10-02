@@ -251,3 +251,39 @@ test("a LinkedIn internal member link is refused and asks for the public address
   // A real name that merely starts with the same letters is still a name.
   assert.equal(url("https://www.linkedin.com/in/acosta-maria"), "https://www.linkedin.com/in/acosta-maria");
 });
+
+function reason(value: string): string | null {
+  const result = parseSocialProfile(value);
+  return result.ok ? null : result.reason;
+}
+
+test("links people really paste are taken: share cards, the mobile site, text around the link", () => {
+  assert.equal(url("https://www.instagram.com/jane.doe/profilecard/?igsh=abc123"), "https://www.instagram.com/jane.doe");
+  assert.equal(url("https://www.linkedin.com/mwlite/in/jane-doe"), "https://www.linkedin.com/in/jane-doe");
+  assert.equal(url("My profile: https://www.linkedin.com/in/jane-doe."), "https://www.linkedin.com/in/jane-doe");
+  assert.equal(url("here it is x.com/janedoe thanks"), "https://x.com/janedoe");
+  // A post is still a post, with or without words around it.
+  assert.equal(url("see https://x.com/janedoe/status/123"), null);
+  assert.equal(url("https://www.instagram.com/jane.doe/reels/"), null);
+});
+
+test("every refusal says why in one word, and the sentence fits the case", () => {
+  assert.equal(reason(""), "empty");
+  assert.equal(reason("Jane Doe"), "name");
+  assert.equal(reason("@janedoe"), "handle");
+  assert.equal(reason("janedoe"), "handle");
+  assert.equal(reason("https://janedoe.com"), "website");
+  assert.equal(reason("https://www.threads.net/@janedoe"), "other_network");
+  assert.equal(reason("https://lnkd.in/dAbCdEf"), "short_link");
+  assert.equal(reason("https://www.facebook.com/share/1AbCdEfGh/?mibextid=wwXIfr"), "share_link");
+  assert.equal(reason("https://www.linkedin.com/company/acme"), "company_or_post");
+  assert.equal(reason("https://www.linkedin.com/in/ACoAAEkrrT8BxQn2v7wZlJkHn3pQ9fGdLmS0aYc"), "internal_id");
+  assert.equal(reason("https://user:pass@linkedin.com/in/jane"), "malformed");
+
+  const name = parseSocialProfile("Jane Doe");
+  assert.ok(!name.ok && /many people/.test(name.error));
+  const handle = parseSocialProfile("@janedoe");
+  assert.ok(!handle.ok && /full profile link/.test(handle.error));
+  const share = parseSocialProfile("https://www.facebook.com/share/1AbCdEfGh/");
+  assert.ok(!share.ok && /address bar/.test(share.error));
+});

@@ -3,7 +3,17 @@
 import { trackEvent } from "./analytics";
 
 export type ScanKind = "person" | "company";
-export type ScanEvent = "preview_started" | "preview_completed" | "preview_failed" | "checkout_started";
+/**
+ * preview_failed is the server or the network not answering. An input the form
+ * refused is preview_rejected_<reason>: the reason sits in the event name, so
+ * it shows in reports without a custom dimension. The typed text is never sent.
+ */
+export type ScanEvent =
+  | "preview_started"
+  | "preview_completed"
+  | "preview_failed"
+  | "checkout_started"
+  | `preview_rejected_${string}`;
 
 const CONSENT_KEY = "cookie-consent-v1";
 

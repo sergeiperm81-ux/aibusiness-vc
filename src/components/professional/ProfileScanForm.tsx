@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { parseSocialProfile } from "@/lib/audit/social-profile";
+import Link from "next/link";
 import { trackScan } from "@/lib/scan-analytics";
 
 /**
@@ -16,14 +17,17 @@ export function ProfileScanForm({ tone = "dark" }: { tone?: "dark" | "yellow" })
   const [value, setValue] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [toCompanyScan, setToCompanyScan] = useState(false);
 
   async function submit(event: React.FormEvent) {
     event.preventDefault();
     setError(null);
+    setToCompanyScan(false);
     const parsed = parseSocialProfile(value);
     if (!parsed.ok) {
       setError(parsed.error);
-      trackScan("preview_failed", "person", { reason: "invalid_link" });
+      setToCompanyScan(parsed.reason === "website");
+      trackScan(`preview_rejected_${parsed.reason}`, "person");
       return;
     }
     setBusy(true);
@@ -76,6 +80,14 @@ export function ProfileScanForm({ tone = "dark" }: { tone?: "dark" | "yellow" })
       {error && (
         <p className={`mt-3 text-base font-semibold ${onYellow ? "text-black" : "text-red-400"}`} role="alert">
           {error}
+          {toCompanyScan && (
+            <>
+              {" "}
+              <Link href="/company-scan" className="underline underline-offset-4">
+                Open AI Company Scan
+              </Link>
+            </>
+          )}
         </p>
       )}
     </form>

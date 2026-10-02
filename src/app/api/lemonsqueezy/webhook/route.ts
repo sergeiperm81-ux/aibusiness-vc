@@ -7,6 +7,7 @@ import { redisKv } from "@/lib/audit/durable-kv";
 import { companyScanVariantId, productionDeps, proScanVariantId, providerConfigured, WORKER_BUDGET_MS } from "@/lib/audit/professional-runtime";
 import { PERSON_PROVIDER_IDS } from "@/lib/audit/answer-providers";
 import { codeFor, createLemonDiscount } from "@/lib/audit/professional-delivery";
+import { sendMetaPurchase } from "@/lib/meta-capi";
 import { handleProScanOrder } from "@/lib/audit/professional-webhook";
 import { drainQueue } from "@/lib/audit/professional-worker";
 
@@ -443,6 +444,15 @@ export async function POST(request: Request) {
       fullPrice,
     });
     processedEvents.add(eventId);
+    // The sale, reported to Meta from the server so the ads learn from every purchase. Never blocks the order.
+    await sendMetaPurchase({
+      orderId,
+      email: toEmail,
+      value: Number(attributes.total ?? 4900) / 100,
+      currency: String(attributes.currency ?? "EUR"),
+      contentName: "AI Fix Kit",
+      sourceUrl: "https://aibusiness.vc/audit",
+    });
     // The send is confirmed: extend the claim to cover the full retry window.
     if (claim === "claimed") {
       await persistClaim(idempotencyKey, DELIVERED_TTL_SECONDS);

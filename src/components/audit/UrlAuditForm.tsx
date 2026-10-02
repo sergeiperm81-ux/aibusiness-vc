@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { encodeDomainAsId } from "@/lib/audit/mock";
 import { isAcceptableHostname } from "@/lib/audit/hostname";
+import { metaTrackCustom } from "@/lib/meta-pixel";
+import { trackEvent } from "@/lib/analytics";
 
 interface UrlAuditFormProps {
   /** hero: on the black band; yellow: on the closing yellow band; compact: a single-line field. */
@@ -35,6 +37,9 @@ export function UrlAuditForm({ variant = "hero" }: UrlAuditFormProps) {
     }
 
     setSubmitting(true);
+    // The domain itself is never sent: the funnel step is the event, not the site.
+    metaTrackCustom("ScanStarted");
+    trackEvent("scan_started", { product: "website_visibility" });
     router.push(`/audit/r/${id}`);
   }
 

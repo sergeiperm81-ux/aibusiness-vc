@@ -79,6 +79,8 @@ export function CookieConsent() {
       // ignore persistence failure — consent still applies for this session
     }
     applyConsent(granted);
+    // Other trackers (the Meta pixel) listen for this and load or stay off accordingly.
+    window.dispatchEvent(new CustomEvent("cookie-consent", { detail: granted }));
     setVisible(false);
   }
 

@@ -17,7 +17,7 @@ export function CompanySiteForm({ tone = "dark" }: { tone?: "dark" | "yellow" })
     setError(null);
     if (!value.trim()) {
       setError("Enter the company's website, for example acme.com.");
-      trackScan("preview_failed", "company", { reason: "invalid_link" });
+      trackScan("preview_rejected_empty", "company");
       return;
     }
     setBusy(true);

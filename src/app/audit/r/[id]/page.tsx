@@ -7,6 +7,8 @@ import { decodeDomainFromId, type AuditMetric } from "@/lib/audit/mock";
 import { getLiveQuickAudit } from "@/lib/audit/live";
 import { getBrandKnowledge, hasAnswer } from "@/lib/audit/brand-knowledge";
 import { getAuditCheckoutUrl } from "@/lib/audit/checkout";
+import { MetaEvent } from "@/components/analytics/MetaPixel";
+import { CheckoutLink } from "@/components/audit/CheckoutLink";
 
 /**
  * The free result of AI Website Visibility, the page where the AI Fix Kit is sold.
@@ -85,6 +87,8 @@ export default async function AuditResultPage({ params }: { params: Promise<{ id
 
   return (
     <>
+      {/* A finished free check is the lead the ads campaign is optimised on. */}
+      <MetaEvent custom="ScanCompleted" standard="Lead" params={{ content_name: "AI Website Visibility" }} eventId={`lead-${id}`} />
       {/* The finding, on a black band. */}
       <section className="bg-background">
         <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-8 px-4 py-8 sm:px-6 lg:grid-cols-2 lg:px-8">
@@ -193,13 +197,15 @@ export default async function AuditResultPage({ params }: { params: Promise<{ id
           <div className="mt-6">
             {checkoutUrl ? (
               <div className="grid grid-cols-1 items-center gap-4 lg:grid-cols-2">
-                <a
+                <CheckoutLink
                   href={checkoutUrl}
+                  value={49}
+                  currency="EUR"
                   className="flex items-center justify-center gap-3 rounded-2xl bg-accent px-10 py-6 text-3xl font-bold text-black transition hover:bg-accent-hover"
                 >
                   Get the AI Fix Kit, &euro;49
                   <Arrow />
-                </a>
+                </CheckoutLink>
                 <p className="text-xl font-semibold text-black/75">By email within minutes · one payment · 14-day refund, no questions asked</p>
               </div>
             ) : (
